@@ -1,109 +1,46 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FB5F0824-CD35-4E97-A67F-046E59F883F7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Leibit.Tests</RootNamespace>
-    <AssemblyName>Leibit.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>net48</TargetFramework>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <AssemblyTitle>Leibit.Tests</AssemblyTitle>
+    <Product>Leibit.Tests</Product>
+    <Copyright>Copyright ©  2015</Copyright>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
   </ItemGroup>
-  <Choose>
-    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
   <ItemGroup>
-    <Compile Include="Comparer\DayComparer.cs" />
-    <Compile Include="Comparer\AreaComparer.cs" />
-    <Compile Include="Comparer\BlockComparer.cs" />
-    <Compile Include="Comparer\SharedDelayComparer.cs" />
-    <Compile Include="Comparer\ESTWComparer.cs" />
-    <Compile Include="Comparer\Identifier.cs" />
-    <Compile Include="Comparer\LeibitComparer.cs" />
-    <Compile Include="Comparer\ScheduleComparer.cs" />
-    <Compile Include="Comparer\StationComparer.cs" />
-    <Compile Include="Comparer\TrackComparer.cs" />
-    <Compile Include="Comparer\LiveScheduleComparer.cs" />
-    <Compile Include="Comparer\DelayInfoComparer.cs" />
-    <Compile Include="Comparer\TrainInformationComparer.cs" />
-    <Compile Include="Comparer\TrainComparer.cs" />
-    <Compile Include="ExpectedData\ExpectedValuesOfInitializationBLLTest.cs" />
-    <Compile Include="ExpectedData\ExpectedValuesOfLiveDataBLLTest.cs" />
-    <Compile Include="ExpectedData\ExpectedValuesOfSerializationBLLTest.cs" />
-    <Compile Include="LiveDataBLLTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LeibitTimeTest.cs" />
-    <Compile Include="InitializationBLLTest.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SerializationBLLTest.cs" />
-    <Compile Include="Utils\ESTWOnlineScope.cs" />
-    <Compile Include="Utils\ESTWTestDataScope.cs" />
-    <Compile Include="Utils\ESTWRootScope.cs" />
-    <Compile Include="Utils\DefaultChecks.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Leibit.BLL\Leibit.BLL.csproj">
-      <Project>{4e47464f-9c87-49a9-8aea-22fb1049e2b0}</Project>
-      <Name>Leibit.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Leibit.Core\Leibit.Core.csproj">
-      <Project>{797befd6-1150-4046-807e-21923a9c7f83}</Project>
-      <Name>Leibit.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Leibit.Entities\Leibit.Entities.csproj">
-      <Project>{a9502aa9-9b33-426c-bd03-9ae0c65000f4}</Project>
-      <Name>Leibit.Entities</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Leibit.BLL\Leibit.BLL.csproj" />
+    <ProjectReference Include="..\Leibit.Core\Leibit.Core.csproj" />
+    <ProjectReference Include="..\Leibit.Entities\Leibit.Entities.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestData\ESTWRoots\Testdorf\Kommunikation\dummy.txt">
@@ -115,12 +52,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="TestData\ESTWOnline\ESTWonline.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -612,31 +548,4 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
