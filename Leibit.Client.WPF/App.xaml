@@ -1,0 +1,30 @@
+﻿<Application x:Class="Leibit.Client.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+             Startup="Application_Startup">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/ResourceDictionary.xaml" />
+                <ResourceDictionary Source="/Leibit.Controls.WPF;component/Controls.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="xctk:MessageBox">
+                <Setter Property="YesButtonContent" Value="Ja" />
+                <Setter Property="NoButtonContent" Value="Nein" />
+                <Setter Property="CancelButtonContent" Value="Abbrechen" />
+            </Style>
+            
+            <Style TargetType="xcdg:HierarchicalGroupByControl">
+                <Setter Property="NoGroupContent" Value="Ziehen Sie eine Spalte hierher, um nach ihr zu gruppieren" />
+            </Style>
+            
+            <Style TargetType="xcdg:TableViewScrollViewer">
+                <Setter Property="HorizontalScrollBarVisibility" Value="Hidden" />
+                <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

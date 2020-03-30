@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB5F0824-CD35-4E97-A67F-046E59F883F7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Leibit.Tests</RootNamespace>
+    <AssemblyName>Leibit.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="Comparer\DayComparer.cs" />
+    <Compile Include="Comparer\AreaComparer.cs" />
+    <Compile Include="Comparer\BlockComparer.cs" />
+    <Compile Include="Comparer\SharedDelayComparer.cs" />
+    <Compile Include="Comparer\ESTWComparer.cs" />
+    <Compile Include="Comparer\Identifier.cs" />
+    <Compile Include="Comparer\LeibitComparer.cs" />
+    <Compile Include="Comparer\ScheduleComparer.cs" />
+    <Compile Include="Comparer\StationComparer.cs" />
+    <Compile Include="Comparer\TrackComparer.cs" />
+    <Compile Include="Comparer\LiveScheduleComparer.cs" />
+    <Compile Include="Comparer\DelayInfoComparer.cs" />
+    <Compile Include="Comparer\TrainInformationComparer.cs" />
+    <Compile Include="Comparer\TrainComparer.cs" />
+    <Compile Include="ExpectedData\ExpectedValuesOfInitializationBLLTest.cs" />
+    <Compile Include="ExpectedData\ExpectedValuesOfLiveDataBLLTest.cs" />
+    <Compile Include="ExpectedData\ExpectedValuesOfSerializationBLLTest.cs" />
+    <Compile Include="LiveDataBLLTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LeibitTimeTest.cs" />
+    <Compile Include="InitializationBLLTest.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SerializationBLLTest.cs" />
+    <Compile Include="Utils\ESTWOnlineScope.cs" />
+    <Compile Include="Utils\ESTWTestDataScope.cs" />
+    <Compile Include="Utils\ESTWRootScope.cs" />
+    <Compile Include="Utils\DefaultChecks.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Leibit.BLL\Leibit.BLL.csproj">
+      <Project>{4e47464f-9c87-49a9-8aea-22fb1049e2b0}</Project>
+      <Name>Leibit.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Leibit.Core\Leibit.Core.csproj">
+      <Project>{797befd6-1150-4046-807e-21923a9c7f83}</Project>
+      <Name>Leibit.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Leibit.Entities\Leibit.Entities.csproj">
+      <Project>{a9502aa9-9b33-426c-bd03-9ae0c65000f4}</Project>
+      <Name>Leibit.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\ESTWRoots\Testdorf\Kommunikation\dummy.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\LeibitData.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="TestData\ESTWOnline\ESTWonline.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChildTracks\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChildTracks\TestdorfArrival1B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChildTracks\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\After12Hours.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\Exactly12Hours.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestExpectedTimesPrematurePassing\AdvanceNoticeRechtsheim.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestExpectedTimesDelayedPassing\AdvanceNoticeRechtsheim.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestExpectedTimesPremature\AdvanceNoticeRechtsheim.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestExpectedTimesDelayed\AdvanceNoticeRechtsheim.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_InvalidScheduleIndex\ESTWonline.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_InvalidScheduleIndex\leibit_delay_2007_TTST.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_InvalidScheduleIndex\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_NonExisting\ESTWonline.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_NonExisting\leibit_delay_2007_TTST.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_NonExisting\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_Existing\ESTWonline.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_Existing\leibit_delay_2007_TTST.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\AdvanceNoticeLinksdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\BetweenLinksdorfAndProbe.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\TestdorfArrival1B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPrematureTrain\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\AdvanceNoticeLinksdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\BetweenLinksdorfAndProbe.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\TestdorfArrival2A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\TestdorfArrival2B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestChangedTrack\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\AdvanceNoticeLinksdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\BetweenLinksdorfAndProbe.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\TestdorfArrival1B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestDeleteLiveData\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\AdvanceNoticeLinksdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\BetweenLinksdorfAndProbe.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\Rechtsheim.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\TestdorfArrival1B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestRefreshLiveSchedules\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSequentialStations\AdvanceNoticeLinksdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSequentialStations\BetweenLinksdorfAndProbe.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSequentialStations\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSequentialStations\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSequentialStations\TestdorfArrival1B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSequentialStations\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\BetweenLinksdorfAndProbe.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\AdvanceNoticeRechtsheim.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\BetweenRechtsheimAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\TestdorfArrival3A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\TestdorfArrival3B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrainDelay\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\AdvanceNoticeRechtsheim.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\BetweenRechtsheimAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\Rechtsheim.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\TestdorfArrival3A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\TestdorfArrival3B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestSpecialTrain\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestEndingTrainDelay\1MinuteAfterArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestEndingTrainDelay\2MinutesAfterArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestEndingTrainDelay\3MinutesAfterArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestEndingTrainDelay\Arrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestStartDelayCountdown\2MinutesDelayed.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestStartDelayCountdown\1MinuteDelayed.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestStartDelayCountdown\Punctual.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestStartDelayCountdown\1MinuteBefore.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestStartDelayCountdown\2MinutesBefore.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestStartDelayCountdown\3MinutesBefore.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\AdvanceNoticeLinksdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\BetweenLinksdorfAndProbe.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\TestdorfArrival1B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayDeparture\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\AdvanceNoticeLinksdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\BetweenLinksdorfAndProbe.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\TestdorfArrival1B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_Existing\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\AdvanceNoticeLinksdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\BetweenLinksdorfAndProbe.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\TestdorfArrival1B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\AdvanceNoticeLinksdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\BetweenLinksdorfAndProbe.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\TestdorfArrival1B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestTrainDelayArrival\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\TestdorfArrival1B.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\BetweenUestMitteAndTestdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\UestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\UestMitteWrongDirection.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\BetweenProbeAndUestMitte.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\TestPunctualTrain\AdvanceNoticeLinksdorf.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWOnline\ParseTime.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWRoots\Rechtsheim\Bahnhof Fahrplan\G33_____.ABF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWRoots\Testdorf\Bahnhof Anweisungen\BF31____.ABF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWRoots\Testdorf\Bahnhof Fahrplan\G32_____.ABF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\ESTWRoots\Testdorf\Bahnhof Fahrplan\G31_____.ABF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

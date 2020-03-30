@@ -1,0 +1,59 @@
+﻿<ContentControl x:Class="Leibit.Controls.DesignerContainer"
+                x:Name="DesignerContainerRoot"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                xmlns:controls="clr-namespace:Leibit.Controls">
+
+    <ContentControl.Template>
+        <ControlTemplate TargetType="controls:DesignerContainer">
+            <Grid>
+                <Canvas>
+                    <Canvas.Resources>
+                        <ControlTemplate x:Key="MoveThumbTemplate" TargetType="controls:MoveThumb">
+                            <Rectangle Name="MoveRectangle" Fill="Transparent" Height="{Binding MoveThumbHeight, ElementName=DesignerContainerRoot}" Margin="{Binding MoveThumbMargin, ElementName=DesignerContainerRoot}" />
+                        </ControlTemplate>
+
+                        <ControlTemplate x:Key="ResizeTemplate" TargetType="Control">
+                        </ControlTemplate>
+
+                        <ControlTemplate x:Key="ContentTemplate" TargetType="ContentControl">
+                            <Grid>
+                                <ContentPresenter />
+
+                                <controls:MoveThumb MouseDoubleClick="__MoveThumbDoubleClick" Template="{StaticResource MoveThumbTemplate}" DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+
+                                <Grid DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Grid.Resources>
+                                        <controls:ResizeModeConverter x:Key="ResourceModeConverter" />
+                                    </Grid.Resources>
+
+                                    <controls:ResizeThumb Visibility="{Binding ResizeMode, ElementName=DesignerContainerRoot, Converter={StaticResource ResourceModeConverter}, ConverterParameter={x:Static controls:eResizeMode.ResizeHeight}}" Height="5" Cursor="SizeNS" VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
+                                    <controls:ResizeThumb Visibility="{Binding ResizeMode, ElementName=DesignerContainerRoot, Converter={StaticResource ResourceModeConverter}, ConverterParameter={x:Static controls:eResizeMode.ResizeWidth}}" Width="5" Cursor="SizeWE" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
+                                    <controls:ResizeThumb Visibility="{Binding ResizeMode, ElementName=DesignerContainerRoot, Converter={StaticResource ResourceModeConverter}, ConverterParameter={x:Static controls:eResizeMode.ResizeWidth}}" Width="5" Cursor="SizeWE" VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
+                                    <controls:ResizeThumb Visibility="{Binding ResizeMode, ElementName=DesignerContainerRoot, Converter={StaticResource ResourceModeConverter}, ConverterParameter={x:Static controls:eResizeMode.ResizeHeight}}" Height="5" Cursor="SizeNS" VerticalAlignment="Bottom"  HorizontalAlignment="Stretch"/>
+                                    <controls:ResizeThumb Visibility="{Binding ResizeMode, ElementName=DesignerContainerRoot, Converter={StaticResource ResourceModeConverter}, ConverterParameter={x:Static controls:eResizeMode.ResizeAll}}" Width="7" Height="7" Cursor="SizeNWSE" Margin="-2 -2 0 0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                    <controls:ResizeThumb Visibility="{Binding ResizeMode, ElementName=DesignerContainerRoot, Converter={StaticResource ResourceModeConverter}, ConverterParameter={x:Static controls:eResizeMode.ResizeAll}}" Width="7" Height="7" Cursor="SizeNESW" Margin="0 -2 -2 0" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                                    <controls:ResizeThumb Visibility="{Binding ResizeMode, ElementName=DesignerContainerRoot, Converter={StaticResource ResourceModeConverter}, ConverterParameter={x:Static controls:eResizeMode.ResizeAll}}" Width="7" Height="7" Cursor="SizeNESW" Margin="-2 0 0 -2" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                    <controls:ResizeThumb Visibility="{Binding ResizeMode, ElementName=DesignerContainerRoot, Converter={StaticResource ResourceModeConverter}, ConverterParameter={x:Static controls:eResizeMode.ResizeAll}}" Width="7" Height="7" Cursor="SizeNWSE" Margin="0 0 -2 -2" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                                </Grid>
+                            </Grid>
+                        </ControlTemplate>
+                    </Canvas.Resources>
+
+                    <ContentControl Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                    Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                    MinWidth="{Binding MinWidth, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                    MinHeight="{Binding MinHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                    MaxWidth="{Binding MaxWidth, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                    MaxHeight="{Binding MaxHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                    Canvas.Top="{Binding Top, ElementName=DesignerContainerRoot, Mode=TwoWay}"
+                                    Canvas.Left="{Binding Left, ElementName=DesignerContainerRoot, Mode=TwoWay}"
+                                    Template="{StaticResource ContentTemplate}">
+                        <ContentPresenter />
+                    </ContentControl>
+                </Canvas>
+            </Grid>
+        </ControlTemplate>
+    </ContentControl.Template>
+</ContentControl>

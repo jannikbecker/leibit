@@ -1,0 +1,20 @@
+﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.LocalOrders.Views.LocalOrdersView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.LocalOrders.Views"
+                      xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                      xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                      xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+                      ResizeMode="ResizeAll"
+                      Caption="{Binding Caption}">
+
+    <controls:ChildWindow.Style>
+        <Style TargetType="local:LocalOrdersView" BasedOn="{StaticResource ChildWindowStyle}" />
+    </controls:ChildWindow.Style>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <TextBlock Text="{Binding LocalOrders}" FontFamily="Courier New" Margin="5" />
+    </ScrollViewer>
+</controls:ChildWindow>

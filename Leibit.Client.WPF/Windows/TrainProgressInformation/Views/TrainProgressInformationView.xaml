@@ -1,0 +1,93 @@
+﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.TrainProgressInformation.Views.TrainProgressInformationView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.TrainProgressInformation.Views"
+                      xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                      xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                      xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+                      Caption="Zugfahrtinformation" ResizeMode="ResizeHeight">
+
+    <controls:ChildWindow.Style>
+        <Style TargetType="local:TrainProgressInformationView" BasedOn="{StaticResource ChildWindowStyle}" />
+    </controls:ChildWindow.Style>
+
+    <controls:ChildWindow.Resources>
+        <conv:IntComparisonConverter x:Key="IsSmallerThanConverter" ComparisonType="Smaller" />
+        <conv:IntComparisonConverter x:Key="IsGreaterThanConverter" ComparisonType="Greater" />
+    </controls:ChildWindow.Resources>
+
+    <xcdg:DataGridControl ReadOnly="True" AutoCreateColumns="False" ItemsSource="{Binding Collection}" Loaded="DataGridControl_Loaded">
+        <xcdg:DataGridControl.Resources>
+            <Style TargetType="xcdg:DataCell">
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding FieldName, RelativeSource={RelativeSource Self}}" Value="TrainNumber" />
+                            <Condition Binding="{Binding State}" Value="fertig" />
+                        </MultiDataTrigger.Conditions>
+
+                        <Setter Property="Background" Value="LightGreen" />
+                    </MultiDataTrigger>
+
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding FieldName, RelativeSource={RelativeSource Self}}" Value="CurrentStation.Name" />
+                            <Condition Binding="{Binding State}" Value="fertig" />
+                        </MultiDataTrigger.Conditions>
+
+                        <Setter Property="Background" Value="LightGreen" />
+                    </MultiDataTrigger>
+
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding FieldName, RelativeSource={RelativeSource Self}}" Value="DelayString" />
+                            <Condition Binding="{Binding Delay, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
+                        </MultiDataTrigger.Conditions>
+
+                        <Setter Property="Background" Value="LightCyan" />
+                    </MultiDataTrigger>
+
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding FieldName, RelativeSource={RelativeSource Self}}" Value="DelayString" />
+                            <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
+                        </MultiDataTrigger.Conditions>
+
+                        <Setter Property="Background" Value="LightYellow" />
+                    </MultiDataTrigger>
+
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding FieldName, RelativeSource={RelativeSource Self}}" Value="DelayString" />
+                            <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
+                        </MultiDataTrigger.Conditions>
+
+                        <Setter Property="Background" Value="LightCoral" />
+                    </MultiDataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="xcdg:DataRow">
+                <EventSetter Event="MouseDoubleClick" Handler="DataRow_DoubleClick" />
+            </Style>
+        </xcdg:DataGridControl.Resources>
+
+        <xcdg:DataGridControl.Columns>
+            <xcdg:Column Title="Btrst" FieldName="Station.ShortSymbol" ReadOnly="True" />
+            <xcdg:Column Title="ZN" FieldName="TrainNumber" />
+            <xcdg:Column Title="Ankunft" FieldName="Arrival" />
+            <xcdg:Column Title="Abfahrt" FieldName="Departure" />
+            <xcdg:Column Title="+/-" FieldName="DelayString" />
+            <xcdg:Column Title="vsl. an" FieldName="ExpectedArrival" />
+            <xcdg:Column Title="vsl. ab" FieldName="ExpectedDeparture" />
+            <xcdg:Column Title="Vsp" FieldName="DelayInfo" />
+            <xcdg:Column Title="Akt. Betriebsstelle" FieldName="CurrentStation.Name" ReadOnly="True" />
+            <xcdg:Column Title="Zugstatus" FieldName="State" />
+            <xcdg:Column Title="Gleis" FieldName="Track.Name" ReadOnly="True" />
+            <xcdg:Column Title="Abw. Gleis" FieldName="LiveTrack.Name" ReadOnly="True" />
+        </xcdg:DataGridControl.Columns>
+    </xcdg:DataGridControl>
+
+</controls:ChildWindow>

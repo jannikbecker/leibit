@@ -1,0 +1,12 @@
+Probe
+ZEIT   ZUG___ GA  GLE   VON____________ VT_______ BEMERKUNGEN____________________________ NACH___________
+001200D065123<KC  1     Irgendwo        Mo-Do                                             Linksdorf Gbf
+001200D065123<KC  1     Testdorf        Fr-Sa                                             Linksdorf Gbf
+130100D002007 IC  2     Linksdorf Hbf                                                     Rechtsheim
+131200D086312<GC  1     Irgendwo        Di+Do+Fr                                          Linksdorf Gbf
+131500A012345<RB  3     Rechtsheim      Mo-Fr     > 12346                                 Probe
+132060 012346 RB  3     Probe           Mo-Fr+So  < 12345                                 Rechtsheim
+133514X060652RRC  2     Testdorf        Mi        s. öAno                                 Rechtsheim
+134500d066789 IRC 2     Linksdorf Gbf   Di-Do+Sa                                          Irgendwo
+240000 999999
+250000 999999

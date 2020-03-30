@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{90A43350-FC08-426B-ABDE-3C7CB8A63CC8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Leibit.Client.WPF</RootNamespace>
+    <AssemblyName>LeiBIT</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.6\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\DataGridUtils.cs" />
+    <Compile Include="Common\Runtime.cs" />
+    <Compile Include="ViewModels\ChildWindowViewModelBase.cs" />
+    <Compile Include="Windows\DelayJustification\ViewModels\DelayInfoViewModel.cs" />
+    <Compile Include="Windows\DelayJustification\ViewModels\DelayJustificationViewModel.cs" />
+    <Compile Include="Windows\DelayJustification\Views\DelayJustificationView.xaml.cs">
+      <DependentUpon>DelayJustificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ESTWSelection\ViewModels\ESTWSelectionESTWViewModel.cs" />
+    <Compile Include="Windows\ESTWSelection\ViewModels\ESTWSelectionStationViewModel.cs" />
+    <Compile Include="Windows\ESTWSelection\ViewModels\ESTWSelectionViewModel.cs" />
+    <Compile Include="Interfaces\ILayoutSavable.cs" />
+    <Compile Include="Interfaces\IRefreshable.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Windows\LocalOrders\ViewModels\LocalOrdersViewModel.cs" />
+    <Compile Include="Windows\LocalOrders\Views\LocalOrdersView.xaml.cs">
+      <DependentUpon>LocalOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Settings\ViewModels\PathViewModel.cs" />
+    <Compile Include="Windows\Settings\ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Windows\TimeTable\ViewModels\TimeTableItemViewModel.cs" />
+    <Compile Include="Windows\TimeTable\ViewModels\TimeTableViewModel.cs" />
+    <Compile Include="Windows\TrainProgressInformation\ViewModels\TrainProgressInformationViewModel.cs" />
+    <Compile Include="Windows\TrainProgressInformation\ViewModels\TrainStationViewModel.cs" />
+    <Compile Include="Windows\ESTWSelection\Views\ESTWSelectionView.xaml.cs">
+      <DependentUpon>ESTWSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Settings\Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TimeTable\Views\TimeTableView.xaml.cs">
+      <DependentUpon>TimeTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TrainProgressInformation\Views\TrainProgressInformationView.xaml.cs">
+      <DependentUpon>TrainProgressInformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TrainSchedule\ViewModels\TrainScheduleStationViewModel.cs" />
+    <Compile Include="Windows\TrainSchedule\ViewModels\TrainScheduleViewModel.cs" />
+    <Compile Include="Windows\TrainSchedule\Views\TrainScheduleView.xaml.cs">
+      <DependentUpon>TrainScheduleView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Leibit.BLL\Leibit.BLL.csproj">
+      <Project>{4e47464f-9c87-49a9-8aea-22fb1049e2b0}</Project>
+      <Name>Leibit.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Leibit.Controls.WPF\Leibit.Controls.WPF.csproj">
+      <Project>{65615e6c-043e-4d67-906f-be19b173de35}</Project>
+      <Name>Leibit.Controls.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Leibit.Core.Client.WPF\Leibit.Core.Client.WPF.csproj">
+      <Project>{d5cf24a0-e719-4b60-bd05-02c986e705ec}</Project>
+      <Name>Leibit.Core.Client.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Leibit.Core\Leibit.Core.csproj">
+      <Project>{797befd6-1150-4046-807e-21923a9c7f83}</Project>
+      <Name>Leibit.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Leibit.Entities\Leibit.Entities.csproj">
+      <Project>{a9502aa9-9b33-426c-bd03-9ae0c65000f4}</Project>
+      <Name>Leibit.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\DelayJustification\Views\DelayJustificationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ESTWSelection\Views\ESTWSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LocalOrders\Views\LocalOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Settings\Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TimeTable\Views\TimeTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TrainProgressInformation\Views\TrainProgressInformationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TrainSchedule\Views\TrainScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\estw_online.png" />
+    <Resource Include="Resources\Images\settings.png" />
+    <Resource Include="Resources\Images\new.png" />
+    <Resource Include="Resources\Images\open.png" />
+    <Resource Include="Resources\Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\zfi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\bfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\save_layout.png" />
+    <Resource Include="Resources\Images\select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\train_schedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\local_orders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

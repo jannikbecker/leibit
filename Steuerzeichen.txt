@@ -1,0 +1,13 @@
+http://www.estwsim-forum.de/wbb2/thread.php?threadid=3180
+
+' ': Halt am Bahnsteig, keine Abfahrt vor Planzeit, Berechnung Verspätung
+'X': Betriebshalt, Abfahrt vor Planzeit, Berechnung Verspätung
+'A': Ankunft am Bahnsteig, absoluter Halt, Berechnung Verspätung mit Ankunft
+'Ä': Ankunft, Weiterfahrt unter ZN möglich, Berechnung Verspätung mit Ankunft
+'D': Durchfahrt mit Berechnung Verspätung
+'d': Durchfahrt ohne Berechnung Verspätung
+'L': Lpw, Haltezeit ca. 2min
+'(': Durchfahrt, Berechnung Verspätung nur bei Fahrrichtung links
+')': Durchfahrt, Berechnung Verspätung nur bei Fahrrichtung rechts
+
+'(' und ')' werden angewendet, wenn ein Zug zweimal den Stellbereich in unterschiedlichen Richtungen durchfährt

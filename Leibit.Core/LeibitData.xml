@@ -1,0 +1,2056 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<leibit>
+  <area id="nhth" name="Nordhessen/Thüringen">
+    <estw id="FEL" name="Elm" dataFile="leibit_ELM.dat">
+      <station name="Abzw Zollberg" short="NZG" refNr="10">
+        <track calculateDelay="false" isPlatform="false">
+          <block name="10B54" direction="right"/>
+          <block name="11B351" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Rieneck Hp" short="NRCK" refNr="11" scheduleFile="B11_____.ABF">
+        <track name="351" calculateDelay="false" />
+      </station>
+
+      <station name="Abzw Sinnberg" short="NSB" refNr="11" scheduleFile="G11_____.ABF">
+        <track name="242" calculateDelay="false">
+          <block name="11B52" direction="left"/>
+          <block name="11B342" direction="right"/>
+        </track>
+        <track name="251" calculateDelay="false">
+          <block name="11B351" direction="left"/>
+          <block name="12B41" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Burgsinn" short="NBN" refNr="12" scheduleFile="G12_____.ABF" localOrderFile="BF12____.ABF">
+        <track name="001">
+          <block name="12G001"/>
+        </track>
+        <track name="002">
+          <block name="12G002"/>
+        </track>
+        <track name="003">
+          <block name="12G003"/>
+        </track>
+      </station>
+
+      <station name="Mittelsinn" short="NMSN" refNr="12" scheduleFile="B12_____.ABF">
+        <track name="031" calculateDelay="false"/>
+        <track name="032" calculateDelay="false"/>
+      </station>
+
+      <station name="Obersinn" short="NOBS" refNr="13" scheduleFile="B13_____.ABF">
+        <track name="031" calculateDelay="false"/>
+        <track name="032" calculateDelay="false"/>
+      </station>
+
+      <station name="Jossa" short="NJS" refNr="13" scheduleFile="G13_____.ABF" localOrderFile="BF13____.ABF">
+        <track name="001">
+          <block name="13G001"/>
+          <alternative track="002"/>
+          <alternative track="003"/>
+          <alternative track="004"/>
+          <alternative track="007"/>
+          <alternative track="009"/>
+        </track>
+        <track name="002">
+          <block name="13G002"/>
+          <alternative track="001"/>
+          <alternative track="003"/>
+          <alternative track="004"/>
+          <alternative track="007"/>
+          <alternative track="009"/>
+        </track>
+        <track name="003">
+          <block name="13G003"/>
+          <alternative track="001"/>
+          <alternative track="002"/>
+          <alternative track="004"/>
+          <alternative track="007"/>
+          <alternative track="009"/>
+        </track>
+        <track name="103">
+          <block name="13G103"/>
+          <alternative track="001"/>
+          <alternative track="002"/>
+          <alternative track="007"/>
+          <alternative track="009"/>
+        </track>
+        <track name="004">
+          <block name="13G004"/>
+          <alternative track="001"/>
+          <alternative track="002"/>
+          <alternative track="003"/>
+          <alternative track="007"/>
+          <alternative track="009"/>
+        </track>
+        <track name="007">
+          <block name="13G007"/>
+          <alternative track="001"/>
+          <alternative track="002"/>
+          <alternative track="103"/>
+        </track>
+        <track name="009">
+          <block name="13G009"/>
+          <alternative track="001"/>
+          <alternative track="002"/>
+          <alternative track="003"/>
+          <alternative track="004"/>
+        </track>
+      </station>
+
+      <station name="Altengronau Süd" short="NAT" refNr="13">
+        <track calculateDelay="false" isPlatform="false">
+          <block name="13B01" direction="left"/>
+        </track>
+      </station>
+
+      <station name="Sterbfritz" short="FSTZ" refNr="14" scheduleFile="G14_____.ABF" localOrderFile="BF14____.ABF">
+        <track name="001">
+          <block name="14G001"/>
+        </track>
+        <track name="002">
+          <block name="14G002"/>
+        </track>
+        <track name="003">
+          <block name="14G003"/>
+        </track>
+      </station>
+
+      <station name="Elm" short="FEL" refNr="15" scheduleFile="G15_____.ABF" localOrderFile="BF15____.ABF">
+        <track name="001">
+          <block name="15G001"/>
+          <alternative track="002"/>
+          <alternative track="003"/>
+          <alternative track="004"/>
+        </track>
+        <track name="002">
+          <block name="15G002"/>
+          <alternative track="001"/>
+          <alternative track="003"/>
+          <alternative track="004"/>
+        </track>
+        <track name="003">
+          <block name="15G003"/>
+          <alternative track="001"/>
+          <alternative track="002"/>
+          <alternative track="004"/>
+        </track>
+        <track name="303">
+          <block name="15G303"/>
+          <alternative track="001"/>
+          <alternative track="002"/>
+          <alternative track="004"/>
+        </track>
+        <track name="004">
+          <block name="15G004"/>
+          <alternative track="001"/>
+          <alternative track="002"/>
+          <alternative track="003"/>
+        </track>
+      </station>
+
+      <station name="Schlüchtern-Ziegenberg" short="FSUEZ" refNr="66">
+        <track calculateDelay="false" isPlatform="false">
+          <block name="15B001" direction="left"/>
+          <block name="66B171" direction="right"/>
+          <block name="16B2172" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Üst Katzenberg" short="FKA" refNr="16" scheduleFile="B16_____.ABF">
+        <track name="172" calculateDelay="false">
+          <block name="16B3174" direction="left"/>
+          <block name="16B182" direction="right"/>
+        </track>
+        <track name="181" calculateDelay="false">
+          <block name="16B2173" direction="left"/>
+          <block name="16B3181" direction="right"/>
+        </track>
+      </station>
+      
+      <station name="Flieden" short="FFD" refNr="16" scheduleFile="G16_____.ABF" localOrderFile="BF16____.ABF">
+        <track name="001">
+          <block name="16G001"/>
+        </track>
+        <track name="002">
+          <block name="16G002"/>
+        </track>
+        <track name="003">
+          <block name="16G003"/>
+        </track>
+        <track name="006">
+          <block name="16G006"/>
+        </track>
+        <track name="007">
+          <block name="16G007"/>
+        </track>
+        <track name="008">
+          <block name="16G008"/>
+        </track>
+        <track name="009">
+          <block name="16G009"/>
+        </track>
+      </station>
+
+      <station name="Neuhof" short="FNF" refNr="17" scheduleFile="G17_____.ABF" localOrderFile="BF17____.ABF">
+        <track name="001">
+          <block name="17G001"/>
+        </track>
+        <track name="002">
+          <block name="17G002"/>
+        </track>
+        <track name="003">
+          <block name="17G003"/>
+        </track>
+      </station>
+
+      <station name="Neuhof-Nord" short="FNF N" refNr="17" scheduleFile="B17_____.ABF">
+        <track name="801">
+          <block name="17G801"/>
+        </track>
+        <track name="402">
+          <block name="17G402"/>
+        </track>
+        <track name="111">
+          <block name="17G111"/>
+        </track>
+      </station>
+
+      <station name="Üst Kerzell" short="FKZ" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10B682" direction="left"/>
+          <block name="10S428" direction="right"/>
+          <block name="10S681" direction="left"/>
+          <block name="10S425" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Fulda-Bronzell" short="FFU B" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10S426" direction="left"/>
+          <block name="10S443" direction="left"/>
+        </track>
+      </station>
+
+      <station name="Üst Mühlberg" short="NMUB" refNr="05">
+        <track calculateDelay="false" isPlatform="false">
+          <block name="05S07" direction="right"/>
+          <block name="05S08" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Burgsinn Bbf" short="NBNB" refNr="06" scheduleFile="G6______.ABF" localOrderFile="BF6_____.ABF">
+        <track name="001">
+          <block name="06G001"/>
+        </track>
+        <track name="002">
+          <block name="06G002"/>
+        </track>
+        <track name="003">
+          <block name="06G003"/>
+        </track>
+        <track name="004">
+          <block name="06G004"/>
+        </track>
+        <track name="005">
+          <block name="06G005"/>
+        </track>
+        <track name="006">
+          <block name="06G006"/>
+        </track>
+      </station>
+
+      <station name="Üst Dittenbrunn" short="NDI" refNr="07" scheduleFile="G7______.ABF" localOrderFile="BF7_____.ABF">
+        <track name="188" calculateDelay="false">
+          <block name="07B292" direction="left"/>
+          <block name="07B388" direction="right"/>
+        </track>
+        <track name="191" calculateDelay="false">
+          <block name="07B391" direction="left"/>
+          <block name="07B287" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Üst Altengronau" short="NAG" refNr="08" scheduleFile="G8______.ABF" localOrderFile="BF8_____.ABF">
+        <track name="174" calculateDelay="false">
+          <block name="08B282" direction="left"/>
+          <block name="08B374" direction="right"/>
+        </track>
+        <track name="181" calculateDelay="false">
+          <block name="08B381" direction="left"/>
+          <block name="08B273" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Mottgers" short="NMOT" refNr="09" scheduleFile="G9______.ABF" localOrderFile="BF9_____.ABF">
+        <track name="002">
+          <block name="09G002"/>
+        </track>
+        <track name="003">
+          <block name="09G003"/>
+        </track>
+        <track name="004">
+          <block name="09G004"/>
+        </track>
+        <track name="005">
+          <block name="09G005"/>
+        </track>
+      </station>
+
+      <station name="Üst Landrücken Süd" short="FLRS" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10S655" direction="left"/>
+          <block name="10S656" direction="left"/>
+        </track>
+      </station>
+    </estw>
+
+    <estw id="FFU" name="Fulda" dataFile="leibit_FULDA.dat">
+      <station name="Üst Altengronau" short="NAG" refNr="08">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="08S374" direction="right"/>
+          <block name="09S273" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Mottgers" short="NMOT" refNr="09">
+        <track name="002">
+          <block name="09S002"/>
+        </track>
+        <track name="003">
+          <block name="09S003"/>
+        </track>
+        <track name="004">
+          <block name="09S004"/>
+        </track>
+        <track name="005">
+          <block name="09S005"/>
+        </track>
+      </station>
+
+      <station name="Üst Landrücken Süd" short="FLRS" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10B655" direction="left"/>
+          <block name="10B656" direction="left"/>
+          <block name="10B618" direction="right"/>
+          <block name="10B651" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Üst Landrücken Nord" short="FLRN" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10B611" direction="left"/>
+          <block name="10B612" direction="left"/>
+          <block name="10B607" direction="right"/>
+          <block name="10B608" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Üst Hartberg" short="FHAG" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10B565" direction="left"/>
+          <block name="10B566" direction="left"/>
+          <block name="10B561" direction="right"/>
+          <block name="10B562" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Neuhof-Nord" short="FNF N" refNr="17">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="17S680" direction="right"/>
+          <block name="17S687" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Üst Kerzell" short="FKZ" refNr="10" scheduleFile="B09_____.ABF">
+        <track name="428" isPlatform="false" calculateDelay="false">
+          <block name="10B682" direction="left"/>
+          <block name="10B428" direction="right"/>
+        </track>
+        <track name="471" isPlatform="false" calculateDelay="false">
+          <block name="10B681" direction="left"/>
+          <block name="10B425" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Gersfeld" short="FGFD" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10B455" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Fulda-Bronzell" short="FFU B" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10G403"/>
+          <block name="10G437"/>
+          <block name="10B426" direction="left"/>
+          <block name="10B443" direction="left"/>
+          <block name="10B597" direction="left"/>
+          <block name="10B598" direction="left"/>
+          <block name="10G353" direction="right"/>
+          <block name="10G354" direction="right"/>
+          <block name="10G356" direction="right"/>
+          <block name="10G357" direction="right"/>
+          <block name="10G406" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Fulda" short="FFU" refNr="10" scheduleFile="G10_____.ABF" localOrderFile="BF10____.ABF">
+        <track name="1">
+          <block name="10G1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="36"/>
+          <alternative track="37"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="2">
+          <block name="10G2"/>
+          <alternative track="1"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="36"/>
+          <alternative track="37"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="3">
+          <block name="10G3"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="36"/>
+          <alternative track="37"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="4">
+          <block name="10G4"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="36"/>
+          <alternative track="37"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="5">
+          <block name="10G5"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="36"/>
+          <alternative track="37"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="6">
+          <block name="10G6"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="36"/>
+          <alternative track="37"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="7">
+          <block name="10G7"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="36"/>
+          <alternative track="37"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="8">
+          <block name="10G8"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="9"/>
+          <alternative track="36"/>
+          <alternative track="37"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="9">
+          <block name="10G9"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="36"/>
+          <alternative track="37"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="36">
+          <block name="10G36"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="37"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="37">
+          <block name="10G37"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="36"/>
+          <alternative track="38"/>
+        </track>
+
+        <track name="38">
+          <block name="10G38"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="36"/>
+          <alternative track="37"/>
+        </track>
+
+        <track name="245">
+          <block name="10G245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="246">
+          <block name="10G246"/>
+          <alternative track="245"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="247">
+          <block name="10G247"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="248">
+          <block name="10G248"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="249">
+          <block name="10G249"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="250">
+          <block name="10G250"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="251">
+          <block name="10G251"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="252">
+          <block name="10G252"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="253">
+          <block name="10G253"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="254">
+          <block name="10G254"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="256">
+          <block name="10G256"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="257"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="257">
+          <block name="10G257"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="258"/>
+        </track>
+
+        <track name="258">
+          <block name="10G258"/>
+          <alternative track="245"/>
+          <alternative track="246"/>
+          <alternative track="247"/>
+          <alternative track="248"/>
+          <alternative track="249"/>
+          <alternative track="250"/>
+          <alternative track="251"/>
+          <alternative track="252"/>
+          <alternative track="253"/>
+          <alternative track="254"/>
+          <alternative track="256"/>
+          <alternative track="257"/>
+        </track>
+      </station>
+
+      <station name="Maberzell" short="FMAB" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10B89" direction="left"/>
+        </track>
+      </station>
+
+      <station name="Götzenhof" short="FGHF" refNr="11" scheduleFile="G11_____.ABF">
+        <track name="703">
+          <block name="11G703"/>
+        </track>
+        <track name="704">
+          <block name="11G704"/>
+        </track>
+        <track name="705">
+          <block name="11G705"/>
+        </track>
+      </station>
+
+      <station name="Marbach" short="FMR" refNr="12">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="11B713" direction="left"/>
+          <block name="12B823" direction="left"/>
+        </track>
+      </station>
+
+      <station name="Üst Dietershan" short="FDIE" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10B17" direction="left"/>
+          <block name="10B18" direction="left"/>
+          <block name="10B513" direction="right"/>
+          <block name="10B514" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Üst Michelsrombach" short="FMIR" refNr="10">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10B505" direction="left"/>
+          <block name="10B506" direction="left"/>
+          <block name="10B502" direction="right"/>
+          <block name="10B694" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Langenschwarz" short="FLSW" refNr="20">
+        <track name="630">
+          <block name="20G630"/>
+        </track>
+        <track name="682">
+          <block name="10S682"/>
+        </track>
+        <track name="596">
+          <block name="10S596"/>
+        </track>
+        <track name="633">
+          <block name="20G633"/>
+        </track>
+        <track name="634">
+          <block name="20G634"/>
+        </track>
+      </station>
+
+      <station name="Üst Richthof" short="FRIH" refNr="20">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="10S590" direction="left"/>
+          <block name="10S674" direction="left"/>
+        </track>
+      </station>
+    </estw>
+
+    <estw id="FBHF" name="Bad Hersfeld" dataFile="leibit_BAD HERSFELD.dat">
+      <station name="Götzenhof" short="FGHF" refNr="11">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="11S733" direction="right" />
+          <block name="12S816" direction="right" />
+        </track>
+      </station>
+
+      <station name="Marbach" short="FMR" refNr="12" scheduleFile="G12_____.ABF">
+        <track name="801">
+          <block name="12G801"/>
+        </track>
+        <track name="802">
+          <block name="12G802"/>
+        </track>
+        <track name="803">
+          <block name="12G803"/>
+        </track>
+        <track name="804">
+          <block name="12G804"/>
+        </track>
+      </station>
+
+      <station name="Hünfeld" short="FHUE" refNr="13" scheduleFile="G13_____.ABF" localOrderFile="BF13____.ABF">
+        <track name="901">
+          <block name="13G901"/>
+        </track>
+        <track name="902">
+          <block name="13G902"/>
+        </track>
+        <track name="903">
+          <block name="13G903"/>
+        </track>
+        <track name="904">
+          <block name="13G904"/>
+        </track>
+        <track name="905">
+          <block name="13G905"/>
+        </track>
+      </station>
+
+      <station name="Burghaun" short="FBUH" refNr="14" scheduleFile="G14_____.ABF">
+        <track name="951">
+          <block name="14G951"/>
+        </track>
+        <track name="952">
+          <block name="14G952"/>
+        </track>
+      </station>
+
+      <station name="Neukirchen" short="FNK" refNr="15" scheduleFile="G15_____.ABF">
+        <track name="1">
+          <block name="15G1"/>
+        </track>
+        <track name="2">
+          <block name="15G2"/>
+        </track>
+        <track name="3">
+          <block name="15G3"/>
+        </track>
+      </station>
+
+      <station name="Oberhaun" short="FOBN" refNr="16" scheduleFile="G16_____.ABF">
+        <track name="2">
+          <block name="16G2"/>
+        </track>
+        <track name="3">
+          <block name="16G3"/>
+        </track>
+        <track name="4">
+          <block name="16G4"/>
+        </track>
+      </station>
+
+      <station name="Niederaula" short="FNIA" refNr="17">
+        <track calculateDelay="false" isPlatform="false">
+          <block name="17BP1" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Bad Hersfeld" short="FBHF" refNr="17" scheduleFile="g17_____.ABF" localOrderFile="BF17____.ABF">
+        <track name="1">
+          <block name="17G1"/>
+
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="6"/>
+
+          <track name="1.4">
+            <block name="17G1.4"/>
+            <alternative track="2"/>
+            <alternative track="3"/>
+            <alternative track="4.2"/>
+            <alternative track="6.1"/>
+          </track>
+        </track>
+
+        <track name="2">
+          <block name="17G2"/>
+          <alternative track="1"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="6"/>
+        </track>
+
+        <track name="3">
+          <block name="17G3"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="4"/>
+          <alternative track="6"/>
+        </track>
+
+        <track name="4">
+          <block name="17G4"/>
+
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="6"/>
+
+          <track name="4.2">
+            <block name="17G4.2"/>
+            <alternative track="1.4"/>
+            <alternative track="2"/>
+            <alternative track="3"/>
+            <alternative track="6.1"/>
+          </track>
+        </track>
+
+        <track name="6">
+          <block name="17G6"/>
+
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+
+          <track name="6.1">
+            <block name="17G6.1"/>
+            <alternative track="1.4"/>
+            <alternative track="2"/>
+            <alternative track="3"/>
+            <alternative track="4.2"/>
+          </track>
+        </track>
+      </station>
+
+      <station name="Friedlos Hp" short="FFL" refNr="17" scheduleFile="b17_____.abf">
+        <track name="1" calculateDelay="false">
+          <block name="17B546"/>
+        </track>
+        <track name="2" calculateDelay="false">
+          <block name="17B533"/>
+        </track>
+      </station>
+
+      <station name="Mecklar" short="FME" refNr="18" scheduleFile="G18_____.ABF">
+        <track name="501">
+          <block name="18G501"/>
+        </track>
+        <track name="502">
+          <block name="18G502"/>
+        </track>
+        <track name="503">
+          <block name="18G503"/>
+        </track>
+        <track name="504">
+          <block name="18G504"/>
+        </track>
+        <track name="505">
+          <block name="18G505"/>
+        </track>
+      </station>
+
+      <station name="Blankenheim" short="FBLA" refNr="19">
+        <track name="164">
+          <block name="19S164" />
+        </track>
+        <track name="172">
+          <block name="19S172" />
+        </track>
+        <track name="107">
+          <block name="19B107" />
+        </track>
+        <track name="115">
+          <block name="19S115" />
+        </track>
+        <track name="135">
+          <block name="19S135" />
+        </track>
+      </station>
+
+      <station name="Bebra Pbf" short="FB" refNr="23">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="19S352" direction="left"/>
+          <block name="19S118" direction="left"/>
+        </track>
+      </station>
+
+      <station name="Bebra Rbf" short="FB R" refNr="23">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="19S362" direction="left"/>
+          <block name="19S110" direction="left"/>
+        </track>
+      </station>
+
+      <station name="Abzw Faßdorf" short="FFDF" refNr="19">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="19S921" direction="left"/>
+        </track>
+      </station>
+    </estw>
+
+    <estw id="FB" name="Bebra" dataFile="leibit_BEBRA PBF.dat">
+      <station name="Sontra" short="FSON" refNr="26">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="26BP" direction="left" />
+          <block name="25B727" direction="left" />
+        </track>
+      </station>
+
+      <station name="Cornberg" short="FCG" refNr="25" scheduleFile="g25_____.abf">
+        <track name="701">
+          <block name="25G701" />
+        </track>
+        <track name="702">
+          <block name="25G702" />
+        </track>
+        <track name="703">
+          <block name="25G703" />
+        </track>
+      </station>
+
+      <station name="Bebra Tunnel" short="FB T" refNr="23" scheduleFile="B23_____.ABF">
+        <track name="777" isPlatform="false" calculateDelay="false">
+          <block name="23B777" direction="left" />
+          <block name="23B783" direction="right" />
+        </track>
+        <track name="784" isPlatform="false" calculateDelay="false">
+          <block name="23B780" direction="left" />
+          <block name="25B784" direction="right" />
+        </track>
+      </station>
+
+      <station name="Bebra Ubf" short="FB U" refNr="24" scheduleFile="g24_____.abf" localOrderFile="bf24____.ABF">
+        <track name="401">
+          <block name="24G401" />
+        </track>
+        <track name="402">
+          <block name="24G402" />
+        </track>
+        <track name="403">
+          <block name="24G403" />
+        </track>
+        <track name="404">
+          <block name="24G404" />
+        </track>
+        <track name="405">
+          <block name="24G405" />
+        </track>
+        <track name="406">
+          <block name="24G406" />
+        </track>
+        <track name="407">
+          <block name="24G407" />
+        </track>
+      </station>
+
+      <station name="Bebra Pbf" short="FB" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.ABF">
+        <track name="1">
+          <block name="23G1" />
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="103" />
+          <alternative track="4" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="8" />
+          <alternative track="108" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="2">
+          <block name="23G2" />
+          <alternative track="1" />
+          <alternative track="3" />
+          <alternative track="103" />
+          <alternative track="4" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="8" />
+          <alternative track="108" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="3">
+          <block name="23G3" />
+          <alternative track="1" />
+          <alternative track="2" />
+          <alternative track="4" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="8" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="103">
+          <block name="23G103" />
+          <alternative track="1" />
+          <alternative track="2" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="108" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="4">
+          <block name="23G4" />
+          <alternative track="1" />
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="8" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="5">
+          <block name="23G5" />
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="103" />
+          <alternative track="4" />
+          <alternative track="1" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="8" />
+          <alternative track="108" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="6">
+          <block name="23G6" />
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="4" />
+          <alternative track="5" />
+          <alternative track="1" />
+          <alternative track="7" />
+          <alternative track="8" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="7">
+          <block name="23G7" />
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="103" />
+          <alternative track="4" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="1" />
+          <alternative track="8" />
+          <alternative track="108" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="8">
+          <block name="23G8" />
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="4" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="1" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="108">
+          <block name="23G108" />
+          <alternative track="2" />
+          <alternative track="103" />
+          <alternative track="5" />
+          <alternative track="7" />
+          <alternative track="1" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="9">
+          <block name="23G9" />
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="103" />
+          <alternative track="4" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="8" />
+          <alternative track="108" />
+          <alternative track="1" />
+          <alternative track="10" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="10">
+          <block name="23G10" />
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="103" />
+          <alternative track="4" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="8" />
+          <alternative track="108" />
+          <alternative track="9" />
+          <alternative track="1" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+        <track name="38">
+          <block name="23G38" />
+          <alternative track="1" />
+          <alternative track="2" />
+          <alternative track="103" />
+          <alternative track="5" />
+          <alternative track="7" />
+          <alternative track="108" />
+          <alternative track="9" />
+          <alternative track="10" />
+        </track>
+        <track name="41">
+          <block name="23G241" />
+          <alternative track="1" />
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="4" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="8" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="149" />
+        </track>
+        <track name="42">
+          <block name="23BVBR9" />
+          <alternative track="1" />
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="4" />
+          <alternative track="5" />
+          <alternative track="6" />
+          <alternative track="7" />
+          <alternative track="8" />
+          <alternative track="9" />
+          <alternative track="10" />
+          <alternative track="149" />
+        </track>
+        <track name="149">
+          <block name="23G249" />
+          <alternative track="41" />
+          <alternative track="42" />
+        </track>
+      </station>
+
+      <station name="Bebra Rbf" short="FB R" refNr="23">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="22BVBR1" direction="right" />
+          <block name="22BVBR2" direction="left" />
+          <block name="19B362" direction="left" />
+          <block name="23BVBR4" direction="right" />
+          <block name="23BVBR5" direction="right" />
+          <block name="23BVBR8" direction="right" />
+        </track>
+      </station>
+
+      <station name="Bebra Ost" short="FB O" refNr="23" scheduleFile="B22_____.abf">
+        <track name="132" calculateDelay="false" />
+        <track name="172" calculateDelay="false" />
+        <track name="181" calculateDelay="false" />
+      </station>
+      
+      <station name="Blankenheim" short="FBLA" refNr="19" scheduleFile="g19_____.abf">
+        <track name="164">
+          <block name="19G164" />
+        </track>
+        <track name="172">
+          <block name="19G172" />
+        </track>
+        <track name="107">
+          <block name="19B107" />
+        </track>
+        <track name="115">
+          <block name="19G115" />
+        </track>
+        <track name="135">
+          <block name="19B135" />
+        </track>
+      </station>
+
+      <station name="Mecklar" short="FME" refNr="18" scheduleFile="v18_____.abf">
+        <track name="501">
+          <block name="18S501" />
+        </track>
+        <track name="502">
+          <block name="18S502" />
+        </track>
+        <track name="503">
+          <block name="18S503" />
+        </track>
+        <track name="504">
+          <block name="18S504" />
+        </track>
+        <track name="505">
+          <block name="18S505" />
+        </track>
+      </station>
+
+      <station name="Friedlos Hp" short="FFL" refNr="17" scheduleFile="v17_____.abf">
+        <track name="2" calculateDelay="false">
+          <block name="17S533" />
+        </track>
+        <track name="1" calculateDelay="false">
+          <block name="17S546" />
+        </track>
+      </station>
+
+      <station name="Abzw Faßdorf" short="FFDF" refNr="21" scheduleFile="g21_____.abf">
+        <track name="918" calculateDelay="false" />
+        <track name="919" calculateDelay="false" />
+        <track name="983" calculateDelay="false" />
+        <track name="984" calculateDelay="false" />
+      </station>
+      
+      <station name="Ronshausen Hp" short="FRON" refNr="21" scheduleFile="ronsha__.abf">
+        <track name="1" calculateDelay="false">
+          <block name="21B617" />
+        </track>
+        <track name="2" calculateDelay="false">
+          <block name="21B618" />
+        </track>
+      </station>
+
+      <station name="Hönebach" short="FHNB" refNr="20" scheduleFile="g20_____.abf">
+        <track name="631">
+          <block name="20G631" />
+          <alternative track="632" />
+        </track>
+        <track name="632">
+          <block name="20G632" />
+          <alternative track="631" />
+        </track>
+        <track name="622">
+          <block name="20G622" />
+        </track>
+        <track name="623">
+          <block name="20G623" />
+          <alternative track="622" />
+          <alternative track="631" />
+        </track>
+      </station>
+
+      <station name="Bosserode Hp" short="FBOS" refNr="20" scheduleFile="bosser__.abf">
+        <track name="1" calculateDelay="false">
+          <block name="20B611" />
+        </track>
+        <track name="2" calculateDelay="false">
+          <block name="20B602" />
+        </track>
+      </station>
+
+      <station name="Obersuhl Hp" short="FOBS" refNr="97" scheduleFile="Obersu__.ABF">
+        <track name="1" calculateDelay="false">
+          <block name="97B609" />
+        </track>
+        <track name="2" calculateDelay="false">
+          <block name="97B612" />
+        </track>
+      </station>
+
+      <station name="Heinebach" short="FHEB" refNr="48">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="48S971" direction="left" />
+          <block name="48S972" direction="left" />
+        </track>
+      </station>
+
+      <station name="Rotenburg Hp" short="FROF" refNr="24" scheduleFile="rotenb__.abf">
+        <track name="1" calculateDelay="false" />
+        <track name="2" calculateDelay="false" />
+      </station>
+
+      <station name="Lispenhausen Hp" short="FLIH" refNr="24" scheduleFile="lispen__.abf">
+        <track name="1" calculateDelay="false" />
+        <track name="2" calculateDelay="false" />
+      </station>
+    </estw>
+
+    <estw id="UEI" name="Eisenach" dataFile="leibit_EISENACH.dat">
+      <station name="Heringen" short="FHRG" refNr="98">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="97B99" direction="right" />
+        </track>
+      </station>
+
+      <station name="Förtha" short="UF" refNr="39">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="94B42" direction="right" />
+        </track>
+      </station>
+
+      <station name="Gotha" short="UGO" refNr="90">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="90S293" direction="left" />
+          <block name="90S292" direction="left" />
+        </track>
+      </station>
+
+      <station name="Bosserode Hp" short="FBOS" refNr="20" scheduleFile="BOSSER__.ABF">
+        <track name="611" calculateDelay="false">
+          <block name="20S611" />
+        </track>
+        <track name="602" calculateDelay="false">
+          <block name="20S602" />
+        </track>
+      </station>
+
+      <station name="Obersuhl Hp" short="FOBS" refNr="97" scheduleFile="OBERSU__.ABF">
+        <track name="609" calculateDelay="false">
+          <block name="97B609" />
+        </track>
+        <track name="612" calculateDelay="false">
+          <block name="97S612" />
+        </track>
+      </station>
+
+      <station name="Gerstungen" short="UGT" refNr="97" scheduleFile="G97_____.ABF" localOrderFile="bf97____.abf">
+        <track name="801">
+          <block name="97G801" />
+        </track>
+        <track name="802">
+          <block name="97G802" />
+        </track>
+        <track name="803">
+          <block name="97G803" />
+        </track>
+        <track name="805">
+          <block name="97G805" />
+        </track>
+        <track name="806">
+          <block name="97G806" />
+        </track>
+        <track name="807">
+          <block name="97G807" />
+        </track>
+      </station>
+
+      <station name="Herleshausen Hp" short="UHER" refNr="97" scheduleFile="Herles__.abf">
+        <track name="795" calculateDelay="false">
+          <block name="97B795" />
+        </track>
+        <track name="798" calculateDelay="false">
+          <block name="97B798" />
+        </track>
+      </station>
+
+      <station name="Wartha (Werra)" short="UWAR" refNr="96" scheduleFile="G96_____.ABF" localOrderFile="bf96____.abf">
+        <track name="701">
+          <block name="96G701" />
+        </track>
+        <track name="702">
+          <block name="96G702" />
+        </track>
+        <track name="703">
+          <block name="96G703" />
+        </track>
+      </station>
+
+      <station name="Hörschel Hp" short="UHL" refNr="96" scheduleFile="Hörsch__.abf">
+        <track name="793" calculateDelay="false">
+          <block name="96B793" />
+        </track>
+        <track name="794" calculateDelay="false">
+          <block name="96B794" />
+        </track>
+      </station>
+
+      <station name="Eisenach-Stedtfeld" short="UEIS" refNr="95" scheduleFile="G95_____.ABF" localOrderFile="bf95____.abf">
+        <track name="601">
+          <block name="95G601" />
+        </track>
+        <track name="602">
+          <block name="95G602" />
+        </track>
+        <track name="603">
+          <block name="95G603" />
+        </track>
+        <track name="605">
+          <block name="95G605" />
+        </track>
+      </station>
+
+      <station name="Eisenach-Opelwerk Hp" short="UEIP" refNr="95" scheduleFile="Opelwe__.abf">
+        <track name="693" calculateDelay="false">
+          <block name="95B693" />
+        </track>
+        <track name="694" calculateDelay="false">
+          <block name="95B694" />
+        </track>
+      </station>
+
+      <station name="Eisenach-West Hp" short="UEIW" refNr="94" scheduleFile="EISENA__.ABF">
+        <track name="691" calculateDelay="false">
+          <block name="94B691" />
+        </track>
+        <track name="692" calculateDelay="false">
+          <block name="94B692" />
+        </track>
+      </station>
+
+      <station name="Eisenach Pbf/Gbf" short="UEI" refNr="94" scheduleFile="G94_____.ABF" localOrderFile="bf94____.abf">
+        <track name="401">
+          <block name="94G401" />
+          <alternative track="402" />
+          <alternative track="403" />
+          <alternative track="406" />
+          <alternative track="410" />
+          <alternative track="414" />
+          <alternative track="418" />
+        </track>
+        <track name="402">
+          <block name="94G402" />
+          <alternative track="401" />
+          <alternative track="403" />
+          <alternative track="406" />
+          <alternative track="410" />
+          <alternative track="414" />
+          <alternative track="418" />
+        </track>
+        <track name="403">
+          <block name="94G403" />
+          <alternative track="402" />
+          <alternative track="401" />
+          <alternative track="406" />
+          <alternative track="410" />
+          <alternative track="414" />
+          <alternative track="418" />
+        </track>
+        <track name="406">
+          <block name="94G406" />
+          <alternative track="402" />
+          <alternative track="403" />
+          <alternative track="401" />
+          <alternative track="410" />
+          <alternative track="414" />
+          <alternative track="418" />
+        </track>
+        <track name="410">
+          <block name="94G410" />
+          <alternative track="402" />
+          <alternative track="403" />
+          <alternative track="406" />
+          <alternative track="401" />
+          <alternative track="414" />
+          <alternative track="418" />
+        </track>
+        <track name="414">
+          <block name="94G414" />
+          <alternative track="402" />
+          <alternative track="403" />
+          <alternative track="406" />
+          <alternative track="410" />
+          <alternative track="401" />
+          <alternative track="418" />
+        </track>
+        <track name="418">
+          <block name="94G418" />
+          <alternative track="402" />
+          <alternative track="403" />
+          <alternative track="406" />
+          <alternative track="410" />
+          <alternative track="414" />
+          <alternative track="401" />
+        </track>
+
+        <track name="301">
+          <block name="94G301" />
+          <alternative track="302" />
+          <alternative track="306" />
+          <alternative track="308" />
+          <alternative track="310" />
+          <alternative track="314" />
+          <alternative track="318" />
+        </track>
+        <track name="302">
+          <block name="94G302" />
+          <alternative track="301" />
+          <alternative track="306" />
+          <alternative track="308" />
+          <alternative track="310" />
+          <alternative track="314" />
+          <alternative track="318" />
+        </track>
+        <track name="306">
+          <block name="94G306" />
+          <alternative track="302" />
+          <alternative track="301" />
+          <alternative track="308" />
+          <alternative track="310" />
+          <alternative track="314" />
+          <alternative track="318" />
+        </track>
+        <track name="308">
+          <block name="94G308" />
+          <alternative track="302" />
+          <alternative track="306" />
+          <alternative track="301" />
+          <alternative track="310" />
+          <alternative track="314" />
+          <alternative track="318" />
+        </track>
+        <track name="310">
+          <block name="94G310" />
+          <alternative track="302" />
+          <alternative track="306" />
+          <alternative track="308" />
+          <alternative track="301" />
+          <alternative track="314" />
+          <alternative track="318" />
+        </track>
+        <track name="314">
+          <block name="94G314" />
+          <alternative track="302" />
+          <alternative track="306" />
+          <alternative track="308" />
+          <alternative track="310" />
+          <alternative track="301" />
+          <alternative track="318" />
+        </track>
+        <track name="318">
+          <block name="94G318" />
+          <alternative track="302" />
+          <alternative track="306" />
+          <alternative track="308" />
+          <alternative track="310" />
+          <alternative track="314" />
+          <alternative track="301" />
+        </track>
+      </station>
+
+      <station name="Wutha" short="UWU" refNr="93" scheduleFile="G93_____.ABF" localOrderFile="bf93____.abf">
+        <track name="501">
+          <block name="93G501" />
+          <alternative track="552" />
+          <alternative track="503" />
+        </track>
+        <track name="502">
+          <block name="93G502" />
+          <alternative track="501" />
+          <alternative track="503" />
+        </track>
+        <track name="503">
+          <block name="93G503" />
+          <alternative track="552" />
+          <alternative track="501" />
+        </track>
+        <track name="552">
+          <block name="93G552" />
+          <alternative track="501" />
+          <alternative track="503" />
+        </track>
+      </station>
+
+      <station name="Schönau (Hörsel) Hp" short="USU" refNr="93" scheduleFile="Schöna__.abf">
+        <track name="591" calculateDelay="false">
+          <block name="93B591" />
+        </track>
+        <track name="594" calculateDelay="false">
+          <block name="93B594" />
+        </track>
+      </station>
+
+      <station name="Sättelstädt Hp" short="USAE" refNr="92" scheduleFile="Sättel__.abf">
+        <track name="993" calculateDelay="false">
+          <block name="92B993" />
+        </track>
+        <track name="994" calculateDelay="false">
+          <block name="92B994" />
+        </track>
+      </station>
+
+      <station name="Mechterstädt-Sättelstädt" short="UMS" refNr="92" scheduleFile="G92_____.ABF" localOrderFile="bf92____.abf">
+        <track name="901">
+          <block name="92G901" />
+        </track>
+        <track name="902">
+          <block name="92G902" />
+        </track>
+        <track name="903">
+          <block name="92G903" />
+        </track>
+        <track name="904">
+          <block name="92G904" />
+        </track>
+      </station>
+
+      <station name="Mechterstädt Hp" short="UME" refNr="91" scheduleFile="Mechte__.abf">
+        <track name="991" calculateDelay="false">
+          <block name="91B991" />
+        </track>
+        <track name="992" calculateDelay="false">
+          <block name="91B992" />
+        </track>
+      </station>
+
+      <station name="Fröttstädt" short="UFT" refNr="91" scheduleFile="G91_____.ABF" localOrderFile="bf91____.abf">
+        <track name="801">
+          <block name="91G801" />
+          <alternative track="802" />
+          <alternative track="804" />
+          <alternative track="806" />
+          <alternative track="808" />
+        </track>
+        <track name="802">
+          <block name="91G802" />
+          <alternative track="801" />
+          <alternative track="804" />
+          <alternative track="806" />
+          <alternative track="808" />
+        </track>
+        <track name="804">
+          <block name="91G804" />
+          <alternative track="802" />
+          <alternative track="801" />
+          <alternative track="806" />
+          <alternative track="808" />
+        </track>
+        <track name="806">
+          <block name="91G806" />
+          <alternative track="802" />
+          <alternative track="804" />
+          <alternative track="801" />
+          <alternative track="808" />
+        </track>
+        <track name="808">
+          <block name="91G808" />
+          <alternative track="802" />
+          <alternative track="804" />
+          <alternative track="806" />
+          <alternative track="801" />
+        </track>
+        <track name="852">
+          <block name="91G852" />
+          <alternative track="801" />
+          <alternative track="806" />
+          <alternative track="808" />
+        </track>
+      </station>
+
+      <station name="Hörselgau Hp" short="UHOS" refNr="37" scheduleFile="Hörsel__.abf">
+        <track name="806" calculateDelay="false">
+          <block name="91B806" />
+        </track>
+      </station>
+    </estw>
+
+    <estw id="UGO" name="Gotha" dataFile="leibit_GOTHA.dat">
+      <station name="Fröttstädt" short="UFT" refNr="91">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="91B896" direction="right" />
+          <block name="91B893" direction="right" />
+        </track>
+      </station>
+
+      <station name="Emleben" short="UEM" refNr="36">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="90BN" direction="right" />
+        </track>
+      </station>
+
+      <station name="Gotha Ost" short="UGOS" refNr="35">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="90B103" direction="right" />
+        </track>
+      </station>
+
+      <station name="Erfurt Hbf" short="UE" refNr="85">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="85B2401" direction="left" />
+          <block name="86B2412" direction="left" />
+        </track>
+      </station>
+
+      <station name="Gotha" short="UGO" refNr="90" scheduleFile="G90_____.abf" localOrderFile="bf90____.abf">
+        <track name="101">
+          <block name="90G101" />
+          <alternative track="102" />
+          <alternative track="103" />
+          <alternative track="104" />
+          <alternative track="105" />
+          <alternative track="106" />
+        </track>
+        <track name="102">
+          <block name="90G102" />
+          <alternative track="101" />
+          <alternative track="103" />
+          <alternative track="104" />
+          <alternative track="105" />
+          <alternative track="106" />
+        </track>
+        <track name="103">
+          <block name="90G103" />
+          <alternative track="102" />
+          <alternative track="101" />
+          <alternative track="104" />
+          <alternative track="105" />
+          <alternative track="106" />
+        </track>
+        <track name="104">
+          <block name="90G104" />
+          <alternative track="102" />
+          <alternative track="103" />
+          <alternative track="101" />
+          <alternative track="105" />
+          <alternative track="106" />
+        </track>
+        <track name="105">
+          <block name="90G105" />
+          <alternative track="102" />
+          <alternative track="103" />
+          <alternative track="104" />
+          <alternative track="101" />
+          <alternative track="106" />
+        </track>
+        <track name="106">
+          <block name="90G106" />
+          <alternative track="102" />
+          <alternative track="103" />
+          <alternative track="104" />
+          <alternative track="105" />
+          <alternative track="101" />
+        </track>
+        <track name="161">
+          <block name="90G161" />
+          <alternative track="162" />
+          <alternative track="163" />
+          <alternative track="164" />
+          <alternative track="165" />
+        </track>
+        <track name="162">
+          <block name="90G162" />
+          <alternative track="161" />
+          <alternative track="163" />
+          <alternative track="164" />
+          <alternative track="165" />
+        </track>
+        <track name="163">
+          <block name="90G163" />
+          <alternative track="162" />
+          <alternative track="163" />
+          <alternative track="164" />
+          <alternative track="165" />
+        </track>
+        <track name="164">
+          <block name="90G164" />
+          <alternative track="162" />
+          <alternative track="163" />
+          <alternative track="161" />
+          <alternative track="165" />
+        </track>
+        <track name="165">
+          <block name="90G165" />
+          <alternative track="162" />
+          <alternative track="163" />
+          <alternative track="164" />
+          <alternative track="161" />
+        </track>
+      </station>
+
+      <station name="Seebergen" short="USB" refNr="89" scheduleFile="G89_____.abf" localOrderFile="bf89____.abf">
+        <track name="601">
+          <block name="89G601" />
+        </track>
+        <track name="602">
+          <block name="89G602" />
+        </track>
+        <track name="603">
+          <block name="89G603" />
+        </track>
+      </station>
+
+      <station name="Wandersleben" short="UWA" refNr="88" scheduleFile="G88_____.abf" localOrderFile="bf88____.abf">
+        <track name="501">
+          <block name="88G501" />
+        </track>
+        <track name="502">
+          <block name="88G502" />
+        </track>
+        <track name="504">
+          <block name="88G504" />
+        </track>
+      </station>
+
+      <station name="Neudietendorf" short="UND" refNr="87" scheduleFile="G87_____.abf" localOrderFile="bf87____.abf">
+        <track name="771">
+          <block name="87G771" />
+        </track>
+        <track name="772">
+          <block name="87G772" />
+        </track>
+        <track name="775">
+          <block name="87G775" />
+        </track>
+        <track name="777">
+          <block name="87G777" />
+        </track>
+        <track name="779">
+          <block name="87G779" />
+        </track>
+        <track name="794">
+          <block name="87G794" />
+        </track>
+      </station>
+
+      <station name="Sülzenbrücken Hp" short="USUE" refNr="87" scheduleFile="Sülzen__.abf">
+        <track name="1" calculateDelay="false">
+          <block name="87B891" />
+        </track>
+        <track name="2" calculateDelay="false">
+          <block name="87BP" />
+        </track>
+      </station>
+
+      <station name="Erfurt-Bischleben" short="UEBI" refNr="86" scheduleFile="G86_____.abf" localOrderFile="bf86____.abf">
+        <track name="721">
+          <block name="86G721" />
+          <alternative track="722" />
+          <alternative track="723" />
+          <alternative track="725" />
+        </track>
+        <track name="722">
+          <block name="86G722" />
+          <alternative track="721" />
+          <alternative track="723" />
+          <alternative track="725" />
+        </track>
+        <track name="723">
+          <block name="86G723" />
+          <alternative track="721" />
+          <alternative track="722" />
+          <alternative track="725" />
+        </track>
+        <track name="725">
+          <block name="86G725" />
+          <alternative track="721" />
+          <alternative track="722" />
+          <alternative track="723" />
+        </track>
+        <track name="733">
+          <block name="86G733" />
+          <alternative track="721" />
+          <alternative track="722" />
+          <alternative track="725" />
+        </track>
+      </station>
+    </estw>
+  </area>
+</leibit>

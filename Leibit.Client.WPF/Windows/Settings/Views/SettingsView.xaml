@@ -1,0 +1,87 @@
+﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.Settings.Views.SettingsView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.Settings.Views"
+                      xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                      xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                      Caption="Einstellungen"
+                      ResizeMode="ResizeWidth"
+                      Width="600">
+
+    <controls:ChildWindow.Style>
+        <Style TargetType="local:SettingsView" BasedOn="{StaticResource ChildWindowStyle}" />
+    </controls:ChildWindow.Style>
+
+    <controls:ChildWindow.Resources>
+        <conv:ColorConverter x:Key="ColorConverter" />
+    </controls:ChildWindow.Resources>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" Margin="10" Grid.IsSharedSizeScope="True">
+            <GroupBox Header="Pfade">
+                <ItemsControl ItemsSource="{Binding Paths}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" MinWidth="100" SharedSizeGroup="Header" />
+                                    <ColumnDefinition Width="*" MaxWidth="400" />
+                                    <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Content="{Binding EstwName}" VerticalAlignment="Center" />
+                                <TextBox Grid.Column="1" Text="{Binding Path, Mode=TwoWay}" Margin="5" />
+                                <Button Grid.Column="2" Content="..." Margin="5" Command="{Binding BrowseCommand}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </GroupBox>
+
+            <GroupBox Header="Sonstiges">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Header" />
+                        <ColumnDefinition Width="*" MaxWidth="400" />
+                        <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Pfad zu ESTWonline" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding EstwOnlinePath, Mode=TwoWay}" Margin="5" />
+                    <Button Grid.Row="0" Grid.Column="2" Content="..." Margin="5" Command="{Binding EstwOnlineCommand}" />
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Farbe der Fenster" VerticalAlignment="Center" />
+                    <xctk:ColorPicker Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                  Width="100"
+                                  HorizontalAlignment="Left"
+                                  SelectedColor="{Binding WindowColor, Mode=TwoWay, Converter={StaticResource ColorConverter}}" Margin="5"
+                                  AdvancedButtonHeader="Erweitert..."
+                                  AvailableColorsHeader="Verfügbare Farben"
+                                  RecentColorsHeader="Zuletzt verwendete Farben"
+                                  StandardButtonHeader="Zurück"
+                                  StandardColorsHeader="Standardfarben"
+                                  />
+                </Grid>
+            </GroupBox>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" MinWidth="100" SharedSizeGroup="Header" />
+                    <ColumnDefinition Width="*" MaxWidth="400" />
+                    <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Speichern" Command="{Binding SaveCommand}" Margin="0,10,10,10" Padding="4" />
+                    <Button Content="Abbrechen" Command="{Binding CancelCommand}" Margin="0,10,10,10" Padding="4" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</controls:ChildWindow>

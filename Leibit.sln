@@ -1,0 +1,85 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leibit.Entities", "Leibit.Entities\Leibit.Entities.csproj", "{A9502AA9-9B33-426C-BD03-9AE0C65000F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leibit.BLL", "Leibit.BLL\Leibit.BLL.csproj", "{4E47464F-9C87-49A9-8AEA-22FB1049E2B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leibit.Tests", "Leibit.Tests\Leibit.Tests.csproj", "{FB5F0824-CD35-4E97-A67F-046E59F883F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leibit.Core", "Leibit.Core\Leibit.Core.csproj", "{797BEFD6-1150-4046-807E-21923A9C7F83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leibit.Client.WPF", "Leibit.Client.WPF\Leibit.Client.WPF.csproj", "{90A43350-FC08-426B-ABDE-3C7CB8A63CC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leibit.Controls.WPF", "Leibit.Controls.WPF\Leibit.Controls.WPF.csproj", "{65615E6C-043E-4D67-906F-BE19B173DE35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leibit.Core.Client.WPF", "Leibit.Core.Client.WPF\Leibit.Core.Client.WPF.csproj", "{D5CF24A0-E719-4B60-BD05-02C986E705EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9502AA9-9B33-426C-BD03-9AE0C65000F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9502AA9-9B33-426C-BD03-9AE0C65000F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9502AA9-9B33-426C-BD03-9AE0C65000F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9502AA9-9B33-426C-BD03-9AE0C65000F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E47464F-9C87-49A9-8AEA-22FB1049E2B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E47464F-9C87-49A9-8AEA-22FB1049E2B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E47464F-9C87-49A9-8AEA-22FB1049E2B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E47464F-9C87-49A9-8AEA-22FB1049E2B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5F0824-CD35-4E97-A67F-046E59F883F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5F0824-CD35-4E97-A67F-046E59F883F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5F0824-CD35-4E97-A67F-046E59F883F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5F0824-CD35-4E97-A67F-046E59F883F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{797BEFD6-1150-4046-807E-21923A9C7F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797BEFD6-1150-4046-807E-21923A9C7F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797BEFD6-1150-4046-807E-21923A9C7F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{797BEFD6-1150-4046-807E-21923A9C7F83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90A43350-FC08-426B-ABDE-3C7CB8A63CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90A43350-FC08-426B-ABDE-3C7CB8A63CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90A43350-FC08-426B-ABDE-3C7CB8A63CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90A43350-FC08-426B-ABDE-3C7CB8A63CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65615E6C-043E-4D67-906F-BE19B173DE35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65615E6C-043E-4D67-906F-BE19B173DE35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65615E6C-043E-4D67-906F-BE19B173DE35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65615E6C-043E-4D67-906F-BE19B173DE35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5CF24A0-E719-4B60-BD05-02C986E705EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CF24A0-E719-4B60-BD05-02C986E705EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CF24A0-E719-4B60-BD05-02C986E705EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CF24A0-E719-4B60-BD05-02C986E705EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://jannikbecker.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Leibit.Entities\\Leibit.Entities.csproj
+		SccProjectName1 = Leibit.Entities
+		SccLocalPath1 = Leibit.Entities
+		SccProjectUniqueName2 = Leibit.BLL\\Leibit.BLL.csproj
+		SccProjectName2 = Leibit.BLL
+		SccLocalPath2 = Leibit.BLL
+		SccProjectUniqueName3 = Leibit.Tests\\Leibit.Tests.csproj
+		SccProjectName3 = Leibit.Tests
+		SccLocalPath3 = Leibit.Tests
+		SccProjectUniqueName4 = Leibit.Core\\Leibit.Core.csproj
+		SccProjectName4 = Leibit.Core
+		SccLocalPath4 = Leibit.Core
+		SccProjectUniqueName5 = Leibit.Client.WPF\\Leibit.Client.WPF.csproj
+		SccProjectName5 = Leibit.Client.WPF
+		SccLocalPath5 = Leibit.Client.WPF
+		SccProjectUniqueName6 = Leibit.Controls.WPF\\Leibit.Controls.WPF.csproj
+		SccProjectName6 = Leibit.Controls.WPF
+		SccLocalPath6 = Leibit.Controls.WPF
+		SccProjectUniqueName7 = Leibit.Core.Client.WPF\\Leibit.Core.Client.WPF.csproj
+		SccProjectName7 = Leibit.Core.Client.WPF
+		SccLocalPath7 = Leibit.Core.Client.WPF
+	EndGlobalSection
+EndGlobal

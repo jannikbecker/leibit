@@ -1,0 +1,49 @@
+﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.ESTWSelection.Views.ESTWSelectionView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.ESTWSelection.Views"
+                      xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.ESTWSelection.ViewModels"
+                      xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                      xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+	                  Caption="Aufschaltbereich">
+
+    <controls:ChildWindow.Style>
+        <Style TargetType="local:ESTWSelectionView" BasedOn="{StaticResource ChildWindowStyle}" />
+    </controls:ChildWindow.Style>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="0,0,5,5">
+            <Grid.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type vm:ESTWSelectionESTWViewModel}" ItemsSource="{Binding Stations}">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsThreeState="False" IsChecked="{Binding IsSelected, Mode=TwoWay}" Margin="0,0,5,0" />
+                        <TextBlock Text="{Binding Name}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+
+                <DataTemplate DataType="{x:Type vm:ESTWSelectionStationViewModel}">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsThreeState="False" IsChecked="{Binding IsSelected, Mode=TwoWay}" Margin="0,0,5,0" />
+                        <TextBlock Text="{Binding Name}" />
+                    </StackPanel>
+                </DataTemplate>
+
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="True" />
+                    <Setter Property="IsSelected" Value="{Binding SelectionDummy, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:ESTWSelectionView}}" />
+                </Style>
+
+                <conv:VisibilityConverter x:Key="VisibilityConverter" />
+                <conv:VisibilityConverter x:Key="InvertedVisibilityConverter" Invert="True" />
+            </Grid.Resources>
+
+            <TreeView BorderThickness="0" Visibility="{Binding HasEstws, Converter={StaticResource VisibilityConverter}}">
+                <TreeViewItem Header="{Binding Name}" ItemsSource="{Binding Estws}" />
+            </TreeView>
+
+            <TextBlock Text="Es wurden keine Stellwerke geladen." Margin="5,5,0,0" Visibility="{Binding HasEstws, Converter={StaticResource InvertedVisibilityConverter}}" />
+        </Grid>
+    </ScrollViewer>
+</controls:ChildWindow>

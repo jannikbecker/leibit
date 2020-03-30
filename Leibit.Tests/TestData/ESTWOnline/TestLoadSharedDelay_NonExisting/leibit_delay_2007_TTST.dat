@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<SharedDelay xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TrainNumber>2007</TrainNumber>
+  <StationShortSymbol>TTST</StationShortSymbol>
+  <ScheduleIndex>0</ScheduleIndex>
+  <Minutes>4</Minutes>
+  <Type>Departure</Type>
+  <Reason>Keine Ahnung</Reason>
+  <CausedBy>4711</CausedBy>
+</SharedDelay>

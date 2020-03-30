@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<leibit>
+  <area id="myTestArea" name="Testland">
+    <estw id="TTST" name="Testdorf" dataFile="leibit_TEST.dat">
+      <station name="Linksdorf" short="TLDF" refNr="30">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="30BN" direction="right" />
+          <block name="31B4711" direction="right" />
+        </track>
+      </station>
+      
+      <station name="Probe" short="TPRB" refNr="31" scheduleFile="g31_____.abf" localOrderFile="BF31____.abf">
+        <track name="1">
+          <block name="31G1" />
+        </track>
+        <track name="2">
+          <block name="31G2" />
+        </track>
+        <track name="3">
+          <block name="31G3" />
+        </track>
+      </station>
+
+      <station name="ÜSt Mitte" short="T UM" refNr="32">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="32B815" direction="right" />
+          <block name="32B816" direction="left" />
+          <block name="32B817" direction="right" />
+          <block name="31B814" direction="left" />
+        </track>
+      </station>
+
+      <station name="Testdorf" short="TTST" refNr="32" scheduleFile="g32_____.abf">
+        <track name="1">
+          <alternative track="2" />
+          <alternative track="3" />
+          <alternative track="4" />
+          <track name="1A">
+            <block name="32G11" />
+          </track>
+          <track name="1B">
+            <block name="32G12" />
+          </track>
+        </track>
+        <track name="2">
+          <block name="32G21" />
+          <block name="32G22" />
+        </track>
+        <track name="3">
+          <block name="32G31" />
+          <block name="32G32" />
+        </track>
+        <track name="4">
+          <block name="32G41" />
+        </track>
+        <track name="4A">
+          <block name="32G42" />
+          <alternative track="1A" />
+          <alternative track="2" />
+          <alternative track="3" />
+        </track>
+      </station>
+
+      <station name="Rechtsheim" short="TREH" refNr="33">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="33BP" direction="left" />
+          <block name="32B4712" direction="left" />
+        </track>
+      </station>
+    </estw>
+
+    <estw id="TREH" name="Rechtsheim" dataFile="leibit_RECHTSHEI.dat">
+      <station name="Testdorf" short="TTST" refNr="32">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="32BN" />
+          <block name="33B4713" />
+        </track>
+      </station>
+
+      <station name="Rechtsheim" short="TREH" refNr="33" scheduleFile="g33_____.abf">
+        <track name="1">
+          <block name="33G1" />
+        </track>
+        <track name="2">
+          <block name="33G2" />
+        </track>
+        <track name="3">
+          <block name="33G3" />
+        </track>
+      </station>
+    </estw>
+  </area>
+
+  <area id="another" name="Paradies">
+    <estw id="PPP" name="Paradiesbahnhof" dataFile="leibit_PARADIES.dat">
+      <station name="Paradiesbahnhof" short="PPP" refNr="99">
+        <track name="1">
+          <block name="99G1" />
+        </track>
+      </station>
+    </estw>
+  </area>
+</leibit>
