@@ -18,7 +18,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         #region - Needs -
         private SettingsBLL m_SettingsBll;
         private List<ESTW> m_Estws;
-        private Entities.Common.Settings m_Settings;
+        private Entities.Settings.Settings m_Settings;
 
         private CommandHandler m_SaveCommand;
         private CommandHandler m_CancelCommand;

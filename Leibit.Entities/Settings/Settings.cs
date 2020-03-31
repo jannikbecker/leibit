@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Leibit.Entities.Common
+namespace Leibit.Entities.Settings
 {
     public class Settings
     {
@@ -8,11 +8,13 @@ namespace Leibit.Entities.Common
         public Settings()
         {
             Paths = new Dictionary<string, string>();
+            GridSettings = new List<GridSetting>();
         }
 
         public Dictionary<string, string> Paths { get; private set; }
         public string EstwOnlinePath { get; set; }
         public int? WindowColor { get; set; }
+        public List<GridSetting> GridSettings { get; set; }
 
         public Settings Clone()
         {

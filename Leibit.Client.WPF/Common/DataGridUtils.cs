@@ -1,9 +1,10 @@
 ﻿using Leibit.BLL;
-using Leibit.Core.Common;
-using System;
+using Leibit.Entities.Settings;
 using System.ComponentModel;
-using System.IO;
+using System.Linq;
+using System.Windows;
 using Xceed.Wpf.DataGrid;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Leibit.Client.WPF.Common
 {
@@ -17,81 +18,78 @@ namespace Leibit.Client.WPF.Common
             m_SettingsBll = new SettingsBLL();
         }
 
-        internal static void LoadLayout(DataGridControl DataGrid, DataGridCollectionView Collection, string RuleKey)
+        internal static void LoadLayout(DataGridControl DataGrid, DataGridCollectionView Collection, string GridName)
         {
             if (DataGrid == null)
                 return;
 
+            var settingsResult = m_SettingsBll.GetSettings();
+
+            if (!settingsResult.Succeeded)
+                return;
+
+            var gridSetting = settingsResult.Result.GridSettings.FirstOrDefault(s => s.GridName == GridName);
+
+            if (gridSetting == null)
+                return;
+
             foreach (var Column in DataGrid.Columns)
             {
-                var Position = m_SettingsBll.LoadRule<int>(Path.Combine(RuleKey, "ColumnPositions"), Column.FieldName, -1);
-                var sWidth = m_SettingsBll.LoadRule<string>(Path.Combine(RuleKey, "ColumnWidths"), Column.FieldName);
-                double Width;
+                var columnSetting = gridSetting.ColumnSettings.FirstOrDefault(s => s.ColumnName == Column.FieldName);
 
-                if (Position != -1)
-                    Column.VisiblePosition = Position;
+                if (columnSetting == null)
+                    continue;
 
-                if (sWidth.IsNotNullOrEmpty() && Double.TryParse(sWidth, out Width))
-                    Column.Width = new ColumnWidth(Width);
+                Column.VisiblePosition = columnSetting.Position;
+                Column.Width = new ColumnWidth(columnSetting.Width);
             }
 
             Collection.GroupDescriptions.Clear();
             Collection.SortDescriptions.Clear();
 
-            for (int i = 0; true; i++)
-            {
-                var ColumnName = m_SettingsBll.LoadRule<string>(Path.Combine(RuleKey, "Grouping", i.ToString()), "ColumnName");
+            foreach (var Column in gridSetting.GroupedColumns)
+                Collection.GroupDescriptions.Add(new DataGridGroupDescription(Column.ColumnName));
 
-                if (ColumnName.IsNullOrEmpty())
-                    break;
-
-                Collection.GroupDescriptions.Add(new DataGridGroupDescription(ColumnName));
-            }
-
-            for (int i = 0; true; i++)
-            {
-                var ColumnName = m_SettingsBll.LoadRule<string>(Path.Combine(RuleKey, "Sorting", i.ToString()), "ColumnName");
-
-                if (ColumnName.IsNullOrEmpty())
-                    break;
-
-                var SortDirection = m_SettingsBll.LoadRule<ListSortDirection>(Path.Combine(RuleKey, "Sorting", i.ToString()), "SortDirection");
-                Collection.SortDescriptions.Add(new SortDescription(ColumnName, SortDirection));
-            }
+            foreach (var Column in gridSetting.SortingColumns)
+                Collection.SortDescriptions.Add(new SortDescription(Column.ColumnName, Column.SortDirection));
         }
 
-        internal static void SaveLayout(DataGridControl DataGrid, DataGridCollectionView Collection, string RuleKey)
+        internal static void SaveLayout(DataGridControl DataGrid, DataGridCollectionView Collection, string GridName)
         {
             if (DataGrid == null)
                 return;
 
+            var gridSetting = new GridSetting();
+            gridSetting.GridName = GridName;
+
             foreach (var Column in DataGrid.Columns)
             {
-                m_SettingsBll.SaveRule(Path.Combine(RuleKey, "ColumnPositions"), Column.FieldName, Column.VisiblePosition);
-                m_SettingsBll.SaveRule(Path.Combine(RuleKey, "ColumnWidths"), Column.FieldName, Column.ActualWidth);
+                var columnSetting = new GridColumnSetting();
+                columnSetting.ColumnName = Column.FieldName;
+                columnSetting.Position = Column.VisiblePosition;
+                columnSetting.Width = Column.ActualWidth;
+                gridSetting.ColumnSettings.Add(columnSetting);
             }
 
-            m_SettingsBll.ClearRules(Path.Combine(RuleKey, "Grouping"));
-            m_SettingsBll.ClearRules(Path.Combine(RuleKey, "Sorting"));
+            foreach (DataGridGroupDescription GroupDescription in Collection.GroupDescriptions)
+                gridSetting.GroupedColumns.Add(new GridGroupingColumn { ColumnName = GroupDescription.PropertyName });
 
-            for (int i = 0; i < Collection.GroupDescriptions.Count; i++)
-            {
-                var GroupDescription = Collection.GroupDescriptions[i] as DataGridGroupDescription;
+            foreach (var SortDescription in Collection.SortDescriptions)
+                gridSetting.SortingColumns.Add(new GridSortingColumn { ColumnName = SortDescription.PropertyName, SortDirection = SortDescription.Direction });
 
-                if (GroupDescription == null)
-                    break;
+            var settingsResult = m_SettingsBll.GetSettings();
 
-                m_SettingsBll.SaveRule(Path.Combine(RuleKey, "Grouping", i.ToString()), "ColumnName", GroupDescription.PropertyName);
-            }
+            if (!settingsResult.Succeeded)
+                return;
 
-            for (int i = 0; i < Collection.SortDescriptions.Count; i++)
-            {
-                var SortingDescription = Collection.SortDescriptions[i];
+            var settings = settingsResult.Result;
+            settings.GridSettings.RemoveAll(s => s.GridName == GridName);
+            settings.GridSettings.Add(gridSetting);
 
-                m_SettingsBll.SaveRule(Path.Combine(RuleKey, "Sorting", i.ToString()), "ColumnName", SortingDescription.PropertyName);
-                m_SettingsBll.SaveRule(Path.Combine(RuleKey, "Sorting", i.ToString()), "SortDirection", SortingDescription.Direction);
-            }
+            var saveResult = m_SettingsBll.SaveSettings(settings);
+
+            if (!saveResult.Succeeded)
+                MessageBox.Show(saveResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
     }
 }
