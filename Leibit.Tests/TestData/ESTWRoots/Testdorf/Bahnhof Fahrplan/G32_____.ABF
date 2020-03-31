@@ -3,13 +3,13 @@ ZEIT   ZUG___ GA  GLE   VON____________ VT_______ BEMERKUNGEN___________________
 001260 065123<KC  4     Irgendwo        Mo-Do     Ankunft 23:41 Uhr                       Linksdorf Gbf
 001260 065123<KC  4     Testdorf        Fr-Sa                                             Linksdorf Gbf
 130802 002007 IC  1     Linksdorf Hbf                                                     Rechtsheim
-130800D086312<GC  3     Irgendwo        Di+Do+Fr  Ü 12345                                 Linksdorf Gbf
+130800D086312<GC  3     Irgendwo        Di+Do+Fr  Ãœ 12345                                 Linksdorf Gbf
 131004 012345<RB  4     Rechtsheim      Mo-Fr     @ 86312                                 Probe
 131560 060652<RC  4A    Testdorf        Mi                                                Rechtsheim
 132601 012346 RB  1B    Probe           Mo-Fr+So                                          Rechtsheim
 134100)060652 RC  2     Testdorf        Mi                                                Rechtsheim
 135000X066789 IRC 1     Linksdorf Gbf   Di-Do+Sa  Weiterfahrt 15:00 Uhr                   Irgendwo
 150060 066789 IRC 1     Linksdorf Gbf   Di-Do+Sa  Ankunft 13:50 Uhr                       Irgendwo
-234100Ä065123<KC  4     Irgendwo        Mo-Mi+So  Weiterfahrt 00:12 Uhr                   Linksdorf Gbf
+234100Ã„065123<KC  4     Irgendwo        Mo-Mi+So  Weiterfahrt 00:12 Uhr                   Linksdorf Gbf
 240000 999999
 250000 999999
