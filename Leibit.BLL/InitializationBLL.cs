@@ -351,7 +351,7 @@ namespace Leibit.BLL
                 return;
 
             // Encoding.Default e.g. for German Umlaute
-            using (var reader = new StreamReader(ScheduleFile, Encoding.Default))
+            using (var reader = new StreamReader(ScheduleFile, Encoding.GetEncoding("iso-8859-1")))
             {
                 reader.ReadLine();
                 reader.ReadLine();
@@ -501,7 +501,7 @@ namespace Leibit.BLL
                 return;
 
             // Encoding.Default e.g. for German Umlaute
-            using (var reader = new StreamReader(LocalOrderFile, Encoding.Default))
+            using (var reader = new StreamReader(LocalOrderFile, Encoding.GetEncoding("iso-8859-1")))
             {
                 int CurrentTrainNumber = 0;
                 var Content = new StringBuilder();
