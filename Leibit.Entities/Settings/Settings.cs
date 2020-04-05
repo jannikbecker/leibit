@@ -23,6 +23,7 @@ namespace Leibit.Entities.Settings
             Result.Paths = new Dictionary<string, string>(this.Paths);
             Result.EstwOnlinePath = this.EstwOnlinePath;
             Result.WindowColor = this.WindowColor;
+            Result.GridSettings = this.GridSettings; // No deep clone required
 
             return Result;
         }
