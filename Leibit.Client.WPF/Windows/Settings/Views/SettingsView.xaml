@@ -61,10 +61,10 @@
                                   Width="100"
                                   HorizontalAlignment="Left"
                                   SelectedColor="{Binding WindowColor, Mode=TwoWay, Converter={StaticResource ColorConverter}}" Margin="5"
-                                  AdvancedButtonHeader="Erweitert..."
+                                  AdvancedTabHeader="Erweitert..."
                                   AvailableColorsHeader="Verfügbare Farben"
                                   RecentColorsHeader="Zuletzt verwendete Farben"
-                                  StandardButtonHeader="Zurück"
+                                  StandardTabHeader="Zurück"
                                   StandardColorsHeader="Standardfarben"
                                   />
                 </Grid>

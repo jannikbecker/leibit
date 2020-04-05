@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>Leibit.Core.Client</RootNamespace>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
@@ -18,18 +18,11 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="2.6" />
+    <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="4.6.79" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Leibit.BLL\Leibit.BLL.csproj" />
     <ProjectReference Include="..\Leibit.Core\Leibit.Core.csproj" />
+    <ProjectReference Include="..\Leibit.Entities\Leibit.Entities.csproj" />
   </ItemGroup>
 </Project>

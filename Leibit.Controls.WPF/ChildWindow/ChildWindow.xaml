@@ -25,7 +25,8 @@
                                                 ResizeMode="{Binding ResizeMode, RelativeSource={RelativeSource TemplatedParent}}">
                         <Border BorderThickness="5,0,5,5" Background="White" HorizontalAlignment="Stretch">
                             <Border.BorderBrush>
-                                <SolidColorBrush Color="{Binding WindowColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorConverter}}" />
+                                <!-- RelativeSource TemplatedParent causes error here (why ?) -->
+                                <SolidColorBrush Color="{Binding WindowColor, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}, Converter={StaticResource ColorConverter}}" />
                             </Border.BorderBrush>
 
                             <Grid>

@@ -1,7 +1,4 @@
-﻿using Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels;
-using Leibit.Controls;
-using System.Windows;
-using Xceed.Wpf.DataGrid;
+﻿using Leibit.Controls;
 
 namespace Leibit.Client.WPF.Windows.TrainProgressInformation.Views
 {
@@ -14,18 +11,6 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.Views
             : base("TrainProgressInformation")
         {
             InitializeComponent();
-        }
-
-        private void DataGridControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is TrainProgressInformationViewModel)
-                (DataContext as TrainProgressInformationViewModel).DataGrid = sender as DataGridControl;
-        }
-
-        private void DataRow_DoubleClick(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is TrainProgressInformationViewModel && (DataContext as TrainProgressInformationViewModel).DoubleClickCommand != null)
-                (DataContext as TrainProgressInformationViewModel).DoubleClickCommand.Execute(null);
         }
     }
 }

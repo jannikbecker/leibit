@@ -18,13 +18,20 @@
         <conv:IntComparisonConverter x:Key="IsGreaterThanConverter" ComparisonType="Greater" />
     </controls:ChildWindow.Resources>
 
-    <xcdg:DataGridControl ReadOnly="True" AutoCreateColumns="False" ItemsSource="{Binding Collection}" Loaded="DataGridControl_Loaded">
-        <xcdg:DataGridControl.Resources>
-            <Style TargetType="xcdg:DataCell">
+    <controls:LeibitDataGrid ItemsSource="{Binding Trains}"
+                             SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+                             SelectedColumn="{Binding SelectedColumn, Mode=OneWayToSource}"
+                             LayoutKey="ZFI"
+                             SaveLayout="{Binding SaveGridLayout,Mode=TwoWay}"
+                             RowDoubleClickCommand="{Binding DoubleClickCommand}">
+        <controls:LeibitDataGrid.Resources>
+            <Style TargetType="DataGridCell">
+                <Setter Property="BorderThickness" Value="0"/>
+
                 <Style.Triggers>
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding FieldName, RelativeSource={RelativeSource Self}}" Value="TrainNumber" />
+                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="TrainNumber" />
                             <Condition Binding="{Binding State}" Value="fertig" />
                         </MultiDataTrigger.Conditions>
 
@@ -33,7 +40,7 @@
 
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding FieldName, RelativeSource={RelativeSource Self}}" Value="CurrentStation.Name" />
+                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="CurrentStation.Name" />
                             <Condition Binding="{Binding State}" Value="fertig" />
                         </MultiDataTrigger.Conditions>
 
@@ -42,7 +49,7 @@
 
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding FieldName, RelativeSource={RelativeSource Self}}" Value="DelayString" />
+                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayString" />
                             <Condition Binding="{Binding Delay, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
                         </MultiDataTrigger.Conditions>
 
@@ -51,7 +58,7 @@
 
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding FieldName, RelativeSource={RelativeSource Self}}" Value="DelayString" />
+                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayString" />
                             <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
                         </MultiDataTrigger.Conditions>
 
@@ -60,7 +67,7 @@
 
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding FieldName, RelativeSource={RelativeSource Self}}" Value="DelayString" />
+                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayString" />
                             <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
                         </MultiDataTrigger.Conditions>
 
@@ -68,26 +75,22 @@
                     </MultiDataTrigger>
                 </Style.Triggers>
             </Style>
+        </controls:LeibitDataGrid.Resources>
 
-            <Style TargetType="xcdg:DataRow">
-                <EventSetter Event="MouseDoubleClick" Handler="DataRow_DoubleClick" />
-            </Style>
-        </xcdg:DataGridControl.Resources>
-
-        <xcdg:DataGridControl.Columns>
-            <xcdg:Column Title="Btrst" FieldName="Station.ShortSymbol" ReadOnly="True" />
-            <xcdg:Column Title="ZN" FieldName="TrainNumber" />
-            <xcdg:Column Title="Ankunft" FieldName="Arrival" />
-            <xcdg:Column Title="Abfahrt" FieldName="Departure" />
-            <xcdg:Column Title="+/-" FieldName="DelayString" />
-            <xcdg:Column Title="vsl. an" FieldName="ExpectedArrival" />
-            <xcdg:Column Title="vsl. ab" FieldName="ExpectedDeparture" />
-            <xcdg:Column Title="Vsp" FieldName="DelayInfo" />
-            <xcdg:Column Title="Akt. Betriebsstelle" FieldName="CurrentStation.Name" ReadOnly="True" />
-            <xcdg:Column Title="Zugstatus" FieldName="State" />
-            <xcdg:Column Title="Gleis" FieldName="Track.Name" ReadOnly="True" />
-            <xcdg:Column Title="Abw. Gleis" FieldName="LiveTrack.Name" ReadOnly="True" />
-        </xcdg:DataGridControl.Columns>
-    </xcdg:DataGridControl>
+        <controls:LeibitDataGrid.Columns>
+            <controls:LeibitDataGridColumn Header="Btrst" FieldName="Station.ShortSymbol" />
+            <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber" />
+            <controls:LeibitDataGridColumn Header="Ankunft" FieldName="Arrival" />
+            <controls:LeibitDataGridColumn Header="Abfahrt" FieldName="Departure" />
+            <controls:LeibitDataGridColumn Header="+/-" FieldName="DelayString" />
+            <controls:LeibitDataGridColumn Header="vsl. an" FieldName="ExpectedArrival" />
+            <controls:LeibitDataGridColumn Header="vsl. ab" FieldName="ExpectedDeparture" />
+            <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayInfo" />
+            <controls:LeibitDataGridColumn Header="Akt. Betriebsstelle" FieldName="CurrentStation.Name" />
+            <controls:LeibitDataGridColumn Header="Zugstatus" FieldName="State" />
+            <controls:LeibitDataGridColumn Header="Gleis" FieldName="Track.Name" />
+            <controls:LeibitDataGridColumn Header="Abw. Gleis" FieldName="LiveTrack.Name" />
+        </controls:LeibitDataGrid.Columns>
+    </controls:LeibitDataGrid>
 
 </controls:ChildWindow>

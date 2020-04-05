@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="Leibit.Controls.LeibitDataGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="LeibitDataGridRoot">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ItemsControl x:Name="groupedColumnsArea"
+                      Grid.Row="0"
+                      ItemsSource="{Binding GroupedColumns, ElementName=LeibitDataGridRoot}"
+                      Height="40">
+            
+            <ItemsControl.Style>
+                <Style TargetType="ItemsControl">
+                    <Setter Property="Background" Value="LightGray"/>
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ItemsControl">
+                                        <Grid>
+                                            <TextBlock Text="Ziehen Sie eine Spalte hierher, um nach ihr zu gruppieren" VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+                                            <Grid.Style>
+                                                <Style TargetType="Grid">
+                                                    <Setter Property="Background" Value="LightGray"/>
+
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding CanGroupColumn, ElementName=LeibitDataGridRoot}" Value="True">
+                                                            <Setter Property="Background" Value="LightBlue"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Grid.Style>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding CanGroupColumn, ElementName=LeibitDataGridRoot}" Value="True">
+                            <Setter Property="Background" Value="LightBlue"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ItemsControl.Style>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1"
+                            BorderBrush="Black"
+                            Margin="5,0,5,0"
+                            PreviewMouseLeftButtonUp="__GroupedColumn_MouseLeftButtonUp"
+                            PreviewMouseMove="__GroupedColumn_MouseMove"
+                            PreviewMouseLeftButtonDown="__GroupedColumn_MouseLeftButtonDown">
+                        <TextBlock Grid.Column="0" Text="{Binding Header}" Margin="5,0,5,0" VerticalAlignment="Center"/>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <DataGrid x:Name="dataGrid"
+                  Grid.Row="1"
+                  ItemsSource="{Binding Collection, ElementName=LeibitDataGridRoot}"
+                  SelectedItem="{Binding SelectedItem, ElementName=LeibitDataGridRoot, Mode=TwoWay}"
+                  CurrentColumn="{Binding CurrentColumn, ElementName=LeibitDataGridRoot, Mode=OneWayToSource}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserReorderColumns="True"
+                  CanUserResizeColumns="True"
+                  CanUserResizeRows="False"
+                  AlternationCount="2"
+                  Background="White"
+                  GridLinesVisibility="None"
+                  HeadersVisibility="Column"
+                  IsReadOnly="True"
+                  ColumnReordering="__DataGrid_ColumnReordering"
+                  Loaded="__DataGrid_Loaded">
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="__DataRow_DoubleClick" />
+
+                    <Style.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="#eee"/>
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#6def"/>
+                        </Trigger>
+                    </Style.Triggers>
+
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#def" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#def" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black" />
+                    </Style.Resources>
+                </Style>
+
+                <Style TargetType="DataGridColumnHeader">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="__DataGridColumnHeader_MouseLeftButtonDown"/>
+                    <EventSetter Event="PreviewMouseMove" Handler="__DataGridColumnHeader_MouseMove"/>
+                    <EventSetter Event="PreviewMouseLeftButtonUp" Handler="__DataGridColumnHeader_MouseLeftButtonUp"/>
+                    <EventSetter Event="PreviewMouseDoubleClick" Handler="__DataGridColumnHeader_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.Resources>
+            
+            <DataGrid.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="GroupItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="GroupItem">
+                                        <Expander IsExpanded="True" Background="White">
+                                            <Expander.Header>
+                                                <Grid HorizontalAlignment="{Binding Path=HorizontalAlignment, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentPresenter}}, Mode=OneWayToSource}">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <TextBlock Grid.Column="0" FontWeight="Bold" Text="{Binding Name}" Margin="0,0,10,0"/>
+                                                    <Rectangle Grid.Column="1" Fill="Black" Height="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Expander.Header>
+                                            <Expander.Content>
+                                                <ItemsPresenter/>
+                                            </Expander.Content>
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Background="SlateGray">
+                                <TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="Bold" Foreground="White" Margin="24,0,0,0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+
+        </DataGrid>
+
+        <Image x:Name="reorderTargetIndicator" 
+               Source="{StaticResource imgArrowUp}" 
+               Width="24"
+               Height="24"
+               Visibility="Hidden"/>
+
+        <Popup x:Name="groupingToolTip" AllowsTransparency="False" Placement="Relative" PlacementTarget="{Binding ElementName=groupedColumnsArea}" IsOpen="False">
+            <Border BorderThickness="1" BorderBrush="Gray">
+                <TextBlock Text="{Binding GroupingToolTipText, ElementName=LeibitDataGridRoot}" Background="White" Padding="2,0,2,0"/>
+            </Border>
+        </Popup>
+
+        <Popup x:Name="ungroupingToolTip" AllowsTransparency="False" Placement="Relative" PlacementTarget="{Binding ElementName=dataGrid}" IsOpen="False">
+            <Border BorderThickness="1" BorderBrush="Gray">
+                <TextBlock Text="{Binding UngroupingToolTipText, ElementName=LeibitDataGridRoot}" Background="White" Padding="2,0,2,0"/>
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

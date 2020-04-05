@@ -1,5 +1,4 @@
 ﻿using Leibit.BLL;
-using Leibit.Client.WPF.Common;
 using Leibit.Client.WPF.Interfaces;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Client.WPF.Windows.TrainSchedule.ViewModels;
@@ -16,7 +15,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-using Xceed.Wpf.DataGrid;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
@@ -26,8 +24,6 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
 
         #region - Needs -
         private CalculationBLL m_CalculationBll;
-        private SettingsBLL m_SettingsBll;
-        private DataGridControl m_DataGrid;
         private CommandHandler m_DoubleClickCommand;
         #endregion
 
@@ -38,10 +34,8 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
             this.Dispatcher = Dispatcher;
             CurrentStation = Station;
             Schedules = new ObservableCollection<TimeTableItemViewModel>();
-            Collection = new DataGridCollectionView(Schedules);
 
             m_CalculationBll = new CalculationBLL();
-            m_SettingsBll = new SettingsBLL();
             m_DoubleClickCommand = new CommandHandler(__RowDoubleClick, true);
         }
         #endregion
@@ -61,27 +55,6 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
         {
             get;
             private set;
-        }
-        #endregion
-
-        #region [Collection]
-        public DataGridCollectionView Collection
-        {
-            get;
-            private set;
-        }
-        #endregion
-
-        #region [DataGrid]
-        internal DataGridControl DataGrid
-        {
-            set
-            {
-                m_DataGrid = value;
-
-                if (m_DataGrid != null)
-                    LoadLayout();
-            }
         }
         #endregion
 
@@ -109,6 +82,34 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
             get
             {
                 return m_DoubleClickCommand;
+            }
+        }
+        #endregion
+
+        #region [SaveGridLayout]
+        public bool SaveGridLayout
+        {
+            get
+            {
+                return Get<bool>();
+            }
+            set
+            {
+                Set(value);
+            }
+        }
+        #endregion
+
+        #region [SelectedItem]
+        public TimeTableItemViewModel SelectedItem
+        {
+            get
+            {
+                return Get<TimeTableItemViewModel>();
+            }
+            set
+            {
+                Set(value);
             }
         }
         #endregion
@@ -214,17 +215,10 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
         }
         #endregion
 
-        #region [LoadLayout]
-        public void LoadLayout()
-        {
-            DataGridUtils.LoadLayout(m_DataGrid, Collection, "BFO");
-        }
-        #endregion
-
         #region [SaveLayout]
         public void SaveLayout()
         {
-            DataGridUtils.SaveLayout(m_DataGrid, Collection, "BFO");
+            SaveGridLayout = true;
         }
         #endregion
 
@@ -235,11 +229,6 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
         #region [__RowDoubleClick]
         private void __RowDoubleClick()
         {
-            if (m_DataGrid == null)
-                return;
-
-            var SelectedItem = m_DataGrid.SelectedItem as TimeTableItemViewModel;
-
             if (SelectedItem == null)
                 return;
 

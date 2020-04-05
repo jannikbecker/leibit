@@ -5,5 +5,7 @@
         <ResourceDictionary Source="./ChildWindow/ChildWindow.xaml" />
         <ResourceDictionary Source="./DropDownButton/DropDownButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
+
+    <BitmapImage x:Key="imgArrowUp" UriSource="/Leibit.Controls.WPF;component/Resources/Images/arrow_up.png" />
+
 </ResourceDictionary>

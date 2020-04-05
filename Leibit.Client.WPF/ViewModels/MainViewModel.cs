@@ -48,6 +48,7 @@ namespace Leibit.Client.WPF.ViewModels
 
         private Area m_CurrentArea;
         private Thread m_RefreshingThread;
+        private CancellationTokenSource m_CancellationTokenSource;
         private List<ViewModelBase> m_ChildViewModels;
         private string m_CurrentFilename;
 
@@ -824,9 +825,6 @@ namespace Leibit.Client.WPF.ViewModels
             m_ChildViewModels.Add(ViewModel);
             ChildWindows.Add(Window);
 
-            if (ViewModel is ILayoutSavable)
-                (ViewModel as ILayoutSavable).LoadLayout();
-
             Window.Closed += (sender, e) =>
             {
                 ChildWindows.Remove(Window);
@@ -860,7 +858,8 @@ namespace Leibit.Client.WPF.ViewModels
 
             StatusBarText = String.Format("Bereich {0} geladen", m_CurrentArea.Name);
 
-            m_RefreshingThread = new Thread(() => __Refresh(m_CurrentArea));
+            m_CancellationTokenSource = new CancellationTokenSource();
+            m_RefreshingThread = new Thread(() => __Refresh(m_CurrentArea, m_CancellationTokenSource.Token));
             m_RefreshingThread.Start();
         }
         #endregion
@@ -869,7 +868,10 @@ namespace Leibit.Client.WPF.ViewModels
         private void __CleanUp()
         {
             if (m_RefreshingThread != null)
-                m_RefreshingThread.Abort();
+            {
+                m_CancellationTokenSource.Cancel();
+                m_CancellationTokenSource = null;
+            }
 
             if (m_CurrentArea != null)
                 m_CurrentArea.LiveTrains.Clear();
@@ -888,27 +890,18 @@ namespace Leibit.Client.WPF.ViewModels
         #endregion
 
         #region [__Refresh]
-        private void __Refresh(Area Area)
+        private void __Refresh(Area Area, CancellationToken cancellationToken)
         {
-            bool Cancel = false;
-
-            while (!Cancel)
+            while (!cancellationToken.IsCancellationRequested)
             {
-                try
-                {
-                    var Result = m_LiveDataBll.RefreshLiveData(Area);
+                var Result = m_LiveDataBll.RefreshLiveData(Area);
 
-                    if (Result.Succeeded && Result.Result)
-                        m_ChildViewModels.Where(vm => vm is IRefreshable).Cast<IRefreshable>().ToList().ForEach(vm => vm.Refresh(Area));
-                    else
-                        Application.Current.Dispatcher.Invoke(() => MessageBox.Show(Result.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error));
+                if (Result.Succeeded && Result.Result)
+                    m_ChildViewModels.Where(vm => vm is IRefreshable).Cast<IRefreshable>().ToList().ForEach(vm => vm.Refresh(Area));
+                else
+                    Application.Current.Dispatcher.Invoke(() => MessageBox.Show(Result.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error));
 
-                    Thread.Sleep(100);
-                }
-                catch (ThreadAbortException)
-                {
-                    Cancel = true;
-                }
+                Thread.Sleep(100);
             }
         }
         #endregion

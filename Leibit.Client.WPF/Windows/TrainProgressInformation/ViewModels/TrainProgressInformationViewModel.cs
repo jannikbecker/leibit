@@ -1,5 +1,4 @@
-﻿using Leibit.BLL;
-using Leibit.Client.WPF.Common;
+﻿using Leibit.Client.WPF.Common;
 using Leibit.Client.WPF.Interfaces;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Client.WPF.Windows.DelayJustification.ViewModels;
@@ -16,7 +15,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Threading;
-using Xceed.Wpf.DataGrid;
 
 namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 {
@@ -24,8 +22,6 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
     {
 
         #region - Needs -
-        private SettingsBLL m_SettingsBll;
-        private DataGridControl m_DataGrid;
         private CommandHandler m_DoubleClickCommand;
         #endregion
 
@@ -34,8 +30,6 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         {
             this.Dispatcher = Dispatcher;
             Trains = new ObservableCollection<TrainStationViewModel>();
-            Collection = new DataGridCollectionView(Trains);
-            m_SettingsBll = new SettingsBLL();
             m_DoubleClickCommand = new CommandHandler(__RowDoubleClick, true);
         }
         #endregion
@@ -50,32 +44,11 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
-        #region [Collection]
-        public DataGridCollectionView Collection
-        {
-            get;
-            private set;
-        }
-        #endregion
-
         #region [Dispatcher]
         public Dispatcher Dispatcher
         {
             get;
             private set;
-        }
-        #endregion
-
-        #region [DataGrid]
-        internal DataGridControl DataGrid
-        {
-            set
-            {
-                m_DataGrid = value;
-
-                if (m_DataGrid != null)
-                    LoadLayout();
-            }
         }
         #endregion
 
@@ -85,6 +58,48 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             get
             {
                 return m_DoubleClickCommand;
+            }
+        }
+        #endregion
+
+        #region [SaveGridLayout]
+        public bool SaveGridLayout
+        {
+            get
+            {
+                return Get<bool>();
+            }
+            set
+            {
+                Set(value);
+            }
+        }
+        #endregion
+
+        #region [SelectedItem]
+        public TrainStationViewModel SelectedItem
+        {
+            get
+            {
+                return Get<TrainStationViewModel>();
+            }
+            set
+            {
+                Set(value);
+            }
+        }
+        #endregion
+
+        #region [SelectedColumn]
+        public string SelectedColumn
+        {
+            private get
+            {
+                return Get<string>();
+            }
+            set
+            {
+                Set(value);
             }
         }
         #endregion
@@ -217,17 +232,10 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
-        #region [LoadLayout]
-        public void LoadLayout()
-        {
-            DataGridUtils.LoadLayout(m_DataGrid, Collection, "ZFI");
-        }
-        #endregion
-
         #region [SaveLayout]
         public void SaveLayout()
         {
-            DataGridUtils.SaveLayout(m_DataGrid, Collection, "ZFI");
+            SaveGridLayout = true;
         }
         #endregion
 
@@ -238,15 +246,10 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         #region [__RowDoubleClick]
         private void __RowDoubleClick()
         {
-            if (m_DataGrid == null)
-                return;
-
-            var SelectedItem = m_DataGrid.SelectedItem as TrainStationViewModel;
-
             if (SelectedItem == null)
                 return;
 
-            if (m_DataGrid.CurrentColumn.FieldName == "DelayInfo" && SelectedItem.DelayInfo == 'U')
+            if (SelectedColumn == "DelayInfo" && SelectedItem.DelayInfo == 'U')
             {
                 var Window = new DelayJustificationView(SelectedItem.TrainNumber);
                 var VM = new DelayJustificationViewModel(SelectedItem.CurrentTrain);
