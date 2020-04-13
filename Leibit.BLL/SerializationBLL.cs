@@ -77,6 +77,7 @@ namespace Leibit.BLL
                     SerializedTrain.TrainNumber = Train.Train.Number;
                     SerializedTrain.Delay = Train.Delay;
                     SerializedTrain.LastModified = Train.LastModified;
+                    SerializedTrain.TrainDirection = Train.Direction;
 
                     if (Train.Block != null)
                     {
@@ -187,6 +188,7 @@ namespace Leibit.BLL
                     var LiveTrain = new TrainInformation(Train);
                     LiveTrain.Delay = SerializedTrain.Delay;
                     LiveTrain.LastModified = SerializedTrain.LastModified;
+                    LiveTrain.Direction = SerializedTrain.TrainDirection;
 
                     if (Estw.Blocks.ContainsKey(SerializedTrain.Block))
                         LiveTrain.Block = Estw.Blocks[SerializedTrain.Block].FirstOrDefault(b => b.Direction == SerializedTrain.BlockDirection);
