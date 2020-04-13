@@ -61,6 +61,20 @@
                 <controls:LeibitDataGrid.Resources>
                     <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0"/>
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="Actions">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="DataGridCell">
+                                            <TextBlock VerticalAlignment="Center">
+                                                <Hyperlink Command="{Binding DeleteLiveTrainCommand}">Löschen</Hyperlink>
+                                            </TextBlock>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
                     </Style>
                 </controls:LeibitDataGrid.Resources>
             
@@ -71,6 +85,7 @@
                     <controls:LeibitDataGridColumn Header="Gleis" FieldName="CurrentTrain.Block.Track.Name"/>
                     <controls:LeibitDataGridColumn Header="Richtung" FieldName="Direction"/>
                     <controls:LeibitDataGridColumn Header="Stand" FieldName="CurrentTrain.LastModified"/>
+                    <controls:LeibitDataGridColumn Header="Aktionen" FieldName="Actions"/>
                 </controls:LeibitDataGrid.Columns>
             </controls:LeibitDataGrid>
         </Expander>

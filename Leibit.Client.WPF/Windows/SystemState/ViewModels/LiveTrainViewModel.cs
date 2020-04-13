@@ -1,16 +1,25 @@
 ﻿using Leibit.Core.Client.BaseClasses;
+using Leibit.Core.Client.Commands;
 using Leibit.Entities;
+using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
+using System.Windows.Input;
 
 namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
 {
     public class LiveTrainViewModel : ViewModelBase
     {
 
+        #region - Needs -
+        private Area m_Area;
+        #endregion
+
         #region - Ctor -
-        public LiveTrainViewModel(TrainInformation train)
+        public LiveTrainViewModel(Area area, TrainInformation train)
         {
+            m_Area = area;
             CurrentTrain = train;
+            DeleteLiveTrainCommand = new CommandHandler(__Delete, true);
         }
         #endregion
 
@@ -20,21 +29,14 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
         public TrainInformation CurrentTrain { get; private set; }
         #endregion
 
-        //#region [TrainNumber]
-        //public int TrainNumber => CurrentTrain.Train.Number;
-        //#endregion
+        #region [DeleteLiveTrainCommand]
+        public ICommand DeleteLiveTrainCommand { get; private set; }
+        #endregion
 
-        //#region [Block]
-        //public string Block => CurrentTrain.Block?.Name ?? string.Empty;
-        //#endregion
-
-        //#region [Station]
-        //public string Station => CurrentTrain.Block?.Track?.Station?.ShortSymbol ?? string.Empty;
-        //#endregion
-
-        //#region [Track]
-        //public string Track => CurrentTrain.Block?.Track?.Name ?? string.Empty;
-        //#endregion
+        #region [Actions]
+        // Dummy, don't delete
+        public string Actions { get; set; }
+        #endregion
 
         #region [Direction]
         public string Direction
@@ -57,10 +59,6 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
         }
         #endregion
 
-        //#region [LastModified]
-        //public LeibitTime LastModified => CurrentTrain.LastModified;
-        //#endregion
-
         #endregion
 
         #region - Public methods -
@@ -69,6 +67,17 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
         public void Refresh()
         {
             OnPropertyChanged(null);
+        }
+        #endregion
+
+        #endregion
+
+        #region - Private methods -
+
+        #region [__Delete]
+        private void __Delete()
+        {
+            m_Area.LiveTrains.TryRemove(CurrentTrain.Train.Number, out _);
         }
         #endregion
 

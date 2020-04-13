@@ -156,7 +156,7 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
 
                 if (current == null)
                 {
-                    current = new LiveTrainViewModel(train.Value);
+                    current = new LiveTrainViewModel(Area, train.Value);
                     Dispatcher.Invoke(() => LiveTrains.Add(current));
                 }
                 else
