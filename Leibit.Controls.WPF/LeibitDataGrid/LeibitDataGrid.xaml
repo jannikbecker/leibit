@@ -91,6 +91,11 @@
                   GridLinesVisibility="None"
                   HeadersVisibility="Column"
                   IsReadOnly="True"
+                  EnableRowVirtualization="True"
+                  VirtualizingPanel.IsVirtualizingWhenGrouping="True"
+                  VirtualizingPanel.VirtualizationMode="Standard"
+                  VirtualizingPanel.IsVirtualizing="True"
+                  ScrollViewer.CanContentScroll="True"
                   ColumnReordering="__DataGrid_ColumnReordering"
                   Loaded="__DataGrid_Loaded">
 
