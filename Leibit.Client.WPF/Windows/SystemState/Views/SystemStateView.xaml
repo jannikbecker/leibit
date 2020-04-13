@@ -1,8 +1,15 @@
 ﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.SystemState.Views.SystemStateView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.SystemState.Views"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
-                      xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF">
+                      xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                      Caption="Systemstatus"
+                      ResizeMode="ResizeHeight">
+
+    <controls:ChildWindow.Style>
+        <Style TargetType="local:SystemStateView" BasedOn="{StaticResource ChildWindowStyle}" />
+    </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>
         <conv:LeibitTimeConverter x:Key="LeibitTimeConverter"/>
@@ -15,7 +22,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="Geladene Stellwerke" FontWeight="Bold" Margin="5,5,0,5"/>
@@ -45,8 +52,27 @@
 
         <TextBlock Grid.Row="2" Text="Züge" FontWeight="Bold" Margin="5,0,0,10"/>
 
-        <controls:LeibitDataGrid Grid.Row="3">
-
+        <controls:LeibitDataGrid Grid.Row="3"
+                                 ItemsSource="{Binding LiveTrains}"
+                                 SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+                                 LayoutKey="SysState"
+                                 SaveLayout="{Binding SaveGridLayout,Mode=TwoWay}"
+                                 RowDoubleClickCommand="{Binding DoubleClickCommand}">
+            
+            <controls:LeibitDataGrid.Resources>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </controls:LeibitDataGrid.Resources>
+            
+            <controls:LeibitDataGrid.Columns>
+                <controls:LeibitDataGridColumn Header="ZN" FieldName="CurrentTrain.Train.Number"/>
+                <controls:LeibitDataGridColumn Header="Block" FieldName="CurrentTrain.Block.Name"/>
+                <controls:LeibitDataGridColumn Header="Letzte Btrst" FieldName="CurrentTrain.Block.Track.Station.Name"/>
+                <controls:LeibitDataGridColumn Header="Gleis" FieldName="CurrentTrain.Block.Track.Name"/>
+                <controls:LeibitDataGridColumn Header="Richtung" FieldName="Direction"/>
+                <controls:LeibitDataGridColumn Header="Stand" FieldName="CurrentTrain.LastModified"/>
+            </controls:LeibitDataGrid.Columns>
         </controls:LeibitDataGrid>
     </Grid>
 </controls:ChildWindow>
