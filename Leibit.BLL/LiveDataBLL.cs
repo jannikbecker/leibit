@@ -477,7 +477,9 @@ namespace Leibit.BLL
 
                 foreach (var Schedule in SchedulesResult.Result)
                 {
-                    var LiveSchedule = OldSchedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == Schedule.Station.ShortSymbol && s.Schedule.Time == Schedule.Time);
+                    var LiveSchedule = OldSchedules.FirstOrDefault(s => s.Schedule.Station.ESTW.Id == Schedule.Station.ESTW.Id
+                                                                     && s.Schedule.Station.ShortSymbol == Schedule.Station.ShortSymbol
+                                                                     && s.Schedule.Time == Schedule.Time);
 
                     if (LiveSchedule == null)
                         LiveSchedule = new LiveSchedule(Train, Schedule);
