@@ -93,6 +93,16 @@ namespace Leibit.Controls
         }
         #endregion
 
+        #region [CanGroup]
+        public bool CanGroup
+        {
+            get { return (bool)GetValue(CanGroupProperty); }
+            set { SetValue(CanGroupProperty, value); }
+        }
+
+        public static readonly DependencyProperty CanGroupProperty = DependencyProperty.Register("CanGroup", typeof(bool), typeof(LeibitDataGrid), new PropertyMetadata(true));
+        #endregion
+
         #region [SelectedItem]
         public object SelectedItem
         {
@@ -448,7 +458,14 @@ namespace Leibit.Controls
                 return;
 
             DataGridUtils.LoadLayout(dataGrid, Collection, LayoutKey);
-            __RefreshGroupArea();
+
+            if (CanGroup)
+                __RefreshGroupArea();
+            else
+            {
+                Collection.GroupDescriptions.Clear();
+                Collection.Refresh();
+            }
         }
         #endregion
 
