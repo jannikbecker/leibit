@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows;
@@ -121,11 +120,15 @@ namespace Leibit.Controls
                 {
                     var Window = New as ChildWindow;
 
-                    if (Double.IsInfinity(Window.MaxWidth))
+                    if (double.IsInfinity(Window.MaxWidth))
                         Window.MaxWidth = ActualWidth;
-
-                    if (Double.IsInfinity(Window.MaxHeight))
+                    if (double.IsInfinity(Window.MaxHeight))
                         Window.MaxHeight = ActualHeight;
+
+                    if (Window.PositionX > ActualWidth)
+                        Window.PositionX = 0;
+                    if (Window.PositionY > ActualHeight)
+                        Window.PositionY = 0;
 
                     Children.Add(Window);
                 }
