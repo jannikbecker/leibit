@@ -50,13 +50,14 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <TextBlock Grid.Row="2" Text="Züge" FontWeight="Bold" Margin="5,0,0,10"/>
+        <TextBlock Grid.Row="2" Text="Züge" FontWeight="Bold" Margin="5,0,0,5"/>
 
         <controls:LeibitDataGrid Grid.Row="3"
                                  ItemsSource="{Binding LiveTrains}"
                                  SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
                                  LayoutKey="SysState"
                                  SaveLayout="{Binding SaveGridLayout,Mode=TwoWay}"
+                                 CanGroup="False"
                                  RowDoubleClickCommand="{Binding DoubleClickCommand}">
             
             <controls:LeibitDataGrid.Resources>
