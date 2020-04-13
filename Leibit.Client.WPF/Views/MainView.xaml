@@ -102,6 +102,12 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
+                <MenuItem Header="Systemstatus" Command="{Binding SystemStateCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource imgInfo}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                
                 <Separator />
 
                 <MenuItem Header="Layout speichern" Command="{Binding SaveLayoutCommand}">

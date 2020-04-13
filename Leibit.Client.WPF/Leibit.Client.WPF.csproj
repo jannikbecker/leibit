@@ -26,6 +26,11 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\Images\info.png" />
+    <None Remove="Resources\Images\ok.png" />
+    <None Remove="Resources\Images\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="4.6.79" />
   </ItemGroup>
   <ItemGroup>
@@ -37,10 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\estw_online.png" />
+    <Resource Include="Resources\Images\info.png" />
+    <Resource Include="Resources\Images\ok.png" />
     <Resource Include="Resources\Images\settings.png" />
     <Resource Include="Resources\Images\new.png" />
     <Resource Include="Resources\Images\open.png" />
     <Resource Include="Resources\Images\save.png" />
+    <Resource Include="Resources\Images\warning.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\zfi.png" />

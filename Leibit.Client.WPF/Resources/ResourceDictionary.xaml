@@ -14,5 +14,8 @@
     <BitmapImage x:Key="imgClose" UriSource="/Leibit.Controls.WPF;component/Resources/Images/close.png" />
     <BitmapImage x:Key="imgClear" UriSource="/Leibit;component/Resources/Images/clear.png" />
     <BitmapImage x:Key="imgLocalOrders" UriSource="/Leibit;component/Resources/Images/local_orders.png" />
+    <BitmapImage x:Key="imgOk" UriSource="/Leibit;component/Resources/Images/ok.png" />
+    <BitmapImage x:Key="imgWarning" UriSource="/Leibit;component/Resources/Images/warning.png" />
+    <BitmapImage x:Key="imgInfo" UriSource="/Leibit;component/Resources/Images/info.png" />
 
 </ResourceDictionary>

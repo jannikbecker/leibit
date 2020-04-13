@@ -9,6 +9,8 @@ using Leibit.Client.WPF.Windows.LocalOrders.ViewModels;
 using Leibit.Client.WPF.Windows.LocalOrders.Views;
 using Leibit.Client.WPF.Windows.Settings.ViewModels;
 using Leibit.Client.WPF.Windows.Settings.Views;
+using Leibit.Client.WPF.Windows.SystemState.ViewModels;
+using Leibit.Client.WPF.Windows.SystemState.Views;
 using Leibit.Client.WPF.Windows.TimeTable.ViewModels;
 using Leibit.Client.WPF.Windows.TimeTable.Views;
 using Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels;
@@ -63,6 +65,7 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_TrainProgressInformationCommand;
         private CommandHandler m_TimeTableCommand;
         private CommandHandler m_TrainScheduleCommand;
+        private CommandHandler m_SystemStateCommand;
         private CommandHandler m_SaveLayoutCommand;
         private CommandHandler m_ClearChildWindowsCommand;
         #endregion
@@ -81,6 +84,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_TrainProgressInformationCommand = new CommandHandler(__ShowTrainProgressInformationWindow, false);
             m_TimeTableCommand = new CommandHandler<Station>(__ShowTimeTableWindow, true);
             m_TrainScheduleCommand = new CommandHandler(__ShowTrainScheduleWindow, false);
+            m_SystemStateCommand = new CommandHandler(__ShowSystemStateWindow, false);
             m_SaveLayoutCommand = new CommandHandler(__SaveLayout, true);
             m_ClearChildWindowsCommand = new CommandHandler(__ClearChildWindows, true);
 
@@ -390,6 +394,16 @@ namespace Leibit.Client.WPF.ViewModels
             get
             {
                 return m_TrainScheduleCommand;
+            }
+        }
+        #endregion
+
+        #region [SystemStateCommand]
+        public ICommand SystemStateCommand
+        {
+            get
+            {
+                return m_SystemStateCommand;
             }
         }
         #endregion
@@ -793,6 +807,15 @@ namespace Leibit.Client.WPF.ViewModels
         }
         #endregion
 
+        #region [__ShowSystemStateWindow]
+        private void __ShowSystemStateWindow()
+        {
+            var Window = new SystemStateView();
+            var VM = new SystemStateViewModel(Window.Dispatcher);
+            __OpenChildWindow(Window, VM);
+        }
+        #endregion
+
         #region [__SaveLayout]
         private void __SaveLayout()
         {
@@ -854,6 +877,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_SaveAsCommand.SetCanExecute(true);
             m_EstwSelectionCommand.SetCanExecute(true);
             m_TrainProgressInformationCommand.SetCanExecute(true);
+            m_SystemStateCommand.SetCanExecute(true);
             IsTrainScheduleEnabled = true;
 
             StatusBarText = String.Format("Bereich {0} geladen", m_CurrentArea.Name);
