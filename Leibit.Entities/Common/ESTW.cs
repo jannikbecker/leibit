@@ -1,4 +1,5 @@
 ﻿using Leibit.Core.Scheduling;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -82,6 +83,8 @@ namespace Leibit.Entities.Common
         public LeibitTime Time { get; set; }
 
         public int IOExceptionCount { get; set; }
+
+        public DateTime LastUpdatedOn { get; set; }
 
     }
 }

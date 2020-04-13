@@ -306,6 +306,8 @@ namespace Leibit.BLL
                 }
             }
 
+            estw.LastUpdatedOn = DateTime.Now;
+
             //if (!Debugger.IsAttached)
             File.Delete(FilePath);
         }
