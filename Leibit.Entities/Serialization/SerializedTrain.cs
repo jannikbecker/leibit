@@ -14,6 +14,7 @@ namespace Leibit.Entities.Serialization
 
         public int TrainNumber { get; set; }
         public string CurrentEstwId { get; set; }
+        public eBlockDirection TrainDirection { get; set; }
         public string Block { get; set; }
         public eBlockDirection BlockDirection { get; set; }
         public int Delay { get; set; }
