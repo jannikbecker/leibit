@@ -51,6 +51,7 @@ namespace Leibit.Entities
         TrainProgressInformation = 5,
         TrainSchedule = 6,
         LocalOrders = 7,
+        SystemState = 8,
     }
 
 }

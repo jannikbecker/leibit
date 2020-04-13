@@ -596,6 +596,11 @@ namespace Leibit.Client.WPF.ViewModels
                             else
                                 continue;
 
+                        case eChildWindowType.SystemState:
+                            Window = new SystemStateView();
+                            ViewModel = new SystemStateViewModel(Window.Dispatcher);
+                            break;
+
                         default:
                             continue;
                     }
@@ -655,6 +660,8 @@ namespace Leibit.Client.WPF.ViewModels
                     var VM = Window.DataContext as LocalOrdersViewModel;
                     SerializedWindow.Tag = new KeyValuePair<int, string>(VM.CurrentSchedule.Train.Number, VM.CurrentSchedule.Station.ShortSymbol);
                 }
+                else if (Window is SystemStateView)
+                    SerializedWindow.Type = eChildWindowType.SystemState;
                 else
                     continue;
 
