@@ -20,60 +20,59 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Geladene Stellwerke" FontWeight="Bold" Margin="5,5,0,5"/>
+        <Expander Grid.Row="0" Header="Geladene Stellwerke" IsExpanded="True" Margin="0,5,0,20">
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding Estws}" Margin="5,0,0,0" Grid.IsSharedSizeScope="True">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="EstwName"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="EstwTime"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="EstwState"/>
+                            </Grid.ColumnDefinitions>
 
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Estws}" Margin="5,0,0,20" Grid.IsSharedSizeScope="True">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,0,0,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="EstwName"/>
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="EstwTime"/>
-                            <ColumnDefinition Width="Auto" SharedSizeGroup="EstwState"/>
-                        </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center" Margin="0,0,40,0"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Time, Converter={StaticResource LeibitTimeConverter}}" VerticalAlignment="Center" Margin="0,0,40,0"/>
 
-                        <TextBlock Grid.Column="0" Text="{Binding Name}" VerticalAlignment="Center" Margin="0,0,40,0"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Time, Converter={StaticResource LeibitTimeConverter}}" VerticalAlignment="Center" Margin="0,0,40,0"/>
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,5,0" VerticalAlignment="Center">
+                                <Image Source="{StaticResource imgOk}" VerticalAlignment="Center" Visibility="{Binding IsActive, Converter={StaticResource VisibilityConverter}}"/>
+                                <Image Source="{StaticResource imgWarning}" VerticalAlignment="Center" Visibility="{Binding IsActive, Converter={StaticResource InvertedVisibilityConverter}}"/>
+                                <TextBlock Text="inaktiv" VerticalAlignment="Center" Visibility="{Binding IsActive, Converter={StaticResource InvertedVisibilityConverter}}" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Expander>
 
-                        <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,5,0" VerticalAlignment="Center">
-                            <Image Source="{StaticResource imgOk}" VerticalAlignment="Center" Visibility="{Binding IsActive, Converter={StaticResource VisibilityConverter}}"/>
-                            <Image Source="{StaticResource imgWarning}" VerticalAlignment="Center" Visibility="{Binding IsActive, Converter={StaticResource InvertedVisibilityConverter}}"/>
-                            <TextBlock Text="inaktiv" VerticalAlignment="Center" Visibility="{Binding IsActive, Converter={StaticResource InvertedVisibilityConverter}}" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <TextBlock Grid.Row="2" Text="Züge" FontWeight="Bold" Margin="5,0,0,5"/>
-
-        <controls:LeibitDataGrid Grid.Row="3"
-                                 ItemsSource="{Binding LiveTrains}"
-                                 SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
-                                 LayoutKey="SysState"
-                                 SaveLayout="{Binding SaveGridLayout,Mode=TwoWay}"
-                                 CanGroup="False"
-                                 RowDoubleClickCommand="{Binding DoubleClickCommand}">
+        <Expander Grid.Row="1" Header="Züge">
+            <controls:LeibitDataGrid Grid.Row="3"
+                                     ItemsSource="{Binding LiveTrains}"
+                                     SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+                                     LayoutKey="SysState"
+                                     SaveLayout="{Binding SaveGridLayout,Mode=TwoWay}"
+                                     CanGroup="False"
+                                     Margin="0,5,0,0"
+                                     RowDoubleClickCommand="{Binding DoubleClickCommand}">
             
-            <controls:LeibitDataGrid.Resources>
-                <Style TargetType="DataGridCell">
-                    <Setter Property="BorderThickness" Value="0"/>
-                </Style>
-            </controls:LeibitDataGrid.Resources>
+                <controls:LeibitDataGrid.Resources>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
+                </controls:LeibitDataGrid.Resources>
             
-            <controls:LeibitDataGrid.Columns>
-                <controls:LeibitDataGridColumn Header="ZN" FieldName="CurrentTrain.Train.Number"/>
-                <controls:LeibitDataGridColumn Header="Block" FieldName="CurrentTrain.Block.Name"/>
-                <controls:LeibitDataGridColumn Header="Letzte Btrst" FieldName="CurrentTrain.Block.Track.Station.Name"/>
-                <controls:LeibitDataGridColumn Header="Gleis" FieldName="CurrentTrain.Block.Track.Name"/>
-                <controls:LeibitDataGridColumn Header="Richtung" FieldName="Direction"/>
-                <controls:LeibitDataGridColumn Header="Stand" FieldName="CurrentTrain.LastModified"/>
-            </controls:LeibitDataGrid.Columns>
-        </controls:LeibitDataGrid>
+                <controls:LeibitDataGrid.Columns>
+                    <controls:LeibitDataGridColumn Header="ZN" FieldName="CurrentTrain.Train.Number"/>
+                    <controls:LeibitDataGridColumn Header="Block" FieldName="CurrentTrain.Block.Name"/>
+                    <controls:LeibitDataGridColumn Header="Letzte Btrst" FieldName="CurrentTrain.Block.Track.Station.Name"/>
+                    <controls:LeibitDataGridColumn Header="Gleis" FieldName="CurrentTrain.Block.Track.Name"/>
+                    <controls:LeibitDataGridColumn Header="Richtung" FieldName="Direction"/>
+                    <controls:LeibitDataGridColumn Header="Stand" FieldName="CurrentTrain.LastModified"/>
+                </controls:LeibitDataGrid.Columns>
+            </controls:LeibitDataGrid>
+        </Expander>
     </Grid>
 </controls:ChildWindow>
