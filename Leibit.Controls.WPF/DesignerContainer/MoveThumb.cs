@@ -29,25 +29,32 @@ namespace Leibit.Controls
 
             if (item != null)
             {
-                double left = Canvas.GetLeft(item) + e.HorizontalChange;
-                double top = Canvas.GetTop(item) + e.VerticalChange;
+                var currentLeft = Canvas.GetLeft(item);
+                var currentTop = Canvas.GetTop(item);
+                var horizontalDelta = e.HorizontalChange;
+                var verticalDelta = e.VerticalChange;
 
                 double? MaxWidth = Double.IsInfinity(item.MaxWidth) ? null : (double?)item.MaxWidth;
                 double? MaxHeight = Double.IsInfinity(item.MaxHeight) ? null : (double?)item.MaxHeight;
 
-                if (left < 0)
-                    Canvas.SetLeft(item, 0);
-                else if (MaxWidth.HasValue && item.ActualWidth + left > MaxWidth)
-                    Canvas.SetLeft(item, MaxWidth.Value - item.ActualWidth);
-                else
-                    Canvas.SetLeft(item, left);
+                if (currentLeft + horizontalDelta < 0)
+                    horizontalDelta = -currentLeft;
+                else if (MaxWidth.HasValue && item.ActualWidth + horizontalDelta > MaxWidth.Value)
+                    horizontalDelta = MaxWidth.Value - item.ActualWidth;
 
-                if (top < 0)
-                    Canvas.SetTop(item, 0);
-                else if (MaxHeight.HasValue && item.ActualHeight + top > MaxHeight)
-                    Canvas.SetTop(item, MaxHeight.Value - item.ActualHeight);
-                else
-                    Canvas.SetTop(item, top);
+                Canvas.SetLeft(item, currentLeft + horizontalDelta);
+
+                if (currentTop + verticalDelta < 0)
+                    verticalDelta = -currentTop;
+                else if (MaxHeight.HasValue && item.ActualHeight + verticalDelta > MaxHeight.Value)
+                    verticalDelta = MaxHeight.Value - item.ActualHeight;
+
+                Canvas.SetTop(item, currentTop + verticalDelta);
+
+                if (MaxWidth.HasValue)
+                    item.MaxWidth -= horizontalDelta;
+                if (MaxHeight.HasValue)
+                    item.MaxHeight -= verticalDelta;
             }
         }
     }

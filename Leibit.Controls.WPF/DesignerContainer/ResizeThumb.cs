@@ -49,8 +49,8 @@ namespace Leibit.Controls
                         deltaVertical = Math.Min(-e.VerticalChange, item.ActualHeight - item.MinHeight);
                         NewHeight = ActualHeight - deltaVertical;
 
-                        if ((MaxHeight.HasValue && (NewHeight + Top > MaxHeight) || NewHeight > MaxHeight))
-                            NewHeight = MaxHeight.Value - Top;
+                        if (MaxHeight.HasValue && NewHeight > MaxHeight)
+                            NewHeight = MaxHeight.Value;
 
                         if (MinHeight.HasValue && NewHeight < MinHeight)
                             NewHeight = MinHeight.Value;
@@ -69,14 +69,12 @@ namespace Leibit.Controls
                             NewTop = 0;
                         }
 
-                        if ((MaxHeight.HasValue && (NewHeight + Top > MaxHeight) || NewHeight > MaxHeight))
-                            NewHeight = MaxHeight.Value - Top;
-
                         if (MinHeight.HasValue && NewHeight < MinHeight)
                             NewHeight = MinHeight.Value;
 
                         Canvas.SetTop(item, NewTop);
                         item.Height = NewHeight;
+                        item.MaxHeight += Top - NewTop;
                         break;
 
                     default:
@@ -96,22 +94,20 @@ namespace Leibit.Controls
                             NewLeft = 0;
                         }
 
-                        if ((MaxWidth.HasValue && (NewWidth + Left > MaxWidth) || NewWidth > MaxWidth))
-                            NewWidth = MaxWidth.Value - Left;
-
                         if (MinWidth.HasValue && NewWidth < MinWidth)
                             NewWidth = MinWidth.Value;
 
                         Canvas.SetLeft(item, NewLeft);
                         item.Width = NewWidth;
+                        item.MaxWidth += Left - NewLeft;
                         break;
 
                     case HorizontalAlignment.Right:
                         deltaHorizontal = Math.Min(-e.HorizontalChange, item.ActualWidth - item.MinWidth);
                         NewWidth = ActualWidth - deltaHorizontal;
 
-                        if ((MaxWidth.HasValue && (NewWidth + Left > MaxWidth) || NewWidth > MaxWidth))
-                            NewWidth = MaxWidth.Value - Left;
+                        if (MaxWidth.HasValue && NewWidth > MaxWidth)
+                            NewWidth = MaxWidth.Value;
 
                         if (MinWidth.HasValue && NewWidth < MinWidth)
                             NewWidth = MinWidth.Value;

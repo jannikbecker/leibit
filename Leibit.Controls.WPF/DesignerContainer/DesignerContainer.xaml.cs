@@ -83,6 +83,19 @@ namespace Leibit.Controls
 
         #endregion
 
+        #region - Public methods -
+
+        #region [OnApplyTemplate]
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            MaxWidth -= Left;
+            MaxHeight -= Top;
+        }
+        #endregion
+
+        #endregion
+
         #region - Private methods -
 
         private void __MoveThumbDoubleClick(object sender, MouseButtonEventArgs e)
