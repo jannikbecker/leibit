@@ -12,7 +12,7 @@
   <xs:element name="leibit">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="area">
+        <xs:element maxOccurs="unbounded" name="area">
           <xs:complexType>
             <xs:sequence>
               <xs:element maxOccurs="unbounded" name="estw">
@@ -24,7 +24,7 @@
                           <xs:element maxOccurs="unbounded" name="track">
                             <xs:complexType>
                               <xs:sequence minOccurs="0">
-                                <xs:element maxOccurs="unbounded" name="block">
+                                <xs:element minOccurs="0" maxOccurs="unbounded" name="block">
                                   <xs:complexType>
                                     <xs:attribute name="name" type="xs:string" use="required" />
                                     <xs:attribute name="direction" type="direction" use="optional" />
