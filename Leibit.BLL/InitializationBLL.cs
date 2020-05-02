@@ -475,7 +475,11 @@ namespace Leibit.BLL
 
             foreach (var Schedule in StartSchedules)
             {
-                var Duplicate = schedules.FirstOrDefault(s => s.Train == Schedule.Train && s.Track == Schedule.Track && s.Handling != eHandling.Start && s.Time > Schedule.Time.AddHours(-12) && s != Schedule);
+                var Duplicate = schedules.FirstOrDefault(s => s.Train == Schedule.Train
+                                                           && s.Track == Schedule.Track
+                                                           && s.Handling != eHandling.Start
+                                                           && __AreSchedulesClose(s, Schedule)
+                                                           && s != Schedule);
 
                 if (Duplicate != null)
                 {
@@ -539,6 +543,25 @@ namespace Leibit.BLL
 
             var Schedules = station.Schedules.Where(s => s.Train.Number == trainNumber);
             Schedules.ForEach(s => s.LocalOrders = content.TrimEnd());
+        }
+        #endregion
+
+        #region [__AreSchedulesClose]
+        private bool __AreSchedulesClose(Schedule schedule1, Schedule schedule2)
+        {
+            if (schedule1.Days.Count != schedule2.Days.Count)
+                return false;
+
+            var times1 = schedule1.Days.Select(day => new LeibitTime(day, schedule1.Time.Hour, schedule1.Time.Minute)).ToList();
+            var times2 = schedule2.Days.Select(day => new LeibitTime(day, schedule2.Time.Hour, schedule2.Time.Minute)).ToList();
+
+            foreach (var time1 in times1)
+            {
+                if (!times2.Any(time2 => time1 > time2.AddHours(-12)))
+                    return false;
+            }
+
+            return true;
         }
         #endregion
 

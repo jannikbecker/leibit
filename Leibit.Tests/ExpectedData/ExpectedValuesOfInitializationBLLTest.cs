@@ -102,7 +102,8 @@ namespace Leibit.Tests.ExpectedData
 
             var Train12346 = new Train(12346, "RB", "Probe", "Rechtsheim");
             Area.Trains.TryAdd(12346, Train12346);
-            new Schedule(Train12346, null, new LeibitTime(13, 20), ProbeTrack3, new List<eDaysOfService> { eDaysOfService.Monday, eDaysOfService.Tuesday, eDaysOfService.Wednesday, eDaysOfService.Thursday, eDaysOfService.Friday, eDaysOfService.Sunday }, eScheduleDirection.LeftToRight, eHandling.Start, "< 12345", null);
+            new Schedule(Train12346, null, new LeibitTime(13, 20), ProbeTrack3, new List<eDaysOfService> { eDaysOfService.Monday, eDaysOfService.Tuesday, eDaysOfService.Wednesday, eDaysOfService.Thursday, eDaysOfService.Friday }, eScheduleDirection.LeftToRight, eHandling.Start, "< 12345", null);
+            new Schedule(Train12346, new LeibitTime(13, 18), new LeibitTime(13, 20), ProbeTrack3, new List<eDaysOfService> { eDaysOfService.Sunday }, eScheduleDirection.LeftToRight, eHandling.StopPassengerTrain, string.Empty, null);
             new Schedule(Train12346, new LeibitTime(13, 25), new LeibitTime(13, 26), TestdorfTrack1B, new List<eDaysOfService> { eDaysOfService.Monday, eDaysOfService.Tuesday, eDaysOfService.Wednesday, eDaysOfService.Thursday, eDaysOfService.Friday, eDaysOfService.Sunday }, eScheduleDirection.LeftToRight, eHandling.StopPassengerTrain, String.Empty, null);
 
             var Train60652 = new Train(60652, "RC", "Testdorf", "Rechtsheim");
