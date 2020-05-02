@@ -2387,17 +2387,21 @@
       </station>
       
       <station name="Utbremen Abzw" short="HUTB" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf">
-        <track name="973" calculateDelay="false"/>
-        
         <track name="970" calculateDelay="false">
           <block name="13B972" direction="left"/>
           <block name="13B964" direction="right"/>
           <block name="13BP3" direction="left"/>
+
+          <alternative track="959"/>
         </track>
         
         <track name="959" calculateDelay="false">
           <block name="11B957" direction="left"/>
-          <block name="13B691" direction="right"/>
+          <alternative track="970"/>
+          
+          <track name="973" calculateDelay="false">
+            <block name="13B691" direction="right"/>
+          </track>
         </track>
       </station>
 
@@ -2929,6 +2933,471 @@
         <track name="903" calculateDelay="false">
           <block name="60B901" direction="left"/>
           <block name="60B922" direction="right"/>
+        </track>
+      </station>
+    </estw>
+
+    <estw id="AHAR" name="Hamburg-Harburg" dataFile="leibit_HAMBURG-HARBURG.dat">
+      <station name="Hamburg Hbf" short="AH" refNr="20">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="20S421" direction="right"/>
+          <block name="20S422" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Ericus Abzw" short="AERI" refNr="20">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="20B426" direction="right"/>
+          <block name="20B526" direction="right"/>
+          <block name="64B527" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Hamburg-Rothenburgsort" short="AHRO" refNr="30">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="30B915" direction="right"/>
+          <block name="64B517" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Hamburg-Süd" short="AHBS" refNr="63">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="64BP50" direction="left"/>
+          <block name="63B297" direction="right"/>
+          <block name="63B298" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Norderelbbrücke Abzw" short="ANEB" refNr="20" scheduleFile="B20_____.ABF">
+        <track name="414" calculateDelay="false">
+          <block name="20B416" direction="left"/>
+          <alternative track="dummy"/>
+          
+          <track name="424" calculateDelay="false">
+            <block name="20B426" direction="left"/>
+            <block name="64G034" direction="right"/>
+          </track>
+        </track>
+
+        <track name="dummy"/>
+      </station>
+
+      <station name="Oberhafen Abzw" short="AOHA" refNr="64" scheduleFile="B64_____.ABF">
+        <track name="031" calculateDelay="false">
+          <block name="64G041" direction="left"/>
+          <block name="64B517" direction="left"/>
+          <block name="64GK32" direction="left"/>
+          <block name="64B527" direction="left"/>
+          <block name="64G021" direction="right"/>
+          <alternative track="514"/>
+          <alternative track="524"/>
+        </track>
+
+        <track name="514" calculateDelay="false">
+          <block name="30B915" direction="left"/>
+          <alternative track="031"/>
+          
+          <track name="524" calculateDelay="false">
+            <block name="64B526" direction="left"/>
+            <block name="64G022" direction="right"/>
+          </track>
+        </track>
+      </station>
+
+      <station name="Veddel Abzw" short="AVL" refNr="64" scheduleFile="G64_____.ABF">
+        <track name="012">
+          <block name="64G002"/>
+        </track>
+        <track name="024">
+          <block name="64G014"/>
+        </track>
+        <track name="413">
+          <block name="64B423"/>
+        </track>
+        <track name="513">
+          <block name="64G001"/>
+        </track>
+      </station>
+
+      <station name="Hamburg-Wilhelmsburg Abzw" short="AWLBA" refNr="63" scheduleFile="B63_____.ABF">
+        <track name="61">
+          <alternative track="418"/>
+          <alternative track="518"/>
+          
+          <track name="407">
+            <block name="63B409" direction="left"/>
+          </track>
+        
+          <track name="529">
+            <block name="63B509" direction="left"/>
+          </track>
+        </track>
+
+        <track name="418">
+          <block name="63B408" direction="right"/>
+        </track>
+
+        <track name="518">
+          <block name="63B508" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Hamburg-Wilhelmsburg" short="AWLB" refNr="63" scheduleFile="G63_____.ABF" localOrderFile="Bf63____.abf">
+        <track name="31">
+          <block name="63G31"/>
+        </track>
+        <track name="32">
+          <block name="63G32"/>
+        </track>
+        <track name="33">
+          <block name="63G33"/>
+        </track>
+        <track name="34">
+          <block name="63G34"/>
+        </track>
+        <track name="35">
+          <block name="63G35"/>
+        </track>
+        <track name="36">
+          <block name="63G36"/>
+        </track>
+        <track name="81">
+          <block name="63G81"/>
+        </track>
+      </station>
+
+      <station name="Hamburg Hohe Schaar" short="AHOS" refNr="25">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="25B92" direction="right"/>
+          <block name="63B93" direction="right"/>
+          <block name="63G94" direction="right"/>
+        </track>
+      </station>
+      
+      <station name="Süderelbbrücke Abzw" short="ASE" refNr="62" scheduleFile="B62_____.ABF">
+        <track name="01" calculateDelay="false">
+          <block name="63G21" direction="left"/>
+          <block name="63B93" direction="left"/>
+          <block name="62B290" direction="right"/>
+        </track>
+
+        <track name="04" calculateDelay="false">
+          <block name="25B92" direction="left"/>
+          <alternative track="01"/>
+          
+          <track name="12" calculateDelay="false">
+            <block name="63G22" direction="left"/>
+            <block name="63B91" direction="right"/>
+          </track>
+        </track>
+      </station>
+
+      <station name="Hamburg-Harburg" short="AHAR" refNr="62" scheduleFile="g62_____.ABF" localOrderFile="Bf62____.abf">
+        <track name="1">
+          <block name="62G1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="10"/>
+        </track>
+
+        <track name="2">
+          <block name="62G2"/>
+          <alternative track="1"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="10"/>
+        </track>
+
+        <track name="3">
+          <block name="62G3"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="10"/>
+        </track>
+
+        <track name="4">
+          <block name="62G4"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="10"/>
+        </track>
+
+        <track name="5">
+          <block name="62G5"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="10"/>
+        </track>
+
+        <track name="6">
+          <block name="62G6"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="10"/>
+        </track>
+
+        <track name="7">
+          <block name="62G7"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+          <alternative track="10"/>
+        </track>
+
+        <track name="8">
+          <block name="62G8"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="9"/>
+          <alternative track="10"/>
+        </track>
+
+        <track name="9">
+          <block name="62G9"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="10"/>
+        </track>
+
+        <track name="10">
+          <block name="62G10"/>
+          <alternative track="1"/>
+          <alternative track="2"/>
+          <alternative track="3"/>
+          <alternative track="4"/>
+          <alternative track="5"/>
+          <alternative track="6"/>
+          <alternative track="7"/>
+          <alternative track="8"/>
+          <alternative track="9"/>
+        </track>
+
+        <track name="023">
+          <block name="62G023"/>
+          <alternative track="024"/>
+          <alternative track="027"/>
+          <alternative track="028"/>
+          <alternative track="125"/>
+          <alternative track="126"/>
+          <alternative track="127"/>
+          <alternative track="128"/>
+          <alternative track="129"/>
+        </track>
+
+        <track name="024">
+          <block name="62G024"/>
+          <alternative track="023"/>
+          <alternative track="027"/>
+          <alternative track="028"/>
+          <alternative track="125"/>
+          <alternative track="126"/>
+          <alternative track="127"/>
+          <alternative track="128"/>
+          <alternative track="129"/>
+        </track>
+
+        <track name="027">
+          <block name="62G027"/>
+          <alternative track="023"/>
+          <alternative track="024"/>
+          <alternative track="028"/>
+          <alternative track="125"/>
+          <alternative track="126"/>
+          <alternative track="127"/>
+          <alternative track="128"/>
+          <alternative track="129"/>
+        </track>
+
+        <track name="028">
+          <block name="62G028"/>
+          <alternative track="023"/>
+          <alternative track="024"/>
+          <alternative track="027"/>
+          <alternative track="125"/>
+          <alternative track="126"/>
+          <alternative track="127"/>
+          <alternative track="128"/>
+          <alternative track="129"/>
+        </track>
+
+        <track name="125">
+          <block name="62G125"/>
+          <alternative track="023"/>
+          <alternative track="024"/>
+          <alternative track="027"/>
+          <alternative track="028"/>
+          <alternative track="126"/>
+          <alternative track="127"/>
+          <alternative track="128"/>
+          <alternative track="129"/>
+        </track>
+
+        <track name="126">
+          <block name="62G126"/>
+          <alternative track="023"/>
+          <alternative track="024"/>
+          <alternative track="027"/>
+          <alternative track="028"/>
+          <alternative track="125"/>
+          <alternative track="127"/>
+          <alternative track="128"/>
+          <alternative track="129"/>
+        </track>
+
+        <track name="127">
+          <block name="62G127"/>
+          <alternative track="023"/>
+          <alternative track="024"/>
+          <alternative track="027"/>
+          <alternative track="028"/>
+          <alternative track="125"/>
+          <alternative track="126"/>
+          <alternative track="128"/>
+          <alternative track="129"/>
+        </track>
+
+        <track name="128">
+          <block name="62G128"/>
+          <alternative track="023"/>
+          <alternative track="024"/>
+          <alternative track="027"/>
+          <alternative track="028"/>
+          <alternative track="125"/>
+          <alternative track="126"/>
+          <alternative track="127"/>
+          <alternative track="129"/>
+        </track>
+
+        <track name="129">
+          <block name="62G129"/>
+          <alternative track="023"/>
+          <alternative track="024"/>
+          <alternative track="027"/>
+          <alternative track="028"/>
+          <alternative track="125"/>
+          <alternative track="126"/>
+          <alternative track="127"/>
+          <alternative track="128"/>
+        </track>
+      </station>
+
+      <station name="Meckelfeld Hp" short="AMDH" refNr="45" scheduleFile="V45_____.abf">
+        <track name="179" calculateDelay="false">
+          <block name="45S179"/>
+        </track>
+        <track name="182" calculateDelay="false">
+          <block name="45S182"/>
+        </track>
+      </station>
+
+      <station name="Meckelfeld Abzw" short="AMDA" refNr="45">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="45B189" direction="left"/>
+          <block name="62B192" direction="left"/>
+          <block name="45S279" direction="left"/>
+          <block name="62B1001" direction="left"/>
+        </track>
+      </station>
+
+      <station name="Hittfeld" short="AHIF" refNr="61">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="61SN" direction="left"/>
+          <block name="61S134" direction="left"/>
+        </track>
+      </station>
+
+      <station name="Hamburg-Unterelbe" short="AHB" refNr="65" scheduleFile="G65_____.ABF" localOrderFile="Bf65____.abf">
+        <track name="1">
+          <block name="65G1"/>
+        </track>
+        <track name="2">
+          <block name="65G2"/>
+        </track>
+        <track name="5">
+          <block name="65G5"/>
+        </track>
+        <track name="6">
+          <block name="65G6"/>
+        </track>
+      </station>
+
+      <station name="Hamburg-Hausbruch" short="AHBR" refNr="66" scheduleFile="G66_____.ABF">
+        <track name="1">
+          <block name="66G1"/>
+        </track>
+        <track name="2">
+          <block name="66G2"/>
+        </track>
+        <track name="3">
+          <block name="66G3"/>
+        </track>
+        <track name="4">
+          <block name="66G4"/>
+        </track>
+      </station>
+
+      <station name="Neugraben" short="ANR" refNr="67">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="66B94" direction="right"/>
+          <block name="67BP" direction="right"/>
+        </track>
+      </station>
+
+      <station name="Hamburg-Waltershof" short="AWHO" refNr="67">
+        <track isPlatform="false" calculateDelay="false">
+          <block name="66BV103" direction="right"/>
+          <block name="66BV104" direction="right"/>
         </track>
       </station>
     </estw>
