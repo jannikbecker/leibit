@@ -1,7 +1,6 @@
 ﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.Settings.Views.SettingsView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
                       xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.Settings.Views"
                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
@@ -21,20 +20,28 @@
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical" Margin="10" Grid.IsSharedSizeScope="True">
             <GroupBox Header="Pfade">
-                <ItemsControl ItemsSource="{Binding Paths}">
+                <ItemsControl ItemsSource="{Binding Areas}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" MinWidth="100" SharedSizeGroup="Header" />
-                                    <ColumnDefinition Width="*" MaxWidth="400" />
-                                    <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
-                                </Grid.ColumnDefinitions>
+                            <Expander Header="{Binding AreaName}">
+                                <ItemsControl ItemsSource="{Binding Paths}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto" MinWidth="100" SharedSizeGroup="Header" />
+                                                    <ColumnDefinition Width="*" MaxWidth="400" />
+                                                    <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
+                                                </Grid.ColumnDefinitions>
 
-                                <Label Grid.Column="0" Content="{Binding EstwName}" VerticalAlignment="Center" />
-                                <TextBox Grid.Column="1" Text="{Binding Path, Mode=TwoWay}" Margin="5" />
-                                <Button Grid.Column="2" Content="..." Margin="5" Command="{Binding BrowseCommand}" />
-                            </Grid>
+                                                <Label Grid.Column="0" Content="{Binding EstwName}" VerticalAlignment="Center" />
+                                                <TextBox Grid.Column="1" Text="{Binding Path, Mode=TwoWay}" Margin="5" />
+                                                <Button Grid.Column="2" Content="..." Margin="5" Command="{Binding BrowseCommand}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

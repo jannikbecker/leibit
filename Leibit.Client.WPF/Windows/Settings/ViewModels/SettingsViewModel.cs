@@ -5,7 +5,6 @@ using Leibit.Entities.Common;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -17,7 +16,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
         #region - Needs -
         private SettingsBLL m_SettingsBll;
-        private List<ESTW> m_Estws;
+        private IEnumerable<Area> m_Areas;
         private Entities.Settings.Settings m_Settings;
 
         private CommandHandler m_SaveCommand;
@@ -28,16 +27,16 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         #region - Ctor -
         public SettingsViewModel(ObservableCollection<Area> areas)
         {
-            m_Estws = areas.SelectMany(a => a.ESTWs).ToList();
+            m_Areas = areas;
             m_SettingsBll = new SettingsBLL();
-            Paths = new ObservableCollection<PathViewModel>();
+            Areas = new ObservableCollection<AreaViewModel>();
 
             var SettingsResult = m_SettingsBll.GetSettings();
 
             if (SettingsResult.Succeeded)
             {
                 m_Settings = SettingsResult.Result.Clone();
-                __RefreshPaths();
+                __Initialize();
             }
             else
                 ShowMessage(SettingsResult);
@@ -50,12 +49,12 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
         #region - Properties -
 
-        #region [Paths]
-        public ObservableCollection<PathViewModel> Paths
+        #region [Areas]
+        public ObservableCollection<AreaViewModel> Areas
         {
             get
             {
-                return Get<ObservableCollection<PathViewModel>>();
+                return Get<ObservableCollection<AreaViewModel>>();
             }
             set
             {
@@ -146,33 +145,25 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
         #region - Private methods -
 
-        private void __RefreshPaths()
+        private void __Initialize()
         {
-            foreach (var vm in Paths)
-                vm.PropertyChanged -= PathVM_PropertyChanged;
-
-            Paths.Clear();
-
-            foreach (var estw in m_Estws)
+            foreach (var area in m_Areas)
             {
-                string Path = m_Settings.Paths.ContainsKey(estw.Id) ? m_Settings.Paths[estw.Id] : null;
-
-                var VM = new PathViewModel(estw, Path);
-                VM.PropertyChanged += PathVM_PropertyChanged;
-                Paths.Add(VM);
+                var VM = new AreaViewModel(area, m_Settings);
+                VM.PropertyChanged += AreaVM_PropertyChanged;
+                Areas.Add(VM);
             }
         }
 
-        private void PathVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void AreaVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            var VM = sender as PathViewModel;
+            var VM = sender as AreaViewModel;
 
             if (VM == null)
                 return;
 
             if (e.PropertyName == "Path")
             {
-                m_Settings.Paths[VM.EstwId] = VM.Path;
                 m_SaveCommand.SetCanExecute(true);
             }
         }
