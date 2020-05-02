@@ -2060,13 +2060,17 @@
         <track isPlatform="false" calculateDelay="false">
           <block name="10B161" direction="right"/>
           <block name="10B168" direction="right"/>
+          <block name="11B181" direction="right"/>
+          <block name="11B184" direction="right"/>
         </track>
       </station>
       
       <station name="Bremen-Hemelingen" short="HBHM" refNr="9">
         <track isPlatform="false" calculateDelay="false">
           <block name="10B171" direction="right"/>
-          <block name="10B166" direction="right"/>
+          <block name="10B168" direction="right"/>
+          <block name="11B191" direction="right"/>
+          <block name="11B194" direction="right"/>
         </track>
       </station>
 
@@ -2181,7 +2185,6 @@
 
         <track name="3">
           <block name="11G0003"/>
-          <block name="11G0030"/>
           <alternative track="1"/>
           <alternative track="2"/>
           <alternative track="4"/>
@@ -2374,6 +2377,18 @@
           <alternative track="50"/>
           <alternative track="51"/>
         </track>
+      
+        <track name="130" isPlatform="false" calculateDelay="false">
+          <block name="11G0130"/>
+        </track>
+      
+        <track name="131" isPlatform="false" calculateDelay="false">
+          <block name="11G0131"/>
+        </track>
+      
+        <track name="132" isPlatform="false" calculateDelay="false">
+          <block name="11G0132"/>
+        </track>
       </station>
 
       <station name="Bremen-Walle Hp" short="HBWA" refNr="11" scheduleFile="b11_____.abf">
@@ -2394,7 +2409,7 @@
         
         <track name="959" calculateDelay="false" isPlatform="false">
           <block name="11B957" direction="left"/>
-          <block name="13B691" direction="right"/>
+          <block name="13B961" direction="right"/>
         </track>
           
         <track name="973" calculateDelay="false" isPlatform="false">
