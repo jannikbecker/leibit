@@ -2435,7 +2435,7 @@
     <estw id="AROG" name="Rotenburg" dataFile="leibit_ROTENBURG.dat">
       <station name="Utbremen Abzw" short="HUTB" refNr="13">
         <track isPlatform="false" calculateDelay="false">
-          <block name="13B951" direction="right"/>
+          <block name="13B961" direction="right"/>
           <block name="13B964" direction="right"/>
         </track>
       </station>
@@ -2449,7 +2449,7 @@
 
       <station name="Unterstedt" short="HUNT" refNr="33">
         <track isPlatform="false" calculateDelay="false">
-          <block name="33BN4" direction="right"/>
+          <block name="33B4N" direction="right"/>
         </track>
       </station>
 
