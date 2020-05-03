@@ -2,6 +2,7 @@
 using Leibit.Core.Scheduling;
 using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
+using Leibit.Entities.Scheduling;
 using System;
 
 namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
@@ -10,9 +11,10 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
     {
 
         #region - Ctor -
-        public TrainStationViewModel(TrainInformation Train)
+        public TrainStationViewModel(TrainInformation Train, Schedule schedule)
         {
             CurrentTrain = Train;
+            Schedule = schedule;
         }
         #endregion
 
@@ -20,6 +22,14 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
         #region [CurrentTrain]
         public TrainInformation CurrentTrain
+        {
+            get;
+            private set;
+        }
+        #endregion
+
+        #region [Schedule]
+        public Schedule Schedule
         {
             get;
             private set;
@@ -146,6 +156,14 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             {
                 Set(value);
             }
+        }
+        #endregion
+
+        #region [LocalOrders]
+        public char LocalOrders
+        {
+            get => Get<char>();
+            set => Set(value);
         }
         #endregion
 

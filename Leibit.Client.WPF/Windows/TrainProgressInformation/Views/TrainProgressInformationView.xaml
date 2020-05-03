@@ -86,6 +86,7 @@
             <controls:LeibitDataGridColumn Header="vsl. an" FieldName="ExpectedArrival" />
             <controls:LeibitDataGridColumn Header="vsl. ab" FieldName="ExpectedDeparture" />
             <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayInfo" />
+            <controls:LeibitDataGridColumn Header="öAno" FieldName="LocalOrders" />
             <controls:LeibitDataGridColumn Header="Akt. Betriebsstelle" FieldName="CurrentStation.Name" />
             <controls:LeibitDataGridColumn Header="Zugstatus" FieldName="State" />
             <controls:LeibitDataGridColumn Header="Gleis" FieldName="Track.Name" />

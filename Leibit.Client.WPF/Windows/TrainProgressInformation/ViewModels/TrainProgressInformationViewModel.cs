@@ -3,6 +3,8 @@ using Leibit.Client.WPF.Interfaces;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Client.WPF.Windows.DelayJustification.ViewModels;
 using Leibit.Client.WPF.Windows.DelayJustification.Views;
+using Leibit.Client.WPF.Windows.LocalOrders.ViewModels;
+using Leibit.Client.WPF.Windows.LocalOrders.Views;
 using Leibit.Client.WPF.Windows.TrainSchedule.ViewModels;
 using Leibit.Client.WPF.Windows.TrainSchedule.Views;
 using Leibit.Core.Client.Commands;
@@ -148,7 +150,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
                     if (Current == null)
                     {
-                        Current = new TrainStationViewModel(LiveTrain)
+                        Current = new TrainStationViewModel(LiveTrain, Schedule)
                         {
                             Station = Station,
                             TrainNumber = Train.Number,
@@ -164,6 +166,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     Current.ExpectedArrival = LiveSchedule.ExpectedArrival;
                     Current.ExpectedDeparture = LiveSchedule.ExpectedDeparture;
                     Current.LiveTrack = LiveSchedule.LiveTrack == null || LiveSchedule.LiveTrack.Name == Schedule.Track?.Name ? null : LiveSchedule.LiveTrack;
+                    Current.LocalOrders = Schedule.LocalOrders.IsNotNullOrWhiteSpace() ? 'J' : ' ';
 
                     var NextSchedules = LiveTrain.Schedules.Skip(LiveTrain.Schedules.IndexOf(LiveSchedule) + 1);
 
@@ -181,7 +184,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                             Visible = true;
                     }
                     else if (Delays.Any(d => d.Reason.IsNotNullOrWhiteSpace()))
-                        Current.DelayInfo = 'V';
+                        Current.DelayInfo = 'J';
                     else
                         Current.DelayInfo = ' ';
 
@@ -253,6 +256,12 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             {
                 var Window = new DelayJustificationView(SelectedItem.TrainNumber);
                 var VM = new DelayJustificationViewModel(SelectedItem.CurrentTrain);
+                OnOpenWindow(VM, Window);
+            }
+            else if (SelectedColumn == "LocalOrders" && SelectedItem.LocalOrders == 'J')
+            {
+                var Window = new LocalOrdersView(SelectedItem.TrainNumber, SelectedItem.Station.ShortSymbol);
+                var VM = new LocalOrdersViewModel(SelectedItem.Schedule);
                 OnOpenWindow(VM, Window);
             }
             else
