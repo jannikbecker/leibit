@@ -133,6 +133,9 @@ namespace Leibit.BLL
             if (Setting.DelayJustificationMinutes <= 0)
                 Messages.Add($"{Setting.DelayJustificationMinutes} ist keine gültige Verspätung");
 
+            if (Setting.EstwTimeout < 6)
+                Messages.Add("Die Zeit, nach der ein ESTW inaktiv wird, muss mindestens 6 Sekunden betragen.");
+
             if (Setting.EstwOnlinePath.IsNullOrWhiteSpace())
                 Messages.Add("Der Pfad zu ESTWonline darf nicht leer sein.");
 
@@ -152,6 +155,8 @@ namespace Leibit.BLL
             settings.DelayJustificationMinutes = 3;
             settings.WriteDelayJustificationFile = false;
             settings.DisplayCompleteTrainSchedule = true;
+            settings.EstwTimeout = 30;
+            settings.LoadInactiveEstws = true;
             return settings;
         }
 

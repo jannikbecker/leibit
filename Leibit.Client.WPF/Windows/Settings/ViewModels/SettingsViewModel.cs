@@ -123,6 +123,36 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [EstwTimeout]
+        public int EstwTimeout
+        {
+            get
+            {
+                return m_Settings.EstwTimeout;
+            }
+            set
+            {
+                m_Settings.EstwTimeout = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region [LoadInactiveEstws]
+        public bool LoadInactiveEstws
+        {
+            get
+            {
+                return m_Settings.LoadInactiveEstws;
+            }
+            set
+            {
+                m_Settings.LoadInactiveEstws = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         #region [EstwOnlinePath]
         public string EstwOnlinePath
         {
@@ -200,6 +230,8 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 || PropertyName == nameof(DelayJustificationMinutes)
                 || PropertyName == nameof(WriteDelayJustificationFile)
                 || PropertyName == nameof(DisplayCompleteTrainSchedule)
+                || PropertyName == nameof(EstwTimeout)
+                || PropertyName == nameof(LoadInactiveEstws)
                 || PropertyName == nameof(EstwOnlinePath)
                 || PropertyName == nameof(WindowColor))
             {

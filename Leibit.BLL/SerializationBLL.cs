@@ -18,6 +18,7 @@ namespace Leibit.BLL
         private IFormatter m_Formatter;
         private CalculationBLL m_CalculationBll;
         private InitializationBLL m_InitializationBll;
+        private SettingsBLL m_SettingsBll;
         #endregion
 
         #region - Ctor -
@@ -56,6 +57,19 @@ namespace Leibit.BLL
         }
         #endregion
 
+        #region [SettingsBll]
+        internal SettingsBLL SettingsBll
+        {
+            get
+            {
+                if (m_SettingsBll == null)
+                    m_SettingsBll = new SettingsBLL();
+
+                return m_SettingsBll;
+            }
+        }
+        #endregion
+
         #endregion
 
         #region - Public methods -
@@ -65,11 +79,20 @@ namespace Leibit.BLL
         {
             try
             {
+                var SettingsResult = SettingsBll.GetSettings();
+                ValidateResult(SettingsResult);
+                var Settings = SettingsResult.Result;
+
                 var Result = new OperationResult<SerializedRoot>();
 
                 var Root = new SerializedRoot();
                 Root.AreaId = Request.Area.Id;
-                Root.LoadedESTWs.AddRange(Request.Area.ESTWs.Where(e => e.IsLoaded).Select(e => new SerializedESTW { ESTWId = e.Id, Time = e.Time }));
+                Root.LoadedESTWs.AddRange(Request.Area.ESTWs.Where(e => e.IsLoaded).Select(e => new SerializedESTW
+                {
+                    ESTWId = e.Id,
+                    Time = e.Time,
+                    IsActive = (DateTime.Now - e.LastUpdatedOn).TotalSeconds < Settings.EstwTimeout,
+                }));
 
                 foreach (var Train in Request.Area.LiveTrains.Values)
                 {
@@ -140,6 +163,10 @@ namespace Leibit.BLL
         {
             try
             {
+                var SettingsResult = SettingsBll.GetSettings();
+                ValidateResult(SettingsResult);
+                var Settings = SettingsResult.Result;
+
                 var Container = new SerializationContainer();
 
                 var File = new FileInfo(Filename);
@@ -167,6 +194,9 @@ namespace Leibit.BLL
 
                 foreach (var SerializedEstw in Root.LoadedESTWs)
                 {
+                    if (!Settings.LoadInactiveEstws && !SerializedEstw.IsActive)
+                        continue;
+
                     var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == SerializedEstw.ESTWId);
 
                     if (Estw == null)
@@ -181,7 +211,7 @@ namespace Leibit.BLL
                 {
                     var Estw = Area.ESTWs.SingleOrDefault(e => e.Id == SerializedTrain.CurrentEstwId);
 
-                    if (Estw == null || !Area.Trains.ContainsKey(SerializedTrain.TrainNumber))
+                    if (Estw == null || !Estw.IsLoaded || !Area.Trains.ContainsKey(SerializedTrain.TrainNumber))
                         continue;
 
                     var Train = Area.Trains[SerializedTrain.TrainNumber];
@@ -224,7 +254,8 @@ namespace Leibit.BLL
                         LiveTrain.AddSchedule(LiveSchedule);
                     }
 
-                    Area.LiveTrains.TryAdd(Train.Number, LiveTrain);
+                    if (LiveTrain.Schedules.Any())
+                        Area.LiveTrains.TryAdd(Train.Number, LiveTrain);
                 }
 
                 Container.Area = Area;

@@ -59,6 +59,8 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Content="Verspätungsbegründung" VerticalAlignment="Center"/>
@@ -68,7 +70,7 @@
                               Margin="5"
                               VerticalAlignment="Center"/>
 
-                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                         <Label Content="ab" VerticalAlignment="Center"/>
                         <xctk:IntegerUpDown Value="{Binding DelayJustificationMinutes, Mode=TwoWay}"
                                             Minimum="1"
@@ -78,7 +80,7 @@
 
                     <CheckBox Grid.Row="2"
                               Grid.Column="1"
-                              Content="An verbundene Stellwerke übertragen"
+                              Content="An verbundene ESTW übertragen"
                               IsChecked="{Binding WriteDelayJustificationFile, Mode=TwoWay}"
                               IsEnabled="{Binding DelayJustificationEnabled}"
                               Margin="5" VerticalAlignment="Center"/>
@@ -89,6 +91,19 @@
                               IsChecked="{Binding DisplayCompleteTrainSchedule, Mode=TwoWay}"
                               Margin="5"
                               VerticalAlignment="Center"/>
+
+                    <Label Grid.Row="4" Grid.Column="0" Content="Inaktive ESTW" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Row="4" Grid.Column="1"
+                              Content="laden"
+                              IsChecked="{Binding LoadInactiveEstws, Mode=TwoWay}"
+                              Margin="5"
+                              VerticalAlignment="Center"/>
+
+                    <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+                        <Label Content="inaktiv nach" VerticalAlignment="Center"/>
+                        <xctk:IntegerUpDown Value="{Binding EstwTimeout, Mode=TwoWay}" Minimum="6"/>
+                        <Label Content="Sekunden ohne Daten" VerticalAlignment="Center"/>
+                    </StackPanel>
                 </Grid>
             </GroupBox>
             

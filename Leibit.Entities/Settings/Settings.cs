@@ -16,6 +16,8 @@ namespace Leibit.Entities.Settings
         public int DelayJustificationMinutes { get; set; }
         public bool WriteDelayJustificationFile { get; set; }
         public bool DisplayCompleteTrainSchedule { get; set; }
+        public int EstwTimeout { get; set; }
+        public bool LoadInactiveEstws { get; set; }
         public string EstwOnlinePath { get; set; }
         public int? WindowColor { get; set; }
         public List<GridSetting> GridSettings { get; set; }
@@ -29,6 +31,8 @@ namespace Leibit.Entities.Settings
             Result.DelayJustificationMinutes = this.DelayJustificationMinutes;
             Result.WriteDelayJustificationFile = this.WriteDelayJustificationFile;
             Result.DisplayCompleteTrainSchedule = this.DisplayCompleteTrainSchedule;
+            Result.EstwTimeout = this.EstwTimeout;
+            Result.LoadInactiveEstws = this.LoadInactiveEstws;
             Result.EstwOnlinePath = this.EstwOnlinePath;
             Result.WindowColor = this.WindowColor;
             Result.GridSettings = this.GridSettings; // No deep clone required

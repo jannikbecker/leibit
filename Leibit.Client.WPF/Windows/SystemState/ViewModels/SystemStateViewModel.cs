@@ -1,4 +1,5 @@
-﻿using Leibit.Client.WPF.Interfaces;
+﻿using Leibit.BLL;
+using Leibit.Client.WPF.Interfaces;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Client.WPF.Windows.TrainSchedule.ViewModels;
 using Leibit.Client.WPF.Windows.TrainSchedule.Views;
@@ -8,8 +9,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
 {
@@ -18,6 +21,7 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
 
         #region - Needs -
         private CommandHandler m_DoubleClickCommand;
+        private SettingsBLL m_SettingsBll;
         #endregion
 
         #region - Ctor -
@@ -26,6 +30,7 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
             Dispatcher = dispatcher;
             LiveTrains = new ObservableCollection<LiveTrainViewModel>();
             m_DoubleClickCommand = new CommandHandler(__RowDoubleClick, true);
+            m_SettingsBll = new SettingsBLL();
         }
         #endregion
 
@@ -119,6 +124,16 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
         #region [__RefreshLoadedEstws]
         private void __RefreshLoadedEstws(Area Area)
         {
+            var settingsResult = m_SettingsBll.GetSettings();
+
+            if (!settingsResult.Succeeded)
+            {
+                MessageBox.Show(settingsResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var settings = settingsResult.Result;
+
             if (Estws == null)
                 Estws = new ObservableCollection<ESTWViewModel>();
 
@@ -137,7 +152,7 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
                 }
 
                 current.Time = estw.Time;
-                current.IsActive = (DateTime.Now - current.CurrentEstw.LastUpdatedOn).TotalSeconds < 30;
+                current.IsActive = (DateTime.Now - current.CurrentEstw.LastUpdatedOn).TotalSeconds < settings.EstwTimeout;
 
                 if (isNew)
                     Dispatcher.Invoke(() => Estws.Add(current));

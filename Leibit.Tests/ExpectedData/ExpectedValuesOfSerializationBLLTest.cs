@@ -3,6 +3,7 @@ using Leibit.Entities;
 using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
 using Leibit.Entities.Serialization;
+using System;
 using System.Linq;
 
 namespace Leibit.Tests.ExpectedData
@@ -15,6 +16,7 @@ namespace Leibit.Tests.ExpectedData
             var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
             var Estw = Area.ESTWs.Single(e => e.Id == "TTST");
             Estw.Time = new LeibitTime(eDaysOfService.Thursday, 13, 40);
+            Estw.LastUpdatedOn = DateTime.Now.AddSeconds(-10);
 
             var Train = Area.Trains[2007];
 
