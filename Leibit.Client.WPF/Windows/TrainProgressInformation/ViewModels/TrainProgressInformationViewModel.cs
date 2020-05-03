@@ -1,4 +1,5 @@
-﻿using Leibit.Client.WPF.Common;
+﻿using Leibit.BLL;
+using Leibit.Client.WPF.Common;
 using Leibit.Client.WPF.Interfaces;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Client.WPF.Windows.DelayJustification.ViewModels;
@@ -15,8 +16,10 @@ using Leibit.Entities.Common;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 {
@@ -25,6 +28,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
         #region - Needs -
         private CommandHandler m_DoubleClickCommand;
+        private SettingsBLL m_SettingsBll;
         #endregion
 
         #region - Ctor -
@@ -33,6 +37,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             this.Dispatcher = Dispatcher;
             Trains = new ObservableCollection<TrainStationViewModel>();
             m_DoubleClickCommand = new CommandHandler(__RowDoubleClick, true);
+            m_SettingsBll = new SettingsBLL();
         }
         #endregion
 
@@ -113,6 +118,15 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         #region [Refresh]
         public void Refresh(Area Area)
         {
+            var SettingsResult = m_SettingsBll.GetSettings();
+
+            if (!SettingsResult.Succeeded)
+            {
+                MessageBox.Show(SettingsResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var Settings = SettingsResult.Result;
             var CurrentTrains = new List<TrainStationViewModel>();
 
             foreach (var LiveTrain in Area.LiveTrains.Values)
@@ -207,7 +221,9 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                                     Current.State = "beendet";
                                 else if (!CurrentSchedule.IsDeparted)
                                 {
-                                    if (CurrentSchedule.Schedule.Handling == eHandling.Start && CurrentSchedule.Schedule.Station.ESTW.Time >= CurrentSchedule.Schedule.Departure.AddMinutes(-2))
+                                    if (CurrentSchedule.Schedule.Handling == eHandling.Start
+                                        && Settings.AutomaticReadyMessageEnabled
+                                        && CurrentSchedule.Schedule.Station.ESTW.Time >= CurrentSchedule.Schedule.Departure.AddMinutes(-Settings.AutomaticReadyMessageTime))
                                         Current.State = "fertig";
                                     else
                                         Current.State = "an";

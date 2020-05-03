@@ -157,6 +157,8 @@ namespace Leibit.BLL
             settings.DisplayCompleteTrainSchedule = true;
             settings.EstwTimeout = 30;
             settings.LoadInactiveEstws = true;
+            settings.AutomaticReadyMessageEnabled = true;
+            settings.AutomaticReadyMessageTime = 2;
             return settings;
         }
 

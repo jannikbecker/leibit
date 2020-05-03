@@ -18,6 +18,8 @@ namespace Leibit.Entities.Settings
         public bool DisplayCompleteTrainSchedule { get; set; }
         public int EstwTimeout { get; set; }
         public bool LoadInactiveEstws { get; set; }
+        public bool AutomaticReadyMessageEnabled { get; set; }
+        public int AutomaticReadyMessageTime { get; set; }
         public string EstwOnlinePath { get; set; }
         public int? WindowColor { get; set; }
         public List<GridSetting> GridSettings { get; set; }
@@ -33,6 +35,8 @@ namespace Leibit.Entities.Settings
             Result.DisplayCompleteTrainSchedule = this.DisplayCompleteTrainSchedule;
             Result.EstwTimeout = this.EstwTimeout;
             Result.LoadInactiveEstws = this.LoadInactiveEstws;
+            Result.AutomaticReadyMessageEnabled = this.AutomaticReadyMessageEnabled;
+            Result.AutomaticReadyMessageTime = this.AutomaticReadyMessageTime;
             Result.EstwOnlinePath = this.EstwOnlinePath;
             Result.WindowColor = this.WindowColor;
             Result.GridSettings = this.GridSettings; // No deep clone required

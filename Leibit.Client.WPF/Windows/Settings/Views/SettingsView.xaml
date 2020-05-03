@@ -48,7 +48,7 @@
             </GroupBox>
 
             <GroupBox Header="Programmverhalten">
-                <Grid>
+                <Grid Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" SharedSizeGroup="Header" />
                         <ColumnDefinition Width="*" MaxWidth="400" />
@@ -63,19 +63,39 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" Content="Verspätungsbegründung" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Row="0" Grid.Column="1"
-                              Content="aktiv"
-                              IsChecked="{Binding DelayJustificationEnabled, Mode=TwoWay}"
-                              Margin="5"
-                              VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Automatische Fertigmeldung" Margin="5,0,0,0" VerticalAlignment="Center"/>
 
-                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                        <Label Content="ab" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                        <CheckBox Content="aktiv"
+                                  IsChecked="{Binding AutomaticReadyMessageEnabled, Mode=TwoWay}"
+                                  VerticalAlignment="Center"/>
+
+                        <TextBlock Text=" ab" Margin="0,-2,0,0" VerticalAlignment="Center"/>
+
+                        <xctk:IntegerUpDown Value="{Binding AutomaticReadyMessageTime, Mode=TwoWay}"
+                                            Minimum="0"
+                                            Height="20"
+                                            Margin="5,0,5,0"
+                                            IsEnabled="{Binding AutomaticReadyMessageEnabled}"/>
+                        <TextBlock Text="Minuten vor Abfahrt" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Verspätungsbegründung" Margin="5,0,0,0" VerticalAlignment="Center"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                        <CheckBox Content="aktiv"
+                                  IsChecked="{Binding DelayJustificationEnabled, Mode=TwoWay}"
+                                  VerticalAlignment="Center"/>
+                        
+                        <TextBlock Text=" ab" Margin="0,-2,0,0" VerticalAlignment="Center"/>
+                        
                         <xctk:IntegerUpDown Value="{Binding DelayJustificationMinutes, Mode=TwoWay}"
                                             Minimum="1"
+                                            Height="20"
+                                            Margin="5,0,5,0"
                                             IsEnabled="{Binding DelayJustificationEnabled}"/>
-                        <Label Content="Minuten" VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Verspätungsminuten" Margin="0,-2,0,0" VerticalAlignment="Center"/>
                     </StackPanel>
 
                     <CheckBox Grid.Row="2"
@@ -83,26 +103,27 @@
                               Content="An verbundene ESTW übertragen"
                               IsChecked="{Binding WriteDelayJustificationFile, Mode=TwoWay}"
                               IsEnabled="{Binding DelayJustificationEnabled}"
-                              Margin="5" VerticalAlignment="Center"/>
+                              Margin="5,5,0,0"
+                              VerticalAlignment="Center"/>
 
-                    <Label Grid.Row="3" Grid.Column="0" Content="Kompletten Zuglauf" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Kompletten Zuglauf" Margin="5,0,0,0" VerticalAlignment="Center"/>
                     <CheckBox Grid.Row="3" Grid.Column="1"
                               Content="anzeigen"
                               IsChecked="{Binding DisplayCompleteTrainSchedule, Mode=TwoWay}"
-                              Margin="5"
+                              Margin="5,5,0,0"
                               VerticalAlignment="Center"/>
 
-                    <Label Grid.Row="4" Grid.Column="0" Content="Inaktive ESTW" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Inaktive ESTW" Margin="5,0,0,0" VerticalAlignment="Center"/>
                     <CheckBox Grid.Row="4" Grid.Column="1"
                               Content="laden"
                               IsChecked="{Binding LoadInactiveEstws, Mode=TwoWay}"
-                              Margin="5"
+                              Margin="5,5,0,0"
                               VerticalAlignment="Center"/>
 
-                    <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
-                        <Label Content="inaktiv nach" VerticalAlignment="Center"/>
-                        <xctk:IntegerUpDown Value="{Binding EstwTimeout, Mode=TwoWay}" Minimum="6"/>
-                        <Label Content="Sekunden ohne Daten" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="ESTW inaktiv nach" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,5">
+                        <xctk:IntegerUpDown Value="{Binding EstwTimeout, Mode=TwoWay}" Minimum="6" Height="20" Margin="0,0,5,0"/>
+                        <TextBlock Text="Sekunden ohne Daten" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Grid>
             </GroupBox>

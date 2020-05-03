@@ -153,6 +153,36 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [AutomaticReadyMessageEnabled]
+        public bool AutomaticReadyMessageEnabled
+        {
+            get
+            {
+                return m_Settings.AutomaticReadyMessageEnabled;
+            }
+            set
+            {
+                m_Settings.AutomaticReadyMessageEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region [AutomaticReadyMessageTime]
+        public int AutomaticReadyMessageTime
+        {
+            get
+            {
+                return m_Settings.AutomaticReadyMessageTime;
+            }
+            set
+            {
+                m_Settings.AutomaticReadyMessageTime = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         #region [EstwOnlinePath]
         public string EstwOnlinePath
         {
@@ -232,6 +262,8 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 || PropertyName == nameof(DisplayCompleteTrainSchedule)
                 || PropertyName == nameof(EstwTimeout)
                 || PropertyName == nameof(LoadInactiveEstws)
+                || PropertyName == nameof(AutomaticReadyMessageEnabled)
+                || PropertyName == nameof(AutomaticReadyMessageTime)
                 || PropertyName == nameof(EstwOnlinePath)
                 || PropertyName == nameof(WindowColor))
             {
