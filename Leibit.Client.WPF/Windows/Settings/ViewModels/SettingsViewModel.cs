@@ -108,6 +108,21 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [DisplayCompleteTrainSchedule]
+        public bool DisplayCompleteTrainSchedule
+        {
+            get
+            {
+                return m_Settings.DisplayCompleteTrainSchedule;
+            }
+            set
+            {
+                m_Settings.DisplayCompleteTrainSchedule = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         #region [EstwOnlinePath]
         public string EstwOnlinePath
         {
@@ -184,6 +199,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
             if (PropertyName == nameof(DelayJustificationEnabled)
                 || PropertyName == nameof(DelayJustificationMinutes)
                 || PropertyName == nameof(WriteDelayJustificationFile)
+                || PropertyName == nameof(DisplayCompleteTrainSchedule)
                 || PropertyName == nameof(EstwOnlinePath)
                 || PropertyName == nameof(WindowColor))
             {

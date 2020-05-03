@@ -28,6 +28,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
         #region - Needs -
         private CalculationBLL m_CalculationBll;
+        private SettingsBLL m_SettingsBll;
         private TrainInformation m_LiveTrain;
         #endregion
 
@@ -38,6 +39,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             this.Dispatcher = Dispatcher;
             CurrentTrain = Train;
             m_CalculationBll = new CalculationBLL();
+            m_SettingsBll = new SettingsBLL();
             Stations = new ObservableCollection<TrainScheduleStationViewModel>();
         }
         #endregion
@@ -91,8 +93,16 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         #region [Refresh]
         public void Refresh(Area Area)
         {
-            var CurrentSchedules = new List<TrainScheduleStationViewModel>();
+            var SettingsResult = m_SettingsBll.GetSettings();
 
+            if (!SettingsResult.Succeeded)
+            {
+                MessageBox.Show(SettingsResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var Settings = SettingsResult.Result;
+            var CurrentSchedules = new List<TrainScheduleStationViewModel>();
             var Estw = Area.ESTWs.FirstOrDefault(estw => estw.Time != null);
 
             if (Estw == null)
@@ -178,7 +188,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
                     Current.Departure = Schedule.Departure; // For special trains schedule is generated at runtime
 
-                    if (!Schedule.Station.ESTW.Stations.Any(s => Runtime.VisibleStations.Contains(s)))
+                    if (!Settings.DisplayCompleteTrainSchedule && !Schedule.Station.ESTW.Stations.Any(s => Runtime.VisibleStations.Contains(s)))
                         Visible = Schedule.Handling == eHandling.Start || Schedule.Handling == eHandling.Destination;
 
                     if (Area.LiveTrains.ContainsKey(CurrentTrain.Number))

@@ -151,6 +151,7 @@ namespace Leibit.BLL
             settings.DelayJustificationEnabled = true;
             settings.DelayJustificationMinutes = 3;
             settings.WriteDelayJustificationFile = false;
+            settings.DisplayCompleteTrainSchedule = true;
             return settings;
         }
 

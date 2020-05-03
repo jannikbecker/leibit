@@ -58,6 +58,7 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Content="Verspätungsbegründung" VerticalAlignment="Center"/>
@@ -81,6 +82,13 @@
                               IsChecked="{Binding WriteDelayJustificationFile, Mode=TwoWay}"
                               IsEnabled="{Binding DelayJustificationEnabled}"
                               Margin="5" VerticalAlignment="Center"/>
+
+                    <Label Grid.Row="3" Grid.Column="0" Content="Kompletten Zuglauf" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Row="3" Grid.Column="1"
+                              Content="anzeigen"
+                              IsChecked="{Binding DisplayCompleteTrainSchedule, Mode=TwoWay}"
+                              Margin="5"
+                              VerticalAlignment="Center"/>
                 </Grid>
             </GroupBox>
             
