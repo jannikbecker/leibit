@@ -63,6 +63,51 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [DelayJustificationEnabled]
+        public bool DelayJustificationEnabled
+        {
+            get
+            {
+                return m_Settings.DelayJustificationEnabled;
+            }
+            set
+            {
+                m_Settings.DelayJustificationEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region [DelayJustificationMinutes]
+        public int DelayJustificationMinutes
+        {
+            get
+            {
+                return m_Settings.DelayJustificationMinutes;
+            }
+            set
+            {
+                m_Settings.DelayJustificationMinutes = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region [WriteDelayJustificationFile]
+        public bool WriteDelayJustificationFile
+        {
+            get
+            {
+                return m_Settings.WriteDelayJustificationFile;
+            }
+            set
+            {
+                m_Settings.WriteDelayJustificationFile = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         #region [EstwOnlinePath]
         public string EstwOnlinePath
         {
@@ -136,8 +181,14 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         {
             base.OnPropertyChanged(PropertyName);
 
-            if (PropertyName == "EstwOnlinePath" || PropertyName == "WindowColor")
+            if (PropertyName == nameof(DelayJustificationEnabled)
+                || PropertyName == nameof(DelayJustificationMinutes)
+                || PropertyName == nameof(WriteDelayJustificationFile)
+                || PropertyName == nameof(EstwOnlinePath)
+                || PropertyName == nameof(WindowColor))
+            {
                 m_SaveCommand.SetCanExecute(true);
+            }
         }
         #endregion
 

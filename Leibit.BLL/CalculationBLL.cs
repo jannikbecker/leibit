@@ -13,10 +13,15 @@ namespace Leibit.BLL
     public class CalculationBLL : BLLBase
     {
 
+        #region - Needs -
+        private SettingsBLL m_SettingsBll;
+        #endregion
+
         #region - Ctor -
         public CalculationBLL()
             : base()
         {
+            m_SettingsBll = new SettingsBLL();
         }
         #endregion
 
@@ -72,6 +77,11 @@ namespace Leibit.BLL
                 LiveSchedule Previous = null;
                 int PreviousDelay = 0;
 
+                var settingsResult = m_SettingsBll.GetSettings();
+                ValidateResult(settingsResult);
+                var delayJustificationEnabled = settingsResult.Result.DelayJustificationEnabled;
+                var delayJustificationMinutes = settingsResult.Result.DelayJustificationMinutes;
+
                 foreach (var Schedule in Train.Schedules)
                 {
                     if (Schedule.LiveArrival == null)
@@ -80,7 +90,7 @@ namespace Leibit.BLL
                     var Arrival = Schedule.Schedule.Arrival == null ? Schedule.Schedule.Departure : Schedule.Schedule.Arrival;
                     var DelayArrival = (Schedule.LiveArrival - Arrival).TotalMinutes;
 
-                    if (Previous != null && DelayArrival - PreviousDelay > Constants.MAX_DELAY && !Previous.Delays.Any(d => d.Type == eDelayType.Arrival))
+                    if (delayJustificationEnabled && Previous != null && DelayArrival - PreviousDelay >= delayJustificationMinutes && !Previous.Delays.Any(d => d.Type == eDelayType.Arrival))
                         Previous.AddDelay(DelayArrival - PreviousDelay, eDelayType.Arrival);
 
                     PreviousDelay = DelayArrival < 0 ? 0 : DelayArrival;
@@ -91,7 +101,7 @@ namespace Leibit.BLL
                         {
                             var DelayDeparture = (Schedule.LiveDeparture - Schedule.Schedule.Departure).TotalMinutes;
 
-                            if (DelayDeparture - PreviousDelay > Constants.MAX_DELAY && !Schedule.Delays.Any(d => d.Type == eDelayType.Departure))
+                            if (delayJustificationEnabled && DelayDeparture - PreviousDelay >= delayJustificationMinutes && !Schedule.Delays.Any(d => d.Type == eDelayType.Departure))
                                 Schedule.AddDelay(DelayDeparture - PreviousDelay, eDelayType.Departure);
 
                             PreviousDelay = DelayDeparture < 0 ? 0 : DelayDeparture;

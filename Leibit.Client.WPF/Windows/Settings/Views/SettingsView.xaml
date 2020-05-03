@@ -47,6 +47,43 @@
                 </ItemsControl>
             </GroupBox>
 
+            <GroupBox Header="Programmverhalten">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Header" />
+                        <ColumnDefinition Width="*" MaxWidth="400" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Verspätungsbegründung" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Row="0" Grid.Column="1"
+                              Content="aktiv"
+                              IsChecked="{Binding DelayJustificationEnabled, Mode=TwoWay}"
+                              Margin="5"
+                              VerticalAlignment="Center"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5,0,0,0">
+                        <Label Content="ab" VerticalAlignment="Center"/>
+                        <xctk:IntegerUpDown Value="{Binding DelayJustificationMinutes, Mode=TwoWay}"
+                                            Minimum="1"
+                                            IsEnabled="{Binding DelayJustificationEnabled}"/>
+                        <Label Content="Minuten" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <CheckBox Grid.Row="2"
+                              Grid.Column="1"
+                              Content="An verbundene Stellwerke übertragen"
+                              IsChecked="{Binding WriteDelayJustificationFile, Mode=TwoWay}"
+                              IsEnabled="{Binding DelayJustificationEnabled}"
+                              Margin="5" VerticalAlignment="Center"/>
+                </Grid>
+            </GroupBox>
+            
             <GroupBox Header="Sonstiges">
                 <Grid>
                     <Grid.ColumnDefinitions>

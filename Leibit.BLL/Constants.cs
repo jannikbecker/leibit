@@ -3,7 +3,6 @@ namespace Leibit.BLL
 {
     internal static class Constants
     {
-        internal const int MAX_DELAY = 2;
         internal const int STAFF_CHANGE_STOPTIME = 4;
         internal const int PERS_TRAIN_STOPTIME = 2;
 

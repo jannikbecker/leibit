@@ -107,7 +107,7 @@ namespace Leibit.BLL
                 m_Settings = JsonConvert.DeserializeObject<Settings>(json);
             }
             else
-                m_Settings = new Settings();
+                m_Settings = __GetDefaultSettings();
 
             return m_Settings;
         }
@@ -130,6 +130,9 @@ namespace Leibit.BLL
                     Messages.Add(String.Format("Das Verzeichnis '{0}' ist kein gültiges ESTWsim-Verzeichnis.", Estw.Value));
             }
 
+            if (Setting.DelayJustificationMinutes <= 0)
+                Messages.Add($"{Setting.DelayJustificationMinutes} ist keine gültige Verspätung");
+
             if (Setting.EstwOnlinePath.IsNullOrWhiteSpace())
                 Messages.Add("Der Pfad zu ESTWonline darf nicht leer sein.");
 
@@ -140,6 +143,15 @@ namespace Leibit.BLL
 
             if (Messages.Count > 0)
                 throw new ValidationFailedException(String.Join(Environment.NewLine, Messages));
+        }
+
+        private Settings __GetDefaultSettings()
+        {
+            var settings = new Settings();
+            settings.DelayJustificationEnabled = true;
+            settings.DelayJustificationMinutes = 3;
+            settings.WriteDelayJustificationFile = false;
+            return settings;
         }
 
         #endregion

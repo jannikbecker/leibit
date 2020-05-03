@@ -182,10 +182,11 @@ namespace Leibit.BLL
 
                 var SettingsResult = SettingsBLL.GetSettings();
                 ValidateResult(SettingsResult);
+                var Settings = SettingsResult.Result;
 
                 string EstwId = delay.Schedule.Schedule.Station.ESTW.Id;
 
-                if (!SettingsResult.Result.Paths.ContainsKey(EstwId))
+                if (!Settings.Paths.ContainsKey(EstwId))
                     return new OperationResult<SharedDelay> { Message = String.Format("Pfad zu ESTW '{0}' nicht gefunden.", delay.Schedule.Schedule.Station.ESTW.Name), Succeeded = true };
 
                 var Result = new OperationResult<SharedDelay>();
@@ -199,15 +200,18 @@ namespace Leibit.BLL
 
                 Shared.CausedBy = delay.CausedBy;
 
-                var FilePath = Path.Combine(SettingsResult.Result.Paths[EstwId], Constants.SHARED_DELAY_FOLDER, String.Format(Constants.SHARED_DELAY_FILE_TEMPLATE, Shared.TrainNumber, Shared.StationShortSymbol));
-                var FileInfo = new FileInfo(FilePath);
-
-                if (!FileInfo.Directory.Exists)
-                    return new OperationResult<SharedDelay> { Message = String.Format("ESTWonline-Verzeichnis von ESTW '{0}' nicht gefunden.", delay.Schedule.Schedule.Station.ESTW.Name) };
-
-                using (var FileStream = FileInfo.Open(FileMode.Create))
+                if (Settings.DelayJustificationEnabled && Settings.WriteDelayJustificationFile)
                 {
-                    m_DelaySerializer.Serialize(FileStream, Shared);
+                    var FilePath = Path.Combine(Settings.Paths[EstwId], Constants.SHARED_DELAY_FOLDER, String.Format(Constants.SHARED_DELAY_FILE_TEMPLATE, Shared.TrainNumber, Shared.StationShortSymbol));
+                    var FileInfo = new FileInfo(FilePath);
+
+                    if (!FileInfo.Directory.Exists)
+                        return new OperationResult<SharedDelay> { Message = String.Format("ESTWonline-Verzeichnis von ESTW '{0}' nicht gefunden.", delay.Schedule.Schedule.Station.ESTW.Name) };
+
+                    using (var FileStream = FileInfo.Open(FileMode.Create))
+                    {
+                        m_DelaySerializer.Serialize(FileStream, Shared);
+                    }
                 }
 
                 Result.Result = Shared;

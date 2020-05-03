@@ -206,142 +206,145 @@ namespace Leibit.Tests
         [TestMethod]
         public void LiveDataBLLTest_TestTrainDelayArrival()
         {
-            var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
-            var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
-            Assert.IsNotNull(Estw, "Estw is null");
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/AdvanceNoticeLinksdorf.dat"))
+            using (new SettingsScope())
             {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
 
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/AdvanceNoticeLinksdorf.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/BetweenLinksdorfAndProbe.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/ProbeArrival.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(-1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/ProbeDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/BetweenProbeAndUestMitte.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/UestMitteWrongDirection.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/UestMitte.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/BetweenUestMitteAndTestdorf.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/TestdorfArrival1A.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32G11"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(5, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/TestdorfArrival1B.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32G12"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(5, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/TestdorfDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                }
+
+                var Train = Area.LiveTrains[2007];
+                TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestTrainDelayArrival(Estw), Train);
             }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/BetweenLinksdorfAndProbe.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/ProbeArrival.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(-1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/ProbeDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/BetweenProbeAndUestMitte.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/UestMitteWrongDirection.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/UestMitte.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/BetweenUestMitteAndTestdorf.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/TestdorfArrival1A.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32G11"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(5, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/TestdorfArrival1B.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32G12"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(5, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayArrival/TestdorfDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-            }
-
-            var Train = Area.LiveTrains[2007];
-            TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestTrainDelayArrival(Estw), Train);
         }
         #endregion
 
@@ -349,154 +352,157 @@ namespace Leibit.Tests
         [TestMethod]
         public void LiveDataBLLTest_TestTrainDelayDeparture()
         {
-            var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
-            var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
-            Assert.IsNotNull(Estw, "Estw is null");
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/AdvanceNoticeLinksdorf.dat"))
+            using (new SettingsScope())
             {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
 
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/AdvanceNoticeLinksdorf.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/BetweenLinksdorfAndProbe.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/ProbeArrival.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(-1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/ProbeDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/BetweenProbeAndUestMitte.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/UestMitteWrongDirection.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/UestMitte.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/BetweenUestMitteAndTestdorf.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/TestdorfArrival1A.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32G11"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/TestdorfArrival1B.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32G12"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/TestdorfDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32G12"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(4, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/TestdorfDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                }
+
+                var Train = Area.LiveTrains[2007];
+                TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestTrainDelayDeparture(Estw), Train);
             }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/BetweenLinksdorfAndProbe.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/ProbeArrival.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(-1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/ProbeDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/BetweenProbeAndUestMitte.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/UestMitteWrongDirection.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/UestMitte.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/BetweenUestMitteAndTestdorf.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/TestdorfArrival1A.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32G11"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/TestdorfArrival1B.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32G12"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/TestdorfDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32G12"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(4, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/TestdorfDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-            }
-
-            var Train = Area.LiveTrains[2007];
-            TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestTrainDelayDeparture(Estw), Train);
         }
         #endregion
 
@@ -504,142 +510,145 @@ namespace Leibit.Tests
         [TestMethod]
         public void LiveDataBLLTest_TestTrain2MinutesDelayDeparture()
         {
-            var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
-            var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
-            Assert.IsNotNull(Estw, "Estw is null");
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/AdvanceNoticeLinksdorf.dat"))
+            using (new SettingsScope())
             {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
 
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/AdvanceNoticeLinksdorf.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/BetweenLinksdorfAndProbe.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/ProbeArrival.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(-1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/ProbeDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/BetweenProbeAndUestMitte.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/UestMitteWrongDirection.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/UestMitte.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/BetweenUestMitteAndTestdorf.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/TestdorfArrival1A.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32G11"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/TestdorfArrival1B.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32G12"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/TestdorfDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                }
+
+                var Train = Area.LiveTrains[2007];
+                TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestTrain2MinutesDelayDeparture(Estw), Train);
             }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/BetweenLinksdorfAndProbe.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/ProbeArrival.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(-1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/ProbeDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/BetweenProbeAndUestMitte.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/UestMitteWrongDirection.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/UestMitte.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/BetweenUestMitteAndTestdorf.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/TestdorfArrival1A.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32G11"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/TestdorfArrival1B.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32G12"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayDeparture/TestdorfDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-            }
-
-            var Train = Area.LiveTrains[2007];
-            TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestTrain2MinutesDelayDeparture(Estw), Train);
         }
         #endregion
 
@@ -647,142 +656,145 @@ namespace Leibit.Tests
         [TestMethod]
         public void LiveDataBLLTest_TestTrain2MinutesDelayArrival()
         {
-            var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
-            var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
-            Assert.IsNotNull(Estw, "Estw is null");
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/AdvanceNoticeLinksdorf.dat"))
+            using (new SettingsScope())
             {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
 
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/AdvanceNoticeLinksdorf.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/BetweenLinksdorfAndProbe.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/ProbeArrival.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(-1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/ProbeDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/BetweenProbeAndUestMitte.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/UestMitteWrongDirection.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/UestMitte.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/BetweenUestMitteAndTestdorf.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/TestdorfArrival1A.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32G11"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(3, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/TestdorfArrival1B.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                    Assert.AreEqual(Estw.Blocks["32G12"].First(), Area.LiveTrains[2007].Block);
+                    Assert.AreEqual(3, Area.LiveTrains[2007].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/TestdorfDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
+                }
+
+                var Train = Area.LiveTrains[2007];
+                TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestTrain2MinutesDelayArrival(Estw), Train);
             }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/BetweenLinksdorfAndProbe.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["30BN"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(0, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/ProbeArrival.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(-1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/ProbeDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/BetweenProbeAndUestMitte.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/UestMitteWrongDirection.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/UestMitte.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/BetweenUestMitteAndTestdorf.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32B815"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(1, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/TestdorfArrival1A.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32G11"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(3, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/TestdorfArrival1B.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                Assert.AreEqual(Estw.Blocks["32G12"].First(), Area.LiveTrains[2007].Block);
-                Assert.AreEqual(3, Area.LiveTrains[2007].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestTrain2MinutesDelayArrival/TestdorfDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-            }
-
-            var Train = Area.LiveTrains[2007];
-            TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestTrain2MinutesDelayArrival(Estw), Train);
         }
         #endregion
 
@@ -1234,142 +1246,145 @@ namespace Leibit.Tests
         [TestMethod]
         public void LiveDataBLLTest_TestSpecialTrainDelay()
         {
-            var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
-            var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
-            Assert.IsNotNull(Estw, "Estw is null");
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/AdvanceNoticeRechtsheim.dat"))
+            using (new SettingsScope())
             {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
 
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-                Assert.AreEqual(Estw.Blocks["33BP"].First(), Area.LiveTrains[98765].Block);
-                Assert.AreEqual(4, Area.LiveTrains[98765].Delay);
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/AdvanceNoticeRechtsheim.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                    Assert.AreEqual(Estw.Blocks["33BP"].First(), Area.LiveTrains[98765].Block);
+                    Assert.AreEqual(4, Area.LiveTrains[98765].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/BetweenRechtsheimAndTestdorf.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                    Assert.AreEqual(Estw.Blocks["33BP"].First(), Area.LiveTrains[98765].Block);
+                    Assert.AreEqual(4, Area.LiveTrains[98765].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/TestdorfArrival3B.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                    Assert.AreEqual(Estw.Blocks["32G32"].First(), Area.LiveTrains[98765].Block);
+                    Assert.AreEqual(3, Area.LiveTrains[98765].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/TestdorfArrival3A.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                    Assert.AreEqual(Estw.Blocks["32G31"].First(), Area.LiveTrains[98765].Block);
+                    Assert.AreEqual(3, Area.LiveTrains[98765].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/TestdorfDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                    Assert.AreEqual(Estw.Blocks["32G31"].First(), Area.LiveTrains[98765].Block);
+                    Assert.AreEqual(7, Area.LiveTrains[98765].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/BetweenUestMitteAndTestdorf.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                    Assert.AreEqual(Estw.Blocks["32G31"].First(), Area.LiveTrains[98765].Block);
+                    Assert.AreEqual(7, Area.LiveTrains[98765].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/UestMitteWrongDirection.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                    Assert.AreEqual(Estw.Blocks["32G31"].First(), Area.LiveTrains[98765].Block);
+                    Assert.AreEqual(7, Area.LiveTrains[98765].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/UestMitte.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                    Assert.AreEqual(Estw.Blocks["32B816"].First(), Area.LiveTrains[98765].Block);
+                    Assert.AreEqual(7, Area.LiveTrains[98765].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/BetweenProbeAndUestMitte.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                    Assert.AreEqual(Estw.Blocks["32B816"].First(), Area.LiveTrains[98765].Block);
+                    Assert.AreEqual(7, Area.LiveTrains[98765].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/ProbeArrival.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                    Assert.AreEqual(Estw.Blocks["31G1"].First(), Area.LiveTrains[98765].Block);
+                    Assert.AreEqual(10, Area.LiveTrains[98765].Delay);
+                }
+
+                using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/ProbeDeparture.dat"))
+                {
+                    var Result = BLL.RefreshLiveData(Area);
+                    DefaultChecks.IsOperationSucceeded(Result);
+                    Assert.IsTrue(Result.Result, "Result is false");
+
+                    Assert.AreEqual(1, Area.LiveTrains.Count);
+                    Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
+                }
+
+                var Train = Area.LiveTrains[98765];
+                TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestSpecialTrainDelay(Estw), Train);
             }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/BetweenRechtsheimAndTestdorf.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-                Assert.AreEqual(Estw.Blocks["33BP"].First(), Area.LiveTrains[98765].Block);
-                Assert.AreEqual(4, Area.LiveTrains[98765].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/TestdorfArrival3B.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-                Assert.AreEqual(Estw.Blocks["32G32"].First(), Area.LiveTrains[98765].Block);
-                Assert.AreEqual(3, Area.LiveTrains[98765].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/TestdorfArrival3A.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-                Assert.AreEqual(Estw.Blocks["32G31"].First(), Area.LiveTrains[98765].Block);
-                Assert.AreEqual(3, Area.LiveTrains[98765].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/TestdorfDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-                Assert.AreEqual(Estw.Blocks["32G31"].First(), Area.LiveTrains[98765].Block);
-                Assert.AreEqual(7, Area.LiveTrains[98765].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/BetweenUestMitteAndTestdorf.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-                Assert.AreEqual(Estw.Blocks["32G31"].First(), Area.LiveTrains[98765].Block);
-                Assert.AreEqual(7, Area.LiveTrains[98765].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/UestMitteWrongDirection.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-                Assert.AreEqual(Estw.Blocks["32G31"].First(), Area.LiveTrains[98765].Block);
-                Assert.AreEqual(7, Area.LiveTrains[98765].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/UestMitte.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-                Assert.AreEqual(Estw.Blocks["32B816"].First(), Area.LiveTrains[98765].Block);
-                Assert.AreEqual(7, Area.LiveTrains[98765].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/BetweenProbeAndUestMitte.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-                Assert.AreEqual(Estw.Blocks["32B816"].First(), Area.LiveTrains[98765].Block);
-                Assert.AreEqual(7, Area.LiveTrains[98765].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/ProbeArrival.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-                Assert.AreEqual(Estw.Blocks["31G1"].First(), Area.LiveTrains[98765].Block);
-                Assert.AreEqual(10, Area.LiveTrains[98765].Delay);
-            }
-
-            using (var scope = new ESTWOnlineScope(Estw, "TestSpecialTrainDelay/ProbeDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(98765));
-            }
-
-            var Train = Area.LiveTrains[98765];
-            TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestSpecialTrainDelay(Estw), Train);
         }
         #endregion
 
@@ -1809,51 +1824,56 @@ namespace Leibit.Tests
         [TestMethod]
         public void LiveDataBLLTest_JustifyDelay()
         {
-            var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
-            var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
-            Assert.IsNotNull(Estw, "Estw is null");
-
-            var Train = ExpectedValuesOfLiveDataBLLTest.TestTrainDelayArrival(Estw);
-            var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TPRB");
-            Assert.IsNotNull(Schedule, "Schedule is null");
-            Assert.AreEqual(1, Schedule.Delays.Count);
-
-            string Reason = "Kaputt";
-            int CausedBy = 12345;
-
-            var Delay = Schedule.Delays.First();
-            Delay.Reason = Reason;
-            Delay.CausedBy = CausedBy;
-
-            var Expected = new SharedDelay(2007, "TPRB", 0, 4, eDelayType.Arrival, Reason);
-            Expected.CausedBy = CausedBy;
-
-            using (var scope = new ESTWRootScope())
+            using (var settingsScope = new SettingsScope())
             {
-                var BllResult = BLL.JustifyDelay(Delay);
-                DefaultChecks.IsOperationSucceeded(BllResult);
-                Assert.IsNotNull(BllResult.Result, "BllResult is null");
-                SharedDelayComparer.Instance.Compare(Expected, BllResult.Result);
+                settingsScope.WriteDelayJustificationFile = true;
 
-                var SettingsBll = new SettingsBLL();
-                var Settings = SettingsBll.GetSettings().Result;
-                Assert.IsNotNull(Settings, "Settings is null");
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
 
-                var FilePath = Path.Combine(Settings.Paths["TTST"], @"Kommunikation\leibit_delay_2007_TPRB.dat");
-                Assert.IsTrue(File.Exists(FilePath));
+                var Train = ExpectedValuesOfLiveDataBLLTest.TestTrainDelayArrival(Estw);
+                var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TPRB");
+                Assert.IsNotNull(Schedule, "Schedule is null");
+                Assert.AreEqual(1, Schedule.Delays.Count);
 
-                var Serializer = new XmlSerializer(typeof(SharedDelay));
+                string Reason = "Kaputt";
+                int CausedBy = 12345;
 
-                using (var FileStram = File.OpenRead(FilePath))
+                var Delay = Schedule.Delays.First();
+                Delay.Reason = Reason;
+                Delay.CausedBy = CausedBy;
+
+                var Expected = new SharedDelay(2007, "TPRB", 0, 4, eDelayType.Arrival, Reason);
+                Expected.CausedBy = CausedBy;
+
+                using (var scope = new ESTWRootScope())
                 {
-                    var Reader = XmlReader.Create(FileStram);
-                    Assert.IsTrue(Serializer.CanDeserialize(Reader));
+                    var BllResult = BLL.JustifyDelay(Delay);
+                    DefaultChecks.IsOperationSucceeded(BllResult);
+                    Assert.IsNotNull(BllResult.Result, "BllResult is null");
+                    SharedDelayComparer.Instance.Compare(Expected, BllResult.Result);
 
-                    object DeserializedResult = Serializer.Deserialize(Reader);
-                    Assert.IsInstanceOfType(DeserializedResult, typeof(SharedDelay));
+                    var SettingsBll = new SettingsBLL();
+                    var Settings = SettingsBll.GetSettings().Result;
+                    Assert.IsNotNull(Settings, "Settings is null");
 
-                    SharedDelay DeserializedDelay = DeserializedResult as SharedDelay;
-                    SharedDelayComparer.Instance.Compare(Expected, DeserializedDelay);
+                    var FilePath = Path.Combine(Settings.Paths["TTST"], @"Kommunikation\leibit_delay_2007_TPRB.dat");
+                    Assert.IsTrue(File.Exists(FilePath));
+
+                    var Serializer = new XmlSerializer(typeof(SharedDelay));
+
+                    using (var FileStram = File.OpenRead(FilePath))
+                    {
+                        var Reader = XmlReader.Create(FileStram);
+                        Assert.IsTrue(Serializer.CanDeserialize(Reader));
+
+                        object DeserializedResult = Serializer.Deserialize(Reader);
+                        Assert.IsInstanceOfType(DeserializedResult, typeof(SharedDelay));
+
+                        SharedDelay DeserializedDelay = DeserializedResult as SharedDelay;
+                        SharedDelayComparer.Instance.Compare(Expected, DeserializedDelay);
+                    }
                 }
             }
         }
