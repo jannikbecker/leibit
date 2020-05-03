@@ -263,7 +263,19 @@ namespace Leibit.BLL
                             eDaysOfService Day = LeibitTime.ParseSingleDay(sDay);
 
                             if (Day != eDaysOfService.None && Int32.TryParse(sHour, out Hour) && Int32.TryParse(sMinute, out Minute))
-                                estw.Time = new LeibitTime(Day, Hour, Minute);
+                            {
+                                var NewTime = new LeibitTime(Day, Hour, Minute);
+
+                                /* Check if the new time is greater than the older one.
+                                 * This is important because at midnight there can be a file with time 00:00 but still the old day, i.e.
+                                 * 
+                                 * 1. DI 23:59
+                                 * 2. DI 00:00 --> Ignore this!
+                                 * 3. MI 00:00
+                                 */
+                                if (NewTime > estw.Time)
+                                    estw.Time = NewTime;
+                            }
                         }
                     }
 
