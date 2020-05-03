@@ -200,13 +200,13 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                         {
                             if (FirstStationSchedule != null)
                             {
-                                FirstStationSchedule.IsArrived = m_LiveTrain.Schedules.Any(s => s.LiveArrival != null);
+                                FirstStationSchedule.IsArrived = m_LiveTrain.Schedules.Any(s => s.IsArrived);
                                 FirstStationSchedule.IsDeparted = FirstStationSchedule.IsArrived;
                             }
 
                             if (FirstStationDummy != null)
                             {
-                                FirstStationDummy.IsArrived = m_LiveTrain.Schedules.Any(s => s.LiveArrival != null);
+                                FirstStationDummy.IsArrived = m_LiveTrain.Schedules.Any(s => s.IsArrived);
                                 FirstStationDummy.IsDeparted = FirstStationDummy.IsArrived;
                             }
 
@@ -218,15 +218,15 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
                             var Index = m_LiveTrain.Schedules.IndexOf(LiveSchedule);
 
-                            if (m_LiveTrain.Schedules.Where((schedule, index) => index > Index && schedule.LiveArrival != null).Any())
+                            if (m_LiveTrain.Schedules.Where((schedule, index) => index > Index && schedule.IsArrived).Any())
                             {
                                 Current.IsArrived = true;
                                 Current.IsDeparted = true;
                             }
                             else
                             {
-                                Current.IsArrived = LiveSchedule.LiveArrival != null;
-                                Current.IsDeparted = LiveSchedule.LiveDeparture != null;
+                                Current.IsArrived = LiveSchedule.IsArrived;
+                                Current.IsDeparted = LiveSchedule.IsDeparted;
                             }
 
                             Current.LiveTrack = LiveSchedule.LiveTrack;

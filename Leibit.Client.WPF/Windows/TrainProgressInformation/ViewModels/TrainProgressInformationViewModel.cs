@@ -194,10 +194,10 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                         {
                             Current.CurrentStation = LiveTrain.Block.Track.Station;
 
-                            var CurrentSchedule = LiveTrain.Schedules.LastOrDefault(s => s.LiveArrival != null && s.Schedule != null && s.Schedule.Station != null && s.Schedule.Station.ShortSymbol == LiveTrain.Block.Track.Station.ShortSymbol);
+                            var CurrentSchedule = LiveTrain.Schedules.LastOrDefault(s => s.IsArrived && s.Schedule != null && s.Schedule.Station != null && s.Schedule.Station.ShortSymbol == LiveTrain.Block.Track.Station.ShortSymbol);
 
                             if (CurrentSchedule == null)
-                                Current.State = LiveSchedule.LiveDeparture == null ? "ab" : "beendet";
+                                Current.State = LiveSchedule.IsDeparted ? "beendet" : "ab";
                             else
                             {
                                 int CurrentScheduleIndex = LiveTrain.Schedules.IndexOf(CurrentSchedule);
@@ -205,7 +205,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
                                 if (CurrentScheduleIndex > LiveScheduleIndex)
                                     Current.State = "beendet";
-                                else if (CurrentSchedule.LiveDeparture == null)
+                                else if (!CurrentSchedule.IsDeparted)
                                 {
                                     if (CurrentSchedule.Schedule.Handling == eHandling.Start && CurrentSchedule.Schedule.Station.ESTW.Time >= CurrentSchedule.Schedule.Departure.AddMinutes(-2))
                                         Current.State = "fertig";

@@ -79,6 +79,10 @@ namespace Leibit.Entities.LiveData
             }
         }
 
+        public bool IsArrived { get; set; }
+
+        public bool IsDeparted { get; set; }
+
         public Track LiveTrack
         {
             get;

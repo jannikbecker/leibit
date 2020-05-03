@@ -117,6 +117,8 @@ namespace Leibit.BLL
                         SerializedSchedule.StationTime = Schedule.Schedule.Time;
                         SerializedSchedule.LiveArrival = Schedule.LiveArrival;
                         SerializedSchedule.LiveDeparture = Schedule.LiveDeparture;
+                        SerializedSchedule.IsArrived = Schedule.IsArrived;
+                        SerializedSchedule.IsDeparted = Schedule.IsDeparted;
                         SerializedSchedule.ExpectedArrival = Schedule.ExpectedArrival;
                         SerializedSchedule.ExpectedDeparture = Schedule.ExpectedDeparture;
 
@@ -238,6 +240,8 @@ namespace Leibit.BLL
                         var LiveSchedule = new LiveSchedule(LiveTrain, Schedule);
                         LiveSchedule.LiveArrival = SerializedSchedule.LiveArrival;
                         LiveSchedule.LiveDeparture = SerializedSchedule.LiveDeparture;
+                        LiveSchedule.IsArrived = SerializedSchedule.IsArrived;
+                        LiveSchedule.IsDeparted = SerializedSchedule.IsDeparted;
                         LiveSchedule.ExpectedArrival = SerializedSchedule.ExpectedArrival;
                         LiveSchedule.ExpectedDeparture = SerializedSchedule.ExpectedDeparture;
 

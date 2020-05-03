@@ -142,7 +142,12 @@ namespace Leibit.BLL
                                 if (train.Value.LastModified < Estw.Time.AddMinutes(-2))
                                 {
                                     var CurrentSchedules = train.Value.Schedules.Where(s => s.LiveArrival != null && s.LiveDeparture == null);
-                                    CurrentSchedules.ForEach(s => s.LiveDeparture = train.Value.LastModified);
+
+                                    foreach (var Schedule in CurrentSchedules)
+                                    {
+                                        Schedule.IsDeparted = true;
+                                        Schedule.LiveDeparture = train.Value.LastModified;
+                                    }
                                 }
 
                                 // Delete train information that are older than 12 hours.
@@ -443,6 +448,8 @@ namespace Leibit.BLL
                             CurrentSchedule = null;
                         else
                         {
+                            CurrentSchedule.IsArrived = true;
+
                             if ((CurrentSchedule.Schedule.Track == null || CurrentSchedule.Schedule.Track.CalculateDelay) && CurrentSchedule.LiveArrival == null)
                                 CurrentSchedule.LiveArrival = Estw.Time;
 
@@ -454,8 +461,13 @@ namespace Leibit.BLL
             }
 
             foreach (var Schedule in Train.Schedules)
-                if ((Schedule != CurrentSchedule) && Schedule.LiveArrival != null && Schedule.LiveDeparture == null && Schedule.LiveTrack != null && Schedule.LiveTrack.CalculateDelay)
+            {
+                if (Schedule.IsArrived && (Schedule != CurrentSchedule || Schedule.LiveTrack == null))
+                    Schedule.IsDeparted = true;
+
+                if (Schedule != CurrentSchedule && Schedule.LiveArrival != null && Schedule.LiveDeparture == null && Schedule.LiveTrack != null && Schedule.LiveTrack.CalculateDelay)
                     Schedule.LiveDeparture = Estw.Time;
+            }
 
             var DelayResult = CalculationBLL.CalculateDelay(Train, Estw);
             ValidateResult(DelayResult);

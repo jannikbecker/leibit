@@ -17,6 +17,8 @@ namespace Leibit.Entities.Serialization
         public LeibitTime StationTime { get; set; }
         public LeibitTime LiveArrival { get; set; }
         public LeibitTime LiveDeparture { get; set; }
+        public bool IsArrived { get; set; }
+        public bool IsDeparted { get; set; }
         public string LiveTrack { get; set; }
         public LeibitTime ExpectedArrival { get; set; }
         public LeibitTime ExpectedDeparture { get; set; }
