@@ -2129,13 +2129,13 @@
       </station>
 
       <station name="Bremen-Vahr Abzw" short="HVAH" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
-        <track name="170" calculateDelay="false">
+        <track name="170" calculateDelay="false" isPlatform="false">
           <block name="10B173" direction="right"/>
           <block name="10B161" direction="left"/>
           <block name="10B171" direction="left"/>
         </track>
         
-        <track name="174" calculateDelay="false">
+        <track name="174" calculateDelay="false" isPlatform="false">
           <block name="10B176" direction="right"/>
           <block name="10B166" direction="left"/>
           <block name="10B168" direction="left"/>
