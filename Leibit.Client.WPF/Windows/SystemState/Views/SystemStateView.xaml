@@ -64,7 +64,11 @@
             </ItemsControl>
         </Expander>
 
-        <Expander Grid.Row="1" Header="Züge">
+        <Expander Grid.Row="1">
+            <Expander.Header>
+                <TextBlock>Züge (<Run Text="{Binding LiveTrains.Count, Mode=OneWay}"/>)</TextBlock>
+            </Expander.Header>
+            
             <controls:LeibitDataGrid ItemsSource="{Binding LiveTrains}"
                                      SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
                                      LayoutKey="SysState"
