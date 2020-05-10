@@ -474,7 +474,7 @@ namespace Leibit.BLL
 
             foreach (var Schedule in Train.Schedules)
             {
-                if (Schedule != CurrentSchedule || Schedule.LiveTrack == null)
+                if (Schedule != CurrentSchedule || Schedule.LiveTrack == null || !Schedule.LiveTrack.IsPlatform)
                 {
                     if (Schedule.IsArrived)
                         Schedule.IsDeparted = true;
