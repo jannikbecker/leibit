@@ -474,11 +474,14 @@ namespace Leibit.BLL
 
             foreach (var Schedule in Train.Schedules)
             {
-                if (Schedule.IsArrived && (Schedule != CurrentSchedule || Schedule.LiveTrack == null))
-                    Schedule.IsDeparted = true;
+                if (Schedule != CurrentSchedule || Schedule.LiveTrack == null)
+                {
+                    if (Schedule.IsArrived)
+                        Schedule.IsDeparted = true;
 
-                if (Schedule != CurrentSchedule && Schedule.LiveArrival != null && Schedule.LiveDeparture == null && Schedule.LiveTrack != null && Schedule.LiveTrack.CalculateDelay)
-                    Schedule.LiveDeparture = Estw.Time;
+                    if (Schedule.LiveArrival != null && Schedule.LiveDeparture == null)
+                        Schedule.LiveDeparture = Estw.Time;
+                }
             }
 
             var DelayResult = CalculationBLL.CalculateDelay(Train, Estw);
