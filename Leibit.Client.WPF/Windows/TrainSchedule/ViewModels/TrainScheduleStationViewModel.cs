@@ -43,6 +43,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             Arrival = Schedule.Arrival;
             Departure = Schedule.Departure;
             Track = Schedule.Track;
+            Remark = Schedule.Remark;
 
             IsFirstStation = Schedule.Handling == eHandling.Start;
             IsLastStation = Schedule.Handling == eHandling.Destination;
@@ -315,6 +316,30 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             get
             {
                 return IsDeparted ? Brushes.Red : Brushes.Black;
+            }
+        }
+        #endregion
+
+        #region [Remark]
+        public string Remark
+        {
+            get
+            {
+                return Get<string>();
+            }
+            set
+            {
+                Set(value);
+            }
+        }
+        #endregion
+
+        #region [HasRemark]
+        public bool HasRemark
+        {
+            get
+            {
+                return Remark.IsNotNullOrWhiteSpace();
             }
         }
         #endregion

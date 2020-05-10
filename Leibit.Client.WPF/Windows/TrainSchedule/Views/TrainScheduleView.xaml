@@ -34,8 +34,8 @@
 
                         <Grid Grid.Column="0" Margin="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="25" />
-                                <RowDefinition Height="25" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
                             </Grid.RowDefinitions>
 
                             <Line Grid.RowSpan="2" Y2="1" Margin="0,-3,0,-3" Stretch="Fill" StrokeThickness="5" StrokeDashArray="2 1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stroke="{Binding DepartureColor}" Visibility="{Binding HasStation, Converter={StaticResource InvertedVisibilityConverter}}" />
@@ -91,6 +91,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
@@ -99,7 +100,7 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Tracks" />
                             </Grid.ColumnDefinitions>
 
-                            <controls:ImageButton Grid.RowSpan="2" Grid.Column="0" Image="{StaticResource imgLocalOrders}" Margin="0" Command="{Binding LocalOrdersCommand}" Visibility="{Binding HasLocalOrders, Converter={StaticResource VisibilityConverter}}" />
+                            <controls:ImageButton Grid.RowSpan="3" Grid.Column="0" Image="{StaticResource imgLocalOrders}" Margin="0" Command="{Binding LocalOrdersCommand}" Visibility="{Binding HasLocalOrders, Converter={StaticResource VisibilityConverter}}" />
 
                             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding StationName}" Margin="5,0,5,0" />
 
@@ -108,7 +109,9 @@
                                 <TextBlock Text="{Binding TrackName}" />
                             </StackPanel>
 
-                            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Visibility="{Binding DelayInfo, Converter={StaticResource VisibilityNullConverter}}" Margin="5,0,5,0">
+                            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Remark}" Margin="5,0,5,0" Visibility="{Binding HasRemark, Converter={StaticResource VisibilityConverter}}"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Visibility="{Binding DelayInfo, Converter={StaticResource VisibilityNullConverter}}" Margin="5,0,5,0">
                                 <Hyperlink Command="{Binding DelayJustificationCommand}">
                                     <TextBlock Text="{Binding DelayInfo}" />
                                     
