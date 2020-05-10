@@ -157,6 +157,12 @@ namespace Leibit.BLL
                     if (!Start)
                         continue;
 
+                    var CalculateDelay = Schedule.Schedule.Track != null && Schedule.Schedule.Track.CalculateDelay;
+                    var CurrentIndex = Train.Schedules.IndexOf(Schedule);
+
+                    if (Train.Schedules.Where((schedule, index) => index > CurrentIndex && schedule.LiveArrival != null).Any())
+                        CalculateDelay = false;
+
                     var Arrival = Schedule.Schedule.Arrival == null ? Schedule.Schedule.Departure : Schedule.Schedule.Arrival;
 
                     if (Schedule.LiveArrival != null)
@@ -165,7 +171,7 @@ namespace Leibit.BLL
                     {
                         Schedule.ExpectedArrival = Arrival.AddMinutes(Delay);
 
-                        if (Schedule.ExpectedArrival < Estw.Time && Schedule.Schedule.Track != null && Schedule.Schedule.Track.CalculateDelay)
+                        if (Schedule.ExpectedArrival < Estw.Time && CalculateDelay)
                             Schedule.ExpectedArrival = Estw.Time;
                     }
 
@@ -204,7 +210,7 @@ namespace Leibit.BLL
                         else
                             Schedule.ExpectedDeparture = Departure;
 
-                        if (Schedule.ExpectedDeparture < Estw.Time && Schedule.Schedule.Track != null && Schedule.Schedule.Track.CalculateDelay)
+                        if (Schedule.ExpectedDeparture < Estw.Time && CalculateDelay)
                             Schedule.ExpectedDeparture = Estw.Time;
                     }
 
