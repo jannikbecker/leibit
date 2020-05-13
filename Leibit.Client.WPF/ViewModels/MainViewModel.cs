@@ -622,7 +622,10 @@ namespace Leibit.Client.WPF.ViewModels
         private void __Save()
         {
             if (m_CurrentFilename.IsNullOrEmpty())
+            {
                 __SaveAs();
+                return;
+            }
 
             var Container = new SerializationContainer();
             Container.Area = m_CurrentArea;
