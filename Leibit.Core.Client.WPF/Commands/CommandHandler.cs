@@ -77,7 +77,7 @@ namespace Leibit.Core.Client.Commands
             if (parameter is T || parameter == null)
                 m_Action((T)parameter);
             else
-                throw new ArgumentException(String.Format("parameter needs to be of type '{0}', but is '{1}'", typeof(T).Name), parameter.GetType().Name);
+                throw new ArgumentException($"parameter needs to be of type '{typeof(T).Name}', but is '{parameter.GetType().Name}'");
         }
         #endregion
 
