@@ -1,18 +1,34 @@
-﻿using Leibit.Core.Client.BaseClasses;
+﻿using Leibit.BLL;
+using Leibit.Core.Client.BaseClasses;
+using Leibit.Core.Client.Commands;
+using Leibit.Core.Common;
 using Leibit.Entities.LiveData;
 using System;
+using System.Windows;
+using System.Windows.Input;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
 {
     public class DelayInfoViewModel : ViewModelBase
     {
 
+        #region - Needs -
+        private LiveDataBLL m_LiveDataBll;
+        #endregion
+
         #region - Ctor -
         public DelayInfoViewModel(DelayInfo Delay)
             : base()
         {
             CurrentDelay = Delay;
+            SaveCommand = new CommandHandler(__Save, false);
+            m_LiveDataBll = new LiveDataBLL();
         }
+        #endregion
+
+        #region - Events -
+        public event EventHandler DelaySaved;
         #endregion
 
         #region - Properties -
@@ -58,6 +74,7 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
             set
             {
                 Set(value);
+                (SaveCommand as CommandHandler).SetCanExecute(value.IsNotNullOrWhiteSpace());
             }
         }
         #endregion
@@ -87,6 +104,34 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
             {
                 Set(value);
             }
+        }
+        #endregion
+
+        #region [SaveCommand]
+        public ICommand SaveCommand { get; }
+        #endregion
+
+        #endregion
+
+        #region - Private methods -
+
+        #region [__Save]
+        private void __Save()
+        {
+            var Copy = CurrentDelay.Clone();
+            Copy.Reason = Reason;
+            Copy.CausedBy = CausedBy;
+
+            var SaveResult = m_LiveDataBll.JustifyDelay(Copy);
+
+            if (SaveResult.Succeeded)
+            {
+                CurrentDelay.Reason = Reason;
+                CurrentDelay.CausedBy = CausedBy;
+                DelaySaved?.Invoke(this, EventArgs.Empty);
+            }
+            else
+                MessageBox.Show(SaveResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         #endregion
 

@@ -15,5 +15,10 @@ namespace Leibit.Entities.LiveData
         public int Minutes { get; private set; }
         public string Reason { get; set; }
         public int? CausedBy { get; set; }
+
+        public DelayInfo Clone()
+        {
+            return new DelayInfo(Schedule, Minutes, Type);
+        }
     }
 }

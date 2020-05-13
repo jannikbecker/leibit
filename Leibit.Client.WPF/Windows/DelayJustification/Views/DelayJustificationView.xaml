@@ -6,6 +6,7 @@
                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
                       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                      Width="380"
                       Caption="{Binding Caption}">
 
     <controls:ChildWindow.Style>
@@ -17,60 +18,55 @@
     </controls:ChildWindow.Resources>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <ItemsControl ItemsSource="{Binding Delays}" Margin="10">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-            <ItemsControl ItemsSource="{Binding Delays}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5,0,0,5">
+                            <TextBlock Text="{Binding MinutesString}" FontWeight="Bold" />
+                            <TextBlock Text=" von " FontWeight="Bold" />
+                            <TextBlock Text="{Binding StationName}" FontWeight="Bold" />
+                        </StackPanel>
 
-                            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5,0,0,5">
-                                <TextBlock Text="{Binding MinutesString}" FontWeight="Bold" />
-                                <TextBlock Text=" von " FontWeight="Bold" />
-                                <TextBlock Text="{Binding StationName}" FontWeight="Bold" />
-                            </StackPanel>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Grund" Margin="0,0,5,0" />
+                        <ListBox Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Reason, Mode=TwoWay}" Margin="0,0,0,5" Height="100">
+                            <ListBox.Items>
+                                <sys:String>Abstand, Kreuzung, Fahrstraßenausschluss</sys:String>
+                                <sys:String>Überholung</sys:String>
+                                <sys:String>Fahrzeitüberschreitung</sys:String>
+                                <sys:String>Anschluss</sys:String>
+                                <sys:String>Wagenübergang</sys:String>
+                                <sys:String>Verzögerung bei der planmäßigen Zugbildung</sys:String>
+                                <sys:String>Außerplanmäßige Zugbildung</sys:String>
+                                <sys:String>Behinderung durch Rangierbetrieb</sys:String>
+                                <sys:String>Warten auf Fahrgäste</sys:String>
+                                <sys:String>Warten auf Betriebspersonal</sys:String>
+                                <sys:String>Fehlhandlungen Betriebspersonal</sys:String>
+                                <sys:String>Signalstörung</sys:String>
+                                <sys:String>Weichenstörung</sys:String>
+                                <sys:String>BÜ-Störung</sys:String>
+                                <sys:String>Linienzugbeeinflussung (LZB)</sys:String>
+                                <sys:String>Schäden am Bahnkörper</sys:String>
+                                <sys:String>Sonstige technische Störungen</sys:String>
+                                <sys:String>Verspätete Übergabe an DB Netz</sys:String>
+                            </ListBox.Items>
+                        </ListBox>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Grund" Margin="0,0,5,0" />
-                            <ListBox Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Reason, Mode=TwoWay}" Margin="0,0,0,5" Height="100">
-                                <ListBox.Items>
-                                    <sys:String>Abstand, Kreuzung, Fahrstraßenausschluss</sys:String>
-                                    <sys:String>Überholung</sys:String>
-                                    <sys:String>Fahrzeitüberschreitung</sys:String>
-                                    <sys:String>Anschluss</sys:String>
-                                    <sys:String>Wagenübergang</sys:String>
-                                    <sys:String>Verzögerung bei der planmäßigen Zugbildung</sys:String>
-                                    <sys:String>Außerplanmäßige Zugbildung</sys:String>
-                                    <sys:String>Behinderung durch Rangierbetrieb</sys:String>
-                                    <sys:String>Warten auf Fahrgäste</sys:String>
-                                    <sys:String>Warten auf Betriebspersonal</sys:String>
-                                    <sys:String>Fehlhandlungen Betriebspersonal</sys:String>
-                                    <sys:String>Signalstörung</sys:String>
-                                    <sys:String>Weichenstörung</sys:String>
-                                    <sys:String>BÜ-Störung</sys:String>
-                                    <sys:String>Linienzugbeeinflussung (LZB)</sys:String>
-                                    <sys:String>Schäden am Bahnkörper</sys:String>
-                                    <sys:String>Sonstige technische Störungen</sys:String>
-                                    <sys:String>Verspätete Übergabe an DB Netz</sys:String>
-                                </ListBox.Items>
-                            </ListBox>
-
-                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Wegen" Margin="0,0,5,0" />
-                            <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1"
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Wegen" Margin="0,0,5,0" />
+                        <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1"
                                                 Value="{Binding CausedBy, Mode=TwoWay}"
                                                 Focusable="True"
                                                 Width="50"
@@ -79,17 +75,12 @@
                                                 Minimum="1"
                                                 Maximum="99999" />
 
-                            <Border Grid.Row="3" Grid.ColumnSpan="2" Height="2" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="LightGray" Margin="0,5,0,5" Visibility="{Binding IsLast, Converter={StaticResource InvertedVisibilityConverter}}" />
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-
-            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Speichern" Command="{Binding SaveCommand}" Margin="0,10,10,10" Padding="4" />
-                <Button Content="Abbrechen" Command="{Binding CancelCommand}" Margin="0,10,10,10" Padding="4" />
-            </StackPanel>
-        </Grid>
+                        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Speichern" Command="{Binding SaveCommand}" Margin="0,10,10,10" HorizontalAlignment="Right" Padding="4" />
+                        <Border Grid.Row="4" Grid.ColumnSpan="2" Height="2" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="LightGray" Margin="0,5,0,5" Visibility="{Binding IsLast, Converter={StaticResource InvertedVisibilityConverter}}" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </ScrollViewer>
 
 </controls:ChildWindow>
