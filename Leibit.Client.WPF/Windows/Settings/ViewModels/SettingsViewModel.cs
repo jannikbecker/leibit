@@ -108,6 +108,21 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [CheckPlausibility]
+        public bool CheckPlausibility
+        {
+            get
+            {
+                return m_Settings.CheckPlausibility;
+            }
+            set
+            {
+                m_Settings.CheckPlausibility = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         #region [DisplayCompleteTrainSchedule]
         public bool DisplayCompleteTrainSchedule
         {
@@ -259,6 +274,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
             if (PropertyName == nameof(DelayJustificationEnabled)
                 || PropertyName == nameof(DelayJustificationMinutes)
                 || PropertyName == nameof(WriteDelayJustificationFile)
+                || PropertyName == nameof(CheckPlausibility)
                 || PropertyName == nameof(DisplayCompleteTrainSchedule)
                 || PropertyName == nameof(EstwTimeout)
                 || PropertyName == nameof(LoadInactiveEstws)

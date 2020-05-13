@@ -15,6 +15,7 @@ namespace Leibit.Entities.Settings
         public bool DelayJustificationEnabled { get; set; }
         public int DelayJustificationMinutes { get; set; }
         public bool WriteDelayJustificationFile { get; set; }
+        public bool CheckPlausibility { get; set; }
         public bool DisplayCompleteTrainSchedule { get; set; }
         public int EstwTimeout { get; set; }
         public bool LoadInactiveEstws { get; set; }
@@ -32,6 +33,7 @@ namespace Leibit.Entities.Settings
             Result.DelayJustificationEnabled = this.DelayJustificationEnabled;
             Result.DelayJustificationMinutes = this.DelayJustificationMinutes;
             Result.WriteDelayJustificationFile = this.WriteDelayJustificationFile;
+            Result.CheckPlausibility = this.CheckPlausibility;
             Result.DisplayCompleteTrainSchedule = this.DisplayCompleteTrainSchedule;
             Result.EstwTimeout = this.EstwTimeout;
             Result.LoadInactiveEstws = this.LoadInactiveEstws;

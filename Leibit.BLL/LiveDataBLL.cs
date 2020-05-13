@@ -6,6 +6,7 @@ using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
 using Leibit.Entities.Scheduling;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -191,8 +192,11 @@ namespace Leibit.BLL
 
                 string EstwId = delay.Schedule.Schedule.Station.ESTW.Id;
 
-                if (!Settings.Paths.ContainsKey(EstwId))
+                if (Settings.DelayJustificationEnabled && !Settings.Paths.ContainsKey(EstwId))
                     return new OperationResult<SharedDelay> { Message = String.Format("Pfad zu ESTW '{0}' nicht gefunden.", delay.Schedule.Schedule.Station.ESTW.Name), Succeeded = true };
+
+                if (Settings.CheckPlausibility)
+                    __CheckDelayJustificationPlausibility(delay);
 
                 var Result = new OperationResult<SharedDelay>();
 
@@ -571,6 +575,55 @@ namespace Leibit.BLL
 
                 File.Delete();
             }
+        }
+
+        private void __CheckDelayJustificationPlausibility(DelayInfo delay)
+        {
+            var validationMessages = new List<string>();
+
+            if (delay.CausedBy.HasValue)
+            {
+                var area = delay.Schedule.Schedule.Station.ESTW.Area;
+
+                if (area.LiveTrains.ContainsKey(delay.CausedBy.Value))
+                {
+                    var train = area.LiveTrains[delay.CausedBy.Value];
+                    var schedules = train.Schedules.Where(s => s.Schedule.Station.ShortSymbol == delay.Schedule.Schedule.Station.ShortSymbol);
+
+                    if (!schedules.Any())
+                    {
+                        validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' nicht durchfahren");
+                    }
+                    else if (delay.Type == eDelayType.Arrival && !schedules.Any(s => __AreTimesClose(delay.Schedule.LiveArrival, s.LiveArrival)
+                                                                                  || __AreTimesClose(delay.Schedule.LiveArrival, s.LiveDeparture)))
+                    {
+                        validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
+                    }
+                    else if (delay.Type == eDelayType.Departure && !schedules.Any(s => __AreTimesClose(delay.Schedule.LiveDeparture, s.LiveArrival)
+                                                                                    || __AreTimesClose(delay.Schedule.LiveDeparture, s.LiveDeparture)))
+                    {
+                        validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
+                    }
+                }
+                else
+                    validationMessages.Add($"Zug {delay.CausedBy.Value} nicht gefunden");
+            }
+
+            if (validationMessages.Any())
+            {
+                validationMessages.Insert(0, "Plausibilitätsprüfung fehlgeschlagen");
+                var message = string.Join(Environment.NewLine, validationMessages);
+                throw new InvalidOperationException(message);
+            }
+        }
+
+        private bool __AreTimesClose(LeibitTime time1, LeibitTime time2)
+        {
+            if (time1 == null || time2 == null)
+                return false;
+
+            var diff = time1 - time2;
+            return Math.Abs(diff.TotalMinutes) < 15;
         }
 
         #endregion

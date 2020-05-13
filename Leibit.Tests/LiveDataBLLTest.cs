@@ -1880,6 +1880,189 @@ namespace Leibit.Tests
         }
         #endregion
 
+        #region [LiveDataBLLTest_JustifyDelay_PlausibilityCheck_TrainNotFound]
+        [TestMethod]
+        public void LiveDataBLLTest_JustifyDelay_PlausibilityCheck_TrainNotFound()
+        {
+            using (var settingsScope = new SettingsScope())
+            {
+                settingsScope.WriteDelayJustificationFile = false;
+                settingsScope.CheckPlausibility = true;
+
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
+
+                var Train = ExpectedValuesOfLiveDataBLLTest.TestTrainDelayArrival(Estw);
+                var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TTST");
+                Assert.IsNotNull(Schedule, "Schedule is null");
+                Assert.AreEqual(1, Schedule.Delays.Count);
+
+                var Delay = Schedule.Delays.First();
+                Delay.Reason = "Kaputt";
+                Delay.CausedBy = 54321;
+
+                using (var scope = new ESTWRootScope())
+                {
+                    var BllResult = BLL.JustifyDelay(Delay);
+                    DefaultChecks.IsOperationNotSucceeded(BllResult);
+                    Assert.IsTrue(BllResult.Message.Contains("Zug 54321 nicht gefunden"));
+                }
+            }
+        }
+        #endregion
+
+        #region [LiveDataBLLTest_JustifyDelay_PlausibilityCheck_NoSchedule]
+        [TestMethod]
+        public void LiveDataBLLTest_JustifyDelay_PlausibilityCheck_NoSchedule()
+        {
+            using (var settingsScope = new SettingsScope())
+            {
+                settingsScope.WriteDelayJustificationFile = false;
+                settingsScope.CheckPlausibility = true;
+
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
+
+                var Train = ExpectedValuesOfLiveDataBLLTest.TestTrainDelayArrival(Estw);
+                var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TTST");
+                Assert.IsNotNull(Schedule, "Schedule is null");
+                Assert.AreEqual(1, Schedule.Delays.Count);
+
+                var Delay = Schedule.Delays.First();
+                Delay.Reason = "Kaputt";
+                Delay.CausedBy = 12345;
+
+                var Train2 = new TrainInformation(Area.Trains[12345]);
+                Area.LiveTrains.TryAdd(12345, Train2);
+
+                using (var scope = new ESTWRootScope())
+                {
+                    var BllResult = BLL.JustifyDelay(Delay);
+                    DefaultChecks.IsOperationNotSucceeded(BllResult);
+                    Assert.IsTrue(BllResult.Message.Contains("Zug 12345 hat die Betriebsstelle 'Testdorf' nicht durchfahren"));
+                }
+            }
+        }
+        #endregion
+
+        #region [LiveDataBLLTest_JustifyDelay_PlausibilityCheck_InvalidTime_Arrival]
+        [TestMethod]
+        public void LiveDataBLLTest_JustifyDelay_PlausibilityCheck_InvalidTime_Arrival()
+        {
+            using (var settingsScope = new SettingsScope())
+            {
+                settingsScope.WriteDelayJustificationFile = false;
+                settingsScope.CheckPlausibility = true;
+
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
+
+                var Train = ExpectedValuesOfLiveDataBLLTest.TestTrainDelayArrival(Estw);
+                var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TTST");
+                Assert.IsNotNull(Schedule, "Schedule is null");
+                Assert.AreEqual(1, Schedule.Delays.Count);
+
+                var Delay = Schedule.Delays.First();
+                Delay.Reason = "Kaputt";
+                Delay.CausedBy = 12345;
+
+                var Train2 = new TrainInformation(Area.Trains[12345]);
+                var TestdorfSchedule = new LiveSchedule(Train2, Train2.Train.Schedules.FirstOrDefault(s => s.Station.ShortSymbol == "TTST"));
+                TestdorfSchedule.LiveArrival = new LeibitTime(12, 50);
+                TestdorfSchedule.LiveDeparture = new LeibitTime(12, 52);
+                Train2.AddSchedule(TestdorfSchedule);
+                Area.LiveTrains.TryAdd(12345, Train2);
+
+                using (var scope = new ESTWRootScope())
+                {
+                    var BllResult = BLL.JustifyDelay(Delay);
+                    DefaultChecks.IsOperationNotSucceeded(BllResult);
+                    Assert.IsTrue(BllResult.Message.Contains("Zug 12345 hat die Betriebsstelle 'Testdorf' zu einer anderen Zeit durchfahren als 2007"));
+                }
+            }
+        }
+        #endregion
+
+        #region [LiveDataBLLTest_JustifyDelay_PlausibilityCheck_InvalidTime_Departure]
+        [TestMethod]
+        public void LiveDataBLLTest_JustifyDelay_PlausibilityCheck_InvalidTime_Departure()
+        {
+            using (var settingsScope = new SettingsScope())
+            {
+                settingsScope.WriteDelayJustificationFile = false;
+                settingsScope.CheckPlausibility = true;
+
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
+
+                var Train = ExpectedValuesOfLiveDataBLLTest.TestTrainDelayDeparture(Estw);
+                var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TTST");
+                Assert.IsNotNull(Schedule, "Schedule is null");
+                Assert.AreEqual(1, Schedule.Delays.Count);
+
+                var Delay = Schedule.Delays.First();
+                Delay.Reason = "Kaputt";
+                Delay.CausedBy = 12345;
+
+                var Train2 = new TrainInformation(Area.Trains[12345]);
+                var TestdorfSchedule = new LiveSchedule(Train2, Train2.Train.Schedules.FirstOrDefault(s => s.Station.ShortSymbol == "TTST"));
+                TestdorfSchedule.LiveArrival = new LeibitTime(12, 50);
+                TestdorfSchedule.LiveDeparture = new LeibitTime(12, 52);
+                Train2.AddSchedule(TestdorfSchedule);
+                Area.LiveTrains.TryAdd(12345, Train2);
+
+                using (var scope = new ESTWRootScope())
+                {
+                    var BllResult = BLL.JustifyDelay(Delay);
+                    DefaultChecks.IsOperationNotSucceeded(BllResult);
+                    Assert.IsTrue(BllResult.Message.Contains("Zug 12345 hat die Betriebsstelle 'Testdorf' zu einer anderen Zeit durchfahren als 2007"));
+                }
+            }
+        }
+        #endregion
+
+        #region [LiveDataBLLTest_JustifyDelay_PlausibilityCheck_Ok]
+        [TestMethod]
+        public void LiveDataBLLTest_JustifyDelay_PlausibilityCheck_Ok()
+        {
+            using (var settingsScope = new SettingsScope())
+            {
+                settingsScope.WriteDelayJustificationFile = false;
+                settingsScope.CheckPlausibility = true;
+
+                var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+                var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+                Assert.IsNotNull(Estw, "Estw is null");
+
+                var Train = ExpectedValuesOfLiveDataBLLTest.TestTrainDelayDeparture(Estw);
+                var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TTST");
+                Assert.IsNotNull(Schedule, "Schedule is null");
+                Assert.AreEqual(1, Schedule.Delays.Count);
+
+                var Delay = Schedule.Delays.First();
+                Delay.Reason = "Kaputt";
+                Delay.CausedBy = 12345;
+
+                var Train2 = new TrainInformation(Area.Trains[12345]);
+                var TestdorfSchedule = new LiveSchedule(Train2, Train2.Train.Schedules.FirstOrDefault(s => s.Station.ShortSymbol == "TTST"));
+                TestdorfSchedule.LiveArrival = new LeibitTime(13, 11);
+                TestdorfSchedule.LiveDeparture = new LeibitTime(13, 34);
+                Train2.AddSchedule(TestdorfSchedule);
+                Area.LiveTrains.TryAdd(12345, Train2);
+
+                using (var scope = new ESTWRootScope())
+                {
+                    var BllResult = BLL.JustifyDelay(Delay);
+                    DefaultChecks.IsOperationSucceeded(BllResult);
+                }
+            }
+        }
+        #endregion
+
         #region [LiveDataBLLTest_JustifyDelay_NoReason]
         [TestMethod]
         public void LiveDataBLLTest_JustifyDelay_NoReason()
