@@ -74,7 +74,7 @@ namespace Leibit.BLL
             {
                 var Result = new OperationResult<int?>();
 
-                LiveSchedule Previous = null;
+                bool HasPreviousSchedule = false;
                 int PreviousDelay = 0;
 
                 var settingsResult = m_SettingsBll.GetSettings();
@@ -90,8 +90,8 @@ namespace Leibit.BLL
                     var Arrival = Schedule.Schedule.Arrival == null ? Schedule.Schedule.Departure : Schedule.Schedule.Arrival;
                     var DelayArrival = (Schedule.LiveArrival - Arrival).TotalMinutes;
 
-                    if (delayJustificationEnabled && Previous != null && DelayArrival - PreviousDelay >= delayJustificationMinutes && !Previous.Delays.Any(d => d.Type == eDelayType.Arrival))
-                        Previous.AddDelay(DelayArrival - PreviousDelay, eDelayType.Arrival);
+                    if (delayJustificationEnabled && HasPreviousSchedule && DelayArrival - PreviousDelay >= delayJustificationMinutes && !Schedule.Delays.Any(d => d.Type == eDelayType.Arrival))
+                        Schedule.AddDelay(DelayArrival - PreviousDelay, eDelayType.Arrival);
 
                     PreviousDelay = DelayArrival < 0 ? 0 : DelayArrival;
 
@@ -116,7 +116,7 @@ namespace Leibit.BLL
                     else
                         Result.Result = DelayArrival;
 
-                    Previous = Schedule;
+                    HasPreviousSchedule = true;
                 }
 
                 Result.Succeeded = true;

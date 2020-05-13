@@ -1827,13 +1827,14 @@ namespace Leibit.Tests
             using (var settingsScope = new SettingsScope())
             {
                 settingsScope.WriteDelayJustificationFile = true;
+                settingsScope.CheckPlausibility = false;
 
                 var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
                 var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
                 Assert.IsNotNull(Estw, "Estw is null");
 
                 var Train = ExpectedValuesOfLiveDataBLLTest.TestTrainDelayArrival(Estw);
-                var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TPRB");
+                var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TTST");
                 Assert.IsNotNull(Schedule, "Schedule is null");
                 Assert.AreEqual(1, Schedule.Delays.Count);
 
@@ -1844,7 +1845,7 @@ namespace Leibit.Tests
                 Delay.Reason = Reason;
                 Delay.CausedBy = CausedBy;
 
-                var Expected = new SharedDelay(2007, "TPRB", 0, 4, eDelayType.Arrival, Reason);
+                var Expected = new SharedDelay(2007, "TTST", 0, 4, eDelayType.Arrival, Reason);
                 Expected.CausedBy = CausedBy;
 
                 using (var scope = new ESTWRootScope())
@@ -1858,7 +1859,7 @@ namespace Leibit.Tests
                     var Settings = SettingsBll.GetSettings().Result;
                     Assert.IsNotNull(Settings, "Settings is null");
 
-                    var FilePath = Path.Combine(Settings.Paths["TTST"], @"Kommunikation\leibit_delay_2007_TPRB.dat");
+                    var FilePath = Path.Combine(Settings.Paths["TTST"], @"Kommunikation\leibit_delay_2007_TTST.dat");
                     Assert.IsTrue(File.Exists(FilePath));
 
                     var Serializer = new XmlSerializer(typeof(SharedDelay));
@@ -1888,7 +1889,7 @@ namespace Leibit.Tests
             Assert.IsNotNull(Estw, "Estw is null");
 
             var Train = ExpectedValuesOfLiveDataBLLTest.TestTrainDelayArrival(Estw);
-            var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TPRB");
+            var Schedule = Train.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == "TTST");
             Assert.IsNotNull(Schedule, "Schedule is null");
             Assert.AreEqual(1, Schedule.Delays.Count);
 

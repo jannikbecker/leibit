@@ -36,6 +36,7 @@ namespace Leibit.Tests.Utils
         public bool DelayJustificationEnabled { set => m_Settings.DelayJustificationEnabled = value; }
         public int DelayJustificationMinutes { set => m_Settings.DelayJustificationMinutes = value; }
         public bool WriteDelayJustificationFile { set => m_Settings.WriteDelayJustificationFile = value; }
+        public bool CheckPlausibility { set => m_Settings.CheckPlausibility = value; }
         public int EstwTimeout { set => m_Settings.EstwTimeout = value; }
         public bool LoadInactiveEstws { set => m_Settings.LoadInactiveEstws = value; }
 
@@ -47,6 +48,7 @@ namespace Leibit.Tests.Utils
             m_Settings.DelayJustificationEnabled = m_OriginalSettings.DelayJustificationEnabled;
             m_Settings.DelayJustificationMinutes = m_OriginalSettings.DelayJustificationMinutes;
             m_Settings.WriteDelayJustificationFile = m_OriginalSettings.WriteDelayJustificationFile;
+            m_Settings.CheckPlausibility = m_OriginalSettings.CheckPlausibility;
             m_Settings.EstwTimeout = m_OriginalSettings.EstwTimeout;
             m_Settings.LoadInactiveEstws = m_OriginalSettings.LoadInactiveEstws;
         }

@@ -53,7 +53,6 @@ namespace Leibit.Tests.ExpectedData
             ProbeSchedule.ExpectedArrival = ProbeSchedule.LiveArrival;
             ProbeSchedule.ExpectedDeparture = ProbeSchedule.LiveDeparture;
             ProbeSchedule.LiveTrack = ProbeSchedule.Schedule.Track;
-            ProbeSchedule.AddDelay(4, eDelayType.Arrival);
             Result.AddSchedule(ProbeSchedule);
 
             var TestdorfSchedule = new LiveSchedule(Result, Train.Schedules.FirstOrDefault(s => s.Station.ShortSymbol == "TTST"));
@@ -62,6 +61,7 @@ namespace Leibit.Tests.ExpectedData
             TestdorfSchedule.LiveTrack = TestdorfSchedule.Schedule.Track;
             TestdorfSchedule.ExpectedArrival = TestdorfSchedule.LiveArrival;
             TestdorfSchedule.ExpectedDeparture = TestdorfSchedule.LiveDeparture;
+            TestdorfSchedule.AddDelay(4, eDelayType.Arrival);
             Result.AddSchedule(TestdorfSchedule);
 
             return Result;
@@ -260,7 +260,6 @@ namespace Leibit.Tests.ExpectedData
             TestdorfSchedule.ExpectedArrival = TestdorfSchedule.LiveArrival;
             TestdorfSchedule.ExpectedDeparture = TestdorfSchedule.LiveDeparture;
             TestdorfSchedule.AddDelay(4, eDelayType.Departure);
-            TestdorfSchedule.AddDelay(3, eDelayType.Arrival);
             Result.AddSchedule(TestdorfSchedule);
 
             var ProbeSchedule = new LiveSchedule(Result, new Schedule(Train, estw.Stations.FirstOrDefault(s => s.ShortSymbol == "TPRB")));
@@ -271,6 +270,7 @@ namespace Leibit.Tests.ExpectedData
             ProbeSchedule.LiveTrack = ProbeSchedule.Schedule.Station.Tracks.FirstOrDefault(t => t.Name == "1");
             ProbeSchedule.ExpectedArrival = ProbeSchedule.LiveArrival;
             ProbeSchedule.ExpectedDeparture = ProbeSchedule.LiveDeparture;
+            ProbeSchedule.AddDelay(3, eDelayType.Arrival);
             Result.AddSchedule(ProbeSchedule);
 
             Train.AddSchedule(TestdorfSchedule.Schedule);
