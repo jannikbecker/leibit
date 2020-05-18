@@ -10,20 +10,18 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
     public class LiveTrainViewModel : ViewModelBase
     {
 
-        #region - Needs -
-        private Area m_Area;
-        #endregion
-
         #region - Ctor -
         public LiveTrainViewModel(Area area, TrainInformation train)
         {
-            m_Area = area;
+            Area = area;
             CurrentTrain = train;
             DeleteLiveTrainCommand = new CommandHandler(__Delete, true);
         }
         #endregion
 
         #region - Properties -
+
+        public Area Area { get; private set; }
 
         #region [CurrentTrain]
         public TrainInformation CurrentTrain { get; private set; }
@@ -77,7 +75,7 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
         #region [__Delete]
         private void __Delete()
         {
-            m_Area.LiveTrains.TryRemove(CurrentTrain.Train.Number, out _);
+            Area.LiveTrains.TryRemove(CurrentTrain.Train.Number, out _);
         }
         #endregion
 

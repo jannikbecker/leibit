@@ -573,7 +573,7 @@ namespace Leibit.Client.WPF.ViewModels
                             if (m_CurrentArea.Trains.ContainsKey(TrainNumber))
                             {
                                 Window = new TrainScheduleView(TrainNumber);
-                                ViewModel = new TrainScheduleViewModel(Window.Dispatcher, m_CurrentArea.Trains[TrainNumber]);
+                                ViewModel = new TrainScheduleViewModel(Window.Dispatcher, m_CurrentArea.Trains[TrainNumber], m_CurrentArea);
                                 break;
                             }
                             else
@@ -798,14 +798,14 @@ namespace Leibit.Client.WPF.ViewModels
             {
                 var Train = m_CurrentArea.Trains[TrainScheduleNumber.Value];
                 var Window = new TrainScheduleView(TrainScheduleNumber.Value);
-                var VM = new TrainScheduleViewModel(Window.Dispatcher, Train);
+                var VM = new TrainScheduleViewModel(Window.Dispatcher, Train, m_CurrentArea);
                 __OpenChildWindow(Window, VM);
             }
             else if (m_CurrentArea.LiveTrains.ContainsKey(TrainScheduleNumber.Value))
             {
                 var Train = m_CurrentArea.LiveTrains[TrainScheduleNumber.Value];
                 var Window = new TrainScheduleView(TrainScheduleNumber.Value);
-                var VM = new TrainScheduleViewModel(Window.Dispatcher, Train.Train);
+                var VM = new TrainScheduleViewModel(Window.Dispatcher, Train.Train, m_CurrentArea);
                 __OpenChildWindow(Window, VM);
             }
             else

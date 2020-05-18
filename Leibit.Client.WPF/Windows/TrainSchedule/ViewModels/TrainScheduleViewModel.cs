@@ -33,7 +33,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         #endregion
 
         #region - Ctor -
-        public TrainScheduleViewModel(Dispatcher Dispatcher, Train Train)
+        public TrainScheduleViewModel(Dispatcher Dispatcher, Train Train, Area Area)
             : base()
         {
             this.Dispatcher = Dispatcher;
@@ -41,6 +41,9 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             m_CalculationBll = new CalculationBLL();
             m_SettingsBll = new SettingsBLL();
             Stations = new ObservableCollection<TrainScheduleStationViewModel>();
+
+            if (Area != null)
+                Refresh(Area);
         }
         #endregion
 

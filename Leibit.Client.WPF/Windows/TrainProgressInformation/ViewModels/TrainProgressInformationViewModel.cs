@@ -283,7 +283,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             else
             {
                 var Window = new TrainScheduleView(SelectedItem.TrainNumber);
-                var VM = new TrainScheduleViewModel(Window.Dispatcher, SelectedItem.CurrentTrain.Train);
+                var VM = new TrainScheduleViewModel(Window.Dispatcher, SelectedItem.CurrentTrain.Train, SelectedItem.Station.ESTW.Area);
                 OnOpenWindow(VM, Window);
             }
         }
