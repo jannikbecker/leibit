@@ -41,7 +41,8 @@
                         </ControlTemplate>
                     </Canvas.Resources>
 
-                    <ContentControl Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                    <ContentControl x:Name="DesignerContainerContent"
+                                    Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                     Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                     MinWidth="{Binding MinWidth, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                     MinHeight="{Binding MinHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
