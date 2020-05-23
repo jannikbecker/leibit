@@ -595,11 +595,13 @@ namespace Leibit.BLL
                         validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' nicht durchfahren");
                     }
                     else if (delay.Type == eDelayType.Arrival && !schedules.Any(s => __AreTimesClose(delay.Schedule.LiveArrival, s.LiveArrival)
+                                                                                  || __AreTimesClose(delay.Schedule.LiveArrival, s.ExpectedArrival)
                                                                                   || __AreTimesClose(delay.Schedule.LiveArrival, s.LiveDeparture)))
                     {
                         validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
                     }
                     else if (delay.Type == eDelayType.Departure && !schedules.Any(s => __AreTimesClose(delay.Schedule.LiveDeparture, s.LiveArrival)
+                                                                                    || __AreTimesClose(delay.Schedule.LiveDeparture, s.ExpectedArrival)
                                                                                     || __AreTimesClose(delay.Schedule.LiveDeparture, s.LiveDeparture)))
                     {
                         validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
