@@ -3429,10 +3429,10 @@
       </station>
       
       <station name="Hamburg Dammtor Hp" short="ADF" refNr="22" scheduleFile="v22_____.abf">
-        <track name="103">
+        <track name="103" calculateDelay="false">
           <block name="22S103"/>
         </track>
-        <track name="106">
+        <track name="106" calculateDelay="false">
           <block name="22S106"/>
         </track>
       </station>
