@@ -1,6 +1,10 @@
 ﻿using Leibit.Client.WPF.ViewModels;
+using Leibit.Client.WPF.Windows.TrainSchedule.ViewModels;
+using Leibit.Client.WPF.Windows.TrainSchedule.Views;
+using Leibit.Core.Client.Commands;
 using Leibit.Entities.Scheduling;
 using System;
+using System.Windows.Input;
 
 namespace Leibit.Client.WPF.Windows.LocalOrders.ViewModels
 {
@@ -11,6 +15,7 @@ namespace Leibit.Client.WPF.Windows.LocalOrders.ViewModels
         public LocalOrdersViewModel(Schedule Schedule)
         {
             CurrentSchedule = Schedule;
+            OpenTrainScheduleCommand = new CommandHandler<int>(__OpenTrainSchedule, true);
         }
         #endregion
 
@@ -41,6 +46,28 @@ namespace Leibit.Client.WPF.Windows.LocalOrders.ViewModels
             {
                 return CurrentSchedule.LocalOrders;
             }
+        }
+        #endregion
+
+        #region [OpenTrainScheduleCommand]
+        public ICommand OpenTrainScheduleCommand { get; }
+        #endregion
+
+        #endregion
+
+        #region - Private methods -
+
+        #region [__OpenTrainSchedule]
+        private void __OpenTrainSchedule(int trainNumber)
+        {
+            var area = CurrentSchedule.Station.ESTW.Area;
+
+            if (!area.Trains.ContainsKey(trainNumber))
+                return;
+
+            var Window = new TrainScheduleView(trainNumber);
+            var VM = new TrainScheduleViewModel(Window.Dispatcher, area.Trains[trainNumber], area);
+            OnOpenWindow(VM, Window);
         }
         #endregion
 
