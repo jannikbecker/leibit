@@ -221,7 +221,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
                             var Index = m_LiveTrain.Schedules.IndexOf(LiveSchedule);
 
-                            if (m_LiveTrain.Schedules.Where((schedule, index) => index > Index && schedule.IsArrived).Any())
+                            if (m_LiveTrain.Schedules.Where((schedule, index) => index > Index && (schedule.Schedule.Station.ShortSymbol != Schedule.Station.ShortSymbol || schedule.Schedule.Time != Schedule.Time) && schedule.IsArrived).Any())
                             {
                                 Current.IsArrived = true;
                                 Current.IsDeparted = true;

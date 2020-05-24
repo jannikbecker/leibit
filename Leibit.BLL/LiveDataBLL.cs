@@ -470,7 +470,14 @@ namespace Leibit.BLL
                                 CurrentSchedule.LiveArrival = Estw.Time;
 
                             if (CurrentSchedule.Schedule.Track == null || CurrentSchedule.Schedule.Track.IsPlatform)
+                            {
                                 CurrentSchedule.LiveTrack = LiveTrack;
+
+                                // When train is in station, it cannot be departed.
+                                // This fixes issues that can occur in mirror fields when the train has arrived at the station in one ESTW, but not yet in the other.
+                                CurrentSchedule.IsDeparted = false;
+                                CurrentSchedule.LiveDeparture = null;
+                            }
                         }
                     }
                 }
@@ -485,6 +492,27 @@ namespace Leibit.BLL
 
                     if (Schedule.LiveArrival != null && Schedule.LiveDeparture == null)
                         Schedule.LiveDeparture = Estw.Time;
+                }
+            }
+
+            // For stations that are located in mirror fields, two schedules might exist.
+            // The times etc. must be identical to both schedules to ensure that delay and expected times are calculated correctly.
+            // Example: HBON is located in the district of AROG, but also in the mirror fields of HB. For the local trains, two schedules exist (one from ESTW HB and one from AROG).
+
+            foreach (var ScheduleGroup in Train.Schedules.GroupBy(s => new { s.Schedule.Station.ShortSymbol, s.Schedule.Time }))
+            {
+                var ReferenceSchedule = ScheduleGroup.FirstOrDefault(s => s.IsArrived);
+
+                if (ReferenceSchedule != null)
+                {
+                    foreach (var Schedule in ScheduleGroup)
+                    {
+                        Schedule.IsArrived = ReferenceSchedule.IsArrived;
+                        Schedule.IsDeparted = ReferenceSchedule.IsDeparted;
+                        Schedule.LiveArrival = ReferenceSchedule.LiveArrival;
+                        Schedule.LiveDeparture = ReferenceSchedule.LiveDeparture;
+                        Schedule.LiveTrack = ReferenceSchedule.LiveTrack;
+                    }
                 }
             }
 

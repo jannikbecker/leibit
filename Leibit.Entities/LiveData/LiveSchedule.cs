@@ -53,7 +53,7 @@ namespace Leibit.Entities.LiveData
             {
                 m_LiveArrival = value;
 
-                if (m_Schedule.Arrival == null && m_Schedule.Track == null)
+                if (value != null && m_Schedule.Arrival == null && m_Schedule.Track == null)
                 {
                     m_Schedule.Arrival = m_Schedule.Station.ESTW.Time.AddMinutes(m_Train.Delay * (-1));
                     Train.SortSchedules();
@@ -71,7 +71,7 @@ namespace Leibit.Entities.LiveData
             {
                 m_LiveDeparture = value;
 
-                if (m_Schedule.Departure == null && m_Schedule.Track == null)
+                if (value != null && m_Schedule.Departure == null && m_Schedule.Track == null)
                 {
                     m_Schedule.Departure = m_Schedule.Station.ESTW.Time.AddMinutes(m_Train.Delay * (-1));
                     Train.SortSchedules();

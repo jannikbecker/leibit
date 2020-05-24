@@ -184,7 +184,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
                     var NextSchedules = LiveTrain.Schedules.Skip(LiveTrain.Schedules.IndexOf(LiveSchedule) + 1);
 
-                    if (/*(NextSchedules.Count() == 0 && LiveSchedule.LiveDeparture != null) ||*/ NextSchedules.Any(s => s.LiveArrival != null))
+                    if (NextSchedules.Any(s => (s.Schedule.Station.ShortSymbol != Station.ShortSymbol || s.Schedule.Time != Schedule.Time) && s.LiveArrival != null))
                         Visible = false;
 
                     var Delays = LiveTrain.Schedules.SelectMany(s => s.Delays);
@@ -216,6 +216,9 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                             {
                                 int CurrentScheduleIndex = LiveTrain.Schedules.IndexOf(CurrentSchedule);
                                 int LiveScheduleIndex = LiveTrain.Schedules.IndexOf(LiveSchedule);
+
+                                if (LiveSchedule.Schedule.Station.ShortSymbol == CurrentSchedule.Schedule.Station.ShortSymbol && LiveSchedule.Schedule.Time == Current.Schedule.Time)
+                                    CurrentScheduleIndex = LiveScheduleIndex;
 
                                 if (CurrentScheduleIndex > LiveScheduleIndex)
                                     Current.State = "beendet";
