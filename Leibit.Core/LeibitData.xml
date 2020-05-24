@@ -2111,19 +2111,19 @@
       </station>
 
       <station name="Bremen-Neustadt" short="HBN" refNr="16" scheduleFile="v16_____.abf">
-        <track name="1">
+        <track name="1" calculateDelay="false">
           <block name="16S1" />
         </track>
-        <track name="2">
+        <track name="2" calculateDelay="false">
           <block name="16S2" />
         </track>
-        <track name="3">
+        <track name="3" calculateDelay="false">
           <block name="16S3" />
         </track>
-        <track name="4">
+        <track name="4" calculateDelay="false">
           <block name="16S4" />
         </track>
-        <track name="5">
+        <track name="5" calculateDelay="false">
           <block name="16S5" />
         </track>
       </station>
