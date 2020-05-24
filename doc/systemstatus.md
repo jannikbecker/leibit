@@ -14,7 +14,7 @@ Der Bereich *Züge* ist nach dem Öffnen des Fensters zunächst zugeklappt und s
 
 - **ZN:** Zugnummer
 - **Block:** Blocknummer des letzten Blocks, der dem Zug zugeordnet wurde
-- **Letzte Betrst:** Die zu dem Block gehörige Betriebsstelle
+- **Letzte Btrst:** Die zu dem Block gehörige Betriebsstelle
 - **Gleis:** Das zu dem Block gehörige Gleis
 - **Richtung:** Fahrtrichtung, in die der Zug zuletzt fuhr
 - **Stand:** Zeit, zu der der Zug zuletzt "gesehen" wurde
