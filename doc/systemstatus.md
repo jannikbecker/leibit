@@ -4,8 +4,10 @@ Das Fenster *Systemstatus* kann über den Menüpunkt *Fenster > Systemstatus* ge
 
 ![Fenster Systemstatus](img/systemstatus.png)
 
+## Geladene Stellwerke
 Im Bereich *Geladene Stellwerke* werden alle Stellwerke angezeigt, deren Züge, Fahrplandaten etc. geladen wurden. Außerdem wird die Zeit angezeigt, die das Stellwerk gerade hat. Rechts daneben kann man sehen, ob das Stellwerk aktiv oder inaktiv ist. Werden regelmäßig Daten vom Stellwerk per ESTWonline empfangen, ist das Stellwerk aktiv und ein grüner Haken wird angezeigt. Werden über einen längeren Zeitraum (in den [Einstellungen](einstellungen.md) konfigurierbar) keine Daten von einem Stellwerk empfangen, wird es als inaktiv gekennzeichnet und ein gelbes Warndreieck wird angezeigt.
 
+## Züge
 Der Bereich *Züge* ist nach dem Öffnen des Fensters zunächst zugeklappt und stellt alle Züge dar, die gerade in der Simulation vorhanden sind oder den Stellbereich in der letzten Zeit durchfahren haben. Wird dieser Bereich aufgeklappt, vergrößert sich das Fenster und eine tabellarische Übersicht der Züge wird sichtbar.
 
 ![Fenster Systemstatus mit Zügen](img/systemstatus_trains.png)
