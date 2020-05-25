@@ -2,11 +2,15 @@
 Die Simulationssoftware *ESTWsim* ist ein von Thomas Bauer entwickeltes Programm, das elektronische Stellwerke (ESTW) sehr realitätsnah simuliert ([ESTWsim Homepage](https://www.estwsim.de)). Bei dem hier beschriebenen LeiBIT handelt es sich um ein Zusatzprogramm, das Zuglaufdaten, örtliche Anweisungen und andere betriebliche Informationen in Anlehnung an das "echte" LeiBIT/LeiDis System darstellt. Zur Kommunikation mit ESTWsim dient das von Bernhard Stief entwickelte Tool *ESTWonline*.
 
 ## Programmoberfläche
+
 ![Programmoberfläche nach dem Start des Programms](img/overview.png)
+
 Beim Start des Programms öffnet sich zunächst eine leere Oberfläche. Das gesamte Programm ist so aufgebaut, dass es verschiedene Fenster gibt, die automatisch oder vom Nutzer selbst geöffnet werden können. Jedes Fenster kann auf dem zur Verfügung stehenden Platz frei verschoben und ggf. vergrößert oder verkleinert werden, sodass die Anordnung der Fenster völlig dynamisch ist. Neue Fenster werden nach Möglichkeit immer so platziert, dass sie sich nicht mit anderen Fenstern überlappen. 
 
 Im laufenden Betrieb kann das dann bspw. so aussehen:
+
 ![Programmoberfläche im laufenden Betrieb](img/overview_windows.png)
+
 Folgende Fenster stehen aktuell zur Verfügung. Für eine Detailbeschreibung bitte auf das jeweilige Fenster klicken.
 - [Zugfahrtinformation (ZFI)](zfi.md)
 - [Bahnhofsfahrordnung (BFO)](bfo.md)
