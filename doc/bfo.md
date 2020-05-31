@@ -1,6 +1,6 @@
 # Bahnhofsfahrordnung (BFO)
 
-Das Fenster *Bahnhofsfahrordnung* kann über den Menüpunkt *Fenster > Bahnhofsfahrordnung (BFO)* oder durch Klick auf den Button ![BFO Button](../Leibit.Client.WPF/Resources/Images/bfo.png) geöffnet werden. Es ist jeweils eine Betriebsstelle auszuwählen, für die der BFO angezeigt werden soll.
+Das Fenster *Bahnhofsfahrordnung* kann über den Menüpunkt *Fenster > Bahnhofsfahrordnung (BFO)* oder durch Klick auf den Button ![BFO Button](../Leibit.Client.WPF/Resources/Images/bfo.png) geöffnet werden. Es ist jeweils eine Betriebsstelle auszuwählen, für die die BFO angezeigt werden soll.
 
 ![Fenster Bahnhofsfahrordnung](img/bfo.png)
 
