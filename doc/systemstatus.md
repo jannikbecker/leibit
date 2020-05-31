@@ -19,3 +19,5 @@ Der Bereich *Züge* ist nach dem Öffnen des Fensters zunächst zugeklappt und s
 - **Richtung:** Fahrtrichtung, in die der Zug zuletzt fuhr
 - **Stand:** Zeit, zu der der Zug zuletzt "gesehen" wurde
 - **Aktionen:** Um die aktuellen Zuglaufdaten zu löschen, kann auf *Löschen* geklickt werden. Es werden alle Ist-Zeiten und Verspätungsinformationen zu dem jeweiligen Zug gelöscht. Dies geschieht nach 12 (Simulations-) Stunden automatisch, damit der Zug am nächsten Tag wieder einen neuen Zuglauf bekommt.
+
+Das Layout der Tabelle lässt sich konfigurieren (siehe [Anpassen des Tabellenlayouts](tabellen.md)). Eine Gruppierung ist hier jedoch nicht möglich. Durch Doppelklick auf eine Zeile kann das [Zuglauf](zuglauf.md) Fenster geöffnet werden.

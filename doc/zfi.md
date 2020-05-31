@@ -25,7 +25,7 @@ In der Tabelle werden alle Züge angezeigt, die sich im Zulauf einer Betriebsste
 
 Die angezeigten Betriebsstellen lassen sich im Fenster [Aufschaltbereich](aufschaltbereich.md) festlegen. Es werden alle Züge angezeigt, die sich aktuell im Stellbereich der eigenen oder einer verbundenen Simulation befinden und die jeweilige Betriebsstelle noch nicht durchfahren haben. Ein Zug verschwindet aus der Übersicht, sobald er die nächste Betriebsstelle erreicht hat oder den Stellbereich verlassen hat.
 
-Durch Doppelklick auf eine Zeile kann das [Zuglauf](zuglauf.md) Fenster geöffnet werden. Wird auf die Spalte *öAno* doppelt geklickt, öffnet sich das Fenster [örtliche Anordnungen](oeano.md). Wenn eine unbegründete Verspätung vorliegt (Spalte *Vsp* = "U") kann durch Doppelklick auf das "U" das Fenster [Verspätungsbegründung](verspaetung.md) geöffnet werden.
+Das Layout der Tabelle lässt sich konfigurieren (siehe [Anpassen des Tabellenlayouts](tabellen.md)). Durch Doppelklick auf eine Zeile kann das [Zuglauf](zuglauf.md) Fenster geöffnet werden. Wird auf die Spalte *öAno* doppelt geklickt, öffnet sich das Fenster [örtliche Anordnungen](oeano.md). Wenn eine unbegründete Verspätung vorliegt (Spalte *Vsp* = "U") kann durch Doppelklick auf das "U" das Fenster [Verspätungsbegründung](verspaetung.md) geöffnet werden.
 
 ## Zugstatus
 Die Spalte *Zugstatus* kann insgesamt vier verschiedene Status annehmen:

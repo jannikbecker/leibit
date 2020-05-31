@@ -17,4 +17,4 @@ Die BFO ist eine tabellarische Darstellung der Fahrpläne aller Züge in einer B
 - **(Grund):** Falls für die Verspätung eine Begründung vorliegt, wird diese hier angezeigt.
 - **Bemerkungen:** Bemerkungen zu dem Zug für die jeweilige Betriebsstelle, z.B. in welche Richtung er fahren soll
 
-Durch Doppelklick auf eine Zeile kann das [Zuglauf](zuglauf.md) Fenster geöffnet werden.
+Das Layout der Tabelle lässt sich konfigurieren (siehe [Anpassen des Tabellenlayouts](tabellen.md)). Durch Doppelklick auf eine Zeile kann das [Zuglauf](zuglauf.md) Fenster geöffnet werden.
