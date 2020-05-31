@@ -16,7 +16,7 @@ Folgende Fenster stehen aktuell zur Verfügung. Für eine Detailbeschreibung bit
 - [Bahnhofsfahrordnung (BFO)](bfo.md)
 - [Zuglauf](zuglauf.md)
 - [Örtliche Anordnungen](oeano.md)
-- [Verspätungsbegründung](delay.md)
+- [Verspätungsbegründung](verspaetung.md)
 - [Aufschaltbereich](aufschaltbereich.md)
 - [Systemstatus](systemstatus.md)
 - [Einstellungen](einstellungen.md)
