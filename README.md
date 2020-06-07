@@ -30,7 +30,7 @@ Folgende Simulationen werden aktuell unterstützt:
     - Eisenach
     - Gotha
 
-Eine vollständige Bedienungsanleitung ist [hier](https://github.com/jannikbecker/leibit/wiki) zu finden. Für den ersten Start bietet die [Schnellstartanleitung](https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung) einen guten Einstiegspunkt.
+Karten der Stellbereiche können [hier](maps) eingesehen werden. Eine vollständige Bedienungsanleitung ist [hier](https://github.com/jannikbecker/leibit/wiki) zu finden. Für den ersten Start bietet die [Schnellstartanleitung](https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung) einen guten Einstiegspunkt.
 
 ## Installation
 Unter [Releases](https://github.com/jannikbecker/leibit/releases) finden sich alle veröffentlichten Versionen. Hier kann die passende Datei (LeiBIT_x86.exe für ein 32-Bit System **oder** LeiBIT_x64.exe für ein 64-Bit System) heruntergeladen werden. Für die Installation ist kein Setup nötig. Die heruntergeladene Datei enthält bereits alle nötigen Komponenten.
