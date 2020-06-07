@@ -4,9 +4,9 @@
 
 *ESTWsim* is a simulation software for electronic railway control centres developed by Thomas Bauer (check out the [ESTWsim website](https://www.estwsim.de)). *LeiBIT for ESTWsim* is a supplementary tool that displays live train schedules and other operational data. It is based on the LeiBIT/LeiDIS system that is used by the Deutsche Bahn (DB) in reality. The tool *ESTWonline* (developed by Bernhard Stief) is used to communicate with the simulation.
 
-![Screenshot of the UI](doc/img/overview_windows.png)
+![Screenshot of the UI](https://raw.githubusercontent.com/wiki/jannikbecker/leibit/img/overview_windows.png)
 
-As 99,9% of *ESTWsim* users are german-speaking, the program and its full [documentation](doc/index.md) are available in german only.
+As 99,9% of *ESTWsim* users are german-speaking, the program and its full [documentation](https://github.com/jannikbecker/leibit/wiki) are available in german only.
 
 ## Installation
 TODO

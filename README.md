@@ -3,7 +3,7 @@
 # LeiBIT für ESTWsim
 Die Simulationssoftware *ESTWsim* ist ein von Thomas Bauer entwickeltes Programm, das elektronische Stellwerke (ESTW) sehr realitätsnah simuliert ([ESTWsim Homepage](https://www.estwsim.de)). Bei dem hier beschriebenen LeiBIT handelt es sich um ein Zusatzprogramm, das Zuglaufdaten, örtliche Anweisungen und andere betriebliche Informationen in Anlehnung an das "echte" LeiBIT/LeiDis System darstellt. Zur Kommunikation mit ESTWsim dient das von Bernhard Stief entwickelte Tool *ESTWonline*.
 
-![LeiBIT Oberfläche](doc/img/overview_windows.png)
+![LeiBIT Oberfläche](https://raw.githubusercontent.com/wiki/jannikbecker/leibit/img/overview_windows.png)
 
 ## Features
 Das LeiBIT für ESTWsim bietet u.a. folgende Features:
@@ -30,7 +30,7 @@ Folgende Simulationen werden aktuell unterstützt:
     - Eisenach
     - Gotha
 
-Eine vollständige Bedienungsanleitung ist [hier](doc/index.md) zu finden. Für den ersten Start bietet die [Schnellstartanleitung](doc/quickstart.md) einen guten Einstiegspunkt.
+Eine vollständige Bedienungsanleitung ist [hier](https://github.com/jannikbecker/leibit/wiki) zu finden. Für den ersten Start bietet die [Schnellstartanleitung](https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung) einen guten Einstiegspunkt.
 
 ## Installation
 TODO
