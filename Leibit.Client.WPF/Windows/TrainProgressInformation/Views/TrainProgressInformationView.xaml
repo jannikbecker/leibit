@@ -62,7 +62,7 @@
                             <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
                         </MultiDataTrigger.Conditions>
 
-                        <Setter Property="Background" Value="LightYellow" />
+                        <Setter Property="Background" Value="Yellow" />
                     </MultiDataTrigger>
 
                     <MultiDataTrigger>
