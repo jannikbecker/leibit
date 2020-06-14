@@ -187,6 +187,7 @@ namespace Leibit.BLL
             settings.LoadInactiveEstws = true;
             settings.AutomaticReadyMessageEnabled = true;
             settings.AutomaticReadyMessageTime = 2;
+            settings.WindowColor = -16728065;
             return settings;
         }
 
