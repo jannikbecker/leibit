@@ -43,10 +43,10 @@ namespace Leibit.Client.WPF.ViewModels
     {
 
         #region - Needs -
-        private InitializationBLL m_InitializationBll;
-        private LiveDataBLL m_LiveDataBll;
-        private SettingsBLL m_SettingsBll;
-        private SerializationBLL m_SerializationBll;
+        private readonly InitializationBLL m_InitializationBll;
+        private readonly LiveDataBLL m_LiveDataBll;
+        private readonly SettingsBLL m_SettingsBll;
+        private readonly SerializationBLL m_SerializationBll;
 
         private Area m_CurrentArea;
         private Thread m_RefreshingThread;
@@ -107,6 +107,16 @@ namespace Leibit.Client.WPF.ViewModels
                 ShowMessage(AreaResult);
                 Areas = new ObservableCollection<Area>();
             }
+
+            var SettingsResult = m_SettingsBll.AreSettingsValid();
+
+            if (SettingsResult.Succeeded)
+            {
+                if (!SettingsResult.Result)
+                    __Settings();
+            }
+            else
+                ShowMessage(SettingsResult);
 
             StatusBarText = "Herzlich willkommen!";
         }

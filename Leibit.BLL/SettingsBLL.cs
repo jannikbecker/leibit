@@ -92,6 +92,33 @@ namespace Leibit.BLL
         }
         #endregion
 
+        #region [AreSettingsValid]
+        public OperationResult<bool> AreSettingsValid()
+        {
+            try
+            {
+                var settings = __GetSettings();
+                __ValidateSettings(settings);
+
+                var result = new OperationResult<bool>();
+                result.Result = true;
+                result.Succeeded = true;
+                return result;
+            }
+            catch (ValidationFailedException)
+            {
+                var result = new OperationResult<bool>();
+                result.Result = false;
+                result.Succeeded = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult<bool> { Message = ex.Message };
+            }
+        }
+        #endregion
+
         #endregion
 
         #region - Helper methods -
