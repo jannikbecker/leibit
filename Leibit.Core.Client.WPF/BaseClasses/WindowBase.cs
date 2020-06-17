@@ -9,6 +9,7 @@ namespace Leibit.Core.Client.BaseClasses
         public WindowBase()
             : base()
         {
+            SourceInitialized += __SourceInitialized;
             Closing += __Closing;
             Closed += __Closed;
             DataContextChanged += __DataContextChanged;
@@ -19,10 +20,16 @@ namespace Leibit.Core.Client.BaseClasses
             Close();
         }
 
+        private void __SourceInitialized(object sender, EventArgs e)
+        {
+            if (DataContext is WindowViewModelBase)
+                (DataContext as WindowViewModelBase).OnSourceInitialized(sender, e);
+        }
+
         private void __Closing(object sender, CancelEventArgs e)
         {
             if (DataContext is WindowViewModelBase)
-                (DataContext as WindowViewModelBase).OnWindowClosing(e);
+                (DataContext as WindowViewModelBase).OnWindowClosing(sender, e);
         }
 
         private void __Closed(object sender, EventArgs e)

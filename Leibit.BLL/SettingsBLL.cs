@@ -69,16 +69,7 @@ namespace Leibit.BLL
             try
             {
                 __ValidateSettings(Setting);
-
-                var settingsFile = new FileInfo(m_SettingsFile);
-
-                if (!settingsFile.Directory.Exists)
-                    settingsFile.Directory.Create();
-
-                var json = JsonConvert.SerializeObject(Setting);
-                File.WriteAllText(m_SettingsFile, json);
-
-                m_Settings = null;
+                __SaveSettings(Setting);
 
                 var Result = new OperationResult<Settings>();
                 Result.Result = __GetSettings();
@@ -119,6 +110,46 @@ namespace Leibit.BLL
         }
         #endregion
 
+        #region [GetWindowSettings]
+        public OperationResult<WindowSettings> GetWindowSettings()
+        {
+            try
+            {
+                var settings = __GetSettings();
+                var result = new OperationResult<WindowSettings>();
+                result.Result = settings.WindowSettings;
+                result.Succeeded = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult<WindowSettings> { Message = ex.Message };
+            }
+        }
+        #endregion
+
+        #region [SaveWindowSettings]
+        public OperationResult<WindowSettings> SaveWindowSettings(WindowSettings windowSettings)
+        {
+            try
+            {
+                var settings = __GetSettings();
+                settings.WindowSettings = windowSettings;
+                __SaveSettings(settings);
+                settings = __GetSettings();
+
+                var result = new OperationResult<WindowSettings>();
+                result.Result = settings.WindowSettings;
+                result.Succeeded = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult<WindowSettings> { Message = ex.Message };
+            }
+        }
+        #endregion
+
         #endregion
 
         #region - Helper methods -
@@ -137,6 +168,19 @@ namespace Leibit.BLL
                 m_Settings = __GetDefaultSettings();
 
             return m_Settings;
+        }
+
+        private void __SaveSettings(Settings settings)
+        {
+            var settingsFile = new FileInfo(m_SettingsFile);
+
+            if (!settingsFile.Directory.Exists)
+                settingsFile.Directory.Create();
+
+            var json = JsonConvert.SerializeObject(settings);
+            File.WriteAllText(m_SettingsFile, json);
+
+            m_Settings = null;
         }
 
         private void __ValidateSettings(Settings Setting)
@@ -188,6 +232,7 @@ namespace Leibit.BLL
             settings.AutomaticReadyMessageEnabled = true;
             settings.AutomaticReadyMessageTime = 2;
             settings.WindowColor = -16728065;
+            settings.WindowSettings = new WindowSettings { Width = 900, Height = 600, Maximized = true };
             return settings;
         }
 

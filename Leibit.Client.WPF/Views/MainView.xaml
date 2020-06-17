@@ -8,8 +8,6 @@
                  xmlns:core="clr-namespace:Leibit.Core.Client.Common;assembly=Leibit.Core.Client.WPF"
                  xmlns:common="clr-namespace:Leibit.Core.Client.Common;assembly=Leibit.Core.Client.WPF"
                  xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
-                 xmlns:local="clr-namespace:Leibit.Client.WPF.Views"
-                 WindowState="Maximized"
                  Title="LeiBIT für ESTWsim">
 
     <Grid x:Name="LayoutRoot">

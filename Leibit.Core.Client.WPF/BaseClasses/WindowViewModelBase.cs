@@ -18,6 +18,13 @@ namespace Leibit.Core.Client.BaseClasses
 
         #region - Protected methods -
 
+        #region [OnSourceInitialized]
+        protected internal virtual void OnSourceInitialized(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
         #region [OnCloseWindow]
         protected virtual void OnCloseWindow()
         {
@@ -27,7 +34,7 @@ namespace Leibit.Core.Client.BaseClasses
         #endregion
 
         #region [OnWindowClosing]
-        protected internal virtual void OnWindowClosing(CancelEventArgs e)
+        protected internal virtual void OnWindowClosing(object sender, CancelEventArgs e)
         {
 
         }

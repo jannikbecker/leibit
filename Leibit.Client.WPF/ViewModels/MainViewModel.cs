@@ -24,6 +24,7 @@ using Leibit.Core.Common;
 using Leibit.Entities;
 using Leibit.Entities.Common;
 using Leibit.Entities.Serialization;
+using Leibit.Entities.Settings;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -444,11 +445,63 @@ namespace Leibit.Client.WPF.ViewModels
 
         #region - Overrides -
 
-        #region [OnWindowClosing]
-        protected override void OnWindowClosing(CancelEventArgs e)
+        #region [OnSourceInitialized]
+        protected override void OnSourceInitialized(object sender, EventArgs e)
         {
-            base.OnWindowClosing(e);
+            base.OnSourceInitialized(sender, e);
+
+            if (sender is Window window)
+            {
+                var windowSettingsResult = m_SettingsBll.GetWindowSettings();
+
+                if (!windowSettingsResult.Succeeded)
+                    return;
+
+                var windowSettings = windowSettingsResult.Result;
+
+                if (windowSettings == null)
+                    return;
+
+                window.Left = windowSettings.Left;
+                window.Top = windowSettings.Top;
+                window.Width = windowSettings.Width;
+                window.Height = windowSettings.Height;
+
+                if (windowSettings.Maximized)
+                    window.WindowState = WindowState.Maximized;
+            }
+        }
+        #endregion
+
+        #region [OnWindowClosing]
+        protected override void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            base.OnWindowClosing(sender, e);
             e.Cancel |= !__CheckForSaving();
+
+            if (!e.Cancel && sender is Window window)
+            {
+                var windowSettings = new WindowSettings();
+
+                if (window.WindowState == WindowState.Maximized)
+                {
+                    windowSettings.Left = window.RestoreBounds.Left;
+                    windowSettings.Top = window.RestoreBounds.Top;
+                    windowSettings.Width = window.RestoreBounds.Width;
+                    windowSettings.Height = window.RestoreBounds.Height;
+                    windowSettings.Maximized = true;
+                }
+                else
+                {
+                    windowSettings.Left = window.Left;
+                    windowSettings.Top = window.Top;
+                    windowSettings.Width = window.Width;
+                    windowSettings.Height = window.Height;
+                    windowSettings.Maximized = false;
+                }
+
+                m_SettingsBll.SaveWindowSettings(windowSettings);
+            }
         }
         #endregion
 

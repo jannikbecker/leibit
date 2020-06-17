@@ -24,6 +24,7 @@ namespace Leibit.Entities.Settings
         public string EstwOnlinePath { get; set; }
         public int? WindowColor { get; set; }
         public List<GridSetting> GridSettings { get; set; }
+        public WindowSettings WindowSettings { get; set; }
 
         public Settings Clone()
         {
@@ -42,6 +43,7 @@ namespace Leibit.Entities.Settings
             Result.EstwOnlinePath = this.EstwOnlinePath;
             Result.WindowColor = this.WindowColor;
             Result.GridSettings = this.GridSettings; // No deep clone required
+            Result.WindowSettings = this.WindowSettings; // No deep clone required
 
             return Result;
         }
