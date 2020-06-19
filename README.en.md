@@ -9,7 +9,7 @@
 As 99,9% of *ESTWsim* users are german-speaking, the program and its full [documentation](https://github.com/jannikbecker/leibit/wiki) are available in german only.
 
 ## Installation
-All published versions can be found under [releases](https://github.com/jannikbecker/leibit/releases). Choose the file that fits your system (LeiBIT_x86.exe for a 32 bit system **or** LeiBIT_x64.exe for a 64 bit system). No setup is required as the downloaded file already contains all required components.
+All published versions can be found under [releases](https://github.com/jannikbecker/leibit/releases). Choose the zip file that fits your system (*x86.zip* for a 32 bit system **or** *x64.zip* for a 64 bit system). The archive contains the file *LeiBIT.exe*. No setup is required as the downloaded file already contains all required components.
 
 ## Contributing and feedback
 Any contribution to this project is highly appreciated. If you'd like to contribute and help make this software better, please submit a pull request.
