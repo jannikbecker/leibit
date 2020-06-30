@@ -1,5 +1,6 @@
 ﻿using Leibit.Core.Client.Common;
 using Leibit.Core.Client.WPF;
+using Leibit.Entities.Settings;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -256,6 +257,16 @@ namespace Leibit.Controls
         }
         #endregion
 
+        #region [DefaultLayout]
+        public GridSetting DefaultLayout
+        {
+            get => (GridSetting)GetValue(DefaultLayoutProperty);
+            set => SetValue(DefaultLayoutProperty, value);
+        }
+
+        public static readonly DependencyProperty DefaultLayoutProperty = DependencyProperty.Register("DefaultLayout", typeof(GridSetting), typeof(LeibitDataGrid), new PropertyMetadata(null));
+        #endregion
+
         #endregion
 
         #region - Private methods -
@@ -457,7 +468,7 @@ namespace Leibit.Controls
             if (LayoutKey == null)
                 return;
 
-            DataGridUtils.LoadLayout(dataGrid, Collection, LayoutKey);
+            DataGridUtils.LoadLayout(dataGrid, Collection, LayoutKey, DefaultLayout);
 
             if (CanGroup)
                 __RefreshGroupArea();
