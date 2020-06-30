@@ -4,6 +4,7 @@
                       xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.SystemState.Views"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                      xmlns:entities="clr-namespace:Leibit.Entities.Settings;assembly=Leibit.Entities"
                       Caption="Systemstatus"
                       ResizeMode="ResizeHeight">
 
@@ -105,6 +106,25 @@
                     <controls:LeibitDataGridColumn Header="Stand" FieldName="CurrentTrain.LastModified"/>
                     <controls:LeibitDataGridColumn Header="Aktionen" FieldName="Actions"/>
                 </controls:LeibitDataGrid.Columns>
+
+                <controls:LeibitDataGrid.DefaultLayout>
+                    <entities:GridSetting>
+                        <entities:GridSetting.ColumnSettings>
+                            <entities:GridColumnSetting ColumnName="CurrentTrain.Train.Number" Position="0" Width="50" />
+                            <entities:GridColumnSetting ColumnName="CurrentTrain.Block.Name" Position="1" Width="60" />
+                            <entities:GridColumnSetting ColumnName="CurrentTrain.Block.Track.Station.Name" Position="2" Width="200" />
+                            <entities:GridColumnSetting ColumnName="CurrentTrain.Block.Track.Name" Position="3" Width="50" />
+                            <entities:GridColumnSetting ColumnName="Direction" Position="4" Width="65" />
+                            <entities:GridColumnSetting ColumnName="CurrentTrain.LastModified" Position="5" Width="65" />
+                            <entities:GridColumnSetting ColumnName="Actions" Position="6" Width="60" />
+                        </entities:GridSetting.ColumnSettings>
+
+                        <entities:GridSetting.SortingColumns>
+                            <entities:GridSortingColumn ColumnName="CurrentTrain.LastModified" SortDirection="Descending"/>
+                            <entities:GridSortingColumn ColumnName="CurrentTrain.Train.Number" SortDirection="Ascending"/>
+                        </entities:GridSetting.SortingColumns>
+                    </entities:GridSetting>
+                </controls:LeibitDataGrid.DefaultLayout>
             </controls:LeibitDataGrid>
         </Expander>
     </Grid>
