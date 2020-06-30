@@ -20,7 +20,10 @@ namespace Leibit.Core.Client.WPF
             m_SettingsBll = new SettingsBLL();
         }
 
-        public static void LoadLayout(DataGrid DataGrid, ICollectionView Collection, string GridName)
+        #region - Public methods -
+
+        #region [LoadLayout]
+        public static void LoadLayout(DataGrid DataGrid, ICollectionView Collection, string GridName, GridSetting defaultLayout)
         {
             if (DataGrid == null)
                 return;
@@ -32,37 +35,14 @@ namespace Leibit.Core.Client.WPF
 
             var gridSetting = settingsResult.Result.GridSettings.FirstOrDefault(s => s.GridName == GridName);
 
-            if (gridSetting == null)
-                return;
-
-            foreach (var Column in DataGrid.Columns)
-            {
-                var columnSetting = gridSetting.ColumnSettings.FirstOrDefault(s => s.ColumnName == Column.GetFieldName());
-
-                if (columnSetting == null)
-                    continue;
-
-                Column.DisplayIndex = columnSetting.Position;
-                Column.Width = new DataGridLength(columnSetting.Width);
-            }
-
-            Collection.GroupDescriptions.Clear();
-            Collection.SortDescriptions.Clear();
-
-            foreach (var Column in gridSetting.GroupedColumns)
-                Collection.GroupDescriptions.Add(new PropertyGroupDescription(Column.ColumnName));
-
-            foreach (var Column in gridSetting.SortingColumns)
-            {
-                Collection.SortDescriptions.Add(new SortDescription(Column.ColumnName, Column.SortDirection));
-
-                var GridColumn = DataGrid.Columns.FirstOrDefault(c => c.GetFieldName() == Column.ColumnName);
-
-                if (GridColumn != null)
-                    GridColumn.SortDirection = Column.SortDirection;
-            }
+            if (gridSetting != null)
+                __LoadLayout(DataGrid, Collection, gridSetting);
+            else if (defaultLayout != null)
+                __LoadLayout(DataGrid, Collection, defaultLayout);
         }
+        #endregion
 
+        #region [SaveLayout]
         public static void SaveLayout(DataGrid DataGrid, ICollectionView Collection, string GridName)
         {
             if (DataGrid == null)
@@ -100,5 +80,45 @@ namespace Leibit.Core.Client.WPF
             if (!saveResult.Succeeded)
                 MessageBox.Show(saveResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+        #endregion
+
+        #endregion
+
+        #region - Private helper -
+
+        #region [__LoadLayout]
+        private static void __LoadLayout(DataGrid DataGrid, ICollectionView Collection, GridSetting gridSetting)
+        {
+            foreach (var Column in DataGrid.Columns)
+            {
+                var columnSetting = gridSetting.ColumnSettings.FirstOrDefault(s => s.ColumnName == Column.GetFieldName());
+
+                if (columnSetting == null)
+                    continue;
+
+                Column.DisplayIndex = columnSetting.Position;
+                Column.Width = new DataGridLength(columnSetting.Width);
+            }
+
+            Collection.GroupDescriptions.Clear();
+            Collection.SortDescriptions.Clear();
+
+            foreach (var Column in gridSetting.GroupedColumns)
+                Collection.GroupDescriptions.Add(new PropertyGroupDescription(Column.ColumnName));
+
+            foreach (var Column in gridSetting.SortingColumns)
+            {
+                Collection.SortDescriptions.Add(new SortDescription(Column.ColumnName, Column.SortDirection));
+
+                var GridColumn = DataGrid.Columns.FirstOrDefault(c => c.GetFieldName() == Column.ColumnName);
+
+                if (GridColumn != null)
+                    GridColumn.SortDirection = Column.SortDirection;
+            }
+        }
+        #endregion
+
+        #endregion
+
     }
 }

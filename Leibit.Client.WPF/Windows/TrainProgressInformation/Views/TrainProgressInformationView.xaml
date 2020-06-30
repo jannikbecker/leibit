@@ -1,12 +1,10 @@
 ﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.TrainProgressInformation.Views.TrainProgressInformationView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
                       xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.TrainProgressInformation.Views"
                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
-                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                      xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+                      xmlns:entities="clr-namespace:Leibit.Entities.Settings;assembly=Leibit.Entities"
                       Caption="Zugfahrtinformation" ResizeMode="ResizeHeight">
 
     <controls:ChildWindow.Style>
@@ -92,6 +90,36 @@
             <controls:LeibitDataGridColumn Header="Gleis" FieldName="Track.Name" />
             <controls:LeibitDataGridColumn Header="Abw. Gleis" FieldName="LiveTrack.Name" />
         </controls:LeibitDataGrid.Columns>
+
+        <controls:LeibitDataGrid.DefaultLayout>
+            <entities:GridSetting>
+                <entities:GridSetting.ColumnSettings>
+                    <entities:GridColumnSetting ColumnName="Station.ShortSymbol" Position="0" Width="40"/>
+                    <entities:GridColumnSetting ColumnName="TrainNumber" Position="1" Width="50"/>
+                    <entities:GridColumnSetting ColumnName="Arrival" Position="2" Width="55"/>
+                    <entities:GridColumnSetting ColumnName="Departure" Position="3" Width="55"/>
+                    <entities:GridColumnSetting ColumnName="DelayString" Position="4" Width="30"/>
+                    <entities:GridColumnSetting ColumnName="ExpectedArrival" Position="5" Width="45"/>
+                    <entities:GridColumnSetting ColumnName="ExpectedDeparture" Position="6" Width="45"/>
+                    <entities:GridColumnSetting ColumnName="DelayInfo" Position="7" Width="30"/>
+                    <entities:GridColumnSetting ColumnName="LocalOrders" Position="8" Width="40"/>
+                    <entities:GridColumnSetting ColumnName="CurrentStation.Name" Position="9" Width="200"/>
+                    <entities:GridColumnSetting ColumnName="State" Position="10" Width="65"/>
+                    <entities:GridColumnSetting ColumnName="Track.Name" Position="11" Width="50"/>
+                    <entities:GridColumnSetting ColumnName="LiveTrack.Name" Position="12" Width="65"/>
+                </entities:GridSetting.ColumnSettings>
+
+                <entities:GridSetting.GroupedColumns>
+                    <entities:GridGroupingColumn ColumnName="Station.ShortSymbol"/>
+                </entities:GridSetting.GroupedColumns>
+
+                <entities:GridSetting.SortingColumns>
+                    <entities:GridSortingColumn ColumnName="Station.ShortSymbol" SortDirection="Ascending"/>
+                    <entities:GridSortingColumn ColumnName="Departure" SortDirection="Ascending"/>
+                    <entities:GridSortingColumn ColumnName="Arrival" SortDirection="Ascending"/>
+                </entities:GridSetting.SortingColumns>
+            </entities:GridSetting>
+        </controls:LeibitDataGrid.DefaultLayout>
     </controls:LeibitDataGrid>
 
 </controls:ChildWindow>
