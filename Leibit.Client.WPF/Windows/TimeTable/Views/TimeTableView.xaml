@@ -1,11 +1,10 @@
 ﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.TimeTable.Views.TimeTableView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
                       xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.TimeTable.Views"
                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
-                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                      xmlns:entities="clr-namespace:Leibit.Entities.Settings;assembly=Leibit.Entities"
                       Caption="{Binding Caption}" ResizeMode="ResizeHeight">
 
     <controls:ChildWindow.Style>
@@ -78,5 +77,27 @@
             <controls:LeibitDataGridColumn Header="(Grund)" FieldName="DelayReason" />
             <controls:LeibitDataGridColumn Header="Bemerkungen" FieldName="Remark" />
         </controls:LeibitDataGrid.Columns>
+
+        <controls:LeibitDataGrid.DefaultLayout>
+            <entities:GridSetting>
+                <entities:GridSetting.ColumnSettings>
+                    <entities:GridColumnSetting ColumnName="Type" Position="0" Width="55"/>
+                    <entities:GridColumnSetting ColumnName="TrainNumber" Position="1" Width="50"/>
+                    <entities:GridColumnSetting ColumnName="Start" Position="2" Width="120"/>
+                    <entities:GridColumnSetting ColumnName="Destination" Position="3" Width="120"/>
+                    <entities:GridColumnSetting ColumnName="Arrival" Position="4" Width="55"/>
+                    <entities:GridColumnSetting ColumnName="Departure" Position="5" Width="55"/>
+                    <entities:GridColumnSetting ColumnName="TrackName" Position="6" Width="50"/>
+                    <entities:GridColumnSetting ColumnName="DelayString" Position="7" Width="30"/>
+                    <entities:GridColumnSetting ColumnName="DelayReason" Position="8" Width="120"/>
+                    <entities:GridColumnSetting ColumnName="Remark" Position="9" Width="250"/>
+                </entities:GridSetting.ColumnSettings>
+
+                <entities:GridSetting.SortingColumns>
+                    <entities:GridSortingColumn ColumnName="Departure" SortDirection="Ascending" />
+                    <entities:GridSortingColumn ColumnName="Arrival" SortDirection="Ascending" />
+                </entities:GridSetting.SortingColumns>
+            </entities:GridSetting>
+        </controls:LeibitDataGrid.DefaultLayout>
     </controls:LeibitDataGrid>
 </controls:ChildWindow>
