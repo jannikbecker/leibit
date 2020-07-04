@@ -69,6 +69,8 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_SystemStateCommand;
         private CommandHandler m_SaveLayoutCommand;
         private CommandHandler m_ClearChildWindowsCommand;
+        private CommandHandler m_ShowHelpCommand;
+        private CommandHandler m_ShowQuickStartHelpCommand;
         #endregion
 
         #region - Ctor -
@@ -88,6 +90,8 @@ namespace Leibit.Client.WPF.ViewModels
             m_SystemStateCommand = new CommandHandler(__ShowSystemStateWindow, false);
             m_SaveLayoutCommand = new CommandHandler(__SaveLayout, true);
             m_ClearChildWindowsCommand = new CommandHandler(__ClearChildWindows, true);
+            m_ShowHelpCommand = new CommandHandler(__ShowHelp, true);
+            m_ShowQuickStartHelpCommand = new CommandHandler(__ShowQuickStartHelp, true);
 
             m_InitializationBll = new InitializationBLL();
             m_LiveDataBll = new LiveDataBLL();
@@ -435,6 +439,26 @@ namespace Leibit.Client.WPF.ViewModels
             get
             {
                 return m_ClearChildWindowsCommand;
+            }
+        }
+        #endregion
+
+        #region [ShowHelpCommand]
+        public ICommand ShowHelpCommand
+        {
+            get
+            {
+                return m_ShowHelpCommand;
+            }
+        }
+        #endregion
+
+        #region [ShowQuickStartHelpCommand]
+        public ICommand ShowQuickStartHelpCommand
+        {
+            get
+            {
+                return m_ShowQuickStartHelpCommand;
             }
         }
         #endregion
@@ -901,6 +925,24 @@ namespace Leibit.Client.WPF.ViewModels
         private void __ClearChildWindows()
         {
             ChildWindows.Clear();
+        }
+        #endregion
+
+        #region [__ShowHelp]
+        private void __ShowHelp()
+        {
+            var startInfo = new ProcessStartInfo("https://github.com/jannikbecker/leibit/wiki");
+            startInfo.UseShellExecute = true;
+            Process.Start(startInfo);
+        }
+        #endregion
+
+        #region [__ShowQuickStartHelp]
+        private void __ShowQuickStartHelp()
+        {
+            var startInfo = new ProcessStartInfo("https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung");
+            startInfo.UseShellExecute = true;
+            Process.Start(startInfo);
         }
         #endregion
 

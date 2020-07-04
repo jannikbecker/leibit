@@ -27,6 +27,8 @@
     <Version>0.1.1</Version>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\Images\flash.png" />
+    <None Remove="Resources\Images\help.png" />
     <None Remove="Resources\Images\info.png" />
     <None Remove="Resources\Images\ok.png" />
     <None Remove="Resources\Images\warning.png" />
@@ -43,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\estw_online.png" />
+    <Resource Include="Resources\Images\flash.png" />
+    <Resource Include="Resources\Images\help.png" />
     <Resource Include="Resources\Images\info.png" />
     <Resource Include="Resources\Images\ok.png" />
     <Resource Include="Resources\Images\settings.png" />

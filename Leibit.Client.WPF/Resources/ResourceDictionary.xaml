@@ -17,5 +17,7 @@
     <BitmapImage x:Key="imgOk" UriSource="/Leibit;component/Resources/Images/ok.png" />
     <BitmapImage x:Key="imgWarning" UriSource="/Leibit;component/Resources/Images/warning.png" />
     <BitmapImage x:Key="imgInfo" UriSource="/Leibit;component/Resources/Images/info.png" />
+    <BitmapImage x:Key="imgHelp" UriSource="/Leibit;component/Resources/Images/help.png" />
+    <BitmapImage x:Key="imgFlash" UriSource="/Leibit;component/Resources/Images/flash.png" />
 
 </ResourceDictionary>
