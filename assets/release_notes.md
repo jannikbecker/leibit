@@ -1,0 +1,3 @@
+- Alle Tabellen (ZFI, BFO und Systemstatus) haben nun ein Default-Layout, sodass die Tabellen beim ersten Aufruf sinnvolle Spaltenbreiten sowie eine sinnvolle Sortierung, Gruppierung usw. haben.
+- Die Online-Dokumentation und die Schnellstartanleitung können direkt aus dem Programm heraus aufgerufen werden.
+- Das Fenster "Über LeiBIT" liefert grundlegende Informationen über das Programm, wie bspw. die Versionsnummer.
