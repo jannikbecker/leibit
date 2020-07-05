@@ -1,6 +1,8 @@
 ﻿using Leibit.BLL;
 using Leibit.Client.WPF.Common;
 using Leibit.Client.WPF.Interfaces;
+using Leibit.Client.WPF.Windows.About.ViewModels;
+using Leibit.Client.WPF.Windows.About.Views;
 using Leibit.Client.WPF.Windows.DelayJustification.ViewModels;
 using Leibit.Client.WPF.Windows.DelayJustification.Views;
 using Leibit.Client.WPF.Windows.ESTWSelection.ViewModels;
@@ -71,6 +73,7 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_ClearChildWindowsCommand;
         private CommandHandler m_ShowHelpCommand;
         private CommandHandler m_ShowQuickStartHelpCommand;
+        private CommandHandler m_AboutCommand;
         #endregion
 
         #region - Ctor -
@@ -92,6 +95,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_ClearChildWindowsCommand = new CommandHandler(__ClearChildWindows, true);
             m_ShowHelpCommand = new CommandHandler(__ShowHelp, true);
             m_ShowQuickStartHelpCommand = new CommandHandler(__ShowQuickStartHelp, true);
+            m_AboutCommand = new CommandHandler(__ShowAboutWindow, true);
 
             m_InitializationBll = new InitializationBLL();
             m_LiveDataBll = new LiveDataBLL();
@@ -459,6 +463,16 @@ namespace Leibit.Client.WPF.ViewModels
             get
             {
                 return m_ShowQuickStartHelpCommand;
+            }
+        }
+        #endregion
+
+        #region [AboutCommand]
+        public ICommand AboutCommand
+        {
+            get
+            {
+                return m_AboutCommand;
             }
         }
         #endregion
@@ -943,6 +957,15 @@ namespace Leibit.Client.WPF.ViewModels
             var startInfo = new ProcessStartInfo("https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung");
             startInfo.UseShellExecute = true;
             Process.Start(startInfo);
+        }
+        #endregion
+
+        #region [__ShowAboutWindow]
+        private void __ShowAboutWindow()
+        {
+            var Window = new AboutView();
+            var VM = new AboutViewModel();
+            __OpenChildWindow(Window, VM);
         }
         #endregion
 

@@ -133,6 +133,14 @@
                         <Image Source="{StaticResource imgFlash}" />
                     </MenuItem.Icon>
                 </MenuItem>
+
+                <Separator/>
+
+                <MenuItem Header="Über LeiBIT" Command="{Binding AboutCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource imgInfo}" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
 
