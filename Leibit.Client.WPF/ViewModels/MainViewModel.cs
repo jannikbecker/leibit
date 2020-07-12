@@ -117,7 +117,7 @@ namespace Leibit.Client.WPF.ViewModels
                 Areas = new ObservableCollection<Area>();
             }
 
-            var SettingsResult = m_SettingsBll.AreSettingsValid();
+            var SettingsResult = m_SettingsBll.AreSettingsComplete();
 
             if (SettingsResult.Succeeded)
             {

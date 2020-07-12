@@ -23,7 +23,7 @@
                 <ItemsControl ItemsSource="{Binding Areas}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Expander Header="{Binding AreaName}">
+                            <Expander Header="{Binding AreaName}" IsExpanded="{Binding DataContext.ArePathsExpanded, Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SettingsView}}}">
                                 <ItemsControl ItemsSource="{Binding Paths}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>

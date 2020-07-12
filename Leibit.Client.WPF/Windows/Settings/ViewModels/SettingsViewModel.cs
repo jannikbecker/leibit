@@ -5,6 +5,8 @@ using Leibit.Entities.Common;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -61,6 +63,10 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 Set(value);
             }
         }
+        #endregion
+
+        #region [ArePathsExpanded]
+        public bool ArePathsExpanded { get; private set; }
         #endregion
 
         #region [DelayJustificationEnabled]
@@ -300,6 +306,8 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 VM.PropertyChanged += AreaVM_PropertyChanged;
                 Areas.Add(VM);
             }
+
+            ArePathsExpanded = !m_Settings.Paths.Any();
         }
 
         private void AreaVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -336,7 +344,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         private void __BrowseEstwOnline()
         {
             var Dialog = new FolderBrowserDialog();
-            Dialog.SelectedPath = EstwOnlinePath;
+            Dialog.SelectedPath = Path.GetFullPath(EstwOnlinePath);
 
             if (Dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 EstwOnlinePath = Dialog.SelectedPath;

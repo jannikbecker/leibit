@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Leibit.BLL
 {
@@ -83,8 +84,8 @@ namespace Leibit.BLL
         }
         #endregion
 
-        #region [AreSettingsValid]
-        public OperationResult<bool> AreSettingsValid()
+        #region [AreSettingsComplete]
+        public OperationResult<bool> AreSettingsComplete()
         {
             try
             {
@@ -92,7 +93,7 @@ namespace Leibit.BLL
                 __ValidateSettings(settings);
 
                 var result = new OperationResult<bool>();
-                result.Result = true;
+                result.Result = settings.Paths.Any();
                 result.Succeeded = true;
                 return result;
             }
@@ -233,6 +234,7 @@ namespace Leibit.BLL
             settings.AutomaticReadyMessageTime = 2;
             settings.WindowColor = -16728065;
             settings.WindowSettings = new WindowSettings { Width = 900, Height = 600, Maximized = true };
+            settings.EstwOnlinePath = @".\ESTWonline\";
             return settings;
         }
 
