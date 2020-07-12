@@ -654,7 +654,7 @@ namespace Leibit.Client.WPF.ViewModels
                             if (StationShortSymbol.IsNullOrWhiteSpace())
                                 continue;
 
-                            var Station = Stations.FirstOrDefault(s => s.ShortSymbol == StationShortSymbol);
+                            var Station = Stations.FirstOrDefault(s => s.ShortSymbol == StationShortSymbol && s.ScheduleFile.IsNotNullOrEmpty());
 
                             if (Station == null)
                                 continue;
