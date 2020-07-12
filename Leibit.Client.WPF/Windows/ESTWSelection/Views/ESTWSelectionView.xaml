@@ -1,13 +1,11 @@
 ﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.ESTWSelection.Views.ESTWSelectionView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:sys="clr-namespace:System;assembly=mscorlib"
                       xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.ESTWSelection.Views"
                       xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.ESTWSelection.ViewModels"
                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
-                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-	                  Caption="Aufschaltbereich">
+                      Caption="Aufschaltbereich">
 
     <controls:ChildWindow.Style>
         <Style TargetType="local:ESTWSelectionView" BasedOn="{StaticResource ChildWindowStyle}" />
@@ -43,7 +41,15 @@
                 <TreeViewItem Header="{Binding Name}" ItemsSource="{Binding Estws}" />
             </TreeView>
 
-            <TextBlock Text="Es wurden keine Stellwerke geladen." Margin="5,5,0,0" Visibility="{Binding HasEstws, Converter={StaticResource InvertedVisibilityConverter}}" />
+            <TextBlock Margin="5,5,0,0" Width="300" TextWrapping="Wrap" Visibility="{Binding HasEstws, Converter={StaticResource InvertedVisibilityConverter}}">
+                <Run>Es sind noch keine Stellwerke geladen.</Run>
+                <LineBreak/>
+                <LineBreak/>
+                <Run Foreground="Gray">
+                    Die Stellwerke werden automatisch geladen, sobald Leibit-Daten von ESTWonline übertragen wurden.
+                    Starten Sie ESTWonline und stellen Sie eine Verbindung mit einer Simulation her.
+                </Run>
+            </TextBlock>
         </Grid>
     </ScrollViewer>
 </controls:ChildWindow>
