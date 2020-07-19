@@ -14,6 +14,7 @@
     <controls:ChildWindow.Resources>
         <conv:IntComparisonConverter x:Key="IsSmallerThanConverter" ComparisonType="Smaller" />
         <conv:IntComparisonConverter x:Key="IsGreaterThanConverter" ComparisonType="Greater" />
+        <conv:VisibilityConverter x:Key="VisibilityConverter" />
     </controls:ChildWindow.Resources>
 
     <controls:LeibitDataGrid ItemsSource="{Binding Trains}"
@@ -78,11 +79,11 @@
         <controls:LeibitDataGrid.Columns>
             <controls:LeibitDataGridColumn Header="Btrst" FieldName="Station.ShortSymbol" />
             <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber" />
-            <controls:LeibitDataGridColumn Header="Ankunft" FieldName="Arrival" />
-            <controls:LeibitDataGridColumn Header="Abfahrt" FieldName="Departure" />
+            <controls:LeibitDataGridColumn Header="Ankunft" FieldName="Arrival" VisibilityBinding="{Binding IsArrivalVisible, Converter={StaticResource VisibilityConverter}}" />
+            <controls:LeibitDataGridColumn Header="Abfahrt" FieldName="Departure" VisibilityBinding="{Binding IsDepartureVisible, Converter={StaticResource VisibilityConverter}}" />
             <controls:LeibitDataGridColumn Header="+/-" FieldName="DelayString" />
-            <controls:LeibitDataGridColumn Header="vsl. an" FieldName="ExpectedArrival" />
-            <controls:LeibitDataGridColumn Header="vsl. ab" FieldName="ExpectedDeparture" />
+            <controls:LeibitDataGridColumn Header="vsl. an" FieldName="ExpectedArrival" VisibilityBinding="{Binding IsExpectedArrivalVisible, Converter={StaticResource VisibilityConverter}}" />
+            <controls:LeibitDataGridColumn Header="vsl. ab" FieldName="ExpectedDeparture" VisibilityBinding="{Binding IsExpectedDepartureVisible, Converter={StaticResource VisibilityConverter}}" />
             <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayInfo" />
             <controls:LeibitDataGridColumn Header="öAno" FieldName="LocalOrders" />
             <controls:LeibitDataGridColumn Header="Akt. Betriebsstelle" FieldName="CurrentStation.Name" />

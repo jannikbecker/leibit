@@ -160,19 +160,11 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     if (ActualTime != null && LiveTrain.LastModified != null && ActualTime > LiveTrain.LastModified.AddMinutes(1))
                         Visible = false;
 
-                    var Current = Trains.FirstOrDefault(t => t.Station.ShortSymbol == Station.ShortSymbol && t.TrainNumber == Train.Number && t.Arrival == Schedule.Arrival && t.Departure == Schedule.Departure);
+                    var Current = Trains.FirstOrDefault(t => t.Station.ShortSymbol == Station.ShortSymbol && t.TrainNumber == Train.Number && t.Schedule.Time == Schedule.Time);
 
                     if (Current == null)
                     {
-                        Current = new TrainStationViewModel(LiveTrain, Schedule)
-                        {
-                            Station = Station,
-                            TrainNumber = Train.Number,
-                            Arrival = Schedule.Arrival,
-                            Departure = Schedule.Departure,
-                            Track = Schedule.Track
-                        };
-
+                        Current = new TrainStationViewModel(LiveTrain, Schedule);
                         IsNew = true;
                     }
 
