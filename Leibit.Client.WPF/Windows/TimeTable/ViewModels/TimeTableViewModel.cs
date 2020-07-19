@@ -146,18 +146,7 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
 
                 if (Current == null)
                 {
-                    Current = new TimeTableItemViewModel(Schedule.Train)
-                    {
-                        Type = Schedule.Train.Type,
-                        TrainNumber = Schedule.Train.Number,
-                        Start = Schedule.Train.Start,
-                        Destination = Schedule.Train.Destination,
-                        Arrival = Schedule.Arrival,
-                        Departure = Schedule.Departure,
-                        Track = Schedule.Track,
-                        Remark = Schedule.Remark
-                    };
-
+                    Current = new TimeTableItemViewModel(Schedule);
                     IsNew = true;
                 }
 
