@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Data;
 
 namespace Leibit.Controls
 {
@@ -8,6 +9,8 @@ namespace Leibit.Controls
         public string Header { get; set; }
 
         public string FieldName { get; set; }
+
+        public Binding VisibilityBinding { get; set; }
 
     }
 }

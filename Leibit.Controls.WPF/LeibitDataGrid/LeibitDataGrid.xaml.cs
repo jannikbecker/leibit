@@ -518,6 +518,10 @@ namespace Leibit.Controls
                     gridColumn.Binding = new Binding(column.FieldName);
                     gridColumn.ElementStyle = new Style(typeof(TextBlock));
                     gridColumn.ElementStyle.Setters.Add(new Setter(MarginProperty, new Thickness(0, 5, 0, 5)));
+
+                    if (column.VisibilityBinding != null)
+                        gridColumn.ElementStyle.Setters.Add(new Setter(VisibilityProperty, column.VisibilityBinding));
+
                     dataGrid.Columns.Add(gridColumn);
                 }
             }

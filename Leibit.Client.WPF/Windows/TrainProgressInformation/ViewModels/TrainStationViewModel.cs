@@ -15,6 +15,28 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         {
             CurrentTrain = Train;
             Schedule = schedule;
+            Station = schedule.Station;
+            TrainNumber = Train.Train.Number;
+            Track = schedule.Track;
+
+            Arrival = schedule.Arrival;
+            Departure = schedule.Departure;
+
+            if (Arrival == null)
+            {
+                Arrival = Departure;
+                IsArrivalVisible = false;
+            }
+            else
+                IsArrivalVisible = true;
+
+            if (Departure == null)
+            {
+                Departure = Arrival;
+                IsDepartureVisible = false;
+            }
+            else
+                IsDepartureVisible = true;
         }
         #endregion
 
@@ -92,6 +114,22 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
+        #region [IsArrivalVisible]
+        public bool IsArrivalVisible
+        {
+            get => Get<bool>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [IsDepartureVisible]
+        public bool IsDepartureVisible
+        {
+            get => Get<bool>();
+            private set => Set(value);
+        }
+        #endregion
+
         #region [Delay]
         public int Delay
         {
@@ -126,7 +164,16 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             }
             set
             {
-                Set(value);
+                if (value == null)
+                {
+                    Set(ExpectedDeparture);
+                    IsExpectedArrivalVisible = false;
+                }
+                else
+                {
+                    Set(value);
+                    IsExpectedArrivalVisible = true;
+                }
             }
         }
         #endregion
@@ -140,8 +187,33 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             }
             set
             {
-                Set(value);
+                if (value == null)
+                {
+                    Set(ExpectedArrival);
+                    IsExpectedDepartureVisible = false;
+                }
+                else
+                {
+                    Set(value);
+                    IsExpectedDepartureVisible = true;
+                }
             }
+        }
+        #endregion
+
+        #region [IsExpectedArrivalVisible]
+        public bool IsExpectedArrivalVisible
+        {
+            get => Get<bool>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [IsExpectedDepartureVisible]
+        public bool IsExpectedDepartureVisible
+        {
+            get => Get<bool>();
+            private set => Set(value);
         }
         #endregion
 
