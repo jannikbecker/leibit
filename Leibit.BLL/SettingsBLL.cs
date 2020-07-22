@@ -197,9 +197,11 @@ namespace Leibit.BLL
                 }
 
                 if (!Directory.Exists(Estw.Value))
-                    Messages.Add(String.Format("Das Verzeichnis '{0}' existiert nicht.", Estw.Value));
-                else if (!File.Exists(Path.Combine(Estw.Value, "estw_sim.exe")))
-                    Messages.Add(String.Format("Das Verzeichnis '{0}' ist kein gültiges ESTWsim-Verzeichnis.", Estw.Value));
+                    Messages.Add($"Das Verzeichnis '{Estw.Value}' existiert nicht.");
+                else if (!Directory.Exists(Path.Combine(Estw.Value, Constants.SCHEDULE_FOLDER))
+                    || !Directory.Exists(Path.Combine(Estw.Value, Constants.LOCAL_ORDERS_FOLDER))
+                    || !Directory.Exists(Path.Combine(Estw.Value, Constants.SHARED_DELAY_FOLDER)))
+                    Messages.Add($"Das Verzeichnis '{Estw.Value}' ist kein gültiges ESTWsim-Verzeichnis.");
             }
 
             if (Setting.DelayJustificationMinutes <= 0)
