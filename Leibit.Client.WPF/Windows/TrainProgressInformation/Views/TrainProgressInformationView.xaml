@@ -78,6 +78,7 @@
 
         <controls:LeibitDataGrid.Columns>
             <controls:LeibitDataGridColumn Header="Btrst" FieldName="Station.ShortSymbol" />
+            <controls:LeibitDataGridColumn Header="Gattung" FieldName="CurrentTrain.Train.Type" />
             <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber" />
             <controls:LeibitDataGridColumn Header="Ankunft" FieldName="Arrival" VisibilityBinding="{Binding IsArrivalVisible, Converter={StaticResource VisibilityConverter}}" />
             <controls:LeibitDataGridColumn Header="Abfahrt" FieldName="Departure" VisibilityBinding="{Binding IsDepartureVisible, Converter={StaticResource VisibilityConverter}}" />
@@ -90,24 +91,29 @@
             <controls:LeibitDataGridColumn Header="Zugstatus" FieldName="State" />
             <controls:LeibitDataGridColumn Header="Gleis" FieldName="Track.Name" />
             <controls:LeibitDataGridColumn Header="Abw. Gleis" FieldName="LiveTrack.Name" />
+            <controls:LeibitDataGridColumn Header="Start" FieldName="CurrentTrain.Train.Start" />
+            <controls:LeibitDataGridColumn Header="Ziel" FieldName="CurrentTrain.Train.Destination" />
         </controls:LeibitDataGrid.Columns>
 
         <controls:LeibitDataGrid.DefaultLayout>
             <entities:GridSetting>
                 <entities:GridSetting.ColumnSettings>
                     <entities:GridColumnSetting ColumnName="Station.ShortSymbol" Position="0" Width="40"/>
-                    <entities:GridColumnSetting ColumnName="TrainNumber" Position="1" Width="50"/>
-                    <entities:GridColumnSetting ColumnName="Arrival" Position="2" Width="55"/>
-                    <entities:GridColumnSetting ColumnName="Departure" Position="3" Width="55"/>
-                    <entities:GridColumnSetting ColumnName="DelayString" Position="4" Width="30"/>
-                    <entities:GridColumnSetting ColumnName="ExpectedArrival" Position="5" Width="45"/>
-                    <entities:GridColumnSetting ColumnName="ExpectedDeparture" Position="6" Width="45"/>
-                    <entities:GridColumnSetting ColumnName="DelayInfo" Position="7" Width="30"/>
-                    <entities:GridColumnSetting ColumnName="LocalOrders" Position="8" Width="40"/>
-                    <entities:GridColumnSetting ColumnName="CurrentStation.Name" Position="9" Width="200"/>
-                    <entities:GridColumnSetting ColumnName="State" Position="10" Width="65"/>
-                    <entities:GridColumnSetting ColumnName="Track.Name" Position="11" Width="50"/>
-                    <entities:GridColumnSetting ColumnName="LiveTrack.Name" Position="12" Width="65"/>
+                    <entities:GridColumnSetting ColumnName="CurrentTrain.Train.Type" Position="1" Width="30"/>
+                    <entities:GridColumnSetting ColumnName="TrainNumber" Position="2" Width="50"/>
+                    <entities:GridColumnSetting ColumnName="Arrival" Position="3" Width="55"/>
+                    <entities:GridColumnSetting ColumnName="Departure" Position="4" Width="55"/>
+                    <entities:GridColumnSetting ColumnName="DelayString" Position="5" Width="30"/>
+                    <entities:GridColumnSetting ColumnName="ExpectedArrival" Position="6" Width="45"/>
+                    <entities:GridColumnSetting ColumnName="ExpectedDeparture" Position="7" Width="45"/>
+                    <entities:GridColumnSetting ColumnName="DelayInfo" Position="8" Width="30"/>
+                    <entities:GridColumnSetting ColumnName="LocalOrders" Position="9" Width="40"/>
+                    <entities:GridColumnSetting ColumnName="CurrentStation.Name" Position="10" Width="200"/>
+                    <entities:GridColumnSetting ColumnName="State" Position="11" Width="65"/>
+                    <entities:GridColumnSetting ColumnName="Track.Name" Position="12" Width="50"/>
+                    <entities:GridColumnSetting ColumnName="LiveTrack.Name" Position="13" Width="65"/>
+                    <entities:GridColumnSetting ColumnName="CurrentTrain.Train.Start" Position="14" Width="120"/>
+                    <entities:GridColumnSetting ColumnName="CurrentTrain.Train.Destination" Position="15" Width="120"/>
                 </entities:GridSetting.ColumnSettings>
 
                 <entities:GridSetting.GroupedColumns>
