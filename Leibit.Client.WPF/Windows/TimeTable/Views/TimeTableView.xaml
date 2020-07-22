@@ -14,6 +14,7 @@
     <controls:ChildWindow.Resources>
         <conv:IntComparisonConverter x:Key="IsSmallerThanConverter" ComparisonType="Smaller" />
         <conv:IntComparisonConverter x:Key="IsGreaterThanConverter" ComparisonType="Greater" />
+        <conv:VisibilityConverter x:Key="VisibilityConverter" />
     </controls:ChildWindow.Resources>
 
     <controls:LeibitDataGrid ItemsSource="{Binding Schedules}"
@@ -70,8 +71,8 @@
             <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber" />
             <controls:LeibitDataGridColumn Header="Von" FieldName="Start" />
             <controls:LeibitDataGridColumn Header="Nach" FieldName="Destination" />
-            <controls:LeibitDataGridColumn Header="Ankunft" FieldName="Arrival" />
-            <controls:LeibitDataGridColumn Header="Abfahrt" FieldName="Departure" />
+            <controls:LeibitDataGridColumn Header="Ankunft" FieldName="Arrival" VisibilityBinding="{Binding IsArrivalVisible, Converter={StaticResource VisibilityConverter}}" />
+            <controls:LeibitDataGridColumn Header="Abfahrt" FieldName="Departure" VisibilityBinding="{Binding IsDepartureVisible, Converter={StaticResource VisibilityConverter}}" />
             <controls:LeibitDataGridColumn Header="Gleis" FieldName="TrackName" />
             <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayString" />
             <controls:LeibitDataGridColumn Header="(Grund)" FieldName="DelayReason" />

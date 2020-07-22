@@ -10,9 +10,34 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
     {
 
         #region - Ctor -
-        public TimeTableItemViewModel(Train Train)
+        public TimeTableItemViewModel(Schedule schedule)
         {
-            CurrentTrain = Train;
+            CurrentTrain = schedule.Train;
+            Type = schedule.Train.Type;
+            TrainNumber = schedule.Train.Number;
+            Start = schedule.Train.Start;
+            Destination = schedule.Train.Destination;
+            Track = schedule.Track;
+            Remark = schedule.Remark;
+
+            Arrival = schedule.Arrival;
+            Departure = schedule.Departure;
+
+            if (Arrival == null)
+            {
+                Arrival = Departure;
+                IsArrivalVisible = false;
+            }
+            else
+                IsArrivalVisible = true;
+
+            if (Departure == null)
+            {
+                Departure = Arrival;
+                IsDepartureVisible = false;
+            }
+            else
+                IsDepartureVisible = true;
         }
         #endregion
 
@@ -107,6 +132,22 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
             {
                 Set(value);
             }
+        }
+        #endregion
+
+        #region [IsArrivalVisible]
+        public bool IsArrivalVisible
+        {
+            get => Get<bool>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [IsDepartureVisible]
+        public bool IsDepartureVisible
+        {
+            get => Get<bool>();
+            private set => Set(value);
         }
         #endregion
 
