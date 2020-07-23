@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace Leibit.BLL
@@ -350,11 +351,18 @@ namespace Leibit.BLL
             if (!File.Exists(ScheduleFile))
                 return;
 
-            // Encoding.Default e.g. for German Umlaute
+            // Encoding e.g. for German Umlaute
             using (var reader = new StreamReader(ScheduleFile, Encoding.GetEncoding("iso-8859-1")))
             {
                 reader.ReadLine();
-                reader.ReadLine();
+
+                var header = reader.ReadLine();
+
+                if (!__GetBounds(header, "VON", out int startFrom, out int startLength)
+                    || !__GetBounds(header, "VT", out int daysFrom, out int daysLength)
+                    || !__GetBounds(header, "BEMERKUNGEN", out int remarkFrom, out int remarkLength)
+                    || !__GetBounds(header, "NACH", out int destinationFrom, out _))
+                    return;
 
                 while (!reader.EndOfStream)
                 {
@@ -374,10 +382,10 @@ namespace Leibit.BLL
                     string sDirection = ScheduleLine.Substring(13, 1);
                     string Type = ScheduleLine.Substring(14, 3).Trim();
                     string sTrack = ScheduleLine.Substring(18, 5).Trim();
-                    string Start = ScheduleLine.Substring(24, 15).Trim();
-                    string sDays = ScheduleLine.Substring(40, 9).Trim().ToLower();
-                    string Remark = ScheduleLine.Substring(50, 39).Trim();
-                    string Destination = ScheduleLine.Substring(90).Trim();
+                    string Start = ScheduleLine.Substring(startFrom, startLength).Trim();
+                    string sDays = ScheduleLine.Substring(daysFrom, daysLength).Trim().ToLower();
+                    string Remark = ScheduleLine.Substring(remarkFrom, remarkLength).Trim();
+                    string Destination = ScheduleLine.Substring(destinationFrom).Trim();
 
                     int TrainNr;
                     if (!Int32.TryParse(sTrain, out TrainNr))
@@ -562,6 +570,26 @@ namespace Leibit.BLL
             }
 
             return true;
+        }
+        #endregion
+
+        #region [__GetBounds]
+        private bool __GetBounds(string headerLine, string header, out int start, out int length)
+        {
+            var match = Regex.Match(headerLine, $"{header}_*");
+
+            if (match != null && match.Success)
+            {
+                start = match.Index;
+                length = match.Length;
+                return true;
+            }
+            else
+            {
+                start = 0;
+                length = 0;
+                return false;
+            }
         }
         #endregion
 
