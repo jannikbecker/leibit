@@ -1,9 +1,10 @@
 ﻿using Leibit.BLL;
 using Leibit.Core.Client.BaseClasses;
 using Leibit.Core.Client.Commands;
-using Leibit.Core.Common;
 using Leibit.Entities.LiveData;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
@@ -24,6 +25,7 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
             CurrentDelay = Delay;
             SaveCommand = new CommandHandler(__Save, false);
             m_LiveDataBll = new LiveDataBLL();
+            AllDelayReasons = DelayReason.GetAllDelayReasons();
         }
         #endregion
 
@@ -64,19 +66,46 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
         }
         #endregion
 
-        #region [Reason]
-        public string Reason
+        #region [ReasonNo]
+        public int? ReasonNo
         {
-            get
+            get => Get<int?>();
+            set
             {
-                return Get<string>();
+                var oldValue = ReasonNo;
+                Set(value);
+
+                if (value != null && value != oldValue)
+                {
+                    var reason = AllDelayReasons.FirstOrDefault(r => r.No == value);
+
+                    if (reason != null)
+                        SelectedReason = reason;
+                    else
+                        ReasonNo = oldValue;
+                }
             }
+        }
+        #endregion
+
+        #region [SelectedReason]
+        public DelayReason SelectedReason
+        {
+            get => Get<DelayReason>();
             set
             {
                 Set(value);
-                (SaveCommand as CommandHandler).SetCanExecute(value.IsNotNullOrWhiteSpace());
+
+                if (value != null)
+                    ReasonNo = value.No;
+
+                (SaveCommand as CommandHandler).SetCanExecute(value != null);
             }
         }
+        #endregion
+
+        #region [AllDelayReasons]
+        public List<DelayReason> AllDelayReasons { get; }
         #endregion
 
         #region [CausedBy]
@@ -119,14 +148,14 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
         private void __Save()
         {
             var Copy = CurrentDelay.Clone();
-            Copy.Reason = Reason;
+            Copy.Reason = SelectedReason.Text;
             Copy.CausedBy = CausedBy;
 
             var SaveResult = m_LiveDataBll.JustifyDelay(Copy);
 
             if (SaveResult.Succeeded)
             {
-                CurrentDelay.Reason = Reason;
+                CurrentDelay.Reason = Copy.Reason;
                 CurrentDelay.CausedBy = CausedBy;
                 DelaySaved?.Invoke(this, EventArgs.Empty);
             }
