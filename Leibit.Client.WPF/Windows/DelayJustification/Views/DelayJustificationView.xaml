@@ -7,7 +7,7 @@
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
                       xmlns:selector="clr-namespace:Leibit.Core.Client.Common;assembly=Leibit.Core.Client.WPF"
                       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                      Width="560"
+                      Width="510"
                       Caption="{Binding Caption}">
 
     <controls:ChildWindow.Style>
@@ -44,7 +44,7 @@
 
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="Ursache" Margin="0,2,10,0" />
 
-                        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,20">
+                        <Grid x:Name="grdReason" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
@@ -72,7 +72,7 @@
 
                                         <selector:ComboBoxTemplateSelector.DropDownTemplate>
                                             <DataTemplate>
-                                                <Grid>
+                                                <Grid HorizontalAlignment="Stretch">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="50"/>
                                                         <ColumnDefinition Width="*"/>
@@ -88,8 +88,10 @@
 
                                 <ComboBox.Resources>
                                     <Style TargetType="Popup">
-                                        <Setter Property="HorizontalOffset" Value="-50"/>
+                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=grdReason}"/>
                                         <Setter Property="MaxHeight" Value="100"/>
+                                        <Setter Property="Placement" Value="Bottom"/>
+                                        <Setter Property="PlacementTarget" Value="{Binding ElementName=grdReason}"/>
                                     </Style>
                                 </ComboBox.Resources>
                             </ComboBox>
