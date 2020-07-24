@@ -17,14 +17,14 @@
         <conv:ColorConverter x:Key="ColorConverter" />
     </controls:ChildWindow.Resources>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">
         <StackPanel Orientation="Vertical" Margin="10" Grid.IsSharedSizeScope="True">
             <GroupBox Header="Pfade">
-                <ItemsControl ItemsSource="{Binding Areas}">
+                <ItemsControl ItemsSource="{Binding Areas}" IsTabStop="False">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Expander Header="{Binding AreaName}" IsExpanded="{Binding DataContext.ArePathsExpanded, Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SettingsView}}}">
-                                <ItemsControl ItemsSource="{Binding Paths}">
+                                <ItemsControl ItemsSource="{Binding Paths}" IsTabStop="False">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Grid>
@@ -36,7 +36,7 @@
 
                                                 <Label Grid.Column="0" Content="{Binding EstwName}" VerticalAlignment="Center" />
                                                 <TextBox Grid.Column="1" Text="{Binding Path, Mode=TwoWay}" Margin="5" />
-                                                <Button Grid.Column="2" Content="..." Margin="5" Command="{Binding BrowseCommand}" />
+                                                <Button Grid.Column="2" Content="..." Margin="5" Command="{Binding BrowseCommand}" IsTabStop="False" />
                                             </Grid>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
@@ -151,7 +151,7 @@
 
                     <Label Grid.Row="0" Grid.Column="0" Content="Pfad zu ESTWonline" VerticalAlignment="Center" />
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding EstwOnlinePath, Mode=TwoWay}" Margin="5" />
-                    <Button Grid.Row="0" Grid.Column="2" Content="..." Margin="5" Command="{Binding EstwOnlineCommand}" />
+                    <Button Grid.Row="0" Grid.Column="2" Content="..." Margin="5" Command="{Binding EstwOnlineCommand}" IsTabStop="False" />
 
                     <Label Grid.Row="1" Grid.Column="0" Content="Farbe der Fenster" VerticalAlignment="Center" />
                     <xctk:ColorPicker Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
