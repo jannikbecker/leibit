@@ -1,3 +1,5 @@
-- Alle Tabellen (ZFI, BFO und Systemstatus) haben nun ein Default-Layout, sodass die Tabellen beim ersten Aufruf sinnvolle Spaltenbreiten sowie eine sinnvolle Sortierung, Gruppierung usw. haben.
-- Die Online-Dokumentation und die Schnellstartanleitung können direkt aus dem Programm heraus aufgerufen werden.
-- Das Fenster "Über LeiBIT" liefert grundlegende Informationen über das Programm, wie bspw. die Versionsnummer.
+- Die Prüfung der ESTWsim-Verzeichnisse wurde angepasst. Es wird nun nicht mehr die Existenz der "estw_sim.exe" geprüft. Stattdessen müssen die Ordner "Bahnhof Fahrplan", "Bahnhof Anweisungen" und "Kommunikation" vorhanden sein.
+- In der Zugfahrtinformation (ZFI) wurden die Spalten "Gattung", "Start" und "Ziel" ergänzt.
+- Die Sortierung der Tabellen in ZFI und BFO wurde verbessert.
+- Das Bemerkungsfeld im Fahrplan ist nun nicht mehr abgeschnitten. Dieser Bug betraf Fulda und Bad Hersfeld.
+- Die Liste der Verspätungsbegründungen wurde überarbeitet und um die offiziellen Codierungen ergänzt.
