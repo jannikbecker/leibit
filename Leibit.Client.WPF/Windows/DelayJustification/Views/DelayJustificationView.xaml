@@ -5,8 +5,9 @@
                       xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.DelayJustification.Views"
                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                      xmlns:selector="clr-namespace:Leibit.Core.Client.Common;assembly=Leibit.Core.Client.WPF"
                       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                      Width="380"
+                      Width="510"
                       Caption="{Binding Caption}">
 
     <controls:ChildWindow.Style>
@@ -17,8 +18,8 @@
         <conv:VisibilityConverter x:Key="InvertedVisibilityConverter" Invert="True" />
     </controls:ChildWindow.Resources>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <ItemsControl ItemsSource="{Binding Delays}" Margin="10">
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">
+        <ItemsControl ItemsSource="{Binding Delays}" Margin="10" IsTabStop="False">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -35,45 +36,77 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5,0,0,5">
+                        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,5">
                             <TextBlock Text="{Binding MinutesString}" FontWeight="Bold" />
                             <TextBlock Text=" von " FontWeight="Bold" />
                             <TextBlock Text="{Binding StationName}" FontWeight="Bold" />
                         </StackPanel>
 
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Grund" Margin="0,0,5,0" />
-                        <ListBox Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Reason, Mode=TwoWay}" Margin="0,0,0,5" Height="100">
-                            <ListBox.Items>
-                                <sys:String>Abstand, Kreuzung, Fahrstraßenausschluss</sys:String>
-                                <sys:String>Überholung</sys:String>
-                                <sys:String>Fahrzeitüberschreitung</sys:String>
-                                <sys:String>Anschluss</sys:String>
-                                <sys:String>Wagenübergang</sys:String>
-                                <sys:String>Verzögerung bei der planmäßigen Zugbildung</sys:String>
-                                <sys:String>Außerplanmäßige Zugbildung</sys:String>
-                                <sys:String>Behinderung durch Rangierbetrieb</sys:String>
-                                <sys:String>Warten auf Fahrgäste</sys:String>
-                                <sys:String>Warten auf Betriebspersonal</sys:String>
-                                <sys:String>Fehlhandlungen Betriebspersonal</sys:String>
-                                <sys:String>Signalstörung</sys:String>
-                                <sys:String>Weichenstörung</sys:String>
-                                <sys:String>BÜ-Störung</sys:String>
-                                <sys:String>Linienzugbeeinflussung (LZB)</sys:String>
-                                <sys:String>Schäden am Bahnkörper</sys:String>
-                                <sys:String>Sonstige technische Störungen</sys:String>
-                                <sys:String>Verspätete Übergabe an DB Netz</sys:String>
-                            </ListBox.Items>
-                        </ListBox>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Ursache" Margin="0,2,10,0" />
 
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Wegen" Margin="0,0,5,0" />
-                        <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1"
-                                                Value="{Binding CausedBy, Mode=TwoWay}"
-                                                Focusable="True"
-                                                Width="50"
-                                                HorizontalAlignment="Left"
+                        <Grid x:Name="grdReason" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,0,0,20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <xctk:IntegerUpDown Grid.Column="0"
+                                                Value="{Binding ReasonNo, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                                 ShowButtonSpinner="False"
-                                                Minimum="1"
-                                                Maximum="99999" />
+                                                TextAlignment="Left"
+                                                Width="50"/>
+
+                            <ComboBox Grid.Column="1"
+                                      ItemsSource="{Binding AllDelayReasons}"
+                                      SelectedItem="{Binding SelectedReason, Mode=TwoWay}"
+                                      IsTabStop="False"
+                                      HorizontalAlignment="Stretch">
+                                
+                                <ComboBox.ItemTemplateSelector>
+                                    <selector:ComboBoxTemplateSelector>
+                                        <selector:ComboBoxTemplateSelector.SelectedItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Text}"/>
+                                            </DataTemplate>
+                                        </selector:ComboBoxTemplateSelector.SelectedItemTemplate>
+
+                                        <selector:ComboBoxTemplateSelector.DropDownTemplate>
+                                            <DataTemplate>
+                                                <Grid HorizontalAlignment="Stretch">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <TextBlock Grid.Column="0" Text="{Binding No}"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding Text}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </selector:ComboBoxTemplateSelector.DropDownTemplate>
+                                    </selector:ComboBoxTemplateSelector>
+                                </ComboBox.ItemTemplateSelector>
+
+                                <ComboBox.Resources>
+                                    <Style TargetType="Popup">
+                                        <Setter Property="Width" Value="{Binding ActualWidth, ElementName=grdReason}"/>
+                                        <Setter Property="MaxHeight" Value="100"/>
+                                        <Setter Property="Placement" Value="Bottom"/>
+                                        <Setter Property="PlacementTarget" Value="{Binding ElementName=grdReason}"/>
+                                    </Style>
+                                </ComboBox.Resources>
+                            </ComboBox>
+                        </Grid>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Verursachender Zug" Margin="0,2,10,0" />
+                        <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1"
+                                            Value="{Binding CausedBy, Mode=TwoWay}"
+                                            Width="50"
+                                            Height="22"
+                                            HorizontalAlignment="Left"
+                                            TextAlignment="Left"
+                                            ShowButtonSpinner="False"
+                                            Minimum="1"
+                                            Maximum="99999" />
 
                         <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Speichern" Command="{Binding SaveCommand}" Margin="0,10,10,10" HorizontalAlignment="Right" Padding="4" />
                         <Border Grid.Row="4" Grid.ColumnSpan="2" Height="2" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="LightGray" Margin="0,5,0,5" Visibility="{Binding IsLast, Converter={StaticResource InvertedVisibilityConverter}}" />

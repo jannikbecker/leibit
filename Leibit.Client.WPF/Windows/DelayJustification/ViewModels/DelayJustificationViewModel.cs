@@ -62,7 +62,7 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
         {
             var delay = sender as DelayInfoViewModel;
             Delays.Remove(delay);
-            OnStatusBarTextChanged(String.Format("Verspätung für Zug {0} begründet", CurrentTrain.Train.Number));
+            OnStatusBarTextChanged($"Verspätung für Zug {CurrentTrain.Train.Number} begründet");
 
             if (Delays.Count == 0)
                 OnCloseWindow();
