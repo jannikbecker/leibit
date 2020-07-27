@@ -27,7 +27,7 @@
     <None Remove="Resources\Images\arrow_up.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="4.6.79" />
+    <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="4.6.82" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Controls.xaml">
