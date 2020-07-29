@@ -63,21 +63,20 @@ namespace Leibit.Core.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;leibit&gt;
-        ///  &lt;area id=&quot;nhth&quot; name=&quot;Nordhessen/Thüringen&quot;&gt;
-        ///    &lt;estw id=&quot;FEL&quot; name=&quot;Elm&quot; dataFile=&quot;leibit_ELM.dat&quot;&gt;
-        ///      &lt;station name=&quot;Abzw Zollberg&quot; short=&quot;NZG&quot; refNr=&quot;10&quot;&gt;
-        ///        &lt;track calculateDelay=&quot;false&quot; isPlatform=&quot;false&quot;&gt;
-        ///          &lt;block name=&quot;10B54&quot; direction=&quot;right&quot;/&gt;
-        ///          &lt;block name=&quot;11B351&quot; direction=&quot;right&quot;/&gt;
-        ///        &lt;/track&gt;
-        ///      &lt;/station&gt;
+        ///  &lt;area id=&quot;nhth&quot; name=&quot;Mitteldeutschland&quot;&gt;
+        ///    &lt;estw id=&quot;FEL&quot; name=&quot;Elm&quot; dataFile=&quot;leibit_ELM.dat&quot;/&gt;
+        ///    &lt;estw id=&quot;FFU&quot; name=&quot;Fulda&quot; dataFile=&quot;leibit_FULDA.dat&quot;/&gt;
+        ///    &lt;estw id=&quot;FBHF&quot; name=&quot;Bad Hersfeld&quot; dataFile=&quot;leibit_BAD HERSFELD.dat&quot;/&gt;
+        ///    &lt;estw id=&quot;FB&quot; name=&quot;Bebra&quot; dataFile=&quot;leibit_BEBRA PBF.dat&quot;/&gt;
+        ///    &lt;estw id=&quot;UEI&quot; name=&quot;Eisenach&quot; dataFile=&quot;leibit_EISENACH.dat&quot;/&gt;
+        ///    &lt;estw id=&quot;UGO&quot; name=&quot;Gotha&quot; dataFile=&quot;leibit_GOTHA.dat&quot;/&gt;
+        ///  &lt;/area&gt;
         ///
-        ///      &lt;station name=&quot;Rieneck Hp&quot; short=&quot;NRCK&quot; refNr=&quot;11&quot; scheduleFile=&quot;B11_____.ABF&quot;&gt;
-        ///        [rest of string was truncated]&quot;;.
+        ///  &lt;ar [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string LeibitData {
+        public static string Areas {
             get {
-                return ResourceManager.GetString("LeibitData", resourceCulture);
+                return ResourceManager.GetString("Areas", resourceCulture);
             }
         }
     }

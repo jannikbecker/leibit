@@ -1,4 +1,5 @@
 ﻿using Leibit.Core.Common;
+using Leibit.Core.Properties;
 using Leibit.Core.Scheduling;
 using Leibit.Entities;
 using Leibit.Entities.Common;
@@ -17,7 +18,7 @@ namespace Leibit.BLL
     {
 
         #region - Needs -
-        private XmlDocument m_XmlDoc;
+        private XmlDocument m_AreasXml;
         private SettingsBLL m_SettingsBll;
         private object m_LockXml = new object();
         #endregion
@@ -30,19 +31,19 @@ namespace Leibit.BLL
         #endregion
 
         #region - Singletons -
-        private XmlDocument XmlDocument
+        private XmlDocument AreasXml
         {
             get
             {
                 lock (m_LockXml)
                 {
-                    if (m_XmlDoc == null)
+                    if (m_AreasXml == null)
                     {
-                        m_XmlDoc = new XmlDocument();
-                        m_XmlDoc.LoadXml(Leibit.Core.Properties.Resources.LeibitData);
+                        m_AreasXml = new XmlDocument();
+                        m_AreasXml.LoadXml(Resources.Areas);
                     }
 
-                    return m_XmlDoc;
+                    return m_AreasXml;
                 }
             }
         }
@@ -69,7 +70,7 @@ namespace Leibit.BLL
                 var Result = new OperationResult<List<Area>>();
                 Result.Result = new List<Area>();
 
-                foreach (XmlNode AreaNode in XmlDocument.DocumentElement.SelectNodes("area"))
+                foreach (XmlNode AreaNode in AreasXml.DocumentElement.SelectNodes("area"))
                 {
                     var Area = __GetArea(AreaNode);
                     if (Area == null)
@@ -94,7 +95,6 @@ namespace Leibit.BLL
         #endregion
 
         #region [LoadESTW]
-        //public OperationResult<bool> LoadESTW(ESTW Estw, BackgroundWorker worker)
         public OperationResult<bool> LoadESTW(ESTW Estw)
         {
             try
@@ -102,7 +102,6 @@ namespace Leibit.BLL
                 var Result = new OperationResult<bool>();
                 Estw.Stations.Clear();
                 Estw.Blocks.Clear();
-                //Estw.Area.Trains.Clear();
                 Estw.IsLoaded = false;
 
                 var PathResult = SettingsBLL.GetPath(Estw.Id);
@@ -114,84 +113,92 @@ namespace Leibit.BLL
                     return Result;
                 }
 
-                var EstwNode = XmlDocument.DocumentElement.SelectSingleNode(String.Format("descendant::estw[@id='{0}']", Estw.Id));
-
-                if (EstwNode == null)
+                using (var xmlStream = typeof(Resources).Assembly.GetManifestResourceStream($"Leibit.Core.Data.{Estw.Area.Id}.{Estw.Id}.xml"))
                 {
-                    Result.Message = "Ungültiges ESTW";
-                    Result.Succeeded = false;
-                    return Result;
-                }
-
-                var Stations = EstwNode.SelectNodes("station");
-                //double i = 0;
-                Result.Result = true;
-
-                foreach (XmlNode StationNode in Stations)
-                {
-                    Station Station = null;
-
-                    try
+                    if (xmlStream == null)
                     {
-                        Station = __GetStation(StationNode, Estw);
-                        if (Station == null)
-                            continue;
-
-                        var Tracks = StationNode.SelectNodes("track");
-
-                        foreach (XmlNode TrackNode in Tracks)
-                        {
-                            var Track = __GetTrack(TrackNode, Station);
-                            if (Track == null)
-                                continue;
-
-                            foreach (XmlNode ChildTrackNode in TrackNode.SelectNodes("track"))
-                            {
-                                __GetTrack(ChildTrackNode, Station, Track);
-                            }
-                        }
-
-                        foreach (XmlNode TrackNode in Tracks)
-                        {
-                            var TrackName = TrackNode.Attributes["name"];
-                            if (TrackName == null)
-                                continue;
-
-                            var Track = Station.Tracks.FirstOrDefault(t => t.Name == TrackName.InnerText);
-                            if (Track == null)
-                                continue;
-
-                            __GetAlternatives(TrackNode, Track);
-
-                            foreach (XmlNode ChildTrackNode in TrackNode.SelectNodes("track"))
-                            {
-                                var ChildTrackName = ChildTrackNode.Attributes["name"];
-                                if (ChildTrackName == null)
-                                    continue;
-
-                                var ChildTrack = Station.Tracks.FirstOrDefault(t => t.Name == ChildTrackName.InnerText);
-                                if (ChildTrack == null)
-                                    continue;
-
-                                __GetAlternatives(ChildTrackNode, ChildTrack);
-                            }
-                        }
-
-                        __GetSchedule(Station, PathResult.Result);
-                        __ResolveDuplicates(Station.Schedules);
-                        __GetLocalOrders(Station, PathResult.Result);
-                        Result.Succeeded = true;
-
-                        //i++;
-                        //__ReportProgress(worker, (int)Math.Round(i / Stations.Count * 100), null);
+                        Result.Message = "ESTW-Projektierung nicht gefunden";
+                        Result.Succeeded = false;
+                        return Result;
                     }
-                    catch (Exception ex)
-                    {
-                        if (Station != null)
-                            Estw.Stations.Remove(Station);
 
-                        Result.Message = ex.Message;
-                        Result.Result = false;
+                    var xml = new XmlDocument();
+                    xml.Load(xmlStream);
+                    var EstwNode = xml.DocumentElement;
+
+                    if (EstwNode == null)
+                    {
+                        Result.Message = "Ungültiges ESTW";
+                        Result.Succeeded = false;
+                        return Result;
+                    }
+
+                    var Stations = EstwNode.SelectNodes("station");
+                    Result.Result = true;
+
+                    foreach (XmlNode StationNode in Stations)
+                    {
+                        Station Station = null;
+
+                        try
+                        {
+                            Station = __GetStation(StationNode, Estw);
+                            if (Station == null)
+                                continue;
+
+                            var Tracks = StationNode.SelectNodes("track");
+
+                            foreach (XmlNode TrackNode in Tracks)
+                            {
+                                var Track = __GetTrack(TrackNode, Station);
+                                if (Track == null)
+                                    continue;
+
+                                foreach (XmlNode ChildTrackNode in TrackNode.SelectNodes("track"))
+                                {
+                                    __GetTrack(ChildTrackNode, Station, Track);
+                                }
+                            }
+
+                            foreach (XmlNode TrackNode in Tracks)
+                            {
+                                var TrackName = TrackNode.Attributes["name"];
+                                if (TrackName == null)
+                                    continue;
+
+                                var Track = Station.Tracks.FirstOrDefault(t => t.Name == TrackName.InnerText);
+                                if (Track == null)
+                                    continue;
+
+                                __GetAlternatives(TrackNode, Track);
+
+                                foreach (XmlNode ChildTrackNode in TrackNode.SelectNodes("track"))
+                                {
+                                    var ChildTrackName = ChildTrackNode.Attributes["name"];
+                                    if (ChildTrackName == null)
+                                        continue;
+
+                                    var ChildTrack = Station.Tracks.FirstOrDefault(t => t.Name == ChildTrackName.InnerText);
+                                    if (ChildTrack == null)
+                                        continue;
+
+                                    __GetAlternatives(ChildTrackNode, ChildTrack);
+                                }
+                            }
+
+                            __GetSchedule(Station, PathResult.Result);
+                            __ResolveDuplicates(Station.Schedules);
+                            __GetLocalOrders(Station, PathResult.Result);
+                            Result.Succeeded = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            if (Station != null)
+                                Estw.Stations.Remove(Station);
+
+                            Result.Message = ex.Message;
+                            Result.Result = false;
+                        }
                     }
                 }
 

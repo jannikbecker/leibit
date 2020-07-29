@@ -39,17 +39,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Areas.xml" />
-    <Content Include="Data\nhth\FB.xml" />
-    <Content Include="Data\nhth\FBHF.xml" />
-    <Content Include="Data\nhth\FEL.xml" />
-    <Content Include="Data\nhth\FFU.xml" />
-    <Content Include="Data\nhth\UEI.xml" />
-    <Content Include="Data\nhth\UGO.xml" />
-    <Content Include="Data\nord\ABLZ.xml" />
-    <Content Include="Data\nord\AH.xml" />
-    <Content Include="Data\nord\AHAR.xml" />
-    <Content Include="Data\nord\AROG.xml" />
-    <Content Include="Data\nord\HB.xml" />
+    <EmbeddedResource Include="Data\nhth\FB.xml" />
+    <EmbeddedResource Include="Data\nhth\FBHF.xml" />
+    <EmbeddedResource Include="Data\nhth\FEL.xml" />
+    <EmbeddedResource Include="Data\nhth\FFU.xml" />
+    <EmbeddedResource Include="Data\nhth\UEI.xml" />
+    <EmbeddedResource Include="Data\nhth\UGO.xml" />
+    <EmbeddedResource Include="Data\nord\ABLZ.xml" />
+    <EmbeddedResource Include="Data\nord\AH.xml" />
+    <EmbeddedResource Include="Data\nord\AHAR.xml" />
+    <EmbeddedResource Include="Data\nord\AROG.xml" />
+    <EmbeddedResource Include="Data\nord\HB.xml" />
     <Content Include="LeibitData.xml">
       <SubType>Designer</SubType>
     </Content>
