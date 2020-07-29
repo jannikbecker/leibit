@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Abzw Rainweg" short="AAR" refNr="23">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="23S115" direction="right"/>
+      <block name="23S560" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Üst Hamburg Sternschanze" short="ASTZ" refNr="22">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="23S107"/>
+      <block name="22S110"/>
+    </track>
+  </station>
+
+  <station name="Hamburg Dammtor Hp" short="ADF" refNr="22" scheduleFile="v22_____.abf">
+    <track name="103" calculateDelay="false">
+      <block name="22S103"/>
+    </track>
+    <track name="106" calculateDelay="false">
+      <block name="22S106"/>
+    </track>
+  </station>
+
+  <station name="Hamburg Hbf" short="AH" refNr="20" scheduleFile="g20_____.abf" localOrderFile="Bf20____.abf">
+    <track name="5">
+      <block name="20G205"/>
+      <block name="20G305"/>
+    </track>
+    <track name="6">
+      <block name="20G206"/>
+      <block name="20G306"/>
+    </track>
+    <track name="7">
+      <block name="20G207"/>
+      <block name="20G307"/>
+    </track>
+    <track name="8">
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+
+      <track name="8A">
+        <block name="20G408"/>
+      </track>
+      <track name="8B">
+        <block name="20G208"/>
+        <block name="20G308"/>
+      </track>
+    </track>
+    <track name="9">
+      <block name="20G409"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8B"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+    </track>
+    <track name="10">
+      <block name="20G110"/>
+      <block name="20G210"/>
+      <block name="20G410"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8B"/>
+      <alternative track="9"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+    </track>
+    <track name="11">
+      <block name="20G211"/>
+      <block name="20G411"/>
+    </track>
+    <track name="12">
+      <block name="20G212"/>
+      <block name="20G412"/>
+    </track>
+    <track name="13">
+      <block name="20G213"/>
+      <block name="20G413"/>
+    </track>
+    <track name="14">
+      <block name="20G214"/>
+      <block name="20G414"/>
+    </track>
+  </station>
+
+  <station name="Hamburg Hasselbrook Hp" short="AHSF" refNr="20" scheduleFile="b20_____.abf">
+    <track name="364" calculateDelay="false">
+      <block name="20B364"/>
+    </track>
+    <track name="393" calculateDelay="false">
+      <block name="20B393"/>
+    </track>
+  </station>
+
+  <station name="Hamburg-Wandsbek" short="AWN" refNr="20">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="20BN" direction="left"/>
+      <block name="20B362" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Üst Hamburg Anckelmannsplatz" short="AAMP" refNr="18" scheduleFile="b18_____.abf">
+    <track name="498" isPlatform="false">
+      <block name="20B498" direction="left"/>
+    </track>
+
+    <track name="598" isPlatform="false">
+      <block name="20B497" direction="right"/>
+      <block name="20B598" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Hamburg-Rothenburgsort" short="AHRO" refNr="30">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="20B497" direction="left"/>
+      <block name="20B199" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Abzw Ericus" short="AERI" refNr="20" scheduleFile="b19_____.abf" localOrderFile="ericus__.abf">
+    <track name="000" isPlatform="false">
+      <block name="20B199" direction="right"/>
+    </track>
+
+    <track name="529" isPlatform="false">
+      <block name="20B926" direction="left"/>
+      <block name="64B529" direction="right"/>
+    </track>
+
+    <track name="929" isPlatform="false">
+      <block name="20B526" direction="left"/>
+      <block name="20B929" direction="right"/>
+    </track>
+
+    <track name="979" isPlatform="false">
+      <block name="20B426" direction="right"/>
+    </track>
+
+    <track name="701">
+      <block name="20G701"/>
+    </track>
+  </station>
+
+  <station name="Abzw Norderelbbrücke" short="ANEB" refNr="20">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="20B416" direction="left"/>
+      <block name="20B426" direction="left"/>
+      <block name="64S034" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Abzw Oberhafen" short="AOHA" refNr="64" scheduleFile="b64_____.abf">
+    <track name="031" isPlatform="false">
+      <block name="64SK32" direction="left"/>
+      <block name="64B529" direction="left"/>
+      <block name="64S021" direction="right"/>
+    </track>
+
+    <track name="524" isPlatform="false">
+      <block name="20B929" direction="left"/>
+      <block name="64S022" direction="right"/>
+    </track>
+
+    <track name="514" isPlatform="false"/>
+  </station>
+
+  <station name="Abzw Veddel" short="AVL" refNr="64" scheduleFile="g64_____.abf">
+    <track name="012" isPlatform="false">
+      <block name="64S002"/>
+    </track>
+    <track name="024" isPlatform="false">
+      <block name="64S014"/>
+    </track>
+    <track name="413" isPlatform="false">
+      <block name="64S413"/>
+    </track>
+    <track name="513" isPlatform="false">
+      <block name="64S001"/>
+    </track>
+  </station>
+
+  <station name="Abzw Hamburg-Wilhelmsburg" short="AWLBA" refNr="63">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="63S409" direction="left"/>
+      <block name="63S509" direction="left"/>
+      <block name="63S408" direction="right"/>
+      <block name="63S508" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hamburg-Wilhelmsburg" short="AWLB" refNr="63" scheduleFile="g63_____.abf">
+    <track name="31">
+      <block name="63S31"/>
+    </track>
+    <track name="32">
+      <block name="63S32"/>
+    </track>
+    <track name="33">
+      <block name="63S33"/>
+    </track>
+    <track name="34">
+      <block name="63S34"/>
+    </track>
+    <track name="35">
+      <block name="63S35"/>
+    </track>
+    <track name="36">
+      <block name="63S36"/>
+    </track>
+    <track name="81">
+      <block name="63S81"/>
+    </track>
+  </station>
+
+  <station name="Abzw Süderelbbrücke" short="ASE" refNr="62">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="63S21" direction="left"/>
+      <block name="63S22" direction="left"/>
+      <block name="63S91" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hamburg-Harburg" short="AHAR" refNr="62">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="63S402" direction="left"/>
+      <block name="63S403" direction="left"/>
+      <block name="62S502" direction="left"/>
+      <block name="63S503" direction="left"/>
+    </track>
+  </station>
+</estw>

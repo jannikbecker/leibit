@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Sontra" short="FSON" refNr="26">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="26BP" direction="left" />
+      <block name="25B727" direction="left" />
+    </track>
+  </station>
+
+  <station name="Cornberg" short="FCG" refNr="25" scheduleFile="g25_____.abf">
+    <track name="701">
+      <block name="25G701" />
+    </track>
+    <track name="702">
+      <block name="25G702" />
+    </track>
+    <track name="703">
+      <block name="25G703" />
+    </track>
+  </station>
+
+  <station name="Bebra Tunnel" short="FB T" refNr="23" scheduleFile="B23_____.ABF">
+    <track name="777" isPlatform="false" calculateDelay="false">
+      <block name="23B777" direction="left" />
+      <block name="23B783" direction="right" />
+    </track>
+    <track name="784" isPlatform="false" calculateDelay="false">
+      <block name="23B780" direction="left" />
+      <block name="25B784" direction="right" />
+    </track>
+  </station>
+
+  <station name="Bebra Ubf" short="FB U" refNr="24" scheduleFile="g24_____.abf" localOrderFile="bf24____.ABF">
+    <track name="401">
+      <block name="24G401" />
+    </track>
+    <track name="402">
+      <block name="24G402" />
+    </track>
+    <track name="403">
+      <block name="24G403" />
+    </track>
+    <track name="404">
+      <block name="24G404" />
+    </track>
+    <track name="405">
+      <block name="24G405" />
+    </track>
+    <track name="406">
+      <block name="24G406" />
+    </track>
+    <track name="407">
+      <block name="24G407" />
+    </track>
+  </station>
+
+  <station name="Bebra Pbf" short="FB" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.ABF">
+    <track name="1">
+      <block name="23G1" />
+      <alternative track="2" />
+      <alternative track="3" />
+      <alternative track="103" />
+      <alternative track="4" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="8" />
+      <alternative track="108" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="2">
+      <block name="23G2" />
+      <alternative track="1" />
+      <alternative track="3" />
+      <alternative track="103" />
+      <alternative track="4" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="8" />
+      <alternative track="108" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="3">
+      <block name="23G3" />
+      <alternative track="1" />
+      <alternative track="2" />
+      <alternative track="4" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="8" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="103">
+      <block name="23G103" />
+      <alternative track="1" />
+      <alternative track="2" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="108" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="4">
+      <block name="23G4" />
+      <alternative track="1" />
+      <alternative track="2" />
+      <alternative track="3" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="8" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="5">
+      <block name="23G5" />
+      <alternative track="2" />
+      <alternative track="3" />
+      <alternative track="103" />
+      <alternative track="4" />
+      <alternative track="1" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="8" />
+      <alternative track="108" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="6">
+      <block name="23G6" />
+      <alternative track="2" />
+      <alternative track="3" />
+      <alternative track="4" />
+      <alternative track="5" />
+      <alternative track="1" />
+      <alternative track="7" />
+      <alternative track="8" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="7">
+      <block name="23G7" />
+      <alternative track="2" />
+      <alternative track="3" />
+      <alternative track="103" />
+      <alternative track="4" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="1" />
+      <alternative track="8" />
+      <alternative track="108" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="8">
+      <block name="23G8" />
+      <alternative track="2" />
+      <alternative track="3" />
+      <alternative track="4" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="1" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="108">
+      <block name="23G108" />
+      <alternative track="2" />
+      <alternative track="103" />
+      <alternative track="5" />
+      <alternative track="7" />
+      <alternative track="1" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="9">
+      <block name="23G9" />
+      <alternative track="2" />
+      <alternative track="3" />
+      <alternative track="103" />
+      <alternative track="4" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="8" />
+      <alternative track="108" />
+      <alternative track="1" />
+      <alternative track="10" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="10">
+      <block name="23G10" />
+      <alternative track="2" />
+      <alternative track="3" />
+      <alternative track="103" />
+      <alternative track="4" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="8" />
+      <alternative track="108" />
+      <alternative track="9" />
+      <alternative track="1" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+    <track name="38">
+      <block name="23G38" />
+      <alternative track="1" />
+      <alternative track="2" />
+      <alternative track="103" />
+      <alternative track="5" />
+      <alternative track="7" />
+      <alternative track="108" />
+      <alternative track="9" />
+      <alternative track="10" />
+    </track>
+    <track name="41">
+      <block name="23G241" />
+      <alternative track="1" />
+      <alternative track="2" />
+      <alternative track="3" />
+      <alternative track="4" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="8" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="149" />
+    </track>
+    <track name="42">
+      <block name="23BVBR9" />
+      <alternative track="1" />
+      <alternative track="2" />
+      <alternative track="3" />
+      <alternative track="4" />
+      <alternative track="5" />
+      <alternative track="6" />
+      <alternative track="7" />
+      <alternative track="8" />
+      <alternative track="9" />
+      <alternative track="10" />
+      <alternative track="149" />
+    </track>
+    <track name="149">
+      <block name="23G249" />
+      <alternative track="41" />
+      <alternative track="42" />
+    </track>
+  </station>
+
+  <station name="Bebra Rbf" short="FB R" refNr="23">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="22BVBR1" direction="right" />
+      <block name="22BVBR2" direction="left" />
+      <block name="19B362" direction="left" />
+      <block name="23BVBR4" direction="right" />
+      <block name="23BVBR5" direction="right" />
+      <block name="23BVBR8" direction="right" />
+    </track>
+  </station>
+
+  <station name="Bebra Ost" short="FB O" refNr="23" scheduleFile="B22_____.abf">
+    <track name="132" calculateDelay="false" />
+    <track name="172" calculateDelay="false" />
+    <track name="181" calculateDelay="false" />
+  </station>
+
+  <station name="Blankenheim" short="FBLA" refNr="19" scheduleFile="g19_____.abf">
+    <track name="164">
+      <block name="19G164" />
+    </track>
+    <track name="172">
+      <block name="19G172" />
+    </track>
+    <track name="107">
+      <block name="19B107" />
+    </track>
+    <track name="115">
+      <block name="19G115" />
+    </track>
+    <track name="135">
+      <block name="19B135" />
+    </track>
+  </station>
+
+  <station name="Mecklar" short="FME" refNr="18" scheduleFile="v18_____.abf">
+    <track name="501">
+      <block name="18S501" />
+    </track>
+    <track name="502">
+      <block name="18S502" />
+    </track>
+    <track name="503">
+      <block name="18S503" />
+    </track>
+    <track name="504">
+      <block name="18S504" />
+    </track>
+    <track name="505">
+      <block name="18S505" />
+    </track>
+  </station>
+
+  <station name="Friedlos Hp" short="FFL" refNr="17" scheduleFile="v17_____.abf">
+    <track name="2" calculateDelay="false">
+      <block name="17S533" />
+    </track>
+    <track name="1" calculateDelay="false">
+      <block name="17S546" />
+    </track>
+  </station>
+
+  <station name="Abzw Faßdorf" short="FFDF" refNr="21" scheduleFile="g21_____.abf">
+    <track name="918" calculateDelay="false" />
+    <track name="919" calculateDelay="false" />
+    <track name="983" calculateDelay="false" />
+    <track name="984" calculateDelay="false" />
+  </station>
+
+  <station name="Ronshausen Hp" short="FRON" refNr="21" scheduleFile="ronsha__.abf">
+    <track name="1" calculateDelay="false">
+      <block name="21B617" />
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="21B618" />
+    </track>
+  </station>
+
+  <station name="Hönebach" short="FHNB" refNr="20" scheduleFile="g20_____.abf">
+    <track name="631">
+      <block name="20G631" />
+      <alternative track="632" />
+    </track>
+    <track name="632">
+      <block name="20G632" />
+      <alternative track="631" />
+    </track>
+    <track name="622">
+      <block name="20G622" />
+    </track>
+    <track name="623">
+      <block name="20G623" />
+      <alternative track="622" />
+      <alternative track="631" />
+    </track>
+  </station>
+
+  <station name="Bosserode Hp" short="FBOS" refNr="20" scheduleFile="bosser__.abf">
+    <track name="1" calculateDelay="false">
+      <block name="20B611" />
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="20B602" />
+    </track>
+  </station>
+
+  <station name="Obersuhl Hp" short="FOBS" refNr="97" scheduleFile="Obersu__.ABF">
+    <track name="1" calculateDelay="false">
+      <block name="97B609" />
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="97B612" />
+    </track>
+  </station>
+
+  <station name="Heinebach" short="FHEB" refNr="48">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="48S971" direction="left" />
+      <block name="48S972" direction="left" />
+    </track>
+  </station>
+
+  <station name="Rotenburg Hp" short="FROF" refNr="24" scheduleFile="rotenb__.abf">
+    <track name="1" calculateDelay="false" />
+    <track name="2" calculateDelay="false" />
+  </station>
+
+  <station name="Lispenhausen Hp" short="FLIH" refNr="24" scheduleFile="lispen__.abf">
+    <track name="1" calculateDelay="false" />
+    <track name="2" calculateDelay="false" />
+  </station>
+</estw>

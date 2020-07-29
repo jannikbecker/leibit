@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Abzw Zollberg" short="NZG" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10B54" direction="right"/>
+      <block name="11B351" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Rieneck Hp" short="NRCK" refNr="11" scheduleFile="B11_____.ABF">
+    <track name="351" calculateDelay="false" />
+  </station>
+
+  <station name="Abzw Sinnberg" short="NSB" refNr="11" scheduleFile="G11_____.ABF">
+    <track name="242" calculateDelay="false">
+      <block name="11B52" direction="left"/>
+      <block name="11B342" direction="right"/>
+    </track>
+    <track name="251" calculateDelay="false">
+      <block name="11B351" direction="left"/>
+      <block name="12B41" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Burgsinn" short="NBN" refNr="12" scheduleFile="G12_____.ABF" localOrderFile="BF12____.ABF">
+    <track name="001">
+      <block name="12G001"/>
+    </track>
+    <track name="002">
+      <block name="12G002"/>
+    </track>
+    <track name="003">
+      <block name="12G003"/>
+    </track>
+  </station>
+
+  <station name="Mittelsinn" short="NMSN" refNr="12" scheduleFile="B12_____.ABF">
+    <track name="031" calculateDelay="false"/>
+    <track name="032" calculateDelay="false"/>
+  </station>
+
+  <station name="Obersinn" short="NOBS" refNr="13" scheduleFile="B13_____.ABF">
+    <track name="031" calculateDelay="false"/>
+    <track name="032" calculateDelay="false"/>
+  </station>
+
+  <station name="Jossa" short="NJS" refNr="13" scheduleFile="G13_____.ABF" localOrderFile="BF13____.ABF">
+    <track name="001">
+      <block name="13G001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="007"/>
+      <alternative track="009"/>
+    </track>
+    <track name="002">
+      <block name="13G002"/>
+      <alternative track="001"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="007"/>
+      <alternative track="009"/>
+    </track>
+    <track name="003">
+      <block name="13G003"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="004"/>
+      <alternative track="007"/>
+      <alternative track="009"/>
+    </track>
+    <track name="103">
+      <block name="13G103"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="007"/>
+      <alternative track="009"/>
+    </track>
+    <track name="004">
+      <block name="13G004"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="007"/>
+      <alternative track="009"/>
+    </track>
+    <track name="007">
+      <block name="13G007"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="103"/>
+    </track>
+    <track name="009">
+      <block name="13G009"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+    </track>
+  </station>
+
+  <station name="Altengronau Süd" short="NAT" refNr="13">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="13B01" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Sterbfritz" short="FSTZ" refNr="14" scheduleFile="G14_____.ABF" localOrderFile="BF14____.ABF">
+    <track name="001">
+      <block name="14G001"/>
+    </track>
+    <track name="002">
+      <block name="14G002"/>
+    </track>
+    <track name="003">
+      <block name="14G003"/>
+    </track>
+  </station>
+
+  <station name="Elm" short="FEL" refNr="15" scheduleFile="G15_____.ABF" localOrderFile="BF15____.ABF">
+    <track name="001">
+      <block name="15G001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+    </track>
+    <track name="002">
+      <block name="15G002"/>
+      <alternative track="001"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+    </track>
+    <track name="003">
+      <block name="15G003"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="004"/>
+    </track>
+    <track name="303">
+      <block name="15G303"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="004"/>
+    </track>
+    <track name="004">
+      <block name="15G004"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+    </track>
+  </station>
+
+  <station name="Schlüchtern-Ziegenberg" short="FSUEZ" refNr="66">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="15B001" direction="left"/>
+      <block name="66B171" direction="right"/>
+      <block name="16B2172" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Üst Katzenberg" short="FKA" refNr="16" scheduleFile="B16_____.ABF">
+    <track name="172" calculateDelay="false">
+      <block name="16B3174" direction="left"/>
+      <block name="16B182" direction="right"/>
+    </track>
+    <track name="181" calculateDelay="false">
+      <block name="16B2173" direction="left"/>
+      <block name="16B3181" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Flieden" short="FFD" refNr="16" scheduleFile="G16_____.ABF" localOrderFile="BF16____.ABF">
+    <track name="001">
+      <block name="16G001"/>
+    </track>
+    <track name="002">
+      <block name="16G002"/>
+    </track>
+    <track name="003">
+      <block name="16G003"/>
+    </track>
+    <track name="006">
+      <block name="16G006"/>
+    </track>
+    <track name="007">
+      <block name="16G007"/>
+    </track>
+    <track name="008">
+      <block name="16G008"/>
+    </track>
+    <track name="009">
+      <block name="16G009"/>
+    </track>
+  </station>
+
+  <station name="Neuhof" short="FNF" refNr="17" scheduleFile="G17_____.ABF" localOrderFile="BF17____.ABF">
+    <track name="001">
+      <block name="17G001"/>
+    </track>
+    <track name="002">
+      <block name="17G002"/>
+    </track>
+    <track name="003">
+      <block name="17G003"/>
+    </track>
+  </station>
+
+  <station name="Neuhof-Nord" short="FNF N" refNr="17" scheduleFile="B17_____.ABF">
+    <track name="801">
+      <block name="17G801"/>
+    </track>
+    <track name="402">
+      <block name="17G402"/>
+    </track>
+    <track name="111">
+      <block name="17G111"/>
+    </track>
+  </station>
+
+  <station name="Üst Kerzell" short="FKZ" refNr="10">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="10B682" direction="left"/>
+      <block name="10S428" direction="right"/>
+      <block name="10S681" direction="left"/>
+      <block name="10S425" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Fulda-Bronzell" short="FFU B" refNr="10">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="10S426" direction="left"/>
+      <block name="10S443" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Üst Mühlberg" short="NMUB" refNr="05">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="05S07" direction="right"/>
+      <block name="05S08" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Burgsinn Bbf" short="NBNB" refNr="06" scheduleFile="G6______.ABF" localOrderFile="BF6_____.ABF">
+    <track name="001">
+      <block name="06G001"/>
+    </track>
+    <track name="002">
+      <block name="06G002"/>
+    </track>
+    <track name="003">
+      <block name="06G003"/>
+    </track>
+    <track name="004">
+      <block name="06G004"/>
+    </track>
+    <track name="005">
+      <block name="06G005"/>
+    </track>
+    <track name="006">
+      <block name="06G006"/>
+    </track>
+  </station>
+
+  <station name="Üst Dittenbrunn" short="NDI" refNr="07" scheduleFile="G7______.ABF" localOrderFile="BF7_____.ABF">
+    <track name="188" calculateDelay="false">
+      <block name="07B292" direction="left"/>
+      <block name="07B388" direction="right"/>
+    </track>
+    <track name="191" calculateDelay="false">
+      <block name="07B391" direction="left"/>
+      <block name="07B287" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Üst Altengronau" short="NAG" refNr="08" scheduleFile="G8______.ABF" localOrderFile="BF8_____.ABF">
+    <track name="174" calculateDelay="false">
+      <block name="08B282" direction="left"/>
+      <block name="08B374" direction="right"/>
+    </track>
+    <track name="181" calculateDelay="false">
+      <block name="08B381" direction="left"/>
+      <block name="08B273" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Mottgers" short="NMOT" refNr="09" scheduleFile="G9______.ABF" localOrderFile="BF9_____.ABF">
+    <track name="002">
+      <block name="09G002"/>
+    </track>
+    <track name="003">
+      <block name="09G003"/>
+    </track>
+    <track name="004">
+      <block name="09G004"/>
+    </track>
+    <track name="005">
+      <block name="09G005"/>
+    </track>
+  </station>
+
+  <station name="Üst Landrücken Süd" short="FLRS" refNr="10">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="10S655" direction="left"/>
+      <block name="10S656" direction="left"/>
+    </track>
+  </station>
+</estw>

@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Abzw Utbremen" short="HUTB" refNr="13">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="13B961" direction="right"/>
+      <block name="13B964" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Abzw Gabelung" short="HGA" refNr="36">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="36BS" direction="right"/>
+      <block name="51B42" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Unterstedt" short="HUNT" refNr="33">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="33B4N" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Zeven" short="AZN" refNr="54">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="54B003" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Brockel" short="ABRO" refNr="54">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="54B008" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Tostedt" short="ATST" refNr="57">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="57S401" direction="left"/>
+      <block name="57S403" direction="left"/>
+      <block name="57S591" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Oberneuland" short="HBON" refNr="50" scheduleFile="g50_____.abf" localOrderFile="bf50____.abf">
+    <track name="901">
+      <block name="50G901"/>
+    </track>
+    <track name="902">
+      <block name="50G902"/>
+    </track>
+    <track name="903">
+      <block name="50G903"/>
+    </track>
+  </station>
+
+  <station name="Sagehorn" short="ASAG" refNr="51" scheduleFile="g51_____.abf" localOrderFile="bf51____.abf">
+    <track name="1">
+      <block name="51G1"/>
+    </track>
+    <track name="13">
+      <block name="51G13.1"/>
+    </track>
+    <track name="2">
+      <block name="51G2"/>
+    </track>
+    <track name="3">
+      <block name="51G3"/>
+    </track>
+    <track name="4">
+      <block name="51G4"/>
+    </track>
+  </station>
+
+  <station name="Ottersberg" short="AOBG" refNr="52" scheduleFile="g52_____.abf" localOrderFile="bf52____.abf">
+    <track name="1">
+      <block name="52G1"/>
+    </track>
+    <track name="2">
+      <block name="52G2"/>
+    </track>
+    <track name="3">
+      <block name="52G3"/>
+    </track>
+  </station>
+
+  <station name="Sottrum" short="AS" refNr="53" scheduleFile="g53_____.abf" localOrderFile="bf53____.abf">
+    <track name="1">
+      <block name="53G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+
+      <track name="1.3">
+        <block name="53G1.3"/>
+      </track>
+    </track>
+    <track name="2">
+      <block name="53G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+    </track>
+    <track name="3">
+      <block name="53G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+    </track>
+    <track name="5">
+      <block name="53G5"/>
+      <alternative track="1.3"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+  </station>
+
+  <station name="Rotenburg (W)" short="AROG" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf">
+    <track name="21">
+      <block name="54G21"/>
+      <alternative track="22"/>
+      <alternative track="23"/>
+      <alternative track="26"/>
+      <alternative track="27"/>
+      <alternative track="28"/>
+    </track>
+
+    <track name="22">
+      <block name="54G22"/>
+      <alternative track="21"/>
+      <alternative track="23"/>
+      <alternative track="26"/>
+      <alternative track="27"/>
+      <alternative track="28"/>
+    </track>
+
+    <track name="23">
+      <block name="54G23"/>
+      <alternative track="21"/>
+      <alternative track="22"/>
+      <alternative track="26"/>
+      <alternative track="27"/>
+      <alternative track="28"/>
+    </track>
+
+    <track name="26">
+      <block name="54G26"/>
+      <alternative track="21"/>
+      <alternative track="22"/>
+      <alternative track="23"/>
+      <alternative track="27"/>
+      <alternative track="28"/>
+    </track>
+
+    <track name="27">
+      <block name="54G27"/>
+      <alternative track="21"/>
+      <alternative track="22"/>
+      <alternative track="23"/>
+      <alternative track="26"/>
+      <alternative track="28"/>
+    </track>
+
+    <track name="28">
+      <block name="54G28"/>
+      <alternative track="21"/>
+      <alternative track="22"/>
+      <alternative track="23"/>
+      <alternative track="26"/>
+      <alternative track="27"/>
+    </track>
+
+    <track name="41">
+      <block name="54G41"/>
+      <alternative track="42"/>
+      <alternative track="43"/>
+      <alternative track="44"/>
+      <alternative track="45"/>
+      <alternative track="46"/>
+    </track>
+
+    <track name="42">
+      <block name="54G42"/>
+      <alternative track="41"/>
+      <alternative track="43"/>
+      <alternative track="44"/>
+      <alternative track="45"/>
+      <alternative track="46"/>
+    </track>
+
+    <track name="43">
+      <block name="54G43"/>
+      <alternative track="41"/>
+      <alternative track="42"/>
+      <alternative track="44"/>
+      <alternative track="45"/>
+      <alternative track="46"/>
+    </track>
+
+    <track name="44">
+      <block name="54G44"/>
+      <alternative track="41"/>
+      <alternative track="42"/>
+      <alternative track="43"/>
+      <alternative track="45"/>
+      <alternative track="46"/>
+    </track>
+
+    <track name="45">
+      <block name="54G45"/>
+      <alternative track="41"/>
+      <alternative track="42"/>
+      <alternative track="43"/>
+      <alternative track="44"/>
+      <alternative track="46"/>
+    </track>
+
+    <track name="46">
+      <block name="54G46"/>
+      <alternative track="41"/>
+      <alternative track="42"/>
+      <alternative track="43"/>
+      <alternative track="44"/>
+      <alternative track="45"/>
+    </track>
+  </station>
+
+  <station name="Scheeßel" short="ASL" refNr="55" scheduleFile="g55_____.abf" localOrderFile="bf55____.abf">
+    <track name="131">
+      <block name="55G131"/>
+    </track>
+    <track name="132">
+      <block name="55G132"/>
+    </track>
+    <track name="133">
+      <block name="55G133"/>
+    </track>
+    <track name="137">
+      <block name="55G137"/>
+    </track>
+  </station>
+
+  <station name="Lauenbrück" short="ALUB" refNr="56" scheduleFile="g56_____.abf" localOrderFile="bf56____.abf">
+    <track name="231">
+      <block name="56G231"/>
+    </track>
+    <track name="232">
+      <block name="56G232"/>
+    </track>
+    <track name="233">
+      <block name="56G233"/>
+    </track>
+    <track name="234">
+      <block name="56G234"/>
+    </track>
+  </station>
+</estw>

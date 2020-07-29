@@ -17,6 +17,20 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Data\Areas.xml" />
+    <None Remove="Data\nhth\FB.xml" />
+    <None Remove="Data\nhth\FBHF.xml" />
+    <None Remove="Data\nhth\FEL.xml" />
+    <None Remove="Data\nhth\FFU.xml" />
+    <None Remove="Data\nhth\UEI.xml" />
+    <None Remove="Data\nhth\UGO.xml" />
+    <None Remove="Data\nord\ABLZ.xml" />
+    <None Remove="Data\nord\AH.xml" />
+    <None Remove="Data\nord\AHAR.xml" />
+    <None Remove="Data\nord\AROG.xml" />
+    <None Remove="Data\nord\HB.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -24,6 +38,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\Areas.xml" />
+    <Content Include="Data\nhth\FB.xml" />
+    <Content Include="Data\nhth\FBHF.xml" />
+    <Content Include="Data\nhth\FEL.xml" />
+    <Content Include="Data\nhth\FFU.xml" />
+    <Content Include="Data\nhth\UEI.xml" />
+    <Content Include="Data\nhth\UGO.xml" />
+    <Content Include="Data\nord\ABLZ.xml" />
+    <Content Include="Data\nord\AH.xml" />
+    <Content Include="Data\nord\AHAR.xml" />
+    <Content Include="Data\nord\AROG.xml" />
+    <Content Include="Data\nord\HB.xml" />
     <Content Include="LeibitData.xml">
       <SubType>Designer</SubType>
     </Content>

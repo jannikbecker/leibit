@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Bremen-Sebaldsbrück" short="HBSB" refNr="26">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="10B161" direction="right"/>
+      <block name="10B168" direction="right"/>
+      <block name="11B181" direction="right"/>
+      <block name="11B184" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Hemelingen" short="HBHM" refNr="9">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="10B171" direction="right"/>
+      <block name="10B168" direction="right"/>
+      <block name="11B191" direction="right"/>
+      <block name="11B194" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Bremen Rbf" short="HBR" refNr="14">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="14BP1" direction="left"/>
+      <block name="14BP2" direction="left"/>
+      <block name="11BN4" direction="left"/>
+      <block name="13BP3" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Oslebshausen" short="HBOS" refNr="15">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="11B210" direction="left"/>
+      <block name="11B205" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Sagehorn" short="ASAG" refNr="51">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="50S21" direction="left"/>
+      <block name="50S22" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Grolland" short="HBG" refNr="16">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="16S85" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Delmenhorst" short="HD" refNr="16">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="16S82" direction="left"/>
+      <block name="16S90" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Neustadt" short="HBN" refNr="16" scheduleFile="v16_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="16S1" />
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="16S2" />
+    </track>
+    <track name="3" calculateDelay="false">
+      <block name="16S3" />
+    </track>
+    <track name="4" calculateDelay="false">
+      <block name="16S4" />
+    </track>
+    <track name="5" calculateDelay="false">
+      <block name="16S5" />
+    </track>
+  </station>
+
+  <station name="Abzw Bremen-Vahr" short="HVAH" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
+    <track name="170" isPlatform="false">
+      <block name="10B173" direction="right"/>
+      <block name="10B161" direction="left"/>
+      <block name="10B171" direction="left"/>
+    </track>
+
+    <track name="174" isPlatform="false">
+      <block name="10B176" direction="right"/>
+      <block name="10B166" direction="left"/>
+      <block name="10B168" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Bremen Hbf" short="HB" refNr="11" scheduleFile="g11_____.abf" localOrderFile="bf11____.abf">
+    <track name="1">
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="44"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+
+      <track name="1 N">
+        <block name="11G001N"/>
+      </track>
+      <track name="1 S">
+        <block name="11G001S"/>
+      </track>
+    </track>
+
+    <track name="2">
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="44"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+
+      <track name="2 N">
+        <block name="11G002N"/>
+      </track>
+      <track name="2 S">
+        <block name="11G002S"/>
+      </track>
+    </track>
+
+    <track name="3">
+      <block name="11G0003"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="44"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="4">
+      <block name="11G0004"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="44"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="44">
+      <block name="11G0044"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="5">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="44"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+
+      <track name="5 N">
+        <block name="11G005N"/>
+      </track>
+      <track name="5 S">
+        <block name="11G005S"/>
+      </track>
+    </track>
+
+    <track name="6">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="44"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+
+      <track name="6 N">
+        <block name="11G006N"/>
+      </track>
+      <track name="6 S">
+        <block name="11G006S"/>
+      </track>
+    </track>
+
+    <track name="7">
+      <block name="11G0007"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="44"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="8">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="44"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+
+      <track name="8 N">
+        <block name="11G008N"/>
+      </track>
+      <track name="8 S">
+        <block name="11G008S"/>
+      </track>
+    </track>
+
+    <track name="9">
+      <block name="11G0009"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="44"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="10">
+      <block name="11G0010"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="44"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+    </track>
+
+    <track name="170">
+      <block name="11G0170" />
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="44"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="45">
+      <block name="11G0245"/>
+      <alternative track="104"/>
+      <alternative track="144"/>
+    </track>
+
+    <track name="104">
+      <block name="11G1104"/>
+      <alternative track="45"/>
+      <alternative track="144"/>
+    </track>
+
+    <track name="144">
+      <block name="11G1144"/>
+      <alternative track="45"/>
+      <alternative track="104"/>
+    </track>
+
+    <track name="50">
+      <block name="11G0050"/>
+      <alternative track="51"/>
+      <alternative track="52"/>
+    </track>
+
+    <track name="51">
+      <block name="11G0051"/>
+      <alternative track="50"/>
+      <alternative track="52"/>
+    </track>
+
+    <track name="52">
+      <block name="11G0052"/>
+      <alternative track="50"/>
+      <alternative track="51"/>
+    </track>
+
+    <track name="130" isPlatform="false" calculateDelay="false">
+      <block name="11G0130"/>
+    </track>
+
+    <track name="131" isPlatform="false" calculateDelay="false">
+      <block name="11G0131"/>
+    </track>
+
+    <track name="132" isPlatform="false" calculateDelay="false">
+      <block name="11G0132"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Walle Hp" short="HBWA" refNr="11" scheduleFile="b11_____.abf">
+    <track name="5" calculateDelay="false">
+      <block name="11B204"/>
+    </track>
+
+    <track name="6" calculateDelay="false">
+      <block name="11BN6"/>
+    </track>
+  </station>
+
+  <station name="Abzw Utbremen" short="HUTB" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf">
+    <track name="970" isPlatform="false">
+      <block name="13B972" direction="left"/>
+      <block name="13B964" direction="right"/>
+    </track>
+
+    <track name="959" isPlatform="false">
+      <block name="11B957" direction="left"/>
+      <block name="13B961" direction="right"/>
+    </track>
+
+    <track name="973" isPlatform="false">
+      <block name="13BP3" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Oberneuland" short="HBON" refNr="50" scheduleFile="v50_____.abf">
+    <track name="901">
+      <block name="50S901"/>
+    </track>
+
+    <track name="902">
+      <block name="50S902"/>
+    </track>
+
+    <track name="903">
+      <block name="50S903"/>
+    </track>
+  </station>
+</estw>
