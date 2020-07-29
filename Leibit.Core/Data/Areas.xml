@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<leibit>
+  <area id="nhth" name="Mitteldeutschland">
+    <estw id="FEL" name="Elm" dataFile="leibit_ELM.dat"/>
+    <estw id="FFU" name="Fulda" dataFile="leibit_FULDA.dat"/>
+    <estw id="FBHF" name="Bad Hersfeld" dataFile="leibit_BAD HERSFELD.dat"/>
+    <estw id="FB" name="Bebra" dataFile="leibit_BEBRA PBF.dat"/>
+    <estw id="UEI" name="Eisenach" dataFile="leibit_EISENACH.dat"/>
+    <estw id="UGO" name="Gotha" dataFile="leibit_GOTHA.dat"/>
+  </area>
+
+  <area id="nord" name="Norddeutschland">
+    <estw id="HB" name="Bremen Hbf" dataFile="leibit_BREMEN HBF.dat"/>
+    <estw id="AROG" name="Rotenburg" dataFile="leibit_ROTENBURG.dat"/>
+    <estw id="ABLZ" name="Buchholz" dataFile="leibit_BUCHHOLZ.dat"/>
+    <estw id="AHAR" name="Hamburg-Harburg" dataFile="leibit_HAMBURG-HARBURG.dat"/>
+    <estw id="AH" name="Hamburg Hbf" dataFile="leibit_HAMBURG HBF.dat"/>
+  </area>
+</leibit>
