@@ -50,19 +50,11 @@
     <EmbeddedResource Include="Data\nord\AHAR.xml" />
     <EmbeddedResource Include="Data\nord\AROG.xml" />
     <EmbeddedResource Include="Data\nord\HB.xml" />
-    <Content Include="LeibitData.xml">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LeibitData.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
 </Project>
