@@ -23,6 +23,12 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <ItemGroup>
+    <None Remove="TestData\Areas.xml" />
+    <None Remove="TestData\PPP.xml" />
+    <None Remove="TestData\TREH.xml" />
+    <None Remove="TestData\TTST.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
@@ -43,10 +49,15 @@
     <Content Include="TestData\ESTWRoots\Testdorf\Kommunikation\dummy.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestData\LeibitData.xml">
+    <Content Include="TestData\Areas.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData\PPP.xml" />
+    <EmbeddedResource Include="TestData\TREH.xml" />
+    <EmbeddedResource Include="TestData\TTST.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">

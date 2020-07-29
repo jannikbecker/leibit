@@ -11,7 +11,7 @@ namespace Leibit.Tests.Utils
         private XmlDocument m_OldXml;
         private ESTWRootScope m_RootScope;
 
-        private const string XML_DOC_FIELD_NAME = "m_XmlDoc";
+        private const string XML_DOC_FIELD_NAME = "m_AreasXml";
 
         public ESTWTestDataScope(SerializationBLL serializationBll)
         {
@@ -39,8 +39,13 @@ namespace Leibit.Tests.Utils
             m_OldXml = field.GetValue(m_InitializationBll) as XmlDocument;
 
             var newValue = new XmlDocument();
-            newValue.LoadXml(Properties.Resources.LeibitData);
+            newValue.LoadXml(Properties.Resources.Areas);
             field.SetValue(m_InitializationBll, newValue);
+
+            initializationBll.CustomEstwXmlStream = estw =>
+            {
+                return Assembly.GetExecutingAssembly().GetManifestResourceStream($"Leibit.Tests.TestData.{estw.Id}.xml");
+            };
 
             m_RootScope = new ESTWRootScope();
         }

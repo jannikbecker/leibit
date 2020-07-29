@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Paradiesbahnhof" short="PPP" refNr="99">
+    <track name="1">
+      <block name="99G1" />
+    </track>
+  </station>
+</estw>

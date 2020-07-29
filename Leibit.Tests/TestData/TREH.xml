@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Testdorf" short="TTST" refNr="32">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="32BN" />
+      <block name="33B4713" />
+    </track>
+  </station>
+
+  <station name="Rechtsheim" short="TREH" refNr="33" scheduleFile="g33_____.abf">
+    <track name="1">
+      <block name="33G1" />
+    </track>
+    <track name="2">
+      <block name="33G2" />
+    </track>
+    <track name="3">
+      <block name="33G3" />
+    </track>
+  </station>
+</estw>

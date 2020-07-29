@@ -64,19 +64,18 @@ namespace Leibit.Tests.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;leibit&gt;
         ///  &lt;area id=&quot;myTestArea&quot; name=&quot;Testland&quot;&gt;
-        ///    &lt;estw id=&quot;TTST&quot; name=&quot;Testdorf&quot; dataFile=&quot;leibit_TEST.dat&quot;&gt;
-        ///      &lt;station name=&quot;Linksdorf&quot; short=&quot;TLDF&quot; refNr=&quot;30&quot;&gt;
-        ///        &lt;track isPlatform=&quot;false&quot; calculateDelay=&quot;false&quot;&gt;
-        ///          &lt;block name=&quot;30BN&quot; direction=&quot;right&quot; /&gt;
-        ///          &lt;block name=&quot;31B4711&quot; direction=&quot;right&quot; /&gt;
-        ///        &lt;/track&gt;
-        ///      &lt;/station&gt;
-        ///      
-        ///      &lt;station name=&quot;Probe&quot; short=&quot;TPRB&quot; refNr=&quot;31&quot; scheduleFile=&quot;g31_____.abf&quot; localOrd [rest of string was truncated]&quot;;.
+        ///    &lt;estw id=&quot;TTST&quot; name=&quot;Testdorf&quot; dataFile=&quot;leibit_TEST.dat&quot;/&gt;
+        ///    &lt;estw id=&quot;TREH&quot; name=&quot;Rechtsheim&quot; dataFile=&quot;leibit_RECHTSHEI.dat&quot;/&gt;
+        ///  &lt;/area&gt;
+        ///
+        ///  &lt;area id=&quot;another&quot; name=&quot;Paradies&quot;&gt;
+        ///    &lt;estw id=&quot;PPP&quot; name=&quot;Paradiesbahnhof&quot; dataFile=&quot;leibit_PARADIES.dat&quot;/&gt;
+        ///  &lt;/area&gt;
+        ///&lt;/leibit&gt;.
         /// </summary>
-        public static string LeibitData {
+        public static string Areas {
             get {
-                return ResourceManager.GetString("LeibitData", resourceCulture);
+                return ResourceManager.GetString("Areas", resourceCulture);
             }
         }
         

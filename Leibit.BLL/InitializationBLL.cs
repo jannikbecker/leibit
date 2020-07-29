@@ -8,10 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
+[assembly: InternalsVisibleTo("Leibit.Tests")]
 namespace Leibit.BLL
 {
     public class InitializationBLL : BLLBase
@@ -30,7 +32,9 @@ namespace Leibit.BLL
         }
         #endregion
 
-        #region - Singletons -
+        #region - Properties -
+
+        #region [AreasXml]
         private XmlDocument AreasXml
         {
             get
@@ -47,7 +51,9 @@ namespace Leibit.BLL
                 }
             }
         }
+        #endregion
 
+        #region [SettingsBLL]
         private SettingsBLL SettingsBLL
         {
             get
@@ -58,6 +64,12 @@ namespace Leibit.BLL
                 return m_SettingsBll;
             }
         }
+        #endregion
+
+        #region [CustomEstwXmlStream]
+        internal Func<ESTW, Stream> CustomEstwXmlStream { private get; set; }
+        #endregion
+
         #endregion
 
         #region - Public methods -
@@ -113,7 +125,7 @@ namespace Leibit.BLL
                     return Result;
                 }
 
-                using (var xmlStream = typeof(Resources).Assembly.GetManifestResourceStream($"Leibit.Core.Data.{Estw.Area.Id}.{Estw.Id}.xml"))
+                using (var xmlStream = __GetEstwXmlStream(Estw))
                 {
                     if (xmlStream == null)
                     {
@@ -600,11 +612,18 @@ namespace Leibit.BLL
         }
         #endregion
 
-        //private void __ReportProgress(BackgroundWorker worker, int percentage, string message)
-        //{
-        //    if (worker != null && worker.WorkerReportsProgress)
-        //        worker.ReportProgress(percentage, message);
-        //}
+        #region [__GetEstwXmlStream]
+        private Stream __GetEstwXmlStream(ESTW estw)
+        {
+            if (CustomEstwXmlStream == null)
+            {
+                var assembly = typeof(Resources).Assembly;
+                return assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Data.{estw.Area.Id}.{estw.Id}.xml");
+            }
+            else
+                return CustomEstwXmlStream(estw);
+        }
+        #endregion
 
         #endregion
 
