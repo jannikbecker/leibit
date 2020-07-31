@@ -7,7 +7,6 @@ namespace Leibit.Tests.Utils
 {
     public class ESTWTestDataScope : IDisposable
     {
-
         private InitializationBLL m_InitializationBll;
         private XmlDocument m_OldXml;
         private ESTWRootScope m_RootScope;
