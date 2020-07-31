@@ -8,7 +8,6 @@ namespace Leibit.Tests.Utils
 {
     public class ESTWOnlineScope : IDisposable
     {
-
         private SettingsBLL m_SettingsBll = new SettingsBLL();
         private ESTW m_Estw;
         private string m_OldDataFilePath;
