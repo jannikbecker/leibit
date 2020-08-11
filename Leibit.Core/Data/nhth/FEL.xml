@@ -12,11 +12,11 @@
   </station>
 
   <station name="Abzw Sinnberg" short="NSB" refNr="11" scheduleFile="G11_____.ABF">
-    <track name="242" calculateDelay="false">
+    <track name="242" isPlatform="false">
       <block name="11B52" direction="left"/>
       <block name="11B342" direction="right"/>
     </track>
-    <track name="251" calculateDelay="false">
+    <track name="251" isPlatform="false">
       <block name="11B351" direction="left"/>
       <block name="12B41" direction="right"/>
     </track>
