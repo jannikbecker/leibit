@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <leibit>
   <area id="nhth" name="Mitteldeutschland">
+    <estw id="NHEI" name="Heigenbrücken" dataFile="leibit_HEIGENBRÜCKEN.dat"/>
     <estw id="FEL" name="Elm" dataFile="leibit_ELM.dat"/>
     <estw id="FFU" name="Fulda" dataFile="leibit_FULDA.dat"/>
     <estw id="FBHF" name="Bad Hersfeld" dataFile="leibit_BAD HERSFELD.dat"/>
