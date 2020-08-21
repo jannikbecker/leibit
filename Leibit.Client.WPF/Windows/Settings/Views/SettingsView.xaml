@@ -6,8 +6,7 @@
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
                       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                       Caption="Einstellungen"
-                      ResizeMode="ResizeWidth"
-                      Width="600">
+                      ResizeMode="NoResize">
 
     <controls:ChildWindow.Style>
         <Style TargetType="local:SettingsView" BasedOn="{StaticResource ChildWindowStyle}" />
@@ -30,7 +29,7 @@
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="auto" MinWidth="100" SharedSizeGroup="Header" />
-                                                    <ColumnDefinition Width="*" MaxWidth="400" />
+                                                    <ColumnDefinition Width="400" />
                                                     <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
                                                 </Grid.ColumnDefinitions>
 
@@ -51,7 +50,7 @@
                 <Grid Margin="0,5,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" SharedSizeGroup="Header" />
-                        <ColumnDefinition Width="*" MaxWidth="400" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -141,7 +140,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" SharedSizeGroup="Header" />
-                        <ColumnDefinition Width="*" MaxWidth="400" />
+                        <ColumnDefinition Width="400" />
                         <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
