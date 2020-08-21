@@ -322,7 +322,13 @@ namespace Leibit.BLL
                             Train = estw.Area.LiveTrains.GetOrAdd(TrainNumber, Train);
                         }
 
-                        Train.Delay = Delay;
+                        if (!Train.Schedules.Any(s => !s.IsUnscheduled && s.LiveArrival != null))
+                            Train.Delay = Delay;
+                        else
+                        {
+                            // In this case delay is calculated by LeiBIT. Ignore the delay information from ESTWsim!
+                        }
+
                         Train.Direction = sDirection == "L" ? eBlockDirection.Left : eBlockDirection.Right;
 
                         var Block = estw.Blocks.ContainsKey(BlockName) ? estw.Blocks[BlockName].FirstOrDefault(b => b.Direction == eBlockDirection.Both || b.Direction == Train.Direction) : null;

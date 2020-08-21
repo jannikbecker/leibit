@@ -18,6 +18,7 @@ namespace Leibit.Entities.LiveData
         public LiveSchedule(TrainInformation Train, Station Station)
             : this(Train, new Schedule(Train.Train, Station))
         {
+            IsUnscheduled = true;
         }
 
         public LiveSchedule(TrainInformation Train, Schedule Schedule)
@@ -82,6 +83,8 @@ namespace Leibit.Entities.LiveData
         public bool IsArrived { get; set; }
 
         public bool IsDeparted { get; set; }
+
+        public bool IsUnscheduled { get; set; }
 
         public Track LiveTrack
         {

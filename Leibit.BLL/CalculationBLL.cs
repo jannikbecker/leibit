@@ -82,7 +82,7 @@ namespace Leibit.BLL
                 var delayJustificationEnabled = settingsResult.Result.DelayJustificationEnabled;
                 var delayJustificationMinutes = settingsResult.Result.DelayJustificationMinutes;
 
-                foreach (var Schedule in Train.Schedules)
+                foreach (var Schedule in Train.Schedules.OrderBy(s => s.LiveArrival))
                 {
                     if (Schedule.LiveArrival == null)
                         continue;
