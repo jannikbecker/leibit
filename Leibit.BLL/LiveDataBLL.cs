@@ -305,7 +305,7 @@ namespace Leibit.BLL
                         string sDirection = Parts[5];
 
                         if (sTrainNumber.Length > 5)
-                            continue;
+                            sTrainNumber = sTrainNumber.Substring(sTrainNumber.Length - 5);
 
                         int TrainNumber, Delay;
 
