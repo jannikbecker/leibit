@@ -160,13 +160,16 @@ namespace Leibit.BLL
                     var CalculateDelay = Schedule.Schedule.Track != null && Schedule.Schedule.Track.CalculateDelay;
                     var CurrentIndex = Train.Schedules.IndexOf(Schedule);
 
-                    if (Train.Schedules.Where((schedule, index) => index > CurrentIndex && schedule.LiveArrival != null).Any())
-                        CalculateDelay = false;
+                    // Don't calculate expected times, if train has already arrived at one of the following stations.
+                    // This might be the case at the beginning of the simulation or for diverted/misdirected trains.
+                    var SkipCalculation = Train.Schedules.Where((schedule, index) => index > CurrentIndex && schedule.LiveArrival != null).Any();
 
                     var Arrival = Schedule.Schedule.Arrival == null ? Schedule.Schedule.Departure : Schedule.Schedule.Arrival;
 
                     if (Schedule.LiveArrival != null)
                         Schedule.ExpectedArrival = Schedule.LiveArrival;
+                    else if (SkipCalculation)
+                        Schedule.ExpectedArrival = null;
                     else
                     {
                         Schedule.ExpectedArrival = Arrival.AddMinutes(Delay);
@@ -175,12 +178,13 @@ namespace Leibit.BLL
                             Schedule.ExpectedArrival = Estw.Time;
                     }
 
-                    Delay = (Schedule.ExpectedArrival - Arrival).TotalMinutes;
+                    if (Schedule.ExpectedArrival != null)
+                        Delay = (Schedule.ExpectedArrival - Arrival).TotalMinutes;
 
                     if (Schedule.LiveDeparture != null)
-                    {
                         Schedule.ExpectedDeparture = Schedule.LiveDeparture;
-                    }
+                    else if (SkipCalculation)
+                        Schedule.ExpectedDeparture = null;
                     else if (Schedule.Schedule.Departure != null)
                     {
                         int MinStoptime = 0;
