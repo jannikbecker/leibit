@@ -322,7 +322,7 @@ namespace Leibit.BLL
                             Train = estw.Area.LiveTrains.GetOrAdd(TrainNumber, Train);
                         }
 
-                        if (!Train.Schedules.Any(s => !s.IsUnscheduled && s.LiveArrival != null))
+                        if (Train.Schedules.All(s => s.Schedule.IsUnscheduled || s.LiveArrival == null))
                             Train.Delay = Delay;
                         else
                         {
