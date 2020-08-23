@@ -265,22 +265,22 @@
   </station>
 
   <station name="Üst Dittenbrunn" short="NDI" refNr="07" scheduleFile="G7______.ABF" localOrderFile="BF7_____.ABF">
-    <track name="188" calculateDelay="false" isPlatform="false">
+    <track name="188" isPlatform="false">
       <block name="07B292" direction="left"/>
       <block name="07B388" direction="right"/>
     </track>
-    <track name="191" calculateDelay="false" isPlatform="false">
+    <track name="191" isPlatform="false">
       <block name="07B391" direction="left"/>
       <block name="07B287" direction="right"/>
     </track>
   </station>
 
   <station name="Üst Altengronau" short="NAG" refNr="08" scheduleFile="G8______.ABF" localOrderFile="BF8_____.ABF">
-    <track name="174" calculateDelay="false" isPlatform="false">
+    <track name="174" isPlatform="false">
       <block name="08B282" direction="left"/>
       <block name="08B374" direction="right"/>
     </track>
-    <track name="181" calculateDelay="false" isPlatform="false">
+    <track name="181" isPlatform="false">
       <block name="08B381" direction="left"/>
       <block name="08B273" direction="right"/>
     </track>
