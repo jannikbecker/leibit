@@ -1,4 +1,5 @@
-﻿using Leibit.Client.WPF.ViewModels;
+﻿using Leibit.Client.WPF.Common;
+using Leibit.Client.WPF.ViewModels;
 using Leibit.Core.Client.Commands;
 using Leibit.Core.Scheduling;
 using Leibit.Entities;
@@ -23,6 +24,7 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
             m_Train = train;
 
             var candidates = train.Schedules.Where(s => s.Schedule.Handling != eHandling.Destination && !s.IsDeparted)
+                                            .Where(s => s.Schedule.Station.ESTW.Stations.Any(s2 => Runtime.VisibleStations.Contains(s2)))
                                             .GroupBy(s => new { s.Schedule.Station.ShortSymbol, s.Schedule.Time })
                                             .Select(g => g.FirstOrDefault());
 
