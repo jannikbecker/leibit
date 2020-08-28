@@ -36,8 +36,12 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         {
             this.Dispatcher = Dispatcher;
             Trains = new ObservableCollection<TrainStationViewModel>();
-            m_DoubleClickCommand = new CommandHandler(__RowDoubleClick, true);
             m_SettingsBll = new SettingsBLL();
+
+            m_DoubleClickCommand = new CommandHandler(__RowDoubleClick, true);
+            ShowTrainScheduleCommand = new CommandHandler(__ShowTrainSchedule, false);
+            ShowLocalOrdersCommand = new CommandHandler(__ShowLocalOrders, false);
+            ShowDelayJustificationCommand = new CommandHandler(__ShowDelayJustification, false);
         }
         #endregion
 
@@ -69,6 +73,18 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
+        #region [ShowTrainScheduleCommand]
+        public CommandHandler ShowTrainScheduleCommand { get; }
+        #endregion
+
+        #region [ShowLocalOrdersCommand]
+        public CommandHandler ShowLocalOrdersCommand { get; }
+        #endregion
+
+        #region [ShowDelayJustificationCommand]
+        public CommandHandler ShowDelayJustificationCommand { get; }
+        #endregion
+
         #region [SaveGridLayout]
         public bool SaveGridLayout
         {
@@ -93,6 +109,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             set
             {
                 Set(value);
+                __RefreshCommands();
             }
         }
         #endregion
@@ -257,6 +274,24 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
         #region - Private methods -
 
+        #region [__RefreshCommands]
+        private void __RefreshCommands()
+        {
+            if (SelectedItem == null)
+            {
+                ShowTrainScheduleCommand.SetCanExecute(false);
+                ShowLocalOrdersCommand.SetCanExecute(false);
+                ShowDelayJustificationCommand.SetCanExecute(false);
+            }
+            else
+            {
+                ShowTrainScheduleCommand.SetCanExecute(true);
+                ShowLocalOrdersCommand.SetCanExecute(SelectedItem.LocalOrders == 'J');
+                ShowDelayJustificationCommand.SetCanExecute(SelectedItem.DelayInfo == 'U');
+            }
+        }
+        #endregion
+
         #region [__RowDoubleClick]
         private void __RowDoubleClick()
         {
@@ -264,23 +299,38 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 return;
 
             if (SelectedColumn == "DelayInfo" && SelectedItem.DelayInfo == 'U')
-            {
-                var Window = new DelayJustificationView(SelectedItem.TrainNumber);
-                var VM = new DelayJustificationViewModel(SelectedItem.CurrentTrain);
-                OnOpenWindow(VM, Window);
-            }
+                __ShowDelayJustification();
             else if (SelectedColumn == "LocalOrders" && SelectedItem.LocalOrders == 'J')
-            {
-                var Window = new LocalOrdersView(SelectedItem.TrainNumber, SelectedItem.Station.ShortSymbol);
-                var VM = new LocalOrdersViewModel(SelectedItem.Schedule);
-                OnOpenWindow(VM, Window);
-            }
+                __ShowLocalOrders();
             else
-            {
-                var Window = new TrainScheduleView(SelectedItem.TrainNumber);
-                var VM = new TrainScheduleViewModel(Window.Dispatcher, SelectedItem.CurrentTrain.Train, SelectedItem.Station.ESTW.Area);
-                OnOpenWindow(VM, Window);
-            }
+                __ShowTrainSchedule();
+        }
+        #endregion
+
+        #region [__ShowTrainSchedule]
+        private void __ShowTrainSchedule()
+        {
+            var Window = new TrainScheduleView(SelectedItem.TrainNumber);
+            var VM = new TrainScheduleViewModel(Window.Dispatcher, SelectedItem.CurrentTrain.Train, SelectedItem.Station.ESTW.Area);
+            OnOpenWindow(VM, Window);
+        }
+        #endregion
+
+        #region [__ShowLocalOrders]
+        private void __ShowLocalOrders()
+        {
+            var Window = new LocalOrdersView(SelectedItem.TrainNumber, SelectedItem.Station.ShortSymbol);
+            var VM = new LocalOrdersViewModel(SelectedItem.Schedule);
+            OnOpenWindow(VM, Window);
+        }
+        #endregion
+
+        #region [__ShowDelayJustification]
+        private void __ShowDelayJustification()
+        {
+            var Window = new DelayJustificationView(SelectedItem.TrainNumber);
+            var VM = new DelayJustificationViewModel(SelectedItem.CurrentTrain);
+            OnOpenWindow(VM, Window);
         }
         #endregion
 
