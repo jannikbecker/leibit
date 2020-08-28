@@ -479,10 +479,13 @@ namespace Leibit.BLL
                             {
                                 CurrentSchedule.LiveTrack = LiveTrack;
 
-                                // When train is in station, it cannot be departed.
-                                // This fixes issues that can occur in mirror fields when the train has arrived at the station in one ESTW, but not yet in the other.
-                                CurrentSchedule.IsDeparted = false;
-                                CurrentSchedule.LiveDeparture = null;
+                                if (LiveTrack.IsPlatform)
+                                {
+                                    // When train is in station, it cannot be departed.
+                                    // This fixes issues that can occur in mirror fields when the train has arrived at the station in one ESTW, but not yet in the other.
+                                    CurrentSchedule.IsDeparted = false;
+                                    CurrentSchedule.LiveDeparture = null;
+                                }
                             }
                         }
                     }
