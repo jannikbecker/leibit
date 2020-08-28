@@ -165,6 +165,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
             bool PreviousVisible = false;
             bool DummyFlag = false;
+            bool Reorder = false;
 
             // Group schedules by station and time to avoid duplicate entries for stations that are located between ESTW bordery stations when both ESTWs are loaded
             // i.e. Bosserode and Obersuhl are located between Hönebach (ESTW Bebra) and Gerstungen (ESTW Eisenach)
@@ -186,6 +187,11 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                     {
                         Current = new TrainScheduleStationViewModel(Schedule);
                         Current.PropertyChanged += __Station_PropertyChanged;
+                        IsNew = true;
+                    }
+                    else if (Reorder)
+                    {
+                        Dispatcher.Invoke(() => Stations.Remove(Current));
                         IsNew = true;
                     }
 
@@ -229,7 +235,18 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                             {
                                 Current.IsArrived = true;
                                 Current.IsDeparted = true;
-                                Current.IsSkipped = !LiveSchedule.IsArrived || !LiveSchedule.IsDeparted;
+
+                                var isSkipped = !LiveSchedule.IsArrived && !LiveSchedule.IsDeparted;
+
+                                if (Current.IsSkipped && !isSkipped)
+                                {
+                                    // Trigger re-ordering of this and all subsequent entries
+                                    Dispatcher.Invoke(() => Stations.Remove(Current));
+                                    IsNew = true;
+                                    Reorder = true;
+                                }
+
+                                Current.IsSkipped = isSkipped;
                             }
                             else
                             {
