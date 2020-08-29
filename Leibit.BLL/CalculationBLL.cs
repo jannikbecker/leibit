@@ -183,35 +183,42 @@ namespace Leibit.BLL
                     }
                     else if (Schedule.Schedule.Departure != null)
                     {
-                        int MinStoptime = 0;
-                        bool DepartureBeforeScheduled = true;
-
-                        if (Schedule.Schedule.Handling == eHandling.StopPassengerTrain)
+                        if (Schedule.ExpectedDelay.HasValue)
                         {
-                            MinStoptime = Constants.PERS_TRAIN_STOPTIME;
-                            DepartureBeforeScheduled = false;
+                            Schedule.ExpectedDeparture = Schedule.Schedule.Departure.AddMinutes(Schedule.ExpectedDelay.Value);
                         }
-
-                        if (Schedule.Schedule.Handling == eHandling.StaffChange)
-                            MinStoptime = Constants.STAFF_CHANGE_STOPTIME;
-
-                        if (Schedule.Schedule.Handling == eHandling.StopFreightTrain || Schedule.Schedule.Handling == eHandling.Start)
-                            DepartureBeforeScheduled = false;
-
-                        int StopMinutes = Schedule.Schedule.Departure.TotalMinutes - Arrival.TotalMinutes;
-
-                        if (StopMinutes > MinStoptime)
-                            StopMinutes = MinStoptime;
-
-                        var Departure = Schedule.ExpectedArrival.AddMinutes(StopMinutes);
-
-                        if (Departure < Schedule.Schedule.Departure && !DepartureBeforeScheduled)
-                            Schedule.ExpectedDeparture = Schedule.Schedule.Departure;
                         else
-                            Schedule.ExpectedDeparture = Departure;
+                        {
+                            int MinStoptime = 0;
+                            bool DepartureBeforeScheduled = true;
 
-                        if (Schedule.ExpectedDeparture < Estw.Time && CalculateDelay)
-                            Schedule.ExpectedDeparture = Estw.Time;
+                            if (Schedule.Schedule.Handling == eHandling.StopPassengerTrain)
+                            {
+                                MinStoptime = Constants.PERS_TRAIN_STOPTIME;
+                                DepartureBeforeScheduled = false;
+                            }
+
+                            if (Schedule.Schedule.Handling == eHandling.StaffChange)
+                                MinStoptime = Constants.STAFF_CHANGE_STOPTIME;
+
+                            if (Schedule.Schedule.Handling == eHandling.StopFreightTrain || Schedule.Schedule.Handling == eHandling.Start)
+                                DepartureBeforeScheduled = false;
+
+                            int StopMinutes = Schedule.Schedule.Departure.TotalMinutes - Arrival.TotalMinutes;
+
+                            if (StopMinutes > MinStoptime)
+                                StopMinutes = MinStoptime;
+
+                            var Departure = Schedule.ExpectedArrival.AddMinutes(StopMinutes);
+
+                            if (Departure < Schedule.Schedule.Departure && !DepartureBeforeScheduled)
+                                Schedule.ExpectedDeparture = Schedule.Schedule.Departure;
+                            else
+                                Schedule.ExpectedDeparture = Departure;
+
+                            if (Schedule.ExpectedDeparture < Estw.Time && CalculateDelay)
+                                Schedule.ExpectedDeparture = Estw.Time;
+                        }
                     }
 
                     if (Schedule.ExpectedDeparture != null)

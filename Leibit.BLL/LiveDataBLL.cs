@@ -234,6 +234,30 @@ namespace Leibit.BLL
         }
         #endregion
 
+        #region [SetExpectedDelay]
+        public OperationResult<bool> SetExpectedDelay(LiveSchedule schedule, int expectedDelay)
+        {
+            try
+            {
+                schedule.ExpectedDelay = expectedDelay;
+
+                var calculationResult = m_CalculationBll.CalculateExpectedTimes(schedule.Train, schedule.Schedule.Station.ESTW);
+                ValidateResult(calculationResult);
+
+                // TODO: Forward to ESTWonline
+
+                var result = new OperationResult<bool>();
+                result.Result = true;
+                result.Succeeded = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult<bool> { Message = ex.Message };
+            }
+        }
+        #endregion
+
         #endregion
 
         #region - Private helpers -

@@ -1,4 +1,5 @@
-﻿using Leibit.Client.WPF.Common;
+﻿using Leibit.BLL;
+using Leibit.Client.WPF.Common;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Core.Client.Commands;
 using Leibit.Core.Scheduling;
@@ -7,7 +8,8 @@ using Leibit.Entities.LiveData;
 using Leibit.Entities.Scheduling;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
+using System.Windows;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
 {
@@ -16,6 +18,7 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
 
         #region - Needs -
         private TrainInformation m_Train;
+        private LiveDataBLL m_LiveDataBll;
         #endregion
 
         #region - Ctor -
@@ -31,7 +34,8 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
             Schedules = new ObservableCollection<LiveSchedule>(candidates);
             SelectedSchedule = Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == schedule.Station.ShortSymbol && s.Schedule.Time == schedule.Time);
 
-            SaveCommand = new CommandHandler(__Save, true);
+            SaveCommand = new CommandHandler(__Save, false);
+            m_LiveDataBll = new LiveDataBLL();
         }
         #endregion
 
@@ -57,6 +61,7 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
             {
                 Set(value);
                 OnPropertyChanged(nameof(DelayArrivalString));
+                SaveCommand.SetCanExecute(value != null);
 
                 if (SelectedSchedule != null)
                     ExpectedDelayDeparture = (SelectedSchedule.ExpectedDeparture - SelectedSchedule.Schedule.Departure).TotalMinutes;
@@ -115,7 +120,7 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
         #endregion
 
         #region [SaveCommand]
-        public ICommand SaveCommand { get; }
+        public CommandHandler SaveCommand { get; }
         #endregion
 
         #endregion
@@ -125,7 +130,18 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
         #region [__Save]
         private void __Save()
         {
-            OnCloseWindow();
+            if (SelectedSchedule == null)
+                return;
+
+            var result = m_LiveDataBll.SetExpectedDelay(SelectedSchedule, ExpectedDelayDeparture);
+
+            if (result.Succeeded)
+            {
+                OnStatusBarTextChanged($"Voraussichtliche Verspätung für Zug {m_Train.Train.Number} in {SelectedSchedule.Schedule.Station.ShortSymbol} eingetragen");
+                OnCloseWindow();
+            }
+            else
+                MessageBox.Show(result.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         #endregion
 
