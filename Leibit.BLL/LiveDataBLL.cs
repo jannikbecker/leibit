@@ -239,6 +239,22 @@ namespace Leibit.BLL
         {
             try
             {
+                // Validation
+                var validationMessages = new List<string>();
+
+                if (schedule.IsDeparted)
+                    validationMessages.Add($"Der Zug {schedule.Train.Train.Number} hat die Betriebsstelle {schedule.Schedule.Station.ShortSymbol} bereits verlassen.");
+                if (schedule.Schedule.Handling == eHandling.Destination)
+                    validationMessages.Add($"Der Zug {schedule.Train.Train.Number} endet in {schedule.Schedule.Station.ShortSymbol}.");
+
+                if (validationMessages.Any())
+                {
+                    validationMessages.Insert(0, "Verspätung kann nicht eingetragen werden");
+                    var message = string.Join(Environment.NewLine, validationMessages);
+                    throw new InvalidOperationException(message);
+                }
+
+                // Let's do it
                 schedule.ExpectedDelay = expectedDelay;
 
                 var calculationResult = CalculationBLL.CalculateExpectedTimes(schedule.Train, schedule.Schedule.Station.ESTW);
