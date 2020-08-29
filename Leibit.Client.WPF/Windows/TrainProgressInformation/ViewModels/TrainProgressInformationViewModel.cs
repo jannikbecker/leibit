@@ -6,6 +6,8 @@ using Leibit.Client.WPF.Windows.DelayJustification.ViewModels;
 using Leibit.Client.WPF.Windows.DelayJustification.Views;
 using Leibit.Client.WPF.Windows.LocalOrders.ViewModels;
 using Leibit.Client.WPF.Windows.LocalOrders.Views;
+using Leibit.Client.WPF.Windows.TrackChange.ViewModels;
+using Leibit.Client.WPF.Windows.TrackChange.Views;
 using Leibit.Client.WPF.Windows.TrainSchedule.ViewModels;
 using Leibit.Client.WPF.Windows.TrainSchedule.Views;
 using Leibit.Core.Client.Commands;
@@ -40,6 +42,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
             m_DoubleClickCommand = new CommandHandler(__RowDoubleClick, true);
             ShowTrainScheduleCommand = new CommandHandler(__ShowTrainSchedule, false);
+            ShowTrackChangeCommand = new CommandHandler(__ShowTrackChange, false);
             ShowLocalOrdersCommand = new CommandHandler(__ShowLocalOrders, false);
             ShowDelayJustificationCommand = new CommandHandler(__ShowDelayJustification, false);
         }
@@ -71,6 +74,10 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 return m_DoubleClickCommand;
             }
         }
+        #endregion
+
+        #region [ShowTrackChangeCommand]
+        public CommandHandler ShowTrackChangeCommand { get; }
         #endregion
 
         #region [ShowTrainScheduleCommand]
@@ -285,6 +292,9 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             }
             else
             {
+                var liveSchedule = SelectedItem.CurrentTrain.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == SelectedItem.Schedule.Station.ShortSymbol && s.Schedule.Time == SelectedItem.Schedule.Time);
+                ShowTrackChangeCommand.SetCanExecute(liveSchedule != null && !liveSchedule.IsArrived && (SelectedItem.Schedule.Track == null || SelectedItem.Schedule.Track.IsPlatform));
+
                 ShowTrainScheduleCommand.SetCanExecute(true);
                 ShowLocalOrdersCommand.SetCanExecute(SelectedItem.LocalOrders == 'J');
                 ShowDelayJustificationCommand.SetCanExecute(SelectedItem.DelayInfo == 'U');
@@ -304,6 +314,15 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 __ShowLocalOrders();
             else
                 __ShowTrainSchedule();
+        }
+        #endregion
+
+        #region [__ShowTrackChange]
+        private void __ShowTrackChange()
+        {
+            var Window = new TrackChangeView(SelectedItem.TrainNumber);
+            var VM = new TrackChangeViewModel(SelectedItem.CurrentTrain, SelectedItem.Schedule);
+            OnOpenWindow(VM, Window);
         }
         #endregion
 
