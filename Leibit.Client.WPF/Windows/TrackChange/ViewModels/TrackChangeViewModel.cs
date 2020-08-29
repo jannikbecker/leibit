@@ -1,4 +1,5 @@
-﻿using Leibit.Client.WPF.Common;
+﻿using Leibit.BLL;
+using Leibit.Client.WPF.Common;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Core.Client.Commands;
 using Leibit.Entities.Common;
@@ -7,6 +8,8 @@ using Leibit.Entities.Scheduling;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Leibit.Client.WPF.Windows.TrackChange.ViewModels
 {
@@ -15,6 +18,7 @@ namespace Leibit.Client.WPF.Windows.TrackChange.ViewModels
 
         #region - Needs -
         private TrainInformation m_Train;
+        private LiveDataBLL m_LiveDataBll;
         #endregion
 
         #region - Ctor -
@@ -22,6 +26,7 @@ namespace Leibit.Client.WPF.Windows.TrackChange.ViewModels
         {
             m_Train = train;
             SaveCommand = new CommandHandler(__Save, false);
+            m_LiveDataBll = new LiveDataBLL();
 
             var candidates = train.Schedules.Where(s => !s.IsArrived && (s.Schedule.Track == null || s.Schedule.Track.IsPlatform))
                                             .Where(s => s.Schedule.Station.ESTW.Stations.Any(s2 => Runtime.VisibleStations.Contains(s2)))
@@ -93,8 +98,8 @@ namespace Leibit.Client.WPF.Windows.TrackChange.ViewModels
             if (SelectedSchedule == null)
                 Tracks = new ObservableCollection<Track>();
             else if (SelectedSchedule.Schedule.Track == null || (!SelectedSchedule.Schedule.Track.Alternatives.Any() && !SelectedSchedule.Schedule.Track.Parent.Alternatives.Any()))
-                // No alternative tracks configured -> Show all tracks except the scheduled track
-                Tracks = new ObservableCollection<Track>(SelectedSchedule.Schedule.Station.Tracks.Where(t => !t.Name.Equals(SelectedSchedule.Schedule.Track.Name, StringComparison.InvariantCultureIgnoreCase)));
+                // No alternative tracks configured -> Show all tracks
+                Tracks = new ObservableCollection<Track>(SelectedSchedule.Schedule.Station.Tracks);
             else
             {
                 // We need to evaluate the alternatives...
@@ -102,9 +107,9 @@ namespace Leibit.Client.WPF.Windows.TrackChange.ViewModels
 
                 foreach (var track in SelectedSchedule.Schedule.Station.Tracks)
                 {
-                    // Scheduled track is 1. Skip track 1 itself
+                    // Scheduled track is 1. Add track 1 to list
                     if (track.Name.Equals(SelectedSchedule.Schedule.Track.Name, StringComparison.InvariantCultureIgnoreCase))
-                        continue;
+                        Tracks.Add(track);
 
                     // Scheduled track is 1. Add tracks 1A and 1B to list
                     else if (SelectedSchedule.Schedule.Track.Name.Equals(track.Parent.Name, StringComparison.InvariantCultureIgnoreCase))
@@ -140,7 +145,18 @@ namespace Leibit.Client.WPF.Windows.TrackChange.ViewModels
         #region [__Save]
         private void __Save()
         {
-            OnCloseWindow();
+            if (SelectedSchedule == null || SelectedTrack == null)
+                return;
+
+            var result = m_LiveDataBll.ChangeTrack(SelectedSchedule, SelectedTrack);
+
+            if (result.Succeeded)
+            {
+                OnStatusBarTextChanged($"Gleiswechsel für Zug {m_Train.Train.Number} in {SelectedSchedule.Schedule.Station.ShortSymbol} eingetragen");
+                OnCloseWindow();
+            }
+            else
+                MessageBox.Show(result.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         #endregion
 
