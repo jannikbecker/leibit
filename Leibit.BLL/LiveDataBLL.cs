@@ -241,7 +241,7 @@ namespace Leibit.BLL
             {
                 schedule.ExpectedDelay = expectedDelay;
 
-                var calculationResult = m_CalculationBll.CalculateExpectedTimes(schedule.Train, schedule.Schedule.Station.ESTW);
+                var calculationResult = CalculationBLL.CalculateExpectedTimes(schedule.Train, schedule.Schedule.Station.ESTW);
                 ValidateResult(calculationResult);
 
                 // TODO: Forward to ESTWonline

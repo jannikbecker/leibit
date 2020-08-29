@@ -25,6 +25,8 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
         public ExpectedDelayViewModel(TrainInformation train, Schedule schedule)
         {
             m_Train = train;
+            SaveCommand = new CommandHandler(__Save, false);
+            m_LiveDataBll = new LiveDataBLL();
 
             var candidates = train.Schedules.Where(s => s.Schedule.Handling != eHandling.Destination && !s.IsDeparted)
                                             .Where(s => s.Schedule.Station.ESTW.Stations.Any(s2 => Runtime.VisibleStations.Contains(s2)))
@@ -33,9 +35,6 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
 
             Schedules = new ObservableCollection<LiveSchedule>(candidates);
             SelectedSchedule = Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == schedule.Station.ShortSymbol && s.Schedule.Time == schedule.Time);
-
-            SaveCommand = new CommandHandler(__Save, false);
-            m_LiveDataBll = new LiveDataBLL();
         }
         #endregion
 
