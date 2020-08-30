@@ -487,5 +487,36 @@ namespace Leibit.Tests.ExpectedData
             return Result;
         }
 
+        internal static TrainInformation TestMisdirectedTrain(ESTW estw)
+        {
+            var Train = estw.Area.Trains[4711];
+
+            var Result = new TrainInformation(Train);
+            Result.Direction = eBlockDirection.Right;
+            Result.Delay = 0;
+            Result.Block = estw.Blocks["32G11"].First();
+
+            var ProbeSchedule = new LiveSchedule(Result, Train.Schedules.FirstOrDefault(s => s.Station.ShortSymbol == "TPRB"));
+            ProbeSchedule.LiveArrival = new LeibitTime(eDaysOfService.Thursday, 14, 4);
+            ProbeSchedule.LiveDeparture = new LeibitTime(eDaysOfService.Thursday, 14, 5);
+            ProbeSchedule.LiveTrack = ProbeSchedule.Schedule.Track;
+            ProbeSchedule.ExpectedArrival = ProbeSchedule.LiveArrival;
+            ProbeSchedule.ExpectedDeparture = ProbeSchedule.LiveDeparture;
+            Result.AddSchedule(ProbeSchedule);
+
+            var TestdorfSchedule = new LiveSchedule(Result, new Schedule(Train, estw.Stations.FirstOrDefault(s => s.ShortSymbol == "TTST")));
+            TestdorfSchedule.Schedule.Arrival = new LeibitTime(14, 11);
+            TestdorfSchedule.LiveArrival = new LeibitTime(eDaysOfService.Thursday, 14, 11);
+            TestdorfSchedule.Schedule.Departure = new LeibitTime(14, 12);
+            TestdorfSchedule.LiveDeparture = new LeibitTime(eDaysOfService.Thursday, 14, 12);
+            TestdorfSchedule.LiveTrack = TestdorfSchedule.Schedule.Station.Tracks.FirstOrDefault(t => t.Name == "1A");
+            TestdorfSchedule.ExpectedArrival = TestdorfSchedule.LiveArrival;
+            TestdorfSchedule.ExpectedDeparture = TestdorfSchedule.LiveDeparture;
+            Result.AddSchedule(TestdorfSchedule);
+
+            Train.AddSchedule(TestdorfSchedule.Schedule);
+            return Result;
+        }
+
     }
 }

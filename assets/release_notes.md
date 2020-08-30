@@ -1,5 +1,6 @@
-- Die Prüfung der ESTWsim-Verzeichnisse wurde angepasst. Es wird nun nicht mehr die Existenz der "estw_sim.exe" geprüft. Stattdessen müssen die Ordner "Bahnhof Fahrplan", "Bahnhof Anweisungen" und "Kommunikation" vorhanden sein.
-- In der Zugfahrtinformation (ZFI) wurden die Spalten "Gattung", "Start" und "Ziel" ergänzt.
-- Die Sortierung der Tabellen in ZFI und BFO wurde verbessert.
-- Das Bemerkungsfeld im Fahrplan ist nun nicht mehr abgeschnitten. Dieser Bug betraf Fulda und Bad Hersfeld.
-- Die Liste der Verspätungsbegründungen wurde überarbeitet und um die offiziellen Codierungen ergänzt.
+- Die Simulationen Schlüchtern und Gelnhausen stehen nun zur Verfügung.
+- Die Verspätungsberechnung in der Simulation Elm wurde korrigiert.
+- Die Konfigurationsdatei von ESTWonline wurde aktualisiert.
+- Das Scrollverhalten im Verspätungsbegründungsdialog wurde korrigiert.
+- Die verursachende Zugnummer kann im Verspätungsbegründungsdialog wieder entfernt werden.
+- Das Layout des Einstellungsfensters wurde überarbeitet.

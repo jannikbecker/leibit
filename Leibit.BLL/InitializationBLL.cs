@@ -406,6 +406,9 @@ namespace Leibit.BLL
                     string Remark = ScheduleLine.Substring(remarkFrom, remarkLength).Trim();
                     string Destination = ScheduleLine.Substring(destinationFrom).Trim();
 
+                    if (sTrain.Length > 5)
+                        sTrain = sTrain.Substring(sTrain.Length - 5);
+
                     int TrainNr;
                     if (!Int32.TryParse(sTrain, out TrainNr))
                         continue;
