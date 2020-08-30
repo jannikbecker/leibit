@@ -32,7 +32,7 @@
     </track>
   </station>
 
-  <station name="Üst Brandbühl" short="RBRB" refNr="66" scheduleFile="g66_____.abf" localOrderFile="bf66____.abf">
+  <station name="Brandbühl" short="RBRB" refNr="66" scheduleFile="g66_____.abf" localOrderFile="bf66____.abf">
     <track name="52" isPlatform="false">
       <block name="66G52"/>
     </track>
@@ -49,13 +49,13 @@
     </track>
   </station>
 
-  <station name="Hp Wahlwies" short="RWW" refNr="67" scheduleFile="wahlwi__.abf">
+  <station name="Wahlwies" short="RWW" refNr="67" scheduleFile="wahlwi__.abf">
     <track name="N1">
       <block name="67BN1"/>
     </track>
   </station>
 
-  <station name="Hp Nenzingen" short="RNN" refNr="65" scheduleFile="nenzin__.abf">
+  <station name="Nenzingen" short="RNN" refNr="65" scheduleFile="nenzin__.abf">
     <track name="G12">
       <block name="65G12"/>
     </track>
@@ -83,7 +83,7 @@
     </track>
   </station>
 
-  <station name="Hp Sipplingen" short="RSIN" refNr="68" scheduleFile="sippli__.abf">
+  <station name="Sipplingen" short="RSIN" refNr="68" scheduleFile="sippli__.abf">
     <track name="N">
       <block name="68BN"/>
     </track>
@@ -108,7 +108,7 @@
   </station>
 
   <!--ScheduleFile prüfen, RUEO hat 2!-->
-  <station name="Hp Überlingen Ost" short="RUEO" refNr="69" scheduleFile="überli__.abf">
+  <station name="Überlingen-Ost" short="RUEO" refNr="69" scheduleFile="überli__.abf">
     <track name="N">
       <block name="69BN"/>
     </track>
@@ -160,7 +160,7 @@
     </track>
   </station>
 
-  <station name="Friedrichshafen" short="TF" refNr="77" scheduleFile="g77_____.abf" localOrderFile="bf77____.abf">
+  <station name="Friedrichshafen Stadt" short="TF" refNr="77" scheduleFile="g77_____.abf" localOrderFile="bf77____.abf">
     <track name="1">
       <block name="77G1"/>
       <alternative track="2"/>
@@ -262,7 +262,7 @@
   </station>
 
   <!--ScheduleFile prüfen, TFH hat 2!-->
-  <station name="Hp FN-Hafen" short="TFH" refNr="77" scheduleFile="fn-haf__.abf" localOrderFile="fn-haf__.abf">
+  <station name="Friedrichshafen Hafen" short="TFH" refNr="77" scheduleFile="fn-haf__.abf" localOrderFile="fn-haf__.abf">
     <track name="152">
       <block name="7G152"/>
       <alternative track="153"/>
@@ -273,13 +273,13 @@
     </track>
   </station>
 
-  <station name="Hp FN-Ost" short="TFOS" refNr="77" scheduleFile="fn-ost__.abf">
+  <station name="Friedrichshafen-Ost" short="TFOS" refNr="77" scheduleFile="fn-ost__.abf">
     <track name="P2">
       <block name="77BP2"/>
     </track>
   </station>
 
-  <station name="Hp Löwental" short="TLOE" refNr="77" scheduleFile="löwent__.abf">
+  <station name="Löwental" short="TLOE" refNr="77" scheduleFile="löwent__.abf">
     <track name="N">
       <block name="78BN"/>
       <alternative track="P1"/>
@@ -290,7 +290,7 @@
     </track>
   </station>
 
-  <station name="Hp FN-Flughafen" short="TFFL" refNr="77" scheduleFile="fn-flu__.abf">
+  <station name="Friedrichshafen Flughafen" short="TFFL" refNr="77" scheduleFile="fn-flu__.abf">
     <track name="N">
       <block name="78BN"/>
       <alternative track="P1"/>
@@ -301,7 +301,7 @@
     </track>
   </station>
 
-  <station name="Hp Kehlen" short="TKEH" refNr="77" scheduleFile="kehlen__.abf">
+  <station name="Kehlen" short="TKEH" refNr="77" scheduleFile="kehlen__.abf">
     <track name="N">
       <block name="78BN"/>
       <alternative track="P1"/>
