@@ -18,4 +18,8 @@
     <estw id="AHAR" name="Hamburg-Harburg" dataFile="leibit_HAMBURG-HARBURG.dat"/>
     <estw id="AH" name="Hamburg Hbf" dataFile="leibit_HAMBURG HBF.dat"/>
   </area>
+
+  <area id="sued" name="Süddeutschland">
+    <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat"/>
+  </area>
 </leibit>
