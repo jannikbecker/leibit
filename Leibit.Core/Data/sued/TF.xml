@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<estw>
+  <station name="Radolfzell" short="RRZ" refNr="56">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="66BP" direction="right" />
+      <block name="56BN2" direction="right" />
+    </track>
+  </station>
+
+  <station name="Schwackenreute" short="RSU" refNr="65">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="65BN" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Eriskirch" short="TEK" refNr="76">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="77BP2" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Baienfurt" short="TBAG" refNr="40">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="40BN2" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Aulendorf" short="TAU" refNr="38">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="38BP69" direction="left"/>
+      <block name="39BP" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Üst Brandbühl" short="RBRB" refNr="66" scheduleFile="g66_____.abf" localOrderFile="bf66____.abf">
+    <track name="52" isPlatform="false">
+      <block name="66G52"/>
+    </track>
+  </station>
+
+  <station name="Stahring" short="RST" refNr="67" scheduleFile="g67_____.abf" localOrderFile="bf67____.abf">
+    <track name="1">
+      <block name="67G1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="2">
+      <block name="67G2"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Hp Wahlwies" short="RWW" refNr="67" scheduleFile="wahlwi__.abf">
+    <track name="N1">
+      <block name="67BN1"/>
+    </track>
+  </station>
+
+  <station name="Hp Nenzingen" short="RNN" refNr="65" scheduleFile="nenzin__.abf">
+    <track name="G12">
+      <block name="65G12"/>
+    </track>
+  </station>
+
+  <station name="Stockach" short="RSTK" refNr="65" scheduleFile="g65_____.abf" localOrderFile="bf65____.abf">
+    <track name="1">
+      <block name="65G1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="2">
+      <block name="65G2"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Ludwigshafen (Bodensee)" short="RLU" refNr="68" scheduleFile="g68_____.abf" localOrderFile="bf68____.abf">
+    <track name="1">
+      <block name="68G1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="2">
+      <block name="68G2"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Hp Sipplingen" short="RSIN" refNr="68" scheduleFile="sippli__.abf">
+    <track name="N">
+      <block name="68BN"/>
+    </track>
+  </station>
+
+  <station name="Überlingen" short="RUEB" refNr="69" scheduleFile="g69_____.abf" localOrderFile="bf69____.abf">
+    <track name="1">
+      <block name="69G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+    <track name="2">
+      <block name="69G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+    </track>
+    <track name="3">
+      <block name="69G3"/>
+      <alternative track="2"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <!--ScheduleFile prüfen, RUEO hat 2!-->
+  <station name="Hp Überlingen Ost" short="RUEO" refNr="69" scheduleFile="überli__.abf">
+    <track name="N">
+      <block name="69BN"/>
+    </track>
+  </station>
+
+  <station name="Uhldingen-Mühlhofen" short="RUDM" refNr="70" scheduleFile="g70_____.abf" localOrderFile="bf70____.abf">
+    <track name="1">
+      <block name="70G1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="2">
+      <block name="70G2"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Salem" short="RSLM" refNr="71" scheduleFile="g71_____.abf" localOrderFile="bf71____.abf">
+    <track name="1">
+      <block name="71G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+    <track name="2">
+      <block name="71G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+    </track>
+    <track name="3">
+      <block name="71G3"/>
+      <alternative track="2"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Bermatingen-Ahausen" short="RBAH" refNr="71" scheduleFile="bermat__.abf">
+    <track name="N">
+      <block name="71BN"/>
+    </track>
+  </station>
+
+  <station name="Markdorf" short="RMAD" refNr="72" scheduleFile="g72_____.abf" localOrderFile="bf72____.abf">
+    <track name="1">
+      <block name="72G1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="2">
+      <block name="72G2"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Friedrichshafen" short="TF" refNr="77" scheduleFile="g77_____.abf" localOrderFile="bf77____.abf">
+    <track name="1">
+      <block name="77G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="30"/>
+    </track>
+    <track name="2">
+      <block name="77G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="30"/>
+    </track>
+    <track name="3">
+      <block name="77G3"/>
+      <alternative track="2"/>
+      <alternative track="1"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="30"/>
+    </track>
+    <track name="4">
+      <block name="77G4"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="1"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="30"/>
+    </track>
+    <track name="5">
+      <block name="77G5"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="1"/>
+      <alternative track="6"/>
+      <alternative track="30"/>
+    </track>
+    <track name="6">
+      <block name="77G6"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="1"/>
+      <alternative track="30"/>
+    </track>
+    <track name="30">
+      <block name="77G30"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="1"/>
+    </track>
+    <track name="53">
+      <block name="77G53"/>
+      <alternative track="54"/>
+      <alternative track="55"/>
+      <alternative track="56"/>
+      <alternative track="57"/>
+    </track>
+    <track name="54">
+      <block name="77G54"/>
+      <alternative track="53"/>
+      <alternative track="55"/>
+      <alternative track="56"/>
+      <alternative track="57"/>
+    </track>
+    <track name="55">
+      <block name="77G55"/>
+      <alternative track="54"/>
+      <alternative track="53"/>
+      <alternative track="56"/>
+      <alternative track="57"/>
+    </track>
+    <track name="56">
+      <block name="77G56"/>
+      <alternative track="54"/>
+      <alternative track="55"/>
+      <alternative track="53"/>
+      <alternative track="57"/>
+    </track>
+    <track name="57">
+      <block name="77G57"/>
+      <alternative track="54"/>
+      <alternative track="55"/>
+      <alternative track="56"/>
+      <alternative track="53"/>
+    </track>
+  </station>
+
+  <!--ScheduleFile prüfen, TFH hat 2!-->
+  <station name="Hp FN-Hafen" short="TFH" refNr="77" scheduleFile="fn-haf__.abf" localOrderFile="fn-haf__.abf">
+    <track name="152">
+      <block name="7G152"/>
+      <alternative track="153"/>
+    </track>
+    <track name="153">
+      <block name="7G153"/>
+      <alternative track="152"/>
+    </track>
+  </station>
+
+  <station name="Hp FN-Ost" short="TFOS" refNr="77" scheduleFile="fn-ost__.abf">
+    <track name="P2">
+      <block name="77BP2"/>
+    </track>
+  </station>
+
+  <station name="Hp Löwental" short="TLOE" refNr="77" scheduleFile="löwent__.abf">
+    <track name="N">
+      <block name="78BN"/>
+      <alternative track="P1"/>
+    </track>
+    <track name="P1">
+      <block name="77BP1"/>
+      <alternative track="N"/>
+    </track>
+  </station>
+
+  <station name="Hp FN-Flughafen" short="TFFL" refNr="77" scheduleFile="fn-flu__.abf">
+    <track name="N">
+      <block name="78BN"/>
+      <alternative track="P1"/>
+    </track>
+    <track name="P1">
+      <block name="77BP1"/>
+      <alternative track="N"/>
+    </track>
+  </station>
+
+  <station name="Hp Kehlen" short="TKEH" refNr="77" scheduleFile="kehlen__.abf">
+    <track name="N">
+      <block name="78BN"/>
+      <alternative track="P1"/>
+    </track>
+    <track name="P1">
+      <block name="77BP1"/>
+      <alternative track="N"/>
+    </track>
+  </station>
+
+  <station name="Meckenbeuren" short="TMK" refNr="78" scheduleFile="g78_____.abf" localOrderFile="bf78____.abf">
+    <track name="2">
+      <block name="78G2"/>
+      <alternative track="3"/>
+    </track>
+    <track name="3">
+      <block name="78G3"/>
+      <alternative track="2"/>
+    </track>
+  </station>
+
+  <station name="Ravensburg" short="TRB" refNr="79" scheduleFile="g79_____.abf" localOrderFile="bf79____.abf">
+    <track name="1">
+      <block name="79G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="8"/>
+    </track>
+    <track name="2">
+      <block name="79G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="8"/>
+    </track>
+    <track name="3">
+      <block name="79G3"/>
+      <alternative track="2"/>
+      <alternative track="1"/>
+      <alternative track="4"/>
+      <alternative track="8"/>
+    </track>
+    <track name="4" isPlatform="false">
+      <block name="79G4"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="1"/>
+      <alternative track="8"/>
+    </track>
+    <track name="8" isPlatform="false">
+      <block name="79G8"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Niederbiegen" short="TNB" refNr="40" scheduleFile="g40_____.abf" localOrderFile="bf40____.abf">
+    <track name="1" isPlatform="false">
+      <block name="40G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+    </track>
+    <track name="2">
+      <block name="40G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+    </track>
+    <track name="3">
+      <block name="40G3"/>
+      <alternative track="2"/>
+      <alternative track="1"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+    </track>
+    <track name="4" isPlatform="false">
+      <block name="40G4"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="1"/>
+      <alternative track="7"/>
+    </track>
+    <track name="7" isPlatform="false">
+      <block name="40G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Mochenwangen" short="TMO" refNr="39" scheduleFile="g39_____.abf" localOrderFile="bf39____.abf">
+    <track name="2">
+      <block name="39G2"/>
+      <alternative track="3"/>
+    </track>
+    <track name="3">
+      <block name="39G3"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+</estw>
