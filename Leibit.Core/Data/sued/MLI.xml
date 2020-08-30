@@ -319,7 +319,7 @@
     </track>
   </station>
 
-  <station name="FN-Ost" short="TFOS" refNr="77" scheduleFile="fn-ost__.abf">
+  <station name="Friedrichshafen Ost" short="TFOS" refNr="77" scheduleFile="fn-ost__.abf">
     <track name="P2">
       <block name="77BP2"/>
     </track>
