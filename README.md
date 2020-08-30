@@ -23,6 +23,8 @@ Folgende Simulationen werden aktuell unterstützt:
     - Hamburg-Harburg
     - Hamburg Hbf
 - Bereich Nordhessen/Thüringen
+    - Gelnhausen (NEU)
+    - Schlüchtern (NEU)
     - Elm
     - Fulda
     - Bad Hersfeld
