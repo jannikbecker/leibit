@@ -305,7 +305,7 @@ namespace Leibit.BLL
                         string sDirection = Parts[5];
 
                         if (sTrainNumber.Length > 5)
-                            continue;
+                            sTrainNumber = sTrainNumber.Substring(sTrainNumber.Length - 5);
 
                         int TrainNumber, Delay;
 
@@ -322,7 +322,13 @@ namespace Leibit.BLL
                             Train = estw.Area.LiveTrains.GetOrAdd(TrainNumber, Train);
                         }
 
-                        Train.Delay = Delay;
+                        if (Train.Schedules.All(s => s.Schedule.IsUnscheduled || s.LiveArrival == null))
+                            Train.Delay = Delay;
+                        else
+                        {
+                            // In this case delay is calculated by LeiBIT. Ignore the delay information from ESTWsim!
+                        }
+
                         Train.Direction = sDirection == "L" ? eBlockDirection.Left : eBlockDirection.Right;
 
                         var Block = estw.Blocks.ContainsKey(BlockName) ? estw.Blocks[BlockName].FirstOrDefault(b => b.Direction == eBlockDirection.Both || b.Direction == Train.Direction) : null;
@@ -473,10 +479,13 @@ namespace Leibit.BLL
                             {
                                 CurrentSchedule.LiveTrack = LiveTrack;
 
-                                // When train is in station, it cannot be departed.
-                                // This fixes issues that can occur in mirror fields when the train has arrived at the station in one ESTW, but not yet in the other.
-                                CurrentSchedule.IsDeparted = false;
-                                CurrentSchedule.LiveDeparture = null;
+                                if (LiveTrack.IsPlatform)
+                                {
+                                    // When train is in station, it cannot be departed.
+                                    // This fixes issues that can occur in mirror fields when the train has arrived at the station in one ESTW, but not yet in the other.
+                                    CurrentSchedule.IsDeparted = false;
+                                    CurrentSchedule.LiveDeparture = null;
+                                }
                             }
                         }
                     }
