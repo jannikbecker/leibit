@@ -556,4 +556,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Update="TestData\ESTWOnline\TestMisdirectedTrain\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ESTWOnline\TestMisdirectedTrain\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ESTWOnline\TestMisdirectedTrain\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ESTWOnline\TestMisdirectedTrain\TestdorfDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

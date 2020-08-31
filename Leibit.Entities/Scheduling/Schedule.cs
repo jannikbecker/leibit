@@ -26,6 +26,7 @@ namespace Leibit.Entities.Scheduling
             m_Days = new List<eDaysOfService>();
             m_Direction = eScheduleDirection.Unknown;
             m_Handling = eHandling.Unknown;
+            IsUnscheduled = true;
         }
 
         public Schedule(Train train, LeibitTime arrival, LeibitTime departure, Track track, List<eDaysOfService> days, eScheduleDirection direction, eHandling handling, string remark)
@@ -147,11 +148,13 @@ namespace Leibit.Entities.Scheduling
             }
         }
 
+        public bool IsUnscheduled { get; set; }
+
         public LeibitTime Time
         {
             get
             {
-                var time = (m_Departure == null) ? m_Arrival : m_Departure;
+                var time = m_Departure ?? m_Arrival;
 
                 if (time == null)
                     return null;
