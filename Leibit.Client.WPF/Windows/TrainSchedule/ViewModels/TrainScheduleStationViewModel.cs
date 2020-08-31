@@ -289,7 +289,13 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get
             {
-                return HasStation && !IsSkipped ? Visibility.Visible : Visibility.Collapsed;
+                if (!HasStation)
+                    return Visibility.Collapsed;
+
+                if (IsFirstStation || IsLastStation)
+                    return Visibility.Visible;
+
+                return IsSkipped ? Visibility.Collapsed : Visibility.Visible;
             }
         }
         #endregion
