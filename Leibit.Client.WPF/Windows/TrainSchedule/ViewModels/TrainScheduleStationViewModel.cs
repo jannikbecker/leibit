@@ -6,6 +6,7 @@ using Leibit.Entities;
 using Leibit.Entities.Common;
 using Leibit.Entities.Scheduling;
 using System;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -170,6 +171,47 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         }
         #endregion
 
+        #region [ArrivalVisibility]
+        public Visibility ArrivalVisibility
+        {
+            get
+            {
+                return Arrival != null && !CurrentSchedule.IsUnscheduled ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+        #endregion
+
+        #region [DepartureVisibility]
+        public Visibility DepartureVisibility
+        {
+            get
+            {
+                return Departure != null && !CurrentSchedule.IsUnscheduled ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
+        #endregion
+
+        #region [LiveTime]
+        public LeibitTime LiveTime
+        {
+            get
+            {
+                if (Departure == null)
+                {
+                    if (DelayArrival.HasValue)
+                        return Arrival.AddMinutes(DelayArrival.Value);
+                }
+                else
+                {
+                    if (DelayDeparture.HasValue)
+                        return Departure.AddMinutes(DelayDeparture.Value);
+                }
+
+                return null;
+            }
+        }
+        #endregion
+
         #region [Track]
         public Track Track
         {
@@ -242,6 +284,22 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         }
         #endregion
 
+        #region [StationDotVisibility]
+        public Visibility StationDotVisibility
+        {
+            get
+            {
+                if (!HasStation)
+                    return Visibility.Collapsed;
+
+                if (IsFirstStation || IsLastStation)
+                    return Visibility.Visible;
+
+                return IsSkipped ? Visibility.Collapsed : Visibility.Visible;
+            }
+        }
+        #endregion
+
         #region [IsFirstStation]
         public bool IsFirstStation
         {
@@ -280,7 +338,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             set
             {
                 Set(value);
-                OnPropertyChanged("ArrivalColor");
+                OnPropertyChanged(nameof(ArrivalColor));
             }
         }
         #endregion
@@ -295,7 +353,25 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             set
             {
                 Set(value);
-                OnPropertyChanged("DepartureColor");
+                OnPropertyChanged(nameof(DepartureColor));
+            }
+        }
+        #endregion
+
+        #region [IsSkipped]
+        public bool IsSkipped
+        {
+            get
+            {
+                return Get<bool>();
+            }
+            set
+            {
+                Set(value);
+                OnPropertyChanged(nameof(ArrivalColor));
+                OnPropertyChanged(nameof(DepartureColor));
+                OnPropertyChanged(nameof(TextColor));
+                OnPropertyChanged(nameof(StationDotVisibility));
             }
         }
         #endregion
@@ -305,6 +381,9 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get
             {
+                if (IsSkipped)
+                    return Brushes.LightCoral;
+
                 return IsArrived ? Brushes.Red : Brushes.Black;
             }
         }
@@ -315,7 +394,20 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get
             {
+                if (IsSkipped)
+                    return Brushes.LightCoral;
+
                 return IsDeparted ? Brushes.Red : Brushes.Black;
+            }
+        }
+        #endregion
+
+        #region [TextColor]
+        public Brush TextColor
+        {
+            get
+            {
+                return IsSkipped ? Brushes.Gray : Brushes.Black;
             }
         }
         #endregion
