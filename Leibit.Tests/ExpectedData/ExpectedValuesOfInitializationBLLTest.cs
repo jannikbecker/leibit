@@ -126,6 +126,10 @@ namespace Leibit.Tests.ExpectedData
             new Schedule(Train65123, null, new LeibitTime(0, 12), ProbeTrack1, new List<eDaysOfService> { eDaysOfService.Monday, eDaysOfService.Tuesday, eDaysOfService.Wednesday, eDaysOfService.Thursday }, eScheduleDirection.RightToLeft, eHandling.Transit, String.Empty, null);
             new Schedule(Train65123, null, new LeibitTime(0, 12), ProbeTrack1, new List<eDaysOfService> { eDaysOfService.Friday, eDaysOfService.Saturday }, eScheduleDirection.RightToLeft, eHandling.Transit, String.Empty, null);
 
+            var Train4711 = new Train(4711, "EC", "Linksdorf Hbf", "Nirwana");
+            Area.Trains.TryAdd(4711, Train4711);
+            new Schedule(Train4711, null, new LeibitTime(14, 5), ProbeTrack2, _ALL_DAYS, eScheduleDirection.LeftToRight, eHandling.Transit, String.Empty, null);
+
             EstwTestdorf.IsLoaded = true;
             return Area;
         }

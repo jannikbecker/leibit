@@ -22,9 +22,12 @@ Folgende Simulationen werden aktuell unterstützt:
     - Buchholz
     - Hamburg-Harburg
     - Hamburg Hbf
-- Bereich Nordhessen/Thüringen
-    - Gelnhausen (NEU)
-    - Schlüchtern (NEU)
+- Bereich Mitteldeutschland
+    - Heigenbrücken (NEU)
+    - Aschaffenburg (NEU)
+    - Großkrotzenburg (NEU)
+    - Gelnhausen
+    - Schlüchtern
     - Elm
     - Fulda
     - Bad Hersfeld

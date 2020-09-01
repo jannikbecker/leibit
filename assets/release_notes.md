@@ -1,6 +1,3 @@
-- Die Simulationen Schlüchtern und Gelnhausen stehen nun zur Verfügung.
-- Die Verspätungsberechnung in der Simulation Elm wurde korrigiert.
-- Die Konfigurationsdatei von ESTWonline wurde aktualisiert.
-- Das Scrollverhalten im Verspätungsbegründungsdialog wurde korrigiert.
-- Die verursachende Zugnummer kann im Verspätungsbegründungsdialog wieder entfernt werden.
-- Das Layout des Einstellungsfensters wurde überarbeitet.
+- Die Simulationen Großkrotzenburg (#12), Aschaffenburg (#13) und Heigenbrücken (#14) stehen nun zur Verfügung.
+- Das Verhalten des LeiBIT bei Umleitern wurde korrigiert (#59). Im Zuglauf werden ausgelassene Betriebsstellen nun ausgegraut dargestellt.
+- Unter manchen Windows Versionen konnte es vorkommen, dass das LeiBIT nicht startete (#61). Dieser Fehler wurde nun korrigiert.
