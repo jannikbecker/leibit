@@ -19,13 +19,12 @@
   <station name="Sinnberg" short="NSB" refNr="11">
     <track calculateDelay="false" isPlatform="false">
       <block name="11S52" direction="right"/>
+      <block name="11B351" direction="right"/>
     </track>
   </station>
 
   <station name="Rieneck" short="NRCK" refNr="11" scheduleFile="B11_____.ABF">
-    <track name="51" calculateDelay="false">
-      <block name="11B351" direction="right"/>
-    </track>
+    <track name="51" calculateDelay="false"/>
   </station>
 
   <station name="Gemünden Zollberg" short="NZG" refNr="10" scheduleFile="G10_____.abf" localOrderFile="bf10____.abf">
