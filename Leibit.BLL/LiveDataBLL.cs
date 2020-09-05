@@ -142,12 +142,14 @@ namespace Leibit.BLL
                                 // Set departure times for trains that are gone.
                                 if (train.Value.LastModified < Estw.Time.AddMinutes(-2))
                                 {
-                                    var CurrentSchedules = train.Value.Schedules.Where(s => s.LiveArrival != null && s.LiveDeparture == null);
+                                    var CurrentSchedules = train.Value.Schedules.Where(s => s.IsArrived && !s.IsDeparted);
 
                                     foreach (var Schedule in CurrentSchedules)
                                     {
                                         Schedule.IsDeparted = true;
-                                        Schedule.LiveDeparture = train.Value.LastModified;
+
+                                        if (Schedule.LiveArrival != null)
+                                            Schedule.LiveDeparture = train.Value.LastModified;
                                     }
                                 }
 
