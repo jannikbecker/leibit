@@ -24,5 +24,6 @@
 
   <area id="sued" name="Süddeutschland">
     <estw id="TF" name="Friedrichshafen" dataFile="leibit_FRIEDRICHSHAFEN.dat"/>
+    <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat"/>
   </area>
 </leibit>
