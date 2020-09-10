@@ -40,554 +40,100 @@
       <block name="86BWRWU2" direction="right"/>
     </track>
   </station>
-  
+
   <station name="Würzburg Hbf" short="NWH" refNr="87" scheduleFile="G87_____.ABF" localOrderFile="Bf87____.abf">
     <track name="100">
       <block name="87G0100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-      
-      <track name="140">
-        <block name="87G0140"/>
-      </track>
     </track>
-    
     <track name="001">
       <block name="87G0001"/>
-      <alternative track="100"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
     </track>
-
     <track name="002">
       <block name="87G0002"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-
-      <track name="052">
-        <block name="87G0052"/>
-      </track>
     </track>
-
+    <track name="052">
+      <block name="87G0052"/>
+    </track>
     <track name="003">
       <block name="87G0003"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-
-      <track name="053">
-        <block name="87G0053"/>
-      </track>
     </track>
-
+    <track name="053">
+      <block name="87G0053"/>
+    </track>
     <track name="004">
       <block name="87G0004"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-
-      <track name="054">
-        <block name="87G0054"/>
-      </track>
     </track>
-
+    <track name="054">
+      <block name="87G0054"/>
+    </track>
     <track name="005">
       <block name="87G0005"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-
-      <track name="055">
-        <block name="87G0055"/>
-      </track>
     </track>
-
+    <track name="055">
+      <block name="87G0055"/>
+    </track>
     <track name="006">
       <block name="87G0006"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-
-      <track name="056">
-        <block name="87G0056"/>
-      </track>
     </track>
-
+    <track name="056">
+      <block name="87G0056"/>
+    </track>
     <track name="007">
       <block name="87G0007"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-
-      <track name="057">
-        <block name="87G0057"/>
-      </track>
     </track>
-
+    <track name="057">
+      <block name="87G0057"/>
+    </track>
     <track name="008">
       <block name="87G0008"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-
-      <track name="058">
-        <block name="87G0058"/>
-      </track>
     </track>
-
+    <track name="058">
+      <block name="87G0058"/>
+    </track>
     <track name="009">
       <block name="87G0009"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-
-      <track name="059">
-        <block name="87G0059"/>
-      </track>
     </track>
-
+    <track name="059">
+      <block name="87G0059"/>
+    </track>
     <track name="010">
       <block name="87G0010"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-
-      <track name="510">
-        <block name="87G0510"/>
-      </track>
     </track>
-
+    <track name="510">
+      <block name="87G0510"/>
+    </track>
     <track name="011">
       <block name="87G0011"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
-
-      <track name="511">
-        <block name="87G0511"/>
-      </track>
     </track>
-    
+    <track name="511">
+      <block name="87G0511"/>
+    </track>
     <track name="012">
       <block name="87G0012"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
     </track>
-
     <track name="013">
       <block name="87G0013"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
     </track>
-
     <track name="014">
       <block name="87G0014"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
     </track>
-
     <track name="015">
       <block name="87G0015"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
     </track>
-
     <track name="016">
       <block name="87G0016"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
     </track>
-
     <track name="017">
       <block name="87G0017"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
     </track>
-
     <track name="018">
       <block name="87BBW1Y"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="518"/>
-      <alternative track="519"/>
     </track>
-
     <track name="518">
       <block name="87G0518"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="519"/>
     </track>
-
     <track name="519">
       <block name="87G0519"/>
-      <alternative track="100"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      <alternative track="005"/>
-      <alternative track="006"/>
-      <alternative track="007"/>
-      <alternative track="008"/>
-      <alternative track="009"/>
-      <alternative track="010"/>
-      <alternative track="011"/>
-      <alternative track="012"/>
-      <alternative track="013"/>
-      <alternative track="014"/>
-      <alternative track="015"/>
-      <alternative track="016"/>
-      <alternative track="017"/>
-      <alternative track="018"/>
-      <alternative track="518"/>
     </track>
   </station>
 
