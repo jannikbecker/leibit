@@ -27,6 +27,7 @@
     <None Remove="Data\nhth\FGK.xml" />
     <None Remove="Data\nhth\FGEL.xml" />
     <None Remove="Data\nhth\FSUE.xml" />
+    <None Remove="Data\nhth\NWH.xml" />
     <None Remove="Data\nhth\UEI.xml" />
     <None Remove="Data\nhth\UGO.xml" />
     <None Remove="Data\nord\ABLZ.xml" />
@@ -54,6 +55,7 @@
     <EmbeddedResource Include="Data\nhth\FGK.xml" />
     <EmbeddedResource Include="Data\nhth\FGEL.xml" />
     <EmbeddedResource Include="Data\nhth\FSUE.xml" />
+    <EmbeddedResource Include="Data\nhth\NWH.xml" />
     <EmbeddedResource Include="Data\nhth\UEI.xml" />
     <EmbeddedResource Include="Data\nhth\UGO.xml" />
     <EmbeddedResource Include="Data\nord\ABLZ.xml" />
