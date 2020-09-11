@@ -11,8 +11,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Serialization;
 
 namespace Leibit.BLL
 {
@@ -23,7 +21,6 @@ namespace Leibit.BLL
         private SettingsBLL m_SettingsBll;
         private CalculationBLL m_CalculationBll;
         private InitializationBLL m_InitializationBll;
-        private XmlSerializer m_DelaySerializer;
 
         private string m_EstwOnlinePath;
         private object m_LockRefresh = new object();
@@ -34,7 +31,6 @@ namespace Leibit.BLL
         public LiveDataBLL()
             : base()
         {
-            m_DelaySerializer = new XmlSerializer(typeof(SharedDelay));
         }
         #endregion
 
@@ -135,9 +131,6 @@ namespace Leibit.BLL
                         }
                     });
 
-                    // Load shared delay files that have been downloaded by ESTWonline.
-                    __LoadSharedDelays(area);
-
                     var Estw = area.ESTWs.FirstOrDefault(e => e.Time != null);
 
                     if (Estw != null)
@@ -186,57 +179,31 @@ namespace Leibit.BLL
         #endregion
 
         #region [JustifyDelay]
-        public OperationResult<SharedDelay> JustifyDelay(DelayInfo delay)
+        public OperationResult<bool> JustifyDelay(DelayInfo delay, string reason, int? causedBy)
         {
             try
             {
-                if (delay.Reason.IsNullOrWhiteSpace())
-                    return new OperationResult<SharedDelay> { Message = "Bitte Grund angeben!" };
+                if (reason.IsNullOrWhiteSpace())
+                    return new OperationResult<bool> { Message = "Bitte Grund angeben!" };
 
                 var SettingsResult = SettingsBLL.GetSettings();
                 ValidateResult(SettingsResult);
                 var Settings = SettingsResult.Result;
 
-                string EstwId = delay.Schedule.Schedule.Station.ESTW.Id;
-
-                if (Settings.DelayJustificationEnabled && !Settings.Paths.ContainsKey(EstwId))
-                    return new OperationResult<SharedDelay> { Message = String.Format("Pfad zu ESTW '{0}' nicht gefunden.", delay.Schedule.Schedule.Station.ESTW.Name), Succeeded = true };
-
                 if (Settings.CheckPlausibility)
-                    __CheckDelayJustificationPlausibility(delay);
+                    __CheckDelayJustificationPlausibility(delay, causedBy);
 
-                var Result = new OperationResult<SharedDelay>();
+                delay.Reason = reason;
+                delay.CausedBy = causedBy;
 
-                var Shared = new SharedDelay(delay.Schedule.Train.Train.Number,
-                    delay.Schedule.Schedule.Station.ShortSymbol,
-                    delay.Schedule.Train.Schedules.Where(s => s.Schedule.Station.ShortSymbol == delay.Schedule.Schedule.Station.ShortSymbol).ToList().IndexOf(delay.Schedule),
-                    delay.Minutes,
-                    delay.Type,
-                    delay.Reason);
-
-                Shared.CausedBy = delay.CausedBy;
-
-                if (Settings.DelayJustificationEnabled && Settings.WriteDelayJustificationFile)
-                {
-                    var FilePath = Path.Combine(Settings.Paths[EstwId], Constants.SHARED_DELAY_FOLDER, String.Format(Constants.SHARED_DELAY_FILE_TEMPLATE, Shared.TrainNumber, Shared.StationShortSymbol));
-                    var FileInfo = new FileInfo(FilePath);
-
-                    if (!FileInfo.Directory.Exists)
-                        return new OperationResult<SharedDelay> { Message = String.Format("ESTWonline-Verzeichnis von ESTW '{0}' nicht gefunden.", delay.Schedule.Schedule.Station.ESTW.Name) };
-
-                    using (var FileStream = FileInfo.Open(FileMode.Create))
-                    {
-                        m_DelaySerializer.Serialize(FileStream, Shared);
-                    }
-                }
-
-                Result.Result = Shared;
+                var Result = new OperationResult<bool>();
+                Result.Result = true;
                 Result.Succeeded = true;
                 return Result;
             }
             catch (Exception ex)
             {
-                return new OperationResult<SharedDelay> { Message = ex.Message };
+                return new OperationResult<bool> { Message = ex.Message };
             }
         }
         #endregion
@@ -592,86 +559,38 @@ namespace Leibit.BLL
             }
         }
 
-        private void __LoadSharedDelays(Area area)
-        {
-            if (DataFilesPath.IsNullOrEmpty())
-                return;
-
-            var Files = Directory.EnumerateFiles(DataFilesPath, String.Format("{0}*_*.dat", Constants.SHARED_DELAY_PREFIX)).Select(file => new FileInfo(file));
-
-            foreach (var File in Files)
-            {
-                using (var FileStream = File.OpenRead())
-                {
-                    var Reader = XmlReader.Create(FileStream);
-
-                    if (!m_DelaySerializer.CanDeserialize(Reader))
-                        continue;
-
-                    var SharedDelay = m_DelaySerializer.Deserialize(Reader) as SharedDelay;
-
-                    if (SharedDelay == null)
-                        continue;
-
-                    TrainInformation Train;
-
-                    if (!area.LiveTrains.TryGetValue(SharedDelay.TrainNumber, out Train))
-                        continue;
-
-                    var Schedules = Train.Schedules.Where(s => s.Schedule.Station.ShortSymbol == SharedDelay.StationShortSymbol);
-                    var Schedule = Schedules.ElementAtOrDefault(SharedDelay.ScheduleIndex);
-
-                    if (Schedule == null)
-                        Schedule = Schedules.FirstOrDefault();
-
-                    if (Schedule == null)
-                        continue;
-
-                    var Delay = Schedule.Delays.FirstOrDefault(d => d.Type == SharedDelay.Type);
-
-                    if (Delay == null)
-                        Delay = Schedule.AddDelay(SharedDelay.Minutes, SharedDelay.Type);
-
-                    Delay.Reason = SharedDelay.Reason;
-                    Delay.CausedBy = SharedDelay.CausedBy;
-                }
-
-                File.Delete();
-            }
-        }
-
-        private void __CheckDelayJustificationPlausibility(DelayInfo delay)
+        private void __CheckDelayJustificationPlausibility(DelayInfo delay, int? causedBy)
         {
             var validationMessages = new List<string>();
 
-            if (delay.CausedBy.HasValue)
+            if (causedBy.HasValue)
             {
                 var area = delay.Schedule.Schedule.Station.ESTW.Area;
 
-                if (area.LiveTrains.ContainsKey(delay.CausedBy.Value))
+                if (area.LiveTrains.ContainsKey(causedBy.Value))
                 {
-                    var train = area.LiveTrains[delay.CausedBy.Value];
+                    var train = area.LiveTrains[causedBy.Value];
                     var schedules = train.Schedules.Where(s => s.Schedule.Station.ShortSymbol == delay.Schedule.Schedule.Station.ShortSymbol);
 
                     if (!schedules.Any())
                     {
-                        validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' nicht durchfahren");
+                        validationMessages.Add($"Zug {causedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' nicht durchfahren");
                     }
                     else if (delay.Type == eDelayType.Arrival && !schedules.Any(s => __AreTimesClose(delay.Schedule.LiveArrival, s.LiveArrival)
                                                                                   || __AreTimesClose(delay.Schedule.LiveArrival, s.ExpectedArrival)
                                                                                   || __AreTimesClose(delay.Schedule.LiveArrival, s.LiveDeparture)))
                     {
-                        validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
+                        validationMessages.Add($"Zug {causedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
                     }
                     else if (delay.Type == eDelayType.Departure && !schedules.Any(s => __AreTimesClose(delay.Schedule.LiveDeparture, s.LiveArrival)
                                                                                     || __AreTimesClose(delay.Schedule.LiveDeparture, s.ExpectedArrival)
                                                                                     || __AreTimesClose(delay.Schedule.LiveDeparture, s.LiveDeparture)))
                     {
-                        validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
+                        validationMessages.Add($"Zug {causedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
                     }
                 }
                 else
-                    validationMessages.Add($"Zug {delay.CausedBy.Value} nicht gefunden");
+                    validationMessages.Add($"Zug {causedBy.Value} nicht gefunden");
             }
 
             if (validationMessages.Any())

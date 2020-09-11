@@ -6,9 +6,6 @@ namespace Leibit.BLL
         internal const int STAFF_CHANGE_STOPTIME = 4;
         internal const int PERS_TRAIN_STOPTIME = 2;
 
-        internal const string SHARED_DELAY_FOLDER = "Kommunikation";
-        internal const string SHARED_DELAY_PREFIX = "leibit_delay_";
-        internal const string SHARED_DELAY_FILE_TEMPLATE = SHARED_DELAY_PREFIX + "{0}_{1}.dat";
         internal const string SCHEDULE_FOLDER = "Bahnhof Fahrplan";
         internal const string LOCAL_ORDERS_FOLDER = "Bahnhof Anweisungen";
         internal const string ESTWONLINE_SETTINGS_FILE = "ESTWonline.ini";

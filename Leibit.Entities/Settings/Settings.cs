@@ -14,7 +14,6 @@ namespace Leibit.Entities.Settings
         public Dictionary<string, string> Paths { get; private set; }
         public bool DelayJustificationEnabled { get; set; }
         public int DelayJustificationMinutes { get; set; }
-        public bool WriteDelayJustificationFile { get; set; }
         public bool CheckPlausibility { get; set; }
         public bool DisplayCompleteTrainSchedule { get; set; }
         public int EstwTimeout { get; set; }
@@ -33,7 +32,6 @@ namespace Leibit.Entities.Settings
             Result.Paths = new Dictionary<string, string>(this.Paths);
             Result.DelayJustificationEnabled = this.DelayJustificationEnabled;
             Result.DelayJustificationMinutes = this.DelayJustificationMinutes;
-            Result.WriteDelayJustificationFile = this.WriteDelayJustificationFile;
             Result.CheckPlausibility = this.CheckPlausibility;
             Result.DisplayCompleteTrainSchedule = this.DisplayCompleteTrainSchedule;
             Result.EstwTimeout = this.EstwTimeout;
