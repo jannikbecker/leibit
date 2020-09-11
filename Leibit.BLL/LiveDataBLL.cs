@@ -309,6 +309,7 @@ namespace Leibit.BLL
                         string BlockName = Parts[1].Trim('/');
                         string sTrainNumber = Parts[2].Trim('_');
                         string sDelay = Parts[3];
+                        string sSpeed = Parts[4];
                         string sDirection = Parts[5];
 
                         if (sTrainNumber.Length > 5)
@@ -339,6 +340,12 @@ namespace Leibit.BLL
                         Train.Direction = sDirection == "L" ? eBlockDirection.Left : eBlockDirection.Right;
 
                         var Block = estw.Blocks.ContainsKey(BlockName) ? estw.Blocks[BlockName].FirstOrDefault(b => b.Direction == eBlockDirection.Both || b.Direction == Train.Direction) : null;
+
+                        // When speed is not set, the direction in the file is random.
+                        // When direction plays a role it's safer to not assign the block in that case.
+                        if (Block != null && Block.Direction != eBlockDirection.Both && sSpeed == "0")
+                            Block = null;
+
                         __RefreshTrainInformation(Train, Block, estw);
                     }
                 }
