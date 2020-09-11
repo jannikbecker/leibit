@@ -260,8 +260,6 @@ namespace Leibit.BLL
                 var calculationResult = CalculationBLL.CalculateExpectedTimes(schedule.Train, schedule.Schedule.Station.ESTW);
                 ValidateResult(calculationResult);
 
-                // TODO: Forward to ESTWonline
-
                 var result = new OperationResult<bool>();
                 result.Result = true;
                 result.Succeeded = true;
