@@ -7,6 +7,7 @@ using Leibit.Entities.LiveData;
 using Leibit.Entities.Scheduling;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace Leibit.BLL
         }
         #endregion
 
-        #region - Singletons -
+        #region - Properties -
 
         #region [SettingsBLL]
         private SettingsBLL SettingsBLL
@@ -92,6 +93,10 @@ namespace Leibit.BLL
                 }
             }
         }
+        #endregion
+
+        #region [DebugMode]
+        public bool DebugMode { get; set; }
         #endregion
 
         #endregion
@@ -341,8 +346,20 @@ namespace Leibit.BLL
 
             estw.LastUpdatedOn = DateTime.Now;
 
-            //if (!Debugger.IsAttached)
-            File.Delete(FilePath);
+            if (Debugger.IsAttached && DebugMode)
+            {
+                var fileInfo = new FileInfo(FilePath);
+                var backupDirectory = Path.Combine(fileInfo.DirectoryName, "debug");
+
+                if (!Directory.Exists(backupDirectory))
+                    Directory.CreateDirectory(backupDirectory);
+
+                var fileName = $"{fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length)}_{DateTime.Now:yyyyMMdd_HHmmss}{fileInfo.Extension}";
+                var backupFile = Path.Combine(backupDirectory, fileName);
+                File.Move(FilePath, backupFile);
+            }
+            else
+                File.Delete(FilePath);
         }
 
         private string __GetDataFilesPath()
