@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <leibit>
   <area id="nhth" name="Mitteldeutschland">
+    <estw id="NLO" name="Lohr" dataFile="leibit_LOHR.dat"/>
     <estw id="NHEI" name="Heigenbrücken" dataFile="leibit_HEIGENBRÜCKEN.dat"/>
     <estw id="NAH" name="Aschaffenburg" dataFile="leibit_ASCHAFFENBURG.dat"/>
     <estw id="FGK" name="Großkrotzenburg" dataFile="leibit_GROSSKROTZENBURG.dat"/>
