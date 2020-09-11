@@ -276,8 +276,6 @@ namespace Leibit.BLL
                 else
                     schedule.LiveTrack = track;
 
-                // TODO: ESTWonline
-
                 var result = new OperationResult<bool>();
                 result.Result = true;
                 result.Succeeded = true;
