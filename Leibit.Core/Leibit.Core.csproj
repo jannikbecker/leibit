@@ -22,12 +22,14 @@
     <None Remove="Data\nhth\FBHF.xml" />
     <None Remove="Data\nhth\FEL.xml" />
     <None Remove="Data\nhth\FFU.xml" />
+    <None Remove="Data\nhth\NGM.xml" />
     <None Remove="Data\nhth\NHEI.xml" />
     <None Remove="Data\nhth\NAH.xml" />
     <None Remove="Data\nhth\FGK.xml" />
     <None Remove="Data\nhth\FGEL.xml" />
     <None Remove="Data\nhth\FSUE.xml" />
     <None Remove="Data\nhth\NWH.xml" />
+    <None Remove="Data\nhth\NLO.xml" />
     <None Remove="Data\nhth\UEI.xml" />
     <None Remove="Data\nhth\UGO.xml" />
     <None Remove="Data\nord\ABLZ.xml" />
@@ -35,6 +37,7 @@
     <None Remove="Data\nord\AHAR.xml" />
     <None Remove="Data\nord\AROG.xml" />
     <None Remove="Data\nord\HB.xml" />
+    <None Remove="Data\sued\MLI.xml" />
     <None Remove="Data\sued\TF.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -50,12 +53,14 @@
     <EmbeddedResource Include="Data\nhth\FBHF.xml" />
     <EmbeddedResource Include="Data\nhth\FEL.xml" />
     <EmbeddedResource Include="Data\nhth\FFU.xml" />
+    <EmbeddedResource Include="Data\nhth\NGM.xml" />
     <EmbeddedResource Include="Data\nhth\NHEI.xml" />
     <EmbeddedResource Include="Data\nhth\NAH.xml" />
     <EmbeddedResource Include="Data\nhth\FGK.xml" />
     <EmbeddedResource Include="Data\nhth\FGEL.xml" />
     <EmbeddedResource Include="Data\nhth\FSUE.xml" />
     <EmbeddedResource Include="Data\nhth\NWH.xml" />
+    <EmbeddedResource Include="Data\nhth\NLO.xml" />
     <EmbeddedResource Include="Data\nhth\UEI.xml" />
     <EmbeddedResource Include="Data\nhth\UGO.xml" />
     <EmbeddedResource Include="Data\nord\ABLZ.xml" />
@@ -63,6 +68,7 @@
     <EmbeddedResource Include="Data\nord\AHAR.xml" />
     <EmbeddedResource Include="Data\nord\AROG.xml" />
     <EmbeddedResource Include="Data\nord\HB.xml" />
+    <EmbeddedResource Include="Data\sued\MLI.xml" />
     <EmbeddedResource Include="Data\sued\TF.xml" />
   </ItemGroup>
   <ItemGroup>

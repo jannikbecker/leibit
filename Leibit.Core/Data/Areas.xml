@@ -2,6 +2,8 @@
 <leibit>
   <area id="nhth" name="Mitteldeutschland">
     <estw id="NWH" name="Würzburg Hbf" dataFile="leibit_WÜRZBURG HBF.dat"/>
+    <estw id="NGM" name="Gemünden" dataFile="leibit_GEMÜNDEN.dat"/>
+    <estw id="NLO" name="Lohr" dataFile="leibit_LOHR.dat"/>
     <estw id="NHEI" name="Heigenbrücken" dataFile="leibit_HEIGENBRÜCKEN.dat"/>
     <estw id="NAH" name="Aschaffenburg" dataFile="leibit_ASCHAFFENBURG.dat"/>
     <estw id="FGK" name="Großkrotzenburg" dataFile="leibit_GROSSKROTZENBURG.dat"/>
@@ -25,5 +27,6 @@
 
   <area id="sued" name="Süddeutschland">
     <estw id="TF" name="Friedrichshafen" dataFile="leibit_FRIEDRICHSHAFEN.dat"/>
+    <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat"/>
   </area>
 </leibit>
