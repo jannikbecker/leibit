@@ -46,7 +46,7 @@
     </track>
   </station>
 
-  <station name="Sprötze Hp" short="ASP" refNr="57" scheduleFile="b57_____.abf">
+  <station name="Sprötze" short="ASP" refNr="57" scheduleFile="b57_____.abf">
     <track name="500" calculateDelay="false">
       <block name="57B500"/>
     </track>

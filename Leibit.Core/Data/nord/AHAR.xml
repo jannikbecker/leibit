@@ -7,7 +7,7 @@
     </track>
   </station>
 
-  <station name="Abzw Ericus" short="AERI" refNr="20">
+  <station name="Hamburg Ericus" short="AERI" refNr="20">
     <track isPlatform="false" calculateDelay="false">
       <block name="20B426" direction="right"/>
       <block name="20B526" direction="right"/>
@@ -30,7 +30,7 @@
     </track>
   </station>
 
-  <station name="Abzw Norderelbbrücke" short="ANEB" refNr="20" scheduleFile="B20_____.ABF">
+  <station name="Hamburg Norderelbbrücke" short="ANEB" refNr="20" scheduleFile="B20_____.ABF">
     <track name="414" isPlatform="false">
       <block name="20B416" direction="left"/>
       <block name="64G034" direction="right"/>
@@ -41,7 +41,7 @@
     </track>
   </station>
 
-  <station name="Abzw Oberhafen" short="AOHA" refNr="64" scheduleFile="B64_____.ABF">
+  <station name="Hamburg Oberhafen" short="AOHA" refNr="64" scheduleFile="B64_____.ABF">
     <track name="031" isPlatform="false">
       <block name="64G041" direction="left"/>
       <block name="64B517" direction="left"/>
@@ -60,7 +60,7 @@
     </track>
   </station>
 
-  <station name="Abzw Veddel" short="AVL" refNr="64" scheduleFile="G64_____.ABF">
+  <station name="Hamburg-Veddel" short="AVL" refNr="64" scheduleFile="G64_____.ABF">
     <track name="012" isPlatform="false">
       <block name="64G002"/>
     </track>
@@ -128,7 +128,7 @@
     </track>
   </station>
 
-  <station name="Abzw Süderelbbrücke" short="ASE" refNr="62" scheduleFile="B62_____.ABF">
+  <station name="Hamburg Süderelbbrücke" short="ASE" refNr="62" scheduleFile="B62_____.ABF">
     <track name="01" isPlatform="false">
       <block name="63G21" direction="left"/>
       <block name="63B93" direction="left"/>
@@ -418,7 +418,7 @@
     </track>
   </station>
 
-  <station name="Hamburg-Unterelbe" short="AHB" refNr="65" scheduleFile="G65_____.ABF" localOrderFile="Bf65____.abf">
+  <station name="Hamburg Unterelbe" short="AHB" refNr="65" scheduleFile="G65_____.ABF" localOrderFile="Bf65____.abf">
     <track name="1">
       <block name="65G1"/>
     </track>
