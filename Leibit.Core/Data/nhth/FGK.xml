@@ -7,7 +7,7 @@
     </track>
   </station>
 
-  <station name="Abzw Rauschwald" short="FRW" refNr="36">
+  <station name="Rauschwald" short="FRW" refNr="36">
     <track calculateDelay="false" isPlatform="false">
       <block name="36B01" direction="right"/>
       <block name="66B02" direction="right"/>
@@ -149,7 +149,7 @@
     </track>
   </station>
 
-  <station name="Rückersbacher Schlucht Hp" short="FRS" refNr="68" scheduleFile="B68_____.abf">
+  <station name="Rückersbacher Schlucht" short="FRS" refNr="68" scheduleFile="B68_____.abf">
     <track name="001" calculateDelay="false">
       <block name="68B81"/>
     </track>
@@ -170,7 +170,7 @@
     </track>
   </station>
 
-  <station name="Abzw Steinerts" short="FSTE" refNr="70" scheduleFile="G70_____.abf" localOrderFile="bf70____.abf">
+  <station name="Steinerts" short="FSTE" refNr="70" scheduleFile="G70_____.abf" localOrderFile="bf70____.abf">
     <track name="101" isPlatform="false">
       <block name="69B91" direction="left"/>
     </track>
@@ -198,7 +198,7 @@
     </track>
   </station>
 
-  <station name="Abzw Mainaschaff Hp" short="FMAS" refNr="52" scheduleFile="g52_____.abf" localOrderFile="bf52____.abf">
+  <station name="Mainaschaff" short="FMAS" refNr="52" scheduleFile="g52_____.abf" localOrderFile="bf52____.abf">
     <track name="101" isPlatform="false">
       <block name="51B11" direction="left"/>
       <alternative track="102"/>

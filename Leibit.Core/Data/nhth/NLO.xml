@@ -65,7 +65,7 @@
     </track>
   </station>
 
-  <station name="Üst Dittenbrunn" short="NDI" refNr="7">
+  <station name="Dittenbrunn" short="NDI" refNr="7">
     <track calculateDelay="false" isPlatform="false">
       <block name="06S91" direction="right"/>
       <block name="06S92" direction="right"/>

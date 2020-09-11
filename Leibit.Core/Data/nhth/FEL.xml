@@ -161,7 +161,7 @@
     </track>
   </station>
 
-  <station name="Üst Katzenberg" short="FKA" refNr="16" scheduleFile="B16_____.ABF">
+  <station name="Katzenberg" short="FKA" refNr="16" scheduleFile="B16_____.ABF">
     <track name="172" calculateDelay="false" isPlatform="false">
       <block name="16B3174" direction="left"/>
       <block name="16B182" direction="right"/>
@@ -220,7 +220,7 @@
     </track>
   </station>
 
-  <station name="Üst Kerzell" short="FKZ" refNr="10">
+  <station name="Kerzell" short="FKZ" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B682" direction="left"/>
       <block name="10S428" direction="right"/>
@@ -264,7 +264,7 @@
     </track>
   </station>
 
-  <station name="Üst Dittenbrunn" short="NDI" refNr="7" scheduleFile="G7______.ABF" localOrderFile="BF7_____.ABF">
+  <station name="Dittenbrunn" short="NDI" refNr="7" scheduleFile="G7______.ABF" localOrderFile="BF7_____.ABF">
     <track name="188" isPlatform="false">
       <block name="07B292" direction="left"/>
       <block name="07B388" direction="right"/>
@@ -275,7 +275,7 @@
     </track>
   </station>
 
-  <station name="Üst Altengronau" short="NAG" refNr="8" scheduleFile="G8______.ABF" localOrderFile="BF8_____.ABF">
+  <station name="Altengronau" short="NAG" refNr="8" scheduleFile="G8______.ABF" localOrderFile="BF8_____.ABF">
     <track name="174" isPlatform="false">
       <block name="08B282" direction="left"/>
       <block name="08B374" direction="right"/>
@@ -301,7 +301,7 @@
     </track>
   </station>
 
-  <station name="Üst Landrücken Süd" short="FLRS" refNr="10">
+  <station name="Landrücken Süd" short="FLRS" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10S655" direction="left"/>
       <block name="10S656" direction="left"/>

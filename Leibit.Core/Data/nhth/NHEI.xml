@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
 <estw>
-  <station name="Abzw Aschaffenburg-Goldbach" short="NAH G" refNr="71">
+  <station name="Aschaffenburg-Goldbach" short="NAH G" refNr="71">
     <track calculateDelay="false" isPlatform="false">
       <block name="71B374" direction="right"/>
       <block name="72B73" direction="right"/>

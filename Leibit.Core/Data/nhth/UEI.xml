@@ -19,7 +19,7 @@
     </track>
   </station>
 
-  <station name="Bosserode Hp" short="FBOS" refNr="20" scheduleFile="BOSSER__.ABF">
+  <station name="Bosserode" short="FBOS" refNr="20" scheduleFile="BOSSER__.ABF">
     <track name="611" calculateDelay="false">
       <block name="20S611" />
     </track>
@@ -28,7 +28,7 @@
     </track>
   </station>
 
-  <station name="Obersuhl Hp" short="FOBS" refNr="97" scheduleFile="OBERSU__.ABF">
+  <station name="Obersuhl" short="FOBS" refNr="97" scheduleFile="OBERSU__.ABF">
     <track name="609" calculateDelay="false">
       <block name="97B609" />
     </track>
@@ -58,7 +58,7 @@
     </track>
   </station>
 
-  <station name="Herleshausen Hp" short="UHER" refNr="97" scheduleFile="Herles__.abf">
+  <station name="Herleshausen" short="UHER" refNr="97" scheduleFile="Herles__.abf">
     <track name="795" calculateDelay="false">
       <block name="97B795" />
     </track>
@@ -79,7 +79,7 @@
     </track>
   </station>
 
-  <station name="Hörschel Hp" short="UHL" refNr="96" scheduleFile="Hörsch__.abf">
+  <station name="Hörschel" short="UHL" refNr="96" scheduleFile="Hörsch__.abf">
     <track name="793" calculateDelay="false">
       <block name="96B793" />
     </track>
@@ -103,7 +103,7 @@
     </track>
   </station>
 
-  <station name="Eisenach-Opelwerk Hp" short="UEIP" refNr="95" scheduleFile="Opelwe__.abf">
+  <station name="Eisenach-Opelwerk" short="UEIP" refNr="95" scheduleFile="Opelwe__.abf">
     <track name="693" calculateDelay="false">
       <block name="95B693" />
     </track>
@@ -112,7 +112,7 @@
     </track>
   </station>
 
-  <station name="Eisenach-West Hp" short="UEIW" refNr="94" scheduleFile="EISENA__.ABF">
+  <station name="Eisenach-West" short="UEIW" refNr="94" scheduleFile="EISENA__.ABF">
     <track name="691" calculateDelay="false">
       <block name="94B691" />
     </track>
@@ -274,7 +274,7 @@
     </track>
   </station>
 
-  <station name="Schönau (Hörsel) Hp" short="USU" refNr="93" scheduleFile="Schöna__.abf">
+  <station name="Schönau (Hörsel)" short="USU" refNr="93" scheduleFile="Schöna__.abf">
     <track name="591" calculateDelay="false">
       <block name="93B591" />
     </track>
@@ -283,7 +283,7 @@
     </track>
   </station>
 
-  <station name="Sättelstädt Hp" short="USAE" refNr="92" scheduleFile="Sättel__.abf">
+  <station name="Sättelstädt" short="USAE" refNr="92" scheduleFile="Sättel__.abf">
     <track name="993" calculateDelay="false">
       <block name="92B993" />
     </track>
@@ -307,7 +307,7 @@
     </track>
   </station>
 
-  <station name="Mechterstädt Hp" short="UME" refNr="91" scheduleFile="Mechte__.abf">
+  <station name="Mechterstädt" short="UME" refNr="91" scheduleFile="Mechte__.abf">
     <track name="991" calculateDelay="false">
       <block name="91B991" />
     </track>
@@ -360,7 +360,7 @@
     </track>
   </station>
 
-  <station name="Hörselgau Hp" short="UHOS" refNr="37" scheduleFile="Hörsel__.abf">
+  <station name="Hörselgau" short="UHOS" refNr="37" scheduleFile="Hörsel__.abf">
     <track name="806" calculateDelay="false">
       <block name="91B806" />
     </track>

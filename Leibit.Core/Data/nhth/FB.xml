@@ -331,7 +331,7 @@
     </track>
   </station>
 
-  <station name="Friedlos Hp" short="FFL" refNr="17" scheduleFile="v17_____.abf">
+  <station name="Friedlos" short="FFL" refNr="17" scheduleFile="v17_____.abf">
     <track name="2" calculateDelay="false">
       <block name="17S533" />
     </track>
@@ -340,14 +340,14 @@
     </track>
   </station>
 
-  <station name="Abzw Faßdorf" short="FFDF" refNr="21" scheduleFile="g21_____.abf">
+  <station name="Faßdorf" short="FFDF" refNr="21" scheduleFile="g21_____.abf">
     <track name="918" calculateDelay="false" />
     <track name="919" calculateDelay="false" />
     <track name="983" calculateDelay="false" />
     <track name="984" calculateDelay="false" />
   </station>
 
-  <station name="Ronshausen Hp" short="FRON" refNr="21" scheduleFile="ronsha__.abf">
+  <station name="Ronshausen" short="FRON" refNr="21" scheduleFile="ronsha__.abf">
     <track name="1" calculateDelay="false">
       <block name="21B617" />
     </track>
@@ -375,7 +375,7 @@
     </track>
   </station>
 
-  <station name="Bosserode Hp" short="FBOS" refNr="20" scheduleFile="bosser__.abf">
+  <station name="Bosserode" short="FBOS" refNr="20" scheduleFile="bosser__.abf">
     <track name="1" calculateDelay="false">
       <block name="20B611" />
     </track>
@@ -384,7 +384,7 @@
     </track>
   </station>
 
-  <station name="Obersuhl Hp" short="FOBS" refNr="97" scheduleFile="Obersu__.ABF">
+  <station name="Obersuhl" short="FOBS" refNr="97" scheduleFile="Obersu__.ABF">
     <track name="1" calculateDelay="false">
       <block name="97B609" />
     </track>
@@ -400,12 +400,12 @@
     </track>
   </station>
 
-  <station name="Rotenburg Hp" short="FROF" refNr="24" scheduleFile="rotenb__.abf">
+  <station name="Rotenburg (Fulda)" short="FROF" refNr="24" scheduleFile="rotenb__.abf">
     <track name="1" calculateDelay="false" />
     <track name="2" calculateDelay="false" />
   </station>
 
-  <station name="Lispenhausen Hp" short="FLIH" refNr="24" scheduleFile="lispen__.abf">
+  <station name="Lispenhausen" short="FLIH" refNr="24" scheduleFile="lispen__.abf">
     <track name="1" calculateDelay="false" />
     <track name="2" calculateDelay="false" />
   </station>

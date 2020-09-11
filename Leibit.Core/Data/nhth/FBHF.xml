@@ -148,7 +148,7 @@
     </track>
   </station>
 
-  <station name="Friedlos Hp" short="FFL" refNr="17" scheduleFile="b17_____.abf">
+  <station name="Friedlos" short="FFL" refNr="17" scheduleFile="b17_____.abf">
     <track name="1" calculateDelay="false">
       <block name="17B546"/>
     </track>
@@ -207,7 +207,7 @@
     </track>
   </station>
 
-  <station name="Abzw Faßdorf" short="FFDF" refNr="19">
+  <station name="Faßdorf" short="FFDF" refNr="19">
     <track isPlatform="false" calculateDelay="false">
       <block name="19S921" direction="left"/>
     </track>

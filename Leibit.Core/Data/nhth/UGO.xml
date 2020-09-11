@@ -177,7 +177,7 @@
     </track>
   </station>
 
-  <station name="Sülzenbrücken Hp" short="USUE" refNr="87" scheduleFile="Sülzen__.abf">
+  <station name="Sülzenbrücken" short="USUE" refNr="87" scheduleFile="Sülzen__.abf">
     <track name="1" calculateDelay="false">
       <block name="87B891" />
     </track>
