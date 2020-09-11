@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Kißlegg" short="TKG" refNr="81">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="81BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Thalkirchdorf" short="MTHF" refNr="61">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="61BN" direction="right"/>
+      <block name="62B4" direction="right"/>
+    </track> 
+  </station>
+
+  <station name="Weiler" short="MWLA" refNr="63">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="63BP2" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Scheidegg" short="MSCE" refNr="63">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="63BN2" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Lochau-Hörbranz (ÖBB)" short="XALH" refNr="68">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="68B1" direction="left"/>
+      <block name="68BR" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Friedrichshafen" short="TF" refNr="77">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="77BP2" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Wangen" short="TWW" refNr="81" scheduleFile="g81_____.abf" localOrderFile="bf81____.abf">
+    <track name="1">
+      <block name="81G1"/>
+    </track>
+    <track name="2">
+      <block name="81G2"/>
+    </track>
+  </station>
+
+  <station name="Oberstaufen" short="MOSF" refNr="62" scheduleFile="b62_____.abf">
+    <track name="3" calculateDelay="false">
+      <block name="62B3"/>
+    </track>
+    <track name="6" calculateDelay="false">
+      <block name="62B6"/>
+    </track>
+  </station>
+
+  <station name="Röthenbach" short="MRTA" refNr="63" scheduleFile="g63_____.abf" localOrderFile="bf63____.abf">
+    <track name="1">
+      <block name="63G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+    <track name="2">
+      <block name="63G2"/>
+    </track>
+    <track name="3">
+      <block name="63G3"/>
+    </track>
+    <track name="51">
+      <block name="63G51"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+  </station>
+
+  <station name="Hergatz" short="MHGZ" refNr="64" scheduleFile="g64_____.abf" localOrderFile="bf64____.abf">
+    <track name="1">
+      <block name="64G1"/>
+    </track>
+    <track name="2">
+      <block name="64G2"/>
+    </track>
+    <track name="3">
+      <block name="64G3"/>
+    </track>
+  </station>
+
+  <station name="Lindau-Reutin" short="MLIR" refNr="68" scheduleFile="g68_____.abf" localOrderFile="bf68____.abf">
+    <track name="1">
+      <block name="68G1"/>
+    </track>
+    <track name="2">
+      <block name="68G2"/>
+    </track>
+    <track name="3">
+      <block name="68G3"/>
+    </track>
+    <track name="4">
+      <block name="68G4"/>
+    </track>
+    <track name="5">
+      <block name="68G5"/>
+    </track>
+    <track name="6">
+      <block name="68G6"/>
+    </track>
+    <track name="9">
+      <block name="68G9"/>
+    </track>
+  </station>
+
+  <station name="Lindau Hbf" short="MLI" refNr="67" scheduleFile="g67_____.abf" localOrderFile="bf67____.abf">
+    <track name="1">
+      <block name="67G1"/>
+    </track>
+    <track name="2">
+      <block name="67G2"/>
+    </track>
+    <track name="3">
+      <block name="67G3"/>
+    </track>
+    <track name="4">
+      <block name="67G4"/>
+    </track>
+    <track name="5">
+      <block name="67G5"/>
+    </track>
+    <track name="6">
+      <block name="67G6"/>
+    </track>
+    <track name="7">
+      <block name="67G7"/>
+    </track>
+    <track name="8">
+      <block name="67G8"/>
+    </track>
+    <track name="9">
+      <block name="67G9"/>
+    </track>
+  </station>
+
+  <station name="Nonnenhorn" short="MNHN" refNr="73" scheduleFile="g73_____.abf" localOrderFile="bf73____.abf">
+    <track name="1">
+      <block name="73G1"/>
+    </track>
+    <track name="2">
+      <block name="73G2"/>
+    </track>
+  </station>
+
+  <station name="Wasserburg" short="MWBG" refNr="72" scheduleFile="g72_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="72B1"/>
+    </track>
+  </station>
+
+  <station name="Enzisweiler" short="MENW" refNr="71" scheduleFile="g71_____.abf" localOrderFile="bf71____.abf">
+    <track name="1">
+      <block name="71G1"/>
+    </track>
+    <track name="2">
+      <block name="71G2"/>
+    </track>
+  </station>
+
+  <station name="Lindau-Aeschach" short="MLIA" refNr="66" scheduleFile="b71_____.abf">
+    <track name="14" isPlatform="false">
+      <block name="71BN" direction="left"/>
+    </track>
+    <track name="12" isPlatform="false">
+      <block name="66BP" direction="left"/>
+      <block name="67BP1" direction="right"/>
+      <block name="66BN1" direction="right"/>
+    </track>
+    <track name="11" isPlatform="false">
+      <block name="64B3" direction="left"/>
+      <block name="66BN2" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Eriskirch" short="TEK" refNr="76" scheduleFile="g76_____.abf" localOrderFile="bf76____.abf">
+    <track name="1">
+      <block name="76G1"/>
+    </track>
+    <track name="2">
+      <block name="76G2"/>
+    </track>
+  </station>
+
+  <station name="Langenargen" short="TLR" refNr="75" scheduleFile="g75_____.abf" localOrderFile="bf75____.abf">
+    <track name="1">
+      <block name="75G1"/>
+    </track>
+    <track name="2">
+      <block name="75G2"/>
+    </track>
+  </station>
+
+  <station name="Kressbronn Marschall" short="TKNM" refNr="74">
+    <track name="N2" calculateDelay="false">
+      <block name="75BN2"/>
+    </track>
+  </station>
+
+  <station name="Kressbronn" short="TKN" refNr="74" scheduleFile="g74_____.abf" localOrderFile="bf74____.abf">
+    <track name="1">
+      <block name="74G1"/>
+    </track>
+    <track name="2">
+      <block name="74G2"/>
+    </track>
+  </station>
+</estw>
