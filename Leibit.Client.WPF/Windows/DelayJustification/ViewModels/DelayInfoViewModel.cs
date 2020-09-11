@@ -147,18 +147,10 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
         #region [__Save]
         private void __Save()
         {
-            var Copy = CurrentDelay.Clone();
-            Copy.Reason = SelectedReason.Text;
-            Copy.CausedBy = CausedBy;
-
-            var SaveResult = m_LiveDataBll.JustifyDelay(Copy);
+            var SaveResult = m_LiveDataBll.JustifyDelay(CurrentDelay, SelectedReason.Text, CausedBy);
 
             if (SaveResult.Succeeded)
-            {
-                CurrentDelay.Reason = Copy.Reason;
-                CurrentDelay.CausedBy = CausedBy;
                 DelaySaved?.Invoke(this, EventArgs.Empty);
-            }
             else
                 MessageBox.Show(SaveResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
         }
