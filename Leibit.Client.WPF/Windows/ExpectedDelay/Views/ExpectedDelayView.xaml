@@ -1,0 +1,74 @@
+﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.ExpectedDelay.Views.ExpectedDelayView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.ExpectedDelay.Views"
+                      xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                      Caption="{Binding Caption}">
+
+    <controls:ChildWindow.Style>
+        <Style TargetType="local:ExpectedDelayView" BasedOn="{StaticResource ChildWindowStyle}" />
+    </controls:ChildWindow.Style>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">
+        <StackPanel Orientation="Vertical" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Für Betriebsstelle" Margin="0,0,10,0"/>
+                <ComboBox Grid.Row="0" Grid.Column="1"
+                          ItemsSource="{Binding Schedules}"
+                          SelectedItem="{Binding SelectedSchedule, Mode=TwoWay}"
+                          DisplayMemberPath="Schedule.Station.ShortSymbol"
+                          Margin="0,0,0,5"/>
+                
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Vsl. Verspätung" Margin="0,0,10,0"/>
+                <xctk:IntegerUpDown Value="{Binding ExpectedDelayDeparture, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" TextAlignment="Left"/>
+            </Grid>
+
+            <Rectangle Margin="0,10,0,10" Fill="LightGray" Height="1"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Ankunft" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"/>
+                <TextBlock Text="{Binding SelectedSchedule.Schedule.Arrival}" Grid.Row="0" Grid.Column="1"/>
+                <TextBlock Text="Vsl. Verspätung" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"/>
+                <TextBlock Text="{Binding DelayArrivalString}" Grid.Row="1" Grid.Column="1"/>
+                <TextBlock Text="Vsl. Ankunft" Grid.Row="2" Grid.Column="0" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock Text="{Binding SelectedSchedule.ExpectedArrival}" FontWeight="Bold" Grid.Row="3" Grid.Column="1"/>
+
+                <TextBlock Text="Abfahrt" Grid.Row="0" Grid.Column="3" Margin="0,0,10,5"/>
+                <TextBlock Text="{Binding SelectedSchedule.Schedule.Departure}" Grid.Row="0" Grid.Column="4"/>
+                <TextBlock Text="Vsl. Verspätung" Grid.Row="1" Grid.Column="3" Margin="0,0,10,5"/>
+                <TextBlock Text="{Binding DelayDepartureString}" Grid.Row="1" Grid.Column="4"/>
+                <TextBlock Text="Vsl. Abfahrt" Grid.Row="2" Grid.Column="3" FontWeight="Bold" Margin="0,0,10,0"/>
+                <TextBlock Text="{Binding ExpectedDeparture}" FontWeight="Bold" Grid.Row="2" Grid.Column="4"/>
+            </Grid>
+
+            <Rectangle Margin="0,10,0,10" Fill="LightGray" Height="1"/>
+
+            <Button Content="Speichern" Command="{Binding SaveCommand}"  HorizontalAlignment="Right" Padding="4"/>
+        </StackPanel>
+    </ScrollViewer>
+</controls:ChildWindow>

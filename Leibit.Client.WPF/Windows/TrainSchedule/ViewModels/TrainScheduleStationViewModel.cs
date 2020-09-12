@@ -493,6 +493,14 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         }
         #endregion
 
+        #region [IsDelayManuallySet]
+        public bool IsDelayManuallySet
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        #endregion
+
         #endregion
 
         #region - Private methods -

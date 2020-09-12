@@ -81,6 +81,9 @@
                                             <DataTrigger Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=2}" Value="True">
                                                 <Setter Property="Foreground" Value="Red" />
                                             </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsDelayManuallySet}" Value="true">
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                            </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </TextBlock.Style>

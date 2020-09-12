@@ -208,6 +208,44 @@ namespace Leibit.BLL
         }
         #endregion
 
+        #region [SetExpectedDelay]
+        public OperationResult<bool> SetExpectedDelay(LiveSchedule schedule, int expectedDelay)
+        {
+            try
+            {
+                // Validation
+                var validationMessages = new List<string>();
+
+                if (schedule.IsDeparted)
+                    validationMessages.Add($"Der Zug {schedule.Train.Train.Number} hat die Betriebsstelle {schedule.Schedule.Station.ShortSymbol} bereits verlassen.");
+                if (schedule.Schedule.Handling == eHandling.Destination)
+                    validationMessages.Add($"Der Zug {schedule.Train.Train.Number} endet in {schedule.Schedule.Station.ShortSymbol}.");
+
+                if (validationMessages.Any())
+                {
+                    validationMessages.Insert(0, "Verspätung kann nicht eingetragen werden");
+                    var message = string.Join(Environment.NewLine, validationMessages);
+                    throw new InvalidOperationException(message);
+                }
+
+                // Let's do it
+                schedule.ExpectedDelay = expectedDelay;
+
+                var calculationResult = CalculationBLL.CalculateExpectedTimes(schedule.Train, schedule.Schedule.Station.ESTW);
+                ValidateResult(calculationResult);
+
+                var result = new OperationResult<bool>();
+                result.Result = true;
+                result.Succeeded = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult<bool> { Message = ex.Message };
+            }
+        }
+        #endregion
+
         #endregion
 
         #region - Private helpers -
