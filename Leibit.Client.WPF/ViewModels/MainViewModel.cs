@@ -74,6 +74,7 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_ShowHelpCommand;
         private CommandHandler m_ShowQuickStartHelpCommand;
         private CommandHandler m_AboutCommand;
+        private CommandHandler m_DebugModeCommand;
         #endregion
 
         #region - Ctor -
@@ -96,6 +97,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_ShowHelpCommand = new CommandHandler(__ShowHelp, true);
             m_ShowQuickStartHelpCommand = new CommandHandler(__ShowQuickStartHelp, true);
             m_AboutCommand = new CommandHandler(__ShowAboutWindow, true);
+            m_DebugModeCommand = new CommandHandler(__ToggleDebugMode, true);
 
             m_InitializationBll = new InitializationBLL();
             m_LiveDataBll = new LiveDataBLL();
@@ -473,6 +475,16 @@ namespace Leibit.Client.WPF.ViewModels
             get
             {
                 return m_AboutCommand;
+            }
+        }
+        #endregion
+
+        #region [DebugModeCommand]
+        public ICommand DebugModeCommand
+        {
+            get
+            {
+                return m_DebugModeCommand;
             }
         }
         #endregion
@@ -966,6 +978,21 @@ namespace Leibit.Client.WPF.ViewModels
             var Window = new AboutView();
             var VM = new AboutViewModel();
             __OpenChildWindow(Window, VM);
+        }
+        #endregion
+
+        #region [__ToggleDebugMode]
+        private void __ToggleDebugMode()
+        {
+            if (!Debugger.IsAttached)
+                return;
+
+            m_LiveDataBll.DebugMode = !m_LiveDataBll.DebugMode;
+
+            if (m_LiveDataBll.DebugMode)
+                StatusBarText = "Debug-Modus aktiviert";
+            else
+                StatusBarText = "Debug-Modus deaktiviert";
         }
         #endregion
 

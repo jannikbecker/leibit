@@ -10,6 +10,10 @@
                  xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
                  Title="LeiBIT für ESTWsim">
 
+    <Window.InputBindings>
+        <KeyBinding Key="D" Modifiers="Shift" Command="{Binding DataContext.DebugModeCommand, ElementName=LayoutRoot}"/>
+    </Window.InputBindings>
+    
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
             <ResourceDictionary>

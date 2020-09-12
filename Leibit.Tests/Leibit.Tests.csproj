@@ -96,30 +96,6 @@
     <None Include="TestData\ESTWOnline\TestExpectedTimesDelayed\AdvanceNoticeRechtsheim.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_InvalidScheduleIndex\ESTWonline.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_InvalidScheduleIndex\leibit_delay_2007_TTST.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_InvalidScheduleIndex\TestdorfDeparture.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_NonExisting\ESTWonline.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_NonExisting\leibit_delay_2007_TTST.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_NonExisting\TestdorfDeparture.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_Existing\ESTWonline.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_Existing\leibit_delay_2007_TTST.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="TestData\ESTWOnline\TestPrematureTrain\AdvanceNoticeLinksdorf.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -444,9 +420,6 @@
     <None Include="TestData\ESTWOnline\TestTrain2MinutesDelayArrival\UestMitteWrongDirection.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\ESTWOnline\TestLoadSharedDelay_Existing\TestdorfDeparture.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="TestData\ESTWOnline\TestTrainDelayDeparture\AdvanceNoticeLinksdorf.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -553,6 +526,20 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\ESTWRoots\Testdorf\Bahnhof Fahrplan\G31_____.ABF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="TestData\ESTWOnline\TestMisdirectedTrain\ProbeArrival.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ESTWOnline\TestMisdirectedTrain\ProbeDeparture.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ESTWOnline\TestMisdirectedTrain\TestdorfArrival1A.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ESTWOnline\TestMisdirectedTrain\TestdorfDeparture.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

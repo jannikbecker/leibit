@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Abzw Mainaschaff Hp" short="FMAS" refNr="52" scheduleFile="b52_____.abf">
+    <track name="001">
+      <block name="52S001"/>
+    </track>
+    <track name="002">
+      <block name="52S002"/>
+    </track>
+  </station>
+  
+  <station name="Abzw Steinerts" short="FSTE" refNr="70">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="70B01" direction="right"/>
+      <block name="71B02" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Aschaffenburg Hbf" short="NAH" refNr="71" scheduleFile="g71_____.abf" localOrderFile="bf71____.abf">
+    <track name="001">
+      <block name="71G0001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+    </track>
+    <track name="002">
+      <block name="71G0002"/>
+      <alternative track="001"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+
+      <track name="052">
+        <block name="71G0052"/>
+      </track>
+    </track>
+    <track name="003">
+      <block name="71G0003"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+
+      <track name="053">
+        <block name="71G0053"/>
+      </track>
+    </track>
+    <track name="004">
+      <block name="71G0004"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+    </track>
+    <track name="005">
+      <block name="71G0005"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+    </track>
+    <track name="006">
+      <block name="71G0006"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+    </track>
+    <track name="007">
+      <block name="71G0007"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+    </track>
+    <track name="008">
+      <block name="71G0008"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+
+      <track name="058">
+        <block name="71G0058"/>
+      </track>
+    </track>
+    <track name="009">
+      <block name="71G0009"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+    </track>
+    <track name="010">
+      <block name="71G0010"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+    </track>
+    <track name="011">
+      <block name="71G0011"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+    </track>
+    <track name="012">
+      <block name="71G0012"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="013"/>
+      <alternative track="014"/>
+    </track>
+    <track name="013">
+      <block name="71G0013"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="014"/>
+    </track>
+    <track name="014">
+      <block name="71G0014"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+      <alternative track="013"/>
+    </track>
+  </station>
+
+  <station name="Aschaffenburg Hbf Einfahrt" short="NAH E" refNr="71" scheduleFile="v71_____.abf">
+    <track name="0511">
+      <block name="71G0511"/>
+    </track>
+    <track name="0512">
+      <block name="71G0512"/>
+    </track>
+    <track name="0513">
+      <block name="71G0513"/>
+    </track>
+    <track name="0514">
+      <block name="71G0514"/>
+    </track>
+    <track name="0515">
+      <block name="71G0515"/>
+    </track>
+    <track name="0516">
+      <block name="71G0516"/>
+    </track>
+    <track name="0517">
+      <block name="71G0517"/>
+    </track>
+    <track name="0518">
+      <block name="71G0518"/>
+    </track>
+    <track name="0519">
+      <block name="71G0519"/>
+    </track>
+    <track name="0520">
+      <block name="71G0520"/>
+    </track>
+  </station>
+  
+  <station name="Abzw Aschaffenburg-Goldbach" short="NAH G" refNr="71" scheduleFile="b71_____.abf">
+    <track name="112" isPlatform="false">
+      <block name="71G0212" direction="left"/>
+    </track>
+    <track name="113" isPlatform="false">
+      <block name="71G0213" direction="left"/>
+    </track>
+    <track name="174" isPlatform="false">
+      <block name="71B82" direction="left"/>
+    </track>
+    <track name="181" isPlatform="false">
+      <block name="72B73" direction="right"/>
+    </track>
+    <track name="274" isPlatform="false">
+      <block name="71B374" direction="right"/>
+    </track>
+    <track name="281" isPlatform="false">
+      <block name="71B381" direction="left"/>
+    </track>
+  </station>
+  
+  <station name="Hösbach" short="NHOE" refNr="72">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="72S71" direction="left"/>
+      <block name="71S72" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Aschaffenburg Süd" short="NASU" refNr="53" scheduleFile="g53_____.abf" localOrderFile="bf53____.abf">
+    <track name="001">
+      <block name="53G001"/>
+    </track>
+    <track name="002">
+      <block name="53G002"/>
+    </track>
+    <track name="003">
+      <block name="53G003"/>
+    </track>
+    <track name="004">
+      <block name="53G004"/>
+    </track>
+  </station>
+
+  <station name="Abzw Aschaffenburg-Nilkheim" short="NANI" refNr="53" scheduleFile="v53_____.abf">
+    <track name="11" isPlatform="false">
+      <block name="53B11" direction="right"/>
+    </track>
+    <track name="12" isPlatform="false">
+      <block name="53B12" direction="right"/>
+    </track>
+    <track name="100" isPlatform="false">
+      <block name="53B01" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Aschaffenburg-Hafen" short="NAHA" refNr="53">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="53B11" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Aschaffenburg-Nilkheim" short="NANI" refNr="53">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="53B12" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Kleinwallstadt" short="NKT" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf">
+    <track name="001">
+      <block name="54G001"/>
+    </track>
+    <track name="002">
+      <block name="54G002"/>
+    </track>
+  </station>
+
+  <station name="Obernburg-Elsenfeld" short="NOE" refNr="55" scheduleFile="g55_____.abf" localOrderFile="bf55____.abf">
+    <track name="001">
+      <block name="55G001"/>
+    </track>
+    <track name="002">
+      <block name="55G002"/>
+    </track>
+    <track name="003">
+      <block name="55G003"/>
+    </track>
+  </station>
+
+  <station name="Klingenberg" short="NKM" refNr="56">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="55B61" direction="left"/>
+    </track>
+  </station>
+</estw>

@@ -165,6 +165,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
             bool PreviousVisible = false;
             bool DummyFlag = false;
+            bool Reorder = false;
 
             // Group schedules by station and time to avoid duplicate entries for stations that are located between ESTW bordery stations when both ESTWs are loaded
             // i.e. Bosserode and Obersuhl are located between Hönebach (ESTW Bebra) and Gerstungen (ESTW Eisenach)
@@ -186,6 +187,11 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                     {
                         Current = new TrainScheduleStationViewModel(Schedule);
                         Current.PropertyChanged += __Station_PropertyChanged;
+                        IsNew = true;
+                    }
+                    else if (Reorder)
+                    {
+                        Dispatcher.Invoke(() => Stations.Remove(Current));
                         IsNew = true;
                     }
 
@@ -215,9 +221,13 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
                             if (LiveSchedule.ExpectedArrival != null && Schedule.Arrival != null)
                                 Current.DelayArrival = (LiveSchedule.ExpectedArrival - Schedule.Arrival).TotalMinutes;
+                            else
+                                Current.DelayArrival = null;
 
                             if (LiveSchedule.ExpectedDeparture != null && Schedule.Departure != null)
                                 Current.DelayDeparture = (LiveSchedule.ExpectedDeparture - Schedule.Departure).TotalMinutes;
+                            else
+                                Current.DelayDeparture = null;
 
                             Current.IsDelayManuallySet = LiveSchedule.ExpectedDelay.HasValue && !LiveSchedule.IsDeparted;
 
@@ -227,6 +237,18 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                             {
                                 Current.IsArrived = true;
                                 Current.IsDeparted = true;
+
+                                var isSkipped = !LiveSchedule.IsArrived && !LiveSchedule.IsDeparted;
+
+                                if (Current.IsSkipped && !isSkipped)
+                                {
+                                    // Trigger re-ordering of this and all subsequent entries
+                                    Dispatcher.Invoke(() => Stations.Remove(Current));
+                                    IsNew = true;
+                                    Reorder = true;
+                                }
+
+                                Current.IsSkipped = isSkipped;
                             }
                             else
                             {
@@ -269,19 +291,33 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                         if (IsNew)
                         {
                             int Index = -1;
-                            int i;
 
-                            for (i = 0; i < Stations.Count; i++)
+                            if (Current.LiveTime != null)
                             {
-                                if (Stations[i].HasSchedule && Stations[i].CurrentSchedule.Time > Current.CurrentSchedule.Time)
+                                for (int i = 0; i < Stations.Count; i++)
                                 {
-                                    Index = i;
-                                    break;
+                                    if (Stations[i].HasSchedule && Stations[i].LiveTime > Current.LiveTime)
+                                    {
+                                        Index = i;
+                                        break;
+                                    }
                                 }
                             }
 
                             if (Index == -1)
-                                Index = i;
+                            {
+                                for (int i = 0; i < Stations.Count; i++)
+                                {
+                                    if (Stations[i].HasSchedule && Stations[i].CurrentSchedule.Time > Current.CurrentSchedule.Time)
+                                    {
+                                        Index = i;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (Index == -1)
+                                Index = Stations.Count;
 
                             Dispatcher.Invoke(() => Stations.Insert(Index, Current));
                         }

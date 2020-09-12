@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <estw>
-  <station name="Abzw Zollberg" short="NZG" refNr="10">
+  <station name="Gemünden Zollberg" short="NZG" refNr="10">
     <track calculateDelay="false" isPlatform="false">
       <block name="10B54" direction="right"/>
       <block name="11B351" direction="right"/>
     </track>
   </station>
 
-  <station name="Rieneck Hp" short="NRCK" refNr="11" scheduleFile="B11_____.ABF">
+  <station name="Rieneck" short="NRCK" refNr="11" scheduleFile="B11_____.ABF">
     <track name="351" calculateDelay="false" />
   </station>
 
-  <station name="Abzw Sinnberg" short="NSB" refNr="11" scheduleFile="G11_____.ABF">
+  <station name="Sinnberg" short="NSB" refNr="11" scheduleFile="G11_____.ABF">
     <track name="242" isPlatform="false">
       <block name="11B52" direction="left"/>
       <block name="11B342" direction="right"/>
@@ -236,14 +236,14 @@
     </track>
   </station>
 
-  <station name="Üst Mühlberg" short="NMUB" refNr="05">
+  <station name="Mühlberg" short="NMUB" refNr="5">
     <track calculateDelay="false" isPlatform="false">
       <block name="05S07" direction="right"/>
       <block name="05S08" direction="right"/>
     </track>
   </station>
 
-  <station name="Burgsinn Bbf" short="NBNB" refNr="06" scheduleFile="G6______.ABF" localOrderFile="BF6_____.ABF">
+  <station name="Burgsinn Bbf" short="NBNB" refNr="6" scheduleFile="G6______.ABF" localOrderFile="BF6_____.ABF">
     <track name="001">
       <block name="06G001"/>
     </track>
@@ -264,7 +264,7 @@
     </track>
   </station>
 
-  <station name="Üst Dittenbrunn" short="NDI" refNr="07" scheduleFile="G7______.ABF" localOrderFile="BF7_____.ABF">
+  <station name="Üst Dittenbrunn" short="NDI" refNr="7" scheduleFile="G7______.ABF" localOrderFile="BF7_____.ABF">
     <track name="188" isPlatform="false">
       <block name="07B292" direction="left"/>
       <block name="07B388" direction="right"/>
@@ -275,7 +275,7 @@
     </track>
   </station>
 
-  <station name="Üst Altengronau" short="NAG" refNr="08" scheduleFile="G8______.ABF" localOrderFile="BF8_____.ABF">
+  <station name="Üst Altengronau" short="NAG" refNr="8" scheduleFile="G8______.ABF" localOrderFile="BF8_____.ABF">
     <track name="174" isPlatform="false">
       <block name="08B282" direction="left"/>
       <block name="08B374" direction="right"/>
@@ -286,7 +286,7 @@
     </track>
   </station>
 
-  <station name="Mottgers" short="NMOT" refNr="09" scheduleFile="G9______.ABF" localOrderFile="BF9_____.ABF">
+  <station name="Mottgers" short="NMOT" refNr="9" scheduleFile="G9______.ABF" localOrderFile="BF9_____.ABF">
     <track name="002">
       <block name="09G002"/>
     </track>

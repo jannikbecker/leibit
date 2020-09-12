@@ -12,8 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml;
-using System.Xml.Serialization;
 
 namespace Leibit.Tests
 {
@@ -1829,7 +1827,6 @@ namespace Leibit.Tests
         {
             using (var settingsScope = new SettingsScope())
             {
-                settingsScope.WriteDelayJustificationFile = true;
                 settingsScope.CheckPlausibility = false;
 
                 var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
@@ -1841,43 +1838,16 @@ namespace Leibit.Tests
                 Assert.IsNotNull(Schedule, "Schedule is null");
                 Assert.AreEqual(1, Schedule.Delays.Count);
 
+                var Delay = Schedule.Delays.First();
                 string Reason = "Kaputt";
                 int CausedBy = 12345;
 
-                var Delay = Schedule.Delays.First();
-                Delay.Reason = Reason;
-                Delay.CausedBy = CausedBy;
-
-                var Expected = new SharedDelay(2007, "TTST", 0, 4, eDelayType.Arrival, Reason);
-                Expected.CausedBy = CausedBy;
-
                 using (var scope = new ESTWRootScope())
                 {
-                    var BllResult = BLL.JustifyDelay(Delay);
+                    var BllResult = BLL.JustifyDelay(Delay, Reason, CausedBy);
                     DefaultChecks.IsOperationSucceeded(BllResult);
-                    Assert.IsNotNull(BllResult.Result, "BllResult is null");
-                    SharedDelayComparer.Instance.Compare(Expected, BllResult.Result);
-
-                    var SettingsBll = new SettingsBLL();
-                    var Settings = SettingsBll.GetSettings().Result;
-                    Assert.IsNotNull(Settings, "Settings is null");
-
-                    var FilePath = Path.Combine(Settings.Paths["TTST"], @"Kommunikation\leibit_delay_2007_TTST.dat");
-                    Assert.IsTrue(File.Exists(FilePath));
-
-                    var Serializer = new XmlSerializer(typeof(SharedDelay));
-
-                    using (var FileStram = File.OpenRead(FilePath))
-                    {
-                        var Reader = XmlReader.Create(FileStram);
-                        Assert.IsTrue(Serializer.CanDeserialize(Reader));
-
-                        object DeserializedResult = Serializer.Deserialize(Reader);
-                        Assert.IsInstanceOfType(DeserializedResult, typeof(SharedDelay));
-
-                        SharedDelay DeserializedDelay = DeserializedResult as SharedDelay;
-                        SharedDelayComparer.Instance.Compare(Expected, DeserializedDelay);
-                    }
+                    Assert.AreEqual(Reason, Delay.Reason);
+                    Assert.AreEqual(CausedBy, Delay.CausedBy);
                 }
             }
         }
@@ -1889,7 +1859,6 @@ namespace Leibit.Tests
         {
             using (var settingsScope = new SettingsScope())
             {
-                settingsScope.WriteDelayJustificationFile = false;
                 settingsScope.CheckPlausibility = true;
 
                 var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
@@ -1902,12 +1871,10 @@ namespace Leibit.Tests
                 Assert.AreEqual(1, Schedule.Delays.Count);
 
                 var Delay = Schedule.Delays.First();
-                Delay.Reason = "Kaputt";
-                Delay.CausedBy = 54321;
 
                 using (var scope = new ESTWRootScope())
                 {
-                    var BllResult = BLL.JustifyDelay(Delay);
+                    var BllResult = BLL.JustifyDelay(Delay, "Kaputt", 54321);
                     DefaultChecks.IsOperationNotSucceeded(BllResult);
                     Assert.IsTrue(BllResult.Message.Contains("Zug 54321 nicht gefunden"));
                 }
@@ -1921,7 +1888,6 @@ namespace Leibit.Tests
         {
             using (var settingsScope = new SettingsScope())
             {
-                settingsScope.WriteDelayJustificationFile = false;
                 settingsScope.CheckPlausibility = true;
 
                 var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
@@ -1934,15 +1900,13 @@ namespace Leibit.Tests
                 Assert.AreEqual(1, Schedule.Delays.Count);
 
                 var Delay = Schedule.Delays.First();
-                Delay.Reason = "Kaputt";
-                Delay.CausedBy = 12345;
 
                 var Train2 = new TrainInformation(Area.Trains[12345]);
                 Area.LiveTrains.TryAdd(12345, Train2);
 
                 using (var scope = new ESTWRootScope())
                 {
-                    var BllResult = BLL.JustifyDelay(Delay);
+                    var BllResult = BLL.JustifyDelay(Delay, "Kaputt", 12345);
                     DefaultChecks.IsOperationNotSucceeded(BllResult);
                     Assert.IsTrue(BllResult.Message.Contains("Zug 12345 hat die Betriebsstelle 'Testdorf' nicht durchfahren"));
                 }
@@ -1956,7 +1920,6 @@ namespace Leibit.Tests
         {
             using (var settingsScope = new SettingsScope())
             {
-                settingsScope.WriteDelayJustificationFile = false;
                 settingsScope.CheckPlausibility = true;
 
                 var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
@@ -1969,9 +1932,6 @@ namespace Leibit.Tests
                 Assert.AreEqual(1, Schedule.Delays.Count);
 
                 var Delay = Schedule.Delays.First();
-                Delay.Reason = "Kaputt";
-                Delay.CausedBy = 12345;
-
                 var Train2 = new TrainInformation(Area.Trains[12345]);
                 var TestdorfSchedule = new LiveSchedule(Train2, Train2.Train.Schedules.FirstOrDefault(s => s.Station.ShortSymbol == "TTST"));
                 TestdorfSchedule.LiveArrival = new LeibitTime(12, 50);
@@ -1981,7 +1941,7 @@ namespace Leibit.Tests
 
                 using (var scope = new ESTWRootScope())
                 {
-                    var BllResult = BLL.JustifyDelay(Delay);
+                    var BllResult = BLL.JustifyDelay(Delay, "Kaputt", 12345);
                     DefaultChecks.IsOperationNotSucceeded(BllResult);
                     Assert.IsTrue(BllResult.Message.Contains("Zug 12345 hat die Betriebsstelle 'Testdorf' zu einer anderen Zeit durchfahren als 2007"));
                 }
@@ -1995,7 +1955,6 @@ namespace Leibit.Tests
         {
             using (var settingsScope = new SettingsScope())
             {
-                settingsScope.WriteDelayJustificationFile = false;
                 settingsScope.CheckPlausibility = true;
 
                 var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
@@ -2008,9 +1967,6 @@ namespace Leibit.Tests
                 Assert.AreEqual(1, Schedule.Delays.Count);
 
                 var Delay = Schedule.Delays.First();
-                Delay.Reason = "Kaputt";
-                Delay.CausedBy = 12345;
-
                 var Train2 = new TrainInformation(Area.Trains[12345]);
                 var TestdorfSchedule = new LiveSchedule(Train2, Train2.Train.Schedules.FirstOrDefault(s => s.Station.ShortSymbol == "TTST"));
                 TestdorfSchedule.LiveArrival = new LeibitTime(12, 50);
@@ -2020,7 +1976,7 @@ namespace Leibit.Tests
 
                 using (var scope = new ESTWRootScope())
                 {
-                    var BllResult = BLL.JustifyDelay(Delay);
+                    var BllResult = BLL.JustifyDelay(Delay, "Kaputt", 12345);
                     DefaultChecks.IsOperationNotSucceeded(BllResult);
                     Assert.IsTrue(BllResult.Message.Contains("Zug 12345 hat die Betriebsstelle 'Testdorf' zu einer anderen Zeit durchfahren als 2007"));
                 }
@@ -2034,7 +1990,6 @@ namespace Leibit.Tests
         {
             using (var settingsScope = new SettingsScope())
             {
-                settingsScope.WriteDelayJustificationFile = false;
                 settingsScope.CheckPlausibility = true;
 
                 var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
@@ -2047,9 +2002,6 @@ namespace Leibit.Tests
                 Assert.AreEqual(1, Schedule.Delays.Count);
 
                 var Delay = Schedule.Delays.First();
-                Delay.Reason = "Kaputt";
-                Delay.CausedBy = 12345;
-
                 var Train2 = new TrainInformation(Area.Trains[12345]);
                 var TestdorfSchedule = new LiveSchedule(Train2, Train2.Train.Schedules.FirstOrDefault(s => s.Station.ShortSymbol == "TTST"));
                 TestdorfSchedule.LiveArrival = new LeibitTime(13, 11);
@@ -2059,7 +2011,7 @@ namespace Leibit.Tests
 
                 using (var scope = new ESTWRootScope())
                 {
-                    var BllResult = BLL.JustifyDelay(Delay);
+                    var BllResult = BLL.JustifyDelay(Delay, "Kaputt", 12345);
                     DefaultChecks.IsOperationSucceeded(BllResult);
                 }
             }
@@ -2079,14 +2031,11 @@ namespace Leibit.Tests
             Assert.IsNotNull(Schedule, "Schedule is null");
             Assert.AreEqual(1, Schedule.Delays.Count);
 
-            string Reason = "   ";
-
             var Delay = Schedule.Delays.First();
-            Delay.Reason = Reason;
 
             using (var scope = new ESTWRootScope())
             {
-                var BllResult = BLL.JustifyDelay(Delay);
+                var BllResult = BLL.JustifyDelay(Delay, "   ", null);
                 DefaultChecks.IsOperationNotSucceeded(BllResult);
             }
         }
@@ -2355,144 +2304,6 @@ namespace Leibit.Tests
         }
         #endregion
 
-        #region [LiveDataBLLTest_TestLoadSharedDelay_Existing]
-        [TestMethod]
-        public void LiveDataBLLTest_TestLoadSharedDelay_Existing()
-        {
-            var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
-            var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
-            Assert.IsNotNull(Estw, "Estw is null");
-
-            Area.LiveTrains.TryAdd(2007, ExpectedValuesOfLiveDataBLLTest.TestTrainDelayDeparture(Estw));
-
-            using (var scope = new ESTWOnlineScope(Estw, @"TestData\ESTWOnline\TestLoadSharedDelay_Existing", "TestdorfDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-            }
-
-            var Train = Area.LiveTrains[2007];
-            TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestLoadSharedDelay_Existing(Estw), Train);
-        }
-
-        //[TestMethod]
-        public void LiveDataBLLTest_TestLoadSharedDelay_Existing_CreateTestData()
-        {
-            var TrainNumber = 2007;
-            var StationShortSymbol = "TTST";
-            var ScheduleIndex = 0;
-            var Reason = "Keine Ahnung";
-            var CausedBy = 4711;
-
-            var SharedDelay = new SharedDelay(TrainNumber, StationShortSymbol, ScheduleIndex, 4, eDelayType.Departure, Reason);
-            SharedDelay.CausedBy = CausedBy;
-
-            var FilePath = Path.Combine(Environment.CurrentDirectory, @"..\..\TestData\ESTWOnline\TestLoadSharedDelay_Existing", String.Format("leibit_delay_{0}_{1}.dat", TrainNumber, StationShortSymbol));
-
-            using (var FileStream = File.Open(FilePath, FileMode.Create))
-            {
-                var Serializer = new XmlSerializer(typeof(SharedDelay));
-                Serializer.Serialize(FileStream, SharedDelay);
-            }
-        }
-        #endregion
-
-        #region [LiveDataBLLTest_TestLoadSharedDelay_NonExisting]
-        [TestMethod]
-        public void LiveDataBLLTest_TestLoadSharedDelay_NonExisting()
-        {
-            var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
-            var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
-            Assert.IsNotNull(Estw, "Estw is null");
-
-            Area.LiveTrains.TryAdd(2007, ExpectedValuesOfLiveDataBLLTest.TestPunctualTrain(Estw));
-
-            using (var scope = new ESTWOnlineScope(Estw, @"TestData\ESTWOnline\TestLoadSharedDelay_NonExisting", "TestdorfDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-            }
-
-            var Train = Area.LiveTrains[2007];
-            TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestLoadSharedDelay_NonExisting(Estw), Train);
-        }
-
-        //[TestMethod]
-        public void LiveDataBLLTest_TestLoadSharedDelay_NonExisting_CreateTestData()
-        {
-            var TrainNumber = 2007;
-            var StationShortSymbol = "TTST";
-            var ScheduleIndex = 0;
-            var Reason = "Keine Ahnung";
-            var CausedBy = 4711;
-
-            var SharedDelay = new SharedDelay(TrainNumber, StationShortSymbol, ScheduleIndex, 4, eDelayType.Departure, Reason);
-            SharedDelay.CausedBy = CausedBy;
-
-            var FilePath = Path.Combine(Environment.CurrentDirectory, @"..\..\TestData\ESTWOnline\TestLoadSharedDelay_NonExisting", String.Format("leibit_delay_{0}_{1}.dat", TrainNumber, StationShortSymbol));
-
-            using (var FileStream = File.Open(FilePath, FileMode.Create))
-            {
-                var Serializer = new XmlSerializer(typeof(SharedDelay));
-                Serializer.Serialize(FileStream, SharedDelay);
-            }
-        }
-        #endregion
-
-        #region [LiveDataBLLTest_TestLoadSharedDelay_InvalidScheduleIndex]
-        [TestMethod]
-        public void LiveDataBLLTest_TestLoadSharedDelay_InvalidScheduleIndex()
-        {
-            var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
-            var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
-            Assert.IsNotNull(Estw, "Estw is null");
-
-            Area.LiveTrains.TryAdd(2007, ExpectedValuesOfLiveDataBLLTest.TestTrainDelayDeparture(Estw));
-
-            using (var scope = new ESTWOnlineScope(Estw, @"TestData\ESTWOnline\TestLoadSharedDelay_InvalidScheduleIndex", "TestdorfDeparture.dat"))
-            {
-                var Result = BLL.RefreshLiveData(Area);
-                DefaultChecks.IsOperationSucceeded(Result);
-                Assert.IsTrue(Result.Result, "Result is false");
-
-                Assert.AreEqual(1, Area.LiveTrains.Count);
-                Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-            }
-
-            var Train = Area.LiveTrains[2007];
-            TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestLoadSharedDelay_Existing(Estw), Train);
-        }
-
-        //[TestMethod]
-        public void LiveDataBLLTest_TestLoadSharedDelay_InvalidScheduleIndex_CreateTestData()
-        {
-            var TrainNumber = 2007;
-            var StationShortSymbol = "TTST";
-            var ScheduleIndex = 815;
-            var Reason = "Keine Ahnung";
-            var CausedBy = 4711;
-
-            var SharedDelay = new SharedDelay(TrainNumber, StationShortSymbol, ScheduleIndex, 4, eDelayType.Departure, Reason);
-            SharedDelay.CausedBy = CausedBy;
-
-            var FilePath = Path.Combine(Environment.CurrentDirectory, @"..\..\TestData\ESTWOnline\TestLoadSharedDelay_InvalidScheduleIndex", String.Format("leibit_delay_{0}_{1}.dat", TrainNumber, StationShortSymbol));
-
-            using (var FileStream = File.Open(FilePath, FileMode.Create))
-            {
-                var Serializer = new XmlSerializer(typeof(SharedDelay));
-                Serializer.Serialize(FileStream, SharedDelay);
-            }
-        }
-        #endregion
-
         #region [LiveDataBLLTest_TestExpectedTimesDelayed]
         [TestMethod]
         public void LiveDataBLLTest_TestExpectedTimesDelayed()
@@ -2582,6 +2393,66 @@ namespace Leibit.Tests
 
             var Train = Area.LiveTrains[86312];
             TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestExpectedTimesPrematurePassing(Estw), Train);
+        }
+        #endregion
+
+        #region [LiveDataBLLTest_TestMisdirectedTrain]
+        [TestMethod]
+        public void LiveDataBLLTest_TestMisdirectedTrain()
+        {
+            var Area = ExpectedValuesOfInitializationBLLTest.LoadTestdorfESTW();
+            var Estw = Area.ESTWs.FirstOrDefault(e => e.Id == "TTST");
+            Assert.IsNotNull(Estw, "Estw is null");
+
+            using (var scope = new ESTWOnlineScope(Estw, "TestMisdirectedTrain/ProbeArrival.dat"))
+            {
+                var Result = BLL.RefreshLiveData(Area);
+                DefaultChecks.IsOperationSucceeded(Result);
+                Assert.IsTrue(Result.Result, "Result is false");
+
+                Assert.AreEqual(1, Area.LiveTrains.Count);
+                Assert.IsTrue(Area.LiveTrains.ContainsKey(4711));
+                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[4711].Block);
+                Assert.AreEqual(-1, Area.LiveTrains[4711].Delay);
+            }
+
+            using (var scope = new ESTWOnlineScope(Estw, "TestMisdirectedTrain/ProbeDeparture.dat"))
+            {
+                var Result = BLL.RefreshLiveData(Area);
+                DefaultChecks.IsOperationSucceeded(Result);
+                Assert.IsTrue(Result.Result, "Result is false");
+
+                Assert.AreEqual(1, Area.LiveTrains.Count);
+                Assert.IsTrue(Area.LiveTrains.ContainsKey(4711));
+                Assert.AreEqual(Estw.Blocks["31G2"].First(), Area.LiveTrains[4711].Block);
+                Assert.AreEqual(0, Area.LiveTrains[4711].Delay);
+            }
+
+            using (var scope = new ESTWOnlineScope(Estw, "TestMisdirectedTrain/TestdorfArrival1A.dat"))
+            {
+                var Result = BLL.RefreshLiveData(Area);
+                DefaultChecks.IsOperationSucceeded(Result);
+                Assert.IsTrue(Result.Result, "Result is false");
+
+                Assert.AreEqual(1, Area.LiveTrains.Count);
+                Assert.IsTrue(Area.LiveTrains.ContainsKey(4711));
+                Assert.AreEqual(Estw.Blocks["32G11"].First(), Area.LiveTrains[4711].Block);
+                Assert.AreEqual(0, Area.LiveTrains[4711].Delay);
+            }
+
+            using (var scope = new ESTWOnlineScope(Estw, "TestMisdirectedTrain/TestdorfDeparture.dat"))
+            {
+                var Result = BLL.RefreshLiveData(Area);
+                DefaultChecks.IsOperationSucceeded(Result);
+                Assert.IsTrue(Result.Result, "Result is false");
+
+                Assert.AreEqual(1, Area.LiveTrains.Count);
+                Assert.IsTrue(Area.LiveTrains.ContainsKey(4711));
+                Assert.AreEqual(0, Area.LiveTrains[4711].Delay);
+            }
+
+            var Train = Area.LiveTrains[4711];
+            TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestMisdirectedTrain(Estw), Train);
         }
         #endregion
 

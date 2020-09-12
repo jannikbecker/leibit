@@ -7,11 +7,10 @@ using Leibit.Entities.LiveData;
 using Leibit.Entities.Scheduling;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Serialization;
 
 namespace Leibit.BLL
 {
@@ -22,7 +21,6 @@ namespace Leibit.BLL
         private SettingsBLL m_SettingsBll;
         private CalculationBLL m_CalculationBll;
         private InitializationBLL m_InitializationBll;
-        private XmlSerializer m_DelaySerializer;
 
         private string m_EstwOnlinePath;
         private object m_LockRefresh = new object();
@@ -33,11 +31,10 @@ namespace Leibit.BLL
         public LiveDataBLL()
             : base()
         {
-            m_DelaySerializer = new XmlSerializer(typeof(SharedDelay));
         }
         #endregion
 
-        #region - Singletons -
+        #region - Properties -
 
         #region [SettingsBLL]
         private SettingsBLL SettingsBLL
@@ -94,6 +91,10 @@ namespace Leibit.BLL
         }
         #endregion
 
+        #region [DebugMode]
+        public bool DebugMode { get; set; }
+        #endregion
+
         #endregion
 
         #region - Public methods -
@@ -130,9 +131,6 @@ namespace Leibit.BLL
                         }
                     });
 
-                    // Load shared delay files that have been downloaded by ESTWonline.
-                    __LoadSharedDelays(area);
-
                     var Estw = area.ESTWs.FirstOrDefault(e => e.Time != null);
 
                     if (Estw != null)
@@ -142,12 +140,14 @@ namespace Leibit.BLL
                                 // Set departure times for trains that are gone.
                                 if (train.Value.LastModified < Estw.Time.AddMinutes(-2))
                                 {
-                                    var CurrentSchedules = train.Value.Schedules.Where(s => s.LiveArrival != null && s.LiveDeparture == null);
+                                    var CurrentSchedules = train.Value.Schedules.Where(s => s.IsArrived && !s.IsDeparted);
 
                                     foreach (var Schedule in CurrentSchedules)
                                     {
                                         Schedule.IsDeparted = true;
-                                        Schedule.LiveDeparture = train.Value.LastModified;
+
+                                        if (Schedule.LiveArrival != null)
+                                            Schedule.LiveDeparture = train.Value.LastModified;
                                     }
                                 }
 
@@ -179,57 +179,31 @@ namespace Leibit.BLL
         #endregion
 
         #region [JustifyDelay]
-        public OperationResult<SharedDelay> JustifyDelay(DelayInfo delay)
+        public OperationResult<bool> JustifyDelay(DelayInfo delay, string reason, int? causedBy)
         {
             try
             {
-                if (delay.Reason.IsNullOrWhiteSpace())
-                    return new OperationResult<SharedDelay> { Message = "Bitte Grund angeben!" };
+                if (reason.IsNullOrWhiteSpace())
+                    return new OperationResult<bool> { Message = "Bitte Grund angeben!" };
 
                 var SettingsResult = SettingsBLL.GetSettings();
                 ValidateResult(SettingsResult);
                 var Settings = SettingsResult.Result;
 
-                string EstwId = delay.Schedule.Schedule.Station.ESTW.Id;
-
-                if (Settings.DelayJustificationEnabled && !Settings.Paths.ContainsKey(EstwId))
-                    return new OperationResult<SharedDelay> { Message = String.Format("Pfad zu ESTW '{0}' nicht gefunden.", delay.Schedule.Schedule.Station.ESTW.Name), Succeeded = true };
-
                 if (Settings.CheckPlausibility)
-                    __CheckDelayJustificationPlausibility(delay);
+                    __CheckDelayJustificationPlausibility(delay, causedBy);
 
-                var Result = new OperationResult<SharedDelay>();
+                delay.Reason = reason;
+                delay.CausedBy = causedBy;
 
-                var Shared = new SharedDelay(delay.Schedule.Train.Train.Number,
-                    delay.Schedule.Schedule.Station.ShortSymbol,
-                    delay.Schedule.Train.Schedules.Where(s => s.Schedule.Station.ShortSymbol == delay.Schedule.Schedule.Station.ShortSymbol).ToList().IndexOf(delay.Schedule),
-                    delay.Minutes,
-                    delay.Type,
-                    delay.Reason);
-
-                Shared.CausedBy = delay.CausedBy;
-
-                if (Settings.DelayJustificationEnabled && Settings.WriteDelayJustificationFile)
-                {
-                    var FilePath = Path.Combine(Settings.Paths[EstwId], Constants.SHARED_DELAY_FOLDER, String.Format(Constants.SHARED_DELAY_FILE_TEMPLATE, Shared.TrainNumber, Shared.StationShortSymbol));
-                    var FileInfo = new FileInfo(FilePath);
-
-                    if (!FileInfo.Directory.Exists)
-                        return new OperationResult<SharedDelay> { Message = String.Format("ESTWonline-Verzeichnis von ESTW '{0}' nicht gefunden.", delay.Schedule.Schedule.Station.ESTW.Name) };
-
-                    using (var FileStream = FileInfo.Open(FileMode.Create))
-                    {
-                        m_DelaySerializer.Serialize(FileStream, Shared);
-                    }
-                }
-
-                Result.Result = Shared;
+                var Result = new OperationResult<bool>();
+                Result.Result = true;
                 Result.Succeeded = true;
                 return Result;
             }
             catch (Exception ex)
             {
-                return new OperationResult<SharedDelay> { Message = ex.Message };
+                return new OperationResult<bool> { Message = ex.Message };
             }
         }
         #endregion
@@ -340,6 +314,7 @@ namespace Leibit.BLL
                         string BlockName = Parts[1].Trim('/');
                         string sTrainNumber = Parts[2].Trim('_');
                         string sDelay = Parts[3];
+                        string sSpeed = Parts[4];
                         string sDirection = Parts[5];
 
                         if (sTrainNumber.Length > 5)
@@ -360,10 +335,22 @@ namespace Leibit.BLL
                             Train = estw.Area.LiveTrains.GetOrAdd(TrainNumber, Train);
                         }
 
-                        Train.Delay = Delay;
+                        if (Train.Schedules.All(s => s.Schedule.IsUnscheduled || s.LiveArrival == null))
+                            Train.Delay = Delay;
+                        else
+                        {
+                            // In this case delay is calculated by LeiBIT. Ignore the delay information from ESTWsim!
+                        }
+
                         Train.Direction = sDirection == "L" ? eBlockDirection.Left : eBlockDirection.Right;
 
                         var Block = estw.Blocks.ContainsKey(BlockName) ? estw.Blocks[BlockName].FirstOrDefault(b => b.Direction == eBlockDirection.Both || b.Direction == Train.Direction) : null;
+
+                        // When speed is not set, the direction in the file is random.
+                        // When direction plays a role it's safer to not assign the block in that case.
+                        if (Block != null && Block.Direction != eBlockDirection.Both && sSpeed == "0")
+                            Block = null;
+
                         __RefreshTrainInformation(Train, Block, estw);
                     }
                 }
@@ -371,8 +358,20 @@ namespace Leibit.BLL
 
             estw.LastUpdatedOn = DateTime.Now;
 
-            //if (!Debugger.IsAttached)
-            File.Delete(FilePath);
+            if (Debugger.IsAttached && DebugMode)
+            {
+                var fileInfo = new FileInfo(FilePath);
+                var backupDirectory = Path.Combine(fileInfo.DirectoryName, "debug");
+
+                if (!Directory.Exists(backupDirectory))
+                    Directory.CreateDirectory(backupDirectory);
+
+                var fileName = $"{fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length)}_{DateTime.Now:yyyyMMdd_HHmmss}{fileInfo.Extension}";
+                var backupFile = Path.Combine(backupDirectory, fileName);
+                File.Move(FilePath, backupFile);
+            }
+            else
+                File.Delete(FilePath);
         }
 
         private string __GetDataFilesPath()
@@ -511,10 +510,13 @@ namespace Leibit.BLL
                             {
                                 CurrentSchedule.LiveTrack = LiveTrack;
 
-                                // When train is in station, it cannot be departed.
-                                // This fixes issues that can occur in mirror fields when the train has arrived at the station in one ESTW, but not yet in the other.
-                                CurrentSchedule.IsDeparted = false;
-                                CurrentSchedule.LiveDeparture = null;
+                                if (LiveTrack.IsPlatform)
+                                {
+                                    // When train is in station, it cannot be departed.
+                                    // This fixes issues that can occur in mirror fields when the train has arrived at the station in one ESTW, but not yet in the other.
+                                    CurrentSchedule.IsDeparted = false;
+                                    CurrentSchedule.LiveDeparture = null;
+                                }
                             }
                         }
                     }
@@ -595,86 +597,38 @@ namespace Leibit.BLL
             }
         }
 
-        private void __LoadSharedDelays(Area area)
-        {
-            if (DataFilesPath.IsNullOrEmpty())
-                return;
-
-            var Files = Directory.EnumerateFiles(DataFilesPath, String.Format("{0}*_*.dat", Constants.SHARED_DELAY_PREFIX)).Select(file => new FileInfo(file));
-
-            foreach (var File in Files)
-            {
-                using (var FileStream = File.OpenRead())
-                {
-                    var Reader = XmlReader.Create(FileStream);
-
-                    if (!m_DelaySerializer.CanDeserialize(Reader))
-                        continue;
-
-                    var SharedDelay = m_DelaySerializer.Deserialize(Reader) as SharedDelay;
-
-                    if (SharedDelay == null)
-                        continue;
-
-                    TrainInformation Train;
-
-                    if (!area.LiveTrains.TryGetValue(SharedDelay.TrainNumber, out Train))
-                        continue;
-
-                    var Schedules = Train.Schedules.Where(s => s.Schedule.Station.ShortSymbol == SharedDelay.StationShortSymbol);
-                    var Schedule = Schedules.ElementAtOrDefault(SharedDelay.ScheduleIndex);
-
-                    if (Schedule == null)
-                        Schedule = Schedules.FirstOrDefault();
-
-                    if (Schedule == null)
-                        continue;
-
-                    var Delay = Schedule.Delays.FirstOrDefault(d => d.Type == SharedDelay.Type);
-
-                    if (Delay == null)
-                        Delay = Schedule.AddDelay(SharedDelay.Minutes, SharedDelay.Type);
-
-                    Delay.Reason = SharedDelay.Reason;
-                    Delay.CausedBy = SharedDelay.CausedBy;
-                }
-
-                File.Delete();
-            }
-        }
-
-        private void __CheckDelayJustificationPlausibility(DelayInfo delay)
+        private void __CheckDelayJustificationPlausibility(DelayInfo delay, int? causedBy)
         {
             var validationMessages = new List<string>();
 
-            if (delay.CausedBy.HasValue)
+            if (causedBy.HasValue)
             {
                 var area = delay.Schedule.Schedule.Station.ESTW.Area;
 
-                if (area.LiveTrains.ContainsKey(delay.CausedBy.Value))
+                if (area.LiveTrains.ContainsKey(causedBy.Value))
                 {
-                    var train = area.LiveTrains[delay.CausedBy.Value];
+                    var train = area.LiveTrains[causedBy.Value];
                     var schedules = train.Schedules.Where(s => s.Schedule.Station.ShortSymbol == delay.Schedule.Schedule.Station.ShortSymbol);
 
                     if (!schedules.Any())
                     {
-                        validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' nicht durchfahren");
+                        validationMessages.Add($"Zug {causedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' nicht durchfahren");
                     }
                     else if (delay.Type == eDelayType.Arrival && !schedules.Any(s => __AreTimesClose(delay.Schedule.LiveArrival, s.LiveArrival)
                                                                                   || __AreTimesClose(delay.Schedule.LiveArrival, s.ExpectedArrival)
                                                                                   || __AreTimesClose(delay.Schedule.LiveArrival, s.LiveDeparture)))
                     {
-                        validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
+                        validationMessages.Add($"Zug {causedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
                     }
                     else if (delay.Type == eDelayType.Departure && !schedules.Any(s => __AreTimesClose(delay.Schedule.LiveDeparture, s.LiveArrival)
                                                                                     || __AreTimesClose(delay.Schedule.LiveDeparture, s.ExpectedArrival)
                                                                                     || __AreTimesClose(delay.Schedule.LiveDeparture, s.LiveDeparture)))
                     {
-                        validationMessages.Add($"Zug {delay.CausedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
+                        validationMessages.Add($"Zug {causedBy.Value} hat die Betriebsstelle '{delay.Schedule.Schedule.Station.Name}' zu einer anderen Zeit durchfahren als {delay.Schedule.Train.Train.Number}");
                     }
                 }
                 else
-                    validationMessages.Add($"Zug {delay.CausedBy.Value} nicht gefunden");
+                    validationMessages.Add($"Zug {causedBy.Value} nicht gefunden");
             }
 
             if (validationMessages.Any())
