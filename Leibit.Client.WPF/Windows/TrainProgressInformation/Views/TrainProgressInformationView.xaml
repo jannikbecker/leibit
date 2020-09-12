@@ -26,6 +26,7 @@
 
         <controls:LeibitDataGrid.ContextMenu>
             <ContextMenu>
+                <MenuItem Header="Vsl. Verspätung" Command="{Binding EnterExpectedDelayCommand}"/>
                 <MenuItem Header="Gleiswechsel" Command="{Binding ShowTrackChangeCommand}"/>
                 <MenuItem Header="Zuglaufdaten" Command="{Binding ShowTrainScheduleCommand}"/>
                 <MenuItem Header="Örtliche Anweisungen" Command="{Binding ShowLocalOrdersCommand}"/>

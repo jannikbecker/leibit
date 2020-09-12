@@ -198,9 +198,7 @@ namespace Leibit.BLL
 
                 if (!Directory.Exists(Estw.Value))
                     Messages.Add($"Das Verzeichnis '{Estw.Value}' existiert nicht.");
-                else if (!Directory.Exists(Path.Combine(Estw.Value, Constants.SCHEDULE_FOLDER))
-                    || !Directory.Exists(Path.Combine(Estw.Value, Constants.LOCAL_ORDERS_FOLDER))
-                    || !Directory.Exists(Path.Combine(Estw.Value, Constants.SHARED_DELAY_FOLDER)))
+                else if (!Directory.Exists(Path.Combine(Estw.Value, Constants.SCHEDULE_FOLDER)) || !Directory.Exists(Path.Combine(Estw.Value, Constants.LOCAL_ORDERS_FOLDER)))
                     Messages.Add($"Das Verzeichnis '{Estw.Value}' ist kein gültiges ESTWsim-Verzeichnis.");
             }
 
@@ -227,7 +225,6 @@ namespace Leibit.BLL
             var settings = new Settings();
             settings.DelayJustificationEnabled = true;
             settings.DelayJustificationMinutes = 3;
-            settings.WriteDelayJustificationFile = false;
             settings.CheckPlausibility = true;
             settings.DisplayCompleteTrainSchedule = true;
             settings.EstwTimeout = 30;

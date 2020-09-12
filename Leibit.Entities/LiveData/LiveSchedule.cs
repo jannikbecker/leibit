@@ -101,6 +101,12 @@ namespace Leibit.Entities.LiveData
             set;
         }
 
+        public int? ExpectedDelay
+        {
+            get;
+            set;
+        }
+
         public ReadOnlyCollection<DelayInfo> Delays
         {
             get

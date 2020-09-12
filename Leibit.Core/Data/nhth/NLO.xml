@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Wiesthal" short="NWI" refNr="75">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="76B31" direction="right"/>
+      <block name="75S34" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Partenstein" short="NPAR" refNr="76" scheduleFile="g76_____.abf" localOrderFile="bf76____.abf">
+    <track name="001">
+      <block name="76G001"/>
+    </track>
+    <track name="002">
+      <block name="76G002"/>
+    </track>
+    <track name="003">
+      <block name="76G003"/>
+    </track>
+  </station>
+  
+  <station name="Lohr Stadt" short="NLOS" refNr="77">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="77B01" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Lohr" short="NLO" refNr="77" scheduleFile="g77_____.abf" localOrderFile="bf77____.abf">
+    <track name="001">
+      <block name="77G001"/>
+    </track>
+    <track name="002">
+      <block name="77G002"/>
+    </track>
+    <track name="003">
+      <block name="77G003"/>
+    </track>
+    <track name="004">
+      <block name="77G004"/>
+    </track>
+    <track name="005">
+      <block name="77G005"/>
+    </track>
+  </station>
+
+  <station name="Nantenbach" short="NNAN" refNr="78" scheduleFile="g78_____.abf" localOrderFile="bf78____.abf">
+    <track name="063" isPlatform="false">
+      <block name="78B63" direction="right"/>
+      <block name="78B311" direction="left"/>
+    </track>
+    <track name="108" isPlatform="false">
+      <block name="77B12" direction="left"/>
+      <block name="78B264" direction="right"/>
+      <block name="78B308" direction="right"/>
+    </track>
+    <track name="207" isPlatform="false">
+      <block name="78B207" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Langenprozelten" short="NLP" refNr="79">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="79B61" direction="left"/>
+      <block name="78B62" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Üst Dittenbrunn" short="NDI" refNr="7">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="06S91" direction="right"/>
+      <block name="06S92" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Burgsinn Bbf" short="NBNB" refNr="6" scheduleFile="v6______.abf">
+    <track name="003">
+      <block name="06S3"/>
+    </track>
+    <track name="004">
+      <block name="06S4"/>
+    </track>
+    <track name="005">
+      <block name="06S5"/>
+    </track>
+  </station>
+
+  <station name="Mühlberg" short="NMUB" refNr="5" scheduleFile="g5______.abf" localOrderFile="bf5_____.abf">
+    <track name="308" isPlatform="false">
+      <block name="05B212" direction="right"/>
+      <block name="05B308" direction="left"/>
+    </track>
+    <track name="311" isPlatform="false">
+      <block name="05B207" direction="left"/>
+      <block name="05B311" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Rohrbach" short="NRB" refNr="4" scheduleFile="g4______.abf" localOrderFile="bf4_____.abf">
+    <track name="001">
+      <block name="04G001"/>
+    </track>
+    <track name="002">
+      <block name="04G002"/>
+    </track>
+    <track name="003">
+      <block name="04G003"/>
+    </track>
+    <track name="004">
+      <block name="04G004"/>
+    </track>
+  </station>
+
+  <station name="Hohe Wart" short="NHW" refNr="3" scheduleFile="g3______.abf" localOrderFile="bf3_____.abf">
+    <track name="126" isPlatform="false">
+      <block name="02B232" direction="right"/>
+      <block name="03B326" direction="left"/>
+    </track>
+    <track name="131" isPlatform="false">
+      <block name="04B225" direction="left"/>
+      <block name="03B331" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Espenloh" short="NES" refNr="2" scheduleFile="g2______.abf" localOrderFile="bf2_____.abf">
+    <track name="136" isPlatform="false">
+      <block name="02B42" direction="right"/>
+      <block name="02B336" direction="left"/>
+    </track>
+    <track name="141" isPlatform="false">
+      <block name="02B235" direction="left"/>
+      <block name="02B341" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Neuberg" short="NNB" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
+    <track name="146" isPlatform="false">
+      <block name="01B252" direction="right"/>
+      <block name="01B346" direction="left"/>
+    </track>
+    <track name="151" isPlatform="false">
+      <block name="02B243" direction="left"/>
+      <block name="01B351" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Würzburg Hbf" short="NWH" refNr="87">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="87B56" direction="left"/>
+      <block name="01B255" direction="left"/>
+    </track>
+  </station>
+</estw>

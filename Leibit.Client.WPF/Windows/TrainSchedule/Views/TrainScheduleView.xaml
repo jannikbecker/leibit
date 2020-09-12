@@ -41,7 +41,7 @@
                             <Line Grid.RowSpan="2" Y2="1" Margin="0,-3,0,-3" Stretch="Fill" StrokeThickness="5" StrokeDashArray="2 1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stroke="{Binding DepartureColor}" Visibility="{Binding HasStation, Converter={StaticResource InvertedVisibilityConverter}}" />
                             <Line Grid.Row="0" Y2="1" Margin="0,-3,0,-3" Stretch="Fill" StrokeThickness="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stroke="{Binding ArrivalColor}" Visibility="{Binding IsFirstStation, Converter={StaticResource InvertedVisibilityConverter}}" />
                             <Line Grid.Row="1" Y2="1" Margin="0,-3,0,-3" Stretch="Fill" StrokeThickness="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stroke="{Binding DepartureColor}" Visibility="{Binding IsLastStation, Converter={StaticResource InvertedVisibilityConverter}}" />
-                            <Ellipse Grid.RowSpan="2" Width="10" Height="10" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding ArrivalColor}" Visibility="{Binding HasStation, Converter={StaticResource VisibilityConverter}}" />
+                            <Ellipse Grid.RowSpan="2" Width="10" Height="10" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding ArrivalColor}" Visibility="{Binding StationDotVisibility}" />
                         </Grid>
 
                         <Grid Grid.Column="1" VerticalAlignment="Center">
@@ -55,8 +55,8 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Delays" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Arrival}" Margin="0,5,5,0" VerticalAlignment="Bottom" Visibility="{Binding Arrival, Converter={StaticResource VisibilityNullConverter}}" />
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Departure}" Margin="0,5,5,5" VerticalAlignment="Top" Visibility="{Binding Departure, Converter={StaticResource VisibilityNullConverter}}" />
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Arrival}" Margin="0,5,5,0" VerticalAlignment="Bottom" Foreground="{Binding TextColor}" Visibility="{Binding ArrivalVisibility}" />
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Departure}" Margin="0,5,5,5" VerticalAlignment="Top" Foreground="{Binding TextColor}" Visibility="{Binding DepartureVisibility}" />
 
                             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding DelayArrivalString}" Margin="0,5,5,0" VerticalAlignment="Bottom" Visibility="{Binding Arrival, Converter={StaticResource VisibilityNullConverter}}">
                                 <TextBlock.Style>
@@ -81,6 +81,9 @@
                                             <DataTrigger Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=2}" Value="True">
                                                 <Setter Property="Foreground" Value="Red" />
                                             </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsDelayManuallySet}" Value="true">
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                            </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </TextBlock.Style>
@@ -102,14 +105,14 @@
 
                             <controls:ImageButton Grid.RowSpan="3" Grid.Column="0" Image="{StaticResource imgLocalOrders}" Margin="0" Command="{Binding LocalOrdersCommand}" Visibility="{Binding HasLocalOrders, Converter={StaticResource VisibilityConverter}}" />
 
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding StationName}" Margin="5,0,5,0" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding StationName}" Foreground="{Binding TextColor}" Margin="5,0,5,0" />
 
                             <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,0,5,0" Visibility="{Binding HasSchedule, Converter={StaticResource VisibilityConverter}}">
-                                <TextBlock Text="Gleis " />
-                                <TextBlock Text="{Binding TrackName}" />
+                                <TextBlock Text="Gleis " Foreground="{Binding TextColor}" />
+                                <TextBlock Text="{Binding TrackName}" Foreground="{Binding TextColor}" />
                             </StackPanel>
 
-                            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Remark}" Margin="5,0,5,0" Visibility="{Binding HasRemark, Converter={StaticResource VisibilityConverter}}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Remark}" Foreground="{Binding TextColor}" Margin="5,0,5,0" Visibility="{Binding HasRemark, Converter={StaticResource VisibilityConverter}}"/>
 
                             <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Visibility="{Binding DelayInfo, Converter={StaticResource VisibilityNullConverter}}" Margin="5,0,5,0">
                                 <Hyperlink Command="{Binding DelayJustificationCommand}">

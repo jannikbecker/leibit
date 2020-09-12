@@ -99,21 +99,6 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
-        #region [WriteDelayJustificationFile]
-        public bool WriteDelayJustificationFile
-        {
-            get
-            {
-                return m_Settings.WriteDelayJustificationFile;
-            }
-            set
-            {
-                m_Settings.WriteDelayJustificationFile = value;
-                OnPropertyChanged();
-            }
-        }
-        #endregion
-
         #region [CheckPlausibility]
         public bool CheckPlausibility
         {
@@ -279,7 +264,6 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
             if (PropertyName == nameof(DelayJustificationEnabled)
                 || PropertyName == nameof(DelayJustificationMinutes)
-                || PropertyName == nameof(WriteDelayJustificationFile)
                 || PropertyName == nameof(CheckPlausibility)
                 || PropertyName == nameof(DisplayCompleteTrainSchedule)
                 || PropertyName == nameof(EstwTimeout)

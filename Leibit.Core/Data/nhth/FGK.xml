@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Hanau Hbf" short="FH" refNr="64">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="64B41" direction="right"/>
+      <block name="65B42" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Abzw Rauschwald" short="FRW" refNr="36">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="36B01" direction="right"/>
+      <block name="66B02" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hanau-Großauheim" short="FGAU" refNr="65" scheduleFile="G65_____.abf" localOrderFile="bf65____.abf">
+    <track name="001">
+      <block name="65G001"/>
+    </track>
+    <track name="002">
+      <block name="65G002"/>
+    </track>
+  </station>
+
+  <station name="Großkrotzenburg" short="FGK" refNr="66" scheduleFile="G66_____.abf" localOrderFile="bf66____.abf">
+    <track name="001">
+      <block name="66G001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="105"/>
+    </track>
+
+    <track name="002">
+      <block name="66G002"/>
+      <alternative track="001"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="105"/>
+    </track>
+
+    <track name="003">
+      <block name="66G002"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="105"/>
+    </track>
+
+    <track name="004">
+      <block name="66G004"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="005"/>
+      <alternative track="105"/>
+    </track>
+
+    <track name="005">
+      <block name="66G005"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+
+      <track name="105">
+        <block name="66G105"/>
+      </track>
+    </track>
+
+    <track name="051">
+      <block name="66G051"/>
+      <alternative track="302"/>
+    </track>
+
+    <track name="302">
+      <block name="66G302"/>
+      <alternative track="051"/>
+    </track>
+  </station>
+
+  <station name="Alzenau" short="FAZU" refNr="67">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="67B01"/>
+    </track>
+  </station>
+    
+  <station name="Kahl (Main)" short="FKLM" refNr="67" scheduleFile="G67_____.abf" localOrderFile="bf67____.abf">
+    <track name="001">
+      <block name="67G001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="006"/>
+    </track>
+    <track name="002">
+      <block name="67G002"/>
+      <alternative track="001"/>
+      <alternative track="003"/>
+      <alternative track="006"/>
+    </track>
+    <track name="003">
+      <block name="67G003"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="006"/>
+    </track>
+    <track name="006">
+      <block name="67G006"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+    </track>
+
+    <track name="101">
+      <block name="67G101"/>
+      <alternative track="203"/>
+    </track>
+
+    <track name="203">
+      <block name="67G203"/>
+      <alternative track="101"/>
+    </track>
+  </station>
+
+  <station name="Dettingen" short="FDET" refNr="68" scheduleFile="G68_____.abf" localOrderFile="bf68____.abf">
+    <track name="001">
+      <block name="68G001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+    </track>
+    <track name="002">
+      <block name="68G002"/>
+      <alternative track="001"/>
+      <alternative track="003"/>
+    </track>
+    <track name="003">
+      <block name="68G003"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+    </track>
+
+    <track name="302">
+      <block name="68G302"/>
+      <alternative track="001"/>
+    </track>
+  </station>
+
+  <station name="Rückersbacher Schlucht Hp" short="FRS" refNr="68" scheduleFile="B68_____.abf">
+    <track name="001" calculateDelay="false">
+      <block name="68B81"/>
+    </track>
+    <track name="002" calculateDelay="false">
+      <block name="68B82"/>
+    </track>
+  </station>
+
+  <station name="Kleinostheim" short="FKO" refNr="69" scheduleFile="G69_____.abf" localOrderFile="bf69____.abf">
+    <track name="001">
+      <block name="69G001"/>
+    </track>
+    <track name="002">
+      <block name="69G002"/>
+    </track>
+    <track name="003">
+      <block name="69G003"/>
+    </track>
+  </station>
+
+  <station name="Abzw Steinerts" short="FSTE" refNr="70" scheduleFile="G70_____.abf" localOrderFile="bf70____.abf">
+    <track name="101" isPlatform="false">
+      <block name="69B91" direction="left"/>
+    </track>
+    <track name="102" isPlatform="false">
+      <block name="69B92" direction="left"/>
+    </track>
+    <track name="103" isPlatform="false"/>
+    <track name="104" isPlatform="false">
+      <block name="70B32"/>
+    </track>
+    <track name="201" isPlatform="false">
+      <block name="70B01" direction="right"/>
+    </track>
+    <track name="202" isPlatform="false">
+      <block name="71B02" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Aschaffenburg Hbf" short="NAH" refNr="71">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="70B01" direction="left"/>
+      <block name="71B02" direction="left"/>
+      <block name="51B21" direction="left"/>
+      <block name="71B22" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Abzw Mainaschaff Hp" short="FMAS" refNr="52" scheduleFile="g52_____.abf" localOrderFile="bf52____.abf">
+    <track name="101" isPlatform="false">
+      <block name="51B11" direction="left"/>
+      <alternative track="102"/>
+    </track>
+
+    <track name="102" isPlatform="false">
+      <block name="52B12" direction="left"/>
+      <alternative track="101"/>
+    </track>
+
+    <track name="001">
+      <block name="52G001"/>
+      <alternative track="002"/>
+      <alternative track="103"/>
+      <alternative track="104"/>
+    </track>
+
+    <track name="002">
+      <block name="52G002"/>
+      <alternative track="001"/>
+      <alternative track="103"/>
+      <alternative track="104"/>
+    </track>
+
+    <track name="103" isPlatform="false">
+      <block name="52B31"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="104"/>
+    </track>
+
+    <track name="104" isPlatform="false"/>
+  </station>
+
+  <station name="Stockstadt" short="FSTK" refNr="51" scheduleFile="g51_____.abf" localOrderFile="bf51____.abf">
+    <track name="001">
+      <block name="51G001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+    </track>
+    <track name="002">
+      <block name="51G002"/>
+      <alternative track="001"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+    </track>
+    <track name="003">
+      <block name="51G003"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="004"/>
+
+      <track name="203">
+        <block name="51G203"/>
+      </track>
+    </track>
+    <track name="004">
+      <block name="51G004"/>
+      <alternative track="001"/>
+      <alternative track="002"/>
+      <alternative track="003"/>
+    </track>
+  </station>
+
+  <station name="Babenhausen" short="FBA" refNr="50">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="51B01" direction="right"/>
+      <block name="51B02" direction="right"/>
+    </track>
+  </station>
+</estw>

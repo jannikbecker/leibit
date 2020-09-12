@@ -82,7 +82,7 @@ namespace Leibit.BLL
                 var delayJustificationEnabled = settingsResult.Result.DelayJustificationEnabled;
                 var delayJustificationMinutes = settingsResult.Result.DelayJustificationMinutes;
 
-                foreach (var Schedule in Train.Schedules)
+                foreach (var Schedule in Train.Schedules.OrderBy(s => s.LiveArrival))
                 {
                     if (Schedule.LiveArrival == null)
                         continue;
@@ -146,7 +146,7 @@ namespace Leibit.BLL
                     Delay = (FirstSchedule.LiveArrival - Arrival).TotalMinutes;
                 }
 
-                foreach (var Schedule in Train.Schedules)
+                foreach (var Schedule in Train.Schedules.OrderBy(s => s.LiveArrival == null).ThenBy(s => s.LiveArrival))
                 {
                     if (Schedule.LiveArrival != null)
                         Start = true;
@@ -160,13 +160,16 @@ namespace Leibit.BLL
                     var CalculateDelay = Schedule.Schedule.Track != null && Schedule.Schedule.Track.CalculateDelay;
                     var CurrentIndex = Train.Schedules.IndexOf(Schedule);
 
-                    if (Train.Schedules.Where((schedule, index) => index > CurrentIndex && schedule.LiveArrival != null).Any())
-                        CalculateDelay = false;
+                    // Don't calculate expected times, if train has already arrived at one of the following stations.
+                    // This might be the case at the beginning of the simulation or for diverted/misdirected trains.
+                    var SkipCalculation = Train.Schedules.Where((schedule, index) => index > CurrentIndex && schedule.LiveArrival != null).Any();
 
                     var Arrival = Schedule.Schedule.Arrival == null ? Schedule.Schedule.Departure : Schedule.Schedule.Arrival;
 
                     if (Schedule.LiveArrival != null)
                         Schedule.ExpectedArrival = Schedule.LiveArrival;
+                    else if (SkipCalculation && !Schedule.IsArrived)
+                        Schedule.ExpectedArrival = null;
                     else
                     {
                         Schedule.ExpectedArrival = Arrival.AddMinutes(Delay);
@@ -175,43 +178,51 @@ namespace Leibit.BLL
                             Schedule.ExpectedArrival = Estw.Time;
                     }
 
-                    Delay = (Schedule.ExpectedArrival - Arrival).TotalMinutes;
+                    if (Schedule.ExpectedArrival != null)
+                        Delay = (Schedule.ExpectedArrival - Arrival).TotalMinutes;
 
                     if (Schedule.LiveDeparture != null)
-                    {
                         Schedule.ExpectedDeparture = Schedule.LiveDeparture;
-                    }
+                    else if (Schedule.ExpectedArrival == null)
+                        Schedule.ExpectedDeparture = null;
                     else if (Schedule.Schedule.Departure != null)
                     {
-                        int MinStoptime = 0;
-                        bool DepartureBeforeScheduled = true;
-
-                        if (Schedule.Schedule.Handling == eHandling.StopPassengerTrain)
+                        if (Schedule.ExpectedDelay.HasValue)
                         {
-                            MinStoptime = Constants.PERS_TRAIN_STOPTIME;
-                            DepartureBeforeScheduled = false;
+                            Schedule.ExpectedDeparture = Schedule.Schedule.Departure.AddMinutes(Schedule.ExpectedDelay.Value);
                         }
-
-                        if (Schedule.Schedule.Handling == eHandling.StaffChange)
-                            MinStoptime = Constants.STAFF_CHANGE_STOPTIME;
-
-                        if (Schedule.Schedule.Handling == eHandling.StopFreightTrain || Schedule.Schedule.Handling == eHandling.Start)
-                            DepartureBeforeScheduled = false;
-
-                        int StopMinutes = Schedule.Schedule.Departure.TotalMinutes - Arrival.TotalMinutes;
-
-                        if (StopMinutes > MinStoptime)
-                            StopMinutes = MinStoptime;
-
-                        var Departure = Schedule.ExpectedArrival.AddMinutes(StopMinutes);
-
-                        if (Departure < Schedule.Schedule.Departure && !DepartureBeforeScheduled)
-                            Schedule.ExpectedDeparture = Schedule.Schedule.Departure;
                         else
-                            Schedule.ExpectedDeparture = Departure;
+                        {
+                            int MinStoptime = 0;
+                            bool DepartureBeforeScheduled = true;
 
-                        if (Schedule.ExpectedDeparture < Estw.Time && CalculateDelay)
-                            Schedule.ExpectedDeparture = Estw.Time;
+                            if (Schedule.Schedule.Handling == eHandling.StopPassengerTrain)
+                            {
+                                MinStoptime = Constants.PERS_TRAIN_STOPTIME;
+                                DepartureBeforeScheduled = false;
+                            }
+
+                            if (Schedule.Schedule.Handling == eHandling.StaffChange)
+                                MinStoptime = Constants.STAFF_CHANGE_STOPTIME;
+
+                            if (Schedule.Schedule.Handling == eHandling.StopFreightTrain || Schedule.Schedule.Handling == eHandling.Start)
+                                DepartureBeforeScheduled = false;
+
+                            int StopMinutes = Schedule.Schedule.Departure.TotalMinutes - Arrival.TotalMinutes;
+
+                            if (StopMinutes > MinStoptime)
+                                StopMinutes = MinStoptime;
+
+                            var Departure = Schedule.ExpectedArrival.AddMinutes(StopMinutes);
+
+                            if (Departure < Schedule.Schedule.Departure && !DepartureBeforeScheduled)
+                                Schedule.ExpectedDeparture = Schedule.Schedule.Departure;
+                            else
+                                Schedule.ExpectedDeparture = Departure;
+
+                            if (Schedule.ExpectedDeparture < Estw.Time && CalculateDelay)
+                                Schedule.ExpectedDeparture = Estw.Time;
+                        }
                     }
 
                     if (Schedule.ExpectedDeparture != null)
