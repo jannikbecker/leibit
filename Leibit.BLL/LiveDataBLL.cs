@@ -246,6 +246,60 @@ namespace Leibit.BLL
         }
         #endregion
 
+        #region [ChangeTrack]
+        public OperationResult<bool> ChangeTrack(LiveSchedule schedule, Track track)
+        {
+            try
+            {
+                // Validation
+                var validationMessages = new List<string>();
+
+                if (schedule.IsArrived)
+                    validationMessages.Add($"Der Zug {schedule.Train.Train.Number} hat die Betriebsstelle {schedule.Schedule.Station.ShortSymbol} bereits erreicht.");
+
+                if (schedule.Schedule.Track != null && !schedule.Schedule.Track.IsPlatform)
+                    validationMessages.Add($"Für die Betriebsstelle {schedule.Schedule.Station.ShortSymbol} kann kein Gleiswechsel vorgenommen werden.");
+
+                if (schedule.Schedule.Track != null && (schedule.Schedule.Track.Alternatives.Any() || schedule.Schedule.Track.Parent.Alternatives.Any()))
+                {
+                    if (!schedule.Schedule.Track.Name.Equals(track.Name, StringComparison.InvariantCultureIgnoreCase) // 1 -> 1
+                        && !schedule.Schedule.Track.Name.Equals(track.Parent.Name, StringComparison.InvariantCultureIgnoreCase) // 1 -> 1A
+                        && !schedule.Schedule.Track.Parent.Name.Equals(track.Name, StringComparison.InvariantCultureIgnoreCase) // 1A -> 1
+                        && !schedule.Schedule.Track.Parent.Name.Equals(track.Parent.Name, StringComparison.InvariantCultureIgnoreCase) // 1A -> 1B
+                        && !schedule.Schedule.Track.Alternatives.Any(a => a.Name.Equals(track.Name, StringComparison.InvariantCultureIgnoreCase)) // 1 -> 2
+                        && !schedule.Schedule.Track.Alternatives.Any(a => a.Name.Equals(track.Parent.Name, StringComparison.InvariantCultureIgnoreCase)) // 1 -> 2A
+                        && !schedule.Schedule.Track.Parent.Alternatives.Any(a => a.Name.Equals(track.Name, StringComparison.InvariantCultureIgnoreCase)) // 1A -> 2
+                        && !schedule.Schedule.Track.Parent.Alternatives.Any(a => a.Name.Equals(track.Parent.Name, StringComparison.InvariantCultureIgnoreCase))) // 1A -> 2A
+                    {
+                        validationMessages.Add($"Das Gleis {track.Name} liegt in einem anderen Bahnhofsteil als das planmäßige Gleis {schedule.Schedule.Track.Name}.");
+                    }
+                }
+
+                if (validationMessages.Any())
+                {
+                    validationMessages.Insert(0, "Gleiswechsel nicht möglich");
+                    var message = string.Join(Environment.NewLine, validationMessages);
+                    throw new InvalidOperationException(message);
+                }
+
+                // Let's go
+                if (schedule.Schedule.Track != null && schedule.Schedule.Track.Name.Equals(track.Name, StringComparison.InvariantCultureIgnoreCase))
+                    schedule.LiveTrack = null;
+                else
+                    schedule.LiveTrack = track;
+
+                var result = new OperationResult<bool>();
+                result.Result = true;
+                result.Succeeded = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult<bool> { Message = ex.Message };
+            }
+        }
+        #endregion
+
         #endregion
 
         #region - Private helpers -

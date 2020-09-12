@@ -2146,6 +2146,143 @@ namespace Leibit.Tests
         }
         #endregion
 
+        #region [LiveDataBLLTest_ChangeTrack_Ok]
+        [TestMethod]
+        public void LiveDataBLLTest_ChangeTrack_Ok()
+        {
+            var train = new Train(65432);
+            var liveTrain = new TrainInformation(train);
+
+            var estw = new ESTW("Test", "Test", string.Empty, null);
+            estw.Time = new LeibitTime(eDaysOfService.Monday, 20, 30);
+
+            var station = new Station("Testbahnhof", "JTST", 333, string.Empty, string.Empty, estw);
+            var track1 = new Track("1", true, true, station, null);
+            var track2 = new Track("2", true, true, station, null);
+
+            var schedule = new Schedule(train,
+                                        arrival: new LeibitTime(eDaysOfService.Monday, 20, 36),
+                                        departure: new LeibitTime(eDaysOfService.Monday, 20, 38),
+                                        track1,
+                                        days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                        direction: eScheduleDirection.LeftToRight,
+                                        handling: eHandling.StopPassengerTrain,
+                                        remark: string.Empty);
+
+            var liveSchedule = new LiveSchedule(liveTrain, schedule);
+            liveTrain.AddSchedule(liveSchedule);
+
+            var bll = new LiveDataBLL();
+            var result = bll.ChangeTrack(liveSchedule, track2);
+            DefaultChecks.IsOperationSucceeded(result);
+            Assert.IsTrue(result.Result);
+            Assert.AreEqual(track2, liveSchedule.LiveTrack);
+        }
+        #endregion
+
+        #region [LiveDataBLLTest_ChangeTrack_Reset]
+        [TestMethod]
+        public void LiveDataBLLTest_ChangeTrack_Reset()
+        {
+            var train = new Train(65432);
+            var liveTrain = new TrainInformation(train);
+
+            var estw = new ESTW("Test", "Test", string.Empty, null);
+            estw.Time = new LeibitTime(eDaysOfService.Monday, 20, 30);
+
+            var station = new Station("Testbahnhof", "JTST", 333, string.Empty, string.Empty, estw);
+            var track1 = new Track("1", true, true, station, null);
+            var track2 = new Track("2", true, true, station, null);
+
+            var schedule = new Schedule(train,
+                                        arrival: new LeibitTime(eDaysOfService.Monday, 20, 36),
+                                        departure: new LeibitTime(eDaysOfService.Monday, 20, 38),
+                                        track1,
+                                        days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                        direction: eScheduleDirection.LeftToRight,
+                                        handling: eHandling.StopPassengerTrain,
+                                        remark: string.Empty);
+
+            var liveSchedule = new LiveSchedule(liveTrain, schedule);
+            liveSchedule.LiveTrack = track2;
+            liveTrain.AddSchedule(liveSchedule);
+
+            var bll = new LiveDataBLL();
+            var result = bll.ChangeTrack(liveSchedule, track1);
+            DefaultChecks.IsOperationSucceeded(result);
+            Assert.IsTrue(result.Result);
+            Assert.IsNull(liveSchedule.LiveTrack);
+        }
+        #endregion
+
+        #region [LiveDataBLLTest_ChangeTrack_AlreadyArrived]
+        [TestMethod]
+        public void LiveDataBLLTest_ChangeTrack_AlreadyArrived()
+        {
+            var train = new Train(65432);
+            var liveTrain = new TrainInformation(train);
+
+            var estw = new ESTW("Test", "Test", string.Empty, null);
+            estw.Time = new LeibitTime(eDaysOfService.Monday, 20, 30);
+
+            var station = new Station("Testbahnhof", "JTST", 333, string.Empty, string.Empty, estw);
+            var track1 = new Track("1", true, true, station, null);
+            var track2 = new Track("2", true, true, station, null);
+
+            var schedule = new Schedule(train,
+                                        arrival: new LeibitTime(eDaysOfService.Monday, 20, 36),
+                                        departure: new LeibitTime(eDaysOfService.Monday, 20, 38),
+                                        track1,
+                                        days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                        direction: eScheduleDirection.LeftToRight,
+                                        handling: eHandling.StopPassengerTrain,
+                                        remark: string.Empty);
+
+            var liveSchedule = new LiveSchedule(liveTrain, schedule);
+            liveSchedule.IsArrived = true;
+            liveSchedule.LiveArrival = new LeibitTime(eDaysOfService.Monday, 20, 35);
+            liveTrain.AddSchedule(liveSchedule);
+
+            var bll = new LiveDataBLL();
+            var result = bll.ChangeTrack(liveSchedule, track2);
+            DefaultChecks.IsOperationNotSucceeded(result);
+            Assert.IsTrue(result.Message.Contains("Der Zug 65432 hat die Betriebsstelle JTST bereits erreicht."));
+        }
+        #endregion
+
+        #region [LiveDataBLLTest_ChangeTrack_NoPlatform]
+        [TestMethod]
+        public void LiveDataBLLTest_ChangeTrack_NoPlatform()
+        {
+            var train = new Train(65432);
+            var liveTrain = new TrainInformation(train);
+
+            var estw = new ESTW("Test", "Test", string.Empty, null);
+            estw.Time = new LeibitTime(eDaysOfService.Monday, 20, 30);
+
+            var station = new Station("Testbahnhof", "JTST", 333, string.Empty, string.Empty, estw);
+            var track1 = new Track("1", false, true, station, null);
+            var track2 = new Track("2", false, true, station, null);
+
+            var schedule = new Schedule(train,
+                                        arrival: null,
+                                        departure: new LeibitTime(eDaysOfService.Monday, 20, 38),
+                                        track1,
+                                        days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                        direction: eScheduleDirection.LeftToRight,
+                                        handling: eHandling.Transit,
+                                        remark: string.Empty);
+
+            var liveSchedule = new LiveSchedule(liveTrain, schedule);
+            liveTrain.AddSchedule(liveSchedule);
+
+            var bll = new LiveDataBLL();
+            var result = bll.ChangeTrack(liveSchedule, track2);
+            DefaultChecks.IsOperationNotSucceeded(result);
+            Assert.IsTrue(result.Message.Contains("Für die Betriebsstelle JTST kann kein Gleiswechsel vorgenommen werden."));
+        }
+        #endregion
+
         #region [LiveDataBLLTest_TestRefreshLiveSchedules]
         [TestMethod]
         public void LiveDataBLLTest_TestRefreshLiveSchedules()
