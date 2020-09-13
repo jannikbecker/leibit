@@ -22,7 +22,7 @@
     </track>
   </station>
 
-  <station name="Landrücken Süd" short="FLRS" refNr="10">
+  <station name="Sinntal Landrücken Süd" short="FLRS" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B655" direction="left"/>
       <block name="10B656" direction="left"/>
@@ -31,7 +31,7 @@
     </track>
   </station>
 
-  <station name="Landrücken Nord" short="FLRN" refNr="10">
+  <station name="Kalbach Landrücken Nord" short="FLRN" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B611" direction="left"/>
       <block name="10B612" direction="left"/>
@@ -40,7 +40,7 @@
     </track>
   </station>
 
-  <station name="Hartberg" short="FHAG" refNr="10">
+  <station name="Neuhof Hartberg" short="FHAG" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B565" direction="left"/>
       <block name="10B566" direction="left"/>
@@ -49,7 +49,7 @@
     </track>
   </station>
 
-  <station name="Neuhof-Nord" short="FNF N" refNr="17">
+  <station name="Neuhof Nord" short="FNF N" refNr="17">
     <track isPlatform="false" calculateDelay="false">
       <block name="17S680" direction="right"/>
       <block name="17S687" direction="right"/>
@@ -67,13 +67,13 @@
     </track>
   </station>
 
-  <station name="Gersfeld" short="FGFD" refNr="10">
+  <station name="Gersfeld (Rhön)" short="FGFD" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B455" direction="right"/>
     </track>
   </station>
 
-  <station name="Fulda-Bronzell" short="FFU B" refNr="10">
+  <station name="Fulda Bronzell" short="FFU B" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10G403"/>
       <block name="10G437"/>
@@ -497,7 +497,7 @@
     </track>
   </station>
 
-  <station name="Marbach" short="FMR" refNr="12">
+  <station name="Marbach (Kr Fulda)" short="FMR" refNr="12">
     <track isPlatform="false" calculateDelay="false">
       <block name="11B713" direction="left"/>
       <block name="12B823" direction="left"/>

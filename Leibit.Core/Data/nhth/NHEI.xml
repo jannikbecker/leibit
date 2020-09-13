@@ -41,7 +41,7 @@
     </track>
   </station>
 
-  <station name="Heigenbrücken-West" short="NHEIW" refNr="74" scheduleFile="b74_____.abf" localOrderFile="b74_____.abf">
+  <station name="Heigenbrücken West" short="NHEIW" refNr="74" scheduleFile="b74_____.abf" localOrderFile="b74_____.abf">
     <track name="403">
       <block name="74G403"/>
     </track>

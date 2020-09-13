@@ -54,7 +54,7 @@
     </track>
   </station>
 
-  <station name="Bebra Pbf" short="FB" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.ABF">
+  <station name="Bebra" short="FB" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.ABF">
     <track name="1">
       <block name="23G1" />
       <alternative track="2" />

@@ -376,7 +376,7 @@
     </track>
   </station>
 
-  <station name="Klingenberg" short="NKM" refNr="56">
+  <station name="Klingenberg (Main)" short="NKM" refNr="56">
     <track calculateDelay="false" isPlatform="false">
       <block name="55B61" direction="left"/>
     </track>

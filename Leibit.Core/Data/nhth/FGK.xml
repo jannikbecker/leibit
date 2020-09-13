@@ -14,7 +14,7 @@
     </track>
   </station>
 
-  <station name="Hanau-Großauheim" short="FGAU" refNr="65" scheduleFile="G65_____.abf" localOrderFile="bf65____.abf">
+  <station name="Großauheim (Kr Hanau)" short="FGAU" refNr="65" scheduleFile="G65_____.abf" localOrderFile="bf65____.abf">
     <track name="001">
       <block name="65G001"/>
     </track>
@@ -83,7 +83,7 @@
     </track>
   </station>
 
-  <station name="Alzenau" short="FAZU" refNr="67">
+  <station name="Alzenau (Unterfr)" short="FAZU" refNr="67">
     <track calculateDelay="false" isPlatform="false">
       <block name="67B01"/>
     </track>
@@ -126,7 +126,7 @@
     </track>
   </station>
 
-  <station name="Dettingen" short="FDET" refNr="68" scheduleFile="G68_____.abf" localOrderFile="bf68____.abf">
+  <station name="Dettingen (Main)" short="FDET" refNr="68" scheduleFile="G68_____.abf" localOrderFile="bf68____.abf">
     <track name="001">
       <block name="68G001"/>
       <alternative track="002"/>
@@ -233,7 +233,7 @@
     <track name="104" isPlatform="false"/>
   </station>
 
-  <station name="Stockstadt" short="FSTK" refNr="51" scheduleFile="g51_____.abf" localOrderFile="bf51____.abf">
+  <station name="Stockstadt (Main)" short="FSTK" refNr="51" scheduleFile="g51_____.abf" localOrderFile="bf51____.abf">
     <track name="001">
       <block name="51G001"/>
       <alternative track="002"/>
@@ -264,7 +264,7 @@
     </track>
   </station>
 
-  <station name="Babenhausen" short="FBA" refNr="50">
+  <station name="Babenhausen (Hessen)" short="FBA" refNr="50">
     <track calculateDelay="false" isPlatform="false">
       <block name="51B01" direction="right"/>
       <block name="51B02" direction="right"/>

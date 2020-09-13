@@ -129,7 +129,7 @@
     </track>
   </station>
 
-  <station name="Schlüchtern-Ziegenberg" short="FSUEZ" refNr="66" scheduleFile="B66_____.ABF">
+  <station name="Ziegenberg (Schlüchtern)" short="FSUEZ" refNr="66" scheduleFile="B66_____.ABF">
     <track name="301" isPlatform="false">
       <block name="15B01" direction="right"/>
     </track>

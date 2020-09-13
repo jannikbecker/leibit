@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <estw>
-  <station name="Heringen" short="FHRG" refNr="98">
+  <station name="Heringen (Werra)" short="FHRG" refNr="98">
     <track isPlatform="false" calculateDelay="false">
       <block name="97B99" direction="right" />
     </track>
   </station>
 
-  <station name="Förtha" short="UF" refNr="39">
+  <station name="Förtha (Kr Eisenach)" short="UF" refNr="39">
     <track isPlatform="false" calculateDelay="false">
       <block name="94B42" direction="right" />
     </track>
@@ -121,7 +121,7 @@
     </track>
   </station>
 
-  <station name="Eisenach Pbf/Gbf" short="UEI" refNr="94" scheduleFile="G94_____.ABF" localOrderFile="bf94____.abf">
+  <station name="Eisenach" short="UEI" refNr="94" scheduleFile="G94_____.ABF" localOrderFile="bf94____.abf">
     <track name="401">
       <block name="94G401" />
       <alternative track="402" />

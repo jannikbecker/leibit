@@ -45,7 +45,7 @@
     </track>
   </station>
 
-  <station name="Hanau-Wolfgang" short="FWFG" refNr="58" scheduleFile="G58_____.ABF" localOrderFile="bf58____.abf">
+  <station name="Wolfgang (Kr Hanau)" short="FWFG" refNr="58" scheduleFile="G58_____.ABF" localOrderFile="bf58____.abf">
     <track name="001">
       <block name="58G001"/>
     </track>

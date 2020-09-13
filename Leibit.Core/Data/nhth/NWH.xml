@@ -7,7 +7,7 @@
     </track>
   </station>
 
-  <station name="Neuberg" short="NNB" refNr="1" scheduleFile="g1______.abf">
+  <station name="Margetshöchheim Neuberg" short="NNB" refNr="1" scheduleFile="g1______.abf">
     <track name="146" isPlatform="false">
       <block name="01S252" direction="right"/>
       <block name="01S346" direction="left"/>
