@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Kreuzlingen" short="XSKR" refNr="59">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="59B161" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Kreuzlingen Hafen" short="XSKL" refNr="59">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="59BKHKO" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Brandbühl" short="RBRB" refNr="66">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="56BN2" direction="right"/>
+      <block name="66BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Ramsen" short="RRN" refNr="55">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="55BN2" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Welschingen-Neuhausen" short="RWEL" refNr="51">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="51SN" direction="left"/>
+      <block name="51S78" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Schaffhausen (SBB)" short="XSS" refNr="52">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="52B1" direction="left"/>
+      <block name="52B2" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Schaffhausen GB" short="RSCFR" refNr="52">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="52BSGBSF" direction="left"/>
+    </track>
+  </station>
+  
+  <station name="Konstanz" short="RKO" refNr="59" scheduleFile="g59_____.abf" localOrderFile="bf59____.abf">
+    <track name="1">
+      <block name="59G1"/>
+    </track>
+    <track name="41">
+      <block name="59G41"/>
+    </track>
+    <track name="2">
+      <block name="59G2"/>
+      <block name="59G52"/>
+    </track>
+    <track name="42">
+      <block name="59G42"/>
+    </track>
+    <track name="3">
+      <block name="59G3"/>
+      <block name="59G53"/>
+    </track>
+    <track name="43">
+      <block name="59G43"/>
+    </track>
+    <track name="4">
+      <block name="59G4"/>
+    </track>
+    <track name="5">
+      <block name="59G5"/>
+    </track>
+    <track name="6">
+      <block name="59G6"/>
+    </track>
+  </station>
+
+  <station name="Konstanz-Petershausen" short="RKOP" refNr="58" scheduleFile="g58_____.abf" localOrderFile="bf58____.abf">
+    <track name="1">
+      <block name="58G1"/>
+    </track>
+    <track name="2">
+      <block name="58G"/>
+    </track>
+    <track name="3">
+      <block name="58G"/>
+    </track>
+  </station>
+
+  <station name="Marklfingen" short="RMAR" refNr="57" scheduleFile="markl___.abf">
+    <track name="2" calculateDelay="false">
+      <block name="57BN1"/>
+    </track>
+    <track name="1" calculateDelay="false">
+      <block name="57B4"/>
+    </track>
+  </station>
+
+  <station name="Radolfzell-Haselbrunn" short="RRZB" refNr="56" scheduleFile="haselb__.abf">
+    <track name="2" calculateDelay="false">
+      <block name="56G94"/>
+    </track>
+    <track name="1" calculateDelay="false">
+      <block name="56G83"/>
+    </track>
+  </station>
+  
+  <station name="Radolfzell" short="RRZ" refNr="56" scheduleFile="g56_____.abf" localOrderFile="bf56____.abf">
+    <track name="1">
+      <block name="56G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    <track name="2">
+      <block name="56G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    <track name="3">
+      <block name="56G3"/>
+      <alternative track="2"/>
+      <alternative track="1"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    <track name="4">
+      <block name="56G4"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="1"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    <track name="5">
+      <block name="56G5"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="1"/>
+      <alternative track="6"/>
+    </track>
+    <track name="6">
+      <block name="56G6"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="1"/>
+    </track>
+    <track name="41">
+      <block name="56G41"/>
+      <alternative track="42"/>
+      <alternative track="43"/>
+      <alternative track="44"/>
+      <alternative track="45"/>
+      <alternative track="46"/>
+    </track>
+    <track name="42">
+      <block name="56G42"/>
+      <alternative track="41"/>
+      <alternative track="43"/>
+      <alternative track="44"/>
+      <alternative track="45"/>
+      <alternative track="46"/>
+    </track>
+    <track name="43">
+      <block name="56G43"/>
+      <alternative track="42"/>
+      <alternative track="41"/>
+      <alternative track="44"/>
+      <alternative track="45"/>
+      <alternative track="46"/>
+    </track>
+    <track name="44">
+      <block name="56G44"/>
+      <alternative track="42"/>
+      <alternative track="43"/>
+      <alternative track="41"/>
+      <alternative track="45"/>
+      <alternative track="46"/>
+    </track>
+    <track name="45">
+      <block name="56G45"/>
+      <alternative track="42"/>
+      <alternative track="43"/>
+      <alternative track="44"/>
+      <alternative track="41"/>
+      <alternative track="46"/>
+    </track>
+    <track name="46">
+      <block name="56G46"/>
+      <alternative track="42"/>
+      <alternative track="43"/>
+      <alternative track="44"/>
+      <alternative track="45"/>
+      <alternative track="41"/>
+    </track>
+  </station>
+
+  <station name="Böhringen-Rickelshausen" short="RBER" refNr="56" scheduleFile="böhri___.abf">
+    <track name="2" calculateDelay="false">
+      <block name="56B1"/>
+    </track>
+    <track name="1" calculateDelay="false">
+      <block name="56BP"/>
+    </track>
+  </station>
+
+  <station name="Singen (Hohentwiel) Industriegebiet" short="RSII" refNr="55" scheduleFile="b55_____.abf">
+    <track name="2" calculateDelay="false">
+      <block name="55BN1"/>
+    </track>
+    <track name="1" calculateDelay="false">
+      <block name="55B2"/>
+    </track>
+  </station>
+  
+  <station name="Singen (Hohentwiel)" short="RSI" refNr="55" scheduleFile="g55_____.abf" localOrderFile="bf55____.abf">
+    <track name="1">
+      <block name="55G1"/>
+    </track>
+    <track name="51">
+      <block name="55G1"/>
+    </track>
+    <track name="2">
+      <block name="55G2"/>
+    </track>
+    <track name="3">
+      <block name="55G3"/>
+    </track>
+    <track name="4">
+      <block name="55G4"/>
+    </track>
+    <track name="5">
+      <block name="55G5"/>
+    </track>
+    <track name="6">
+      <block name="55G6"/>
+    </track>
+    <track name="8">
+      <block name="55G8"/>
+    </track>
+    <track name="9">
+      <block name="55G9"/>
+    </track>
+    <track name="10">
+      <block name="55G10"/>
+    </track>
+    <track name="11">
+      <block name="55G11"/>
+    </track>
+    <track name="12">
+      <block name="55G12"/>
+    </track>
+    <track name="13">
+      <block name="55G13"/>
+    </track>
+    <track name="14">
+      <block name="55G14"/>
+    </track>
+    <track name="15">
+      <block name="55G15"/>
+    </track>
+    <track name="116">
+      <block name="55G116"/>
+    </track>
+  </station>
+
+  <station name="Gottmadingen" short="RG" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf">
+    <track name="1">
+      <block name="54G1"/>
+    </track>
+    <track name="2">
+      <block name="54G2"/>
+    </track>
+  </station>
+
+  <station name="Bietingen" short="RBGN" refNr="54" scheduleFile="b54_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="53BN"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="54BP"/>
+    </track>
+  </station>
+
+  <station name="Thayngen" short="RTG" refNr="53" scheduleFile="g53_____.abf" localOrderFile="bf53____.abf">
+    <track name="1">
+      <block name="53G1"/>
+    </track>
+    <track name="2">
+      <block name="53G2"/>
+    </track>
+    <track name="3">
+      <block name="53G3"/>
+    </track>
+  </station>
+
+  <station name="Herblingen" short="RHRB" refNr="53" scheduleFile="herbli__.abf">
+    <track name="2" calculateDelay="false">
+      <block name="53BP"/>
+    </track>
+    <track name="1" calculateDelay="false">
+      <block name="52BN"/>
+    </track>
+  </station>
+
+  <station name="Schaffhausen-Fulachkanal" short="RSCFO" refNr="52" scheduleFile="g52_____.abf" localOrderFile="bf52____.abf">
+    <track name="1" isPlatform="false">
+      <block name="52B1" direction="right"/>
+      <block name="52BN" direction="left"/>
+    </track>
+    <track name="2" isPlatform="false">
+      <block name="52B2" direction="right"/>
+      <block name="53BP" direction="left"/>
+    </track>
+    <track name="63" isPlatform="false">
+      <block name="52BSGBSF" direction="right"/>
+    </track>
+  </station>
+</estw>
