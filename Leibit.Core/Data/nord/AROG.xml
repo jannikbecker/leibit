@@ -112,7 +112,7 @@
     </track>
   </station>
 
-  <station name="Rotenburg (W)" short="AROG" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf">
+  <station name="Rotenburg (Wümme)" short="AROG" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf">
     <track name="21">
       <block name="54G21"/>
       <alternative track="22"/>

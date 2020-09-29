@@ -58,7 +58,7 @@
     </track>
   </station>
 
-  <station name="Buchholz (Nh)" short="ABLZ" refNr="58" scheduleFile="g58_____.abf" localOrderFile="bf58____.abf">
+  <station name="Buchholz (Nordheide)" short="ABLZ" refNr="58" scheduleFile="g58_____.abf" localOrderFile="bf58____.abf">
     <track name="63">
       <block name="58G63"/>
       <alternative track="64"/>

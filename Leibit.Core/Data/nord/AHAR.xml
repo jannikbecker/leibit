@@ -22,7 +22,7 @@
     </track>
   </station>
 
-  <station name="Hamburg-Süd" short="AHBS" refNr="63">
+  <station name="Hamburg Süd" short="AHBS" refNr="63">
     <track isPlatform="false" calculateDelay="false">
       <block name="64BP50" direction="left"/>
       <block name="63B297" direction="right"/>
@@ -75,7 +75,7 @@
     </track>
   </station>
 
-  <station name="Abzw Hamburg-Wilhelmsburg" short="AWLBA" refNr="63" scheduleFile="B63_____.ABF">
+  <station name="Hamburg-Wilhelmsburg Abzw" short="AWLBA" refNr="63" scheduleFile="B63_____.ABF">
     <track name="61" isPlatform="false"/>
 
     <track name="407" isPlatform="false">
@@ -402,7 +402,7 @@
     </track>
   </station>
 
-  <station name="Abzw Meckelfeld" short="AMDA" refNr="45">
+  <station name="Meckelfeld Abzw" short="AMDA" refNr="45">
     <track isPlatform="false" calculateDelay="false">
       <block name="45B189" direction="left"/>
       <block name="62B192" direction="left"/>

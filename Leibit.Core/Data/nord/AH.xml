@@ -195,7 +195,7 @@
     </track>
   </station>
 
-  <station name="Abzw Hamburg-Wilhelmsburg" short="AWLBA" refNr="63">
+  <station name="Hamburg-Wilhelmsburg Abzw" short="AWLBA" refNr="63">
     <track isPlatform="false" calculateDelay="false">
       <block name="63S409" direction="left"/>
       <block name="63S509" direction="left"/>
