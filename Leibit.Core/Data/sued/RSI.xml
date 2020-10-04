@@ -44,36 +44,70 @@
       <block name="52BSGBSF" direction="left"/>
     </track>
   </station>
-  
+
   <station name="Konstanz" short="RKO" refNr="59" scheduleFile="g59_____.abf" localOrderFile="bf59____.abf">
     <track name="1">
       <block name="59G1"/>
-    </track>
-    <track name="41">
-      <block name="59G41"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <track name="41">
+        <block name="59G41"/>
+      </track>
     </track>
     <track name="2">
       <block name="59G2"/>
-      <block name="59G52"/>
-    </track>
-    <track name="42">
-      <block name="59G42"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <track name="52">
+        <block name="59G52"/>
+      </track>
+      <track name="42">
+        <block name="59G42"/>
+      </track>
     </track>
     <track name="3">
       <block name="59G3"/>
-      <block name="59G53"/>
-    </track>
-    <track name="43">
-      <block name="59G43"/>
+      <alternative track="2"/>
+      <alternative track="1"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <track name="53">
+        <block name="59G53"/>
+      </track>
+      <track name="43">
+        <block name="59G43"/>
+      </track>
     </track>
     <track name="4">
       <block name="59G4"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="1"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
     </track>
     <track name="5">
       <block name="59G5"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="1"/>
+      <alternative track="6"/>
     </track>
     <track name="6">
       <block name="59G6"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="1"/>
     </track>
   </station>
 
@@ -106,7 +140,7 @@
       <block name="56G83"/>
     </track>
   </station>
-  
+
   <station name="Radolfzell" short="RRZ" refNr="56" scheduleFile="g56_____.abf" localOrderFile="bf56____.abf">
     <track name="1">
       <block name="56G1"/>
@@ -223,55 +257,271 @@
       <block name="55B2"/>
     </track>
   </station>
-  
+
   <station name="Singen (Hohentwiel)" short="RSI" refNr="55" scheduleFile="g55_____.abf" localOrderFile="bf55____.abf">
     <track name="1">
       <block name="55G1"/>
-    </track>
-    <track name="51">
-      <block name="55G51"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
+      <track name="51">
+        <block name="55G51"/>
+      </track>
     </track>
     <track name="2">
       <block name="55G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="3">
       <block name="55G3"/>
+      <alternative track="2"/>
+      <alternative track="1"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="4">
       <block name="55G4"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="1"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="5">
       <block name="55G5"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="1"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
+      <track name="50">
+        <block name="55G50"/>
+      </track>
+      <track name="55">
+        <block name="55G55"/>
+      </track>
     </track>
     <track name="6">
       <block name="55G6"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="1"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="8">
       <block name="55G8"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="1"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="9">
       <block name="55G9"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="1"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="10">
       <block name="55G10"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="1"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="11">
       <block name="55G11"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="1"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="12">
       <block name="55G12"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="1"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="13">
       <block name="55G13"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="1"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="14">
       <block name="55G14"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="1"/>
+      <alternative track="15"/>
+      <alternative track="116"/>
     </track>
     <track name="15">
       <block name="55G15"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="1"/>
+      <alternative track="116"/>
     </track>
     <track name="116">
       <block name="55G116"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="1"/>
     </track>
   </station>
 
