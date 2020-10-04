@@ -34,8 +34,8 @@
 
   <station name="Schaffhausen (SBB)" short="XSS" refNr="52">
     <track calculateDelay="false" isPlatform="false">
-      <block name="52B1" direction="left"/>
-      <block name="52B2" direction="left"/>
+      <block name="52BSHSF" direction="left"/>
+      <block name="52BSHSFG" direction="left"/>
     </track>
   </station>
 
@@ -229,7 +229,7 @@
       <block name="55G1"/>
     </track>
     <track name="51">
-      <block name="55G1"/>
+      <block name="55G51"/>
     </track>
     <track name="2">
       <block name="55G2"/>
@@ -307,10 +307,8 @@
 
   <station name="Herblingen" short="RHRB" refNr="53" scheduleFile="herbli__.abf">
     <track name="2" calculateDelay="false">
-      <block name="53BP"/>
     </track>
     <track name="1" calculateDelay="false">
-      <block name="52BN"/>
     </track>
   </station>
 
