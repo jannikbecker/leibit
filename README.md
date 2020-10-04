@@ -23,9 +23,12 @@ Folgende Simulationen werden aktuell unterstützt:
     - Hamburg-Harburg
     - Hamburg Hbf
 - Bereich Mitteldeutschland
-    - Heigenbrücken (NEU)
-    - Aschaffenburg (NEU)
-    - Großkrotzenburg (NEU)
+    - Würzburg Hbf (NEU)
+    - Gemünden (NEU)
+    - Lohr (NEU)
+    - Heigenbrücken
+    - Aschaffenburg
+    - Großkrotzenburg
     - Gelnhausen
     - Schlüchtern
     - Elm
@@ -34,6 +37,10 @@ Folgende Simulationen werden aktuell unterstützt:
     - Bebra
     - Eisenach
     - Gotha
+- Bereich Süddeutschland (NEU)
+    - Singen (NEU)
+    - Friedrichshafen (NEU)
+    - Lindau (NEU)
 
 Karten der Stellbereiche können [hier](maps) eingesehen werden. Eine vollständige Bedienungsanleitung ist [hier](https://github.com/jannikbecker/leibit/wiki) zu finden. Für den ersten Start bietet die [Schnellstartanleitung](https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung) einen guten Einstiegspunkt.
 

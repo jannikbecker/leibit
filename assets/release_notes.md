@@ -1,3 +1,7 @@
-- Die Simulationen Großkrotzenburg (#12), Aschaffenburg (#13) und Heigenbrücken (#14) stehen nun zur Verfügung.
-- Das Verhalten des LeiBIT bei Umleitern wurde korrigiert (#59). Im Zuglauf werden ausgelassene Betriebsstellen nun ausgegraut dargestellt.
-- Unter manchen Windows Versionen konnte es vorkommen, dass das LeiBIT nicht startete (#61). Dieser Fehler wurde nun korrigiert.
+- Die Simulationen Lohr (#15), Gemünden (#16) und Würzburg Hbf (#17) stehen nun zur Verfügung. Der Bereich Mitteldeutschland ist damit nun komplett.
+- Neuer Bereich Süddeutschland mit den Simulationen Singen (#32), Friedrichshafen (#33) und Lindau (#35)
+- Neue Dialoge zur Eingabe der voraussichtlichen Verspätung (#63) und eines Gleiswechsels (#64)
+- Die Auswertung der Fahrtrichtung an Abzweig- und Überleitstellen sowie an den Grenzen eines Stellbereichs wurde korrigiert. (#76)
+- Die Namen der Betriebsstellen wurden an die offiziellen Namen angepasst. Die Zusätze "Abzw", "Üst" und "Hp" werden nun nur noch angezeigt, wenn dies zur Unterscheidung der Betriebsstellen notwendig ist. (#75)
+- Verspätungsbegründungen können nicht mehr an verbundene Stellwerke übertragen werden. Eine Kommunikation zwischen mehreren Leibit-Programmen ist seitens ESTWsim nicht erwünscht. (#74)
+- Die Breite der Fenster ZFI und BFO kann nun angepasst werden. (#79)
