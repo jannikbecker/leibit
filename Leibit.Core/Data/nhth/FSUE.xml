@@ -7,7 +7,7 @@
     </track>
   </station>
 
-  <station name="Haitz-Höchst Hp" short="FHAI" refNr="62" scheduleFile="B62_____.ABF">
+  <station name="Haitz-Höchst" short="FHAI" refNr="62" scheduleFile="B62_____.ABF">
     <track name="93" calculateDelay="false">
       <block name="62B93"/>
     </track>
@@ -129,7 +129,7 @@
     </track>
   </station>
 
-  <station name="Schlüchtern-Ziegenberg" short="FSUEZ" refNr="66" scheduleFile="B66_____.ABF">
+  <station name="Ziegenberg (Schlüchtern)" short="FSUEZ" refNr="66" scheduleFile="B66_____.ABF">
     <track name="301" isPlatform="false">
       <block name="15B01" direction="right"/>
     </track>
@@ -151,7 +151,7 @@
     </track>
   </station>
 
-  <station name="Üst Katzenberg" short="FKA" refNr="16">
+  <station name="Katzenberg" short="FKA" refNr="16">
     <track calculateDelay="false" isPlatform="false">
       <block name="16S2173" direction="left"/>
       <block name="16S3174" direction="left"/>

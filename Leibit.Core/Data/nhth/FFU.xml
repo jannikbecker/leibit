@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <estw>
-  <station name="Üst Altengronau" short="NAG" refNr="08">
+  <station name="Altengronau" short="NAG" refNr="08">
     <track isPlatform="false" calculateDelay="false">
       <block name="08S374" direction="right"/>
       <block name="09S273" direction="right"/>
@@ -22,7 +22,7 @@
     </track>
   </station>
 
-  <station name="Üst Landrücken Süd" short="FLRS" refNr="10">
+  <station name="Sinntal Landrücken Süd" short="FLRS" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B655" direction="left"/>
       <block name="10B656" direction="left"/>
@@ -31,7 +31,7 @@
     </track>
   </station>
 
-  <station name="Üst Landrücken Nord" short="FLRN" refNr="10">
+  <station name="Kalbach Landrücken Nord" short="FLRN" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B611" direction="left"/>
       <block name="10B612" direction="left"/>
@@ -40,7 +40,7 @@
     </track>
   </station>
 
-  <station name="Üst Hartberg" short="FHAG" refNr="10">
+  <station name="Neuhof Hartberg" short="FHAG" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B565" direction="left"/>
       <block name="10B566" direction="left"/>
@@ -49,14 +49,14 @@
     </track>
   </station>
 
-  <station name="Neuhof-Nord" short="FNF N" refNr="17">
+  <station name="Neuhof Nord" short="FNF N" refNr="17">
     <track isPlatform="false" calculateDelay="false">
       <block name="17S680" direction="right"/>
       <block name="17S687" direction="right"/>
     </track>
   </station>
 
-  <station name="Üst Kerzell" short="FKZ" refNr="10" scheduleFile="B09_____.ABF">
+  <station name="Kerzell" short="FKZ" refNr="10" scheduleFile="B09_____.ABF">
     <track name="428" isPlatform="false" calculateDelay="false">
       <block name="10B682" direction="left"/>
       <block name="10B428" direction="right"/>
@@ -67,13 +67,13 @@
     </track>
   </station>
 
-  <station name="Gersfeld" short="FGFD" refNr="10">
+  <station name="Gersfeld (Rhön)" short="FGFD" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B455" direction="right"/>
     </track>
   </station>
 
-  <station name="Fulda-Bronzell" short="FFU B" refNr="10">
+  <station name="Fulda Bronzell" short="FFU B" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10G403"/>
       <block name="10G437"/>
@@ -497,14 +497,14 @@
     </track>
   </station>
 
-  <station name="Marbach" short="FMR" refNr="12">
+  <station name="Marbach (Kr Fulda)" short="FMR" refNr="12">
     <track isPlatform="false" calculateDelay="false">
       <block name="11B713" direction="left"/>
       <block name="12B823" direction="left"/>
     </track>
   </station>
 
-  <station name="Üst Dietershan" short="FDIE" refNr="10">
+  <station name="Dietershan" short="FDIE" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B17" direction="left"/>
       <block name="10B18" direction="left"/>
@@ -513,7 +513,7 @@
     </track>
   </station>
 
-  <station name="Üst Michelsrombach" short="FMIR" refNr="10">
+  <station name="Michelsrombach" short="FMIR" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B505" direction="left"/>
       <block name="10B506" direction="left"/>
@@ -540,7 +540,7 @@
     </track>
   </station>
 
-  <station name="Üst Richthof" short="FRIH" refNr="20">
+  <station name="Richthof" short="FRIH" refNr="20">
     <track isPlatform="false" calculateDelay="false">
       <block name="10S590" direction="left"/>
       <block name="10S674" direction="left"/>

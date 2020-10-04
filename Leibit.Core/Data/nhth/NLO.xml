@@ -25,7 +25,7 @@
     </track>
   </station>
 
-  <station name="Lohr" short="NLO" refNr="77" scheduleFile="g77_____.abf" localOrderFile="bf77____.abf">
+  <station name="Lohr Bahnhof" short="NLO" refNr="77" scheduleFile="g77_____.abf" localOrderFile="bf77____.abf">
     <track name="001">
       <block name="77G001"/>
     </track>
@@ -65,7 +65,7 @@
     </track>
   </station>
 
-  <station name="Üst Dittenbrunn" short="NDI" refNr="7">
+  <station name="Dittenbrunn" short="NDI" refNr="7">
     <track calculateDelay="false" isPlatform="false">
       <block name="06S91" direction="right"/>
       <block name="06S92" direction="right"/>
@@ -132,7 +132,7 @@
     </track>
   </station>
 
-  <station name="Neuberg" short="NNB" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
+  <station name="Margetshöchheim Neuberg" short="NNB" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
     <track name="146" isPlatform="false">
       <block name="01B252" direction="right"/>
       <block name="01B346" direction="left"/>

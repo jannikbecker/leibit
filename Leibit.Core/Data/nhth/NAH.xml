@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <estw>
-  <station name="Abzw Mainaschaff Hp" short="FMAS" refNr="52" scheduleFile="b52_____.abf">
+  <station name="Mainaschaff" short="FMAS" refNr="52" scheduleFile="b52_____.abf">
     <track name="001">
       <block name="52S001"/>
     </track>
@@ -9,7 +9,7 @@
     </track>
   </station>
   
-  <station name="Abzw Steinerts" short="FSTE" refNr="70">
+  <station name="Steinerts" short="FSTE" refNr="70">
     <track calculateDelay="false" isPlatform="false">
       <block name="70B01" direction="right"/>
       <block name="71B02" direction="right"/>
@@ -288,7 +288,7 @@
     </track>
   </station>
   
-  <station name="Abzw Aschaffenburg-Goldbach" short="NAH G" refNr="71" scheduleFile="b71_____.abf">
+  <station name="Aschaffenburg-Goldbach" short="NAH G" refNr="71" scheduleFile="b71_____.abf">
     <track name="112" isPlatform="false">
       <block name="71G0212" direction="left"/>
     </track>
@@ -376,7 +376,7 @@
     </track>
   </station>
 
-  <station name="Klingenberg" short="NKM" refNr="56">
+  <station name="Klingenberg (Main)" short="NKM" refNr="56">
     <track calculateDelay="false" isPlatform="false">
       <block name="55B61" direction="left"/>
     </track>

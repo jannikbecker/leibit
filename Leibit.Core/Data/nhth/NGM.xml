@@ -16,7 +16,7 @@
     </track>
   </station>
 
-  <station name="Sinnberg" short="NSB" refNr="11">
+  <station name="Rieneck Sinnberg" short="NSB" refNr="11">
     <track calculateDelay="false" isPlatform="false">
       <block name="11S52" direction="right"/>
       <block name="11B351" direction="right"/>

@@ -72,7 +72,7 @@
     </track>
   </station>
 
-  <station name="Abzw Bremen-Vahr" short="HVAH" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
+  <station name="Bremen-Vahr" short="HVAH" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
     <track name="170" isPlatform="false">
       <block name="10B173" direction="right"/>
       <block name="10B161" direction="left"/>
@@ -335,7 +335,7 @@
     </track>
   </station>
 
-  <station name="Bremen-Walle Hp" short="HBWA" refNr="11" scheduleFile="b11_____.abf">
+  <station name="Bremen-Walle" short="HBWA" refNr="11" scheduleFile="b11_____.abf">
     <track name="5" calculateDelay="false">
       <block name="11B204"/>
     </track>
@@ -345,7 +345,7 @@
     </track>
   </station>
 
-  <station name="Abzw Utbremen" short="HUTB" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf">
+  <station name="Bremen Utbremen" short="HUTB" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf">
     <track name="970" isPlatform="false">
       <block name="13B972" direction="left"/>
       <block name="13B964" direction="right"/>

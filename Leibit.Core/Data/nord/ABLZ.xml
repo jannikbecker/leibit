@@ -46,7 +46,7 @@
     </track>
   </station>
 
-  <station name="Sprötze Hp" short="ASP" refNr="57" scheduleFile="b57_____.abf">
+  <station name="Sprötze" short="ASP" refNr="57" scheduleFile="b57_____.abf">
     <track name="500" calculateDelay="false">
       <block name="57B500"/>
     </track>
@@ -58,7 +58,7 @@
     </track>
   </station>
 
-  <station name="Buchholz (Nh)" short="ABLZ" refNr="58" scheduleFile="g58_____.abf" localOrderFile="bf58____.abf">
+  <station name="Buchholz (Nordheide)" short="ABLZ" refNr="58" scheduleFile="g58_____.abf" localOrderFile="bf58____.abf">
     <track name="63">
       <block name="58G63"/>
       <alternative track="64"/>

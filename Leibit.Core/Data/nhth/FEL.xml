@@ -11,7 +11,7 @@
     <track name="351" calculateDelay="false" />
   </station>
 
-  <station name="Sinnberg" short="NSB" refNr="11" scheduleFile="G11_____.ABF">
+  <station name="Rieneck Sinnberg" short="NSB" refNr="11" scheduleFile="G11_____.ABF">
     <track name="242" isPlatform="false">
       <block name="11B52" direction="left"/>
       <block name="11B342" direction="right"/>
@@ -153,7 +153,7 @@
     </track>
   </station>
 
-  <station name="Schlüchtern-Ziegenberg" short="FSUEZ" refNr="66">
+  <station name="Ziegenberg (Schlüchtern)" short="FSUEZ" refNr="66">
     <track calculateDelay="false" isPlatform="false">
       <block name="15B001" direction="left"/>
       <block name="66B171" direction="right"/>
@@ -161,7 +161,7 @@
     </track>
   </station>
 
-  <station name="Üst Katzenberg" short="FKA" refNr="16" scheduleFile="B16_____.ABF">
+  <station name="Katzenberg" short="FKA" refNr="16" scheduleFile="B16_____.ABF">
     <track name="172" calculateDelay="false" isPlatform="false">
       <block name="16B3174" direction="left"/>
       <block name="16B182" direction="right"/>
@@ -196,7 +196,7 @@
     </track>
   </station>
 
-  <station name="Neuhof" short="FNF" refNr="17" scheduleFile="G17_____.ABF" localOrderFile="BF17____.ABF">
+  <station name="Neuhof (Kr Fulda)" short="FNF" refNr="17" scheduleFile="G17_____.ABF" localOrderFile="BF17____.ABF">
     <track name="001">
       <block name="17G001"/>
     </track>
@@ -208,7 +208,7 @@
     </track>
   </station>
 
-  <station name="Neuhof-Nord" short="FNF N" refNr="17" scheduleFile="B17_____.ABF">
+  <station name="Neuhof Nord" short="FNF N" refNr="17" scheduleFile="B17_____.ABF">
     <track name="801">
       <block name="17G801"/>
     </track>
@@ -220,7 +220,7 @@
     </track>
   </station>
 
-  <station name="Üst Kerzell" short="FKZ" refNr="10">
+  <station name="Kerzell" short="FKZ" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B682" direction="left"/>
       <block name="10S428" direction="right"/>
@@ -229,7 +229,7 @@
     </track>
   </station>
 
-  <station name="Fulda-Bronzell" short="FFU B" refNr="10">
+  <station name="Fulda Bronzell" short="FFU B" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10S426" direction="left"/>
       <block name="10S443" direction="left"/>
@@ -264,7 +264,7 @@
     </track>
   </station>
 
-  <station name="Üst Dittenbrunn" short="NDI" refNr="7" scheduleFile="G7______.ABF" localOrderFile="BF7_____.ABF">
+  <station name="Dittenbrunn" short="NDI" refNr="7" scheduleFile="G7______.ABF" localOrderFile="BF7_____.ABF">
     <track name="188" isPlatform="false">
       <block name="07B292" direction="left"/>
       <block name="07B388" direction="right"/>
@@ -275,7 +275,7 @@
     </track>
   </station>
 
-  <station name="Üst Altengronau" short="NAG" refNr="8" scheduleFile="G8______.ABF" localOrderFile="BF8_____.ABF">
+  <station name="Altengronau" short="NAG" refNr="8" scheduleFile="G8______.ABF" localOrderFile="BF8_____.ABF">
     <track name="174" isPlatform="false">
       <block name="08B282" direction="left"/>
       <block name="08B374" direction="right"/>
@@ -301,7 +301,7 @@
     </track>
   </station>
 
-  <station name="Üst Landrücken Süd" short="FLRS" refNr="10">
+  <station name="Sinntal Landrücken Süd" short="FLRS" refNr="10">
     <track isPlatform="false" calculateDelay="false">
       <block name="10S655" direction="left"/>
       <block name="10S656" direction="left"/>

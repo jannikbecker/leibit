@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <estw>
-  <station name="Abzw Utbremen" short="HUTB" refNr="13">
+  <station name="Bremen Utbremen" short="HUTB" refNr="13">
     <track isPlatform="false" calculateDelay="false">
       <block name="13B961" direction="right"/>
       <block name="13B964" direction="right"/>
     </track>
   </station>
 
-  <station name="Abzw Gabelung" short="HGA" refNr="36">
+  <station name="Bremen Gabelung" short="HGA" refNr="36">
     <track isPlatform="false" calculateDelay="false">
       <block name="36BS" direction="right"/>
       <block name="51B42" direction="right"/>
@@ -112,7 +112,7 @@
     </track>
   </station>
 
-  <station name="Rotenburg (W)" short="AROG" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf">
+  <station name="Rotenburg (Wümme)" short="AROG" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf">
     <track name="21">
       <block name="54G21"/>
       <alternative track="22"/>

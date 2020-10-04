@@ -7,7 +7,7 @@
     </track>
   </station>
 
-  <station name="Marbach" short="FMR" refNr="12" scheduleFile="G12_____.ABF">
+  <station name="Marbach (Kr Fulda)" short="FMR" refNr="12" scheduleFile="G12_____.ABF">
     <track name="801">
       <block name="12G801"/>
     </track>
@@ -40,7 +40,7 @@
     </track>
   </station>
 
-  <station name="Burghaun" short="FBUH" refNr="14" scheduleFile="G14_____.ABF">
+  <station name="Burghaun (Kr Hünfeld)" short="FBUH" refNr="14" scheduleFile="G14_____.ABF">
     <track name="951">
       <block name="14G951"/>
     </track>
@@ -49,7 +49,7 @@
     </track>
   </station>
 
-  <station name="Neukirchen" short="FNK" refNr="15" scheduleFile="G15_____.ABF">
+  <station name="Haunetal-Neukirchen" short="FNK" refNr="15" scheduleFile="G15_____.ABF">
     <track name="1">
       <block name="15G1"/>
     </track>
@@ -148,7 +148,7 @@
     </track>
   </station>
 
-  <station name="Friedlos Hp" short="FFL" refNr="17" scheduleFile="b17_____.abf">
+  <station name="Friedlos" short="FFL" refNr="17" scheduleFile="b17_____.abf">
     <track name="1" calculateDelay="false">
       <block name="17B546"/>
     </track>
@@ -207,7 +207,7 @@
     </track>
   </station>
 
-  <station name="Abzw Faßdorf" short="FFDF" refNr="19">
+  <station name="Faßdorf" short="FFDF" refNr="19">
     <track isPlatform="false" calculateDelay="false">
       <block name="19S921" direction="left"/>
     </track>
