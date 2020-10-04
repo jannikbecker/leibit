@@ -5,7 +5,7 @@
                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
                       xmlns:entities="clr-namespace:Leibit.Entities.Settings;assembly=Leibit.Entities"
-                      Caption="{Binding Caption}" ResizeMode="ResizeHeight">
+                      Caption="{Binding Caption}" ResizeMode="ResizeAll">
 
     <controls:ChildWindow.Style>
         <Style TargetType="local:TimeTableView" BasedOn="{StaticResource ChildWindowStyle}" />
