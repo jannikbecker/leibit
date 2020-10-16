@@ -145,12 +145,58 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
+        #region [DelayArrival]
+        public int DelayArrival
+        {
+            get
+            {
+                if (Arrival == null || ExpectedArrival == null)
+                    return 0;
+
+                return (ExpectedArrival - Arrival).TotalMinutes;
+            }
+        }
+        #endregion
+
+        #region [DelayDeparture]
+        public int DelayDeparture
+        {
+            get
+            {
+                if (Departure == null || ExpectedDeparture == null)
+                    return 0;
+
+                return (ExpectedDeparture - Departure).TotalMinutes;
+            }
+        }
+        #endregion
+
         #region [DelayString]
         public string DelayString
         {
             get
             {
                 return Delay > 0 ? String.Format("+{0}", Delay) : Delay.ToString();
+            }
+        }
+        #endregion
+
+        #region [DelayStringArrival]
+        public string DelayStringArrival
+        {
+            get
+            {
+                return DelayArrival > 0 ? String.Format("+{0}", DelayArrival) : DelayArrival.ToString();
+            }
+        }
+        #endregion
+
+        #region [DelayStringDeparture]
+        public string DelayStringDeparture
+        {
+            get
+            {
+                return DelayDeparture > 0 ? String.Format("+{0}", DelayDeparture) : DelayDeparture.ToString();
             }
         }
         #endregion
@@ -172,8 +218,11 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 else
                 {
                     Set(value);
-                    IsExpectedArrivalVisible = true;
+                    IsExpectedArrivalVisible = IsArrivalVisible;
                 }
+
+                OnPropertyChanged(nameof(DelayArrival));
+                OnPropertyChanged(nameof(DelayStringArrival));
             }
         }
         #endregion
@@ -195,8 +244,11 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 else
                 {
                     Set(value);
-                    IsExpectedDepartureVisible = true;
+                    IsExpectedDepartureVisible = IsDepartureVisible;
                 }
+
+                OnPropertyChanged(nameof(DelayDeparture));
+                OnPropertyChanged(nameof(DelayStringDeparture));
             }
         }
         #endregion
