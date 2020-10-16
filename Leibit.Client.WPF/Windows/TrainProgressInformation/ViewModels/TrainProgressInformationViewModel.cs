@@ -12,6 +12,8 @@ using Leibit.Client.WPF.Windows.TrackChange.ViewModels;
 using Leibit.Client.WPF.Windows.TrackChange.Views;
 using Leibit.Client.WPF.Windows.TrainSchedule.ViewModels;
 using Leibit.Client.WPF.Windows.TrainSchedule.Views;
+using Leibit.Client.WPF.Windows.TrainState.ViewModels;
+using Leibit.Client.WPF.Windows.TrainState.Views;
 using Leibit.Core.Client.Commands;
 using Leibit.Core.Common;
 using Leibit.Core.Scheduling;
@@ -48,6 +50,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             ShowTrackChangeCommand = new CommandHandler(__ShowTrackChange, false);
             ShowLocalOrdersCommand = new CommandHandler(__ShowLocalOrders, false);
             ShowDelayJustificationCommand = new CommandHandler(__ShowDelayJustification, false);
+            NewTrainStateCommand = new CommandHandler(__NewTrainState, true);
+            EnterTrainStateCommand = new CommandHandler(__EnterTrainState, false);
         }
         #endregion
 
@@ -82,9 +86,17 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         #region [EnterExpectedDelayCommand]
         public CommandHandler EnterExpectedDelayCommand { get; }
         #endregion
-        
+
         #region [ShowTrackChangeCommand]
         public CommandHandler ShowTrackChangeCommand { get; }
+        #endregion
+
+        #region [NewTrainStateCommand]
+        public CommandHandler NewTrainStateCommand { get; }
+        #endregion
+
+        #region [EnterTrainStateCommand]
+        public CommandHandler EnterTrainStateCommand { get; }
         #endregion
 
         #region [ShowTrainScheduleCommand]
@@ -297,6 +309,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 ShowTrainScheduleCommand.SetCanExecute(false);
                 ShowLocalOrdersCommand.SetCanExecute(false);
                 ShowDelayJustificationCommand.SetCanExecute(false);
+                EnterTrainStateCommand.SetCanExecute(false);
             }
             else
             {
@@ -306,6 +319,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 ShowTrainScheduleCommand.SetCanExecute(true);
                 ShowLocalOrdersCommand.SetCanExecute(SelectedItem.LocalOrders == 'J');
                 ShowDelayJustificationCommand.SetCanExecute(SelectedItem.DelayInfo == 'U');
+                EnterTrainStateCommand.SetCanExecute(SelectedItem.Schedule.Handling == eHandling.Start && SelectedItem.State != "beendet");
             }
         }
         #endregion
@@ -333,13 +347,34 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             OnOpenWindow(vm, window);
         }
         #endregion
-        
+
         #region [__ShowTrackChange]
         private void __ShowTrackChange()
         {
             var Window = new TrackChangeView(SelectedItem.TrainNumber);
             var VM = new TrackChangeViewModel(SelectedItem.CurrentTrain, SelectedItem.Schedule);
             OnOpenWindow(VM, Window);
+        }
+        #endregion
+
+        #region [__NewTrainState]
+        private void __NewTrainState()
+        {
+            if (SelectedItem == null)
+                return;
+
+            var window = new TrainStateView();
+            var vm = new TrainStateViewModel(SelectedItem.Station.ESTW.Area, null);
+            OnOpenWindow(vm, window);
+        }
+        #endregion
+
+        #region [__EnterTrainState]
+        private void __EnterTrainState()
+        {
+            var window = new TrainStateView();
+            var vm = new TrainStateViewModel(SelectedItem.Station.ESTW.Area, SelectedItem.TrainNumber);
+            OnOpenWindow(vm, window);
         }
         #endregion
 

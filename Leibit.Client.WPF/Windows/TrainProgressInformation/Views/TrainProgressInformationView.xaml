@@ -28,6 +28,8 @@
             <ContextMenu>
                 <MenuItem Header="Vsl. Verspätung" Command="{Binding EnterExpectedDelayCommand}"/>
                 <MenuItem Header="Gleiswechsel" Command="{Binding ShowTrackChangeCommand}"/>
+                <MenuItem Header="Zugstatus neu" Command="{Binding NewTrainStateCommand}"/>
+                <MenuItem Header="Zugstatus eingeben" Command="{Binding EnterTrainStateCommand}"/>
                 <MenuItem Header="Zuglaufdaten" Command="{Binding ShowTrainScheduleCommand}"/>
                 <MenuItem Header="Örtliche Anweisungen" Command="{Binding ShowLocalOrdersCommand}"/>
                 <MenuItem Header="Verspätungsbegründung" Command="{Binding ShowDelayJustificationCommand}"/>
