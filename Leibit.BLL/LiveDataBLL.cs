@@ -300,6 +300,63 @@ namespace Leibit.BLL
         }
         #endregion
 
+        #region [SetTrainState]
+        public OperationResult<bool> SetTrainState(LiveSchedule schedule, eTrainState state)
+        {
+            try
+            {
+                // Check if we are lucky
+                if ((state == eTrainState.None && !schedule.IsComposed && !schedule.IsPrepared)
+                 || (state == eTrainState.Composed && schedule.IsComposed)
+                 || (state == eTrainState.Prepared && schedule.IsPrepared))
+                {
+                    return new OperationResult<bool> { Result = false, Succeeded = true };
+                }
+
+                // Validation
+                var validationMessages = new List<string>();
+
+                if (!schedule.IsArrived)
+                    validationMessages.Add($"Der Zug {schedule.Train.Train.Number} hat die Betriebsstelle {schedule.Schedule.Station.ShortSymbol} noch nicht erreicht.");
+
+                if (schedule.IsDeparted)
+                    validationMessages.Add($"Der Zug {schedule.Train.Train.Number} hat die Betriebsstelle {schedule.Schedule.Station.ShortSymbol} bereits verlassen.");
+
+                if (validationMessages.Any())
+                {
+                    validationMessages.Insert(0, "Eingabe des Zugstatus nicht möglich");
+                    var message = string.Join(Environment.NewLine, validationMessages);
+                    throw new InvalidOperationException(message);
+                }
+
+                // Here we go
+                switch (state)
+                {
+                    case eTrainState.None:
+                        schedule.IsComposed = false;
+                        schedule.IsPrepared = false;
+                        break;
+                    case eTrainState.Composed:
+                        schedule.IsComposed = true;
+                        break;
+                    case eTrainState.Prepared:
+                        schedule.IsComposed = true; // Set both flags is this case
+                        schedule.IsPrepared = true;
+                        break;
+                }
+
+                var result = new OperationResult<bool>();
+                result.Result = true;
+                result.Succeeded = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult<bool> { Message = ex.Message };
+            }
+        }
+        #endregion
+
         #endregion
 
         #region - Private helpers -

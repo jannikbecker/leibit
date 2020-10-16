@@ -1,9 +1,12 @@
-﻿using Leibit.Client.WPF.ViewModels;
+﻿using Leibit.BLL;
+using Leibit.Client.WPF.ViewModels;
 using Leibit.Core.Client.Commands;
 using Leibit.Entities;
 using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
 using System.Linq;
+using System.Windows;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Leibit.Client.WPF.Windows.TrainState.ViewModels
 {
@@ -12,11 +15,13 @@ namespace Leibit.Client.WPF.Windows.TrainState.ViewModels
 
         #region - Needs -
         private Area m_Area;
+        private LiveDataBLL m_LiveDataBll;
         #endregion
 
         #region - Ctor -
         public TrainStateViewModel(Area area, int? trainNumber)
         {
+            m_LiveDataBll = new LiveDataBLL();
             SaveCommand = new CommandHandler(__Save, false);
             m_Area = area;
             TrainNumber = trainNumber;
@@ -159,8 +164,28 @@ namespace Leibit.Client.WPF.Windows.TrainState.ViewModels
         #region [__Save]
         private void __Save()
         {
-            // TODO: Implement me!
-            OnCloseWindow();
+            if (CurrentSchedule == null)
+                return;
+
+            var state = TypeIsComposed ? eTrainState.Composed :
+                        TypeIsPrepared ? eTrainState.Prepared :
+                        eTrainState.None;
+
+            var result = m_LiveDataBll.SetTrainState(CurrentSchedule, state);
+
+            if (result.Succeeded)
+            {
+                if (TypeIsComposed)
+                    OnStatusBarTextChanged($"Zug {TrainNumber} in {CurrentSchedule.Schedule.Station.ShortSymbol} bereitgestellt gemeldet");
+                else if (TypeIsPrepared)
+                    OnStatusBarTextChanged($"Zug {TrainNumber} in {CurrentSchedule.Schedule.Station.ShortSymbol} vorbereitet gemeldet");
+                else
+                    OnStatusBarTextChanged($"Zugvorbereitungsmeldung für Zug {TrainNumber} in {CurrentSchedule.Schedule.Station.ShortSymbol} zurückgenommen");
+
+                OnCloseWindow();
+            }
+            else
+                MessageBox.Show(result.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         #endregion
 
