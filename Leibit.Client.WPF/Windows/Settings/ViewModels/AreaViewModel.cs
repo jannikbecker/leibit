@@ -1,4 +1,5 @@
 ﻿using Leibit.Core.Client.BaseClasses;
+using Leibit.Core.Common;
 using Leibit.Entities.Common;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -58,7 +59,11 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
             if (e.PropertyName == "Path")
             {
-                m_Settings.Paths[VM.EstwId] = VM.Path;
+                if (VM.Path.IsNullOrWhiteSpace())
+                    m_Settings.Paths.Remove(VM.EstwId);
+                else
+                    m_Settings.Paths[VM.EstwId] = VM.Path;
+
                 OnPropertyChanged("Path");
             }
         }
