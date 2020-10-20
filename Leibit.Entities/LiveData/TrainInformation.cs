@@ -87,7 +87,8 @@ namespace Leibit.Entities.LiveData
         {
             lock (LockSchedules)
             {
-                m_LiveSchedules = m_LiveSchedules.OrderBy(s => s.Schedule.Time == null).ThenBy(s => s.Schedule.Time).ToList();
+                //m_LiveSchedules = m_LiveSchedules.OrderBy(s => s.Schedule.Time == null).ThenBy(s => s.Schedule.Time).ToList();
+                m_LiveSchedules.Sort();
             }
         }
     }

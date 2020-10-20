@@ -1,12 +1,13 @@
 ﻿using Leibit.Core.Scheduling;
 using Leibit.Entities.Common;
 using Leibit.Entities.Scheduling;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Leibit.Entities.LiveData
 {
-    public class LiveSchedule
+    public class LiveSchedule : IComparable<LiveSchedule>
     {
         private TrainInformation m_Train;
         private LeibitTime m_LiveArrival;
@@ -127,5 +128,14 @@ namespace Leibit.Entities.LiveData
                 return Result;
             }
         }
+
+        public int CompareTo(LiveSchedule other)
+        {
+            if (this.LiveArrival != null && other.LiveArrival != null)
+                return this.LiveArrival.CompareTo(other.LiveArrival);
+
+            return this.Schedule.Time.CompareTo(other.Schedule.Time);
+        }
+
     }
 }
