@@ -155,7 +155,7 @@
 
   <station name="Ziegenberg (Schlüchtern)" short="FSUEZ" refNr="66">
     <track calculateDelay="false" isPlatform="false">
-      <block name="15B001" direction="left"/>
+      <block name="15B01" direction="left"/>
       <block name="66B171" direction="right"/>
       <block name="16B2172" direction="right"/>
     </track>

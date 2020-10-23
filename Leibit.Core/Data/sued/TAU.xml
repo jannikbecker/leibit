@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Mochenwangen" short="TMO" refNr="39">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="38B69" direction="right" />
+      <block name="39BP" direction="right" />
+    </track>
+  </station>
+
+  <station name="Altshausen" short="TAT" refNr="38">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="38BN1" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Aulendorf" short="TAU" refNr="38" scheduleFile="g38_____.abf" localOrderFile="bf38____.abf">
+    <track name="50">
+      <block name="38G50"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+
+    <track name="1">
+      <block name="38G1"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+
+    <track name="2">
+      <block name="38G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="50"/>
+    </track>
+
+    <track name="3">
+      <block name="38G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="50"/>
+
+      <track name="53">
+        <block name="38G53"/>
+      </track>
+    </track>
+    <track name="4">
+      <block name="38G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="50"/>
+
+      <track name="54">
+        <block name="38G54"/>
+      </track>
+    </track>
+
+    <track name="5">
+      <block name="38G5"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+      <alternative track="50"/>
+    </track>
+
+    <track name="6">
+      <block name="38G6"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="50"/>
+    </track>
+  </station>
+
+  <station name="Bad Schussenried" short="TBSC" refNr="37" scheduleFile="g37_____.abf" localOrderFile="bf37____.abf">
+    <track name="1">
+      <block name="37G1"/>
+    </track>
+    <track name="2">
+      <block name="37G2"/>
+    </track>
+    <track name="3">
+      <block name="37G3"/>
+    </track>
+    <track name="4">
+      <block name="37G4"/>
+    </track>
+  </station>
+
+  <station name="Ummendorf" short="TUF" refNr="37">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="37B52"/>
+    </track>
+  </station>
+
+  <station name="Biberach" short="TBI" refNr="36" scheduleFile="g36_____.abf" localOrderFile="bf36____.abf">
+    <track name="1">
+      <block name="36G1"/>
+    </track>
+    <track name="2">
+      <block name="36G2"/>
+    </track>
+    <track name="3">
+      <block name="36G3"/>
+    </track>
+    <track name="4">
+      <block name="36G4"/>
+    </track>
+  </station>
+
+  <station name="Langenschemmern" short="TLSM" refNr="36">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="36B43"/>
+    </track>
+  </station>
+
+  <station name="Schemmerberg" short="TSX" refNr="35" scheduleFile="b35_____.abf">
+    <track name="41" calculateDelay="false">
+      <block name="35BN2"/>
+    </track>
+    <track name="42" calculateDelay="false">
+      <block name="35B42"/>
+    </track>
+  </station>
+
+  <station name="Laupheim West" short="TLW" refNr="35" scheduleFile="g35_____.abf" localOrderFile="bf35____.abf">
+    <track name="1">
+      <block name="35G1"/>
+    </track>
+    <track name="2">
+      <block name="35G2"/>
+    </track>
+    <track name="3">
+      <block name="35G3"/>
+    </track>
+    <track name="4">
+      <block name="35G4"/>
+    </track>
+    <track name="20">
+      <block name="35G20"/>
+    </track>
+  </station>
+
+  <station name="Laupheim Stadt" short="TLM" refNr="35" scheduleFile="g45_____.abf" localOrderFile="bf45____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="35BN1"/>
+    </track>
+  </station>
+
+  <station name="Rißtissen" short="TRST" refNr="34">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="34B34"/>
+    </track>
+  </station>
+
+  <station name="Dellmensingen" short="TDLL" refNr="34">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="34B32"/>
+    </track>
+  </station>
+
+  <station name="Erbach (Württ)" short="TER" refNr="34" scheduleFile="g34_____.abf" localOrderFile="bf34____.abf">
+    <track name="1">
+      <block name="34G1"/>
+    </track>
+    <track name="2">
+      <block name="34G2"/>
+    </track>
+    <track name="3">
+      <block name="34G3"/>
+    </track>
+  </station>
+
+  <station name="Einsingen" short="TEIN" refNr="33" scheduleFile="g33_____.abf" localOrderFile="bf33____.abf">
+    <track name="1">
+      <block name="33G1"/>
+    </track>
+    <track name="2">
+      <block name="33G2"/>
+    </track>
+    <track name="3">
+      <block name="33G3"/>
+    </track>
+  </station>
+
+  <station name="Ulm-Donautal" short="TUD" refNr="33" scheduleFile="g3______.abf" localOrderFile="bf3_____.abf">
+    <track name="13" isPlatform="false">
+      <block name="33B13" direction="left"/>
+      <block name="33B11" direction="right"/>
+    </track>
+    <track name="14" isPlatform="false">
+      <block name="33BP" direction="left"/>
+      <block name="33B312" direction="right"/>
+    </track>
+    <track name="100" isPlatform="true">
+      <block name="33G100"/>
+    </track>
+  </station>
+
+  <station name="Ulm Hbf" short="TU" refNr="32">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="33B11" direction="left"/>
+      <block name="33B312" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Bad Waldsee" short="TBWA" refNr="17" scheduleFile="g17_____.abf" localOrderFile="bf17____.abf">
+    <track name="1">
+      <block name="17G1"/>
+    </track>
+    <track name="2">
+      <block name="17G2"/>
+    </track>
+  </station>
+
+  <station name="Rossberg" short="TROS" refNr="18" scheduleFile="g18_____.abf" localOrderFile="bf18____.abf">
+    <track name="1">
+      <block name="18G1"/>
+    </track>
+    <track name="2">
+      <block name="18G2"/>
+    </track>
+    <track name="3">
+      <block name="18G3"/>
+    </track>
+  </station>
+
+  <station name="Bad Wurzach" short="TBW" refNr="18">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="18BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Alttann" short="TATN" refNr="35" scheduleFile="b18_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="18BN"/>
+    </track>
+  </station>
+
+  <station name="Wolfegg" short="TWO" refNr="19" scheduleFile="g19_____.abf" localOrderFile="bf19____.abf">
+    <track name="1">
+      <block name="19G1"/>
+    </track>
+    <track name="2">
+      <block name="19G2"/>
+    </track>
+  </station>
+
+  <station name="Kißlegg" short="TKG" refNr="82">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="19BN" direction="left"/>
+    </track>
+  </station>
+</estw>

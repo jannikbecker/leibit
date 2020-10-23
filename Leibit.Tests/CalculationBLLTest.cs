@@ -75,5 +75,321 @@ namespace Leibit.Tests
         }
         #endregion
 
+        #region [CalculationBLLTest_SortSchedules_NormalCase]
+        [TestMethod]
+        public void CalculationBLLTest_SortSchedules_NormalCase()
+        {
+            var estw = new ESTW("meep", "bla", string.Empty, null);
+
+            var station1 = new Station("Bahnhof A", "A", 1, string.Empty, string.Empty, estw);
+            var station2 = new Station("Bahnhof B", "B", 2, string.Empty, string.Empty, estw);
+            var station3 = new Station("Bahnhof C", "C", 3, string.Empty, string.Empty, estw);
+
+            var track1 = new Track("dummy", true, true, station1, null);
+            var track2 = new Track("dummy", true, true, station2, null);
+            var track3 = new Track("dummy", true, true, station3, null);
+
+            var train = new Train(4711);
+
+            var schedule1 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 1),
+                                         track: track1,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var schedule2 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 5),
+                                         track: track2,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var schedule3 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 9),
+                                         track: track3,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var liveTrain = new TrainInformation(train);
+
+            var liveSchedule1 = new LiveSchedule(liveTrain, schedule1);
+            var liveSchedule2 = new LiveSchedule(liveTrain, schedule2);
+            var liveSchedule3 = new LiveSchedule(liveTrain, schedule3);
+
+            liveTrain.AddSchedule(liveSchedule1);
+            liveTrain.AddSchedule(liveSchedule2);
+            liveTrain.AddSchedule(liveSchedule3);
+
+            liveSchedule1.LiveArrival = new LeibitTime(eDaysOfService.Monday, 16, 2);
+            liveSchedule1.LiveDeparture = new LeibitTime(eDaysOfService.Monday, 16, 3);
+
+            Assert.AreEqual(0, liveTrain.Schedules.IndexOf(liveSchedule1));
+            Assert.AreEqual(1, liveTrain.Schedules.IndexOf(liveSchedule2));
+            Assert.AreEqual(2, liveTrain.Schedules.IndexOf(liveSchedule3));
+        }
+        #endregion
+
+        #region [CalculationBLLTest_SortSchedules_DelayedTrain]
+        [TestMethod]
+        public void CalculationBLLTest_SortSchedules_DelayedTrain()
+        {
+            var estw = new ESTW("meep", "bla", string.Empty, null);
+
+            var station1 = new Station("Bahnhof A", "A", 1, string.Empty, string.Empty, estw);
+            var station2 = new Station("Bahnhof B", "B", 2, string.Empty, string.Empty, estw);
+            var station3 = new Station("Bahnhof C", "C", 3, string.Empty, string.Empty, estw);
+
+            var track1 = new Track("dummy", true, true, station1, null);
+            var track2 = new Track("dummy", true, true, station2, null);
+            var track3 = new Track("dummy", true, true, station3, null);
+
+            var train = new Train(4711);
+
+            var schedule1 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 1),
+                                         track: track1,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var schedule2 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 5),
+                                         track: track2,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var schedule3 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 9),
+                                         track: track3,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var liveTrain = new TrainInformation(train);
+
+            var liveSchedule1 = new LiveSchedule(liveTrain, schedule1);
+            var liveSchedule2 = new LiveSchedule(liveTrain, schedule2);
+            var liveSchedule3 = new LiveSchedule(liveTrain, schedule3);
+
+            liveTrain.AddSchedule(liveSchedule1);
+            liveTrain.AddSchedule(liveSchedule2);
+            liveTrain.AddSchedule(liveSchedule3);
+
+            liveSchedule1.LiveArrival = new LeibitTime(eDaysOfService.Monday, 16, 6);
+            liveSchedule1.LiveDeparture = new LeibitTime(eDaysOfService.Monday, 16, 7);
+
+            Assert.AreEqual(0, liveTrain.Schedules.IndexOf(liveSchedule1));
+            Assert.AreEqual(1, liveTrain.Schedules.IndexOf(liveSchedule2));
+            Assert.AreEqual(2, liveTrain.Schedules.IndexOf(liveSchedule3));
+        }
+        #endregion
+
+        #region [CalculationBLLTest_SortSchedules_FirstStationMissing]
+        [TestMethod]
+        public void CalculationBLLTest_SortSchedules_FirstStationMissing()
+        {
+            var estw = new ESTW("meep", "bla", string.Empty, null);
+
+            var station1 = new Station("Bahnhof A", "A", 1, string.Empty, string.Empty, estw);
+            var station2 = new Station("Bahnhof B", "B", 2, string.Empty, string.Empty, estw);
+            var station3 = new Station("Bahnhof C", "C", 3, string.Empty, string.Empty, estw);
+
+            var track1 = new Track("dummy", true, true, station1, null);
+            var track2 = new Track("dummy", true, true, station2, null);
+            var track3 = new Track("dummy", true, true, station3, null);
+
+            var train = new Train(4711);
+
+            var schedule1 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 1),
+                                         track: track1,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var schedule2 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 5),
+                                         track: track2,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var schedule3 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 9),
+                                         track: track3,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var liveTrain = new TrainInformation(train);
+
+            var liveSchedule1 = new LiveSchedule(liveTrain, schedule1);
+            var liveSchedule2 = new LiveSchedule(liveTrain, schedule2);
+            var liveSchedule3 = new LiveSchedule(liveTrain, schedule3);
+
+            liveTrain.AddSchedule(liveSchedule1);
+            liveTrain.AddSchedule(liveSchedule2);
+            liveTrain.AddSchedule(liveSchedule3);
+
+            liveSchedule2.LiveArrival = new LeibitTime(eDaysOfService.Monday, 16, 6);
+            liveSchedule2.LiveDeparture = new LeibitTime(eDaysOfService.Monday, 16, 7);
+
+            Assert.AreEqual(0, liveTrain.Schedules.IndexOf(liveSchedule1));
+            Assert.AreEqual(1, liveTrain.Schedules.IndexOf(liveSchedule2));
+            Assert.AreEqual(2, liveTrain.Schedules.IndexOf(liveSchedule3));
+        }
+        #endregion
+
+        #region [CalculationBLLTest_SortSchedules_DifferentOrder]
+        [TestMethod]
+        public void CalculationBLLTest_SortSchedules_DifferentOrder()
+        {
+            var estw = new ESTW("meep", "bla", string.Empty, null);
+
+            var station1 = new Station("Bahnhof A", "A", 1, string.Empty, string.Empty, estw);
+            var station2 = new Station("Bahnhof B", "B", 2, string.Empty, string.Empty, estw);
+            var station3 = new Station("Bahnhof C", "C", 3, string.Empty, string.Empty, estw);
+
+            var track1 = new Track("dummy", true, true, station1, null);
+            var track2 = new Track("dummy", true, true, station2, null);
+            var track3 = new Track("dummy", true, true, station3, null);
+
+            var train = new Train(4711);
+
+            var schedule1 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 1),
+                                         track: track1,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var schedule2 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 5),
+                                         track: track2,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var schedule3 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 9),
+                                         track: track3,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var liveTrain = new TrainInformation(train);
+
+            var liveSchedule1 = new LiveSchedule(liveTrain, schedule1);
+            var liveSchedule2 = new LiveSchedule(liveTrain, schedule2);
+            var liveSchedule3 = new LiveSchedule(liveTrain, schedule3);
+
+            liveTrain.AddSchedule(liveSchedule1);
+            liveTrain.AddSchedule(liveSchedule2);
+            liveTrain.AddSchedule(liveSchedule3);
+
+            liveSchedule1.LiveArrival = new LeibitTime(eDaysOfService.Monday, 16, 2);
+            liveSchedule1.LiveDeparture = new LeibitTime(eDaysOfService.Monday, 16, 3);
+            liveSchedule3.LiveArrival = new LeibitTime(eDaysOfService.Monday, 16, 10);
+            liveSchedule3.LiveDeparture = new LeibitTime(eDaysOfService.Monday, 16, 11);
+            liveSchedule2.LiveArrival = new LeibitTime(eDaysOfService.Monday, 16, 14);
+            liveSchedule2.LiveDeparture = new LeibitTime(eDaysOfService.Monday, 16, 15);
+
+            Assert.AreEqual(0, liveTrain.Schedules.IndexOf(liveSchedule1));
+            Assert.AreEqual(1, liveTrain.Schedules.IndexOf(liveSchedule3));
+            Assert.AreEqual(2, liveTrain.Schedules.IndexOf(liveSchedule2));
+        }
+        #endregion
+
+        #region [CalculationBLLTest_SortSchedules_StationSkipped]
+        [TestMethod]
+        public void CalculationBLLTest_SortSchedules_StationSkipped()
+        {
+            var estw = new ESTW("meep", "bla", string.Empty, null);
+
+            var station1 = new Station("Bahnhof A", "A", 1, string.Empty, string.Empty, estw);
+            var station2 = new Station("Bahnhof B", "B", 2, string.Empty, string.Empty, estw);
+            var station3 = new Station("Bahnhof C", "C", 3, string.Empty, string.Empty, estw);
+
+            var track1 = new Track("dummy", true, true, station1, null);
+            var track2 = new Track("dummy", true, true, station2, null);
+            var track3 = new Track("dummy", true, true, station3, null);
+
+            var train = new Train(4711);
+
+            var schedule1 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 1),
+                                         track: track1,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var schedule2 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 5),
+                                         track: track2,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var schedule3 = new Schedule(train: train,
+                                         arrival: null,
+                                         departure: new LeibitTime(eDaysOfService.Monday, 16, 9),
+                                         track: track3,
+                                         days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                         direction: eScheduleDirection.LeftToRight,
+                                         handling: eHandling.Transit,
+                                         remark: string.Empty);
+
+            var liveTrain = new TrainInformation(train);
+
+            var liveSchedule1 = new LiveSchedule(liveTrain, schedule1);
+            var liveSchedule2 = new LiveSchedule(liveTrain, schedule2);
+            var liveSchedule3 = new LiveSchedule(liveTrain, schedule3);
+
+            liveTrain.AddSchedule(liveSchedule1);
+            liveTrain.AddSchedule(liveSchedule2);
+            liveTrain.AddSchedule(liveSchedule3);
+
+            liveSchedule1.LiveArrival = new LeibitTime(eDaysOfService.Monday, 15, 55);
+            liveSchedule1.LiveDeparture = new LeibitTime(eDaysOfService.Monday, 15, 56);
+            liveSchedule3.LiveArrival = new LeibitTime(eDaysOfService.Monday, 16, 2);
+            liveSchedule3.LiveDeparture = new LeibitTime(eDaysOfService.Monday, 16, 3);
+
+            Assert.AreEqual(0, liveTrain.Schedules.IndexOf(liveSchedule1));
+            Assert.AreEqual(1, liveTrain.Schedules.IndexOf(liveSchedule2));
+            Assert.AreEqual(2, liveTrain.Schedules.IndexOf(liveSchedule3));
+        }
+        #endregion
+
     }
 }

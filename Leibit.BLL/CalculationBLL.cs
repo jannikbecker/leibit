@@ -146,7 +146,7 @@ namespace Leibit.BLL
                     Delay = (FirstSchedule.LiveArrival - Arrival).TotalMinutes;
                 }
 
-                foreach (var Schedule in Train.Schedules.OrderBy(s => s.LiveArrival == null).ThenBy(s => s.LiveArrival))
+                foreach (var Schedule in Train.Schedules)
                 {
                     if (Schedule.LiveArrival != null)
                         Start = true;
