@@ -52,13 +52,14 @@ namespace Leibit.Entities.LiveData
             }
             set
             {
+                var oldValue = m_LiveArrival;
                 m_LiveArrival = value;
 
                 if (value != null && m_Schedule.Arrival == null && m_Schedule.Track == null)
-                {
                     m_Schedule.Arrival = m_Schedule.Station.ESTW.Time.AddMinutes(m_Train.Delay * (-1));
+
+                if (value != oldValue)
                     Train.SortSchedules();
-                }
             }
         }
 
