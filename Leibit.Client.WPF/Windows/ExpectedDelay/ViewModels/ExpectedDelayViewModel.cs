@@ -28,7 +28,8 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
             SaveCommand = new CommandHandler(__Save, false);
             m_LiveDataBll = new LiveDataBLL();
 
-            var candidates = train.Schedules.Where(s => s.Schedule.Handling != eHandling.Destination && !s.IsDeparted)
+            var candidates = train.Schedules.Where((s1, i1) => !train.Schedules.Skip(i1 + 1).Any(s2 => s2.IsArrived)) // Must be first criterion due to indizes
+                                            .Where(s => s.Schedule.Handling != eHandling.Destination && !s.IsDeparted)
                                             .Where(s => s.Schedule.Station.ESTW.Stations.Any(s2 => Runtime.VisibleStations.Contains(s2)))
                                             .GroupBy(s => new { s.Schedule.Station.ShortSymbol, s.Schedule.Time })
                                             .Select(g => g.FirstOrDefault());
