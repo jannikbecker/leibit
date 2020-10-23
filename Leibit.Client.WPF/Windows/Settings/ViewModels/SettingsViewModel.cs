@@ -219,6 +219,36 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [LeadTime]
+        public int? LeadTime
+        {
+            get
+            {
+                return m_Settings.LeadTime;
+            }
+            set
+            {
+                m_Settings.LeadTime = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region [FollowUpTime]
+        public int? FollowUpTime
+        {
+            get
+            {
+                return m_Settings.FollowUpTime;
+            }
+            set
+            {
+                m_Settings.FollowUpTime = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         #region - Commands -
 
         #region [SaveCommand]
@@ -271,7 +301,9 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 || PropertyName == nameof(AutomaticReadyMessageEnabled)
                 || PropertyName == nameof(AutomaticReadyMessageTime)
                 || PropertyName == nameof(EstwOnlinePath)
-                || PropertyName == nameof(WindowColor))
+                || PropertyName == nameof(WindowColor)
+                || PropertyName == nameof(LeadTime)
+                || PropertyName == nameof(FollowUpTime))
             {
                 m_SaveCommand.SetCanExecute(true);
             }

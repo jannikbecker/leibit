@@ -60,6 +60,8 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Automatische Fertigmeldung" Margin="5,0,0,0" VerticalAlignment="Center"/>
@@ -120,9 +122,21 @@
                               VerticalAlignment="Center"/>
 
                     <TextBlock Grid.Row="5" Grid.Column="0" Text="ESTW inaktiv nach" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                    <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,5">
+                    <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
                         <xctk:IntegerUpDown Value="{Binding EstwTimeout, Mode=TwoWay}" Minimum="6" Height="20" Margin="0,0,5,0"/>
                         <TextBlock Text="Sekunden ohne Daten" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="ZFI-Vorlaufzeit" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                        <xctk:IntegerUpDown Value="{Binding LeadTime, Mode=TwoWay}" Minimum="1" Maximum="720" Height="20" Margin="0,0,5,0"/>
+                        <TextBlock Text="Minuten" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="ZFI-Nachlaufzeit" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,5">
+                        <xctk:IntegerUpDown Value="{Binding FollowUpTime, Mode=TwoWay}" Minimum="0" Maximum="720" Height="20" Margin="0,0,5,0"/>
+                        <TextBlock Text="Minuten" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Grid>
             </GroupBox>

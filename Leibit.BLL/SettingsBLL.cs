@@ -164,6 +164,7 @@ namespace Leibit.BLL
             {
                 var json = File.ReadAllText(m_SettingsFile);
                 m_Settings = JsonConvert.DeserializeObject<Settings>(json);
+                __FillDefaultValuesIfNeeded(m_Settings);
             }
             else
                 m_Settings = __GetDefaultSettings();
@@ -220,6 +221,16 @@ namespace Leibit.BLL
                 throw new ValidationFailedException(String.Join(Environment.NewLine, Messages));
         }
 
+        private void __FillDefaultValuesIfNeeded(Settings settings)
+        {
+            var defaultSettings = __GetDefaultSettings();
+
+            if (!settings.LeadTime.HasValue)
+                settings.LeadTime = defaultSettings.LeadTime;
+            if (!settings.FollowUpTime.HasValue)
+                settings.FollowUpTime = defaultSettings.FollowUpTime;
+        }
+
         private Settings __GetDefaultSettings()
         {
             var settings = new Settings();
@@ -234,6 +245,8 @@ namespace Leibit.BLL
             settings.WindowColor = -16728065;
             settings.WindowSettings = new WindowSettings { Width = 900, Height = 600, Maximized = true };
             settings.EstwOnlinePath = @".\ESTWonline\";
+            settings.LeadTime = 60;
+            settings.FollowUpTime = 5;
             return settings;
         }
 
