@@ -24,5 +24,7 @@ namespace Leibit.Entities.Serialization
         public LeibitTime ExpectedDeparture { get; set; }
         public List<SerializedDelay> Delays { get; set; }
         public int? ExpectedDelay { get; set; }
+        public bool IsComposed { get; set; }
+        public bool IsPrepared { get; set; }
     }
 }

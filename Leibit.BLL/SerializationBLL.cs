@@ -122,6 +122,8 @@ namespace Leibit.BLL
                         SerializedSchedule.ExpectedArrival = Schedule.ExpectedArrival;
                         SerializedSchedule.ExpectedDeparture = Schedule.ExpectedDeparture;
                         SerializedSchedule.ExpectedDelay = Schedule.ExpectedDelay;
+                        SerializedSchedule.IsComposed = Schedule.IsComposed;
+                        SerializedSchedule.IsPrepared = Schedule.IsPrepared;
 
                         if (Schedule.LiveTrack != null)
                             SerializedSchedule.LiveTrack = Schedule.LiveTrack.Name;
@@ -246,6 +248,8 @@ namespace Leibit.BLL
                         LiveSchedule.ExpectedArrival = SerializedSchedule.ExpectedArrival;
                         LiveSchedule.ExpectedDeparture = SerializedSchedule.ExpectedDeparture;
                         LiveSchedule.ExpectedDelay = SerializedSchedule.ExpectedDelay;
+                        LiveSchedule.IsComposed = SerializedSchedule.IsComposed;
+                        LiveSchedule.IsPrepared = SerializedSchedule.IsPrepared;
 
                         if (SerializedSchedule.LiveTrack.IsNotNullOrEmpty())
                             LiveSchedule.LiveTrack = Schedule.Station.Tracks.SingleOrDefault(t => t.Name == SerializedSchedule.LiveTrack);
