@@ -135,6 +135,9 @@ namespace Leibit.Entities.LiveData
             if (this.LiveArrival != null && other.LiveArrival != null)
                 return this.LiveArrival.CompareTo(other.LiveArrival);
 
+            if (this.Schedule.Time == null)
+                return 1;
+
             return this.Schedule.Time.CompareTo(other.Schedule.Time);
         }
 
