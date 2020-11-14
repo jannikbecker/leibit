@@ -37,6 +37,7 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
                 new DelayReason(31, "Bauarbeiten"),
                 new DelayReason(32, "Unregelmäßigkeiten bei Bauarbeiten"),
                 new DelayReason(40, "Nächster EIU"),
+                new DelayReason(40, "Vorheriger EIU"),
                 new DelayReason(46, "Anlage DB Energie"),
                 new DelayReason(47, "Anlage S&S"),
                 new DelayReason(48, "Personal S&S und DB Energie"),
