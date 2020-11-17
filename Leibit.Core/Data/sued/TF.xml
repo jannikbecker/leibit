@@ -229,10 +229,10 @@
 
   <station name="Friedrichshafen Hafen" short="TFH" refNr="77" scheduleFile="fn-haf__.abf" localOrderFile="fn-haf__.abf">
     <track name="152">
-      <block name="7G152"/>
+      <block name="07G152"/>
     </track>
     <track name="153">
-      <block name="7G153"/>
+      <block name="07G153"/>
     </track>
   </station>
   
