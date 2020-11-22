@@ -254,6 +254,11 @@ namespace Leibit.BLL
                         if (SerializedSchedule.LiveTrack.IsNotNullOrEmpty())
                             LiveSchedule.LiveTrack = Schedule.Station.Tracks.SingleOrDefault(t => t.Name == SerializedSchedule.LiveTrack);
 
+                        if (LiveSchedule.LiveArrival != null)
+                            LiveSchedule.IsArrived = true;
+                        if (LiveSchedule.LiveDeparture != null)
+                            LiveSchedule.IsDeparted = true;
+
                         foreach (var SerializedDelay in SerializedSchedule.Delays)
                         {
                             var Delay = LiveSchedule.AddDelay(SerializedDelay.Minutes, SerializedDelay.Type);
