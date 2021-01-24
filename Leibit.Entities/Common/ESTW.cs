@@ -15,6 +15,7 @@ namespace Leibit.Entities.Common
         private Area m_Area;
         private List<Station> m_Stations;
         private Dictionary<string, List<Block>> m_Blocks;
+        private LeibitTime m_Time;
 
         public ESTW(string id, string name, string dataFile, Area area)
         {
@@ -80,7 +81,24 @@ namespace Leibit.Entities.Common
 
         public bool IsLoaded { get; set; }
 
-        public LeibitTime Time { get; set; }
+        public LeibitTime Time
+        {
+            get => m_Time;
+            set
+            {
+                m_Time = value;
+
+                if (StartTime == null)
+                    StartTime = value;
+
+                var minStartTime = value.AddHours(-12);
+
+                if (StartTime < minStartTime)
+                    StartTime = minStartTime;
+            }
+        }
+
+        public LeibitTime StartTime { get; set; }
 
         public int IOExceptionCount { get; set; }
 

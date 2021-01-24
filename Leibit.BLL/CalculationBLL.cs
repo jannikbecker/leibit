@@ -35,8 +35,6 @@ namespace Leibit.BLL
                 var Result = new OperationResult<List<Schedule>>();
                 Result.Result = new List<Schedule>();
 
-                LeibitTime FirstTime = null;
-
                 foreach (var Schedule in Schedules.OrderBy(s => s.Time))
                 {
                     foreach (eDaysOfService value in Enum.GetValues(typeof(eDaysOfService)))
@@ -44,14 +42,10 @@ namespace Leibit.BLL
                         if (Schedule.Days.Contains(value) || !Schedule.Days.Any())
                         {
                             var ScheduleTime = new LeibitTime(value, Schedule.Time.Hour, Schedule.Time.Minute);
-                            var ReferenceTime = FirstTime == null ? time : FirstTime;
 
-                            if (ScheduleTime > ReferenceTime.AddHours(-12) && ScheduleTime <= ReferenceTime.AddHours(12))
+                            if (ScheduleTime > time.AddHours(-12) && ScheduleTime <= time.AddHours(12))
                             {
                                 Result.Result.Add(Schedule);
-
-                                if (FirstTime == null)
-                                    FirstTime = ScheduleTime;
                             }
                         }
                     }

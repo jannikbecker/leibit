@@ -1090,7 +1090,7 @@ namespace Leibit.Client.WPF.ViewModels
                 else
                     Application.Current.Dispatcher.Invoke(() => MessageBox.Show(Result.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error));
 
-                Thread.Sleep(100);
+                Thread.Sleep(500);
             }
         }
         #endregion

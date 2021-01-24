@@ -91,6 +91,7 @@ namespace Leibit.BLL
                 {
                     ESTWId = e.Id,
                     Time = e.Time,
+                    StartTime = e.StartTime,
                     IsActive = (DateTime.Now - e.LastUpdatedOn).TotalSeconds < Settings.EstwTimeout,
                 }));
 
@@ -210,6 +211,7 @@ namespace Leibit.BLL
                     var LoadResult = InitializationBll.LoadESTW(Estw);
                     ValidateResult(LoadResult);
                     Estw.Time = SerializedEstw.Time;
+                    Estw.StartTime = SerializedEstw.StartTime;
                 }
 
                 foreach (var SerializedTrain in Root.LiveTrains)
@@ -271,6 +273,26 @@ namespace Leibit.BLL
 
                     if (LiveTrain.Schedules.Any())
                         Area.LiveTrains.TryAdd(Train.Number, LiveTrain);
+                }
+
+                foreach (var Estw in Area.ESTWs)
+                {
+                    if (Estw.StartTime == null)
+                    {
+                        var schedules = Area.LiveTrains.Values.SelectMany(t => t.Schedules).Where(s => s.Schedule.Station.ESTW == Estw);
+
+                        if (schedules.Any())
+                        {
+                            Estw.StartTime = schedules.Min(s => s.LiveArrival);
+
+                            var minStartTime = Estw.Time.AddHours(-12);
+
+                            if (Estw.StartTime < minStartTime)
+                                Estw.StartTime = minStartTime;
+                        }
+                        else
+                            Estw.StartTime = Estw.Time;
+                    }
                 }
 
                 Container.Area = Area;
