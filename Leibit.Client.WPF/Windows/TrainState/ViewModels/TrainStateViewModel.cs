@@ -30,10 +30,6 @@ namespace Leibit.Client.WPF.Windows.TrainState.ViewModels
 
         #region - Properties -
 
-        #region [Caption]
-        public string Caption => "Zugstatus eingeben";
-        #endregion
-
         #region [TrainNumber]
         public int? TrainNumber
         {
@@ -82,7 +78,15 @@ namespace Leibit.Client.WPF.Windows.TrainState.ViewModels
         #region [CanCompose]
         public bool CanCompose
         {
-            get => !CurrentSchedule?.IsComposed ?? false;
+            get
+            {
+                if (CurrentSchedule == null)
+                    return false;
+                if (CurrentSchedule.IsComposed)
+                    return false;
+
+                return !CurrentSchedule.Train.Schedules.Any(s => s.IsDeparted);
+            }
         }
         #endregion
 
@@ -136,26 +140,20 @@ namespace Leibit.Client.WPF.Windows.TrainState.ViewModels
         private void __Initialize()
         {
             if (TrainNumber.HasValue && m_Area.LiveTrains.ContainsKey(TrainNumber.Value))
-                CurrentSchedule = m_Area.LiveTrains[TrainNumber.Value].Schedules.FirstOrDefault(s => s.Schedule.Handling == eHandling.Start
-                                                                                                  && s.IsArrived && !s.IsDeparted);
+                CurrentSchedule = m_Area.LiveTrains[TrainNumber.Value].Schedules.FirstOrDefault(s => s.IsArrived && !s.IsDeparted);
             else
                 CurrentSchedule = null;
 
-            if (CurrentSchedule != null)
-            {
-                if (CurrentSchedule.IsPrepared)
-                    TypeRevocation = true;
-                else if (CurrentSchedule.IsComposed)
-                    TypeIsPrepared = true;
-                else
-                    TypeIsComposed = true;
-            }
-            else
-            {
-                TypeIsComposed = false;
-                TypeIsPrepared = false;
-                TypeRevocation = false;
-            }
+            TypeIsComposed = false;
+            TypeIsPrepared = false;
+            TypeRevocation = false;
+
+            if (CanCompose)
+                TypeIsComposed = true;
+            else if (CanPrepare)
+                TypeIsPrepared = true;
+            else if (CanRevoke)
+                TypeRevocation = true;
 
             SaveCommand.SetCanExecute(CurrentSchedule != null);
         }

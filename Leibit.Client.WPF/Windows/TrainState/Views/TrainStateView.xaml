@@ -4,7 +4,7 @@
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
                       xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.TrainState.Views"
                       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-                      Caption="{Binding Caption}">
+                      Caption="Zugstatus eingeben">
 
     <controls:ChildWindow.Style>
         <Style TargetType="local:TrainStateView" BasedOn="{StaticResource ChildWindowStyle}" />

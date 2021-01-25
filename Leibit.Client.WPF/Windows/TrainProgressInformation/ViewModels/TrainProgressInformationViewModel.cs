@@ -244,11 +244,12 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 else
                 {
                     var liveSchedule = SelectedItem.CurrentTrain.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == SelectedItem.Schedule.Station.ShortSymbol && s.Schedule.Time == SelectedItem.Schedule.Time);
+
                     EnterExpectedDelayCommand.SetCanExecute(SelectedItem.Schedule.Handling != eHandling.Destination && SelectedItem.State != "beendet");
                     ShowTrackChangeCommand.SetCanExecute(liveSchedule != null && !liveSchedule.IsArrived && (SelectedItem.Schedule.Track == null || SelectedItem.Schedule.Track.IsPlatform));
                     ShowLocalOrdersCommand.SetCanExecute(SelectedItem.LocalOrders == 'J');
                     ShowDelayJustificationCommand.SetCanExecute(SelectedItem.DelayInfo == 'U');
-                    EnterTrainStateCommand.SetCanExecute(SelectedItem.Schedule.Handling == eHandling.Start && SelectedItem.State != "beendet");
+                    EnterTrainStateCommand.SetCanExecute(liveSchedule.IsArrived && !liveSchedule.IsDeparted);
                 }
             }
         }
