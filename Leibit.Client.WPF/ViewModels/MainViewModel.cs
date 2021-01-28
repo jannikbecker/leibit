@@ -628,6 +628,9 @@ namespace Leibit.Client.WPF.ViewModels
                     Runtime.VisibleStations.AddIfNotNull(Station);
                 }
 
+                __DeserializeVisibleTrains(OpenResult.Result.VisibleTrains);
+                __DeserializeHiddenSchedules(OpenResult.Result.HiddenSchedules);
+
                 foreach (var SerializedWindow in OpenResult.Result.Windows)
                 {
                     ChildWindow Window;
@@ -677,7 +680,7 @@ namespace Leibit.Client.WPF.ViewModels
 
                         case eChildWindowType.TrainProgressInformation:
                             Window = new TrainProgressInformationView();
-                            ViewModel = new TrainProgressInformationViewModel(Window.Dispatcher);
+                            ViewModel = new TrainProgressInformationViewModel(Window.Dispatcher, m_CurrentArea);
                             break;
 
                         case eChildWindowType.TrainSchedule:
@@ -743,6 +746,8 @@ namespace Leibit.Client.WPF.ViewModels
             var Container = new SerializationContainer();
             Container.Area = m_CurrentArea;
             Container.VisibleStations = Runtime.VisibleStations.Select(s => new SerializedStation { EstwId = s.ESTW.Id, ShortSymbol = s.ShortSymbol }).ToList();
+            Container.VisibleTrains = __SerializeVisibleTrains();
+            Container.HiddenSchedules = __SerializeHiddenSchedules();
 
             foreach (var Window in ChildWindows)
             {
@@ -885,7 +890,7 @@ namespace Leibit.Client.WPF.ViewModels
         private void __ShowTrainProgressInformationWindow()
         {
             var Window = new TrainProgressInformationView();
-            var VM = new TrainProgressInformationViewModel(Window.Dispatcher);
+            var VM = new TrainProgressInformationViewModel(Window.Dispatcher, m_CurrentArea);
             __OpenChildWindow(Window, VM);
         }
         #endregion
@@ -1116,6 +1121,90 @@ namespace Leibit.Client.WPF.ViewModels
             }
 
             return true;
+        }
+        #endregion
+
+        #region [__SerializeVisibleTrains]
+        private List<SerializedVisibleTrainInfo> __SerializeVisibleTrains()
+        {
+            var result = new List<SerializedVisibleTrainInfo>();
+
+            foreach (var train in Runtime.VisibleTrains)
+            {
+                var serializedTrain = new SerializedVisibleTrainInfo();
+                serializedTrain.TrainNumber = train.TrainNumber;
+                serializedTrain.HadLiveData = train.HadLiveData;
+                result.Add(serializedTrain);
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region [__DeserializeVisibleTrains]
+        private void __DeserializeVisibleTrains(List<SerializedVisibleTrainInfo> serializedTrains)
+        {
+            Runtime.VisibleTrains.Clear();
+
+            if (serializedTrains == null)
+                return;
+
+            foreach (var serializedTrain in serializedTrains)
+            {
+                var train = new VisibleTrainInfo();
+                train.TrainNumber = serializedTrain.TrainNumber;
+                train.HadLiveData = serializedTrain.HadLiveData;
+                Runtime.VisibleTrains.Add(train);
+            }
+        }
+        #endregion
+
+        #region [__SerializeHiddenSchedules]
+        private List<SerializedHiddenScheduleInfo> __SerializeHiddenSchedules()
+        {
+            var result = new List<SerializedHiddenScheduleInfo>();
+
+            foreach (var schedule in Runtime.HiddenSchedules)
+            {
+                var serializedSchedule = new SerializedHiddenScheduleInfo();
+                serializedSchedule.TrainNumber = schedule.Schedule.Train.Number;
+                serializedSchedule.EstwId = schedule.Schedule.Station.ESTW.Id;
+                serializedSchedule.Station = schedule.Schedule.Station.ShortSymbol;
+                serializedSchedule.Time = schedule.Schedule.Time;
+                serializedSchedule.CreatedOn = schedule.CreatedOn;
+                result.Add(serializedSchedule);
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region [__DeserializeHiddenSchedules]
+        private void __DeserializeHiddenSchedules(List<SerializedHiddenScheduleInfo> serializedSchedules)
+        {
+            Runtime.HiddenSchedules.Clear();
+
+            if (serializedSchedules == null)
+                return;
+
+            foreach (var serializedSchedule in serializedSchedules)
+            {
+                if (!m_CurrentArea.Trains.ContainsKey(serializedSchedule.TrainNumber))
+                    continue;
+
+                var train = m_CurrentArea.Trains[serializedSchedule.TrainNumber];
+                var schedule = train.Schedules.FirstOrDefault(s => s.Station.ESTW.Id == serializedSchedule.EstwId
+                                                                && s.Station.ShortSymbol == serializedSchedule.Station
+                                                                && s.Time == serializedSchedule.Time);
+
+                if (schedule == null)
+                    continue;
+
+                var hiddenSchedule = new HiddenScheduleInfo();
+                hiddenSchedule.Schedule = schedule;
+                hiddenSchedule.CreatedOn = serializedSchedule.CreatedOn;
+                Runtime.HiddenSchedules.Add(hiddenSchedule);
+            }
         }
         #endregion
 

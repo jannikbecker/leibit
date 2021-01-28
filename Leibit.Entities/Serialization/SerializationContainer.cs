@@ -15,6 +15,8 @@ namespace Leibit.Entities.Serialization
         public Area Area { get; set; }
         public List<SerializedWindowInformation> Windows { get; set; }
         public List<SerializedStation> VisibleStations { get; set; }
+        public List<SerializedVisibleTrainInfo> VisibleTrains { get; set; }
+        public List<SerializedHiddenScheduleInfo> HiddenSchedules { get; set; }
 
     }
 }

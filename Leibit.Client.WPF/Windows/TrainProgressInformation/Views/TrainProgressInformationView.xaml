@@ -26,6 +26,9 @@
 
         <controls:LeibitDataGrid.ContextMenu>
             <ContextMenu>
+                <MenuItem Header="Neu" Command="{Binding NewCommand}"/>
+                <MenuItem Header="Löschen" Command="{Binding DeleteCommand}"/>
+                <Separator/>
                 <MenuItem Header="Vsl. Verspätung" Command="{Binding EnterExpectedDelayCommand}"/>
                 <MenuItem Header="Gleiswechsel" Command="{Binding ShowTrackChangeCommand}"/>
                 <Separator/>

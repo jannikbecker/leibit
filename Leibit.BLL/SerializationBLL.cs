@@ -147,6 +147,8 @@ namespace Leibit.BLL
 
                 Root.Windows = Request.Windows;
                 Root.VisibleStations = Request.VisibleStations;
+                Root.VisibleTrains = Request.VisibleTrains;
+                Root.HiddenSchedules = Request.HiddenSchedules;
 
                 using (var Stream = new FileStream(Filename, FileMode.Create, FileAccess.Write))
                 {
@@ -297,6 +299,8 @@ namespace Leibit.BLL
 
                 Container.Area = Area;
                 Container.VisibleStations = Root.VisibleStations;
+                Container.VisibleTrains = Root.VisibleTrains;
+                Container.HiddenSchedules = Root.HiddenSchedules;
                 Container.Windows = Root.Windows;
 
                 var Result = new OperationResult<SerializationContainer>();

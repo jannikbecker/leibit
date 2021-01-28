@@ -1,5 +1,6 @@
 ﻿using Leibit.BLL;
 using Leibit.Client.WPF.Common;
+using Leibit.Client.WPF.Dialogs.TrainNumber;
 using Leibit.Client.WPF.Interfaces;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Client.WPF.Windows.DelayJustification.ViewModels;
@@ -38,15 +39,17 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private CommandHandler m_DoubleClickCommand;
         private SettingsBLL m_SettingsBll;
         private CalculationBLL m_CalculationBll;
+        private Area m_Area;
         #endregion
 
         #region - Ctor -
-        public TrainProgressInformationViewModel(Dispatcher Dispatcher)
+        public TrainProgressInformationViewModel(Dispatcher Dispatcher, Area area)
         {
             this.Dispatcher = Dispatcher;
             Trains = new ObservableCollection<TrainStationViewModel>();
             m_SettingsBll = new SettingsBLL();
             m_CalculationBll = new CalculationBLL();
+            m_Area = area;
 
             m_DoubleClickCommand = new CommandHandler(__RowDoubleClick, true);
             EnterExpectedDelayCommand = new CommandHandler(__EnterExpectedDelay, false);
@@ -56,6 +59,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             ShowDelayJustificationCommand = new CommandHandler(__ShowDelayJustification, false);
             NewTrainStateCommand = new CommandHandler(__NewTrainState, true);
             EnterTrainStateCommand = new CommandHandler(__EnterTrainState, false);
+            NewCommand = new CommandHandler(__NewEntry, true);
+            DeleteCommand = new CommandHandler(__DeleteEntry, false);
         }
         #endregion
 
@@ -115,6 +120,14 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         public CommandHandler ShowDelayJustificationCommand { get; }
         #endregion
 
+        #region [NewCommand]
+        public CommandHandler NewCommand { get; }
+        #endregion
+
+        #region [DeleteCommand]
+        public CommandHandler DeleteCommand { get; }
+        #endregion
+
         #region [SaveGridLayout]
         public bool SaveGridLayout
         {
@@ -165,6 +178,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         #region [Refresh]
         public void Refresh(Area Area)
         {
+            __CleanupState(Area);
             var settingsResult = m_SettingsBll.GetSettings();
 
             if (!settingsResult.Succeeded)
@@ -228,10 +242,12 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 ShowLocalOrdersCommand.SetCanExecute(false);
                 ShowDelayJustificationCommand.SetCanExecute(false);
                 EnterTrainStateCommand.SetCanExecute(false);
+                DeleteCommand.SetCanExecute(false);
             }
             else
             {
                 ShowTrainScheduleCommand.SetCanExecute(true);
+                DeleteCommand.SetCanExecute(true);
 
                 if (SelectedItem.CurrentTrain == null)
                 {
@@ -336,11 +352,53 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
-        #region [__AreSchedulesEqual]
-        private bool __AreSchedulesEqual(LiveSchedule schedule1, LiveSchedule schedule2)
+        #region [__NewEntry]
+        private void __NewEntry()
         {
-            return schedule1.Schedule.Station.ShortSymbol == schedule2.Schedule.Station.ShortSymbol
-                && schedule1.Schedule.Time == schedule2.Schedule.Time;
+            var trainNumber = TrainNumberDialog.ShowModal();
+
+            if (!trainNumber.HasValue)
+                return;
+
+            if (!m_Area.Trains.ContainsKey(trainNumber.Value))
+                MessageBox.Show($"Unbekannte Zugnummer: {trainNumber}", "ZFI", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            Runtime.HiddenSchedules.RemoveAll(x => x.Schedule.Train.Number == trainNumber.Value);
+
+            if (Runtime.VisibleTrains.Exists(x => x.TrainNumber == trainNumber.Value))
+                return;
+
+            var entry = new VisibleTrainInfo();
+            entry.TrainNumber = trainNumber.Value;
+            entry.HadLiveData = m_Area.LiveTrains.ContainsKey(trainNumber.Value);
+            Runtime.VisibleTrains.Add(entry);
+        }
+        #endregion
+
+        #region [__DeleteEntry]
+        private void __DeleteEntry()
+        {
+            if (SelectedItem == null)
+                return;
+
+            var entry = new HiddenScheduleInfo();
+            entry.Schedule = SelectedItem.Schedule;
+
+            var estwTime = SelectedItem.Station.ESTW.Time;
+            entry.CreatedOn = new LeibitTime(estwTime.Hour, estwTime.Minute); // Remove day component from ESTW time.
+
+            if (Runtime.HiddenSchedules.Exists(x => __AreSchedulesEqual(x.Schedule, entry.Schedule)))
+                return;
+
+            Runtime.HiddenSchedules.Add(entry);
+        }
+        #endregion
+
+        #region [__AreSchedulesEqual]
+        private bool __AreSchedulesEqual(Schedule schedule1, Schedule schedule2)
+        {
+            return schedule1.Station.ShortSymbol == schedule2.Station.ShortSymbol
+                && schedule1.Time == schedule2.Time;
         }
         #endregion
 
@@ -355,10 +413,16 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             if (!Runtime.VisibleStations.Contains(schedule.Station))
                 return false;
 
+            if (Runtime.HiddenSchedules.Exists(x => __AreSchedulesEqual(x.Schedule, schedule)))
+                return false;
+
             LeibitTime referenceTime;
 
             if (liveSchedule == null)
             {
+                if (Runtime.VisibleTrains.Any(x => x.TrainNumber == schedule.Train.Number))
+                    return true;
+
                 // When no lead time is set, display only trains with live data.
                 if (!settings.LeadTime.HasValue)
                     return false;
@@ -400,28 +464,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             // So the current station has been skipped.
             // This is the case at the beginning of the simulation or for diverted trains.
             // To ensure that this record will not remain in the view indefinitly, it is made invisible.
-            if (!liveSchedule.IsDeparted && nextSchedules.Any(s => !__AreSchedulesEqual(s, liveSchedule) && s.IsArrived))
+            if (!liveSchedule.IsDeparted && nextSchedules.Any(s => !__AreSchedulesEqual(s.Schedule, liveSchedule.Schedule) && s.IsArrived))
                 return false;
-
-            // Check lead time
-            if (settings.LeadTime.HasValue)
-            {
-                referenceTime = schedule.Arrival ?? schedule.Departure;
-
-                if (liveSchedule.Schedule.Handling == eHandling.Start)
-                {
-                    if (liveSchedule.ExpectedDeparture != null && liveSchedule.ExpectedDeparture < referenceTime)
-                        referenceTime = liveSchedule.ExpectedDeparture;
-                }
-                else
-                {
-                    if (liveSchedule.ExpectedArrival != null && liveSchedule.ExpectedArrival < referenceTime)
-                        referenceTime = liveSchedule.ExpectedArrival;
-                }
-
-                if ((referenceTime - schedule.Station.ESTW.Time).TotalMinutes > settings.LeadTime)
-                    return false;
-            }
 
             // Check follow-up time
             referenceTime = null;
@@ -441,6 +485,29 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     return false;
 
                 if ((schedule.Station.ESTW.Time - referenceTime).TotalMinutes > settings.FollowUpTime)
+                    return false;
+            }
+
+            if (Runtime.VisibleTrains.Any(x => x.TrainNumber == schedule.Train.Number))
+                return true;
+
+            // Check lead time
+            if (settings.LeadTime.HasValue)
+            {
+                referenceTime = schedule.Arrival ?? schedule.Departure;
+
+                if (liveSchedule.Schedule.Handling == eHandling.Start)
+                {
+                    if (liveSchedule.ExpectedDeparture != null && liveSchedule.ExpectedDeparture < referenceTime)
+                        referenceTime = liveSchedule.ExpectedDeparture;
+                }
+                else
+                {
+                    if (liveSchedule.ExpectedArrival != null && liveSchedule.ExpectedArrival < referenceTime)
+                        referenceTime = liveSchedule.ExpectedArrival;
+                }
+
+                if ((referenceTime - schedule.Station.ESTW.Time).TotalMinutes > settings.LeadTime)
                     return false;
             }
 
@@ -516,6 +583,32 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             }
 
             return currentVm;
+        }
+        #endregion
+
+        #region [__CleanupState]
+        private void __CleanupState(Area area)
+        {
+            foreach (var train in Runtime.VisibleTrains)
+                if (area.LiveTrains.ContainsKey(train.TrainNumber))
+                    train.HadLiveData = true;
+
+            Runtime.VisibleTrains.RemoveAll(x => x.HadLiveData && !area.LiveTrains.ContainsKey(x.TrainNumber));
+
+            Runtime.HiddenSchedules.RemoveAll(hiddenSchedule =>
+            {
+                var estw = hiddenSchedule.Schedule.Station.ESTW;
+
+                if (estw.Time < hiddenSchedule.Schedule.Time)
+                {
+                    if (hiddenSchedule.CreatedOn < hiddenSchedule.Schedule.Time)
+                        return estw.Time < hiddenSchedule.CreatedOn;
+                    else
+                        return true;
+                }
+
+                return false;
+            });
         }
         #endregion
 
