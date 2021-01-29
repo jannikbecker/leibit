@@ -103,6 +103,15 @@ namespace Leibit.BLL
                     SerializedTrain.LastModified = Train.LastModified;
                     SerializedTrain.TrainDirection = Train.Direction;
 
+                    foreach (var block in Train.BlockHistory)
+                    {
+                        var serializedBlock = new SerializedBlock();
+                        serializedBlock.EstwId = block.Track.Station.ESTW.Id;
+                        serializedBlock.Name = block.Name;
+                        serializedBlock.Direction = block.Direction;
+                        SerializedTrain.BlockHistory.Add(serializedBlock);
+                    }
+
                     if (Train.Block != null)
                     {
                         SerializedTrain.CurrentEstwId = Train.Block.Track.Station.ESTW.Id;
@@ -228,6 +237,19 @@ namespace Leibit.BLL
                     LiveTrain.Delay = SerializedTrain.Delay;
                     LiveTrain.LastModified = SerializedTrain.LastModified;
                     LiveTrain.Direction = SerializedTrain.TrainDirection;
+
+                    if (SerializedTrain.BlockHistory != null)
+                    {
+                        foreach (var block in SerializedTrain.BlockHistory)
+                        {
+                            var estw2 = Area.ESTWs.SingleOrDefault(e => e.Id == block.EstwId);
+
+                            if (estw2 == null || !estw2.Blocks.ContainsKey(block.Name))
+                                continue;
+
+                            LiveTrain.BlockHistory.AddIfNotNull(estw2.Blocks[block.Name].FirstOrDefault(b => b.Direction == block.Direction));
+                        }
+                    }
 
                     if (Estw.Blocks.ContainsKey(SerializedTrain.Block))
                         LiveTrain.Block = Estw.Blocks[SerializedTrain.Block].FirstOrDefault(b => b.Direction == SerializedTrain.BlockDirection);

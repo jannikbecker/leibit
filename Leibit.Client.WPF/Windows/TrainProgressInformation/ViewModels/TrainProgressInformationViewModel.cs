@@ -558,6 +558,10 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 // Determine state
                 var currentSchedule = liveSchedule.Train.Schedules.LastOrDefault(s => s.IsArrived && s.Schedule?.Station?.ShortSymbol == liveSchedule.Train.Block?.Track?.Station?.ShortSymbol);
 
+                var isFirstStation = liveSchedule.Train.BlockHistory.Select(b => b.Track.Station).Distinct().Count() == 1
+                    && liveSchedule.Train.Block?.Track?.CalculateDelay == true
+                    && liveSchedule.Train.Block?.Track?.IsPlatform == true;
+
                 if (liveSchedule.IsDeparted)
                     currentVm.State = "beendet";
                 else if (liveSchedule.Schedule.Handling == eHandling.Destination && liveSchedule.IsArrived)
@@ -566,13 +570,13 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     currentVm.State = "ab";
                 else if (currentSchedule.IsDeparted)
                     currentVm.State = "ab";
-                else if (currentSchedule.Schedule.Handling == eHandling.Start && settings.AutomaticReadyMessageEnabled && currentSchedule.Schedule.Station.ESTW.Time >= currentSchedule.Schedule.Departure.AddMinutes(-settings.AutomaticReadyMessageTime))
+                else if (isFirstStation && settings.AutomaticReadyMessageEnabled && currentSchedule.Schedule.Station.ESTW.Time >= currentSchedule.Schedule.Departure.AddMinutes(-settings.AutomaticReadyMessageTime))
                     currentVm.State = "fertig";
                 else if (currentSchedule.IsPrepared)
                     currentVm.State = "vorbereitet";
                 else if (currentSchedule.IsComposed)
                     currentVm.State = "bereitgestellt";
-                else if (currentSchedule.Schedule.Handling == eHandling.Start)
+                else if (isFirstStation)
                 {
                     currentVm.CurrentStation = null;
                     currentVm.State = string.Empty;

@@ -13,6 +13,8 @@ namespace Leibit.Entities.LiveData
     {
         private Train m_Train;
         private List<LiveSchedule> m_LiveSchedules;
+        private Block m_Block;
+        private List<Block> m_BlockHistory;
 
         public readonly object LockSchedules = new object();
 
@@ -20,6 +22,7 @@ namespace Leibit.Entities.LiveData
         {
             m_Train = train;
             m_LiveSchedules = new List<LiveSchedule>();
+            m_BlockHistory = new List<Block>();
         }
 
         public Train Train
@@ -38,9 +41,17 @@ namespace Leibit.Entities.LiveData
 
         public Block Block
         {
-            get;
-            set;
+            get => m_Block;
+            set
+            {
+                if (value != null && value != m_Block)
+                    m_BlockHistory.Add(value);
+
+                m_Block = value;
+            }
         }
+
+        public List<Block> BlockHistory => m_BlockHistory;
 
         public eBlockDirection Direction
         {

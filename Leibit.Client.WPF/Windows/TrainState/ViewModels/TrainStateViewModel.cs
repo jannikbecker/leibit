@@ -85,7 +85,10 @@ namespace Leibit.Client.WPF.Windows.TrainState.ViewModels
                 if (CurrentSchedule.IsComposed)
                     return false;
 
-                return !CurrentSchedule.Train.Schedules.Any(s => s.IsDeparted);
+                return CurrentSchedule.Train.BlockHistory.Select(b => b.Track.Station).Distinct().Count() == 1
+                    && CurrentSchedule.Train.Block?.Track?.CalculateDelay == true
+                    && CurrentSchedule.Train.Block?.Track?.IsPlatform == true;
+                ;
             }
         }
         #endregion
@@ -177,7 +180,7 @@ namespace Leibit.Client.WPF.Windows.TrainState.ViewModels
                     OnStatusBarTextChanged($"Zug {TrainNumber} in {CurrentSchedule.Schedule.Station.ShortSymbol} bereitgestellt gemeldet");
                 else if (TypeIsPrepared)
                     OnStatusBarTextChanged($"Zug {TrainNumber} in {CurrentSchedule.Schedule.Station.ShortSymbol} vorbereitet gemeldet");
-                else
+                else if (TypeRevocation)
                     OnStatusBarTextChanged($"Zugvorbereitungsmeldung für Zug {TrainNumber} in {CurrentSchedule.Schedule.Station.ShortSymbol} zurückgenommen");
 
                 OnCloseWindow();

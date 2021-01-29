@@ -10,12 +10,14 @@ namespace Leibit.Entities.Serialization
         public SerializedTrain()
         {
             Schedules = new List<SerializedSchedule>();
+            BlockHistory = new List<SerializedBlock>();
         }
 
         public int TrainNumber { get; set; }
         public string CurrentEstwId { get; set; }
         public eBlockDirection TrainDirection { get; set; }
         public string Block { get; set; }
+        public List<SerializedBlock> BlockHistory { get; set; }
         public eBlockDirection BlockDirection { get; set; }
         public int Delay { get; set; }
         public LeibitTime LastModified { get; set; }
