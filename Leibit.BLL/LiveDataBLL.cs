@@ -131,14 +131,14 @@ namespace Leibit.BLL
                         }
                     });
 
-                    var Estw = area.ESTWs.FirstOrDefault(e => e.Time != null);
+                    var EstwTime = area.ESTWs.Max(e => e.Time);
 
-                    if (Estw != null)
+                    if (EstwTime != null)
                     {
                         Parallel.ForEach(area.LiveTrains, Options, train =>
                             {
                                 // Set departure times for trains that are gone.
-                                if (train.Value.LastModified < Estw.Time.AddMinutes(-2))
+                                if (train.Value.LastModified < EstwTime.AddMinutes(-2))
                                 {
                                     var CurrentSchedules = train.Value.Schedules.Where(s => s.IsArrived && !s.IsDeparted);
 
@@ -152,18 +152,8 @@ namespace Leibit.BLL
                                 }
 
                                 // Delete train information that are older than 12 hours.
-                                var LastSchedule = train.Value.Schedules.LastOrDefault(s => s.LiveArrival != null || s.LiveDeparture != null);
-
-                                if (LastSchedule != null)
-                                {
-                                    var LastTime = LastSchedule.LiveDeparture == null ? LastSchedule.LiveArrival : LastSchedule.LiveDeparture;
-
-                                    if (LastTime < Estw.Time.AddHours(-12))
-                                    {
-                                        TrainInformation tmp;
-                                        area.LiveTrains.TryRemove(train.Value.Train.Number, out tmp);
-                                    }
-                                }
+                                if (train.Value.LastModified < EstwTime.AddHours(-12))
+                                    area.LiveTrains.TryRemove(train.Value.Train.Number, out _);
                             });
                     }
 

@@ -427,6 +427,13 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 if (!settings.LeadTime.HasValue)
                     return false;
 
+                referenceTime = schedule.Arrival ?? schedule.Departure;
+                var diff = (referenceTime - schedule.Station.ESTW.Time).TotalMinutes;
+
+                // Don't display data more than 6 hours in the past.
+                if (diff < -360)
+                    return false;
+
                 /* Trains without live data.
 
                 Examples:
@@ -443,9 +450,6 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 */
 
                 // Check if inside lead time (example 3).
-                referenceTime = schedule.Arrival ?? schedule.Departure;
-                var diff = (referenceTime - schedule.Station.ESTW.Time).TotalMinutes;
-
                 if (diff >= 0 && diff <= settings.LeadTime)
                     return true;
 
@@ -484,7 +488,13 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 if (!settings.FollowUpTime.HasValue)
                     return false;
 
-                if ((schedule.Station.ESTW.Time - referenceTime).TotalMinutes > settings.FollowUpTime)
+                var diff = (schedule.Station.ESTW.Time - referenceTime).TotalMinutes;
+
+                // Don't display data more than 6 hours in the future.
+                if (diff < -360)
+                    return false;
+
+                if (diff > settings.FollowUpTime)
                     return false;
             }
 
