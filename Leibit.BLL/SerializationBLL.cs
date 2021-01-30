@@ -6,6 +6,7 @@ using Leibit.Entities.Serialization;
 using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -94,6 +95,8 @@ namespace Leibit.BLL
                     StartTime = e.StartTime,
                     IsActive = (DateTime.Now - e.LastUpdatedOn).TotalSeconds < Settings.EstwTimeout,
                 }));
+
+                Root.Version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
 
                 foreach (var Train in Request.Area.LiveTrains.Values)
                 {
@@ -324,6 +327,7 @@ namespace Leibit.BLL
                 Container.VisibleTrains = Root.VisibleTrains;
                 Container.HiddenSchedules = Root.HiddenSchedules;
                 Container.Windows = Root.Windows;
+                Container.IsOldVersion = Root.Version != Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
 
                 var Result = new OperationResult<SerializationContainer>();
                 Result.Result = Container;

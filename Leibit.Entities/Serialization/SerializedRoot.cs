@@ -21,5 +21,6 @@ namespace Leibit.Entities.Serialization
         public List<SerializedStation> VisibleStations { get; set; }
         public List<SerializedVisibleTrainInfo> VisibleTrains { get; set; }
         public List<SerializedHiddenScheduleInfo> HiddenSchedules { get; set; }
+        public string Version { get; set; }
     }
 }

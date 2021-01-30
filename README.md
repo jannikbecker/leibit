@@ -49,7 +49,7 @@ Unter [Releases](https://github.com/jannikbecker/leibit/releases/latest) findet 
 
 ![Installationsdateien](https://raw.githubusercontent.com/wiki/jannikbecker/leibit/img/github_releases.png)
 
-Die ZIP-Datei dann an einem belieben Ort entpacken.
+Die ZIP-Datei dann an einem beliebigen Ort entpacken.
 
 ![ZIP-Archiv entpacken](https://raw.githubusercontent.com/wiki/jannikbecker/leibit/img/zip_extract.png)
 
