@@ -617,6 +617,14 @@ namespace Leibit.Client.WPF.ViewModels
                     return;
                 }
 
+                if (OpenResult.Result.IsOldVersion)
+                {
+                    var msgBoxResult = MessageBox.Show("Dieser Zustand wurde mit einer älteren Version von LeiBIT gespeichert. Es kann zu Fehlern in der Darstellung von Informationen kommen. Möchten Sie fortfahren?", "Frage", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    if (msgBoxResult != MessageBoxResult.Yes)
+                        return;
+                }
+
                 __CleanUp();
                 __Initialize(OpenResult.Result.Area);
 
