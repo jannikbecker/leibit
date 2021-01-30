@@ -15,6 +15,8 @@ using Leibit.Client.WPF.Windows.SystemState.ViewModels;
 using Leibit.Client.WPF.Windows.SystemState.Views;
 using Leibit.Client.WPF.Windows.TimeTable.ViewModels;
 using Leibit.Client.WPF.Windows.TimeTable.Views;
+using Leibit.Client.WPF.Windows.TrainComposition.ViewModels;
+using Leibit.Client.WPF.Windows.TrainComposition.Views;
 using Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels;
 using Leibit.Client.WPF.Windows.TrainProgressInformation.Views;
 using Leibit.Client.WPF.Windows.TrainSchedule.ViewModels;
@@ -722,6 +724,23 @@ namespace Leibit.Client.WPF.ViewModels
                             ViewModel = new SystemStateViewModel(Window.Dispatcher);
                             break;
 
+                        case eChildWindowType.TrainComposition:
+                            var trainNumber = (int)SerializedWindow.Tag;
+
+                            if (m_CurrentArea.Trains.ContainsKey(trainNumber))
+                            {
+                                var train = m_CurrentArea.Trains[trainNumber];
+
+                                if (train.Composition.IsNullOrWhiteSpace())
+                                    continue;
+
+                                Window = new TrainCompositionView(trainNumber);
+                                ViewModel = new TrainCompositionViewModel(train);
+                                break;
+                            }
+                            else
+                                continue;
+
                         default:
                             continue;
                     }
@@ -786,6 +805,13 @@ namespace Leibit.Client.WPF.ViewModels
                 }
                 else if (Window is SystemStateView)
                     SerializedWindow.Type = eChildWindowType.SystemState;
+                else if (Window is TrainCompositionView)
+                {
+                    SerializedWindow.Type = eChildWindowType.TrainComposition;
+
+                    var vm = Window.DataContext as TrainCompositionViewModel;
+                    SerializedWindow.Tag = vm.TrainNumber;
+                }
                 else
                     continue;
 
