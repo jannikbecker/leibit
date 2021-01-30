@@ -52,6 +52,7 @@ namespace Leibit.Entities
         TrainSchedule = 6,
         LocalOrders = 7,
         SystemState = 8,
+        TrainComposition = 9,
     }
 
     public enum eTrainState

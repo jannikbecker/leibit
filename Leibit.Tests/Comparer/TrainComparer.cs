@@ -27,6 +27,7 @@ namespace Leibit.Tests.Comparer
             CompareScalar(expected.Type, actual.Type, "Type");
             CompareScalar(expected.Start, actual.Start, "Start");
             CompareScalar(expected.Destination, actual.Destination, "Destination");
+            CompareScalar(expected.Composition, actual.Composition, "Composition");
 
             CompareList(expected.Schedules, actual.Schedules, ScheduleComparer.Instance, "Schedules");
         }
