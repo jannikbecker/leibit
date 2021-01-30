@@ -185,7 +185,7 @@
                             <StackPanel Orientation="Horizontal">
                                 
                                 <xctk:IntegerUpDown Value="{Binding Data.TrainScheduleNumber, Source={StaticResource proxy}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                    core:FocusManager.IsFocused="{Binding Data.IsTrainScheduleDropDownOpen, Source={StaticResource proxy}}"
+                                                    core:FocusManager.IsFocused="{Binding Data.IsTrainScheduleDropDownOpen, Mode=TwoWay, Source={StaticResource proxy}}"
                                                     Focusable="True"
                                                     Width="50"
                                                     ShowButtonSpinner="False"
