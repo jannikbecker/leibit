@@ -542,5 +542,8 @@
     <None Update="TestData\ESTWOnline\TestMisdirectedTrain\TestdorfDeparture.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="TestData\ESTWRoots\Testdorf\Zugbildung\02007___.zug">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
