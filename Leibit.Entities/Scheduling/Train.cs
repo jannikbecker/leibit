@@ -62,6 +62,8 @@ namespace Leibit.Entities.Scheduling
             }
         }
 
+        public string Composition { get; set; }
+
         public ReadOnlyCollection<Schedule> Schedules
         {
             get
