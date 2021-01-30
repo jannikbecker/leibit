@@ -19,5 +19,6 @@ namespace Leibit.Entities.Serialization
         public string AreaId { get; set; }
         public List<SerializedESTW> LoadedESTWs { get; set; }
         public List<SerializedStation> VisibleStations { get; set; }
+        public string Version { get; set; }
     }
 }
