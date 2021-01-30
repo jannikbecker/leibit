@@ -454,7 +454,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     return true;
 
                 // Check if the time is between the simulation start time and the current ESTW time (example 2).
-                if (referenceTime >= schedule.Station.ESTW.StartTime && referenceTime <= schedule.Station.ESTW.Time)
+                if (referenceTime > schedule.Station.ESTW.StartTime && referenceTime <= schedule.Station.ESTW.Time)
                     return true;
 
                 // Example 1 and 4.
