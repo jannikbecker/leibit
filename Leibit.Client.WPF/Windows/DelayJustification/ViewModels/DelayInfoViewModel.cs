@@ -122,6 +122,20 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
         }
         #endregion
 
+        #region [IsFirst]
+        public bool IsFirst
+        {
+            get
+            {
+                return Get<bool>();
+            }
+            set
+            {
+                Set(value);
+            }
+        }
+        #endregion
+
         #region [IsLast]
         public bool IsLast
         {

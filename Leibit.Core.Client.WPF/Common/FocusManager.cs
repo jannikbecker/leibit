@@ -29,11 +29,13 @@ namespace Leibit.Core.Client.Common
 
             if (e.NewValue is bool && (bool)e.NewValue)
             {
+                SetIsFocused(sender, false);
+
                 Target.Dispatcher.BeginInvoke(DispatcherPriority.Input, new Action(delegate ()
-                    {
-                        Target.Focus();
-                        Keyboard.Focus(Target);
-                    }));
+                {
+                    Target.Focus();
+                    Keyboard.Focus(Target);
+                }));
             }
         }
 
