@@ -20,8 +20,11 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
                                         .Select(delay => new DelayInfoViewModel(delay)).ToObservableCollection();
             Delays.ForEach(d => d.DelaySaved += __DelaySaved);
 
-            if (Delays.Count > 0)
+            if (Delays.Any())
+            {
+                Delays.First().IsFirst = true;
                 Delays.Last().IsLast = true;
+            }
         }
         #endregion
 
@@ -64,10 +67,13 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
             Delays.Remove(delay);
             OnStatusBarTextChanged($"Verspätung für Zug {CurrentTrain.Train.Number} begründet");
 
-            if (Delays.Count == 0)
+            if (!Delays.Any())
                 OnCloseWindow();
             else
+            {
+                Delays.First().IsFirst = true;
                 Delays.Last().IsLast = true;
+            }
         }
         #endregion
 
