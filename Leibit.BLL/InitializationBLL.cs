@@ -214,6 +214,8 @@ namespace Leibit.BLL
                     }
                 }
 
+                __LoadTrainCompositions(Estw, PathResult.Result);
+
                 Estw.IsLoaded = true;
                 return Result;
             }
@@ -575,6 +577,39 @@ namespace Leibit.BLL
             Schedules.ForEach(s => s.LocalOrders = content.TrimEnd());
         }
         #endregion
+
+        #region [__LoadTrainCompositions]
+        private void __LoadTrainCompositions(ESTW estw, string path)
+        {
+            var compositionFilesPath = Path.Combine(path, Constants.TRAIN_COMPOSITION_FOLDER);
+
+            if (!Directory.Exists(compositionFilesPath))
+                return;
+
+            foreach (var file in Directory.EnumerateFiles(compositionFilesPath, "*.zug"))
+            {
+                var fileInfo = new FileInfo(file);
+                var sTrainNumber = fileInfo.Name.Replace(fileInfo.Extension, string.Empty).Replace("_", string.Empty);
+
+                if (!int.TryParse(sTrainNumber, out int trainNumber))
+                    continue;
+
+                if (!estw.Area.Trains.ContainsKey(trainNumber))
+                    continue;
+
+                using (var streamReader = new StreamReader(file, Encoding.GetEncoding("iso-8859-1")))
+                {
+                    var content = streamReader.ReadToEnd();
+
+                    if (content != null)
+                        content = content.Trim();
+
+                    if (content.IsNotNullOrEmpty())
+                        estw.Area.Trains[trainNumber].Composition = content;
+                }
+            }
+            #endregion
+        }
 
         #region [__AreSchedulesClose]
         private bool __AreSchedulesClose(Schedule schedule1, Schedule schedule2)
