@@ -595,7 +595,7 @@ namespace Leibit.BLL
                             LiveTrack = Block.Track;
                         }
 
-                        if (LiveTrack != null || Train.Block == null)
+                        if (LiveTrack != null)
                             Train.Block = Block;
 
                         if (LiveTrack == null)
