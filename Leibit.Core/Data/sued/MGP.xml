@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Hechendorf" short="MHDF" refNr="54">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="54BN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Ohlstadt" short="MOH" refNr="55" scheduleFile="g55_____.abf" localOrderFile="bf55____.abf">
+    <track name="1">
+      <block name="55G1"/>
+    </track>
+    <track name="2">
+      <block name="55G2"/>
+    </track>
+  </station>
+
+  <station name="Eschenlohe" short="MECH" refNr="56" scheduleFile="g56_____.abf" localOrderFile="bf56____.abf">
+    <track name="1">
+      <block name="56G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+    
+    <track name="2">
+      <block name="56G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+    </track>
+    
+    <track name="3">
+      <block name="56G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+    </track>
+    
+    <track name="52">
+      <block name="56G52"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Oberau" short="MOB" refNr="57" scheduleFile="g57_____.abf" localOrderFile="bf57____.abf">
+    <track name="1">
+      <block name="57G1"/>
+    </track>
+    <track name="2">
+      <block name="57G2"/>
+    </track>
+    <track name="3">
+      <block name="57G3"/>
+    </track>
+  </station>
+
+  <station name="Farchant" short="MFCH" refNr="58" scheduleFile="g58_____.abf" localOrderFile="bf58____.abf">
+    <track name="1">
+      <block name="58G1"/>
+    </track>
+    <track name="2">
+      <block name="58G2"/>
+    </track>
+  </station>
+
+  <station name="Garmisch-Partenkirchen" short="MGP" refNr="60" scheduleFile="g60_____.abf" localOrderFile="bf60____.abf">
+    <track name="1">
+      <block name="60G1"/>
+    </track>
+    <track name="2">
+      <block name="60G2"/>
+    </track>
+    <track name="3">
+      <block name="60G3"/>
+    </track>
+    <track name="4">
+      <block name="60G4"/>
+    </track>
+    <track name="5">
+      <block name="60G5"/>
+    </track>
+    <track name="6">
+      <block name="60G6"/>
+    </track>
+    <track name="7">
+      <block name="60G7"/>
+    </track>
+    <track name="8">
+      <block name="60G8"/>
+    </track>
+    <track name="9">
+      <block name="60G9"/>
+    </track>
+    <track name="101">
+      <block name="60G101"/>
+    </track>
+  </station>
+
+  <station name="Kaltenbrunn" short="MKLN" refNr="62" scheduleFile="g62_____.abf" localOrderFile="bf62____.abf">
+    <track name="2">
+      <block name="62G2"/>
+    </track>
+    <track name="3">
+      <block name="62G3"/>
+    </track>
+  </station>
+
+  <station name="Klais" short="MKLA" refNr="63" scheduleFile="g63_____.abf" localOrderFile="bf63____.abf">
+    <track name="2">
+      <block name="63G2"/>
+    </track>
+    <track name="3">
+      <block name="63G3"/>
+    </track>
+  </station>
+
+  <station name="Mittenwald" short="MMW" refNr="64" scheduleFile="g64_____.abf" localOrderFile="bf64____.abf">
+    <track name="1">
+      <block name="64G1"/>
+    </track>
+    <track name="2">
+      <block name="64G2"/>
+    </track>
+    <track name="3">
+      <block name="64G3"/>
+    </track>
+    <track name="4">
+      <block name="64G4"/>
+    </track>
+  </station>
+
+  <station name="Scharnitz" short="XAA" refNr="65" scheduleFile="g65_____.abf" localOrderFile="bf65____.abf">
+    <track name="201">
+      <block name="65G201"/>
+    </track>
+    <track name="202">
+      <block name="65G202"/>
+    </track>
+    <track name="203">
+      <block name="65G203"/>
+    </track>
+    <track name="204">
+      <block name="65G204"/>
+    </track>
+  </station>
+
+  <station name="Gießenbach" short="XAGB" refNr="65" scheduleFile="b65_____.abf">
+    <track name="21" calculateDelay="false">
+      <block name="65Bf21"/>
+    </track>
+  </station>
+
+  <station name="Seefeld PlayCastle" short="XASPC" refNr="66" scheduleFile="b66_____.abf">
+    <track name="11" calculateDelay="false">
+      <block name="66Bf11"/>
+    </track>
+  </station>
+
+  <station name="Seefeld in Tirol" short="XAS" refNr="66" scheduleFile="g66_____.abf" localOrderFile="bf66____.abf">
+    <track name="201">
+      <block name="66G201"/>
+    </track>
+    <track name="202">
+      <block name="66G202"/>
+    </track>
+    <track name="204">
+      <block name="66G204"/>
+    </track>
+  </station>
+
+  <station name="Reith" short="XARE" refNr="67" scheduleFile="g67_____.abf" localOrderFile="bf67____.abf">
+    <track name="201">
+      <block name="67G201"/>
+    </track>
+    <track name="202">
+      <block name="67G202"/>
+    </track>
+  </station>
+
+  <station name="Leithen" short="XALT" refNr="68" scheduleFile="b68_____.abf">
+    <track name="11" calculateDelay="false">
+      <block name="68Bd11"/>
+    </track>
+  </station>
+
+  <station name="Hochzirl" short="XAHO" refNr="68" scheduleFile="g68_____.abf" localOrderFile="bf68____.abf">
+    <track name="201">
+      <block name="68G201"/>
+    </track>
+    <track name="203">
+      <block name="68G203"/>
+    </track>
+  </station>
+
+  <station name="Martinswand" short="XAMA" refNr="69" scheduleFile="g69_____.abf" localOrderFile="bf69____.abf">
+    <track name="201">
+      <block name="69G201"/>
+    </track>
+    <track name="203">
+      <block name="69G203"/>
+    </track>
+  </station>
+
+  <station name="Kranebitten" short="XAKA" refNr="70" scheduleFile="kraneb__.abf">
+    <track name="11" calculateDelay="false"/>
+  </station>
+
+  <station name="Allerheiligenhöfe" short="XAAH" refNr="70" scheduleFile="innsbr__.abf">
+    <track name="11" calculateDelay="false"/>
+  </station>
+
+  <station name="Innsbruck-Hötting" short="XAIH" refNr="70" scheduleFile="g70_____.abf" localOrderFile="bf70____.abf">
+    <track name="201">
+      <block name="70G201"/>
+    </track>
+    <track name="203">
+      <block name="70G203"/>
+    </track>
+  </station>
+
+  <station name="Innsbruck Westbf" short="XAIW" refNr="71">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="70Ba11" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Untergrainau" short="MUGR" refNr="60" scheduleFile="b60_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="60BN3"/>
+    </track>
+  </station>
+
+  <station name="Griesen" short="MGRI" refNr="61" scheduleFile="g61_____.abf" localOrderFile="bf61____.abf">
+    <track name="1">
+      <block name="61G1"/>
+    </track>
+    <track name="2">
+      <block name="61G2"/>
+    </track>
+  </station>
+
+  <station name="Ehrwald (Zugspitzbahn)" short="XAEZ" refNr="11" scheduleFile="g11_____.abf" localOrderFile="bf11____.abf">
+    <track name="201">
+      <block name="11G201"/>
+    </track>
+    <track name="203">
+      <block name="11G203"/>
+    </track>
+  </station>
+
+  <station name="Lermoos" short="XALM" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
+    <track name="201">
+      <block name="10G201"/>
+    </track>
+    <track name="202">
+      <block name="10G202"/>
+    </track>
+  </station>
+
+  <station name="Lähn" short="XALN" refNr="10" scheduleFile="b10_____.abf">
+    <track name="11" calculateDelay="false">
+      <block name="10Bc11"/>
+    </track>
+  </station>
+
+  <station name="Bichlbach-Berwang" short="XABI" refNr="9" scheduleFile="g9______.abf" localOrderFile="bf9_____.abf">
+    <track name="201">
+      <block name="9G201"/>
+    </track>
+    <track name="203">
+      <block name="9G203"/>
+    </track>
+  </station>
+
+  <station name="Heiterwang-Plansee" short="XAHP" refNr="9" scheduleFile="heiter__.abf">
+    <track name="11" calculateDelay="false"/>
+  </station>
+  
+  <station name="Reutte in Tirol Schulzentrum" short="XARTS" refNr="8" scheduleFile="rt-sch__.abf">
+    <track name="11" calculateDelay="false"/>
+  </station>
+
+  <station name="Reutte in Tirol" short="XART" refNr="8">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="09Bd11" direction="left"/>
+    </track>
+  </station>
+</estw>
