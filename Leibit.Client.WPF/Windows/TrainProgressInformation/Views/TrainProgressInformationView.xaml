@@ -183,8 +183,8 @@
             <controls:LeibitDataGridColumn Header="vsl. an" FieldName="ExpectedArrival" VisibilityBinding="{Binding IsExpectedArrivalVisible, Converter={StaticResource VisibilityConverter}}" />
             <controls:LeibitDataGridColumn Header="&#x0394;t ab" FieldName="DelayStringDeparture" VisibilityBinding="{Binding IsExpectedDepartureVisible, Converter={StaticResource VisibilityConverter}}" />
             <controls:LeibitDataGridColumn Header="vsl. ab" FieldName="ExpectedDeparture" VisibilityBinding="{Binding IsExpectedDepartureVisible, Converter={StaticResource VisibilityConverter}}" />
-            <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayInfo" />
-            <controls:LeibitDataGridColumn Header="öAno" FieldName="LocalOrders" />
+            <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayInfo" TextAlignment="Center" />
+            <controls:LeibitDataGridColumn Header="öAno" FieldName="LocalOrders" TextAlignment="Center" />
             <controls:LeibitDataGridColumn Header="Akt. Betriebsstelle" FieldName="CurrentStation.Name" />
             <controls:LeibitDataGridColumn Header="&#x0394;t" FieldName="DelayString" />
             <controls:LeibitDataGridColumn Header="Zugstatus" FieldName="State" />

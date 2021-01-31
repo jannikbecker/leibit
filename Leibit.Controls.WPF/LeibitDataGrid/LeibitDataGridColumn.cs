@@ -12,5 +12,7 @@ namespace Leibit.Controls
 
         public Binding VisibilityBinding { get; set; }
 
+        public TextAlignment TextAlignment { get; set; }
+
     }
 }
