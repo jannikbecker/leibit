@@ -1,4 +1,5 @@
 ﻿using Leibit.Core.Client.BaseClasses;
+using Leibit.Core.Common;
 using Leibit.Core.Scheduling;
 using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
@@ -11,13 +12,13 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
     {
 
         #region - Ctor -
-        public TrainStationViewModel(TrainInformation Train, Schedule schedule)
+        public TrainStationViewModel(Schedule schedule)
         {
-            CurrentTrain = Train;
             Schedule = schedule;
             Station = schedule.Station;
-            TrainNumber = Train.Train.Number;
+            TrainNumber = schedule.Train.Number;
             Track = schedule.Track;
+            LocalOrders = schedule.LocalOrders.IsNotNullOrWhiteSpace() ? 'J' : ' ';
 
             Arrival = schedule.Arrival;
             Departure = schedule.Departure;
@@ -46,7 +47,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         public TrainInformation CurrentTrain
         {
             get;
-            private set;
+            set;
         }
         #endregion
 
@@ -131,11 +132,11 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         #endregion
 
         #region [Delay]
-        public int Delay
+        public int? Delay
         {
             get
             {
-                return Get<int>();
+                return Get<int?>();
             }
             set
             {
@@ -145,12 +146,61 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
+        #region [DelayArrival]
+        public int DelayArrival
+        {
+            get
+            {
+                if (Arrival == null || ExpectedArrival == null)
+                    return 0;
+
+                return (ExpectedArrival - Arrival).TotalMinutes;
+            }
+        }
+        #endregion
+
+        #region [DelayDeparture]
+        public int DelayDeparture
+        {
+            get
+            {
+                if (Departure == null || ExpectedDeparture == null)
+                    return 0;
+
+                return (ExpectedDeparture - Departure).TotalMinutes;
+            }
+        }
+        #endregion
+
         #region [DelayString]
         public string DelayString
         {
             get
             {
+                if (!Delay.HasValue)
+                    return string.Empty;
+
                 return Delay > 0 ? String.Format("+{0}", Delay) : Delay.ToString();
+            }
+        }
+        #endregion
+
+        #region [DelayStringArrival]
+        public string DelayStringArrival
+        {
+            get
+            {
+                return DelayArrival > 0 ? String.Format("+{0}", DelayArrival) : DelayArrival.ToString();
+            }
+        }
+        #endregion
+
+        #region [DelayStringDeparture]
+        public string DelayStringDeparture
+        {
+            get
+            {
+                return DelayDeparture > 0 ? String.Format("+{0}", DelayDeparture) : DelayDeparture.ToString();
             }
         }
         #endregion
@@ -172,8 +222,11 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 else
                 {
                     Set(value);
-                    IsExpectedArrivalVisible = true;
+                    IsExpectedArrivalVisible = IsArrivalVisible;
                 }
+
+                OnPropertyChanged(nameof(DelayArrival));
+                OnPropertyChanged(nameof(DelayStringArrival));
             }
         }
         #endregion
@@ -195,8 +248,11 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 else
                 {
                     Set(value);
-                    IsExpectedDepartureVisible = true;
+                    IsExpectedDepartureVisible = IsDepartureVisible;
                 }
+
+                OnPropertyChanged(nameof(DelayDeparture));
+                OnPropertyChanged(nameof(DelayStringDeparture));
             }
         }
         #endregion

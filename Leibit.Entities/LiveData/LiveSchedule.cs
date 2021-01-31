@@ -109,6 +109,10 @@ namespace Leibit.Entities.LiveData
             set;
         }
 
+        public bool IsComposed { get; set; }
+
+        public bool IsPrepared { get; set; }
+
         public ReadOnlyCollection<DelayInfo> Delays
         {
             get

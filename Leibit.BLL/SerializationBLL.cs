@@ -92,6 +92,7 @@ namespace Leibit.BLL
                 {
                     ESTWId = e.Id,
                     Time = e.Time,
+                    StartTime = e.StartTime,
                     IsActive = (DateTime.Now - e.LastUpdatedOn).TotalSeconds < Settings.EstwTimeout,
                 }));
 
@@ -104,6 +105,15 @@ namespace Leibit.BLL
                     SerializedTrain.Delay = Train.Delay;
                     SerializedTrain.LastModified = Train.LastModified;
                     SerializedTrain.TrainDirection = Train.Direction;
+
+                    foreach (var block in Train.BlockHistory)
+                    {
+                        var serializedBlock = new SerializedBlock();
+                        serializedBlock.EstwId = block.Track.Station.ESTW.Id;
+                        serializedBlock.Name = block.Name;
+                        serializedBlock.Direction = block.Direction;
+                        SerializedTrain.BlockHistory.Add(serializedBlock);
+                    }
 
                     if (Train.Block != null)
                     {
@@ -125,6 +135,8 @@ namespace Leibit.BLL
                         SerializedSchedule.ExpectedArrival = Schedule.ExpectedArrival;
                         SerializedSchedule.ExpectedDeparture = Schedule.ExpectedDeparture;
                         SerializedSchedule.ExpectedDelay = Schedule.ExpectedDelay;
+                        SerializedSchedule.IsComposed = Schedule.IsComposed;
+                        SerializedSchedule.IsPrepared = Schedule.IsPrepared;
 
                         if (Schedule.LiveTrack != null)
                             SerializedSchedule.LiveTrack = Schedule.LiveTrack.Name;
@@ -147,6 +159,8 @@ namespace Leibit.BLL
 
                 Root.Windows = Request.Windows;
                 Root.VisibleStations = Request.VisibleStations;
+                Root.VisibleTrains = Request.VisibleTrains;
+                Root.HiddenSchedules = Request.HiddenSchedules;
 
                 using (var Stream = new FileStream(Filename, FileMode.Create, FileAccess.Write))
                 {
@@ -211,6 +225,7 @@ namespace Leibit.BLL
                     var LoadResult = InitializationBll.LoadESTW(Estw);
                     ValidateResult(LoadResult);
                     Estw.Time = SerializedEstw.Time;
+                    Estw.StartTime = SerializedEstw.StartTime;
                 }
 
                 foreach (var SerializedTrain in Root.LiveTrains)
@@ -225,6 +240,19 @@ namespace Leibit.BLL
                     LiveTrain.Delay = SerializedTrain.Delay;
                     LiveTrain.LastModified = SerializedTrain.LastModified;
                     LiveTrain.Direction = SerializedTrain.TrainDirection;
+
+                    if (SerializedTrain.BlockHistory != null)
+                    {
+                        foreach (var block in SerializedTrain.BlockHistory)
+                        {
+                            var estw2 = Area.ESTWs.SingleOrDefault(e => e.Id == block.EstwId);
+
+                            if (estw2 == null || !estw2.Blocks.ContainsKey(block.Name))
+                                continue;
+
+                            LiveTrain.BlockHistory.AddIfNotNull(estw2.Blocks[block.Name].FirstOrDefault(b => b.Direction == block.Direction));
+                        }
+                    }
 
                     if (Estw.Blocks.ContainsKey(SerializedTrain.Block))
                         LiveTrain.Block = Estw.Blocks[SerializedTrain.Block].FirstOrDefault(b => b.Direction == SerializedTrain.BlockDirection);
@@ -249,9 +277,16 @@ namespace Leibit.BLL
                         LiveSchedule.ExpectedArrival = SerializedSchedule.ExpectedArrival;
                         LiveSchedule.ExpectedDeparture = SerializedSchedule.ExpectedDeparture;
                         LiveSchedule.ExpectedDelay = SerializedSchedule.ExpectedDelay;
+                        LiveSchedule.IsComposed = SerializedSchedule.IsComposed;
+                        LiveSchedule.IsPrepared = SerializedSchedule.IsPrepared;
 
                         if (SerializedSchedule.LiveTrack.IsNotNullOrEmpty())
                             LiveSchedule.LiveTrack = Schedule.Station.Tracks.SingleOrDefault(t => t.Name == SerializedSchedule.LiveTrack);
+
+                        if (LiveSchedule.LiveArrival != null)
+                            LiveSchedule.IsArrived = true;
+                        if (LiveSchedule.LiveDeparture != null)
+                            LiveSchedule.IsDeparted = true;
 
                         foreach (var SerializedDelay in SerializedSchedule.Delays)
                         {
@@ -267,8 +302,30 @@ namespace Leibit.BLL
                         Area.LiveTrains.TryAdd(Train.Number, LiveTrain);
                 }
 
+                foreach (var Estw in Area.ESTWs)
+                {
+                    if (Estw.StartTime == null)
+                    {
+                        var schedules = Area.LiveTrains.Values.SelectMany(t => t.Schedules).Where(s => s.Schedule.Station.ESTW == Estw);
+
+                        if (schedules.Any())
+                        {
+                            Estw.StartTime = schedules.Min(s => s.LiveArrival);
+
+                            var minStartTime = Estw.Time.AddHours(-12);
+
+                            if (Estw.StartTime < minStartTime)
+                                Estw.StartTime = minStartTime;
+                        }
+                        else
+                            Estw.StartTime = Estw.Time;
+                    }
+                }
+
                 Container.Area = Area;
                 Container.VisibleStations = Root.VisibleStations;
+                Container.VisibleTrains = Root.VisibleTrains;
+                Container.HiddenSchedules = Root.HiddenSchedules;
                 Container.Windows = Root.Windows;
                 Container.IsOldVersion = Root.Version != Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
 

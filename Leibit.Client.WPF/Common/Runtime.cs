@@ -1,5 +1,6 @@
 ﻿using Leibit.Entities.Common;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -16,6 +17,8 @@ namespace Leibit.Client.WPF.Common
         static Runtime()
         {
             VisibleStations = new ObservableCollection<Station>();
+            VisibleTrains = new List<VisibleTrainInfo>();
+            HiddenSchedules = new List<HiddenScheduleInfo>();
         }
         #endregion
 
@@ -44,6 +47,14 @@ namespace Leibit.Client.WPF.Common
                     m_VisibleStations.CollectionChanged += OnVisibleStationsChanged;
             }
         }
+        #endregion
+
+        #region [VisibleTrains]
+        internal static List<VisibleTrainInfo> VisibleTrains { get; }
+        #endregion
+
+        #region [HiddenSchedules]
+        internal static List<HiddenScheduleInfo> HiddenSchedules { get; }
         #endregion
 
         #endregion

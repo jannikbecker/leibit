@@ -131,14 +131,14 @@ namespace Leibit.BLL
                         }
                     });
 
-                    var Estw = area.ESTWs.FirstOrDefault(e => e.Time != null);
+                    var EstwTime = area.ESTWs.Max(e => e.Time);
 
-                    if (Estw != null)
+                    if (EstwTime != null)
                     {
                         Parallel.ForEach(area.LiveTrains, Options, train =>
                             {
                                 // Set departure times for trains that are gone.
-                                if (train.Value.LastModified < Estw.Time.AddMinutes(-2))
+                                if (train.Value.LastModified < EstwTime.AddMinutes(-2))
                                 {
                                     var CurrentSchedules = train.Value.Schedules.Where(s => s.IsArrived && !s.IsDeparted);
 
@@ -152,18 +152,8 @@ namespace Leibit.BLL
                                 }
 
                                 // Delete train information that are older than 12 hours.
-                                var LastSchedule = train.Value.Schedules.LastOrDefault(s => s.LiveArrival != null || s.LiveDeparture != null);
-
-                                if (LastSchedule != null)
-                                {
-                                    var LastTime = LastSchedule.LiveDeparture == null ? LastSchedule.LiveArrival : LastSchedule.LiveDeparture;
-
-                                    if (LastTime < Estw.Time.AddHours(-12))
-                                    {
-                                        TrainInformation tmp;
-                                        area.LiveTrains.TryRemove(train.Value.Train.Number, out tmp);
-                                    }
-                                }
+                                if (train.Value.LastModified < EstwTime.AddHours(-12))
+                                    area.LiveTrains.TryRemove(train.Value.Train.Number, out _);
                             });
                     }
 
@@ -287,6 +277,63 @@ namespace Leibit.BLL
                     schedule.LiveTrack = null;
                 else
                     schedule.LiveTrack = track;
+
+                var result = new OperationResult<bool>();
+                result.Result = true;
+                result.Succeeded = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult<bool> { Message = ex.Message };
+            }
+        }
+        #endregion
+
+        #region [SetTrainState]
+        public OperationResult<bool> SetTrainState(LiveSchedule schedule, eTrainState state)
+        {
+            try
+            {
+                // Check if we are lucky
+                if ((state == eTrainState.None && !schedule.IsComposed && !schedule.IsPrepared)
+                 || (state == eTrainState.Composed && schedule.IsComposed)
+                 || (state == eTrainState.Prepared && schedule.IsPrepared))
+                {
+                    return new OperationResult<bool> { Result = false, Succeeded = true };
+                }
+
+                // Validation
+                var validationMessages = new List<string>();
+
+                if (!schedule.IsArrived)
+                    validationMessages.Add($"Der Zug {schedule.Train.Train.Number} hat die Betriebsstelle {schedule.Schedule.Station.ShortSymbol} noch nicht erreicht.");
+
+                if (schedule.IsDeparted)
+                    validationMessages.Add($"Der Zug {schedule.Train.Train.Number} hat die Betriebsstelle {schedule.Schedule.Station.ShortSymbol} bereits verlassen.");
+
+                if (validationMessages.Any())
+                {
+                    validationMessages.Insert(0, "Eingabe des Zugstatus nicht möglich");
+                    var message = string.Join(Environment.NewLine, validationMessages);
+                    throw new InvalidOperationException(message);
+                }
+
+                // Here we go
+                switch (state)
+                {
+                    case eTrainState.None:
+                        schedule.IsComposed = false;
+                        schedule.IsPrepared = false;
+                        break;
+                    case eTrainState.Composed:
+                        schedule.IsComposed = true;
+                        break;
+                    case eTrainState.Prepared:
+                        schedule.IsComposed = true; // Set both flags is this case
+                        schedule.IsPrepared = true;
+                        break;
+                }
 
                 var result = new OperationResult<bool>();
                 result.Result = true;
@@ -548,7 +595,7 @@ namespace Leibit.BLL
                             LiveTrack = Block.Track;
                         }
 
-                        if (LiveTrack != null || Train.Block == null)
+                        if (LiveTrack != null)
                             Train.Block = Block;
 
                         if (LiveTrack == null)

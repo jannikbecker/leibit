@@ -8,6 +8,7 @@ namespace Leibit.Entities.Serialization
     {
         public string ESTWId { get; set; }
         public LeibitTime Time { get; set; }
+        public LeibitTime StartTime { get; set; }
         public bool IsActive { get; set; }
     }
 }

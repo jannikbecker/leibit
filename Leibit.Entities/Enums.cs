@@ -55,4 +55,11 @@ namespace Leibit.Entities
         TrainComposition = 9,
     }
 
+    public enum eTrainState
+    {
+        None,
+        Composed,
+        Prepared,
+    }
+
 }
