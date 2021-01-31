@@ -593,10 +593,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
                     // Determine state
                     var currentSchedule = liveSchedule.Train.Schedules.LastOrDefault(s => s.IsArrived && s.Schedule.Station.ShortSymbol == liveSchedule.Train.Block.Track.Station.ShortSymbol);
-
-                    var isFirstStation = liveSchedule.Train.BlockHistory.Select(b => b.Track.Station).Distinct().Count() == 1
-                        && liveSchedule.Train.Block.Track.CalculateDelay == true
-                        && liveSchedule.Train.Block.Track.IsPlatform == true;
+                    var isFirstStation = currentSchedule?.Schedule.Handling == eHandling.Start;
 
                     if (liveSchedule.IsDeparted)
                         currentVm.State = "beendet";
