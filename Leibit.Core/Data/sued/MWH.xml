@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Tutzing" short="MTZ" refNr="37">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="37BN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Wilzhofen" short="MWI" refNr="96" scheduleFile="g96_____.abf" localOrderFile="bf96____.abf">
+    <track name="1">
+      <block name="96G1"/>
+    </track>
+    <track name="2">
+      <block name="96G2"/>
+    </track>
+  </station>
+
+  <station name="Utting" short="MUTG" refNr="92">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="92SN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Riederau" short="MRDU" refNr="92" scheduleFile="rieder__.abf">
+    <track name="1" calculateDelay="false">
+      <block name="92S2"/>
+    </track>
+  </station>
+
+  <station name="Dießen" short="MDIN" refNr="94" scheduleFile="g94_____.abf" localOrderFile="bf94____.abf">
+    <track name="1">
+      <block name="94G1"/>
+    </track>
+    <track name="2">
+      <block name="94G2"/>
+    </track>
+    <track name="3">
+      <block name="94G3"/>
+    </track>
+  </station>
+
+  <station name="Raisting" short="MRAG" refNr="94" scheduleFile="b94_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="94BN"/>
+    </track>
+    <track name="2" calculateDelay="false"/>
+  </station>
+
+  <station name="Weilheim (Oberbay)" short="MWH" refNr="95" scheduleFile="g95_____.abf" localOrderFile="bf95____.abf">
+    <track name="1">
+      <block name="95G1"/>
+    </track>
+    <track name="2">
+      <block name="95G2"/>
+    </track>
+    <track name="3">
+      <block name="95G3"/>
+    </track>
+    <track name="4">
+      <block name="95G4"/>
+    </track>
+    <track name="5">
+      <block name="95G5"/>
+    </track>
+    <track name="6">
+      <block name="95G6"/>
+    </track>
+    <track name="7">
+      <block name="95G7"/>
+    </track>
+  </station>
+
+  <station name="Peißenberg Nord" short="MPBN" refNr="36" scheduleFile="b36_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="95BN2"/>
+    </track>
+  </station>
+
+  <station name="Peißenberg" short="MPBG" refNr="36" scheduleFile="g36_____.abf" localOrderFile="bf36____.abf">
+    <track name="1">
+      <block name="36G1"/>
+    </track>
+    <track name="2">
+      <block name="36G2"/>
+    </track>
+  </station>
+
+  <station name="Hohenpeißenberg" short="MHPG" refNr="35" scheduleFile="b35_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="35BN"/>
+    </track>
+  </station>
+
+  <station name="Peiting Ost" short="MPTO" refNr="35" scheduleFile="g35_____.abf" localOrderFile="bf35____.abf">
+    <track name="1">
+      <block name="35G1"/>
+    </track>
+    <track name="2">
+      <block name="35G2"/>
+    </track>
+    <track name="3">
+      <block name="35G3"/>
+    </track>
+  </station>
+
+  <station name="Peiting Nord" short="MPTN" refNr="34" scheduleFile="b34_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="34BN2"/>
+    </track>
+  </station>
+
+  <station name="Schongau" short="MSGU" refNr="34" scheduleFile="g34_____.abf" localOrderFile="bf34____.abf">
+    <track name="2">
+      <block name="34G2"/>
+    </track>
+    <track name="3">
+      <block name="34G3"/>
+    </track>
+    <track name="4">
+      <block name="34G4"/>
+    </track>
+    <track name="5">
+      <block name="34G5"/>
+    </track>
+    <track name="6">
+      <block name="34G6"/>
+    </track>
+    <track name="7">
+      <block name="34G7"/>
+    </track>
+  </station>
+
+  <station name="Landsberg" short="MLL" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="33BN" direction="right"/>
+    </track>
+  </station>
+  
+  <station name="Altenstadt" short="MALO" refNr="34">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="34BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Polling" short="MPN" refNr="50" scheduleFile="g50_____.abf" localOrderFile="bf50____.abf">
+    <track name="1">
+      <block name="50G1"/>
+    </track>
+    <track name="2">
+      <block name="50G2"/>
+    </track>
+  </station>
+
+  <station name="Huglfing" short="MHUG" refNr="51" scheduleFile="g51_____.abf" localOrderFile="bf51____.abf">
+    <track name="2">
+      <block name="51G2"/>
+    </track>
+    <track name="3">
+      <block name="51G3"/>
+    </track>
+  </station>
+
+  <station name="Uffing" short="MUF" refNr="52" scheduleFile="g52_____.abf" localOrderFile="bf52____.abf">
+    <track name="1">
+      <block name="52G1"/>
+    </track>
+    <track name="2">
+      <block name="52G2"/>
+    </track>
+  </station>
+
+  <station name="Murnau" short="MMU" refNr="53" scheduleFile="g53_____.abf" localOrderFile="bf53____.abf">
+    <track name="1">
+      <block name="53G1"/>
+    </track>
+    <track name="2">
+      <block name="53G2"/>
+    </track>
+    <track name="3">
+      <block name="53G3"/>
+    </track>
+    <track name="4">
+      <block name="53G4"/>
+    </track>
+    <track name="5">
+      <block name="53G5"/>
+    </track>
+    <track name="10">
+      <block name="53G10"/>
+    </track>
+  </station>
+
+  <station name="Hechendorf" short="MHDF" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf">
+    <track name="1">
+      <block name="54G1"/>
+    </track>
+    <track name="2">
+      <block name="54G2"/>
+    </track>
+    <track name="3">
+      <block name="54G3"/>
+    </track>
+  </station>
+
+  <station name="Ohlstadt" short="MOH" refNr="55">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="54BN" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Murnau Ort" short="MUO" refNr="53" scheduleFile="murnau__.abf">
+    <track name="20" calculateDelay="false">
+      <block name="53G80"/>
+    </track>
+  </station>
+
+  <station name="Seeleiten-Berggeist" short="MSEB" refNr="1" scheduleFile="seelei__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Grafenaschau" short="MGRA" refNr="53" scheduleFile="grafen__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Jägerhaus (b Bad Kohlgrub)" short="MJGS" refNr="1" scheduleFile="jägerh__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Bad Kohlgrub" short="MBKG" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
+    <track name="1">
+      <block name="01G1"/>
+    </track>
+    <track name="2">
+      <block name="01G2"/>
+    </track>
+  </station>
+
+  <station name="Bad Kohlgrub Kurhaus" short="MBKK" refNr="1" scheduleFile="bad ko__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Saulgrub" short="MSGB" refNr="2" scheduleFile="saulgr__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Altenau (Bay)" short="MALT" refNr="2" scheduleFile="altena__.abf">
+    <track name="1" calculateDelay="false">
+      <block name="02BN2"/>
+    </track>
+  </station>
+
+  <station name="Unterammergau" short="MUAG" refNr="2" scheduleFile="untera__.abf">
+    <track name="1" calculateDelay="false">
+      <block name="02B1"/>
+    </track>
+  </station>
+
+  <station name="Oberammergau" short="MOA" refNr="2" scheduleFile="g2______.abf" localOrderFile="bf2_____.abf">
+    <track name="1">
+      <block name="02G1"/>
+    </track>
+    <track name="2">
+      <block name="02G2"/>
+    </track>
+    <track name="3">
+      <block name="02G3"/>
+    </track>
+  </station>
+</estw>
