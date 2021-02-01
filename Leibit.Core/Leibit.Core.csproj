@@ -39,6 +39,7 @@
     <None Remove="Data\nord\HB.xml" />
     <None Remove="Data\sued\MGP.xml" />
     <None Remove="Data\sued\MLI.xml" />
+    <None Remove="Data\sued\MWH.xml" />
     <None Remove="Data\sued\RSI.xml" />
     <None Remove="Data\sued\TAU.xml" />
     <None Remove="Data\sued\TF.xml" />
@@ -73,6 +74,7 @@
     <EmbeddedResource Include="Data\nord\HB.xml" />
     <EmbeddedResource Include="Data\sued\MGP.xml" />
     <EmbeddedResource Include="Data\sued\MLI.xml" />
+    <EmbeddedResource Include="Data\sued\MWH.xml" />
     <EmbeddedResource Include="Data\sued\RSI.xml" />
     <EmbeddedResource Include="Data\sued\TAU.xml" />
     <EmbeddedResource Include="Data\sued\TF.xml" />
