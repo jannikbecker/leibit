@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Oberottmarshausen" short="MOMN" refNr="26" scheduleFile="b26_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="26BN2"/>
+    </track>
+  </station>
+
+  <station name="Lagerlechfeld" short="MLLF" refNr="31" scheduleFile="g31_____.abf" localOrderFile="bf31____.abf">
+    <track name="2">
+      <block name="31G2"/>
+    </track>
+    <track name="3">
+      <block name="31G3"/>
+    </track>
+  </station>
+  
+  <station name="Klosterlechfeld" short="MKLF" refNr="31" scheduleFile="b31_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="31BN"/>
+    </track>
+  </station>
+
+  <station name="Buchloe" short="MBU" refNr="24">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="24BP1" direction="right"/>
+      <block name="32BN1" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Kaufering" short="MKFG" refNr="32" scheduleFile="g32_____.abf" localOrderFile="bf32____.abf">
+    <track name="1">
+      <block name="32G1"/>
+    </track>
+    <track name="2">
+      <block name="32G2"/>
+    </track>
+    <track name="3">
+      <block name="32G3"/>
+    </track>
+    <track name="4">
+      <block name="32G4"/>
+    </track>
+    <track name="5">
+      <block name="32G5"/>
+    </track>
+    <track name="6">
+      <block name="32G6"/>
+    </track>
+  </station>
+
+  <station name="Landsberg (Lech) Schule" short="MLLS" refNr="33" scheduleFile="b33_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="33G11"/>
+    </track>
+  </station>
+
+  <station name="Landsberg (Lech)" short="MLL" refNr="33" scheduleFile="g33_____.abf" localOrderFile="bf33____.abf">
+    <track name="1">
+      <block name="33G1"/>
+    </track>
+    <track name="2">
+      <block name="33G2"/>
+    </track>
+  </station>
+
+  <station name="Schongau" short="MSGU" refNr="34">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="33BN" direction="left"/>
+    </track>
+  </station>
+  
+  <station name="Epfenhausen" short="MEPH" refNr="85">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="85B17"/>
+      <block name="85B22"/>
+    </track>
+  </station>
+
+  <station name="Schmiechen (Oberbay)" short="MSCN" refNr="89" scheduleFile="b89_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="13BN"/>
+    </track>
+  </station>
+
+  <station name="Egling" short="MELG" refNr="89" scheduleFile="g89_____.abf" localOrderFile="bf89____.abf">
+    <track name="1">
+      <block name="89G1"/>
+    </track>
+    <track name="2">
+      <block name="89G2"/>
+    </track>
+  </station>
+
+  <station name="Walleshausen" short="MWHN" refNr="90" scheduleFile="g90_____.abf" localOrderFile="bf90____.abf">
+    <track name="1">
+      <block name="90G1"/>
+    </track>
+    <track name="2">
+      <block name="90G2"/>
+    </track>
+  </station>
+
+  <station name="Geltendorf" short="MGE" refNr="85" scheduleFile="g85_____.abf" localOrderFile="bf85____.abf">
+    <track name="1">
+      <block name="85G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    
+    <track name="2">
+      <block name="85G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    
+    <track name="3">
+      <block name="85G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+
+      <track name="43">
+        <block name="85G43"/>
+      </track>
+    </track>
+    
+    <track name="4">
+      <block name="85G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+      
+    <track name="5">
+      <block name="85G5"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+    </track>
+    
+    <track name="6">
+      <block name="85G6"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+    </track>
+  </station>
+
+  <station name="St. Ottilien" short="MOTN" refNr="91" scheduleFile="b91_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="91BP"/>
+    </track>
+  </station>
+
+  <station name="Schondorf (Bay)" short="MSDF" refNr="91" scheduleFile="g91_____.abf" localOrderFile="bf91____.abf">
+    <track name="1">
+      <block name="91G1"/>
+    </track>
+    <track name="2">
+      <block name="91G2"/>
+    </track>
+  </station>
+
+  <station name="Utting" short="MUTG" refNr="92" scheduleFile="g92_____.abf" localOrderFile="bf92____.abf">
+    <track name="1">
+      <block name="92G1"/>
+    </track>
+    <track name="2">
+      <block name="92G2"/>
+    </track>
+  </station>
+
+  <station name="Riederau" short="MRDU" refNr="92" scheduleFile="b92_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="92B2"/>
+    </track>
+  </station>
+
+  <station name="Dießen" short="MDIN" refNr="94">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="92B1" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Türkenfeld" short="MTFD" refNr="85" scheduleFile="b85_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="85B15"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="85BP"/>
+    </track>
+  </station>
+
+  <station name="Grafrath" short="MGF" refNr="84" scheduleFile="g84_____.abf" localOrderFile="bf84____.abf">
+    <track name="1">
+      <block name="84G1"/>
+    </track>
+    <track name="2">
+      <block name="84G2"/>
+    </track>
+    <track name="3">
+      <block name="84G3"/>
+    </track>
+  </station>
+
+  <station name="Schöngeising" short="MSNG" refNr="83" scheduleFile="b83_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="83B11"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="83B14"/>
+    </track>
+  </station>
+
+  <station name="Buchenau (Oberbay)" short="MBAU" refNr="83" scheduleFile="g83_____.abf" localOrderFile="bf83____.abf">
+    <track name="1">
+      <block name="83G1"/>
+    </track>
+    <track name="2">
+      <block name="83G2"/>
+    </track>
+    <track name="3">
+      <block name="83G3"/>
+    </track>
+  </station>
+
+  <station name="Fürstenfeldbruck" short="MFB" refNr="82" scheduleFile="g82_____.abf" localOrderFile="bf82____.abf">
+    <track name="2">
+      <block name="82G2"/>
+    </track>
+    <track name="3">
+      <block name="82G3"/>
+    </track>
+    <track name="4">
+      <block name="82G4"/>
+    </track>
+    <track name="5">
+      <block name="82G5"/>
+    </track>
+  </station>
+
+  <station name="Eichenau (Oberbay)" short="MEIC" refNr="81" scheduleFile="b81_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="81B5"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="81B6"/>
+    </track>
+  </station>
+
+  <station name="Puchheim" short="MPM" refNr="81" scheduleFile="g81_____.abf" localOrderFile="bf81____.abf">
+    <track name="1">
+      <block name="81G1"/>
+    </track>
+    <track name="2">
+      <block name="81G2"/>
+    </track>
+    <track name="3">
+      <block name="81G3"/>
+    </track>
+  </station>
+
+  <station name="München-Aubing" short="MMAU" refNr="81" scheduleFile="v81_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="81S101"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="81S102"/>
+    </track>
+  </station>
+
+  <station name="München Leienfelsstraße" short="MLEF" refNr="15" scheduleFile="v15_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="15S97"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="15S100"/>
+    </track>
+  </station>
+</estw>

@@ -130,7 +130,7 @@
     </track>
   </station>
 
-  <station name="Landsberg" short="MLL" refNr="33">
+  <station name="Landsberg (Lech)" short="MLL" refNr="33">
     <track calculateDelay="false" isPlatform="false">
       <block name="33BN" direction="right"/>
     </track>
