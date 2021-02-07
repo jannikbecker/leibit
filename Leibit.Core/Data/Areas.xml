@@ -30,6 +30,7 @@
     <estw id="TF" name="Friedrichshafen" dataFile="leibit_FRIEDRICHSHAFEN.dat"/>
     <estw id="TAU" name="Aulendorf" dataFile="leibit_AULENDORF.dat"/>
     <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat"/>
+    <estw id="MGE" name="Geltendorf" dataFile="leibit_GELTENDORF.dat"/>
     <estw id="MWKR" name="München-Westkreuz" dataFile="leibit_M-WESTKREUZ.dat"/>
     <estw id="MWH" name="Weilheim" dataFile="leibit_WEILHEIM.dat"/>
     <estw id="MGP" name="Garmisch-Partenkirchen" dataFile="leibit_GARMISCH-PARTENK.dat"/>
