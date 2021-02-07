@@ -106,12 +106,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
             var Settings = SettingsResult.Result;
             var CurrentSchedules = new List<TrainScheduleStationViewModel>();
-            var Estw = Area.ESTWs.FirstOrDefault(estw => estw.Time != null);
-
-            if (Estw == null)
-                return;
-
-            var SchedulesResult = m_CalculationBll.GetSchedulesByTime(CurrentTrain.Schedules, Estw.Time);
+            var SchedulesResult = m_CalculationBll.GetSchedulesByTime(CurrentTrain.Schedules, Area.ESTWs.Max(e => e.Time));
 
             if (!SchedulesResult.Succeeded)
             {
