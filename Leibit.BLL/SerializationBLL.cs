@@ -104,6 +104,7 @@ namespace Leibit.BLL
                     SerializedTrain.TrainNumber = Train.Train.Number;
                     SerializedTrain.Delay = Train.Delay;
                     SerializedTrain.LastModified = Train.LastModified;
+                    SerializedTrain.CreatedOn = Train.CreatedOn;
                     SerializedTrain.TrainDirection = Train.Direction;
 
                     foreach (var block in Train.BlockHistory)
@@ -239,6 +240,7 @@ namespace Leibit.BLL
                     var LiveTrain = new TrainInformation(Train);
                     LiveTrain.Delay = SerializedTrain.Delay;
                     LiveTrain.LastModified = SerializedTrain.LastModified;
+                    LiveTrain.CreatedOn = SerializedTrain.CreatedOn;
                     LiveTrain.Direction = SerializedTrain.TrainDirection;
 
                     if (SerializedTrain.BlockHistory != null)

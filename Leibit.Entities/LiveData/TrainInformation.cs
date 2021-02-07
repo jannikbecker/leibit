@@ -65,6 +65,8 @@ namespace Leibit.Entities.LiveData
             set;
         }
 
+        public LeibitTime CreatedOn { get; set; }
+
         public ReadOnlyCollection<LiveSchedule> Schedules
         {
             get

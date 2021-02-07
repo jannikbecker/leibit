@@ -21,6 +21,7 @@ namespace Leibit.Entities.Serialization
         public eBlockDirection BlockDirection { get; set; }
         public int Delay { get; set; }
         public LeibitTime LastModified { get; set; }
+        public LeibitTime CreatedOn { get; set; }
         public List<SerializedSchedule> Schedules { get; set; }
     }
 }

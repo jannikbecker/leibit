@@ -433,6 +433,7 @@ namespace Leibit.BLL
                         else
                         {
                             Train = __CreateLiveTrainInformation(TrainNumber, estw);
+                            Train.CreatedOn = estw.Time;
                             Train = estw.Area.LiveTrains.GetOrAdd(TrainNumber, Train);
                         }
 
