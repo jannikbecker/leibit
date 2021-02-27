@@ -1,8 +1,10 @@
-- Die Simulationen Lohr (#15), Gemünden (#16) und Würzburg Hbf (#17) stehen nun zur Verfügung. Der Bereich Mitteldeutschland ist damit nun komplett.
-- Neuer Bereich Süddeutschland mit den Simulationen Singen (#32), Friedrichshafen (#33) und Lindau (#35)
-- Neue Dialoge zur Eingabe der voraussichtlichen Verspätung (#63) und eines Gleiswechsels (#64)
-- Die Auswertung der Fahrtrichtung an Abzweig- und Überleitstellen sowie an den Grenzen eines Stellbereichs wurde korrigiert. (#76)
-- Die Namen der Betriebsstellen wurden an die offiziellen Namen angepasst. Die Zusätze "Abzw", "Üst" und "Hp" werden nun nur noch angezeigt, wenn dies zur Unterscheidung der Betriebsstellen notwendig ist. (#75)
-- Verspätungsbegründungen können nicht mehr an verbundene Stellwerke übertragen werden. Eine Kommunikation zwischen mehreren Leibit-Programmen ist seitens ESTWsim nicht erwünscht. (#74)
-- Die Breite der Fenster ZFI und BFO kann nun angepasst werden. (#79)
-- Update ESTWonline von Version 2.5 auf Version 2.6
+- Die Zugfahrtinformation (ZFI) wurde komplett überarbeitet und damit noch realistischer gestaltet (#65).
+    - Das Grid wurde um weitere Spalten (&Delta;t an/ab) erweitert.
+    - Der Zugstatus wechselt im Endbahnhof nun direkt auf "beendet".
+    - Es wurden Vor- und Nachlaufzeit eingeführt, die nun die Sichtbarkeit der einzelnen Einträge steuern.
+    - Züge können nun manuell der ZFI hinzugefügt und ausgeblendet werden.
+    - Es können jetzt manuelle Zugstatus (Bereitstellungs- und Vorbereitungsmeldung) erfasst werden.
+- Die Zugbildungsdaten wurden in das LeiBIT integriert und können nun angezeigt werden (#22).
+- Die Simulationen Aulendorf (#34), Geltendorf (#40), München-Westkreuz (#41), Weilheim (#42) und Garmisch-Partenkirchen (#43) stehen nun zur Verfügung.
+- Beim Laden von gespeicherten Spielständen, die mit einer älteren Version von LeiBIT gespeichert wurden, erscheint nun eine Warnung, dass es ggf. zu fehlerhaften Darstellungen kommen kann (#91).
+- Korrektur kleinerer Fehler sowie Verbesserungen in kleinem Umfang (#81, #83, #84, #86, #87, #88, #89, #96)

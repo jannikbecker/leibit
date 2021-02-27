@@ -10,8 +10,8 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <AssemblyTitle>Leibit.Client.WPF</AssemblyTitle>
-    <Product>Leibit.Client.WPF</Product>
-    <Copyright>Copyright ©  2016</Copyright>
+    <Product>LeiBIT für ESTWsim</Product>
+    <Copyright>Copyright ©  2016-2021</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
@@ -24,7 +24,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
-    <Version>0.3.1</Version>
+    <Version>0.4.0</Version>
+    <PackageProjectUrl>https://github.com/jannikbecker/leibit</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jannikbecker/leibit</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\Images\flash.png" />
