@@ -209,14 +209,14 @@
       <alternative track="101"/>
     </track>
 
-    <track name="001">
+    <track name="001" calculateDelay="false">
       <block name="52G001"/>
       <alternative track="002"/>
       <alternative track="103"/>
       <alternative track="104"/>
     </track>
 
-    <track name="002">
+    <track name="002" calculateDelay="false">
       <block name="52G002"/>
       <alternative track="001"/>
       <alternative track="103"/>
