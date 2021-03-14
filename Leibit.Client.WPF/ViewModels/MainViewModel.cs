@@ -1,5 +1,6 @@
 ﻿using Leibit.BLL;
 using Leibit.Client.WPF.Common;
+using Leibit.Client.WPF.Dialogs.Error;
 using Leibit.Client.WPF.Interfaces;
 using Leibit.Client.WPF.Windows.About.ViewModels;
 using Leibit.Client.WPF.Windows.About.Views;
@@ -37,6 +38,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
@@ -58,6 +60,7 @@ namespace Leibit.Client.WPF.ViewModels
         private CancellationTokenSource m_CancellationTokenSource;
         private List<ViewModelBase> m_ChildViewModels;
         private string m_CurrentFilename;
+        private bool m_ForceClose;
 
         private CommandHandler m_NewCommand;
         private CommandHandler m_OpenCommand;
@@ -1095,7 +1098,7 @@ namespace Leibit.Client.WPF.ViewModels
         #region [__CleanUp]
         private void __CleanUp()
         {
-            if (m_RefreshingThread != null)
+            if (m_CancellationTokenSource != null)
             {
                 m_CancellationTokenSource.Cancel();
                 m_CancellationTokenSource = null;
@@ -1125,9 +1128,23 @@ namespace Leibit.Client.WPF.ViewModels
                 var Result = m_LiveDataBll.RefreshLiveData(Area);
 
                 if (Result.Succeeded && Result.Result)
-                    m_ChildViewModels.Where(vm => vm is IRefreshable).Cast<IRefreshable>().ToList().ForEach(vm => vm.Refresh(Area));
+                {
+                    var vmList = m_ChildViewModels.Where(vm => vm is IRefreshable).Cast<IRefreshable>().ToList();
+
+                    foreach (var vm in vmList)
+                    {
+                        try
+                        {
+                            vm.Refresh(Area);
+                        }
+                        catch (Exception ex)
+                        {
+                            Application.Current.Dispatcher.Invoke(() => __ShowErrorWindow(ex.ToString()));
+                        }
+                    }
+                }
                 else
-                    Application.Current.Dispatcher.Invoke(() => MessageBox.Show(Result.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error));
+                    Application.Current.Dispatcher.Invoke(() => __ShowErrorWindow(Result.Message));
 
                 Thread.Sleep(500);
             }
@@ -1139,7 +1156,8 @@ namespace Leibit.Client.WPF.ViewModels
         {
             if (m_CurrentArea != null)
             {
-                var MBResult = MessageBox.Show("Soll der aktuelle Zustand zunächst gespeichert werden?", "Frage", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                var buttons = m_ForceClose ? MessageBoxButton.YesNo : MessageBoxButton.YesNoCancel;
+                var MBResult = MessageBox.Show("Soll der aktuelle Zustand zunächst gespeichert werden?", "Frage", buttons, MessageBoxImage.Question);
 
                 switch (MBResult)
                 {
@@ -1239,6 +1257,26 @@ namespace Leibit.Client.WPF.ViewModels
                 hiddenSchedule.CreatedOn = serializedSchedule.CreatedOn;
                 Runtime.HiddenSchedules.Add(hiddenSchedule);
             }
+        }
+        #endregion
+
+        #region [__ShowErrorWindow]
+        private void __ShowErrorWindow(string errorMessage)
+        {
+            SystemSounds.Hand.Play();
+            var close = ErrorDialog.ShowModal(errorMessage);
+
+            if (!close)
+                return;
+
+            if (m_CancellationTokenSource != null)
+            {
+                m_CancellationTokenSource.Cancel();
+                m_CancellationTokenSource = null;
+            }
+
+            m_ForceClose = true;
+            __Exit();
         }
         #endregion
 
