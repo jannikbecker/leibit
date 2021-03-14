@@ -209,7 +209,7 @@
   </station>
 
   <station name="Murnau Ort" short="MUO" refNr="53" scheduleFile="murnau__.abf">
-    <track name="20" calculateDelay="false">
+    <track name="80" calculateDelay="false">
       <block name="53G80"/>
     </track>
   </station>
