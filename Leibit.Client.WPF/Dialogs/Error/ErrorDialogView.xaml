@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Leibit.Client.WPF.Dialogs.Error.ErrorDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Row="0">Es ist ein Fehler aufgetreten. Wie möchten Sie fortfahren?</TextBlock>
+
+            <Expander Grid.Row="1" Header="Details" Margin="0,10,0,0">
+                <TextBox Text="{Binding ErrorMessage, Mode=OneWay}" HorizontalAlignment="Stretch" TextWrapping="Wrap" IsReadOnly="True"/>
+            </Expander>
+
+            <Grid Grid.Row="2" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" Content="Ignorieren" Command="{Binding IgnoreCommand}" Height="22" Padding="5,0"/>
+                <Button Grid.Column="1" Content="Programm beenden" Command="{Binding ExitCommand}" Height="22" Margin="10,0,0,0" Padding="5,0"/>
+                <Button Grid.Column="3" Content="Fehlertext kopieren" Command="{Binding CopyToClipboardCommand}" HorizontalAlignment="Right" Height="22" Margin="10,0,0,0" Padding="5,0"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
