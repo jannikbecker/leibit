@@ -186,6 +186,14 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
+        #region [RefreshGrid]
+        public bool RefreshGrid
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        #endregion
+
         #endregion
 
         #region - Public methods -
@@ -232,6 +240,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
             var removedTrains = Trains.Except(currentTrains).ToList();
             Dispatcher.Invoke(() => removedTrains.ForEach(t => Trains.Remove(t)));
+            RefreshGrid = true;
         }
         #endregion
 
