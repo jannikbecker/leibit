@@ -56,6 +56,14 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
         }
         #endregion
 
+        #region [NeedsRefresh]
+        public bool NeedsRefresh
+        {
+            get;
+            set;
+        }
+        #endregion
+
         #region [HasEstws]
         public bool HasEstws
         {

@@ -44,6 +44,14 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
         }
         #endregion
 
+        #region [NeedsRefresh]
+        public bool NeedsRefresh
+        {
+            get;
+            set;
+        }
+        #endregion
+
         #region [Estws]
         public ObservableCollection<ESTWViewModel> Estws
         {

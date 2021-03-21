@@ -20,6 +20,7 @@ namespace Leibit.Client.WPF.ViewModels
         #region - Events -
         public event EventHandler<OpenWindowEventArgs> OpenWindow;
         public event EventHandler<string> StatusBarTextChanged;
+        public event EventHandler ForceRefresh;
         #endregion
 
         #region - Protected methods -
@@ -35,8 +36,14 @@ namespace Leibit.Client.WPF.ViewModels
         #region [OnStatusBarTextChanged]
         protected void OnStatusBarTextChanged(string Text)
         {
-            if (StatusBarTextChanged != null)
-                StatusBarTextChanged(this, Text);
+            StatusBarTextChanged?.Invoke(this, Text);
+        }
+        #endregion
+
+        #region [OnRefresh]
+        protected void OnRefresh()
+        {
+            ForceRefresh?.Invoke(this, EventArgs.Empty);
         }
         #endregion
 

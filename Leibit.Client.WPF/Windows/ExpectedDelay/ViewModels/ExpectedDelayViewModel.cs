@@ -138,6 +138,7 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
             if (result.Succeeded)
             {
                 OnStatusBarTextChanged($"Voraussichtliche Verspätung für Zug {m_Train.Train.Number} in {SelectedSchedule.Schedule.Station.ShortSymbol} eingetragen");
+                OnRefresh();
                 OnCloseWindow();
             }
             else

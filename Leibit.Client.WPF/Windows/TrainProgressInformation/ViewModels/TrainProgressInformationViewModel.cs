@@ -85,6 +85,14 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
+        #region [NeedsRefresh]
+        public bool NeedsRefresh
+        {
+            get;
+            set;
+        }
+        #endregion
+
         #region [DoubleClickCommand]
         public ICommand DoubleClickCommand
         {
