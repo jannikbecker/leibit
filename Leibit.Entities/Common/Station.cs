@@ -16,6 +16,7 @@ namespace Leibit.Entities.Common
         private ESTW m_Estw;
         private List<Track> m_Tracks;
         private List<Schedule> m_Schedules;
+        private object m_LockSchedules;
 
         public Station(string name, string shortSymbol, short refNr, string scheduleFile, string localOrderFile, ESTW estw)
         {
@@ -28,6 +29,7 @@ namespace Leibit.Entities.Common
 
             m_Tracks = new List<Track>();
             m_Schedules = new List<Schedule>();
+            m_LockSchedules = new object();
 
             if (estw != null)
                 estw.Stations.Add(this);
@@ -94,6 +96,14 @@ namespace Leibit.Entities.Common
             get
             {
                 return m_LocalOrderFile;
+            }
+        }
+
+        internal void AddSchedule(Schedule schedule)
+        {
+            lock (m_LockSchedules)
+            {
+                Schedules.Add(schedule);
             }
         }
 

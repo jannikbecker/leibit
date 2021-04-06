@@ -28,7 +28,7 @@ namespace Leibit.BLL
         #region - Public methods -
 
         #region [GetSchedulesByTime]
-        public OperationResult<List<Schedule>> GetSchedulesByTime(IList<Schedule> Schedules, LeibitTime time)
+        public OperationResult<List<Schedule>> GetSchedulesByTime(IEnumerable<Schedule> Schedules, LeibitTime time)
         {
             try
             {
