@@ -131,7 +131,7 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
         {
             var CurrentSchedules = new List<TimeTableItemViewModel>();
 
-            var SchedulesResult = m_CalculationBll.GetSchedulesByTime(CurrentStation.Schedules, CurrentStation.ESTW.Time);
+            var SchedulesResult = m_CalculationBll.GetSchedulesByTime(CurrentStation.Schedules.Where(s => !s.IsUnscheduled), CurrentStation.ESTW.Time);
 
             if (!SchedulesResult.Succeeded)
             {

@@ -1147,7 +1147,7 @@ namespace Leibit.Client.WPF.ViewModels
                             }
                             catch (Exception ex)
                             {
-                                Application.Current.Dispatcher.Invoke(() => __ShowErrorWindow(ex.ToString()));
+                                Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(ex.ToString()));
                             }
                         }
                     }
@@ -1155,10 +1155,10 @@ namespace Leibit.Client.WPF.ViewModels
                     m_ForceRefresh = false;
 
                     foreach (var failedItem in Result.Result.Where(x => !x.Succeeded))
-                        Application.Current.Dispatcher.Invoke(() => __ShowErrorWindow(failedItem.Message));
+                        Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(failedItem.Message));
                 }
                 else
-                    Application.Current.Dispatcher.Invoke(() => __ShowErrorWindow(Result.Message));
+                    Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(Result.Message));
 
                 Thread.Sleep(500);
             }
