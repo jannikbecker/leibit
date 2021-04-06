@@ -1139,12 +1139,12 @@ namespace Leibit.Client.WPF.ViewModels
                         }
                         catch (Exception ex)
                         {
-                            Application.Current.Dispatcher.Invoke(() => __ShowErrorWindow(ex.ToString()));
+                            Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(ex.ToString()));
                         }
                     }
                 }
                 else
-                    Application.Current.Dispatcher.Invoke(() => __ShowErrorWindow(Result.Message));
+                    Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(Result.Message));
 
                 Thread.Sleep(500);
             }
