@@ -27,6 +27,9 @@ namespace Leibit.Entities.Scheduling
             m_Direction = eScheduleDirection.Unknown;
             m_Handling = eHandling.Unknown;
             IsUnscheduled = true;
+
+            if (m_Station != null)
+                m_Station.AddSchedule(this);
         }
 
         public Schedule(Train train, LeibitTime arrival, LeibitTime departure, Track track, List<eDaysOfService> days, eScheduleDirection direction, eHandling handling, string remark)
