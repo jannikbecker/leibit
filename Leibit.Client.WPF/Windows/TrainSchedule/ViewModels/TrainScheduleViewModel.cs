@@ -41,6 +41,9 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             m_CalculationBll = new CalculationBLL();
             m_SettingsBll = new SettingsBLL();
             Stations = new ObservableCollection<TrainScheduleStationViewModel>();
+
+            if (Area != null)
+                Refresh(Area);
         }
         #endregion
 
