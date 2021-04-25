@@ -138,9 +138,10 @@ namespace Leibit.BLL
                             resultItem.Succeeded = true;
                             estw.IOExceptionCount = 0;
                         }
-                        catch (IOException ex) when (estw.IOExceptionCount < 3)
+                        catch (IOException) when (estw.IOExceptionCount < 3)
                         {
                             estw.IOExceptionCount++;
+                            resultItem.Succeeded = true;
                         }
                         catch (Exception ex)
                         {
