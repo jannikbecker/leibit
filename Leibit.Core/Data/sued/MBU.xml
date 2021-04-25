@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Füssen" short="MFSN" refNr="94" scheduleFile="g94_____.abf" localOrderFile="bf94____.abf">
+    <track name="2">
+      <block name="94G2"/>
+    </track>
+    <track name="3">
+      <block name="94G3"/>
+    </track>
+  </station>
+
+  <station name="Füssen Stammgleis" short="MFSS" refNr="94">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="93BN2"/>
+    </track>
+  </station>
+
+  <station name="Weizern-Hopferau" short="MWZH" refNr="93" scheduleFile="g93_____.abf" localOrderFile="bf93____.abf">
+    <track name="1">
+      <block name="93G1"/>
+    </track>
+    <track name="2">
+      <block name="93G2"/>
+    </track>
+  </station>
+
+  <station name="Seeg" short="MSEG" refNr="92" scheduleFile="b92_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="92BN"/>
+    </track>
+  </station>
+
+  <station name="Lengenwang" short="MLWG" refNr="92" scheduleFile="g92_____.abf" localOrderFile="bf92____.abf">
+    <track name="1">
+      <block name="92G1"/>
+    </track>
+    <track name="2">
+      <block name="92G2"/>
+    </track>
+  </station>
+
+  <station name="Leuterschach" short="MLSH" refNr="91" scheduleFile="b91_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="91BN"/>
+    </track>
+  </station>
+
+  <station name="Marktoberdorf Schule" short="MMOS" refNr="91" scheduleFile="b99_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="91G81"/>
+    </track>
+  </station>
+
+  <station name="Marktoberdorf" short="MMO" refNr="91" scheduleFile="g91_____.abf" localOrderFile="bf91____.abf">
+    <track name="1">
+      <block name="91G1"/>
+    </track>
+    <track name="2">
+      <block name="91G2"/>
+    </track>
+    <track name="3">
+      <block name="91G3"/>
+    </track>
+  </station>
+  
+  <station name="Ebenhofen" short="MEBH" refNr="91" scheduleFile="b90_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="91BP"/>
+    </track>
+  </station>
+
+  <station name="Kempten" short="MKP" refNr="50">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="50SP2" direction="right"/>
+      <block name="21S45" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Günzach" short="MGNZ" refNr="21" scheduleFile="g21_____.abf" localOrderFile="bf21____.abf">
+    <track name="1">
+      <block name="21G1"/>
+    </track>
+    <track name="2">
+      <block name="21G2"/>
+    </track>
+    <track name="3">
+      <block name="21G3"/>
+    </track>
+  </station>
+
+  <station name="Aitrang" short="MAIT" refNr="22">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="22B42" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Biessenhofen" short="MBIH" refNr="22" scheduleFile="g22_____.abf" localOrderFile="bf22____.abf">
+    <track name="1">
+      <block name="22G1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="2">
+      <block name="22G2"/>
+      <alternative track="1"/>
+    </track>
+    <track name="93" calculateDelay="false" isPlatform="false">
+      <block name="22B42" direction="left"/>
+      <block name="22BP" direction="right"/>
+      <alternative track="94"/>
+    </track>
+    <track name="94" calculateDelay="false" isPlatform="false">
+      <block name="22BN" direction="left"/>
+      <block name="23BN" direction="right"/>
+      <alternative track="93"/>
+    </track>
+  </station>
+
+  <station name="Kaufbeuren" short="MKFB" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.abf">
+    <track name="1">
+      <block name="23G1"/>
+    </track>
+    <track name="2">
+      <block name="23G2"/>
+    </track>
+    <track name="3">
+      <block name="23G3"/>
+    </track>
+    <track name="4">
+      <block name="23G4"/>
+    </track>
+  </station>
+
+  <station name="Türkheim" short="MTHB" refNr="41">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="24S1" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Buchloe" short="MBU" refNr="24" scheduleFile="g24_____.abf" localOrderFile="bf24____.abf">
+    <track name="1">
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      
+      <track name="1N">
+        <block name="24G1N"/>
+      </track>
+      <track name="1S">
+        <block name="24G1S"/>
+      </track>
+    </track>
+    
+    <track name="2">
+      <block name="24G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="3">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+
+      <track name="3N">
+        <block name="24G3N"/>
+      </track>
+      <track name="3S">
+        <block name="24G3S"/>
+      </track>
+    </track>
+
+    <track name="4">
+      <block name="24G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+
+      <track name="54">
+        <block name="24G54"/>
+      </track>
+    </track>
+
+    <track name="5">
+      <block name="24G5"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+
+      <track name="55">
+        <block name="24G55"/>
+      </track>
+    </track>
+
+    <track name="6">
+      <block name="24G6"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="7">
+      <block name="24G7"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="8">
+      <block name="24G8"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="9">
+      <block name="24G9"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="10">
+      <block name="24G10"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+    </track>
+  </station>
+
+  <station name="Kaufering" short="MKFG" refNr="32">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="32BN" direction="left"/>
+      <block name="24BP1" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Westerringen" short="MWER" refNr="24">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="24B26" />
+      <block name="25BN" />
+    </track>
+  </station>
+
+  <station name="Schwabmünchen" short="MSMN" refNr="25" scheduleFile="g25_____.abf" localOrderFile="bf25____.abf">
+    <track name="1">
+      <block name="25G1"/>
+    </track>
+    <track name="2">
+      <block name="25G2"/>
+    </track>
+    <track name="3">
+      <block name="25G3"/>
+    </track>
+  </station>
+
+  <station name="Großaitingen" short="MGRO" refNr="25">
+    <track isPlatform="false" calculateDelay="false">
+      <block name="25B13" />
+    </track>
+  </station>
+
+  <station name="Oberottmarshausen" short="MOMN" refNr="26" scheduleFile="oberot__.abf">
+    <track name="1" calculateDelay="false">
+      <block name="26BN2"/>
+    </track>
+  </station>
+
+  <station name="Bobingen" short="MBOB" refNr="26" scheduleFile="g26_____.abf" localOrderFile="bf26____.abf">
+    <track name="1">
+      <block name="26G1"/>
+    </track>
+    <track name="2">
+      <block name="26G2"/>
+    </track>
+    <track name="3">
+      <block name="26G3"/>
+    </track>
+    <track name="4">
+      <block name="26G4"/>
+    </track>
+    <track name="5">
+      <block name="26G5"/>
+    </track>
+  </station>
+
+  <station name="Inningen" short="MINI" refNr="26" scheduleFile="b26_____.abf">
+    <track name="11" calculateDelay="false">
+      <block name="26B11"/>
+    </track>
+    <track name="12" calculateDelay="false">
+      <block name="26B12"/>
+    </track>
+  </station>
+
+  <station name="Augsburg Hbf" short="MA" refNr="25">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="70BNB" direction="left"/>
+    </track>
+  </station>
+</estw>
