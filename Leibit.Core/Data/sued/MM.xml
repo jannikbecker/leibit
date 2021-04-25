@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Wangen" short="TWW" refNr="81">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="81BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Wolfegg" short="TWO" refNr="19">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="19BN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Kißlegg" short="TKG" refNr="82" scheduleFile="g82_____.abf" localOrderFile="bf82____.abf">
+    <track name="1">
+      <block name="82G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+    <track name="2">
+      <block name="82G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+    </track>
+    
+    <track name="3">
+      <block name="82G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      
+      <track name="53">
+        <block name="82G53"/>
+      </track>
+    </track>
+  </station>
+
+  <station name="Leutkirch" short="TLK" refNr="84" scheduleFile="g84_____.abf" localOrderFile="bf84____.abf">
+    <track name="1">
+      <block name="84G1"/>
+    </track>
+    <track name="2">
+      <block name="84G2"/>
+    </track>
+    <track name="3">
+      <block name="84G3"/>
+    </track>
+    <track name="8">
+      <block name="84G8"/>
+    </track>
+  </station>
+
+  <station name="Urlau" short="Urlau" refNr="84">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="84BN3" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Aichstetten Shell" short="TAIS" refNr="85">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="84BN2"/>
+    </track>
+  </station>
+
+  <station name="Aichstetten" short="TAI" refNr="85" scheduleFile="g85_____.abf" localOrderFile="bf85____.abf">
+    <track name="1">
+      <block name="85G1"/>
+    </track>
+    <track name="2">
+      <block name="85G2"/>
+    </track>
+  </station>
+
+  <station name="Marstetten-Aitrach" short="TMAR" refNr="85" scheduleFile="b85_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="85BN2"/>
+    </track>
+  </station>
+
+  <station name="Tannheim" short="TTA" refNr="86" scheduleFile="g86_____.abf" localOrderFile="bf86____.abf">
+    <track name="1">
+      <block name="86G1"/>
+    </track>
+    <track name="2">
+      <block name="86G2"/>
+    </track>
+  </station>
+
+  <station name="Buxheim" short="MBUX" refNr="86">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="86BN2"/>
+    </track>
+  </station>
+
+  <station name="Kempten (Allgäu) Ost" short="MKPO" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11SN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Dietmannsried" short="MDRD" refNr="12" scheduleFile="g12_____.abf" localOrderFile="bf12____.abf">
+    <track name="1">
+      <block name="12G1"/>
+    </track>
+    <track name="2">
+      <block name="12G2"/>
+    </track>
+  </station>
+  
+  <station name="Bad Grönenbach" short="MGNB" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf">
+    <track name="1">
+      <block name="13G1"/>
+    </track>
+    <track name="2">
+      <block name="13G2"/>
+    </track>
+  </station>
+
+  <station name="Memmingen" short="MM" refNr="15" scheduleFile="g15_____.abf" localOrderFile="bf15____.abf">
+    <track name="1">
+      <block name="15G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+    </track>
+    
+    <track name="2">
+      <block name="15G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+    </track>
+    
+    <track name="3">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      
+      <track name="3N">
+        <block name="15G3N"/>
+      </track>
+      
+      <track name="3S">
+        <block name="15G3S"/>
+      </track>
+    </track>
+    
+    <track name="4">
+      <block name="15G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+    </track>
+    
+    <track name="5">
+      <block name="15G5"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+    </track>
+
+    <track name="41">
+      <block name="15G41"/>
+      <alternative track="42"/>
+    </track>
+
+    <track name="42">
+      <block name="15G42"/>
+      <alternative track="41"/>
+    </track>
+  </station>
+
+  <station name="Heimertingen" short="MHMG" refNr="16" scheduleFile="g16_____.abf" localOrderFile="bf16____.abf">
+    <track name="1">
+      <block name="16G1"/>
+    </track>
+    <track name="2">
+      <block name="16G2"/>
+    </track>
+  </station>
+
+  <station name="Kellmünz" short="MKMZ" refNr="17">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="16BN" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Ungerhausen" short="MUGH" refNr="45" scheduleFile="g45_____.abf" localOrderFile="bf45____.abf">
+    <track name="1">
+      <block name="45G1"/>
+    </track>
+    <track name="2">
+      <block name="45G2"/>
+    </track>
+  </station>
+
+  <station name="Sontheim" short="MSHM" refNr="44" scheduleFile="g44_____.abf" localOrderFile="bf44____.abf">
+    <track name="1">
+      <block name="44G1"/>
+    </track>
+    <track name="2">
+      <block name="44G2"/>
+    </track>
+  </station>
+
+  <station name="Stetten" short="MSTS" refNr="43" scheduleFile="g43_____.abf" localOrderFile="bf43____.abf">
+    <track name="1">
+      <block name="43G1"/>
+    </track>
+    <track name="2">
+      <block name="43G2"/>
+    </track>
+  </station>
+
+  <station name="Mindelheim" short="MMH" refNr="42" scheduleFile="g42_____.abf" localOrderFile="bf42____.abf">
+    <track name="1">
+      <block name="42G1"/>
+    </track>
+    <track name="2">
+      <block name="42G2"/>
+    </track>
+    <track name="3">
+      <block name="42G3"/>
+    </track>
+    <track name="4">
+      <block name="42G4"/>
+    </track>
+  </station>
+
+  <station name="Pfaffenhausen" short="MPFH" refNr="42">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="42BP" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Türkheim" short="MTHB" refNr="41" scheduleFile="g41_____.abf" localOrderFile="bf41____.abf">
+    <track name="1">
+      <block name="41G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+    </track>
+
+    <track name="2">
+      <block name="41G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+    </track>
+
+    <track name="3">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+
+      <track name="3W">
+        <block name="41G3W"/>
+      </track>
+
+      <track name="3O">
+        <block name="41G3O"/>
+      </track>
+    </track>
+
+    <track name="4">
+      <block name="41G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+    </track>
+
+    <track name="5">
+      <block name="41G5"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+    </track>
+  </station>
+
+  <station name="Bad Wörishofen" short="MBWH" refNr="41" scheduleFile="b41_____.abf">
+    <track name="100" calculateDelay="false">
+      <block name="41B100"/>
+    </track>
+  </station>
+
+  <station name="Ettringen" short="METG" refNr="41">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="41BP" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Buchloe" short="MBU" refNr="24">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="24BN2" direction="left"/>
+    </track>
+  </station>
+</estw>
