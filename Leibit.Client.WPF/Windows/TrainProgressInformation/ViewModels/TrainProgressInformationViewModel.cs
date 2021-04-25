@@ -406,6 +406,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             entry.TrainNumber = trainNumber.Value;
             entry.HadLiveData = m_Area.LiveTrains.ContainsKey(trainNumber.Value);
             Runtime.VisibleTrains.Add(entry);
+            Refresh(m_Area);
         }
         #endregion
 
@@ -425,6 +426,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 return;
 
             Runtime.HiddenSchedules.Add(entry);
+            Refresh(m_Area);
         }
         #endregion
 
