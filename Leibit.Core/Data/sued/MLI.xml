@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <estw>
-  <station name="Kißlegg" short="TKG" refNr="81">
+  <station name="Kißlegg" short="TKG" refNr="82">
     <track isPlatform="false" calculateDelay="false">
       <block name="81BP" direction="right"/>
     </track>
