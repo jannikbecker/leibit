@@ -32,6 +32,7 @@
     <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat"/>
     <estw id="MM" name="Memmingen" dataFile="leibit_MEMMINGEN.dat"/>
     <estw id="MBU" name="Buchloe" dataFile="leibit_BUCHLOE.dat"/>
+    <estw id="MA" name="Augsburg Hbf" dataFile="leibit_AUGSBURG HBF.dat"/>
     <estw id="MGE" name="Geltendorf" dataFile="leibit_GELTENDORF.dat"/>
     <estw id="MWKR" name="München-Westkreuz" dataFile="leibit_M-WESTKREUZ.dat"/>
     <estw id="MWH" name="Weilheim" dataFile="leibit_WEILHEIM.dat"/>

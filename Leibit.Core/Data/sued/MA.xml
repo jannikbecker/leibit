@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Bobingen" short="MBOB" refNr="26">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="26SP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Inningen" short="MINI" refNr="26" scheduleFile="b26_____.abf">
+    <track name="11" calculateDelay="false">
+      <block name="26S11"/>
+    </track>
+    <track name="12" calculateDelay="false">
+      <block name="26B12"/>
+    </track>
+  </station>
+
+  <station name="Augsburg Morellstraße" short="MAMS" refNr="25" scheduleFile="v25_____.abf">
+    <track name="720">
+      <block name="25G720"/>
+    </track>
+    <track name="920">
+      <block name="25G920"/>
+    </track>
+  </station>
+
+  <station name="Augsburg-Hochzoll" short="MAHZ" refNr="24">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="24B101" direction="right"/>
+      <block name="25B102" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Augsburg Haunstetterstraße" short="MAHA" refNr="25" scheduleFile="b25_____.abf">
+    <track name="103" calculateDelay="false">
+      <block name="25B103"/>
+    </track>
+    <track name="104" calculateDelay="false">
+      <block name="25B104"/>
+    </track>
+  </station>
+
+  <station name="Augsburg Hbf" short="MA" refNr="25" scheduleFile="g25_____.abf" localOrderFile="bf25____.abf">
+    <track name="1">
+      <block name="25G001"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+
+      <track name="11">
+        <block name="25G011"/>
+      </track>
+    </track>
+
+    <track name="2">
+      <block name="25G002"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+    </track>
+
+    <track name="3">
+      <block name="25G003"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+    </track>
+
+    <track name="4">
+      <block name="25G004"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+    </track>
+
+    <track name="23">
+      <block name="25G023"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="55"/>
+    </track>
+
+    <track name="5">
+      <block name="25G005"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+    </track>
+
+    <track name="6">
+      <block name="25G006"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+    </track>
+
+    <track name="7">
+      <block name="25G007"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+
+      <track name="17">
+        <block name="25G017"/>
+      </track>
+    </track>
+
+    <track name="8">
+      <block name="25G008"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+
+      <track name="18">
+        <block name="25G018"/>
+      </track>
+    </track>
+
+    <track name="55">
+      <block name="25G055"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+    </track>
+
+    <track name="9">
+      <block name="25G009"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+
+      <track name="19">
+        <block name="25G019"/>
+      </track>
+    </track>
+
+    <track name="110">
+      <block name="25G110"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="111"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+    </track>
+
+    <track name="111">
+      <block name="25G111"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="112"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+    </track>
+
+    <track name="112">
+      <block name="25G112"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="110"/>
+      <alternative track="111"/>
+      <alternative track="23"/>
+      <alternative track="55"/>
+    </track>
+
+    <track name="830">
+      <block name="25BARAH3"/>
+      <alternative track="840"/>
+    </track>
+
+    <track name="840">
+      <block name="25BARAH4"/>
+      <alternative track="830"/>
+    </track>
+
+    <track name="850">
+      <block name="25BARAH5"/>
+      <alternative track="860"/>
+      <alternative track="870"/>
+      <alternative track="880"/>
+    </track>
+
+    <track name="860">
+      <block name="25BARAH6"/>
+      <alternative track="850"/>
+      <alternative track="870"/>
+      <alternative track="880"/>
+    </track>
+
+    <track name="870">
+      <block name="25BARAH7"/>
+      <alternative track="850"/>
+      <alternative track="860"/>
+      <alternative track="880"/>
+    </track>
+
+    <track name="880">
+      <block name="25BARAH8"/>
+      <alternative track="850"/>
+      <alternative track="860"/>
+      <alternative track="870"/>
+    </track>
+  </station>
+
+  <station name="Augsburg-Oberhausen" short="MAOB" refNr="26" scheduleFile="g26_____.abf" localOrderFile="bf26____.abf">
+    <track name="273">
+      <block name="26G273"/>
+    </track>
+    <track name="472">
+      <block name="26G472"/>
+    </track>
+    <track name="577">
+      <block name="26G577"/>
+    </track>
+    <track name="597">
+      <block name="26G597"/>
+    </track>
+    <track name="677">
+      <block name="26G677"/>
+    </track>
+    <track name="877">
+      <block name="26G877"/>
+    </track>
+    <track name="977">
+      <block name="26G977"/>
+    </track>
+  </station>
+
+  <station name="Neusäß" short="MNES" refNr="26" scheduleFile="v26_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="26B01"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="40B02"/>
+    </track>
+  </station>
+
+  <station name="Gersthofen" short="MGHF" refNr="27">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="27S199" direction="left"/>
+      <block name="27S200" direction="left"/>
+    </track>
+  </station>
+</estw>
