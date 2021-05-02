@@ -6,6 +6,7 @@ using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
 using Leibit.Entities.Scheduling;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -102,33 +103,53 @@ namespace Leibit.BLL
         #region [RefreshLiveData]
         public OperationResult<bool> RefreshLiveData(Area area)
         {
+            var result = new OperationResult<bool>();
+            var internalResult = RefreshLiveDataWithInfo(area);
+            result.Succeeded = internalResult.Succeeded;
+            result.Message = internalResult.Message;
+
+            if (result.Succeeded)
+                result.Result = internalResult.Result.All(x => x.Succeeded);
+
+            return result;
+        }
+        #endregion
+
+        #region [RefreshLiveDataWithInfo]
+        public OperationResult<List<RefreshLiveDataResult>> RefreshLiveDataWithInfo(Area area)
+        {
             lock (m_LockRefresh)
             {
                 try
                 {
-                    var Result = new OperationResult<bool>();
-                    Result.Result = true;
+                    var Result = new OperationResult<List<RefreshLiveDataResult>>();
+                    var ResultItems = new ConcurrentBag<RefreshLiveDataResult>();
 
                     var Options = new ParallelOptions();
                     Options.MaxDegreeOfParallelism = Environment.ProcessorCount;
 
                     Parallel.ForEach(area.ESTWs, Options, estw =>
                     {
+                        var resultItem = new RefreshLiveDataResult { EstwId = estw.Id };
+
                         try
                         {
-                            __LoadLiveDataFromEstw(estw);
+                            resultItem.HasRefreshed = __LoadLiveDataFromEstw(estw);
+                            resultItem.Succeeded = true;
                             estw.IOExceptionCount = 0;
                         }
-                        catch (IOException ex) when (estw.IOExceptionCount < 3)
+                        catch (IOException) when (estw.IOExceptionCount < 3)
                         {
                             estw.IOExceptionCount++;
-                            Result.Message = ex.Message;
+                            resultItem.Succeeded = true;
                         }
                         catch (Exception ex)
                         {
-                            Result.Result = false;
-                            Result.Message = ex.Message;
+                            resultItem.Succeeded = false;
+                            resultItem.Message = ex.ToString();
                         }
+
+                        ResultItems.Add(resultItem);
                     });
 
                     var EstwTime = area.ESTWs.Max(e => e.Time);
@@ -157,12 +178,13 @@ namespace Leibit.BLL
                             });
                     }
 
+                    Result.Result = ResultItems.ToList();
                     Result.Succeeded = true;
                     return Result;
                 }
                 catch (Exception ex)
                 {
-                    return new OperationResult<bool> { Message = ex.Message };
+                    return new OperationResult<List<RefreshLiveDataResult>> { Message = ex.ToString() };
                 }
             }
         }
@@ -351,15 +373,15 @@ namespace Leibit.BLL
 
         #region - Private helpers -
 
-        private void __LoadLiveDataFromEstw(ESTW estw)
+        private bool __LoadLiveDataFromEstw(ESTW estw)
         {
             if (estw == null || estw.DataFile.IsNullOrWhiteSpace())
-                return;
+                return false;
 
             var FilePath = Path.Combine(DataFilesPath, estw.DataFile);
 
             if (!File.Exists(FilePath))
-                return;
+                return false;
 
             using (var stream = File.Open(FilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
@@ -474,6 +496,8 @@ namespace Leibit.BLL
             }
             else
                 File.Delete(FilePath);
+
+            return true;
         }
 
         private string __GetDataFilesPath()

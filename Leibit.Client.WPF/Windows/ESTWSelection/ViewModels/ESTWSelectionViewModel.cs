@@ -1,6 +1,7 @@
 ﻿using Leibit.Client.WPF.Interfaces;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Entities.Common;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Threading;
@@ -56,6 +57,14 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
         }
         #endregion
 
+        #region [NeedsRefresh]
+        public bool NeedsRefresh
+        {
+            get;
+            set;
+        }
+        #endregion
+
         #region [HasEstws]
         public bool HasEstws
         {
@@ -74,6 +83,7 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
 
         #region - Public methods -
 
+        #region [Refresh]
         public void Refresh(Area Area)
         {
             Name = Area.Name;
@@ -87,11 +97,24 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
                     continue;
 
                 var VM = new ESTWSelectionESTWViewModel(Estw);
+                VM.SelectionChanged += __Estw_SelectionChanged;
                 Dispatcher.Invoke(() => Estws.Add(VM));
             }
 
             HasEstws = Estws.Count > 0;
         }
+        #endregion
+
+        #endregion
+
+        #region - Private methods -
+
+        #region [__Estw_SelectionChanged]
+        private void __Estw_SelectionChanged(object sender, EventArgs e)
+        {
+            OnRefresh();
+        }
+        #endregion
 
         #endregion
 
