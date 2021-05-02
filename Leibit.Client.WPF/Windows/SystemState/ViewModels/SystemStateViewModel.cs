@@ -180,6 +180,7 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
                 if (current == null)
                 {
                     current = new LiveTrainViewModel(Area, train.Value);
+                    current.TrainDeleted += __TrainDeleted;
                     Dispatcher.Invoke(() => LiveTrains.Add(current));
                 }
                 else
@@ -189,7 +190,18 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
             }
 
             var removedTrains = LiveTrains.Except(currentTrains).ToList();
-            Dispatcher.Invoke(() => removedTrains.ForEach(t => LiveTrains.Remove(t)));
+            Dispatcher.Invoke(() => removedTrains.ForEach(t =>
+            {
+                LiveTrains.Remove(t);
+                t.TrainDeleted -= __TrainDeleted;
+            }));
+        }
+        #endregion
+
+        #region [__TrainDeleted]
+        private void __TrainDeleted(object sender, EventArgs e)
+        {
+            OnRefresh();
         }
         #endregion
 
