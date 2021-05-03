@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="München-Pasing" short="MP" refNr="15">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="15S30" direction="right"/>
+      <block name="15S31" direction="right"/>
+      <block name="16S1031" direction="right"/>
+    </track>
+  </station>
+  
+  <station name="München-Langwied" short="MLW" refNr="16" scheduleFile="v16_____.abf">
+    <track name="029" calculateDelay="false">
+      <block name="16S1033"/>
+    </track>
+    <track name="030" calculateDelay="false">
+      <block name="16S1030"/>
+    </track>
+  </station>
+
+  <station name="München-Lochhausen" short="MLO" refNr="17" scheduleFile="g17_____.abf" localOrderFile="bf17____.abf">
+    <track name="1">
+      <block name="17G1"/>
+    </track>
+    <track name="2">
+      <block name="17G2"/>
+    </track>
+    <track name="3">
+      <block name="17G3"/>
+    </track>
+    <track name="4">
+      <block name="17G4"/>
+    </track>
+    <track name="5">
+      <block name="17G5"/>
+    </track>
+  </station>
+
+  <station name="Gröbenzell" short="MGRZ" refNr="17" scheduleFile="b17_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="17B1036"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="17B1035"/>
+    </track>
+  </station>
+
+  <station name="München Nord Forstweg" short="MN F" refNr="18">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="18B200" direction="right"/>
+      <block name="18B201" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Olching" short="MOL" refNr="18" scheduleFile="g18_____.abf" localOrderFile="bf18____.abf">
+    <track name="1">
+      <block name="18G1"/>
+    </track>
+    <track name="2">
+      <block name="18G2"/>
+    </track>
+    <track name="3">
+      <block name="18G3"/>
+    </track>
+    <track name="4">
+      <block name="18G4"/>
+    </track>
+    <track name="5">
+      <block name="18G5"/>
+    </track>
+    <track name="6">
+      <block name="18G6"/>
+    </track>
+  </station>
+
+  <station name="Esting" short="MESG" refNr="18" scheduleFile="b18_____.abf">
+    <track name="1" calculateDelay="false"/>
+    <track name="2" calculateDelay="false"/>
+  </station>
+
+  <station name="Gernlinden" short="MGLD" refNr="19" scheduleFile="b19_____.abf">
+    <track name="1" calculateDelay="false"/>
+    <track name="2" calculateDelay="false"/>
+  </station>
+
+  <station name="Maisach" short="MMA" refNr="19" scheduleFile="g19_____.abf" localOrderFile="bf19____.abf">
+    <track name="1">
+      <block name="19G1"/>
+    </track>
+    <track name="2">
+      <block name="19G2"/>
+    </track>
+    <track name="3">
+      <block name="19G3"/>
+    </track>
+    <track name="4">
+      <block name="19G4"/>
+    </track>
+    <track name="5">
+      <block name="19G5"/>
+    </track>
+    <track name="6">
+      <block name="19G6"/>
+    </track>
+  </station>
+
+  <station name="Malching" short="MMAG" refNr="20" scheduleFile="b20_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="20BPS"/>
+    </track>
+  </station>
+
+  <station name="Nannhofen" short="MNAN" refNr="20" scheduleFile="g20_____.abf" localOrderFile="bf20____.abf">
+    <track name="1">
+      <block name="20G1"/>
+    </track>
+    <track name="2">
+      <block name="20G2"/>
+    </track>
+    <track name="3">
+      <block name="20G3"/>
+    </track>
+    <track name="4">
+      <block name="20G4"/>
+    </track>
+    <track name="5">
+      <block name="20G5"/>
+    </track>
+  </station>
+
+  <station name="Haspelmoor" short="MHMR" refNr="21" scheduleFile="g21_____.abf" localOrderFile="bf21____.abf">
+    <track name="2">
+      <block name="21G2"/>
+    </track>
+    <track name="3">
+      <block name="21G3"/>
+    </track>
+    <track name="4">
+      <block name="21G4"/>
+    </track>
+  </station>
+
+  <station name="Althegnenberg" short="MAHB" refNr="21" scheduleFile="b21_____.abf">
+    <track name="3" calculateDelay="false">
+      <block name="21B70"/>
+    </track>
+    <track name="4" calculateDelay="false">
+      <block name="21B69"/>
+    </track>
+  </station>
+
+  <station name="Mering" short="MMR" refNr="22">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="22BP" direction="left"/>
+      <block name="21B77" direction="left"/>
+    </track>
+  </station>
+</estw>
