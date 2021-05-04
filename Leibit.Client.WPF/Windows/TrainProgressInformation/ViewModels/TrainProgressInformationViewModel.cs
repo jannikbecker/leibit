@@ -85,14 +85,6 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
-        #region [NeedsRefresh]
-        public bool NeedsRefresh
-        {
-            get;
-            set;
-        }
-        #endregion
-
         #region [DoubleClickCommand]
         public ICommand DoubleClickCommand
         {
@@ -186,14 +178,6 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
-        #region [RefreshGrid]
-        public bool RefreshGrid
-        {
-            get => Get<bool>();
-            set => Set(value);
-        }
-        #endregion
-
         #endregion
 
         #region - Public methods -
@@ -240,7 +224,6 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
             var removedTrains = Trains.Except(currentTrains).ToList();
             Dispatcher.Invoke(() => removedTrains.ForEach(t => Trains.Remove(t)));
-            RefreshGrid = true;
         }
         #endregion
 
@@ -406,7 +389,6 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             entry.TrainNumber = trainNumber.Value;
             entry.HadLiveData = m_Area.LiveTrains.ContainsKey(trainNumber.Value);
             Runtime.VisibleTrains.Add(entry);
-            Refresh(m_Area);
         }
         #endregion
 
@@ -426,7 +408,6 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 return;
 
             Runtime.HiddenSchedules.Add(entry);
-            Refresh(m_Area);
         }
         #endregion
 

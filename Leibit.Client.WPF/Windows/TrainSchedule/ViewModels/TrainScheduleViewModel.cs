@@ -75,14 +75,6 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         }
         #endregion
 
-        #region [NeedsRefresh]
-        public bool NeedsRefresh
-        {
-            get;
-            set;
-        }
-        #endregion
-
         #region [Stations]
         public ObservableCollection<TrainScheduleStationViewModel> Stations
         {

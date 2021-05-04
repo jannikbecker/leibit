@@ -7,6 +7,5 @@ namespace Leibit.Client.WPF.Interfaces
     {
         void Refresh(Area Area);
         Dispatcher Dispatcher { get; }
-        bool NeedsRefresh { get; set; }
     }
 }

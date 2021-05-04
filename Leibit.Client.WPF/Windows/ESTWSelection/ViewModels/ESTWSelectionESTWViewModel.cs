@@ -16,10 +16,6 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
         private ESTW m_Estw;
         #endregion
 
-        #region - Events -
-        public event EventHandler SelectionChanged;
-        #endregion
-
         #region - Ctor -
         public ESTWSelectionESTWViewModel(ESTW Estw)
             : base()
@@ -144,7 +140,6 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
                     Runtime.VisibleStations.Remove(SenderVM.CurrentStation);
 
                 __RefreshSelection();
-                SelectionChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

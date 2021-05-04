@@ -50,14 +50,6 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
         }
         #endregion
 
-        #region [NeedsRefresh]
-        public bool NeedsRefresh
-        {
-            get;
-            set;
-        }
-        #endregion
-
         #region [Schedules]
         public ObservableCollection<TimeTableItemViewModel> Schedules
         {

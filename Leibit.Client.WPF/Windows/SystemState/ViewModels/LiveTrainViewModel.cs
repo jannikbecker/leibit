@@ -3,7 +3,6 @@ using Leibit.Core.Client.Commands;
 using Leibit.Entities;
 using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
-using System;
 using System.Windows.Input;
 
 namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
@@ -18,10 +17,6 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
             CurrentTrain = train;
             DeleteLiveTrainCommand = new CommandHandler(__Delete, true);
         }
-        #endregion
-
-        #region - Events -
-        public event EventHandler TrainDeleted;
         #endregion
 
         #region - Properties -
@@ -81,7 +76,6 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
         private void __Delete()
         {
             Area.LiveTrains.TryRemove(CurrentTrain.Train.Number, out _);
-            TrainDeleted?.Invoke(this, EventArgs.Empty);
         }
         #endregion
 
