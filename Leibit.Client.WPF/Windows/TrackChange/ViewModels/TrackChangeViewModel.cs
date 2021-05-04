@@ -154,7 +154,6 @@ namespace Leibit.Client.WPF.Windows.TrackChange.ViewModels
             if (result.Succeeded)
             {
                 OnStatusBarTextChanged($"Gleiswechsel für Zug {m_Train.Train.Number} in {SelectedSchedule.Schedule.Station.ShortSymbol} eingetragen");
-                OnRefresh();
                 OnCloseWindow();
             }
             else

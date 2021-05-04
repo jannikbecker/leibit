@@ -183,7 +183,6 @@ namespace Leibit.Client.WPF.Windows.TrainState.ViewModels
                 else if (TypeRevocation)
                     OnStatusBarTextChanged($"Zugvorbereitungsmeldung für Zug {TrainNumber} in {CurrentSchedule.Schedule.Station.ShortSymbol} zurückgenommen");
 
-                OnRefresh();
                 OnCloseWindow();
             }
             else

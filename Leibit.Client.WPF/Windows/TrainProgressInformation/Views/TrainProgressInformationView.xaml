@@ -22,7 +22,6 @@
                              SelectedColumn="{Binding SelectedColumn, Mode=OneWayToSource}"
                              LayoutKey="ZFI2.0"
                              SaveLayout="{Binding SaveGridLayout,Mode=TwoWay}"
-                             Refresh="{Binding RefreshGrid, Mode=TwoWay}"
                              RowDoubleClickCommand="{Binding DoubleClickCommand}">
 
         <controls:LeibitDataGrid.ContextMenu>

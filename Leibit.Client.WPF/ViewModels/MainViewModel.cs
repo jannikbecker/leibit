@@ -61,7 +61,6 @@ namespace Leibit.Client.WPF.ViewModels
         private List<ViewModelBase> m_ChildViewModels;
         private string m_CurrentFilename;
         private bool m_ForceClose;
-        private bool m_ForceRefresh;
 
         private CommandHandler m_NewCommand;
         private CommandHandler m_OpenCommand;
@@ -1068,10 +1067,6 @@ namespace Leibit.Client.WPF.ViewModels
             };
 
             ViewModel.StatusBarTextChanged += (sender, text) => StatusBarText = text;
-            ViewModel.ForceRefresh += (sender, e) => m_ForceRefresh = true;
-
-            if (ViewModel is IRefreshable refreshable)
-                refreshable.NeedsRefresh = true;
 
             return true;
         }
@@ -1130,32 +1125,23 @@ namespace Leibit.Client.WPF.ViewModels
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                var Result = m_LiveDataBll.RefreshLiveDataWithInfo(Area);
+                var Result = m_LiveDataBll.RefreshLiveData(Area);
 
-                if (Result.Succeeded)
+                if (Result.Succeeded && Result.Result)
                 {
                     var vmList = m_ChildViewModels.Where(vm => vm is IRefreshable).Cast<IRefreshable>().ToList();
 
                     foreach (var vm in vmList)
                     {
-                        if (m_ForceRefresh || vm.NeedsRefresh || Result.Result.Any(x => x.HasRefreshed))
+                        try
                         {
-                            try
-                            {
-                                vm.Refresh(Area);
-                                vm.NeedsRefresh = false;
-                            }
-                            catch (Exception ex)
-                            {
-                                Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(ex.ToString()));
-                            }
+                            vm.Refresh(Area);
+                        }
+                        catch (Exception ex)
+                        {
+                            Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(ex.ToString()));
                         }
                     }
-
-                    m_ForceRefresh = false;
-
-                    foreach (var failedItem in Result.Result.Where(x => !x.Succeeded))
-                        Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(failedItem.Message));
                 }
                 else
                     Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(Result.Message));
