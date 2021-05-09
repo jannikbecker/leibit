@@ -41,11 +41,16 @@ Folgende Simulationen werden aktuell unterstützt:
     - Singen
     - Friedrichshafen
     - Lindau
-    - Aulendorf (NEU)
-    - Geltendorf (NEU)
-    - München-Westkreuz (NEU)
-    - Weilheim (NEU)
-    - Garmisch-Partenkirchen (NEU)
+    - Aulendorf
+    - Memmingen (NEU)
+    - Buchloe (NEU)
+    - Augsburg Hbf (NEU)
+    - Augsburg-Hochzoll (NEU)
+    - Olching (NEU)
+    - Geltendorf
+    - München-Westkreuz
+    - Weilheim
+    - Garmisch-Partenkirchen
 
 Karten der Stellbereiche können [hier](maps) eingesehen werden. Eine vollständige Bedienungsanleitung ist [hier](https://github.com/jannikbecker/leibit/wiki) zu finden. Für den ersten Start bietet die [Schnellstartanleitung](https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung) einen guten Einstiegspunkt.
 

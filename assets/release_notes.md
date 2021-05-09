@@ -1,10 +1,5 @@
-- Die Zugfahrtinformation (ZFI) wurde komplett überarbeitet und damit noch realistischer gestaltet (#65).
-    - Das Grid wurde um weitere Spalten (&Delta;t an/ab) erweitert.
-    - Der Zugstatus wechselt im Endbahnhof nun direkt auf "beendet".
-    - Es wurden Vor- und Nachlaufzeit eingeführt, die nun die Sichtbarkeit der einzelnen Einträge steuern.
-    - Züge können nun manuell der ZFI hinzugefügt und ausgeblendet werden.
-    - Es können jetzt manuelle Zugstatus (Bereitstellungs- und Vorbereitungsmeldung) erfasst werden.
-- Die Zugbildungsdaten wurden in das LeiBIT integriert und können nun angezeigt werden (#22).
-- Die Simulationen Aulendorf (#34), Geltendorf (#40), München-Westkreuz (#41), Weilheim (#42) und Garmisch-Partenkirchen (#43) stehen nun zur Verfügung.
-- Beim Laden von gespeicherten Spielständen, die mit einer älteren Version von LeiBIT gespeichert wurden, erscheint nun eine Warnung, dass es ggf. zu fehlerhaften Darstellungen kommen kann (#91).
-- Korrektur kleinerer Fehler sowie Verbesserungen in kleinem Umfang (#81, #83, #84, #86, #87, #88, #89, #96)
+- Die Simulationen Memmingen (#38), Buchloe (#39), Augsburg Hbf (#107), Augsburg-Hochzoll (#108) und Olching (#109) stehen nun zur Verfügung.
+- In den Projektierungen von Aschaffenburg (#102) und Weilheim (#104) wurden kleinere Fehler korrigiert.
+- Die Fehlerbehandlung wurde verbessert. In älteren Versionen konnte es vorkommen, dass das Programm ohne Fehlermeldung abstürzte (#103).
+- In der Zugfahrtinformation (ZFI) wurde die Sortierung korrigiert (#106).
+- Sonderzüge und Umleiter werden nun wieder in der ZFI angezeigt (#110).
