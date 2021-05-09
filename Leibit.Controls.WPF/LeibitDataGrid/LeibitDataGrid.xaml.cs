@@ -90,7 +90,12 @@ namespace Leibit.Controls
             if (e.NewValue == null)
                 sender.Collection = null;
             else
-                sender.Collection = CollectionViewSource.GetDefaultView(e.NewValue);
+            {
+                var source = new CollectionViewSource();
+                source.Source = e.NewValue;
+                source.IsLiveSortingRequested = true;
+                sender.Collection = source.View;
+            }
         }
         #endregion
 
@@ -135,6 +140,27 @@ namespace Leibit.Controls
             {
                 m_Collection = value;
                 __OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region [Refresh]
+        public bool Refresh
+        {
+            get { return (bool)GetValue(RefreshProperty); }
+            set { SetValue(RefreshProperty, value); }
+        }
+
+        public static readonly DependencyProperty RefreshProperty = DependencyProperty.Register("Refresh", typeof(bool), typeof(LeibitDataGrid), new PropertyMetadata(false, __OnRefreshChanged));
+
+        private static void __OnRefreshChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var sender = d as LeibitDataGrid;
+
+            if ((bool)e.NewValue && sender != null)
+            {
+                sender.Collection?.Refresh();
+                sender.Refresh = false;
             }
         }
         #endregion

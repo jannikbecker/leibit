@@ -42,6 +42,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private SettingsBLL m_SettingsBll;
         private CalculationBLL m_CalculationBll;
         private Area m_Area;
+        private bool m_NewItemAdded;
         #endregion
 
         #region - Ctor -
@@ -178,6 +179,14 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
+        #region [RefreshGrid]
+        public bool RefreshGrid
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        #endregion
+
         #endregion
 
         #region - Public methods -
@@ -224,6 +233,12 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
             var removedTrains = Trains.Except(currentTrains).ToList();
             Dispatcher.Invoke(() => removedTrains.ForEach(t => Trains.Remove(t)));
+
+            if (m_NewItemAdded)
+            {
+                m_NewItemAdded = false;
+                RefreshGrid = true;
+            }
         }
         #endregion
 
@@ -547,17 +562,13 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private TrainStationViewModel __BuildEntry(Schedule schedule, LiveSchedule liveSchedule, Entities.Settings.Settings settings)
         {
             var currentVm = Trains.FirstOrDefault(t => t.Station.ShortSymbol == schedule.Station.ShortSymbol && t.TrainNumber == schedule.Train.Number && t.Schedule.Time == schedule.Time);
-            var isNew = false;
 
             if (currentVm == null)
             {
                 currentVm = new TrainStationViewModel(schedule);
-                isNew = true;
-            }
-
-            if (isNew)
                 Dispatcher.Invoke(() => Trains.Add(currentVm));
-
+                m_NewItemAdded = true;
+            }
 
             if (liveSchedule != null)
             {
