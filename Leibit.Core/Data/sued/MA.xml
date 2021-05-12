@@ -6,7 +6,7 @@
     </track>
   </station>
 
-  <station name="Inningen" short="MINI" refNr="26" scheduleFile="b26_____.abf">
+  <station name="Inningen" short="MINI" refNr="26" scheduleFile="v26_____.abf">
     <track name="11" calculateDelay="false">
       <block name="26S11"/>
     </track>
@@ -358,7 +358,7 @@
     </track>
   </station>
 
-  <station name="Neusäß" short="MNES" refNr="26" scheduleFile="v26_____.abf">
+  <station name="Neusäß" short="MNES" refNr="26" scheduleFile="b26_____.abf">
     <track name="1" calculateDelay="false">
       <block name="26B01"/>
     </track>
