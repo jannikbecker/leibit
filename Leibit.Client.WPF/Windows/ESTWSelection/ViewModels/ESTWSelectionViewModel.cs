@@ -83,7 +83,7 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
 
             foreach (var Estw in Area.ESTWs)
             {
-                if (!Estw.IsLoaded || Estws.Any(e => e.Id == Estw.Id))
+                if (!Estw.IsLoaded || !Estw.SchedulesLoaded || Estws.Any(e => e.Id == Estw.Id))
                     continue;
 
                 var VM = new ESTWSelectionESTWViewModel(Estw);

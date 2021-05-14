@@ -526,7 +526,7 @@ namespace Leibit.BLL
             }
             else
             {
-                var Train = new Train(trainNumber);
+                var Train = estw.Area.Trains.GetOrAdd(trainNumber, new Train(trainNumber));
                 return new TrainInformation(Train);
             }
         }
@@ -539,7 +539,7 @@ namespace Leibit.BLL
             if (Block != null)
             {
                 // Dummy track for stations without platforms (e.g. Üst)
-                if (Block.Track.Name.IsNullOrEmpty())
+                if (!Estw.SchedulesLoaded || Block.Track.Name.IsNullOrEmpty())
                 {
                     Train.Block = Block;
                 }

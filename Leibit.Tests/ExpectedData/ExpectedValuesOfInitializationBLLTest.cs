@@ -131,6 +131,7 @@ namespace Leibit.Tests.ExpectedData
             Area.Trains.TryAdd(4711, Train4711);
             new Schedule(Train4711, null, new LeibitTime(14, 5), ProbeTrack2, _ALL_DAYS, eScheduleDirection.LeftToRight, eHandling.Transit, String.Empty, null);
 
+            EstwTestdorf.SchedulesLoaded = true;
             EstwTestdorf.IsLoaded = true;
             return Area;
         }
