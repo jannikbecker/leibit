@@ -25,24 +25,22 @@
                              Refresh="{Binding RefreshGrid, Mode=TwoWay}"
                              RowDoubleClickCommand="{Binding DoubleClickCommand}">
 
-        <controls:LeibitDataGrid.ContextMenu>
-            <ContextMenu>
-                <MenuItem Header="Neu" Command="{Binding NewCommand}"/>
-                <MenuItem Header="Löschen" Command="{Binding DeleteCommand}"/>
-                <Separator/>
-                <MenuItem Header="Vsl. Verspätung" Command="{Binding EnterExpectedDelayCommand}"/>
-                <MenuItem Header="Gleiswechsel" Command="{Binding ShowTrackChangeCommand}"/>
-                <Separator/>
-                <MenuItem Header="Zugstatus neu" Command="{Binding NewTrainStateCommand}"/>
-                <MenuItem Header="Zugstatus eingeben" Command="{Binding EnterTrainStateCommand}"/>
-                <Separator/>
-                <MenuItem Header="Zuglaufdaten" Command="{Binding ShowTrainScheduleCommand}"/>
-                <MenuItem Header="Örtliche Anweisungen" Command="{Binding ShowLocalOrdersCommand}"/>
-                <MenuItem Header="Zugbildung" Command="{Binding ShowTrainCompositionCommand}"/>
-                <MenuItem Header="Verspätungsbegründung" Command="{Binding ShowDelayJustificationCommand}"/>
-            </ContextMenu>
-        </controls:LeibitDataGrid.ContextMenu>
-        
+        <controls:LeibitDataGrid.ContextMenuItems>
+            <MenuItem Header="Neu" Command="{Binding NewCommand}"/>
+            <MenuItem Header="Löschen" Command="{Binding DeleteCommand}"/>
+            <Separator/>
+            <MenuItem Header="Vsl. Verspätung" Command="{Binding EnterExpectedDelayCommand}"/>
+            <MenuItem Header="Gleiswechsel" Command="{Binding ShowTrackChangeCommand}"/>
+            <Separator/>
+            <MenuItem Header="Zugstatus neu" Command="{Binding NewTrainStateCommand}"/>
+            <MenuItem Header="Zugstatus eingeben" Command="{Binding EnterTrainStateCommand}"/>
+            <Separator/>
+            <MenuItem Header="Zuglaufdaten" Command="{Binding ShowTrainScheduleCommand}"/>
+            <MenuItem Header="Örtliche Anweisungen" Command="{Binding ShowLocalOrdersCommand}"/>
+            <MenuItem Header="Zugbildung" Command="{Binding ShowTrainCompositionCommand}"/>
+            <MenuItem Header="Verspätungsbegründung" Command="{Binding ShowDelayJustificationCommand}"/>
+        </controls:LeibitDataGrid.ContextMenuItems>
+
         <controls:LeibitDataGrid.Resources>
             <Style TargetType="DataGridCell">
                 <Setter Property="BorderThickness" Value="0"/>
