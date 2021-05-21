@@ -584,6 +584,33 @@ namespace Leibit.Controls
                                 groupValues.Add(leibitColumn.FieldName, bindingValue);
                         }
 
+                        foreach (var backgroundColor in leibitColumn.BackgroundConditions)
+                        {
+                            var matches = true;
+
+                            foreach (var condition in backgroundColor.Conditions)
+                            {
+                                try
+                                {
+                                    var actualValue = (condition.Binding as Binding)?.Eval(item);
+                                    var expectedValue = Convert.ChangeType(condition.Value, actualValue.GetType());
+
+                                    if (expectedValue != null)
+                                        matches &= expectedValue.Equals(actualValue);
+                                    else if (actualValue != null)
+                                        matches &= actualValue.Equals(expectedValue);
+                                    // else both are null and therefore equal.
+                                }
+                                catch
+                                {
+                                    matches = false;
+                                }
+                            }
+
+                            if (matches)
+                                cell.Background = backgroundColor.BackgroundColor;
+                        }
+
                         row.Cells.Add(cell);
                     }
 
@@ -705,6 +732,33 @@ namespace Leibit.Controls
 
                     if (column.VisibilityBinding != null)
                         gridColumn.ElementStyle.Setters.Add(new Setter(VisibilityProperty, column.VisibilityBinding));
+
+                    foreach (var backgroundCondition in column.BackgroundConditions)
+                    {
+                        Style style;
+
+                        if (Resources.Contains(typeof(DataGridCell)))
+                            style = Resources[typeof(DataGridCell)] as Style;
+                        else
+                        {
+                            style = new Style(typeof(DataGridCell));
+                            Resources.Add(typeof(DataGridCell), style);
+                        }
+
+                        var columnBinding = new Binding("Column.Binding.Path.Path");
+                        columnBinding.RelativeSource = new RelativeSource(RelativeSourceMode.Self);
+
+                        var columnCondition = new Condition(columnBinding, column.FieldName);
+                        var trigger = new MultiDataTrigger();
+                        trigger.Conditions.Add(columnCondition);
+
+                        foreach (var condition in backgroundCondition.Conditions)
+                            trigger.Conditions.Add(condition);
+
+                        var setter = new Setter(BackgroundProperty, backgroundCondition.BackgroundColor);
+                        trigger.Setters.Add(setter);
+                        style.Triggers.Add(trigger);
+                    }
 
                     dataGrid.Columns.Add(gridColumn);
                 }

@@ -14,6 +14,7 @@ namespace Leibit.Core.Client.Common
             var clone = new Binding();
             clone.Path = binding.Path;
             clone.Converter = binding.Converter;
+            clone.ConverterParameter = binding.ConverterParameter;
             clone.Source = source;
 
             var dependencyObject = new DependencyObject();
