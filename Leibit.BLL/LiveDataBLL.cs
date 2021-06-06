@@ -671,6 +671,7 @@ namespace Leibit.BLL
             ValidateResult(ExpectedResult);
 
             Train.LastModified = Estw.Time;
+            Train.RealBlock = Block;
         }
 
         private void __RefreshLiveSchedules(TrainInformation Train, ESTW estw)
