@@ -30,6 +30,7 @@
     <estw id="TF" name="Friedrichshafen" dataFile="leibit_FRIEDRICHSHAFEN.dat"/>
     <estw id="TAU" name="Aulendorf" dataFile="leibit_AULENDORF.dat"/>
     <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat"/>
+    <estw id="MIMS" name="Immenstadt" dataFile="leibit_IMMENSTADT.dat"/>
     <estw id="MM" name="Memmingen" dataFile="leibit_MEMMINGEN.dat"/>
     <estw id="MBU" name="Buchloe" dataFile="leibit_BUCHLOE.dat"/>
     <estw id="MA" name="Augsburg Hbf" dataFile="leibit_AUGSBURG HBF.dat"/>
