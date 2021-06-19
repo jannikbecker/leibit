@@ -31,6 +31,7 @@
     <estw id="TAU" name="Aulendorf" dataFile="leibit_AULENDORF.dat"/>
     <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat"/>
     <estw id="MM" name="Memmingen" dataFile="leibit_MEMMINGEN.dat"/>
+    <estw id="MKP" name="Kempten" dataFile="leibit_KEMPTEN.dat"/>
     <estw id="MBU" name="Buchloe" dataFile="leibit_BUCHLOE.dat"/>
     <estw id="MA" name="Augsburg Hbf" dataFile="leibit_AUGSBURG HBF.dat"/>
     <estw id="MAHZ" name="Augsburg-Hochzoll" dataFile="leibit_A-HOCHZOLL.dat"/>

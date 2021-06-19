@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Martinszell" short="MMSZ" refNr="51">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="51BP" direction="right"/>
+      <block name="50B1" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Kempten (Allgäu) Hbf" short="MKP" refNr="50" scheduleFile="g50_____.abf" localOrderFile="bf50____.abf">
+    <track name="1">
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+
+      <track name="1N">
+        <block name="50G1N"/>
+      </track>
+      <track name="1S">
+        <block name="50G1S"/>
+      </track>
+    </track>
+
+    <track name="2">
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+
+      <track name="2N">
+        <block name="50G2N"/>
+      </track>
+      <track name="2S">
+        <block name="50G2S"/>
+      </track>
+    </track>
+
+    <track name="3">
+      <block name="50G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+
+    <track name="4">
+      <block name="50G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+
+    <track name="5">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+
+      <track name="5N">
+        <block name="50G5N"/>
+      </track>
+      <track name="5S">
+        <block name="50G5S"/>
+      </track>
+    </track>
+
+    <track name="6">
+      <block name="50G6"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+    </track>
+
+    <track name="55">
+      <block name="50G55"/>
+      <alternative track="56"/>
+      <alternative track="57"/>
+      <alternative track="58"/>
+      <alternative track="69"/>
+      <alternative track="143"/>
+      <alternative track="144"/>
+    </track>
+
+    <track name="56">
+      <block name="50G56"/>
+      <alternative track="55"/>
+      <alternative track="57"/>
+      <alternative track="58"/>
+      <alternative track="69"/>
+      <alternative track="143"/>
+      <alternative track="144"/>
+    </track>
+
+    <track name="57">
+      <block name="50G57"/>
+      <alternative track="55"/>
+      <alternative track="56"/>
+      <alternative track="58"/>
+      <alternative track="69"/>
+      <alternative track="143"/>
+      <alternative track="144"/>
+    </track>
+
+    <track name="58">
+      <block name="50G58"/>
+      <alternative track="55"/>
+      <alternative track="56"/>
+      <alternative track="57"/>
+      <alternative track="69"/>
+      <alternative track="143"/>
+      <alternative track="144"/>
+    </track>
+
+    <track name="69">
+      <block name="50G69"/>
+      <alternative track="55"/>
+      <alternative track="56"/>
+      <alternative track="57"/>
+      <alternative track="58"/>
+      <alternative track="143"/>
+      <alternative track="144"/>
+    </track>
+
+    <track name="143">
+      <block name="50G143"/>
+      <alternative track="144"/>
+      <alternative track="155"/>
+      <alternative track="156"/>
+    </track>
+
+    <track name="144">
+      <block name="50G144"/>
+      <alternative track="143"/>
+      <alternative track="55"/>
+      <alternative track="56"/>
+      <alternative track="57"/>
+      <alternative track="58"/>
+    </track>
+
+    <track name="155">
+      <block name="50G155"/>
+      <alternative track="143"/>
+      <alternative track="144"/>
+      <alternative track="156"/>
+    </track>
+
+    <track name="156">
+      <block name="50G156"/>
+      <alternative track="143"/>
+      <alternative track="144"/>
+      <alternative track="155"/>
+    </track>
+  </station>
+
+  <station name="Kempten (Allgäu) Ost" short="MKPO" refNr="11" scheduleFile="g11_____.abf" localOrderFile="bf11____.abf">
+    <track name="2">
+      <block name="11G2"/>
+    </track>
+    <track name="3">
+      <block name="11G3"/>
+    </track>
+  </station>
+
+  <station name="Dietmannsried" short="MDRD" refNr="12">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11B1" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Günzach" short="MGNZ" refNr="21">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="21BN" direction="left"/>
+      <block name="50B46" direction="left"/>
+    </track>
+  </station>
+
+  <station name="St. Mang" short="MMG" refNr="50" scheduleFile="b50_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="50BP3" direction="left"/>
+      <block name="50BP4" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Durach" short="MDUH" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
+    <track name="1">
+      <block name="01G1"/>
+    </track>
+    <track name="2">
+      <block name="01G2"/>
+    </track>
+  </station>
+
+  <station name="Sulzberg" short="MSUG" refNr="1" scheduleFile="b1______.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Jodbad-Sulzbrunn" short="MJBS" refNr="2" scheduleFile="g2______.abf" localOrderFile="bf2_____.abf">
+    <track name="1">
+      <block name="02G1"/>
+    </track>
+    <track name="2">
+      <block name="02G2"/>
+    </track>
+  </station>
+
+  <station name="Bodelsberg" short="MBOD" refNr="2" scheduleFile="bodels__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Zollhaus-Petersthal" short="MZHP" refNr="3" scheduleFile="zollhs__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Oy-Mittelberg" short="MOYM" refNr="3" scheduleFile="g3______.abf" localOrderFile="bf3_____.abf">
+    <track name="1">
+      <block name="03G1"/>
+    </track>
+    <track name="2">
+      <block name="03G2"/>
+    </track>
+  </station>
+
+  <station name="Wertach-Haslach" short="MWHA" refNr="3" scheduleFile="wertac__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Maria Rain" short="MMRN" refNr="4" scheduleFile="mariar__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Nesselwang" short="MNEW" refNr="4" scheduleFile="g4______.abf" localOrderFile="bf4_____.abf">
+    <track name="1">
+      <block name="04G1"/>
+    </track>
+    <track name="2">
+      <block name="04G2"/>
+    </track>
+  </station>
+
+  <station name="Pfronten-Weißbach" short="MPFW" refNr="5" scheduleFile="weissb__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Pfronten-Ried" short="MPFD" refNr="5" scheduleFile="g5______.abf" localOrderFile="bf5_____.abf">
+    <track name="2">
+      <block name="05G2"/>
+    </track>
+    <track name="3">
+      <block name="05G3"/>
+    </track>
+  </station>
+
+  <station name="Pfronten-Steinach" short="MPFS" refNr="6" scheduleFile="g6______.abf" localOrderFile="bf6_____.abf">
+    <track name="2">
+      <block name="06G2"/>
+    </track>
+    <track name="3">
+      <block name="06G3"/>
+    </track>
+  </station>
+
+  <station name="Schönbichl" short="XASBL" refNr="6" scheduleFile="b6______.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Vils" short="XAV" refNr="7" scheduleFile="g7______.abf" localOrderFile="bf7_____.abf">
+    <track name="001">
+      <block name="07G001"/>
+    </track>
+    <track name="003">
+      <block name="07G003"/>
+    </track>
+  </station>
+
+  <station name="Ulrichsbrücke-Füssen" short="XAU" refNr="7" scheduleFile="ulrich__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Musau" short="XAMU" refNr="8" scheduleFile="musau___.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Pflach" short="XAPL" refNr="8" scheduleFile="pflach__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Reutte in Tirol" short="XART" refNr="8" scheduleFile="g8______.abf" localOrderFile="bf8_____.abf">
+    <track name="001">
+      <block name="08G001"/>
+    </track>
+    <track name="002">
+      <block name="08G002"/>
+    </track>
+    <track name="003">
+      <block name="08G003"/>
+    </track>
+    <track name="004">
+      <block name="08G004"/>
+    </track>
+  </station>
+
+  <station name="Reutte in Tirol Schulzentrum" short="XARTS" refNr="8" scheduleFile="rt-sch__.abf">
+    <track name="301" calculateDelay="false"/>
+  </station>
+
+  <station name="Bichlbach-Berwang" short="XABI" refNr="9">
+    <track calculateDelay="false">
+      <block name="09BR" direction="left"/>
+    </track>
+  </station>
+</estw>
