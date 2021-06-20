@@ -37,6 +37,7 @@
     <None Remove="Data\nord\AHAR.xml" />
     <None Remove="Data\nord\AROG.xml" />
     <None Remove="Data\nord\HB.xml" />
+    <None Remove="Data\sued\Bg.xml" />
     <None Remove="Data\sued\MA.xml" />
     <None Remove="Data\sued\MAHZ.xml" />
     <None Remove="Data\sued\MBU.xml" />
@@ -79,6 +80,7 @@
     <EmbeddedResource Include="Data\nord\AHAR.xml" />
     <EmbeddedResource Include="Data\nord\AROG.xml" />
     <EmbeddedResource Include="Data\nord\HB.xml" />
+    <EmbeddedResource Include="Data\sued\Bg.xml" />
     <EmbeddedResource Include="Data\sued\MA.xml" />
     <EmbeddedResource Include="Data\sued\MAHZ.xml" />
     <EmbeddedResource Include="Data\sued\MBU.xml" />
