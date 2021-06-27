@@ -62,4 +62,10 @@ namespace Leibit.Entities
         Prepared,
     }
 
+    public enum eInfrastructureManager
+    {
+        DB,
+        OEBB,
+    }
+
 }

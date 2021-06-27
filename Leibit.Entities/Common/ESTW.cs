@@ -18,10 +18,17 @@ namespace Leibit.Entities.Common
         private LeibitTime m_Time;
 
         public ESTW(string id, string name, string dataFile, Area area)
+            : this(id, name, dataFile, eInfrastructureManager.DB, area)
+        {
+
+        }
+
+        public ESTW(string id, string name, string dataFile, eInfrastructureManager infrastructureManager, Area area)
         {
             m_Id = id;
             m_Name = name;
             m_DataFile = dataFile;
+            InfrastructureManager = infrastructureManager;
             m_Area = area;
 
             m_Stations = new List<Station>();
@@ -54,6 +61,8 @@ namespace Leibit.Entities.Common
                 return m_DataFile;
             }
         }
+
+        public eInfrastructureManager InfrastructureManager { get; }
 
         public Area Area
         {

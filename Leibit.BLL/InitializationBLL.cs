@@ -261,11 +261,12 @@ namespace Leibit.BLL
             var EstwId = node.Attributes["id"];
             var EstwName = node.Attributes["name"];
             var EstwDataFile = node.Attributes["dataFile"];
+            var InfrastructureManagerAttr = node.Attributes["infrastructureManager"];
 
-            if (EstwId == null || EstwName == null || EstwDataFile == null)
+            if (EstwId == null || EstwName == null || EstwDataFile == null || InfrastructureManagerAttr == null || !Enum.TryParse(InfrastructureManagerAttr.InnerText, true, out eInfrastructureManager InfrastructureManager))
                 return null;
 
-            return new ESTW(EstwId.InnerText, EstwName.InnerText, EstwDataFile.InnerText, area);
+            return new ESTW(EstwId.InnerText, EstwName.InnerText, EstwDataFile.InnerText, InfrastructureManager, area);
         }
         #endregion
 

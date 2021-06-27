@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <leibit>
   <area id="myTestArea" name="Testland">
-    <estw id="TTST" name="Testdorf" dataFile="leibit_TEST.dat"/>
-    <estw id="TREH" name="Rechtsheim" dataFile="leibit_RECHTSHEI.dat"/>
+    <estw id="TTST" name="Testdorf" dataFile="leibit_TEST.dat" infrastructureManager="DB"/>
+    <estw id="TREH" name="Rechtsheim" dataFile="leibit_RECHTSHEI.dat" infrastructureManager="DB"/>
   </area>
 
   <area id="another" name="Paradies">
-    <estw id="PPP" name="Paradiesbahnhof" dataFile="leibit_PARADIES.dat"/>
+    <estw id="PPP" name="Paradiesbahnhof" dataFile="leibit_PARADIES.dat" infrastructureManager="DB"/>
   </area>
 </leibit>
