@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <leibit>
   <area id="nhth" name="Mitteldeutschland">
-    <estw id="NWH" name="Würzburg Hbf" dataFile="leibit_WÜRZBURG HBF.dat"/>
-    <estw id="NGM" name="Gemünden" dataFile="leibit_GEMÜNDEN.dat"/>
-    <estw id="NLO" name="Lohr" dataFile="leibit_LOHR.dat"/>
-    <estw id="NHEI" name="Heigenbrücken" dataFile="leibit_HEIGENBRÜCKEN.dat"/>
-    <estw id="NAH" name="Aschaffenburg" dataFile="leibit_ASCHAFFENBURG.dat"/>
-    <estw id="FGK" name="Großkrotzenburg" dataFile="leibit_GROSSKROTZENBURG.dat"/>
-    <estw id="FGEL" name="Gelnhausen" dataFile="leibit_GELNHAUSEN.dat"/>
-    <estw id="FSUE" name="Schlüchtern" dataFile="leibit_SCHLÜCHTERN.dat"/>
-    <estw id="FEL" name="Elm" dataFile="leibit_ELM.dat"/>
-    <estw id="FFU" name="Fulda" dataFile="leibit_FULDA.dat"/>
-    <estw id="FBHF" name="Bad Hersfeld" dataFile="leibit_BAD HERSFELD.dat"/>
-    <estw id="FB" name="Bebra" dataFile="leibit_BEBRA PBF.dat"/>
-    <estw id="UEI" name="Eisenach" dataFile="leibit_EISENACH.dat"/>
-    <estw id="UGO" name="Gotha" dataFile="leibit_GOTHA.dat"/>
+    <estw id="NWH" name="Würzburg Hbf" dataFile="leibit_WÜRZBURG HBF.dat" infrastructureManager="DB"/>
+    <estw id="NGM" name="Gemünden" dataFile="leibit_GEMÜNDEN.dat" infrastructureManager="DB"/>
+    <estw id="NLO" name="Lohr" dataFile="leibit_LOHR.dat" infrastructureManager="DB"/>
+    <estw id="NHEI" name="Heigenbrücken" dataFile="leibit_HEIGENBRÜCKEN.dat" infrastructureManager="DB"/>
+    <estw id="NAH" name="Aschaffenburg" dataFile="leibit_ASCHAFFENBURG.dat" infrastructureManager="DB"/>
+    <estw id="FGK" name="Großkrotzenburg" dataFile="leibit_GROSSKROTZENBURG.dat" infrastructureManager="DB"/>
+    <estw id="FGEL" name="Gelnhausen" dataFile="leibit_GELNHAUSEN.dat" infrastructureManager="DB"/>
+    <estw id="FSUE" name="Schlüchtern" dataFile="leibit_SCHLÜCHTERN.dat" infrastructureManager="DB"/>
+    <estw id="FEL" name="Elm" dataFile="leibit_ELM.dat" infrastructureManager="DB"/>
+    <estw id="FFU" name="Fulda" dataFile="leibit_FULDA.dat" infrastructureManager="DB"/>
+    <estw id="FBHF" name="Bad Hersfeld" dataFile="leibit_BAD HERSFELD.dat" infrastructureManager="DB"/>
+    <estw id="FB" name="Bebra" dataFile="leibit_BEBRA PBF.dat" infrastructureManager="DB"/>
+    <estw id="UEI" name="Eisenach" dataFile="leibit_EISENACH.dat" infrastructureManager="DB"/>
+    <estw id="UGO" name="Gotha" dataFile="leibit_GOTHA.dat" infrastructureManager="DB"/>
   </area>
 
   <area id="nord" name="Norddeutschland">
-    <estw id="HB" name="Bremen Hbf" dataFile="leibit_BREMEN HBF.dat"/>
-    <estw id="AROG" name="Rotenburg" dataFile="leibit_ROTENBURG.dat"/>
-    <estw id="ABLZ" name="Buchholz" dataFile="leibit_BUCHHOLZ.dat"/>
-    <estw id="AHAR" name="Hamburg-Harburg" dataFile="leibit_HAMBURG-HARBURG.dat"/>
-    <estw id="AH" name="Hamburg Hbf" dataFile="leibit_HAMBURG HBF.dat"/>
+    <estw id="HB" name="Bremen Hbf" dataFile="leibit_BREMEN HBF.dat" infrastructureManager="DB"/>
+    <estw id="AROG" name="Rotenburg" dataFile="leibit_ROTENBURG.dat" infrastructureManager="DB"/>
+    <estw id="ABLZ" name="Buchholz" dataFile="leibit_BUCHHOLZ.dat" infrastructureManager="DB"/>
+    <estw id="AHAR" name="Hamburg-Harburg" dataFile="leibit_HAMBURG-HARBURG.dat" infrastructureManager="DB"/>
+    <estw id="AH" name="Hamburg Hbf" dataFile="leibit_HAMBURG HBF.dat" infrastructureManager="DB"/>
   </area>
 
   <area id="sued" name="Süddeutschland / Vorarlberg">
-    <estw id="RSI" name="Singen" dataFile="leibit_SINGEN.dat"/>
-    <estw id="TF" name="Friedrichshafen" dataFile="leibit_FRIEDRICHSHAFEN.dat"/>
-    <estw id="TAU" name="Aulendorf" dataFile="leibit_AULENDORF.dat"/>
-    <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat"/>
-    <estw id="Fk" name="Feldkirch" dataFile="leibit_FELDKIRCH.dat"/>
-    <estw id="Bg" name="Bregenz" dataFile="leibit_BREGENZ.dat"/>
-    <estw id="MIMS" name="Immenstadt" dataFile="leibit_IMMENSTADT.dat"/>
-    <estw id="MM" name="Memmingen" dataFile="leibit_MEMMINGEN.dat"/>
-    <estw id="MKP" name="Kempten" dataFile="leibit_KEMPTEN.dat"/>
-    <estw id="MBU" name="Buchloe" dataFile="leibit_BUCHLOE.dat"/>
-    <estw id="MA" name="Augsburg Hbf" dataFile="leibit_AUGSBURG HBF.dat"/>
-    <estw id="MAHZ" name="Augsburg-Hochzoll" dataFile="leibit_A-HOCHZOLL.dat"/>
-    <estw id="MOL" name="Olching" dataFile="leibit_OLCHING.dat"/>
-    <estw id="MGE" name="Geltendorf" dataFile="leibit_GELTENDORF.dat"/>
-    <estw id="MWKR" name="München-Westkreuz" dataFile="leibit_M-WESTKREUZ.dat"/>
-    <estw id="MWH" name="Weilheim" dataFile="leibit_WEILHEIM.dat"/>
-    <estw id="MGP" name="Garmisch-Partenkirchen" dataFile="leibit_GARMISCH-PARTENK.dat"/>
+    <estw id="RSI" name="Singen" dataFile="leibit_SINGEN.dat" infrastructureManager="DB"/>
+    <estw id="TF" name="Friedrichshafen" dataFile="leibit_FRIEDRICHSHAFEN.dat" infrastructureManager="DB"/>
+    <estw id="TAU" name="Aulendorf" dataFile="leibit_AULENDORF.dat" infrastructureManager="DB"/>
+    <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat" infrastructureManager="DB"/>
+    <estw id="Bg" name="Bregenz" dataFile="leibit_BREGENZ.dat" infrastructureManager="OEBB"/>
+    <estw id="Fk" name="Feldkirch" dataFile="leibit_FELDKIRCH.dat" infrastructureManager="OEBB"/>
+    <estw id="MIMS" name="Immenstadt" dataFile="leibit_IMMENSTADT.dat" infrastructureManager="DB"/>
+    <estw id="MM" name="Memmingen" dataFile="leibit_MEMMINGEN.dat" infrastructureManager="DB"/>
+    <estw id="MKP" name="Kempten" dataFile="leibit_KEMPTEN.dat" infrastructureManager="DB"/>
+    <estw id="MBU" name="Buchloe" dataFile="leibit_BUCHLOE.dat" infrastructureManager="DB"/>
+    <estw id="MA" name="Augsburg Hbf" dataFile="leibit_AUGSBURG HBF.dat" infrastructureManager="DB"/>
+    <estw id="MAHZ" name="Augsburg-Hochzoll" dataFile="leibit_A-HOCHZOLL.dat" infrastructureManager="DB"/>
+    <estw id="MOL" name="Olching" dataFile="leibit_OLCHING.dat" infrastructureManager="DB"/>
+    <estw id="MGE" name="Geltendorf" dataFile="leibit_GELTENDORF.dat" infrastructureManager="DB"/>
+    <estw id="MWKR" name="München-Westkreuz" dataFile="leibit_M-WESTKREUZ.dat" infrastructureManager="DB"/>
+    <estw id="MWH" name="Weilheim" dataFile="leibit_WEILHEIM.dat" infrastructureManager="DB"/>
+    <estw id="MGP" name="Garmisch-Partenkirchen" dataFile="leibit_GARMISCH-PARTENK.dat" infrastructureManager="DB"/>
   </area>
 </leibit>

@@ -1,6 +1,7 @@
 ﻿using Leibit.BLL;
 using Leibit.Core.Client.BaseClasses;
 using Leibit.Core.Client.Commands;
+using Leibit.Entities;
 using Leibit.Entities.LiveData;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,11 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
             CurrentDelay = Delay;
             SaveCommand = new CommandHandler(__Save, false);
             m_LiveDataBll = new LiveDataBLL();
-            AllDelayReasons = DelayReason.GetAllDelayReasons();
+
+            if (Delay.Schedule.Schedule.Station.ESTW.InfrastructureManager == eInfrastructureManager.DB)
+                AllDelayReasons = DelayReason.GetDBDelayReasons();
+            else if (Delay.Schedule.Schedule.Station.ESTW.InfrastructureManager == eInfrastructureManager.OEBB)
+                AllDelayReasons = DelayReason.GetOEBBDelayReasons();
         }
         #endregion
 
