@@ -15,6 +15,7 @@
     <BitmapImage x:Key="imgClear" UriSource="/Leibit;component/Resources/Images/clear.png" />
     <BitmapImage x:Key="imgLocalOrders" UriSource="/Leibit;component/Resources/Images/local_orders.png" />
     <BitmapImage x:Key="imgOk" UriSource="/Leibit;component/Resources/Images/ok.png" />
+    <BitmapImage x:Key="imgOkGray" UriSource="/Leibit;component/Resources/Images/ok_gray.png" />
     <BitmapImage x:Key="imgWarning" UriSource="/Leibit;component/Resources/Images/warning.png" />
     <BitmapImage x:Key="imgInfo" UriSource="/Leibit;component/Resources/Images/info.png" />
     <BitmapImage x:Key="imgHelp" UriSource="/Leibit;component/Resources/Images/help.png" />

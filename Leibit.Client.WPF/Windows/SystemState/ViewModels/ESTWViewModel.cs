@@ -32,8 +32,24 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
         }
         #endregion
 
-        #region [IsActive]
-        public bool IsActive
+        #region [IsLoadedAndHasSchedules]
+        public bool IsLoadedAndHasSchedules
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [IsLoadedWithoutSchedules]
+        public bool IsLoadedWithoutSchedules
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [IsInactive]
+        public bool IsInactive
         {
             get => Get<bool>();
             set => Set(value);

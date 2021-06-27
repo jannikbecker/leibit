@@ -69,7 +69,7 @@
     </track>
   </station>
 
-  <station name="Kempten" short="MKP" refNr="50">
+  <station name="Kempten (Allgäu) Hbf" short="MKP" refNr="50">
     <track calculateDelay="false" isPlatform="false">
       <block name="50SP2" direction="right"/>
       <block name="21S45" direction="right"/>
