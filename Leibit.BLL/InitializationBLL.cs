@@ -119,11 +119,11 @@ namespace Leibit.BLL
                 var PathResult = SettingsBLL.GetPath(Estw.Id);
                 ValidateResult(PathResult);
 
-                if (PathResult.Result.IsNullOrWhiteSpace())
-                {
-                    Result.Succeeded = true;
-                    return Result;
-                }
+                //if (PathResult.Result.IsNullOrWhiteSpace())
+                //{
+                //    Result.Succeeded = true;
+                //    return Result;
+                //}
 
                 using (var xmlStream = __GetEstwXmlStream(Estw))
                 {
@@ -198,9 +198,13 @@ namespace Leibit.BLL
                                 }
                             }
 
-                            __GetSchedule(Station, PathResult.Result);
-                            __ResolveDuplicates(Station.Schedules);
-                            __GetLocalOrders(Station, PathResult.Result);
+                            if (PathResult.Result.IsNotNullOrWhiteSpace())
+                            {
+                                __GetSchedule(Station, PathResult.Result);
+                                __ResolveDuplicates(Station.Schedules);
+                                __GetLocalOrders(Station, PathResult.Result);
+                            }
+
                             Result.Succeeded = true;
                         }
                         catch (Exception ex)
@@ -214,8 +218,10 @@ namespace Leibit.BLL
                     }
                 }
 
-                __LoadTrainCompositions(Estw, PathResult.Result);
+                if (PathResult.Result.IsNotNullOrWhiteSpace())
+                    __LoadTrainCompositions(Estw, PathResult.Result);
 
+                Estw.SchedulesLoaded = PathResult.Result.IsNotNullOrWhiteSpace();
                 Estw.IsLoaded = true;
                 return Result;
             }
@@ -415,7 +421,13 @@ namespace Leibit.BLL
                     if (!Int32.TryParse(sTrain, out TrainNr))
                         continue;
 
-                    Train Train = station.ESTW.Area.Trains.GetOrAdd(TrainNr, new Train(TrainNr, Type, Start, Destination));
+                    Train Train = station.ESTW.Area.Trains.AddOrUpdate(TrainNr, new Train(TrainNr, Type, Start, Destination), (trainNo, existingTrain) =>
+                    {
+                        existingTrain.Type = Type;
+                        existingTrain.Start = Start;
+                        existingTrain.Destination = Destination;
+                        return existingTrain;
+                    });
 
                     int Hour;
                     if (!Int32.TryParse(sHour, out Hour))

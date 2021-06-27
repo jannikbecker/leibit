@@ -25,169 +25,137 @@
                              Refresh="{Binding RefreshGrid, Mode=TwoWay}"
                              RowDoubleClickCommand="{Binding DoubleClickCommand}">
 
-        <controls:LeibitDataGrid.ContextMenu>
-            <ContextMenu>
-                <MenuItem Header="Neu" Command="{Binding NewCommand}"/>
-                <MenuItem Header="Löschen" Command="{Binding DeleteCommand}"/>
-                <Separator/>
-                <MenuItem Header="Vsl. Verspätung" Command="{Binding EnterExpectedDelayCommand}"/>
-                <MenuItem Header="Gleiswechsel" Command="{Binding ShowTrackChangeCommand}"/>
-                <Separator/>
-                <MenuItem Header="Zugstatus neu" Command="{Binding NewTrainStateCommand}"/>
-                <MenuItem Header="Zugstatus eingeben" Command="{Binding EnterTrainStateCommand}"/>
-                <Separator/>
-                <MenuItem Header="Zuglaufdaten" Command="{Binding ShowTrainScheduleCommand}"/>
-                <MenuItem Header="Örtliche Anweisungen" Command="{Binding ShowLocalOrdersCommand}"/>
-                <MenuItem Header="Zugbildung" Command="{Binding ShowTrainCompositionCommand}"/>
-                <MenuItem Header="Verspätungsbegründung" Command="{Binding ShowDelayJustificationCommand}"/>
-            </ContextMenu>
-        </controls:LeibitDataGrid.ContextMenu>
-        
+        <controls:LeibitDataGrid.ContextMenuItems>
+            <MenuItem Header="Neu" Command="{Binding NewCommand}"/>
+            <MenuItem Header="Löschen" Command="{Binding DeleteCommand}"/>
+            <Separator/>
+            <MenuItem Header="Vsl. Verspätung" Command="{Binding EnterExpectedDelayCommand}"/>
+            <MenuItem Header="Gleiswechsel" Command="{Binding ShowTrackChangeCommand}"/>
+            <Separator/>
+            <MenuItem Header="Zugstatus neu" Command="{Binding NewTrainStateCommand}"/>
+            <MenuItem Header="Zugstatus eingeben" Command="{Binding EnterTrainStateCommand}"/>
+            <Separator/>
+            <MenuItem Header="Zuglaufdaten" Command="{Binding ShowTrainScheduleCommand}"/>
+            <MenuItem Header="Örtliche Anweisungen" Command="{Binding ShowLocalOrdersCommand}"/>
+            <MenuItem Header="Zugbildung" Command="{Binding ShowTrainCompositionCommand}"/>
+            <MenuItem Header="Verspätungsbegründung" Command="{Binding ShowDelayJustificationCommand}"/>
+        </controls:LeibitDataGrid.ContextMenuItems>
+
         <controls:LeibitDataGrid.Resources>
             <Style TargetType="DataGridCell">
                 <Setter Property="BorderThickness" Value="0"/>
-
-                <Style.Triggers>
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="TrainNumber" />
-                            <Condition Binding="{Binding State}" Value="fertig" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightGreen" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="CurrentStation.Name" />
-                            <Condition Binding="{Binding State}" Value="fertig" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightGreen" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="TrainNumber" />
-                            <Condition Binding="{Binding State}" Value="vorbereitet" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightGreen" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="CurrentStation.Name" />
-                            <Condition Binding="{Binding State}" Value="vorbereitet" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightGreen" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayString" />
-                            <Condition Binding="{Binding Delay, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightCyan" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayString" />
-                            <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="Yellow" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayString" />
-                            <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightCoral" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayStringArrival" />
-                            <Condition Binding="{Binding DelayArrival, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
-                            <Condition Binding="{Binding IsExpectedArrivalVisible}" Value="true"/>
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightCyan" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayStringArrival" />
-                            <Condition Binding="{Binding DelayArrival, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
-                            <Condition Binding="{Binding IsExpectedArrivalVisible}" Value="true"/>
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="Yellow" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayStringArrival" />
-                            <Condition Binding="{Binding DelayArrival, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
-                            <Condition Binding="{Binding IsExpectedArrivalVisible}" Value="true"/>
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightCoral" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayStringDeparture" />
-                            <Condition Binding="{Binding DelayDeparture, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
-                            <Condition Binding="{Binding IsExpectedDepartureVisible}" Value="true"/>
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightCyan" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayStringDeparture" />
-                            <Condition Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
-                            <Condition Binding="{Binding IsExpectedDepartureVisible}" Value="true"/>
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="Yellow" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayStringDeparture" />
-                            <Condition Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
-                            <Condition Binding="{Binding IsExpectedDepartureVisible}" Value="true"/>
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightCoral" />
-                    </MultiDataTrigger>
-                </Style.Triggers>
             </Style>
         </controls:LeibitDataGrid.Resources>
 
         <controls:LeibitDataGrid.Columns>
             <controls:LeibitDataGridColumn Header="Btrst" FieldName="Station.ShortSymbol" />
             <controls:LeibitDataGridColumn Header="Gattung" FieldName="Schedule.Train.Type" />
-            <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber" />
+            
+            <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber">
+                <controls:LeibitDataGridColumn.BackgroundConditions>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightGreen">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding State}" Value="vorbereitet" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightGreen">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding State}" Value="fertig" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                </controls:LeibitDataGridColumn.BackgroundConditions>
+            </controls:LeibitDataGridColumn>
+            
             <controls:LeibitDataGridColumn Header="Ankunft" FieldName="Arrival" VisibilityBinding="{Binding IsArrivalVisible, Converter={StaticResource VisibilityConverter}}" />
             <controls:LeibitDataGridColumn Header="Abfahrt" FieldName="Departure" VisibilityBinding="{Binding IsDepartureVisible, Converter={StaticResource VisibilityConverter}}" />
-            <controls:LeibitDataGridColumn Header="&#x0394;t an" FieldName="DelayStringArrival" VisibilityBinding="{Binding IsExpectedArrivalVisible, Converter={StaticResource VisibilityConverter}}" />
+
+            <controls:LeibitDataGridColumn Header="&#x0394;t an" FieldName="DelayStringArrival" VisibilityBinding="{Binding IsExpectedArrivalVisible, Converter={StaticResource VisibilityConverter}}">
+                <controls:LeibitDataGridColumn.BackgroundConditions>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightCyan">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding DelayArrival, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
+                            <Condition Binding="{Binding IsExpectedArrivalVisible}" Value="true"/>
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                    <controls:ColumnBackgroundCondition BackgroundColor="Yellow">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding DelayArrival, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
+                            <Condition Binding="{Binding IsExpectedArrivalVisible}" Value="true"/>
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightCoral">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding DelayArrival, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
+                            <Condition Binding="{Binding IsExpectedArrivalVisible}" Value="true"/>
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                </controls:LeibitDataGridColumn.BackgroundConditions>
+            </controls:LeibitDataGridColumn>
+
             <controls:LeibitDataGridColumn Header="vsl. an" FieldName="ExpectedArrival" VisibilityBinding="{Binding IsExpectedArrivalVisible, Converter={StaticResource VisibilityConverter}}" />
-            <controls:LeibitDataGridColumn Header="&#x0394;t ab" FieldName="DelayStringDeparture" VisibilityBinding="{Binding IsExpectedDepartureVisible, Converter={StaticResource VisibilityConverter}}" />
+            
+            <controls:LeibitDataGridColumn Header="&#x0394;t ab" FieldName="DelayStringDeparture" VisibilityBinding="{Binding IsExpectedDepartureVisible, Converter={StaticResource VisibilityConverter}}">
+                <controls:LeibitDataGridColumn.BackgroundConditions>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightCyan">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding DelayDeparture, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
+                            <Condition Binding="{Binding IsExpectedDepartureVisible}" Value="true"/>
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                    <controls:ColumnBackgroundCondition BackgroundColor="Yellow">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
+                            <Condition Binding="{Binding IsExpectedDepartureVisible}" Value="true"/>
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightCoral">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
+                            <Condition Binding="{Binding IsExpectedDepartureVisible}" Value="true"/>
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                </controls:LeibitDataGridColumn.BackgroundConditions>
+            </controls:LeibitDataGridColumn>
+            
             <controls:LeibitDataGridColumn Header="vsl. ab" FieldName="ExpectedDeparture" VisibilityBinding="{Binding IsExpectedDepartureVisible, Converter={StaticResource VisibilityConverter}}" />
             <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayInfo" TextAlignment="Center" />
             <controls:LeibitDataGridColumn Header="öAno" FieldName="LocalOrders" TextAlignment="Center" />
-            <controls:LeibitDataGridColumn Header="Akt. Betriebsstelle" FieldName="CurrentStation.Name" />
-            <controls:LeibitDataGridColumn Header="&#x0394;t" FieldName="DelayString" />
+            
+            <controls:LeibitDataGridColumn Header="Akt. Betriebsstelle" FieldName="CurrentStation.Name">
+                <controls:LeibitDataGridColumn.BackgroundConditions>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightGreen">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding State}" Value="vorbereitet" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightGreen">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding State}" Value="fertig" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                </controls:LeibitDataGridColumn.BackgroundConditions>
+            </controls:LeibitDataGridColumn>
+
+            <controls:LeibitDataGridColumn Header="&#x0394;t" FieldName="DelayString">
+                <controls:LeibitDataGridColumn.BackgroundConditions>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightCyan">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding Delay, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                    <controls:ColumnBackgroundCondition BackgroundColor="Yellow">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightCoral">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                </controls:LeibitDataGridColumn.BackgroundConditions>
+            </controls:LeibitDataGridColumn>
+            
             <controls:LeibitDataGridColumn Header="Zugstatus" FieldName="State" />
             <controls:LeibitDataGridColumn Header="Gleis" FieldName="Track.Name" />
             <controls:LeibitDataGridColumn Header="Abw. Gleis" FieldName="LiveTrack.Name" />

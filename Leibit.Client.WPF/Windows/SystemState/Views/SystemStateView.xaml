@@ -15,7 +15,6 @@
     <controls:ChildWindow.Resources>
         <conv:LeibitTimeConverter x:Key="LeibitTimeConverter"/>
         <conv:VisibilityConverter Invert="False" x:Key="VisibilityConverter"/>
-        <conv:VisibilityConverter Invert="True" x:Key="InvertedVisibilityConverter"/>
     </controls:ChildWindow.Resources>
 
     <Grid>
@@ -55,8 +54,9 @@
                             <TextBlock Grid.Column="1" Text="{Binding Time, Converter={StaticResource LeibitTimeConverter}}" VerticalAlignment="Center" Margin="0,0,40,0"/>
 
                             <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,5,0" VerticalAlignment="Center">
-                                <Image Source="{StaticResource imgOk}" VerticalAlignment="Center" Visibility="{Binding IsActive, Converter={StaticResource VisibilityConverter}}"/>
-                                <Image Source="{StaticResource imgWarning}" VerticalAlignment="Center" Visibility="{Binding IsActive, Converter={StaticResource InvertedVisibilityConverter}}"/>
+                                <Image Source="{StaticResource imgOk}" VerticalAlignment="Center" Visibility="{Binding IsLoadedAndHasSchedules, Converter={StaticResource VisibilityConverter}}"/>
+                                <Image Source="{StaticResource imgOkGray}" VerticalAlignment="Center" Visibility="{Binding IsLoadedWithoutSchedules, Converter={StaticResource VisibilityConverter}}"/>
+                                <Image Source="{StaticResource imgWarning}" VerticalAlignment="Center" Visibility="{Binding IsInactive, Converter={StaticResource VisibilityConverter}}"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>

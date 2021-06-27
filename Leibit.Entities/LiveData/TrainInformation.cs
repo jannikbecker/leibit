@@ -53,6 +53,8 @@ namespace Leibit.Entities.LiveData
 
         public List<Block> BlockHistory => m_BlockHistory;
 
+        public Block RealBlock { get; set; }
+
         public eBlockDirection Direction
         {
             get;

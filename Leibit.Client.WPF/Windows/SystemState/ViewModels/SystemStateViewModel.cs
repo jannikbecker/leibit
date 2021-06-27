@@ -151,8 +151,11 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
                     isNew = true;
                 }
 
+                var isActive = (DateTime.Now - current.CurrentEstw.LastUpdatedOn).TotalSeconds < settings.EstwTimeout;
+                current.IsLoadedAndHasSchedules = isActive && estw.SchedulesLoaded;
+                current.IsLoadedWithoutSchedules = isActive && !estw.SchedulesLoaded;
+                current.IsInactive = !isActive;
                 current.Time = estw.Time;
-                current.IsActive = (DateTime.Now - current.CurrentEstw.LastUpdatedOn).TotalSeconds < settings.EstwTimeout;
 
                 if (isNew)
                     Dispatcher.Invoke(() => Estws.Add(current));
