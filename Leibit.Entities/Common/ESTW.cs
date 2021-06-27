@@ -81,6 +81,8 @@ namespace Leibit.Entities.Common
 
         public bool IsLoaded { get; set; }
 
+        public bool SchedulesLoaded { get; set; }
+
         public LeibitTime Time
         {
             get => m_Time;

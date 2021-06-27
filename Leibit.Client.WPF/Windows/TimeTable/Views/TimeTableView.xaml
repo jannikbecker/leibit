@@ -25,56 +25,48 @@
         <controls:LeibitDataGrid.Resources>
             <Style TargetType="DataGridCell">
                 <Setter Property="BorderThickness" Value="0"/>
-                
-                <Style.Triggers>
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="TrainNumber" />
-                            <Condition Binding="{Binding IsReady}" Value="True" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightGreen" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayString" />
-                            <Condition Binding="{Binding Delay, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightCyan" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayString" />
-                            <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightYellow" />
-                    </MultiDataTrigger>
-
-                    <MultiDataTrigger>
-                        <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding Column.Binding.Path.Path, RelativeSource={RelativeSource Self}}" Value="DelayString" />
-                            <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
-                        </MultiDataTrigger.Conditions>
-
-                        <Setter Property="Background" Value="LightCoral" />
-                    </MultiDataTrigger>
-                </Style.Triggers>
             </Style>
         </controls:LeibitDataGrid.Resources>
 
         <controls:LeibitDataGrid.Columns>
             <controls:LeibitDataGridColumn Header="Gattung" FieldName="Type" />
-            <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber" />
+
+            <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber">
+                <controls:LeibitDataGridColumn.BackgroundConditions>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightGreen">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding IsReady}" Value="True" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                </controls:LeibitDataGridColumn.BackgroundConditions>
+            </controls:LeibitDataGridColumn>
+
             <controls:LeibitDataGridColumn Header="Von" FieldName="Start" />
             <controls:LeibitDataGridColumn Header="Nach" FieldName="Destination" />
             <controls:LeibitDataGridColumn Header="Ankunft" FieldName="Arrival" VisibilityBinding="{Binding IsArrivalVisible, Converter={StaticResource VisibilityConverter}}" />
             <controls:LeibitDataGridColumn Header="Abfahrt" FieldName="Departure" VisibilityBinding="{Binding IsDepartureVisible, Converter={StaticResource VisibilityConverter}}" />
             <controls:LeibitDataGridColumn Header="Gleis" FieldName="TrackName" />
-            <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayString" />
+            
+            <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayString">
+                <controls:LeibitDataGridColumn.BackgroundConditions>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightCyan">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding Delay, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                    <controls:ColumnBackgroundCondition BackgroundColor="Yellow">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                    <controls:ColumnBackgroundCondition BackgroundColor="LightCoral">
+                        <controls:ColumnBackgroundCondition.Conditions>
+                            <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
+                        </controls:ColumnBackgroundCondition.Conditions>
+                    </controls:ColumnBackgroundCondition>
+                </controls:LeibitDataGridColumn.BackgroundConditions>
+            </controls:LeibitDataGridColumn>
+            
             <controls:LeibitDataGridColumn Header="(Grund)" FieldName="DelayReason" />
             <controls:LeibitDataGridColumn Header="Bemerkungen" FieldName="Remark" />
         </controls:LeibitDataGrid.Columns>

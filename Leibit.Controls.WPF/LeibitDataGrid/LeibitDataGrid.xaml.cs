@@ -1,4 +1,5 @@
-﻿using Leibit.Core.Client.Common;
+﻿using Leibit.Core.Client.Commands;
+using Leibit.Core.Client.Common;
 using Leibit.Core.Client.WPF;
 using Leibit.Entities.Settings;
 using System;
@@ -7,12 +8,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -44,6 +47,11 @@ namespace Leibit.Controls
         {
             SetValue(ColumnsPropertyKey, new ObservableCollection<LeibitDataGridColumn>());
             Columns.CollectionChanged += __Columns_CollectionChanged;
+
+            SetValue(ContextMenuItemsPropertyKey, new ObservableCollection<Control>());
+            __BuildContextMenu();
+            ContextMenuItems.CollectionChanged += (s, e) => __BuildContextMenu();
+
             InitializeComponent();
         }
         #endregion
@@ -70,7 +78,7 @@ namespace Leibit.Controls
             get { return (ObservableCollection<LeibitDataGridColumn>)GetValue(ColumnsProperty); }
         }
 
-        public static readonly DependencyPropertyKey ColumnsPropertyKey = DependencyProperty.RegisterReadOnly("Columns", typeof(ObservableCollection<LeibitDataGridColumn>), typeof(LeibitDataGridColumn), new PropertyMetadata(null));
+        public static readonly DependencyPropertyKey ColumnsPropertyKey = DependencyProperty.RegisterReadOnly("Columns", typeof(ObservableCollection<LeibitDataGridColumn>), typeof(LeibitDataGrid), new PropertyMetadata(null));
         public static readonly DependencyProperty ColumnsProperty = ColumnsPropertyKey.DependencyProperty;
         #endregion
 
@@ -293,6 +301,16 @@ namespace Leibit.Controls
         public static readonly DependencyProperty DefaultLayoutProperty = DependencyProperty.Register("DefaultLayout", typeof(GridSetting), typeof(LeibitDataGrid), new PropertyMetadata(null));
         #endregion
 
+        #region [ContextMenuItems]
+        public ObservableCollection<Control> ContextMenuItems
+        {
+            get { return (ObservableCollection<Control>)GetValue(ContextMenuItemsProperty); }
+        }
+
+        public static readonly DependencyPropertyKey ContextMenuItemsPropertyKey = DependencyProperty.RegisterReadOnly("ContextMenuItems", typeof(ObservableCollection<Control>), typeof(LeibitDataGrid), new PropertyMetadata(null));
+        public static readonly DependencyProperty ContextMenuItemsProperty = ContextMenuItemsPropertyKey.DependencyProperty;
+        #endregion
+
         #endregion
 
         #region - Private methods -
@@ -486,6 +504,171 @@ namespace Leibit.Controls
         }
         #endregion
 
+        #region [__Print]
+        private void __Print()
+        {
+            try
+            {
+                var printDialog = new PrintDialog();
+
+                if (printDialog.ShowDialog() != true)
+                    return;
+
+                var document = new FlowDocument();
+                document.PageWidth = printDialog.PrintableAreaWidth;
+                document.PageHeight = printDialog.PrintableAreaHeight;
+                document.ColumnWidth = document.PageWidth;
+                document.BringIntoView();
+
+                var table = new Table();
+                table.CellSpacing = 0;
+                table.FontFamily = dataGrid.FontFamily;
+                table.FontSize = dataGrid.FontSize;
+                table.FontFamily = dataGrid.FontFamily;
+
+                var rowGroup = new TableRowGroup();
+                var headerRow = new TableRow();
+
+                foreach (var column in dataGrid.Columns.OrderBy(c => c.DisplayIndex))
+                {
+                    var tableColumn = new TableColumn();
+                    tableColumn.Width = new GridLength((document.PageWidth - (dataGrid.Columns.Count - 1) * 2) * column.ActualWidth / dataGrid.ActualWidth);
+                    table.Columns.Add(tableColumn);
+
+                    var cell = new TableCell();
+                    cell.Blocks.Add(new Paragraph(new Run(column.Header.ToString())));
+                    cell.Background = Brushes.LightGray;
+                    cell.FontWeight = FontWeights.Bold;
+                    cell.Padding = new Thickness(2, 5, 2, 5);
+                    cell.BorderBrush = Brushes.White;
+                    cell.BorderThickness = new Thickness(1, 0, 1, 0);
+                    headerRow.Cells.Add(cell);
+                }
+
+                var firstCell = headerRow.Cells.First();
+                firstCell.BorderThickness = new Thickness(0, firstCell.BorderThickness.Top, firstCell.BorderThickness.Right, firstCell.BorderThickness.Bottom);
+
+                var lastCell = headerRow.Cells.Last();
+                lastCell.BorderThickness = new Thickness(lastCell.BorderThickness.Left, lastCell.BorderThickness.Top, 0, lastCell.BorderThickness.Bottom);
+
+                rowGroup.Rows.Add(headerRow);
+                bool isOdd = false;
+                var previousGroupValues = new Dictionary<string, object>();
+
+                foreach (var item in Collection)
+                {
+                    var row = new TableRow();
+                    var groupValues = new Dictionary<string, object>();
+
+                    foreach (DataGridTextColumn column in dataGrid.Columns.OrderBy(c => c.DisplayIndex))
+                    {
+                        var leibitColumn = Columns.FirstOrDefault(c => c.FieldName == ((Binding)column.Binding).Path.Path);
+                        var cell = new TableCell();
+                        cell.Padding = new Thickness(2, 5, 2, 5);
+
+                        if (leibitColumn != null)
+                        {
+                            cell.TextAlignment = leibitColumn.TextAlignment;
+                            var bindingValue = (column.Binding as Binding)?.Eval(item)?.ToString();
+                            var isVisible = true;
+
+                            if (leibitColumn.VisibilityBinding != null && (Visibility)leibitColumn.VisibilityBinding.Eval(item) != Visibility.Visible)
+                                isVisible = false;
+
+                            if (isVisible)
+                            {
+                                cell.Blocks.Add(new Paragraph(new Run(bindingValue)));
+                            }
+
+                            if (Collection.GroupDescriptions.OfType<PropertyGroupDescription>().Any(g => g.PropertyName == leibitColumn.FieldName))
+                                groupValues.Add(leibitColumn.FieldName, bindingValue);
+                        }
+
+                        foreach (var backgroundColor in leibitColumn.BackgroundConditions)
+                        {
+                            var matches = true;
+
+                            foreach (var condition in backgroundColor.Conditions)
+                            {
+                                try
+                                {
+                                    var actualValue = (condition.Binding as Binding)?.Eval(item);
+                                    var expectedValue = Convert.ChangeType(condition.Value, actualValue.GetType());
+
+                                    if (expectedValue != null)
+                                        matches &= expectedValue.Equals(actualValue);
+                                    else if (actualValue != null)
+                                        matches &= actualValue.Equals(expectedValue);
+                                    // else both are null and therefore equal.
+                                }
+                                catch
+                                {
+                                    matches = false;
+                                }
+                            }
+
+                            if (matches)
+                                cell.Background = backgroundColor.BackgroundColor;
+                        }
+
+                        row.Cells.Add(cell);
+                    }
+
+                    int i = 0;
+
+                    foreach (var group in Collection.GroupDescriptions.OfType<PropertyGroupDescription>())
+                    {
+                        // Must use Equals here as we're comparing objects.
+                        // == does not work in each case
+                        if (!previousGroupValues.ContainsKey(group.PropertyName) || !previousGroupValues[group.PropertyName].Equals(groupValues[group.PropertyName]))
+                        {
+                            var leibitColumn = Columns.FirstOrDefault(c => c.FieldName == group.PropertyName);
+                            var groupHeaderRow = new TableRow();
+                            var groupHeaderCell = new TableCell();
+                            groupHeaderCell.ColumnSpan = dataGrid.Columns.Count;
+                            groupHeaderCell.FontWeight = FontWeights.Bold;
+                            groupHeaderCell.Padding = new Thickness(2 + i * 10, 5, 2, 5);
+
+                            if (i == 0)
+                            {
+                                groupHeaderCell.BorderThickness = new Thickness(0, 1, 0, 0);
+                                groupHeaderCell.BorderBrush = Brushes.Black;
+                            }
+                            else
+                            {
+                                groupHeaderCell.Foreground = Brushes.White;
+                                groupHeaderCell.Background = Brushes.SlateGray;
+                            }
+
+                            groupHeaderCell.Blocks.Add(new Paragraph(new Run($"{leibitColumn?.Header}: {groupValues[group.PropertyName]}")));
+                            groupHeaderRow.Cells.Add(groupHeaderCell);
+                            rowGroup.Rows.Add(groupHeaderRow);
+                            isOdd = false;
+                        }
+
+                        i++;
+                    }
+
+                    if (isOdd)
+                        row.Background = new SolidColorBrush(Color.FromRgb(0xee, 0xee, 0xee));
+
+                    previousGroupValues = groupValues;
+                    rowGroup.Rows.Add(row);
+                    isOdd ^= true;
+                }
+
+                table.RowGroups.Add(rowGroup);
+                document.Blocks.Add(table);
+
+                printDialog.PrintDocument(((IDocumentPaginatorSource)document).DocumentPaginator, "");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        #endregion
+
         #region - Event handler -
 
         #region [__DataGrid_Loaded]
@@ -550,9 +733,57 @@ namespace Leibit.Controls
                     if (column.VisibilityBinding != null)
                         gridColumn.ElementStyle.Setters.Add(new Setter(VisibilityProperty, column.VisibilityBinding));
 
+                    foreach (var backgroundCondition in column.BackgroundConditions)
+                    {
+                        Style style;
+
+                        if (Resources.Contains(typeof(DataGridCell)))
+                            style = Resources[typeof(DataGridCell)] as Style;
+                        else
+                        {
+                            style = new Style(typeof(DataGridCell));
+                            Resources.Add(typeof(DataGridCell), style);
+                        }
+
+                        var columnBinding = new Binding("Column.Binding.Path.Path");
+                        columnBinding.RelativeSource = new RelativeSource(RelativeSourceMode.Self);
+
+                        var columnCondition = new Condition(columnBinding, column.FieldName);
+                        var trigger = new MultiDataTrigger();
+                        trigger.Conditions.Add(columnCondition);
+
+                        foreach (var condition in backgroundCondition.Conditions)
+                            trigger.Conditions.Add(condition);
+
+                        var setter = new Setter(BackgroundProperty, backgroundCondition.BackgroundColor);
+                        trigger.Setters.Add(setter);
+                        style.Triggers.Add(trigger);
+                    }
+
                     dataGrid.Columns.Add(gridColumn);
                 }
             }
+        }
+        #endregion
+
+        #region [__BuildContextMenu]
+        private void __BuildContextMenu()
+        {
+            if (ContextMenu == null)
+                ContextMenu = new ContextMenu();
+            else
+                ContextMenu.Items.Clear();
+
+            foreach (var item in ContextMenuItems)
+                ContextMenu.Items.Add(item);
+
+            if (!ContextMenu.Items.IsEmpty)
+                ContextMenu.Items.Add(new Separator());
+
+            var printItem = new MenuItem();
+            printItem.Header = "Drucken";
+            printItem.Command = new CommandHandler(__Print, true);
+            ContextMenu.Items.Add(printItem);
         }
         #endregion
 

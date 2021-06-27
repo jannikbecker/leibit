@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <leibit>
   <area id="nhth" name="Mitteldeutschland">
     <estw id="NWH" name="Würzburg Hbf" dataFile="leibit_WÜRZBURG HBF.dat"/>
@@ -31,7 +31,10 @@
     <estw id="TAU" name="Aulendorf" dataFile="leibit_AULENDORF.dat"/>
     <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat"/>
     <estw id="Fk" name="Feldkirch" dataFile="leibit_FELDKIRCH.dat"/>
+    <estw id="Bg" name="Bregenz" dataFile="leibit_BREGENZ.dat"/>
+    <estw id="MIMS" name="Immenstadt" dataFile="leibit_IMMENSTADT.dat"/>
     <estw id="MM" name="Memmingen" dataFile="leibit_MEMMINGEN.dat"/>
+    <estw id="MKP" name="Kempten" dataFile="leibit_KEMPTEN.dat"/>
     <estw id="MBU" name="Buchloe" dataFile="leibit_BUCHLOE.dat"/>
     <estw id="MA" name="Augsburg Hbf" dataFile="leibit_AUGSBURG HBF.dat"/>
     <estw id="MAHZ" name="Augsburg-Hochzoll" dataFile="leibit_A-HOCHZOLL.dat"/>

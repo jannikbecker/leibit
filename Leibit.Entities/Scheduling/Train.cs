@@ -9,9 +9,6 @@ namespace Leibit.Entities.Scheduling
     {
 
         private int m_Number;
-        private string m_Type;
-        private string m_Start;
-        private string m_Destination;
         private List<Schedule> m_Schedules;
 
         public readonly object LockSchedules = new object();
@@ -25,9 +22,9 @@ namespace Leibit.Entities.Scheduling
         public Train(int number, string type, string start, string destination)
             : this(number)
         {
-            m_Type = type;
-            m_Start = start;
-            m_Destination = destination;
+            Type = type;
+            Start = start;
+            Destination = destination;
         }
 
         public int Number
@@ -38,29 +35,11 @@ namespace Leibit.Entities.Scheduling
             }
         }
 
-        public string Type
-        {
-            get
-            {
-                return m_Type;
-            }
-        }
+        public string Type { get; set; }
 
-        public string Start
-        {
-            get
-            {
-                return m_Start;
-            }
-        }
+        public string Start { get; set; }
 
-        public string Destination
-        {
-            get
-            {
-                return m_Destination;
-            }
-        }
+        public string Destination { get; set; }
 
         public string Composition { get; set; }
 

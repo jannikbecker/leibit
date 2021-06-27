@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <SccProjectName>SAK</SccProjectName>
@@ -37,12 +37,15 @@
     <None Remove="Data\nord\AHAR.xml" />
     <None Remove="Data\nord\AROG.xml" />
     <None Remove="Data\nord\HB.xml" />
+    <None Remove="Data\sued\Bg.xml" />
     <None Remove="Data\sued\Fk.xml" />
     <None Remove="Data\sued\MA.xml" />
     <None Remove="Data\sued\MAHZ.xml" />
     <None Remove="Data\sued\MBU.xml" />
     <None Remove="Data\sued\MGE.xml" />
     <None Remove="Data\sued\MGP.xml" />
+    <None Remove="Data\sued\MKP.xml" />
+    <None Remove="Data\sued\MIMS.xml" />
     <None Remove="Data\sued\MLI.xml" />
     <None Remove="Data\sued\MM.xml" />
     <None Remove="Data\sued\MOL.xml" />
@@ -80,12 +83,15 @@
     <EmbeddedResource Include="Data\nord\AHAR.xml" />
     <EmbeddedResource Include="Data\nord\AROG.xml" />
     <EmbeddedResource Include="Data\nord\HB.xml" />
+    <EmbeddedResource Include="Data\sued\Bg.xml" />
     <EmbeddedResource Include="Data\sued\Fk.xml" />
     <EmbeddedResource Include="Data\sued\MA.xml" />
     <EmbeddedResource Include="Data\sued\MAHZ.xml" />
     <EmbeddedResource Include="Data\sued\MBU.xml" />
     <EmbeddedResource Include="Data\sued\MGE.xml" />
     <EmbeddedResource Include="Data\sued\MGP.xml" />
+    <EmbeddedResource Include="Data\sued\MKP.xml" />
+    <EmbeddedResource Include="Data\sued\MIMS.xml" />
     <EmbeddedResource Include="Data\sued\MLI.xml" />
     <EmbeddedResource Include="Data\sued\MM.xml" />
     <EmbeddedResource Include="Data\sued\MOL.xml" />

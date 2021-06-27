@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Oberstaufen" short="MOSF" refNr="62">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="61BN" direction="right"/>
+      <block name="62BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Thalkirchdorf" short="MTHF" refNr="61" scheduleFile="g61_____.abf" localOrderFile="bf61____.abf">
+    <track name="1">
+      <block name="61G1"/>
+    </track>
+    <track name="2">
+      <block name="61G2"/>
+    </track>
+  </station>
+
+  <station name="Ratholz" short="MRAZ" refNr="61">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="61B1" direction="left"/>
+      <block name="61B2" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Immenstadt" short="MIMS" refNr="52" scheduleFile="g52_____.abf" localOrderFile="bf52____.abf">
+    <track name="1">
+      <block name="52G1"/>
+    </track>
+    <track name="2">
+      <block name="52G2"/>
+    </track>
+    <track name="3">
+      <block name="52G3"/>
+    </track>
+    <track name="4">
+      <block name="52G4"/>
+    </track>
+  </station>
+
+  <station name="Seifen" short="MSEI" refNr="51" scheduleFile="b51_____.abf" localOrderFile="bf51____.abf">
+    <track name="101">
+      <block name="51G101"/>
+    </track>
+    <track name="102">
+      <block name="51G102"/>
+    </track>
+  </station>
+
+  <station name="Martinszell" short="MMSZ" refNr="51" scheduleFile="g51_____.abf" localOrderFile="bf51____.abf">
+    <track name="1">
+      <block name="51G1"/>
+    </track>
+    <track name="2">
+      <block name="51G2"/>
+    </track>
+    <track name="3">
+      <block name="51G3"/>
+    </track>
+  </station>
+
+  <station name="Kempten (Allgäu) Hbf" short="MKP" refNr="50">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="50SN" direction="left"/>
+      <block name="51S2" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Blaichach" short="MBLH" refNr="53" scheduleFile="g53_____.abf" localOrderFile="bf53____.abf">
+    <track name="1">
+      <block name="53G1"/>
+    </track>
+    <track name="2">
+      <block name="53G2"/>
+    </track>
+  </station>
+
+  <station name="Sonthofen" short="MSF" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf">
+    <track name="1">
+      <block name="54G1"/>
+    </track>
+    <track name="2">
+      <block name="54G2"/>
+    </track>
+    <track name="3">
+      <block name="54G3"/>
+    </track>
+  </station>
+
+  <station name="Altstädten" short="MATS" refNr="55" scheduleFile="g55_____.abf" localOrderFile="bf55____.abf">
+    <track name="1">
+      <block name="55G1"/>
+    </track>
+    <track name="2">
+      <block name="55G2"/>
+    </track>
+  </station>
+
+  <station name="Fischen" short="MFN" refNr="56" scheduleFile="g56_____.abf" localOrderFile="bf56____.abf">
+    <track name="1">
+      <block name="56G1"/>
+    </track>
+    <track name="2">
+      <block name="56G2"/>
+    </track>
+  </station>
+
+  <station name="Langenwang" short="MLNW" refNr="57" scheduleFile="g57_____.abf" localOrderFile="bf57____.abf">
+    <track name="1">
+      <block name="57G1"/>
+    </track>
+    <track name="2">
+      <block name="57G2"/>
+    </track>
+  </station>
+
+  <station name="Oberstdorf" short="MOF" refNr="58" scheduleFile="g58_____.abf" localOrderFile="bf58____.abf">
+    <track name="1">
+      <block name="58G1"/>
+    </track>
+    <track name="2">
+      <block name="58G2"/>
+    </track>
+    <track name="3">
+      <block name="58G3"/>
+    </track>
+    <track name="4">
+      <block name="58G4"/>
+    </track>
+    <track name="5">
+      <block name="58G5"/>
+    </track>
+  </station>
+</estw>
