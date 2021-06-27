@@ -37,16 +37,20 @@ Folgende Simulationen werden aktuell unterstützt:
     - Bebra
     - Eisenach
     - Gotha
-- Bereich Süddeutschland
+- Bereich Süddeutschland / Vorarlberg
     - Singen
     - Friedrichshafen
-    - Lindau
     - Aulendorf
-    - Memmingen (NEU)
-    - Buchloe (NEU)
-    - Augsburg Hbf (NEU)
-    - Augsburg-Hochzoll (NEU)
-    - Olching (NEU)
+    - Lindau
+    - Bregenz (NEU)
+    - Feldkirch (NEU)
+    - Immenstadt (NEU)
+    - Memmingen
+    - Kempten (NEU)
+    - Buchloe
+    - Augsburg Hbf
+    - Augsburg-Hochzoll
+    - Olching
     - Geltendorf
     - München-Westkreuz
     - Weilheim

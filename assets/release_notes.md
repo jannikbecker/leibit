@@ -1,5 +1,4 @@
-- Die Simulationen Memmingen (#38), Buchloe (#39), Augsburg Hbf (#107), Augsburg-Hochzoll (#108) und Olching (#109) stehen nun zur Verfügung.
-- In den Projektierungen von Aschaffenburg (#102) und Weilheim (#104) wurden kleinere Fehler korrigiert.
-- Die Fehlerbehandlung wurde verbessert. In älteren Versionen konnte es vorkommen, dass das Programm ohne Fehlermeldung abstürzte (#103).
-- In der Zugfahrtinformation (ZFI) wurde die Sortierung korrigiert (#106).
-- Sonderzüge und Umleiter werden nun wieder in der ZFI angezeigt (#110).
+- Die Simulationen Immenstadt (#36), Kempten (#37), Bregenz (#44) und Feldkirch (#45) stehen nun zur Verfügung.
+- Es besteht nun die Möglichkeit, ZFI, BFO sowie die Systemstatus-Tabelle auszudrucken. (#9.
+- Es können nun auch Verbindungen zu Simulationen hergestellt werden, die man nicht besitzt. In diesem Fall kann die aktuelle Betriebsstelle angezeigt werden, jedoch kann aufgrund fehlender Fahrplandaten u.a. keine Verspätungsberechnung stattfinden. (#94)
+- In der Projektierung von Augsburg Hbf wurden kleinere Fehler korrigiert. (#120)

@@ -24,7 +24,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
-    <Version>0.4.1</Version>
+    <Version>0.4.2</Version>
     <PackageProjectUrl>https://github.com/jannikbecker/leibit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jannikbecker/leibit</RepositoryUrl>
   </PropertyGroup>
