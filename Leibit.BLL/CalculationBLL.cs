@@ -139,6 +139,8 @@ namespace Leibit.BLL
                     var Arrival = FirstSchedule.Schedule.Arrival == null ? FirstSchedule.Schedule.Departure : FirstSchedule.Schedule.Arrival;
                     Delay = (FirstSchedule.LiveArrival - Arrival).TotalMinutes;
                 }
+                else if (!Estw.SchedulesLoaded)
+                    Start = true;
 
                 foreach (var Schedule in Train.Schedules)
                 {

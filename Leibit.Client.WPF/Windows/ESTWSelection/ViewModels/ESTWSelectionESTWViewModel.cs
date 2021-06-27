@@ -90,16 +90,6 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
         }
         #endregion
 
-        #region [IsEnabled]
-        public bool IsEnabled
-        {
-            get
-            {
-                return m_Estw.IsLoaded;
-            }
-        }
-        #endregion
-
         #endregion
 
         #region - Private methods -

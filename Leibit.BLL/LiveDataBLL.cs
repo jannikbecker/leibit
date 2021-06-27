@@ -437,7 +437,7 @@ namespace Leibit.BLL
                             Train = estw.Area.LiveTrains.GetOrAdd(TrainNumber, Train);
                         }
 
-                        if (Train.Schedules.All(s => s.Schedule.IsUnscheduled || s.LiveArrival == null))
+                        if (Train.Schedules.All(s => s.Schedule.IsUnscheduled || s.LiveArrival == null) || !estw.SchedulesLoaded)
                             Train.Delay = Delay;
                         else
                         {
@@ -526,7 +526,7 @@ namespace Leibit.BLL
             }
             else
             {
-                var Train = new Train(trainNumber);
+                var Train = estw.Area.Trains.GetOrAdd(trainNumber, new Train(trainNumber));
                 return new TrainInformation(Train);
             }
         }
@@ -539,7 +539,7 @@ namespace Leibit.BLL
             if (Block != null)
             {
                 // Dummy track for stations without platforms (e.g. Üst)
-                if (Block.Track.Name.IsNullOrEmpty())
+                if (!Estw.SchedulesLoaded || Block.Track.Name.IsNullOrEmpty())
                 {
                     Train.Block = Block;
                 }
@@ -658,16 +658,20 @@ namespace Leibit.BLL
                 }
             }
 
-            var DelayResult = CalculationBLL.CalculateDelay(Train, Estw);
-            ValidateResult(DelayResult);
+            if (Estw.SchedulesLoaded)
+            {
+                var DelayResult = CalculationBLL.CalculateDelay(Train, Estw);
+                ValidateResult(DelayResult);
 
-            if (DelayResult.Result.HasValue)
-                Train.Delay = DelayResult.Result.Value;
+                if (DelayResult.Result.HasValue)
+                    Train.Delay = DelayResult.Result.Value;
+            }
 
             var ExpectedResult = CalculationBLL.CalculateExpectedTimes(Train, Estw);
             ValidateResult(ExpectedResult);
 
             Train.LastModified = Estw.Time;
+            Train.RealBlock = Block;
         }
 
         private void __RefreshLiveSchedules(TrainInformation Train, ESTW estw)

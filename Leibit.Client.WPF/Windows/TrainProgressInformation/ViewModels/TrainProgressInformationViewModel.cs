@@ -621,7 +621,12 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     else if (liveSchedule.Schedule.Handling == eHandling.Destination && liveSchedule.IsArrived)
                         currentVm.State = "beendet";
                     else if (currentSchedule == null)
-                        currentVm.State = "ab";
+                    {
+                        if (liveSchedule.Train.Block == liveSchedule.Train.RealBlock && liveSchedule.Train.Block.Track.CalculateDelay && liveSchedule.Train.Block.Track.IsPlatform)
+                            currentVm.State = "an";
+                        else
+                            currentVm.State = "ab";
+                    }
                     else if (currentSchedule.IsDeparted)
                         currentVm.State = "ab";
                     else if (isFirstStation && settings.AutomaticReadyMessageEnabled && currentSchedule.Schedule.Station.ESTW.Time >= currentSchedule.Schedule.Departure.AddMinutes(-settings.AutomaticReadyMessageTime))
