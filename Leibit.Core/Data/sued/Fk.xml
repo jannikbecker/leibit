@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Nüziders" short="B H1" refNr="11" scheduleFile="nüzide__.ABF">
+    <track name="1" calculateDelay="false">
+      <block name="11Be11"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="11Be12"/>
+    </track>
+  </station>
+
+  <station name="Ludesch" short="Lt" refNr="10" scheduleFile="G10_____.ABF" localOrderFile="bf10____.abf">
+    <track name="201">
+      <block name="10G201"/>
+    </track>
+    <track name="202">
+      <block name="10G202"/>
+    </track>
+    <track name="203">
+      <block name="10G203"/>
+    </track>
+    <track name="204">
+      <block name="10G204"/>
+    </track>
+  </station>
+
+  <station name="Nenzing" short="Lt K1" refNr="10" scheduleFile="B10_____.ABF">
+    <track name="1" calculateDelay="false"/>
+    <track name="2" calculateDelay="false"/>
+  </station>
+
+  <station name="Üst Ludesch 1" short="Lt 1" refNr="10" scheduleFile="Üst Lu__.abf">
+    <track name="001" isPlatform="false">
+      <block name="10Bf11" direction="left"/>
+      <block name="10Bg11" direction="right"/>
+    </track>
+    <track name="002" isPlatform="false">
+      <block name="10Bf12" direction="left"/>
+      <block name="10Bg12" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Schlins" short="Lt H2" refNr="9" scheduleFile="B9______.ABF">
+    <track name="1" calculateDelay="false"/>
+    <track name="2" calculateDelay="false"/>
+  </station>
+
+  <station name="Frastanz" short="Fa" refNr="9" scheduleFile="G9______.ABF" localOrderFile="bf9_____.abf">
+    <track name="201">
+      <block name="09G201"/>
+    </track>
+    <track name="202">
+      <block name="09G202"/>
+    </track>
+    <track name="203">
+      <block name="09G203"/>
+    </track>
+    <track name="205">
+      <block name="09G205"/>
+    </track>
+    <track name="222">
+      <block name="09G222"/>
+    </track>
+  </station>
+
+  <station name="Feldkirch" short="Fk" refNr="8" scheduleFile="G8______.ABF" localOrderFile="bf8_____.abf">
+    <track name="301">
+      <block name="08G301"/>
+      <alternative track="302"/>
+      <alternative track="303"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+    </track>
+    
+    <track name="302">
+      <block name="08G302"/>
+      <alternative track="301"/>
+      <alternative track="303"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+    </track>
+    
+    <track name="303">
+      <block name="08G303"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+    </track>
+    
+    <track name="304">
+      <block name="08G304"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="303"/>
+      <alternative track="305"/>
+    </track>
+    
+    <track name="305">
+      <block name="08G305"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="303"/>
+      <alternative track="304"/>
+    </track>
+
+    <track name="401">
+      <block name="08G401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="405"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+    </track>
+
+    <track name="402">
+      <block name="08G402"/>
+      <alternative track="401"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="405"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+    </track>
+
+    <track name="403">
+      <block name="08G403"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="404"/>
+      <alternative track="405"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+    </track>
+
+    <track name="404">
+      <block name="08G404"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="405"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+    </track>
+
+    <track name="405">
+      <block name="08G405"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+    </track>
+
+    <track name="507">
+      <block name="08G507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+      <alternative track="701"/>
+      <alternative track="702"/>
+      <alternative track="703"/>
+      <alternative track="704"/>
+      <alternative track="705"/>
+    </track>
+
+    <track name="509">
+      <block name="08G509"/>
+      <alternative track="507"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+      <alternative track="701"/>
+      <alternative track="702"/>
+      <alternative track="703"/>
+      <alternative track="704"/>
+      <alternative track="705"/>
+    </track>
+
+    <track name="511">
+      <block name="08G511"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="513"/>
+      <alternative track="701"/>
+      <alternative track="702"/>
+      <alternative track="703"/>
+      <alternative track="704"/>
+      <alternative track="705"/>
+    </track>
+
+    <track name="513">
+      <block name="08G513"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="701"/>
+      <alternative track="702"/>
+      <alternative track="703"/>
+      <alternative track="704"/>
+      <alternative track="705"/>
+    </track>
+
+    <track name="613">
+      <block name="08G613"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="701"/>
+      <alternative track="702"/>
+      <alternative track="703"/>
+      <alternative track="704"/>
+      <alternative track="705"/>
+    </track>
+
+    <track name="701">
+      <block name="08G701"/>
+      <alternative track="702"/>
+      <alternative track="703"/>
+      <alternative track="704"/>
+      <alternative track="705"/>
+      <alternative track="711"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+      <alternative track="613"/>
+    </track>
+
+    <track name="702">
+      <block name="08G702"/>
+      <alternative track="701"/>
+      <alternative track="703"/>
+      <alternative track="704"/>
+      <alternative track="705"/>
+      <alternative track="711"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+      <alternative track="613"/>
+    </track>
+
+    <track name="703">
+      <block name="08G703"/>
+      <alternative track="701"/>
+      <alternative track="702"/>
+      <alternative track="704"/>
+      <alternative track="705"/>
+      <alternative track="711"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+      <alternative track="613"/>
+    </track>
+
+    <track name="704">
+      <block name="08G704"/>
+      <alternative track="701"/>
+      <alternative track="702"/>
+      <alternative track="703"/>
+      <alternative track="705"/>
+      <alternative track="711"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+      <alternative track="613"/>
+    </track>
+
+    <track name="705">
+      <block name="08G705"/>
+      <alternative track="701"/>
+      <alternative track="702"/>
+      <alternative track="703"/>
+      <alternative track="704"/>
+      <alternative track="711"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+      <alternative track="511"/>
+      <alternative track="513"/>
+      <alternative track="613"/>
+    </track>
+
+    <track name="711">
+      <block name="08G711"/>
+      <alternative track="701"/>
+      <alternative track="702"/>
+      <alternative track="703"/>
+      <alternative track="704"/>
+      <alternative track="705"/>
+      <alternative track="507"/>
+      <alternative track="509"/>
+    </track>
+  </station>
+
+  <station name="Altenstadt" short="Fk H1N" refNr="8" scheduleFile="altens__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Gisingen" short="Fk H2N" refNr="8" scheduleFile="gising__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Tisis" short="To H1" refNr="8" scheduleFile="tisis___.ABF">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Schaanwald" short="To H2" refNr="8" scheduleFile="schaaw__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Nendeln" short="Nd" refNr="70" scheduleFile="G70_____.ABF" localOrderFile="bf70____.abf">
+    <track name="201">
+      <block name="70G201"/>
+    </track>
+    <track name="203">
+      <block name="70G203"/>
+    </track>
+  </station>
+
+  <!--<station name="Forst Hilti" short="Nd H1" refNr="70" scheduleFile="???">
+    <track name="1" calculateDelay="false"/>
+  </station>-->
+
+  <station name="Schaan-Vaduz" short="Nd H1H" refNr="70" scheduleFile="schaan__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+  
+  <station name="Buchs (SG)" short="Bc" refNr="70">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="70Bb11" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Feldkirch-Amberg" short="Fk H1" refNr="8" scheduleFile="B8______.ABF">
+    <track name="1" calculateDelay="false">
+      <block name="08Bi11"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="08Bi12"/>
+    </track>
+  </station>
+
+  <station name="Rankweil" short="Rk" refNr="7" scheduleFile="G7______.ABF" localOrderFile="bf7_____.abf">
+    <track name="201">
+      <block name="07G201"/>
+    </track>
+    <track name="202">
+      <block name="07G202"/>
+    </track>
+    <track name="203">
+      <block name="07G203"/>
+    </track>
+    <track name="205">
+      <block name="07G205"/>
+    </track>
+  </station>
+
+  <station name="Sulz-Röthis" short="Rk H1" refNr="7" scheduleFile="B7______.ABF">
+    <track name="1" calculateDelay="false">
+      <block name="07Bj11"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="07Bj12"/>
+    </track>
+  </station>
+
+  <station name="Klaus in Vorarlberg" short="Rk H2" refNr="7" scheduleFile="B6______.ABF">
+    <track name="1" calculateDelay="false">
+      <block name="06Bj31"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="06Bj32"/>
+    </track>
+  </station>
+
+  <station name="Götzis" short="Got" refNr="6" scheduleFile="G6______.ABF" localOrderFile="bf6_____.abf">
+    <track name="201">
+      <block name="06G201"/>
+    </track>
+    <track name="202">
+      <block name="06G202"/>
+    </track>
+    <track name="203">
+      <block name="06G203"/>
+    </track>
+    <track name="204">
+      <block name="06G204"/>
+    </track>
+  </station>
+
+  <station name="Altach" short="Got H1" refNr="6" scheduleFile="B5______.ABF">
+    <track name="1" calculateDelay="false">
+      <block name="05Bk11"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="05Bk12"/>
+    </track>
+  </station>
+
+  <station name="Hohenems" short="Hos" refNr="5" scheduleFile="G5______.ABF" localOrderFile="bf5_____.abf">
+    <track name="201">
+      <block name="05G201"/>
+    </track>
+    <track name="202">
+      <block name="05G202"/>
+    </track>
+    <track name="203">
+      <block name="05G203"/>
+    </track>
+    <track name="205">
+      <block name="05G205"/>
+    </track>
+  </station>
+
+  <station name="Hatlerdorf" short="Hos H1" refNr="5" scheduleFile="V4______.ABF">
+    <track name="1" calculateDelay="false"/>
+    <track name="2" calculateDelay="false"/>
+  </station>
+
+  <station name="Dornbirn" short="Do" refNr="4">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="04Sl21" direction="left"/>
+      <block name="04Sl22" direction="left"/>
+    </track>
+  </station>
+</estw>

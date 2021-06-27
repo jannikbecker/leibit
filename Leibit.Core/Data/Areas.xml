@@ -25,11 +25,12 @@
     <estw id="AH" name="Hamburg Hbf" dataFile="leibit_HAMBURG HBF.dat"/>
   </area>
 
-  <area id="sued" name="Süddeutschland">
+  <area id="sued" name="Süddeutschland / Vorarlberg">
     <estw id="RSI" name="Singen" dataFile="leibit_SINGEN.dat"/>
     <estw id="TF" name="Friedrichshafen" dataFile="leibit_FRIEDRICHSHAFEN.dat"/>
     <estw id="TAU" name="Aulendorf" dataFile="leibit_AULENDORF.dat"/>
     <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat"/>
+    <estw id="Fk" name="Feldkirch" dataFile="leibit_FELDKIRCH.dat"/>
     <estw id="Bg" name="Bregenz" dataFile="leibit_BREGENZ.dat"/>
     <estw id="MIMS" name="Immenstadt" dataFile="leibit_IMMENSTADT.dat"/>
     <estw id="MM" name="Memmingen" dataFile="leibit_MEMMINGEN.dat"/>
