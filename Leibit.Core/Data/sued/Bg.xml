@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Hohenems" short="Hos" refNr="5">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="04Bl11" direction="right"/>
+      <block name="04Bl12" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hatlerdorf" short="Hos H1" refNr="5" scheduleFile="b4_____.abf">
+    <track name="1" calculateDelay="false"/>
+    <track name="2" calculateDelay="false"/>
+  </station>
+
+  <station name="Dornbirn-Schoren" short="Hos H2" refNr="5" scheduleFile="g44_____.abf">
+    <track name="101" calculateDelay="false"/>
+    <track name="102" calculateDelay="false"/>
+  </station>
+
+  <station name="Dornbirn" short="Do" refNr="4" scheduleFile="g4______.abf" localOrderFile="bf4_____.abf">
+    <track name="201">
+      <block name="04G201"/>
+    </track>
+    <track name="202">
+      <block name="04G202"/>
+    </track>
+    <track name="203">
+      <block name="04G203"/>
+    </track>
+    <track name="205">
+      <block name="04G205"/>
+    </track>
+  </station>
+
+  <station name="Haselstauden" short="Do H1" refNr="4" scheduleFile="b22_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="22Bm11"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="22Bm12"/>
+    </track>
+  </station>
+
+  <station name="Schwarzach in Vorarlberg" short="Do H2" refNr="4" scheduleFile="b2______.abf">
+    <track name="1" calculateDelay="false">
+      <block name="02Bm21"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="02Bm22"/>
+    </track>
+  </station>
+
+  <station name="Wolfurt" short="Wo" refNr="2" scheduleFile="g20_____.abf" localOrderFile="bf20____.abf">
+    <track name="501">
+      <block name="02G501"/>
+    </track>
+    <track name="502">
+      <block name="02G502"/>
+    </track>
+    <track name="531">
+      <block name="02G531"/>
+    </track>
+    <track name="532">
+      <block name="02G532"/>
+    </track>
+    <track name="533">
+      <block name="02G533"/>
+    </track>
+    <track name="534">
+      <block name="02G534"/>
+    </track>
+    <track name="535">
+      <block name="02G535"/>
+    </track>
+    <track name="536">
+      <block name="02G536"/>
+    </track>
+    <track name="537">
+      <block name="02G537"/>
+    </track>
+    <track name="538">
+      <block name="02G538"/>
+    </track>
+    <track name="540">
+      <block name="02G540"/>
+    </track>
+    <track name="541">
+      <block name="02G541"/>
+    </track>
+    <track name="542">
+      <block name="02G542"/>
+    </track>
+    <track name="551">
+      <block name="02G541"/>
+    </track>
+    <track name="552">
+      <block name="02G552"/>
+    </track>
+    <track name="553">
+      <block name="02G553"/>
+    </track>
+    <track name="554">
+      <block name="02G554"/>
+    </track>
+    <track name="555">
+      <block name="02G555"/>
+    </track>
+    <track name="556">
+      <block name="02G556"/>
+    </track>
+    <track name="557">
+      <block name="02G557"/>
+    </track>
+    <track name="558">
+      <block name="02G558"/>
+    </track>
+  </station>
+  
+  <station name="Wolfurt-Lauterach Süd" short="Lsa" refNr="2" scheduleFile="g201____.abf">
+    <track name="701" isPlatform="false">
+      <block name="02G601" direction="left"/>
+      <block name="02G701" direction="right"/>
+    </track>
+    <track name="702" isPlatform="false">
+      <block name="02G602" direction="left"/>
+      <block name="02G702" direction="right"/>
+    </track>
+    <track name="703" isPlatform="false">
+      <block name="02G703" direction="right"/>
+    </track>
+    <track name="705" isPlatform="false">
+      <block name="02G705" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Wolfurt-Lauterach Nord" short="Lna" refNr="2" scheduleFile="g202____.abf">
+    <track name="701" isPlatform="false">
+      <block name="02Gn11" direction="right"/>
+      <block name="02G701" direction="left"/>
+    </track>
+    <track name="702" isPlatform="false">
+      <block name="02Gn12" direction="right"/>
+      <block name="02G702" direction="left"/>
+    </track>
+    <track name="703" isPlatform="false">
+      <block name="02G703" direction="left"/>
+    </track>
+    <track name="707" isPlatform="false">
+      <block name="02G707" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Wolfurt-Lauterach West" short="Lwa" refNr="2" scheduleFile="g203____.abf">
+    <track name="705" isPlatform="false">
+      <block name="02G705" direction="right"/>
+    </track>
+    <track name="707" isPlatform="false">
+      <block name="02G707" direction="right"/>
+      <block name="03Ba11" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Hst Lauterach" short="Lsa H1" refNr="2" scheduleFile="lauter__.abf">
+    <track name="701" calculateDelay="false"/>
+    <track name="702" calculateDelay="false"/>
+    <track name="703" calculateDelay="false"/>
+  </station>
+
+  <station name="Hard-Fussach" short="Us H1" refNr="3" scheduleFile="b3______.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Lustenau" short="Us" refNr="3" scheduleFile="g3______.abf" localOrderFile="bf3_____.abf">
+    <track name="201">
+      <block name="03G201"/>
+    </track>
+    <track name="202">
+      <block name="03G202"/>
+    </track>
+    <track name="203">
+      <block name="03G203"/>
+    </track>
+  </station>
+
+  <station name="Lustenau Markt" short="Us H2" refNr="3" scheduleFile="lu_mar__.abf">
+    <track name="1" calculateDelay="false">
+      <block name="03Bb11"/>
+    </track>
+  </station>
+
+  <station name="Riedenburg" short="Lna H1" refNr="2" scheduleFile="rieden__.abf">
+    <track name="1" calculateDelay="false">
+      <block name="02Gn21"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="02Gn22"/>
+    </track>
+  </station>
+
+  <station name="Bregenz" short="Bg" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
+    <track name="301">
+      <block name="01G301"/>
+      <alternative track="302"/>
+      <alternative track="303"/>
+      <alternative track="304"/>
+      <alternative track="306"/>
+    </track>
+    
+    <track name="302">
+      <block name="01G302"/>
+      <alternative track="301"/>
+      <alternative track="303"/>
+      <alternative track="304"/>
+      <alternative track="306"/>
+    </track>
+    
+    <track name="303">
+      <block name="01G303"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="306"/>
+    </track>
+    
+    <track name="304">
+      <block name="01G304"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="303"/>
+      <alternative track="306"/>
+    </track>
+    
+    <track name="306">
+      <block name="01G306"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="303"/>
+      <alternative track="304"/>
+    </track>
+    
+    <track name="314">
+      <block name="01G314"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="303"/>
+      <alternative track="316"/>
+    </track>
+    
+    <track name="316">
+      <block name="01G316"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="303"/>
+      <alternative track="314"/>
+    </track>
+  </station>
+  
+  <station name="Bregenz Hafen" short="Bg H1" refNr="1" scheduleFile="g61_____.abf" localOrderFile="bf11____.abf">
+    <track name="411" calculateDelay="false">
+      <block name="61G411"/>
+    </track>
+    <track name="412">
+      <block name="61G412"/>
+    </track>
+  </station>
+
+  <station name="Lochau-Hörbranz" short="Lc" refNr="51" scheduleFile="g51_____.abf" localOrderFile="bf51____.abf">
+    <track name="501">
+      <block name="51G501"/>
+    </track>
+    <track name="502">
+      <block name="51G502"/>
+    </track>
+  </station>
+
+  <station name="Lindau-Reutin" short="MLIR" refNr="68">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="01SN" direction="left"/>
+      <block name="01BR" direction="left"/>
+    </track>
+  </station>
+</estw>

@@ -25,7 +25,7 @@
     </track>
   </station>
 
-  <station name="Lochau-Hörbranz (ÖBB)" short="XALH" refNr="68">
+  <station name="Lochau-Hörbranz" short="Lc" refNr="51">
     <track isPlatform="false" calculateDelay="false">
       <block name="68B1" direction="left"/>
       <block name="68BR" direction="left"/>
