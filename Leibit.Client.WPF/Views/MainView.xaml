@@ -217,7 +217,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Text="{Binding StatusBarText}" />
-                        <TextBlock Grid.Column="1" Text="{Binding ProgressBarText}" />
+                        <TextBlock Grid.Column="1" Text="{Binding ProgressBarText}" Margin="0,0,10,0" />
                         <ProgressBar Grid.Column="2" Value="{Binding ProgressBarPercentage}" />
                     </Grid>
                 </StatusBarItem>

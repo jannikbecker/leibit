@@ -45,7 +45,7 @@ namespace Leibit.BLL
                     return OperationResult<CheckForUpdatesResult>.Ok(new CheckForUpdatesResult()); // App not managed by Squirrel.
 
                 var processStartInfo = __GetProcessStartInfoForUpdateExe();
-                processStartInfo.Arguments = $"--checkForUpdates={m_UpdateUrl}";
+                processStartInfo.Arguments = $"--checkForUpdate={m_UpdateUrl}";
 
                 var process = Process.Start(processStartInfo);
                 process.WaitForExit();
@@ -102,6 +102,27 @@ namespace Leibit.BLL
         }
         #endregion
 
+        #region [RestartApp]
+        public OperationResult<bool> RestartApp()
+        {
+            try
+            {
+                if (m_UpdateExe == null)
+                    return OperationResult<bool>.Ok(false); // App not managed by Squirrel.
+
+                var exeName = Path.GetFileName(Process.GetCurrentProcess().MainModule.FileName);
+                var processStartInfo = __GetProcessStartInfoForUpdateExe();
+                processStartInfo.Arguments = $"--processStartAndWait=\"{exeName}\"";
+                Process.Start(processStartInfo);
+                return OperationResult<bool>.Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<bool>.Fail(ex.ToString());
+            }
+        }
+        #endregion
+
         #endregion
 
         #region - Private helper -
@@ -145,11 +166,14 @@ namespace Leibit.BLL
                 return;
 
             var stdErr = await process.StandardError.ReadToEndAsync();
+            var stdOut = await process.StandardOutput.ReadToEndAsync();
 
-            if (stdErr.IsNullOrWhiteSpace())
-                throw new OperationFailedException($"update.exe failed with exit code {process.ExitCode}.");
+            if (stdErr.IsNotNullOrWhiteSpace())
+                throw new OperationFailedException($"update.exe failed with exit code {process.ExitCode}. STDERR: {stdErr}");
+            else if (stdOut.IsNotNullOrWhiteSpace())
+                throw new OperationFailedException($"update.exe failed with exit code {process.ExitCode}. STDOUT: {stdOut}");
             else
-                throw new OperationFailedException($"update.exe failed with exit code {process.ExitCode}. Message: {stdErr}");
+                throw new OperationFailedException($"update.exe failed with exit code {process.ExitCode}.");
         }
         #endregion
 

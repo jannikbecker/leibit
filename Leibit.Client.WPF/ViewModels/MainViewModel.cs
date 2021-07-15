@@ -40,6 +40,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
@@ -54,6 +55,7 @@ namespace Leibit.Client.WPF.ViewModels
         private readonly LiveDataBLL m_LiveDataBll;
         private readonly SettingsBLL m_SettingsBll;
         private readonly SerializationBLL m_SerializationBll;
+        private readonly UpdateBLL m_UpdateBll;
 
         private Area m_CurrentArea;
         private Thread m_RefreshingThread;
@@ -108,6 +110,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_LiveDataBll = new LiveDataBLL();
             m_SettingsBll = new SettingsBLL();
             m_SerializationBll = new SerializationBLL();
+            m_UpdateBll = new UpdateBLL(@"D:\Dev\LeibitSquirrel");
 
             m_ChildViewModels = new List<ViewModelBase>();
             ChildWindows = new ObservableCollection<ChildWindow>();
@@ -135,6 +138,7 @@ namespace Leibit.Client.WPF.ViewModels
                 ShowMessage(SettingsResult);
 
             StatusBarText = "Herzlich willkommen!";
+            __CheckForUpdate();
         }
         #endregion
 
@@ -1277,6 +1281,94 @@ namespace Leibit.Client.WPF.ViewModels
 
             m_ForceClose = true;
             __Exit();
+        }
+        #endregion
+
+        #region [__CheckForUpdate]
+        private void __CheckForUpdate()
+        {
+            Task.Run(async () =>
+            {
+                var checkForUpdateResult = await m_UpdateBll.CheckForUpdates();
+
+                if (!checkForUpdateResult.Succeeded)
+                    return;
+
+                if (checkForUpdateResult.Result.ReleasesToApply.Any())
+                {
+                    Application.Current?.Dispatcher?.Invoke(() =>
+                    {
+                        var message = $"Aktuelle Version: {checkForUpdateResult.Result.CurrentVersion}\nNeue Version: {checkForUpdateResult.Result.FutureVersion}\nJetzt installieren?";
+                        var msgBoxResult = MessageBox.Show(message, "Neue Version verfügbar", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                        if (msgBoxResult == MessageBoxResult.Yes)
+                            __DoUpdate();
+                    });
+                }
+            });
+        }
+        #endregion
+
+        #region [__DoUpdate]
+        private void __DoUpdate()
+        {
+            Task.Run(async () =>
+            {
+                ProgressBarText = "Update wird installiert";
+                ProgressBarPercentage = 0;
+                m_UpdateBll.UpdateProgress += __UpdateProgress;
+
+                var updateResult = await m_UpdateBll.Update();
+
+                if (!updateResult.Succeeded)
+                {
+                    ProgressBarText = string.Empty;
+                    ProgressBarPercentage = 0;
+                    Application.Current?.Dispatcher?.Invoke(() => MessageBox.Show(updateResult.Message, "Installation fehlgeschlagen", MessageBoxButton.OK, MessageBoxImage.Error));
+                    return;
+                }
+
+                if (updateResult.Result)
+                {
+                    Application.Current?.Dispatcher?.Invoke(() =>
+                    {
+                        var msgBoxResult = MessageBox.Show("Neustart erforderlich. Jetzt neu starten?", "Update erfolgreich installiert", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                        if (msgBoxResult == MessageBoxResult.Yes)
+                            __Restart();
+                        else
+                        {
+                            ProgressBarText = string.Empty;
+                            ProgressBarPercentage = 0;
+                        }
+                    });
+                }
+                else
+                {
+                    ProgressBarText = string.Empty;
+                    ProgressBarPercentage = 0;
+                }
+            });
+        }
+        #endregion
+
+        #region [__Restart]
+        private void __Restart()
+        {
+            var restartResult = m_UpdateBll.RestartApp();
+
+            if (restartResult.Succeeded && restartResult.Result)
+            {
+                m_ForceClose = true;
+                __Exit();
+            }
+        }
+        #endregion
+
+        #region [__UpdateProgress]
+        private void __UpdateProgress(object sender, int e)
+        {
+            ProgressBarPercentage = e;
         }
         #endregion
 
