@@ -138,7 +138,7 @@ namespace Leibit.Client.WPF.ViewModels
                 ShowMessage(SettingsResult);
 
             StatusBarText = "Herzlich willkommen!";
-            __CheckForUpdate();
+            __CheckForUpdatesIfNeeded();
         }
         #endregion
 
@@ -1284,9 +1284,14 @@ namespace Leibit.Client.WPF.ViewModels
         }
         #endregion
 
-        #region [__CheckForUpdate]
-        private void __CheckForUpdate()
+        #region [__CheckForUpdatesIfNeeded]
+        private void __CheckForUpdatesIfNeeded()
         {
+            var settingsResult = m_SettingsBll.GetSettings();
+
+            if (settingsResult.Succeeded && !settingsResult.Result.AutomaticallyCheckForUpdates.Value)
+                return;
+
             Task.Run(async () =>
             {
                 var checkForUpdateResult = await m_UpdateBll.CheckForUpdates();

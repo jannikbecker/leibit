@@ -26,6 +26,7 @@ namespace Leibit.Entities.Settings
         public WindowSettings WindowSettings { get; set; }
         public int? LeadTime { get; set; }
         public int? FollowUpTime { get; set; }
+        public bool? AutomaticallyCheckForUpdates { get; set; }
 
         public Settings Clone()
         {
@@ -44,6 +45,7 @@ namespace Leibit.Entities.Settings
             Result.WindowColor = this.WindowColor;
             Result.LeadTime = this.LeadTime;
             Result.FollowUpTime = this.FollowUpTime;
+            Result.AutomaticallyCheckForUpdates = this.AutomaticallyCheckForUpdates;
             Result.GridSettings = this.GridSettings; // No deep clone required
             Result.WindowSettings = this.WindowSettings; // No deep clone required
 

@@ -227,6 +227,8 @@ namespace Leibit.BLL
 
             if (!settings.FollowUpTime.HasValue)
                 settings.FollowUpTime = defaultSettings.FollowUpTime;
+            if (!settings.AutomaticallyCheckForUpdates.HasValue)
+                settings.AutomaticallyCheckForUpdates = defaultSettings.AutomaticallyCheckForUpdates;
         }
 
         private Settings __GetDefaultSettings()
@@ -244,6 +246,7 @@ namespace Leibit.BLL
             settings.WindowSettings = new WindowSettings { Width = 900, Height = 600, Maximized = true };
             settings.EstwOnlinePath = @".\ESTWonline\";
             settings.FollowUpTime = 5;
+            settings.AutomaticallyCheckForUpdates = true;
             return settings;
         }
 

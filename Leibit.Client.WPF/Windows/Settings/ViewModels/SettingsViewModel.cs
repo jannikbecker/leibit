@@ -249,6 +249,21 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [AutomaticallyCheckForUpdates]
+        public bool AutomaticallyCheckForUpdates
+        {
+            get
+            {
+                return m_Settings.AutomaticallyCheckForUpdates.Value;
+            }
+            set
+            {
+                m_Settings.AutomaticallyCheckForUpdates = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         #region - Commands -
 
         #region [SaveCommand]
@@ -303,7 +318,8 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 || PropertyName == nameof(EstwOnlinePath)
                 || PropertyName == nameof(WindowColor)
                 || PropertyName == nameof(LeadTime)
-                || PropertyName == nameof(FollowUpTime))
+                || PropertyName == nameof(FollowUpTime)
+                || PropertyName == nameof(AutomaticallyCheckForUpdates))
             {
                 m_SaveCommand.SetCanExecute(true);
             }
