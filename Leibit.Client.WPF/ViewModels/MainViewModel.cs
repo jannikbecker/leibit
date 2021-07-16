@@ -1333,8 +1333,9 @@ namespace Leibit.Client.WPF.ViewModels
         private void __CheckForUpdatesIfNeeded()
         {
             var settingsResult = m_SettingsBll.GetSettings();
+            var settings = settingsResult.Result;
 
-            if (settingsResult.Succeeded && !settingsResult.Result.AutomaticallyCheckForUpdates.Value)
+            if (settings?.AutomaticallyCheckForUpdates == false)
                 return;
 
             Task.Run(async () =>
@@ -1344,7 +1345,7 @@ namespace Leibit.Client.WPF.ViewModels
                 if (!checkForUpdateResult.Succeeded)
                     return;
 
-                if (checkForUpdateResult.Result.ReleasesToApply.Any())
+                if (checkForUpdateResult.Result.ReleasesToApply.Any() && checkForUpdateResult.Result.FutureVersion != settings?.SkipVersion)
                 {
                     var installButton = new ToastButton()
                         .SetContent("Installieren")
@@ -1354,6 +1355,11 @@ namespace Leibit.Client.WPF.ViewModels
                         .SetContent("Später")
                         .AddArgument(NOTIFICATION_ACTION, "later");
 
+                    var skipButton = new ToastButton()
+                        .SetContent("Überspringen")
+                        .AddArgument(NOTIFICATION_ACTION, "skip")
+                        .AddArgument("versionToSkip", checkForUpdateResult.Result.FutureVersion);
+
                     new ToastContentBuilder()
                         .AddArgument(NOTIFICATION_TYPE, NOTIFICATION_TYPE_UPDATE_AVAILABLE)
                         .AddText("Es steht eine neue Version von LeiBIT zur Verfügung")
@@ -1361,6 +1367,7 @@ namespace Leibit.Client.WPF.ViewModels
                         .AddText($"Neue Version: {checkForUpdateResult.Result.FutureVersion}")
                         .AddButton(installButton)
                         .AddButton(remindButton)
+                        .AddButton(skipButton)
                         .Show();
                 }
             });
@@ -1451,6 +1458,17 @@ namespace Leibit.Client.WPF.ViewModels
             {
                 if (args[NOTIFICATION_ACTION] == "install")
                     __DoUpdate();
+                else if (args[NOTIFICATION_ACTION] == "skip" && args.Contains("versionToSkip"))
+                {
+                    var settingsResult = m_SettingsBll.GetSettings();
+
+                    if (!settingsResult.Succeeded)
+                        return;
+
+                    var settings = settingsResult.Result;
+                    settings.SkipVersion = args["versionToSkip"];
+                    m_SettingsBll.SaveSettings(settings);
+                }
             }
 
             if (args[NOTIFICATION_TYPE] == NOTIFICATION_TYPE_UPDATE_INSTALLED)
