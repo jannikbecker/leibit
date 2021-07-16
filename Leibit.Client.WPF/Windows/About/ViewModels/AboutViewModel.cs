@@ -178,17 +178,17 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
                         return;
                     }
 
-                    IsInfoIconVisible = true;
-
                     if (checkForUpdateResult.Result.ReleasesToApply.Any())
                     {
+                        IsInfoIconVisible = true;
                         VersionStatusText = $"Neue Version {checkForUpdateResult.Result.FutureVersion} gefunden.";
                         VersionCommand = new CommandHandler(__InstallUpdate, true);
                         VersionCommandText = "Installieren";
                     }
                     else
                     {
-                        VersionStatusText = "Es wurde keine neuere Version gefunden.";
+                        IsOkIconVisible = true;
+                        VersionStatusText = "LeiBIT ist aktuell.";
                     }
                 });
             });
