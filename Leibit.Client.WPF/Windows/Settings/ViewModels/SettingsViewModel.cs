@@ -264,6 +264,21 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [AutomaticallyInstallUpdates]
+        public bool AutomaticallyInstallUpdates
+        {
+            get
+            {
+                return m_Settings.AutomaticallyInstallUpdates;
+            }
+            set
+            {
+                m_Settings.AutomaticallyInstallUpdates = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         #region - Commands -
 
         #region [SaveCommand]
@@ -319,7 +334,8 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 || PropertyName == nameof(WindowColor)
                 || PropertyName == nameof(LeadTime)
                 || PropertyName == nameof(FollowUpTime)
-                || PropertyName == nameof(AutomaticallyCheckForUpdates))
+                || PropertyName == nameof(AutomaticallyCheckForUpdates)
+                || PropertyName == nameof(AutomaticallyInstallUpdates))
             {
                 m_SaveCommand.SetCanExecute(true);
             }

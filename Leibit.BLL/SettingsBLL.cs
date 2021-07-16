@@ -247,6 +247,7 @@ namespace Leibit.BLL
             settings.EstwOnlinePath = @".\ESTWonline\";
             settings.FollowUpTime = 5;
             settings.AutomaticallyCheckForUpdates = true;
+            settings.AutomaticallyInstallUpdates = false;
             return settings;
         }
 

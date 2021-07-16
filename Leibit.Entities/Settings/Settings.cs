@@ -27,6 +27,7 @@ namespace Leibit.Entities.Settings
         public int? LeadTime { get; set; }
         public int? FollowUpTime { get; set; }
         public bool? AutomaticallyCheckForUpdates { get; set; }
+        public bool AutomaticallyInstallUpdates { get; set; }
         public string SkipVersion { get; set; }
 
         public Settings Clone()
@@ -47,6 +48,7 @@ namespace Leibit.Entities.Settings
             Result.LeadTime = this.LeadTime;
             Result.FollowUpTime = this.FollowUpTime;
             Result.AutomaticallyCheckForUpdates = this.AutomaticallyCheckForUpdates;
+            Result.AutomaticallyInstallUpdates = this.AutomaticallyInstallUpdates;
             Result.SkipVersion = this.SkipVersion;
             Result.GridSettings = this.GridSettings; // No deep clone required
             Result.WindowSettings = this.WindowSettings; // No deep clone required

@@ -1347,6 +1347,12 @@ namespace Leibit.Client.WPF.ViewModels
 
                 if (checkForUpdateResult.Result.ReleasesToApply.Any() && checkForUpdateResult.Result.FutureVersion != settings?.SkipVersion)
                 {
+                    if (settings?.AutomaticallyInstallUpdates == true)
+                    {
+                        __DoUpdate();
+                        return;
+                    }
+
                     var installButton = new ToastButton()
                         .SetContent("Installieren")
                         .AddArgument(NOTIFICATION_ACTION, "install");
