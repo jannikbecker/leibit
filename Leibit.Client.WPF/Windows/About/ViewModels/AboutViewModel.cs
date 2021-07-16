@@ -1,4 +1,5 @@
-﻿using Leibit.Client.WPF.Common;
+﻿using Leibit.BLL;
+using Leibit.Client.WPF.Common;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Core.Client.Commands;
 using System;
@@ -15,6 +16,10 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
 {
     public class AboutViewModel : ChildWindowViewModelBase
     {
+
+        #region - Needs -
+        private UpdateBLL m_UpdateBll;
+        #endregion
 
         #region - Ctor -
         public AboutViewModel()
@@ -159,8 +164,8 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
 
             Task.Run(async () =>
             {
-                var bll = await UpdateHelper.GetUpdateBLL();
-                var checkForUpdateResult = await bll.CheckForUpdates();
+                m_UpdateBll = await UpdateHelper.GetUpdateBLL();
+                var checkForUpdateResult = await m_UpdateBll.CheckForUpdates();
 
                 Application.Current?.Dispatcher?.Invoke(() =>
                 {
@@ -201,10 +206,9 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
 
             Task.Run(async () =>
             {
-                var bll = await UpdateHelper.GetUpdateBLL();
-                bll.UpdateProgress += __UpdateProgress;
-                var updateResult = await bll.Update();
-                bll.UpdateProgress -= __UpdateProgress;
+                m_UpdateBll.UpdateProgress += __UpdateProgress;
+                var updateResult = await m_UpdateBll.Update();
+                m_UpdateBll.UpdateProgress -= __UpdateProgress;
 
                 OnReportProgress(true);
 
@@ -217,7 +221,7 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
                     return;
                 }
 
-                var checkResult = await bll.CheckForUpdates();
+                var checkResult = await m_UpdateBll.CheckForUpdates();
                 var currentVersion = checkResult?.Result?.CurrentVersion ?? "???";
 
                 IsOkIconVisible = true;
@@ -236,10 +240,9 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
         #endregion
 
         #region [__Restart]
-        private async void __Restart()
+        private void __Restart()
         {
-            var bll = await UpdateHelper.GetUpdateBLL();
-            var restartResult = bll.RestartApp();
+            var restartResult = m_UpdateBll.RestartApp();
 
             if (restartResult.Succeeded && restartResult.Result)
                 OnShutdownRequested(true);
