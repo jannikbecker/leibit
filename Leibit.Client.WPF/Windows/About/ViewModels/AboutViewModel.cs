@@ -217,8 +217,11 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
                     return;
                 }
 
+                var checkResult = await bll.CheckForUpdates();
+                var currentVersion = checkResult?.Result?.CurrentVersion ?? "???";
+
                 IsOkIconVisible = true;
-                VersionStatusText = "Update erfolgreich installiert";
+                VersionStatusText = $"Version {currentVersion} erfolgreich installiert";
                 VersionCommand = new CommandHandler(__Restart, true);
                 VersionCommandText = "Neustart";
             });
