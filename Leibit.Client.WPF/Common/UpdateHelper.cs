@@ -7,8 +7,7 @@ namespace Leibit.Client.WPF.Common
     {
         internal static async Task<UpdateBLL> GetUpdateBLL()
         {
-            return await UpdateBLL.CreateGitHub("jannikbecker", "leibit", true);
-            //return new UpdateBLL(@"D:\Dev\LeibitSquirrel");
+            return await UpdateBLL.CreateGitHub("jannikbecker", "leibit", false);
         }
     }
 }

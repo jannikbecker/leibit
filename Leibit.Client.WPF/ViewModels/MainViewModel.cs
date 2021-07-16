@@ -119,7 +119,6 @@ namespace Leibit.Client.WPF.ViewModels
             m_LiveDataBll = new LiveDataBLL();
             m_SettingsBll = new SettingsBLL();
             m_SerializationBll = new SerializationBLL();
-            //m_UpdateBll = new UpdateBLL(@"D:\Dev\LeibitSquirrel");
 
             m_ChildViewModels = new List<ViewModelBase>();
             ChildWindows = new ObservableCollection<ChildWindow>();
