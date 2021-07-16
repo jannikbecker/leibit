@@ -73,21 +73,7 @@ namespace Leibit.BLL
                 if (m_UpdateExe == null)
                     return OperationResult<CheckForUpdatesResult>.Ok(new CheckForUpdatesResult()); // App not managed by Squirrel.
 
-                var processStartInfo = __GetProcessStartInfoForUpdateExe();
-                processStartInfo.Arguments = $"--checkForUpdate={m_UpdateUrl}";
-
-                var process = Process.Start(processStartInfo);
-                process.WaitForExit();
-                await __ValidateProcessTerminatedSuccessfully(process);
-
-                var stdOut = await process.StandardOutput.ReadToEndAsync();
-                var jsonStart = stdOut.IndexOf('{');
-
-                if (jsonStart < 0)
-                    return OperationResult<CheckForUpdatesResult>.Fail("Invalid output of update.exe"); // Something went wrong :(
-
-                var json = stdOut.Substring(jsonStart);
-                var result = JsonConvert.DeserializeObject<CheckForUpdatesResult>(json);
+                var result = await __CheckForUpdates();
                 return OperationResult<CheckForUpdatesResult>.Ok(result);
             }
             catch (Exception ex)
@@ -105,6 +91,7 @@ namespace Leibit.BLL
                 if (m_UpdateExe == null)
                     return OperationResult<bool>.Ok(false); // App not managed by Squirrel.
 
+                var updateInfo = await __CheckForUpdates();
                 var processStartInfo = __GetProcessStartInfoForUpdateExe();
                 processStartInfo.Arguments = $"--update={m_UpdateUrl}";
 
@@ -122,6 +109,7 @@ namespace Leibit.BLL
 
                 process.WaitForExit();
                 await __ValidateProcessTerminatedSuccessfully(process);
+                __CopyESTWOnlineIni(updateInfo.CurrentVersion, updateInfo.FutureVersion);
                 return OperationResult<bool>.Ok(true);
             }
             catch (Exception ex)
@@ -155,6 +143,27 @@ namespace Leibit.BLL
         #endregion
 
         #region - Private helper -
+
+        #region [__CheckForUpdates]
+        private async Task<CheckForUpdatesResult> __CheckForUpdates()
+        {
+            var processStartInfo = __GetProcessStartInfoForUpdateExe();
+            processStartInfo.Arguments = $"--checkForUpdate={m_UpdateUrl}";
+
+            var process = Process.Start(processStartInfo);
+            process.WaitForExit();
+            await __ValidateProcessTerminatedSuccessfully(process);
+
+            var stdOut = await process.StandardOutput.ReadToEndAsync();
+            var jsonStart = stdOut.IndexOf('{');
+
+            if (jsonStart < 0)
+                throw new OperationFailedException("Invalid output of update.exe"); // Something went wrong :(
+
+            var json = stdOut.Substring(jsonStart);
+            return JsonConvert.DeserializeObject<CheckForUpdatesResult>(json);
+        }
+        #endregion
 
         #region [__TryFindUpdateExe]
         private string __TryFindUpdateExe()
@@ -203,6 +212,33 @@ namespace Leibit.BLL
                 throw new OperationFailedException($"update.exe failed with exit code {process.ExitCode}. STDOUT: {stdOut}");
             else
                 throw new OperationFailedException($"update.exe failed with exit code {process.ExitCode}.");
+        }
+        #endregion
+
+        #region [__CopyESTWOnlineIni]
+        private void __CopyESTWOnlineIni(string fromVersion, string toVersion)
+        {
+            if (fromVersion == toVersion)
+                return;
+
+            var assembly = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
+            var dir = Path.GetDirectoryName(assembly.Location);
+
+            if (Path.GetFileName(dir) != $"app-{fromVersion}")
+                return;
+
+            var sourceIniFile = Path.Combine(dir, @"ESTWonline\ESTWonline.ini");
+
+            if (!File.Exists(sourceIniFile))
+                return;
+
+            var targetDir = Path.Combine(dir, "..", $"app-{toVersion}", "ESTWonline");
+
+            if (!Directory.Exists(targetDir))
+                return;
+
+            var targetIniFile = Path.Combine(targetDir, "ESTWonline.ini");
+            File.Copy(sourceIniFile, targetIniFile, true);
         }
         #endregion
 
