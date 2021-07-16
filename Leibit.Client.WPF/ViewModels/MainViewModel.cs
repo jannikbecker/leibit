@@ -1412,6 +1412,9 @@ namespace Leibit.Client.WPF.ViewModels
 
                 if (updateResult.Result)
                 {
+                    var checkResult = await m_UpdateBll.CheckForUpdates();
+                    var currentVersion = checkResult?.Result?.CurrentVersion ?? "???";
+
                     var restartButton = new ToastButton()
                         .SetContent("Jetzt neu starten")
                         .AddArgument(NOTIFICATION_ACTION, "restart");
@@ -1423,7 +1426,7 @@ namespace Leibit.Client.WPF.ViewModels
                     new ToastContentBuilder()
                         .AddArgument(NOTIFICATION_TYPE, NOTIFICATION_TYPE_UPDATE_INSTALLED)
                         .AddText("Update erfolgreich installiert")
-                        .AddText("Beim nächsten Start steht die neue Version zur Verfügung.")
+                        .AddText($"LeiBIT wurde auf Version {currentVersion} aktualisiert. Beim nächsten Start steht die neue Version zur Verfügung.")
                         .AddButton(restartButton)
                         .AddButton(laterButton)
                         .Show();
