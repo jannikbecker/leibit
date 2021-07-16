@@ -1092,8 +1092,31 @@ namespace Leibit.Client.WPF.ViewModels
             };
 
             ViewModel.StatusBarTextChanged += (sender, text) => StatusBarText = text;
+            ViewModel.ReportProgress += __ReportProgress;
+
+            ViewModel.ShutdownRequested += (sender, force) =>
+            {
+                m_ForceClose = force;
+                __Exit();
+            };
 
             return true;
+        }
+        #endregion
+
+        #region [__ReportProgress]
+        private void __ReportProgress(object sender, ReportProgressEventArgs e)
+        {
+            if (e.Completed)
+            {
+                ProgressBarVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ProgressBarText = e.ProgressText;
+                ProgressBarPercentage = e.ProgressValue;
+                ProgressBarVisibility = Visibility.Visible;
+            }
         }
         #endregion
 
@@ -1349,17 +1372,13 @@ namespace Leibit.Client.WPF.ViewModels
         {
             Task.Run(async () =>
             {
-                ProgressBarText = "Update wird installiert";
-                ProgressBarPercentage = 0;
-                ProgressBarVisibility = Visibility.Visible;
+                __UpdateProgress(this, 0);
 
                 m_UpdateBll.UpdateProgress += __UpdateProgress;
                 var updateResult = await m_UpdateBll.Update();
                 m_UpdateBll.UpdateProgress -= __UpdateProgress;
 
-                ProgressBarVisibility = Visibility.Collapsed;
-                ProgressBarPercentage = 0;
-                ProgressBarText = string.Empty;
+                __ReportProgress(this, new ReportProgressEventArgs(true));
 
                 if (!updateResult.Succeeded)
                 {
@@ -1416,7 +1435,7 @@ namespace Leibit.Client.WPF.ViewModels
         #region [__UpdateProgress]
         private void __UpdateProgress(object sender, int e)
         {
-            ProgressBarPercentage = e;
+            __ReportProgress(this, new ReportProgressEventArgs("Update wird installiert", e));
         }
         #endregion
 

@@ -206,25 +206,33 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
 
             Task.Run(async () =>
             {
+                m_UpdateBll.UpdateProgress += __UpdateProgress;
                 var updateResult = await m_UpdateBll.Update();
+                m_UpdateBll.UpdateProgress -= __UpdateProgress;
 
-                Application.Current?.Dispatcher?.Invoke(() =>
+                OnReportProgress(true);
+
+                Application.Current?.Dispatcher?.Invoke(() => CheckForUpdatesCommand.SetCanExecute(true));
+
+                if (!updateResult.Succeeded || !updateResult.Result)
                 {
-                    CheckForUpdatesCommand.SetCanExecute(true);
+                    IsWarningIconVisible = true;
+                    VersionStatusText = "Installation fehlgeschlagen";
+                    return;
+                }
 
-                    if (!updateResult.Succeeded || !updateResult.Result)
-                    {
-                        IsWarningIconVisible = true;
-                        VersionStatusText = "Installation fehlgeschlagen";
-                        return;
-                    }
-
-                    IsOkIconVisible = true;
-                    VersionStatusText = "Update erfolgreich installiert";
-                    VersionCommand = new CommandHandler(__Restart, true);
-                    VersionCommandText = "Neustart";
-                });
+                IsOkIconVisible = true;
+                VersionStatusText = "Update erfolgreich installiert";
+                VersionCommand = new CommandHandler(__Restart, true);
+                VersionCommandText = "Neustart";
             });
+        }
+        #endregion
+
+        #region [__UpdateProgress]
+        private void __UpdateProgress(object sender, int e)
+        {
+            OnReportProgress("Update wird installiert", e);
         }
         #endregion
 
@@ -234,7 +242,7 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
             var restartResult = m_UpdateBll.RestartApp();
 
             if (restartResult.Succeeded && restartResult.Result)
-                Application.Current.Shutdown();
+                OnShutdownRequested(true);
         }
         #endregion
 
