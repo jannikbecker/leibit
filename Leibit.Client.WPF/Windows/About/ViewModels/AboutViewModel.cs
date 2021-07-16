@@ -181,7 +181,7 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
                     if (checkForUpdateResult.Result.ReleasesToApply.Any())
                     {
                         IsInfoIconVisible = true;
-                        VersionStatusText = $"Neue Version {checkForUpdateResult.Result.FutureVersion} gefunden.";
+                        VersionStatusText = $"Update verfügbar: {checkForUpdateResult.Result.FutureVersion}";
                         VersionCommand = new CommandHandler(__InstallUpdate, true);
                         VersionCommandText = "Installieren";
                     }
