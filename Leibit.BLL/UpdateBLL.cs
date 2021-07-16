@@ -3,8 +3,12 @@ using Leibit.Core.Exceptions;
 using Leibit.Entities.Updates;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -34,7 +38,32 @@ namespace Leibit.BLL
         public event EventHandler<int> UpdateProgress;
         #endregion
 
-        #region - Internal methods -
+        #region - Public methods -
+
+        #region [CreateGitHub]
+        public static async Task<UpdateBLL> CreateGitHub(string organization, string repository, bool includePreReleases)
+        {
+            using (var http = new HttpClient())
+            {
+                http.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("Leibit", Assembly.GetEntryAssembly().GetName().Version.ToString()));
+
+                using (var response = await http.GetAsync($"https://api.github.com/repos/{organization}/{repository}/releases"))
+                {
+                    response.EnsureSuccessStatusCode();
+
+                    var json = await response.Content.ReadAsStringAsync();
+                    var releases = JsonConvert.DeserializeObject<List<GitHubRelease>>(json);
+                    var latestRelease = releases.OrderByDescending(r => r.PublishedAt).FirstOrDefault(r => includePreReleases || !r.PreRelease);
+
+                    if (latestRelease == null)
+                        throw new OperationFailedException("No GitHub releases found");
+
+                    var downloadUrl = latestRelease.HtmlUrl.Replace("/tag/", "/download/");
+                    return new UpdateBLL(downloadUrl);
+                }
+            }
+        }
+        #endregion
 
         #region [CheckForUpdates]
         public async Task<OperationResult<CheckForUpdatesResult>> CheckForUpdates()

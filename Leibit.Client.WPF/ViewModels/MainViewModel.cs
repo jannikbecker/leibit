@@ -56,7 +56,6 @@ namespace Leibit.Client.WPF.ViewModels
         private readonly LiveDataBLL m_LiveDataBll;
         private readonly SettingsBLL m_SettingsBll;
         private readonly SerializationBLL m_SerializationBll;
-        private readonly UpdateBLL m_UpdateBll;
 
         private Area m_CurrentArea;
         private Thread m_RefreshingThread;
@@ -119,7 +118,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_LiveDataBll = new LiveDataBLL();
             m_SettingsBll = new SettingsBLL();
             m_SerializationBll = new SerializationBLL();
-            m_UpdateBll = new UpdateBLL(@"D:\Dev\LeibitSquirrel");
+            //m_UpdateBll = new UpdateBLL(@"D:\Dev\LeibitSquirrel");
 
             m_ChildViewModels = new List<ViewModelBase>();
             ChildWindows = new ObservableCollection<ChildWindow>();
@@ -1340,7 +1339,8 @@ namespace Leibit.Client.WPF.ViewModels
 
             Task.Run(async () =>
             {
-                var checkForUpdateResult = await m_UpdateBll.CheckForUpdates();
+                var bll = await UpdateHelper.GetUpdateBLL();
+                var checkForUpdateResult = await bll.CheckForUpdates();
 
                 if (!checkForUpdateResult.Succeeded)
                     return;
@@ -1385,11 +1385,12 @@ namespace Leibit.Client.WPF.ViewModels
         {
             Task.Run(async () =>
             {
+                var bll = await UpdateHelper.GetUpdateBLL();
                 __UpdateProgress(this, 0);
 
-                m_UpdateBll.UpdateProgress += __UpdateProgress;
-                var updateResult = await m_UpdateBll.Update();
-                m_UpdateBll.UpdateProgress -= __UpdateProgress;
+                bll.UpdateProgress += __UpdateProgress;
+                var updateResult = await bll.Update();
+                bll.UpdateProgress -= __UpdateProgress;
 
                 __ReportProgress(this, new ReportProgressEventArgs(true));
 
@@ -1412,7 +1413,7 @@ namespace Leibit.Client.WPF.ViewModels
 
                 if (updateResult.Result)
                 {
-                    var checkResult = await m_UpdateBll.CheckForUpdates();
+                    var checkResult = await bll.CheckForUpdates();
                     var currentVersion = checkResult?.Result?.CurrentVersion ?? "???";
 
                     var restartButton = new ToastButton()
@@ -1436,9 +1437,10 @@ namespace Leibit.Client.WPF.ViewModels
         #endregion
 
         #region [__Restart]
-        private void __Restart()
+        private async Task __Restart()
         {
-            var restartResult = m_UpdateBll.RestartApp();
+            var bll = await UpdateHelper.GetUpdateBLL();
+            var restartResult = bll.RestartApp();
 
             if (restartResult.Succeeded && restartResult.Result)
             {
@@ -1456,7 +1458,7 @@ namespace Leibit.Client.WPF.ViewModels
         #endregion
 
         #region [__ToastNotificationClicked]
-        private void __ToastNotificationClicked(ToastNotificationActivatedEventArgsCompat e)
+        private async void __ToastNotificationClicked(ToastNotificationActivatedEventArgsCompat e)
         {
             var args = ToastArguments.Parse(e.Argument);
 
@@ -1483,7 +1485,7 @@ namespace Leibit.Client.WPF.ViewModels
             if (args[NOTIFICATION_TYPE] == NOTIFICATION_TYPE_UPDATE_INSTALLED)
             {
                 if (args[NOTIFICATION_ACTION] == "restart")
-                    __Restart();
+                    await __Restart();
             }
 
             if (args[NOTIFICATION_TYPE] == NOTIFICATION_TYPE_ERROR)
