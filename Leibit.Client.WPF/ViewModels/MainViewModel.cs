@@ -40,6 +40,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
@@ -123,16 +124,6 @@ namespace Leibit.Client.WPF.ViewModels
                 ShowMessage(AreaResult);
                 Areas = new ObservableCollection<Area>();
             }
-
-            var SettingsResult = m_SettingsBll.AreSettingsComplete();
-
-            if (SettingsResult.Succeeded)
-            {
-                if (!SettingsResult.Result)
-                    __Settings();
-            }
-            else
-                ShowMessage(SettingsResult);
 
             StatusBarText = "Herzlich willkommen!";
         }
@@ -525,6 +516,22 @@ namespace Leibit.Client.WPF.ViewModels
                 if (windowSettings.Maximized)
                     window.WindowState = WindowState.Maximized;
             }
+
+            var SettingsResult = m_SettingsBll.AreSettingsComplete();
+
+            if (SettingsResult.Succeeded)
+            {
+                if (!SettingsResult.Result)
+                {
+                    Task.Run(async () =>
+                    {
+                        await Task.Delay(500); // Dirty hack. We must ensure that layout is updated. Calling UpdateLayout() does not work :(
+                        Application.Current?.Dispatcher?.Invoke(__Settings);
+                    });
+                }
+            }
+            else
+                ShowMessage(SettingsResult);
         }
         #endregion
 
