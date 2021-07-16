@@ -151,6 +151,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Content="Pfad zu ESTWonline" VerticalAlignment="Center" />
@@ -166,8 +168,19 @@
                                   AvailableColorsHeader="Verfügbare Farben"
                                   RecentColorsHeader="Zuletzt verwendete Farben"
                                   StandardTabHeader="Zurück"
-                                  StandardColorsHeader="Standardfarben"
-                                  />
+                                  StandardColorsHeader="Standardfarben"/>
+                    
+                    <Label Grid.Row="2" Grid.Column="0" Content="Updates" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="2" Grid.Column="1"
+                              Content="Automatisch nach Updates suchen"
+                              IsChecked="{Binding AutomaticallyCheckForUpdates, Mode=TwoWay}"
+                              Margin="5,0,0,0"
+                              VerticalAlignment="Center"/>
+                    <CheckBox Grid.Row="3" Grid.Column="1"
+                              Content="Updates automatisch installieren"
+                              IsChecked="{Binding AutomaticallyInstallUpdates, Mode=TwoWay}"
+                              Margin="5,0,0,5"
+                              VerticalAlignment="Center"/>
                 </Grid>
             </GroupBox>
 

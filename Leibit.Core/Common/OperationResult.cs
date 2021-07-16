@@ -27,5 +27,22 @@ namespace Leibit.Core.Common
             }
         }
 
+        public static OperationResult<TResult> Ok(TResult result)
+        {
+            var res = new OperationResult<TResult>();
+            res.Result = result;
+            res.Succeeded = true;
+            return res;
+        }
+
+        public static OperationResult<TResult> Fail(string message)
+        {
+            var res = new OperationResult<TResult>();
+            res.Message = message;
+            res.Result = default;
+            res.Succeeded = false;
+            return res;
+        }
+
     }
 }
