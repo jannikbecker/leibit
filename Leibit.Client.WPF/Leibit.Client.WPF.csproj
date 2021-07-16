@@ -9,7 +9,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <AssemblyTitle>Leibit.Client.WPF</AssemblyTitle>
+    <AssemblyTitle>LeiBIT für ESTWsim</AssemblyTitle>
     <Product>LeiBIT für ESTWsim</Product>
     <Copyright>Copyright ©  2016-2021</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -39,6 +39,7 @@
   <ItemGroup>
     <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="4.6.82" />
     <PackageReference Include="FontAwesome5" Version="2.1.4" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.0.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Leibit.BLL\Leibit.BLL.csproj" />

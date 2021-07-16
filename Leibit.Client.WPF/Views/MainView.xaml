@@ -213,12 +213,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="150" />
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Text="{Binding StatusBarText}" />
                         <TextBlock Grid.Column="1" Text="{Binding ProgressBarText}" Margin="0,0,10,0" />
-                        <ProgressBar Grid.Column="2" Value="{Binding ProgressBarPercentage}" />
+                        <ProgressBar Grid.Column="2" Value="{Binding ProgressBarPercentage}" Visibility="{Binding ProgressBarVisibility}" />
                     </Grid>
                 </StatusBarItem>
             </StatusBar>
