@@ -1,6 +1,8 @@
-﻿using Leibit.Entities.Scheduling;
+﻿using Leibit.Core.Common;
+using Leibit.Entities.Scheduling;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Leibit.Entities.Common
 {
@@ -101,6 +103,8 @@ namespace Leibit.Entities.Common
         }
 
         public List<ScheduleFile> ScheduleFiles { get; }
+
+        public bool HasScheduleFile => ScheduleFile.IsNotNullOrWhiteSpace() || ScheduleFiles.Any();
 
         internal void AddSchedule(Schedule schedule)
         {
