@@ -18,6 +18,7 @@
   </area>
 
   <area id="nord" name="Norddeutschland">
+    <estw id="HBSB" name="Sebaldsbrück" dataFile="leibit_SEBALDSBRÜCK.dat" infrastructureManager="DB"/>
     <estw id="HB" name="Bremen Hbf" dataFile="leibit_BREMEN HBF.dat" infrastructureManager="DB"/>
     <estw id="AROG" name="Rotenburg" dataFile="leibit_ROTENBURG.dat" infrastructureManager="DB"/>
     <estw id="ABLZ" name="Buchholz" dataFile="leibit_BUCHHOLZ.dat" infrastructureManager="DB"/>

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Bremen Hbf" short="HB" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11B184" direction="right"/>
+      <block name="26BN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Vahr" short="HVAH" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10B161" direction="right"/>
+      <block name="10B168" direction="right"/>
+    </track>
+  </station>
+
+  <!-- TODO: Merge mit g27_____.abf, Gleise 1, 2 und 3 -->
+  <station name="Bremen-Sebaldsbrück" short="HBSB" refNr="26" scheduleFile="g26_____.abf" localOrderFile="bf26____.abf">
+    <track name="1">
+      <block name="26G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+    <track name="2">
+      <block name="26G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+    </track>
+    <track name="3">
+      <block name="26G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+    </track>
+
+    <track name="30">
+      <block name="26G30"/>
+      <alternative track="42"/>
+    </track>
+    <track name="42">
+      <block name="26G42"/>
+      <alternative track="30"/>
+    </track>
+  </station>
+
+  <!-- TODO: Nur Gleis 108 -->
+  <station name="Bremen-Sebaldsbrück Wbf" short="HBAW" refNr="27" scheduleFile="g27_____.abf" localOrderFile="bf27____.abf">
+    <track name="108">
+      <block name="27G108"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Sebaldsbrück Werkbf Hp" short="HAW" refNr="27" scheduleFile="b27_____.abf">
+    <track name="175" calculateDelay="false">
+      <block name="27B175"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Mahndorf" short="HBM" refNr="25" scheduleFile="g25_____.abf" localOrderFile="bf25____.abf">
+    <track name="1">
+      <block name="25G1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="2">
+      <block name="25G2"/>
+      <alternative track="1"/>
+    </track>
+
+    <track name="10">
+      <block name="25G10"/>
+      <alternative track="20"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+    </track>
+    <track name="20">
+      <block name="25G20"/>
+      <alternative track="10"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+    </track>
+    <track name="3">
+      <block name="25G3.2"/>
+      <alternative track="10"/>
+      <alternative track="20"/>
+      <alternative track="4"/>
+    </track>
+    <track name="4">
+      <block name="25G4.1"/>
+      <alternative track="10"/>
+      <alternative track="20"/>
+      <alternative track="3"/>
+    </track>
+  </station>
+
+  <station name="Achim" short="HACH" refNr="24" scheduleFile="g24_____.abf" localOrderFile="bf24____.abf">
+    <track name="1">
+      <block name="24G1"/>
+    </track>
+    <track name="2">
+      <block name="24G2"/>
+    </track>
+    <track name="3">
+      <block name="24G3"/>
+    </track>
+  </station>
+
+  <station name="Baden (Kr Verden)" short="HBDV" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.abf">
+    <track name="1">
+      <block name="23G1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="2">
+      <block name="23G2"/>
+      <alternative track="1"/>
+    </track>
+
+    <track name="21">
+      <block name="23G21"/>
+      <alternative track="22"/>
+      <alternative track="23"/>
+      <alternative track="24"/>
+    </track>
+    <track name="22">
+      <block name="23G22"/>
+      <alternative track="21"/>
+      <alternative track="23"/>
+      <alternative track="24"/>
+    </track>
+    <track name="23">
+      <block name="23G23"/>
+      <alternative track="21"/>
+      <alternative track="22"/>
+      <alternative track="24"/>
+    </track>
+    <track name="24">
+      <block name="23G24"/>
+      <alternative track="21"/>
+      <alternative track="22"/>
+      <alternative track="23"/>
+    </track>
+  </station>
+
+  <station name="Etelsen" short="HETL" refNr="22" scheduleFile="g22_____.abf" localOrderFile="bf22____.abf">
+    <track name="1">
+      <block name="22G1"/>
+    </track>
+    <track name="2">
+      <block name="22G2"/>
+    </track>
+    <track name="3">
+      <block name="22G3"/>
+    </track>
+  </station>
+
+  <station name="Langwedel" short="HLGW" refNr="21" scheduleFile="g21_____.abf" localOrderFile="bf21____.abf">
+    <track name="1">
+      <block name="21G1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+    </track>
+
+    <track name="2">
+      <block name="21G2"/>
+      <alternative track="1"/>
+      <alternative track="4"/>
+    </track>
+
+    <track name="4">
+      <block name="21G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+    </track>
+
+    <track name="10">
+      <block name="21G10"/>
+      <alternative track="11"/>
+      <alternative track="15"/>
+      <alternative track="16"/>
+      <alternative track="2.2"/>
+    </track>
+
+    <track name="11">
+      <block name="21G11"/>
+      <alternative track="10"/>
+      <alternative track="15"/>
+      <alternative track="16"/>
+      <alternative track="2.2"/>
+    </track>
+
+    <track name="15">
+      <block name="21G15"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="16"/>
+      <alternative track="2.2"/>
+    </track>
+
+    <track name="16">
+      <block name="21G16"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="15"/>
+      <alternative track="2.2"/>
+    </track>
+
+    <track name="2.2">
+      <block name="21G2.2"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="15"/>
+      <alternative track="16"/>
+    </track>
+
+    <track name="21">
+      <block name="21G21"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+    </track>
+  </station>
+
+  <station name="Visselhövede" short="HVIS" refNr="34">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="21BP1" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Verden (Aller)" short="HV" refNr="20">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="20BN" direction="left"/>
+      <block name="21B102" direction="left"/>
+    </track>
+  </station>
+</estw>
