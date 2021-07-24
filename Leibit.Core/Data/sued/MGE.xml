@@ -77,10 +77,18 @@
     </track>
   </station>
 
-  <station name="Schmiechen (Oberbay)" short="MSCN" refNr="89" scheduleFile="b89_____.abf">
-    <track name="1" calculateDelay="false">
-      <block name="13BN"/>
+  <station name="Mering" short="MMR" refNr="22">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="13BN" direction="right"/>
     </track>
+  </station>
+
+  <station name="Merching" short="MMEG" refNr="22" scheduleFile="merchi__.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Schmiechen (Oberbay)" short="MSCN" refNr="22" scheduleFile="b89_____.abf">
+    <track name="1" calculateDelay="false"/>
   </station>
 
   <station name="Egling" short="MELG" refNr="89" scheduleFile="g89_____.abf" localOrderFile="bf89____.abf">
