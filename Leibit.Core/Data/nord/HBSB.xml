@@ -2,20 +2,34 @@
 <estw>
   <station name="Bremen Hbf" short="HB" refNr="11">
     <track calculateDelay="false" isPlatform="false">
-      <block name="11B184" direction="right"/>
-      <block name="26BN" direction="right"/>
+      <!-- HB > HBSB -->
+      <block name="11SP" direction="right"/>
+      <block name="11S185" direction="right"/>
+      <!-- HB > HVAR -->
+      <block name="11S175" direction="right"/>
+      <block name="11S178" direction="right"/>
     </track>
   </station>
 
   <station name="Bremen-Vahr" short="HVAH" refNr="10">
     <track calculateDelay="false" isPlatform="false">
+      <!-- HVAR > HBSB -->
       <block name="10B161" direction="right"/>
       <block name="10B168" direction="right"/>
+      <!-- HVAR > HB -->
+      <block name="10S173" direction="left"/>
+      <block name="11S176" direction="left"/>
     </track>
   </station>
 
-  <!-- TODO: Merge mit g27_____.abf, Gleise 1, 2 und 3 -->
-  <station name="Bremen-Sebaldsbrück" short="HBSB" refNr="26" scheduleFile="g26_____.abf" localOrderFile="bf26____.abf">
+  <station name="Bremen-Sebaldsbrück" short="HBSB" refNr="26" localOrderFile="bf26____.abf">
+    <scheduleFile fileName="g26_____.abf"/>
+    <scheduleFile fileName="g27_____.abf">
+      <track>1</track>
+      <track>2</track>
+      <track>3</track>
+    </scheduleFile>
+    
     <track name="1">
       <block name="26G1"/>
       <alternative track="2"/>
@@ -42,8 +56,11 @@
     </track>
   </station>
 
-  <!-- TODO: Nur Gleis 108 -->
-  <station name="Bremen-Sebaldsbrück Wbf" short="HBAW" refNr="27" scheduleFile="g27_____.abf" localOrderFile="bf27____.abf">
+  <station name="Bremen-Sebaldsbrück Wbf" short="HBAW" refNr="27" localOrderFile="bf27____.abf">
+    <scheduleFile fileName="g27_____.abf">
+      <track>108</track>
+    </scheduleFile>
+    
     <track name="108">
       <block name="27G108"/>
     </track>
