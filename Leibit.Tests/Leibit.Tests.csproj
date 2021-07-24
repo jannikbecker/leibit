@@ -25,6 +25,7 @@
   <ItemGroup>
     <None Remove="TestData\Areas.xml" />
     <None Remove="TestData\PPP.xml" />
+    <None Remove="TestData\ST.xml" />
     <None Remove="TestData\TREH.xml" />
     <None Remove="TestData\TTST.xml" />
   </ItemGroup>
@@ -56,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestData\PPP.xml" />
+    <EmbeddedResource Include="TestData\ST.xml" />
     <EmbeddedResource Include="TestData\TREH.xml" />
     <EmbeddedResource Include="TestData\TTST.xml" />
   </ItemGroup>
@@ -542,8 +544,17 @@
     <None Update="TestData\ESTWOnline\TestMisdirectedTrain\TestdorfDeparture.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="TestData\ESTWRoots\ScheduleTest\Bahnhof Fahrplan\G1______.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ESTWRoots\ScheduleTest\Bahnhof Fahrplan\G2______.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestData\ESTWRoots\Testdorf\Zugbildung\02007___.zug">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestData\ESTWRoots\ScheduleTest\Bahnhof Fahrplan\" />
   </ItemGroup>
 </Project>

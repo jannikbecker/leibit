@@ -293,7 +293,21 @@ namespace Leibit.BLL
             string Schedule = ScheduleFile == null ? null : ScheduleFile.InnerText;
             string LocalOrders = LocalOrderFile == null ? null : LocalOrderFile.InnerText;
 
-            return new Station(StationName.InnerText, StationShort.InnerText, number, Schedule, LocalOrders, estw);
+            var station = new Station(StationName.InnerText, StationShort.InnerText, number, Schedule, LocalOrders, estw);
+
+            foreach (XmlNode scheduleFileNode in node.SelectNodes("scheduleFile"))
+            {
+                var fileName = scheduleFileNode.Attributes["fileName"];
+
+                if (fileName == null || fileName.InnerText.IsNullOrWhiteSpace())
+                    continue;
+
+                var scheduleFile = new ScheduleFile(fileName.InnerText);
+                scheduleFile.Tracks = scheduleFileNode.SelectNodes("track").Cast<XmlNode>().Select(x => x.InnerText).ToList();
+                station.ScheduleFiles.Add(scheduleFile);
+            }
+
+            return station;
         }
         #endregion
 
@@ -371,16 +385,25 @@ namespace Leibit.BLL
         #region [__GetSchedule]
         private void __GetSchedule(Station station, string path)
         {
-            if (station == null || station.ScheduleFile.IsNullOrWhiteSpace())
+            if (station == null)
                 return;
 
-            string ScheduleFile = Path.Combine(path, Constants.SCHEDULE_FOLDER, station.ScheduleFile);
+            if (station.ScheduleFile.IsNotNullOrWhiteSpace())
+                __LoadScheduleFromFile(station, Path.Combine(path, Constants.SCHEDULE_FOLDER, station.ScheduleFile), new List<string>());
 
-            if (!File.Exists(ScheduleFile))
+            foreach (var scheduleFile in station.ScheduleFiles)
+                __LoadScheduleFromFile(station, Path.Combine(path, Constants.SCHEDULE_FOLDER, scheduleFile.FileName), scheduleFile.Tracks);
+        }
+        #endregion
+
+        #region [__LoadScheduleFromFile]
+        private void __LoadScheduleFromFile(Station station, string scheduleFile, List<string> tracks)
+        {
+            if (!File.Exists(scheduleFile))
                 return;
 
             // Encoding e.g. for German Umlaute
-            using (var reader = new StreamReader(ScheduleFile, Encoding.GetEncoding("iso-8859-1")))
+            using (var reader = new StreamReader(scheduleFile, Encoding.GetEncoding("iso-8859-1")))
             {
                 reader.ReadLine();
 
@@ -420,6 +443,9 @@ namespace Leibit.BLL
 
                     int TrainNr;
                     if (!Int32.TryParse(sTrain, out TrainNr))
+                        continue;
+
+                    if (tracks.Any() && !tracks.Contains(sTrack))
                         continue;
 
                     Train Train = station.ESTW.Area.Trains.AddOrUpdate(TrainNr, new Train(TrainNr, Type, Start, Destination), (trainNo, existingTrain) =>

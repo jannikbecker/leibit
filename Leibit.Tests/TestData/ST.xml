@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Station1" short="S1" refNr="1">
+    <scheduleFile fileName="G1______.dat"/>
+    <scheduleFile fileName="G2______.dat">
+      <track>3</track>
+    </scheduleFile>
+
+    <track name="1"/>
+    <track name="2"/>
+    <track name="3"/>
+  </station>
+</estw>

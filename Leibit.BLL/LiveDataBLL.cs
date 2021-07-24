@@ -563,7 +563,7 @@ namespace Leibit.BLL
                         CurrentSchedule = Schedules.FirstOrDefault();
 
                     // The train has no schedule for the current station (e.g. special or misdirected trains).
-                    if (CurrentSchedule == null && Block.Track.Station.ScheduleFile.IsNotNullOrWhiteSpace() && Block.Track.CalculateDelay)
+                    if (CurrentSchedule == null && Block.Track.Station.HasScheduleFile && Block.Track.CalculateDelay)
                     {
                         CurrentSchedule = new LiveSchedule(Train, Block.Track.Station);
                         Train.AddSchedule(CurrentSchedule);

@@ -15,6 +15,14 @@
         <xs:element maxOccurs="unbounded" name="station">
           <xs:complexType>
             <xs:sequence>
+              <xs:element name="scheduleFile" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="track" minOccurs="0" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                  <xs:attribute name="fileName" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
               <xs:element maxOccurs="unbounded" name="track">
                 <xs:complexType>
                   <xs:sequence minOccurs="0">

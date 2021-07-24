@@ -64,18 +64,29 @@ namespace Leibit.Tests.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;leibit&gt;
         ///  &lt;area id=&quot;myTestArea&quot; name=&quot;Testland&quot;&gt;
-        ///    &lt;estw id=&quot;TTST&quot; name=&quot;Testdorf&quot; dataFile=&quot;leibit_TEST.dat&quot;/&gt;
-        ///    &lt;estw id=&quot;TREH&quot; name=&quot;Rechtsheim&quot; dataFile=&quot;leibit_RECHTSHEI.dat&quot;/&gt;
+        ///    &lt;estw id=&quot;TTST&quot; name=&quot;Testdorf&quot; dataFile=&quot;leibit_TEST.dat&quot; infrastructureManager=&quot;DB&quot;/&gt;
+        ///    &lt;estw id=&quot;TREH&quot; name=&quot;Rechtsheim&quot; dataFile=&quot;leibit_RECHTSHEI.dat&quot; infrastructureManager=&quot;DB&quot;/&gt;
+        ///  &lt;/area&gt;
+        ///
+        ///  &lt;area id=&quot;scheduleArea&quot; name=&quot;Schedules&quot;&gt;
+        ///    &lt;estw id=&quot;ST&quot; name=&quot;ScheduleTest&quot; dataFile=&quot;leibit_ST.dat&quot; infrastructureManager=&quot;OEBB&quot;/&gt;
         ///  &lt;/area&gt;
         ///
         ///  &lt;area id=&quot;another&quot; name=&quot;Paradies&quot;&gt;
-        ///    &lt;estw id=&quot;PPP&quot; name=&quot;Paradiesbahnhof&quot; dataFile=&quot;leibit_PARADIES.dat&quot;/&gt;
-        ///  &lt;/area&gt;
-        ///&lt;/leibit&gt;.
+        ///    &lt;estw id=&quot;PPP&quot; na [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Areas {
             get {
                 return ResourceManager.GetString("Areas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TestData\ESTWRoots\ScheduleTest.
+        /// </summary>
+        public static string path_ST {
+            get {
+                return ResourceManager.GetString("path_ST", resourceCulture);
             }
         }
         

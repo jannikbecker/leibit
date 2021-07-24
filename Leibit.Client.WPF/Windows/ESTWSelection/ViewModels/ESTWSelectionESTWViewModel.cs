@@ -1,6 +1,5 @@
 ﻿using Leibit.Client.WPF.Common;
 using Leibit.Core.Client.BaseClasses;
-using Leibit.Core.Common;
 using Leibit.Entities.Common;
 using System;
 using System.Collections.ObjectModel;
@@ -103,7 +102,7 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
 
             foreach (var Station in m_Estw.Stations)
             {
-                if (Station.ScheduleFile.IsNullOrWhiteSpace())
+                if (!Station.HasScheduleFile)
                     continue;
 
                 var VM = new ESTWSelectionStationViewModel(Station);

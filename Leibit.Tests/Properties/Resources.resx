@@ -121,6 +121,9 @@
   <data name="Areas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\Areas.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="path_ST" xml:space="preserve">
+    <value>TestData\ESTWRoots\ScheduleTest</value>
+  </data>
   <data name="path_TREH" xml:space="preserve">
     <value>TestData\ESTWRoots\Rechtsheim</value>
   </data>

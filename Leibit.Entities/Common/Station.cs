@@ -1,6 +1,8 @@
-﻿using Leibit.Entities.Scheduling;
+﻿using Leibit.Core.Common;
+using Leibit.Entities.Scheduling;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Leibit.Entities.Common
 {
@@ -30,6 +32,7 @@ namespace Leibit.Entities.Common
             m_Tracks = new List<Track>();
             m_Schedules = new List<Schedule>();
             m_LockSchedules = new object();
+            ScheduleFiles = new List<ScheduleFile>();
 
             if (estw != null)
                 estw.Stations.Add(this);
@@ -98,6 +101,10 @@ namespace Leibit.Entities.Common
                 return m_LocalOrderFile;
             }
         }
+
+        public List<ScheduleFile> ScheduleFiles { get; }
+
+        public bool HasScheduleFile => ScheduleFile.IsNotNullOrWhiteSpace() || ScheduleFiles.Any();
 
         internal void AddSchedule(Schedule schedule)
         {

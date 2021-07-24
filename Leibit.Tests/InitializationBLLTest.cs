@@ -86,6 +86,24 @@ namespace Leibit.Tests
         }
         #endregion
 
+        #region [InitializationBLLTest_LoadMultipleScheduleFiles]
+        [TestMethod]
+        public void InitializationBLLTest_LoadMultipleScheduleFiles()
+        {
+            using (var scope = new ESTWTestDataScope(BLL))
+            {
+                var area = new Area("scheduleArea", "Schedules");
+                var estw = new ESTW("ST", "ScheduleTest", "leibit_ST.dat", area);
+                var Expected = ExpectedValuesOfInitializationBLLTest.LoadScheduleTestESTW();
+
+                OperationResult<bool> BllResult = BLL.LoadESTW(estw);
+                DefaultChecks.IsOperationSucceeded(BllResult);
+                Assert.IsTrue(BllResult.Result, "Result is false.");
+                AreaComparer.Instance.Compare(Expected, area);
+            }
+        }
+        #endregion
+
         #endregion
 
     }
