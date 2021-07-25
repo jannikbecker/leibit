@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Eystrup" short="HETR" refNr="18">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="18S75" direction="right"/>
+      <block name="18SP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Rohrsen" short="HROR" refNr="40" scheduleFile="g40_____.abf">
+    <track name="1">
+      <block name="40G1"/>
+    </track>
+    <track name="2">
+      <block name="40G2"/>
+    </track>
+    <track name="3">
+      <block name="40G3"/>
+    </track>
+    <track name="5">
+      <block name="40G5"/>
+    </track>
+  </station>
+
+  <station name="Sulingen (Han)" short="HSUL" refNr="39">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="39B615" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Liebenau (Han)" short="HLIB" refNr="39">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="39B515" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Lohe" short="HNBG_Lohe" refNr="39">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="39G415" direction="right"/>
+      <block name="39B515" direction="left"/>
+      <block name="39B615" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Nienburg (Weser)" short="HNBG" refNr="39" scheduleFile="g39_____.abf" localOrderFile="bf39____.abf">
+    <track name="1">
+      <block name="39G1"/>
+    </track>
+    <track name="2">
+      <block name="39G2"/>
+    </track>
+    <track name="3">
+      <block name="39G3"/>
+    </track>
+    <track name="4">
+      <block name="39G4"/>
+    </track>
+    <track name="5">
+      <block name="39G5"/>
+    </track>
+    <track name="6">
+      <block name="39G6"/>
+    </track>
+
+    <track name="Gbf">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      
+      <track name="7">
+        <block name="39G7"/>
+      </track>
+      <track name="8">
+        <block name="39G8"/>
+      </track>
+      <track name="9">
+        <block name="39G9"/>
+      </track>
+      <track name="10">
+        <block name="39G10"/>
+      </track>
+      <track name="11">
+        <block name="39G11"/>
+      </track>
+      <track name="12">
+        <block name="39G12"/>
+      </track>
+    </track>
+  </station>
+
+  <station name="Linsburg" short="HLBU" refNr="38" scheduleFile="g38_____.abf">
+    <track name="1">
+      <block name="38G1"/>
+    </track>
+    <track name="2">
+      <block name="38G2"/>
+    </track>
+    <track name="3">
+      <block name="38G3"/>
+    </track>
+  </station>
+
+  <station name="Hagen (Han)" short="HHAG" refNr="37" scheduleFile="g37_____.abf">
+    <track name="1">
+      <block name="37G1"/>
+    </track>
+    <track name="2">
+      <block name="37G2"/>
+    </track>
+    <track name="3">
+      <block name="37G3"/>
+    </track>
+  </station>
+
+  <station name="Hagen (Han) Hp" short="HHAGP" refNr="37" scheduleFile="b37_____.abf">
+    <track name="37" calculateDelay="false">
+      <block name="37B37"/>
+    </track>
+    <track name="P" calculateDelay="false">
+      <block name="37BP"/>
+    </track>
+  </station>
+
+  <station name="Eilvese" short="HEIV" refNr="36" scheduleFile="b36_____.abf">
+    <track name="33" calculateDelay="false">
+      <block name="36B33"/>
+    </track>
+    <track name="34" calculateDelay="false">
+      <block name="36B34"/>
+    </track>
+  </station>
+
+  <station name="Neustadt a Rübenberge" short="HNRU" refNr="35" scheduleFile="g35_____.abf">
+    <track name="1">
+      <block name="35G1"/>
+    </track>
+    <track name="2">
+      <block name="35G2"/>
+    </track>
+    <track name="3">
+      <block name="35G3"/>
+    </track>
+  </station>
+
+  <station name="Poggenhagen" short="HPOG" refNr="3" scheduleFile="g34_____.abf" localOrderFile="bf34____.abf">
+    <track name="1">
+      <block name="34G1"/>
+    </track>
+    <track name="2">
+      <block name="34G2.3"/>
+      <alternative track="1"/>
+    </track>
+    <track name="3">
+      <block name="34G3"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Wunstorf" short="HWUN" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="33S09" direction="left"/>
+      <block name="34B12" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Langendamm (Han)" short="HLGD" refNr="39">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="39BHLGD"/>
+    </track>
+  </station>
+
+  <station name="Schäferhof" short="HSFF" refNr="39">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="39BHSFF"/>
+    </track>
+  </station>
+
+  <station name="Estorf (Weser)" short="HEST" refNr="70" scheduleFile="g70_____.abf" localOrderFile="bf70____.abf">
+    <track name="1">
+      <block name="70G1"/>
+    </track>
+    <track name="2">
+      <block name="70G2"/>
+    </track>
+  </station>
+
+  <station name="Landesbergen (Han)" short="HLDB" refNr="69">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="69BHLDB"/>
+    </track>
+  </station>
+
+  <station name="Leese RWG" short="HLBL" refNr="69">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="69BHLBL"/>
+    </track>
+  </station>
+
+  <station name="Leese-Stolzenau" short="HLST" refNr="69" scheduleFile="g69_____.abf">
+    <track name="1">
+      <block name="69G1"/>
+    </track>
+    <track name="2">
+      <block name="69G2"/>
+    </track>
+    <track name="3">
+      <block name="69G3"/>
+    </track>
+    <track name="4">
+      <block name="69G4"/>
+    </track>
+  </station>
+
+  <station name="Heimsen" short="HHMS" refNr="68" scheduleFile="g68_____.abf">
+    <track name="1">
+      <block name="68G1"/>
+    </track>
+    <track name="2">
+      <block name="68G2"/>
+    </track>
+  </station>
+
+  <station name="Windheim (Weser)" short="HWDH" refNr="67" scheduleFile="g67_____.abf">
+    <track name="1">
+      <block name="67G1"/>
+    </track>
+    <track name="2">
+      <block name="67G2"/>
+    </track>
+  </station>
+
+  <station name="Lahde" short="HLAD" refNr="66" scheduleFile="g66_____.abf" localOrderFile="bf66____.abf">
+    <track name="1">
+      <block name="66G1"/>
+    </track>
+    <track name="10">
+      <block name="66G10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+    <track name="11">
+      <block name="66G11"/>
+      <alternative track="10"/>
+      <alternative track="12"/>
+    </track>
+    <track name="12">
+      <block name="66G12"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+    </track>
+  </station>
+
+  <station name="Frille" short="HFLL" refNr="65" scheduleFile="g65_____.abf">
+    <track name="1">
+      <block name="65G1"/>
+    </track>
+    <track name="2">
+      <block name="65G2"/>
+    </track>
+  </station>
+
+  <station name="Minden (Westf)" short="HM" refNr="65">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="65BN" direction="left"/>
+    </track>
+  </station>
+</estw>
