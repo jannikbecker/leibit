@@ -587,7 +587,7 @@ namespace Leibit.BLL
 
                     if (Line.StartsWith("*"))
                     {
-                        var match = Regex.Match(Line, @"^\*( )+[a-z]+( )+([0-9]+)( )*:", RegexOptions.IgnoreCase);
+                        var match = Regex.Match(Line, @"^\*( )+[a-z]+( )+([0-9]+)", RegexOptions.IgnoreCase);
 
                         if (match != null && match.Success)
                         {
@@ -601,10 +601,11 @@ namespace Leibit.BLL
                     }
                     else
                     {
-                        var LineParts = Line.Split(' ');
+                        var LineParts = Regex.Split(Line, @"\s");
 
                         if (LineParts[0].IsNotNullOrEmpty())
                         {
+                            // Line does not start with whitespace
                             __SetLocalOrders(station, CurrentTrainNumber, Content.ToString());
                             CurrentTrainNumber = 0;
                             Content = new StringBuilder();
