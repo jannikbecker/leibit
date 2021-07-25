@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Rotenburg (Wümme)" short="AROG" refNr="54">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="40B4N" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Unterstedt" short="HUNT" refNr="33" scheduleFile="g33_____.abf">
+    <track name="1">
+      <block name="33G1"/>
+    </track>
+    <track name="2">
+      <block name="33G2"/>
+    </track>
+  </station>
+
+  <station name="Westerwalsede" short="HWEW" refNr="32" scheduleFile="g32_____.abf">
+    <track name="1">
+      <block name="32G1"/>
+    </track>
+    <track name="2">
+      <block name="32G2"/>
+    </track>
+  </station>
+
+  <station name="Holtum" short="HHTM" refNr="31" scheduleFile="g31_____.abf">
+    <track name="1">
+      <block name="31G1"/>
+    </track>
+    <track name="2">
+      <block name="31G2"/>
+    </track>
+  </station>
+
+  <station name="Walle (Kr Verden)" short="HWAL" refNr="30" scheduleFile="g30_____.abf">
+    <track name="1">
+      <block name="30G1"/>
+    </track>
+    <track name="2">
+      <block name="30G2"/>
+    </track>
+  </station>
+
+  <station name="Etelsen" short="HETL" refNr="22">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="21S112" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Langwedel" short="HLGW" refNr="21">
+    <scheduleFile fileName="v21_____.abf">
+      <track>1</track>
+      <track>21</track>
+    </scheduleFile>
+
+    <track name="1">
+      <block name="21S1"/>
+      <alternative track="2"/>
+    </track>
+
+    <track name="2"/>
+
+    <track name="21">
+      <block name="21S21"/>
+      <alternative track="2"/>
+    </track>
+
+    <track calculateDelay="false" isPlatform="false">
+      <block name="21S103" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Verden (Aller)" short="HV" refNr="20" scheduleFile="g20_____.abf" localOrderFile="bf20____.abf">
+    <track name="1">
+      <block name="20G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    <track name="2">
+      <block name="20G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    <track name="3">
+      <block name="20G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    <track name="4">
+      <block name="20G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    <track name="5">
+      <block name="20G5"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+    </track>
+    <track name="6">
+      <block name="20G6"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+    </track>
+
+    <track name="11">
+      <block name="20G11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="35"/>
+    </track>
+    <track name="12">
+      <block name="20G12"/>
+      <alternative track="11"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="35"/>
+    </track>
+    <track name="13">
+      <block name="20G13"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="35"/>
+    </track>
+    <track name="14">
+      <block name="20G14"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="15"/>
+      <alternative track="35"/>
+    </track>
+    <track name="15">
+      <block name="20G15"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="35"/>
+    </track>
+    <track name="35">
+      <block name="20G35"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+    </track>
+  </station>
+
+  <station name="Wahnebergen" short="HWAB" refNr="20">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="20B93" direction="left"/>
+      <block name="20B96" direction="left"/>
+      <block name="20B91" direction="right"/>
+      <block name="20B94" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Dörverden" short="HDVD" refNr="19" scheduleFile="g19_____.abf" localOrderFile="bf19____.abf">
+    <track name="1">
+      <block name="19G1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+    </track>
+    <track name="2">
+      <block name="19G2"/>
+      <alternative track="1"/>
+      <alternative track="4"/>
+    </track>
+    <track name="4">
+      <block name="19G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+    </track>
+
+    <track name="1.4">
+      <block name="19G1.4"/>
+      <alternative track="2.3"/>
+      <alternative track="3"/>
+    </track>
+
+    <track name="2.3">
+      <block name="19G2.3"/>
+      <alternative track="1.4"/>
+      <alternative track="3"/>
+    </track>
+
+    <track name="3">
+      <block name="19G3"/>
+      <alternative track="1.4"/>
+      <alternative track="2.3"/>
+    </track>
+  </station>
+
+  <station name="Eystrup" short="HETR" refNr="18" scheduleFile="g18_____.abf" localOrderFile="bf18____.abf">
+    <track name="1">
+      <alternative track="2"/>
+      <alternative track="3"/>
+      
+      <track name="1.4">
+        <block name="18G1.4"/>
+      </track>
+      <track name="1.6">
+        <block name="18G1.6"/>
+      </track>
+    </track>
+
+    <track name="2">
+      <block name="18G2.4"/>
+    </track>
+
+    <track name="3">
+      <block name="18G3.3"/>
+    </track>
+
+    <track name="4">
+      <block name="18G4.1"/>
+      <alternative track="1.6"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+  </station>
+
+  <station name="Rohrsen" short="HROR" refNr="40">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="18S72" direction="left"/>
+      <block name="40SN" direction="left"/>
+    </track>
+  </station>
+</estw>
