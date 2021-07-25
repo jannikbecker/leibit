@@ -8,7 +8,7 @@
     </track>
   </station>
 
-  <station name="Handeloh" short="AHAN" refNr="58">
+  <station name="Handeloh" short="AHAN" refNr="45">
     <track isPlatform="false" calculateDelay="false">
       <block name="58BP" direction="right"/>
     </track>

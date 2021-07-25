@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Bennemühlen" short="HBML" refNr="47">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="48BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Lindwedel" short="HLWL" refNr="0" scheduleFile="b00_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Schwarmstedt" short="HSWS" refNr="48" scheduleFile="g48_____.abf" localOrderFile="bf48____.abf">
+    <track name="1">
+      <block name="48G1"/>
+    </track>
+    <track name="3">
+      <block name="48G3"/>
+    </track>
+    <track name="4">
+      <block name="48G4"/>
+    </track>
+  </station>
+
+  <station name="Hademstorf" short="HHAD" refNr="1" scheduleFile="b01_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Eickeloh" short="HEIK" refNr="2" scheduleFile="b02_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Hodenhagen" short="HHOD" refNr="49" scheduleFile="g49_____.abf" localOrderFile="bf49____.abf">
+    <track name="1">
+      <block name="49G1"/>
+    </track>
+    <track name="2">
+      <block name="49G2"/>
+    </track>
+  </station>
+
+  <station name="Düshorn" short="HDUE" refNr="49">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="49BN" direction="left"/>
+      <block name="49BD" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Böhme" short="HBME" refNr="41">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="41BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Cordingen" short="HCOR" refNr="41">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="41BC" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Walsrode" short="HWSR" refNr="41" scheduleFile="g41_____.abf" localOrderFile="bf41____.abf">
+    <track name="1">
+      <block name="41G1"/>
+    </track>
+    <track name="2">
+      <block name="41G2"/>
+    </track>
+    <track name="3">
+      <block name="41G3"/>
+    </track>
+    <track name="4">
+      <block name="41G4"/>
+    </track>
+    <track name="5">
+      <block name="41G5"/>
+    </track>
+  </station>
+
+  <station name="Bad Fallingbostel" short="HFAL" refNr="42" scheduleFile="g42_____.abf" localOrderFile="bf42____.abf">
+    <track name="1">
+      <block name="42G1"/>
+    </track>
+    <track name="2">
+      <block name="42G2"/>
+    </track>
+    <track name="4">
+      <block name="42G4"/>
+    </track>
+    <track name="5">
+      <block name="42G5"/>
+    </track>
+  </station>
+
+  <station name="Dorfmark" short="HDMK" refNr="43" scheduleFile="g43_____.abf" localOrderFile="bf43____.abf">
+    <track name="2">
+      <block name="43G2"/>
+    </track>
+    <track name="3">
+      <block name="43G3"/>
+    </track>
+  </station>
+
+  <station name="Jettebruch" short="HJEB" refNr="43">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="43BN" direction="left"/>
+      <block name="43BJ" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Langwedel" short="HLGW" refNr="21">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="21BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Visselhövede" short="HVIS" refNr="28" scheduleFile="g28_____.abf" localOrderFile="bf28____.abf">
+    <track name="1">
+      <block name="28G1"/>
+    </track>
+    <track name="2">
+      <block name="28G2"/>
+    </track>
+  </station>
+
+  <station name="Visselhövede Stadt" short="HVISA" refNr="28">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="28BP" direction="left"/>
+      <block name="28BV" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Soltau (Han)" short="HSO" refNr="29" scheduleFile="g29_____.abf" localOrderFile="bf29____.abf">
+    <track name="1">
+      <block name="29G1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+    </track>
+
+    <track name="2">
+      <block name="29G2"/>
+      <alternative track="1"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+    </track>
+
+    <track name="20">
+      <block name="29G20"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="41"/>
+      <alternative track="73"/>
+    </track>
+
+    <track name="3">
+      <block name="29G3"/>
+      <alternative track="1"/>
+      <alternative track="20"/>
+      <alternative track="41"/>
+      <alternative track="73"/>
+    </track>
+
+    <track name="40">
+      <alternative track="1"/>
+      <alternative track="20"/>
+      <alternative track="3"/>
+      <alternative track="73"/>
+      <track name="41">
+        <block name="29G41"/>
+      </track>
+    </track>
+
+    <track name="5">
+      <block name="29G5"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="7"/>
+    </track>
+
+    <track name="7">
+      <block name="29G7"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+    </track>
+
+    <track name="73">
+      <block name="29G73"/>
+      <alternative track="1"/>
+      <alternative track="20"/>
+      <alternative track="3"/>
+      <alternative track="41"/>
+      <alternative track="73"/>
+    </track>
+  </station>
+
+  <station name="Soltau (Han) Nord" short="ASON" refNr="3" scheduleFile="b03_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Wolterdingen (Han)" short="AWOL" refNr="4" scheduleFile="b04_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Hemsen (b Soltau)" short="AHSN" refNr="5" scheduleFile="b05_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Schneverdingen" short="ASDN" refNr="44" scheduleFile="g44_____.abf" localOrderFile="bf44____.abf">
+    <track name="1">
+      <block name="44G1"/>
+    </track>
+    <track name="2">
+      <block name="44G2"/>
+    </track>
+  </station>
+
+  <station name="Wintermoor" short="AWIM" refNr="44" scheduleFile="b44_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Handeloh" short="AHAN" refNr="45" scheduleFile="g45_____.abf" localOrderFile="bf45____.abf">
+    <track name="1">
+      <block name="45G1"/>
+    </track>
+    <track name="2">
+      <block name="45G2"/>
+    </track>
+  </station>
+
+  <station name="Büsenbachtal" short="ABUS" refNr="6" scheduleFile="b06_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Holm-Seppensen" short="AHES" refNr="7" scheduleFile="b07_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Suerhop" short="ASUP" refNr="8" scheduleFile="b08_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Buchholz (Nordheide)" short="ABLZ" refNr="58">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="45BN" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Soltau-Harber" short="HSOA" refNr="29">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="29BP" direction="left"/>
+      <block name="36BH" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Munster (Örtze)" short="HMS" refNr="36" scheduleFile="g36_____.abf" localOrderFile="bf36____.abf">
+    <track name="1">
+      <block name="36G1"/>
+    </track>
+    <track name="2">
+      <block name="36G2"/>
+    </track>
+    <track name="3">
+      <block name="36G3"/>
+    </track>
+    <track name="4">
+      <block name="36G4"/>
+    </track>
+    <track name="100">
+      <block name="36G100"/>
+    </track>
+  </station>
+
+  <station name="Brockhöfe" short="HBRO" refNr="36" scheduleFile="b36_____.abf">
+    <track name="1" calculateDelay="false" isPlatform="false">
+      <block name="36BP" direction="left"/>
+      <block name="36BB" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Ebstorf (Kr Uelzen)" short="HEBS" refNr="46" scheduleFile="g46_____.abf" localOrderFile="bf46____.abf">
+    <track name="1">
+      <block name="46G1"/>
+    </track>
+    <track name="2">
+      <block name="46G2"/>
+    </track>
+  </station>
+
+  <station name="Westerweyhe" short="HWEY" refNr="46">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="46BP" direction="left"/>
+      <block name="47BW" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Fischerhof" short="HFI" refNr="47">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="47BW" direction="left"/>
+      <block name="47BN" direction="right"/>
+      <block name="47B802" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Uelzen" short="HU" refNr="47">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="47BN" direction="left"/>
+      <block name="47B802" direction="left"/>
+    </track>
+  </station>
+</estw>
