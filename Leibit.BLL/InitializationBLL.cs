@@ -584,19 +584,35 @@ namespace Leibit.BLL
                 while (!reader.EndOfStream)
                 {
                     var Line = reader.ReadLine();
-                    var LineParts = Line.Split(' ');
 
-                    if (LineParts[0].IsNotNullOrEmpty())
+                    if (Line.StartsWith("*"))
                     {
-                        __SetLocalOrders(station, CurrentTrainNumber, Content.ToString());
-                        CurrentTrainNumber = 0;
-                        Content = new StringBuilder();
+                        var match = Regex.Match(Line, @"^\*( )+[a-z]+( )+([0-9]+)( )*:", RegexOptions.IgnoreCase);
+
+                        if (match != null && match.Success)
+                        {
+                            if (int.TryParse(match.Groups[3].Value, out int TrainNumber))
+                            {
+                                __SetLocalOrders(station, CurrentTrainNumber, Content.ToString());
+                                CurrentTrainNumber = TrainNumber;
+                                Content = new StringBuilder();
+                            }
+                        }
                     }
+                    else
+                    {
+                        var LineParts = Line.Split(' ');
 
-                    int TrainNumber;
+                        if (LineParts[0].IsNotNullOrEmpty())
+                        {
+                            __SetLocalOrders(station, CurrentTrainNumber, Content.ToString());
+                            CurrentTrainNumber = 0;
+                            Content = new StringBuilder();
+                        }
 
-                    if (Int32.TryParse(LineParts[0], out TrainNumber))
-                        CurrentTrainNumber = TrainNumber;
+                        if (int.TryParse(LineParts[0], out int TrainNumber))
+                            CurrentTrainNumber = TrainNumber;
+                    }
 
                     Content.AppendLine(Line);
                 }

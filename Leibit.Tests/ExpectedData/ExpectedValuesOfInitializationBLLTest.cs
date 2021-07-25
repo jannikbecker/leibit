@@ -145,14 +145,14 @@ namespace Leibit.Tests.ExpectedData
             var area = new Area("scheduleArea", "Schedules");
             var estw = new ESTW("ST", "ScheduleTest", "leibit_ST.dat", area);
 
-            var station1 = new Station("Station1", "S1", 1, null, null, estw);
+            var station1 = new Station("Station1", "S1", 1, null, "bf1_____.abf", estw);
             var track1 = new Track("1", true, true, station1, null);
             var track2 = new Track("2", true, true, station1, null);
             var track3 = new Track("3", true, true, station1, null);
 
             var train111 = new Train(111, "RE", "A-Dorf", "B-Heim");
             area.Trains.TryAdd(111, train111);
-            new Schedule(train111, null, new LeibitTime(0, 10), track1, _ALL_DAYS, eScheduleDirection.RightToLeft, eHandling.Transit, String.Empty, null);
+            new Schedule(train111, null, new LeibitTime(0, 10), track1, _ALL_DAYS, eScheduleDirection.RightToLeft, eHandling.Transit, String.Empty, "* RE  111 :  tgl\r\n             -> Durchfahrt Gl. 1");
 
             var train222 = new Train(222, "RE", "B-Heim", "A-Dorf");
             area.Trains.TryAdd(222, train222);
@@ -160,7 +160,7 @@ namespace Leibit.Tests.ExpectedData
 
             var train333 = new Train(333, "RE", "B-Heim", "A-Dorf");
             area.Trains.TryAdd(333, train333);
-            new Schedule(train333, null, new LeibitTime(0, 30), track2, _ALL_DAYS, eScheduleDirection.LeftToRight, eHandling.Transit, String.Empty, null);
+            new Schedule(train333, null, new LeibitTime(0, 30), track2, _ALL_DAYS, eScheduleDirection.LeftToRight, eHandling.Transit, String.Empty, "* RE  333 :  tgl\r\n             -> Durchfahrt Gl. 2");
 
             var train444 = new Train(444, "RE", "A-Dorf", "B-Heim");
             area.Trains.TryAdd(444, train444);
