@@ -587,7 +587,7 @@ namespace Leibit.BLL
 
                     if (Line.StartsWith("*"))
                     {
-                        var match = Regex.Match(Line, @"^\*( )+[a-z]+( )+([0-9]+)( )*:", RegexOptions.IgnoreCase);
+                        var match = Regex.Match(Line, @"^\*( )+[a-z]+( )+([0-9]+)", RegexOptions.IgnoreCase);
 
                         if (match != null && match.Success)
                         {
