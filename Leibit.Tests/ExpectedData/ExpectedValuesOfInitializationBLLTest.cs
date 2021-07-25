@@ -152,7 +152,7 @@ namespace Leibit.Tests.ExpectedData
 
             var train111 = new Train(111, "RE", "A-Dorf", "B-Heim");
             area.Trains.TryAdd(111, train111);
-            new Schedule(train111, null, new LeibitTime(0, 10), track1, _ALL_DAYS, eScheduleDirection.RightToLeft, eHandling.Transit, String.Empty, "* RE  111 :  tgl\r\n             -> Durchfahrt Gl. 1");
+            new Schedule(train111, null, new LeibitTime(0, 10), track1, _ALL_DAYS, eScheduleDirection.RightToLeft, eHandling.Transit, String.Empty, "* RE  111 :  tgl\r\n\t-> Durchfahrt Gl. 1");
 
             var train222 = new Train(222, "RE", "B-Heim", "A-Dorf");
             area.Trains.TryAdd(222, train222);
@@ -160,7 +160,7 @@ namespace Leibit.Tests.ExpectedData
 
             var train333 = new Train(333, "RE", "B-Heim", "A-Dorf");
             area.Trains.TryAdd(333, train333);
-            new Schedule(train333, null, new LeibitTime(0, 30), track2, _ALL_DAYS, eScheduleDirection.LeftToRight, eHandling.Transit, String.Empty, "* RE  333 :  tgl\r\n             -> Durchfahrt Gl. 2");
+            new Schedule(train333, null, new LeibitTime(0, 30), track2, _ALL_DAYS, eScheduleDirection.LeftToRight, eHandling.Transit, String.Empty, "* RE  333 :  tgl\r\n\t-> Durchfahrt Gl. 2");
 
             var train444 = new Train(444, "RE", "A-Dorf", "B-Heim");
             area.Trains.TryAdd(444, train444);

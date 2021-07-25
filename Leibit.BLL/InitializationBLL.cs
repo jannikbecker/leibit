@@ -601,10 +601,11 @@ namespace Leibit.BLL
                     }
                     else
                     {
-                        var LineParts = Line.Split(' ');
+                        var LineParts = Regex.Split(Line, @"\s");
 
                         if (LineParts[0].IsNotNullOrEmpty())
                         {
+                            // Line does not start with whitespace
                             __SetLocalOrders(station, CurrentTrainNumber, Content.ToString());
                             CurrentTrainNumber = 0;
                             Content = new StringBuilder();
