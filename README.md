@@ -17,6 +17,10 @@ Das LeiBIT für ESTWsim bietet u.a. folgende Features:
 Folgende Simulationen werden aktuell unterstützt:
 
 - Bereich Norddeutschland
+    - Soltau (NEU)
+    - Nienburg (NEU)
+    - Verden (NEU)
+    - Bremen-Sebaldsbrück (NEU)
     - Bremen Hbf
     - Rotenburg
     - Buchholz
@@ -42,11 +46,11 @@ Folgende Simulationen werden aktuell unterstützt:
     - Friedrichshafen
     - Aulendorf
     - Lindau
-    - Bregenz (NEU)
-    - Feldkirch (NEU)
-    - Immenstadt (NEU)
+    - Bregenz
+    - Feldkirch
+    - Immenstadt
     - Memmingen
-    - Kempten (NEU)
+    - Kempten
     - Buchloe
     - Augsburg Hbf
     - Augsburg-Hochzoll
@@ -59,15 +63,9 @@ Folgende Simulationen werden aktuell unterstützt:
 Karten der Stellbereiche können [hier](maps) eingesehen werden. Eine vollständige Bedienungsanleitung ist [hier](https://github.com/jannikbecker/leibit/wiki) zu finden. Für den ersten Start bietet die [Schnellstartanleitung](https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung) einen guten Einstiegspunkt.
 
 ## Installation
-Unter [Releases](https://github.com/jannikbecker/leibit/releases/latest) findet sich die aktuellste Version. Hier kann die passende ZIP-Datei (*x86.zip* für ein 32-Bit System **oder** *x64.zip* für ein 64-Bit System) heruntergeladen werden.
+Unter [Releases](https://github.com/jannikbecker/leibit/releases/latest) findet sich die aktuellste Version. Hier muss die Datei *Setup.exe* heruntergeladen werden. Nach erfolgtem Download die Datei *Setup.exe* ausführen. Nach wenigen Sekunden startet LeiBIT. Hinweis: Ab der Version 0.5.0 werden nur noch 64-Bit-Systeme unterstützt.
 
 ![Installationsdateien](https://raw.githubusercontent.com/wiki/jannikbecker/leibit/img/github_releases.png)
-
-Die ZIP-Datei dann an einem beliebigen Ort entpacken.
-
-![ZIP-Archiv entpacken](https://raw.githubusercontent.com/wiki/jannikbecker/leibit/img/zip_extract.png)
-
-In der ZIP-Datei ist die Datei *LeiBIT.exe* sowie *ESTWonline* und eine Schnellstartanleitung enthalten. Es ist kein weiteres Setup nötig. Die heruntergeladene Datei enthält bereits alle nötigen Komponenten.
 
 ## Beitragen und Feedback
 Sämtliche Beiträge und Verbesserungen sind Herzlich Willkommen. Für jede Art von Feedback bitte eine PN oder einen Thread im [ESTWsim Forum](https://estwsim-forum.de/) starten oder ein GitHub Issue erstellen. Wer Code beitragen möchte, erstellt bitte einen Pull Request.
