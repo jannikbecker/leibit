@@ -30,6 +30,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
             Dispatcher = dispatcher;
             m_CalculationBll = new CalculationBLL();
             StationList = area.ESTWs.Where(e => e.IsLoaded && e.SchedulesLoaded).SelectMany(e => e.Stations.Where(s => s.Tracks.Any(t => t.IsPlatform))).ToObservableCollection();
+            SelectedType = 0;
         }
         #endregion
 
@@ -101,6 +102,28 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                 OnPropertyChanged(nameof(Caption));
             }
         }
+        #endregion
+
+        #region [SelectedType]
+        public int SelectedType
+        {
+            get => Get<int>();
+            set
+            {
+                Set(value);
+                OnPropertyChanged(nameof(LCDVisibility));
+                OnPropertyChanged(nameof(LEDVisibility));
+                OnPropertyChanged(nameof(IsLEDSliding));
+            }
+        }
+        #endregion
+
+        #region [LCDVisibility]
+        public Visibility LCDVisibility => SelectedType == 0 ? Visibility.Visible : Visibility.Collapsed;
+        #endregion
+
+        #region [LEDVisibility]
+        public Visibility LEDVisibility => SelectedType == 1 ? Visibility.Visible : Visibility.Collapsed;
         #endregion
 
         #region [TrackName]
@@ -275,6 +298,21 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         public Visibility FollowingTrain2InfoVisibility => FollowingTrain2Info.IsNullOrWhiteSpace() ? Visibility.Collapsed : Visibility.Visible;
         #endregion
 
+        #region [LEDText]
+        public string LEDText
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [IsLEDSliding]
+        public bool IsLEDSliding
+        {
+            get => SelectedType == 1;
+        }
+        #endregion
+
         #endregion
 
         #region - Public methods -
@@ -288,7 +326,17 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                 return;
             }
 
-            var candidates = __GetScheduleCandidates(area);
+            if (SelectedType == 0)
+                __GenerateLCD(area);
+            else if (SelectedType == 1)
+                __GenerateLED(area);
+        }
+        #endregion
+
+        #region [__GenerateLCD]
+        private void __GenerateLCD(Area area)
+        {
+            var candidates = __GetScheduleCandidates(area, 120);
             var orderedSchedules = candidates.OrderBy(x => x.ReferenceTime);
             var currentItem = orderedSchedules.FirstOrDefault();
 
@@ -377,8 +425,48 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         }
         #endregion
 
+        #region [__GenerateLED]
+        private void __GenerateLED(Area area)
+        {
+            var candidates = __GetScheduleCandidates(area, 30);
+            var orderedSchedules = candidates.OrderBy(x => x.ReferenceTime);
+            var textsToDisplay = new List<string>();
+            textsToDisplay.Add($"Zeit: {SelectedStation.ESTW.Time} Uhr");
+
+            var nextTrain = candidates.FirstOrDefault();
+
+            if (nextTrain != null && nextTrain.Schedule.Time < SelectedStation.ESTW.Time.AddMinutes(10))
+            {
+                var track = nextTrain.LiveSchedule?.LiveTrack ?? nextTrain.Schedule.Track;
+                textsToDisplay.Add($"{__GetLEDBaseText(nextTrain)} auf Gleis {track.Name}");
+            }
+
+            foreach (var currentItem in orderedSchedules)
+            {
+                string infoText = string.Empty;
+                var delay = __GetDelayMinutes(currentItem);
+
+                if (delay > 0)
+                    infoText = delay == 1 ? "wenige Minuten später" : $"circa {delay} Minuten später";
+
+                if (currentItem.LiveSchedule != null && currentItem.Schedule.Track == SelectedTrack && currentItem.LiveSchedule.LiveTrack != null && currentItem.Schedule.Track != currentItem.LiveSchedule.LiveTrack)
+                {
+                    if (infoText.IsNotNullOrEmpty())
+                        infoText += " und ";
+
+                    infoText += $"von Gleis {currentItem.LiveSchedule.LiveTrack.Name}";
+                }
+
+                if (infoText.IsNotNullOrEmpty())
+                    textsToDisplay.Add($"Information zu {__GetLEDBaseText(currentItem)}, heute {infoText}.");
+            }
+
+            LEDText = string.Join("               ***               ", textsToDisplay) + "               ***               ";
+        }
+        #endregion
+
         #region [__GetScheduleCandidates]
-        private List<ScheduleItem> __GetScheduleCandidates(Area area)
+        private List<ScheduleItem> __GetScheduleCandidates(Area area, int leadMinutes)
         {
             var currentTime = SelectedStation.ESTW.Time;
             var schedulesResult = m_CalculationBll.GetSchedulesByTime(SelectedStation.Schedules, currentTime);
@@ -412,7 +500,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                         continue;
                     if (schedule.Time < currentTime)
                         continue;
-                    if (schedule.Time > currentTime.AddHours(2))
+                    if (schedule.Time > currentTime.AddMinutes(leadMinutes))
                         continue;
 
                     candidates.Add(new ScheduleItem(schedule.Time, schedule));
@@ -449,7 +537,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                             referenceTime = liveSchedule.ExpectedArrival;
                     }
 
-                    if (referenceTime > currentTime.AddHours(2))
+                    if (referenceTime > currentTime.AddMinutes(leadMinutes))
                         continue;
 
                     candidates.Add(new ScheduleItem(referenceTime, schedule, liveSchedule));
@@ -565,12 +653,24 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         }
         #endregion
 
+        #region [__GetLEDBaseText]
+        private string __GetLEDBaseText(ScheduleItem scheduleItem)
+        {
+            if (scheduleItem.Schedule.Handling == eHandling.Destination)
+                return $"{scheduleItem.Schedule.Train.Type} {scheduleItem.Schedule.Train.Number} von {scheduleItem.Schedule.Train.Start}, Ankunft {scheduleItem.Schedule.Arrival} Uhr";
+            else
+                return $"{scheduleItem.Schedule.Train.Type} {scheduleItem.Schedule.Train.Number} nach {scheduleItem.Schedule.Train.Destination}, Abfahrt {scheduleItem.Schedule.Departure} Uhr";
+        }
+        #endregion
+
         #region [__ClearAll]
         private void __ClearAll()
         {
             __ClearCurrentTrain();
             __ClearFollowingTrain1();
             __ClearFollowingTrain2();
+
+            LEDText = "...";
         }
         #endregion
 

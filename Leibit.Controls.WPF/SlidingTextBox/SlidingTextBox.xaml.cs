@@ -98,7 +98,7 @@ namespace Leibit.Controls
             m_DoubleAnimation = new DoubleAnimation();
             m_DoubleAnimation.From = 0;
             m_DoubleAnimation.To = -Math.Max(ActualWidth, txtOriginal.ActualWidth);
-            m_DoubleAnimation.Duration = TimeSpan.FromMilliseconds(txtOriginal.Text.Length * Speed);
+            m_DoubleAnimation.Duration = TimeSpan.FromSeconds(Math.Max(ActualWidth, txtOriginal.ActualWidth) / Speed);
             m_DoubleAnimation.RepeatBehavior = RepeatBehavior.Forever;
 
             Storyboard.SetTargetName(m_DoubleAnimation, "translate");
