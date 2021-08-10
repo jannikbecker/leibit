@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -15,12 +16,14 @@ namespace Leibit.Controls
         #region - Needs -
         private Storyboard m_Storyboard;
         private DoubleAnimation m_DoubleAnimation;
+        private bool m_TextChanged;
         #endregion
 
         #region - Ctor -
         public SlidingTextBox()
         {
             InitializeComponent();
+            IsVisibleChanged += __IsVisibleChanged;
         }
         #endregion
 
@@ -33,7 +36,7 @@ namespace Leibit.Controls
             set { SetValue(TextProperty, value); }
         }
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(SlidingTextBox), new PropertyMetadata(null));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(SlidingTextBox), new PropertyMetadata(null, __TextChanged));
         #endregion
 
         #region [IsSliding]
@@ -60,6 +63,19 @@ namespace Leibit.Controls
 
         #region - Private methods -
 
+        #region [__IsVisibleChanged]
+        private void __IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (IsVisible)
+            {
+                Canvas.SetLeft(txtCopy, Math.Max(ActualWidth, txtOriginal.ActualWidth));
+                __Start(true);
+            }
+            else
+                __Stop();
+        }
+        #endregion
+
         #region [__IsSlidingChanged]
         private static void __IsSlidingChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -70,9 +86,43 @@ namespace Leibit.Controls
         private void __IsSlidingChanged()
         {
             if (IsSliding)
-                __Start();
+                __Start(true);
             else
                 __Stop();
+        }
+        #endregion
+
+        #region [__TextChanged]
+        private static void __TextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is SlidingTextBox sender)
+                sender.__TextChanged();
+        }
+
+        private void __TextChanged()
+        {
+            if (m_Storyboard == null)
+                txtOriginal.Text = Text; // Animation is currently not running -> set text directly
+            else if (!m_TextChanged)
+            {
+                // Stop the animation after the next iteration.
+                var currentTime = m_Storyboard.GetCurrentTime(slideGrid);
+                m_TextChanged = true;
+                m_Storyboard.RepeatBehavior = new RepeatBehavior(1);
+                m_Storyboard.Completed += __Storyboard_Completed;
+                m_Storyboard.Begin(slideGrid, true);
+
+                if (currentTime.HasValue)
+                    m_Storyboard.Seek(slideGrid, currentTime.Value, TimeSeekOrigin.BeginTime);
+            }
+        }
+        #endregion
+
+        #region [__Storyboard_Completed]
+        private void __Storyboard_Completed(object sender, EventArgs e)
+        {
+            __Stop();
+            __Start(false);
         }
         #endregion
 
@@ -80,33 +130,32 @@ namespace Leibit.Controls
         private void __SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Canvas.SetLeft(txtCopy, Math.Max(ActualWidth, txtOriginal.ActualWidth));
-
-            if (IsSliding)
-            {
-                __Stop();
-                __Start();
-            }
         }
         #endregion
 
         #region [__Start]
-        private void __Start()
+        private async void __Start(bool defer)
         {
-            if (m_Storyboard != null)
+            if (m_Storyboard != null || Visibility != Visibility.Visible || !IsSliding)
                 return;
+
+            if (defer)
+                await Task.Delay(500);
+
+            txtOriginal.UpdateLayout();
 
             m_DoubleAnimation = new DoubleAnimation();
             m_DoubleAnimation.From = 0;
             m_DoubleAnimation.To = -Math.Max(ActualWidth, txtOriginal.ActualWidth);
             m_DoubleAnimation.Duration = TimeSpan.FromSeconds(Math.Max(ActualWidth, txtOriginal.ActualWidth) / Speed);
-            m_DoubleAnimation.RepeatBehavior = RepeatBehavior.Forever;
 
             Storyboard.SetTargetName(m_DoubleAnimation, "translate");
             Storyboard.SetTargetProperty(m_DoubleAnimation, new PropertyPath(TranslateTransform.XProperty));
 
             m_Storyboard = new Storyboard();
+            m_Storyboard.RepeatBehavior = RepeatBehavior.Forever;
             m_Storyboard.Children.Add(m_DoubleAnimation);
-            m_Storyboard.Begin(slideGrid);
+            m_Storyboard.Begin(slideGrid, true);
         }
         #endregion
 
@@ -116,7 +165,15 @@ namespace Leibit.Controls
             if (m_Storyboard == null)
                 return;
 
+            if (m_TextChanged)
+            {
+                m_Storyboard.Completed -= __Storyboard_Completed;
+                txtOriginal.Text = Text;
+                m_TextChanged = false;
+            }
+
             m_Storyboard.Stop(slideGrid);
+            m_Storyboard.Remove(slideGrid);
             m_Storyboard = null;
             m_DoubleAnimation = null;
         }

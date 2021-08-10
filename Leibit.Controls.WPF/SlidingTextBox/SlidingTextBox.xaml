@@ -11,7 +11,6 @@
 
             <Canvas>
                 <TextBlock x:Name="txtOriginal"
-                           Text="{Binding Text, ElementName=me}"
                            Foreground="{Binding Foreground, ElementName=me}"
                            FontSize="{Binding FontSize, ElementName=me}"
                            VerticalAlignment="Center"

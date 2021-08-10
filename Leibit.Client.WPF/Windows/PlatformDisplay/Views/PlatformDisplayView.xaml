@@ -45,7 +45,7 @@
         <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center">Gleis:</TextBlock>
         <ComboBox Grid.Row="0" Grid.Column="6" ItemsSource="{Binding TrackList}" SelectedItem="{Binding SelectedTrack}" DisplayMemberPath="Name" IsEnabled="{Binding IsTrackListEnabled}" Width="50" HorizontalAlignment="Left" Margin="10,0,0,0"/>
 
-        <Border Grid.Row="1" Grid.ColumnSpan="6" BorderBrush="Black" Background="#1071df" BorderThickness="20" Margin="0,10,0,0" Visibility="{Binding LCDVisibility}">
+        <Border Grid.Row="1" Grid.ColumnSpan="6" BorderBrush="Black" Background="#1071df" BorderThickness="20" Width="446" Margin="0,10,0,0" Visibility="{Binding LCDVisibility}">
             <Border.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="Foreground" Value="White"/>
@@ -83,7 +83,7 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0" Background="White" Visibility="{Binding CurrentTrainInfoVisibility}">
-                        <TextBlock Text="{Binding CurrentTrainInfo}" FontSize="12" HorizontalAlignment="Center" Foreground="#1071df" Margin="2,0" Visibility="{Binding IsCurrentTrainInfoMarquee, Converter={StaticResource InvertedVisibilityConverter}}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding CurrentTrainInfo}" FontSize="11" HorizontalAlignment="Center" Foreground="#1071df" Margin="2,0" Visibility="{Binding IsCurrentTrainInfoMarquee, Converter={StaticResource InvertedVisibilityConverter}}" VerticalAlignment="Center"/>
                         
                         <controls:SlidingTextBox Text="{Binding CurrentTrainInfo}"
                                                  IsSliding="{Binding IsCurrentTrainInfoMarquee}"
@@ -164,7 +164,7 @@
                 </Grid>
 
                 <Grid Grid.Row="1" Background="DimGray">
-                    <controls:SlidingTextBox Text="{Binding LEDText}" IsSliding="{Binding IsLEDSliding}" Foreground="Orange" Speed="120" FontSize="28"/>
+                    <controls:SlidingTextBox Text="{Binding LEDText}" IsSliding="{Binding IsLEDSliding}" Speed="120" Foreground="Orange" FontSize="28"/>
                 </Grid>
             </Grid>
         </Border>

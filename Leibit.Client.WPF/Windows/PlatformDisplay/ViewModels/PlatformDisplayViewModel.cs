@@ -40,6 +40,19 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         public Dispatcher Dispatcher { get; }
         #endregion
 
+        #region [SuppressSlide]
+        private bool SuppressSlide
+        {
+            get => Get<bool>();
+            set
+            {
+                Set(value);
+                OnPropertyChanged(nameof(IsCurrentTrainInfoMarquee));
+                OnPropertyChanged(nameof(IsLEDSliding));
+            }
+        }
+        #endregion
+
         #region [Caption]
         public string Caption
         {
@@ -100,6 +113,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                 Set(value);
                 OnPropertyChanged(nameof(TrackName));
                 OnPropertyChanged(nameof(Caption));
+                SuppressSlide = true;
             }
         }
         #endregion
@@ -149,7 +163,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         #region [IsCurrentTrainInfoMarquee]
         public bool IsCurrentTrainInfoMarquee
         {
-            get => Get<bool>();
+            get => Get<bool>() && !SuppressSlide;
             private set => Set(value);
         }
         #endregion
@@ -309,7 +323,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         #region [IsLEDSliding]
         public bool IsLEDSliding
         {
-            get => SelectedType == 1;
+            get => SelectedType == 1 && !SuppressSlide;
         }
         #endregion
 
@@ -320,16 +334,17 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         #region [Refresh]
         public void Refresh(Area area)
         {
-            if (SelectedStation == null || SelectedTrack == null)
-            {
-                __ClearAll();
-                return;
-            }
+            var wasSlideSuppressed = SuppressSlide;
 
-            if (SelectedType == 0)
+            if (SelectedStation == null || SelectedTrack == null)
+                __ClearAll();
+            else if (SelectedType == 0)
                 __GenerateLCD(area);
             else if (SelectedType == 1)
                 __GenerateLED(area);
+
+            if (wasSlideSuppressed)
+                SuppressSlide = false;
         }
         #endregion
 
