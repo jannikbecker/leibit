@@ -545,16 +545,10 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
 
                     var referenceTime = schedule.Arrival ?? schedule.Departure;
 
-                    if (liveSchedule.Schedule.Handling == eHandling.Start)
-                    {
-                        if (liveSchedule.ExpectedDeparture != null && liveSchedule.ExpectedDeparture < referenceTime)
-                            referenceTime = liveSchedule.ExpectedDeparture;
-                    }
-                    else
-                    {
-                        if (liveSchedule.ExpectedArrival != null && liveSchedule.ExpectedArrival < referenceTime)
-                            referenceTime = liveSchedule.ExpectedArrival;
-                    }
+                    if (liveSchedule.Schedule.Handling == eHandling.Start && liveSchedule.ExpectedDeparture != null)
+                        referenceTime = liveSchedule.ExpectedDeparture;
+                    else if (liveSchedule.Schedule.Handling != eHandling.Start && liveSchedule.ExpectedArrival != null)
+                        referenceTime = liveSchedule.ExpectedArrival;
 
                     if (referenceTime > currentTime.AddMinutes(leadMinutes))
                         continue;
