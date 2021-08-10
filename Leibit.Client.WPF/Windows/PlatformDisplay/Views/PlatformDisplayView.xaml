@@ -164,7 +164,7 @@
                 </Grid>
 
                 <Grid Grid.Row="1" Background="DimGray">
-                    <controls:SlidingTextBox Text="{Binding LEDText}" IsSliding="{Binding IsLEDSliding}" Speed="120" Foreground="Orange" FontSize="28"/>
+                    <controls:SlidingTextBox Text="{Binding LEDText}" IsSliding="{Binding IsLEDSliding}" Speed="120" FontFamily="{StaticResource font5by7}" Foreground="Orange" FontSize="44" Margin="0,2,0,0"/>
                 </Grid>
             </Grid>
         </Border>

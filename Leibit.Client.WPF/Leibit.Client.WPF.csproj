@@ -29,6 +29,7 @@
     <RepositoryUrl>https://github.com/jannikbecker/leibit</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\Fonts\5by7.ttf" />
     <None Remove="Resources\Images\flash.png" />
     <None Remove="Resources\Images\help.png" />
     <None Remove="Resources\Images\info.png" />
@@ -49,6 +50,9 @@
     <ProjectReference Include="..\Leibit.Entities\Leibit.Entities.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Fonts\5by7.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Images\estw_online.png" />
     <Resource Include="Resources\Images\flash.png" />
     <Resource Include="Resources\Images\help.png" />

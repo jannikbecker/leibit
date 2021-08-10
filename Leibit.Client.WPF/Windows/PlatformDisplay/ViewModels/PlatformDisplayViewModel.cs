@@ -24,6 +24,10 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         private CalculationBLL m_CalculationBll;
         #endregion
 
+        #region - Const -
+        private const string LED_SEPARATOR = "          ###          ";
+        #endregion
+
         #region - Ctor -
         public PlatformDisplayViewModel(Dispatcher dispatcher, Area area)
         {
@@ -476,7 +480,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                     textsToDisplay.Add($"Information zu {__GetLEDBaseText(currentItem)}, heute {infoText}.");
             }
 
-            LEDText = string.Join("               ***               ", textsToDisplay) + "               ***               ";
+            LEDText = string.Join(LED_SEPARATOR, textsToDisplay) + LED_SEPARATOR;
         }
         #endregion
 

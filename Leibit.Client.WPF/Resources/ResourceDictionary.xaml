@@ -21,4 +21,6 @@
     <BitmapImage x:Key="imgHelp" UriSource="/Leibit;component/Resources/Images/help.png" />
     <BitmapImage x:Key="imgFlash" UriSource="/Leibit;component/Resources/Images/flash.png" />
 
+    <FontFamily x:Key="font5by7">pack://application:,,,/Resources/Fonts/#5by7</FontFamily>
+
 </ResourceDictionary>

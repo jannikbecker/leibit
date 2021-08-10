@@ -12,6 +12,7 @@
             <Canvas>
                 <TextBlock x:Name="txtOriginal"
                            Foreground="{Binding Foreground, ElementName=me}"
+                           FontFamily="{Binding FontFamily, ElementName=me}"
                            FontSize="{Binding FontSize, ElementName=me}"
                            VerticalAlignment="Center"
                            SizeChanged="__SizeChanged"/>
@@ -19,6 +20,7 @@
                 <TextBlock x:Name="txtCopy"
                            Text="{Binding Text, ElementName=txtOriginal}"
                            Foreground="{Binding Foreground, ElementName=txtOriginal}"
+                           FontFamily="{Binding FontFamily, ElementName=txtOriginal}"
                            FontSize="{Binding FontSize, ElementName=txtOriginal}"
                            VerticalAlignment="Center"/>
             </Canvas>
