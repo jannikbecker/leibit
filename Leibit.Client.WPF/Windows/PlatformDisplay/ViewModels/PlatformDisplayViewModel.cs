@@ -364,7 +364,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                 CurrentTrainTime = __GetTime(currentItem);
                 CurrentTrainNumber = __GetTrainNumber(currentItem);
                 Via = __GetViaString(currentItem);
-                CurrentTrainDestination = __GetDestination(currentItem);
+                CurrentTrainDestination = __GetDestination(currentItem, true);
 
                 var infoTexts = new List<string>();
 
@@ -402,7 +402,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
             {
                 FollowingTrain1Time = __GetTime(followingTrain1);
                 FollowingTrain1Number = __GetTrainNumber(followingTrain1);
-                FollowingTrain1Destination = __GetDestination(followingTrain1);
+                FollowingTrain1Destination = __GetDestination(followingTrain1, false);
 
                 if (followingTrain1.LiveSchedule != null && followingTrain1.Schedule.Track == SelectedTrack && followingTrain1.LiveSchedule.LiveTrack != null && followingTrain1.Schedule.Track != followingTrain1.LiveSchedule.LiveTrack)
                     FollowingTrain1Info = $"Gleis {followingTrain1.LiveSchedule.LiveTrack.Name}";
@@ -425,7 +425,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
             {
                 FollowingTrain2Time = __GetTime(followingTrain2);
                 FollowingTrain2Number = __GetTrainNumber(followingTrain2);
-                FollowingTrain2Destination = __GetDestination(followingTrain2);
+                FollowingTrain2Destination = __GetDestination(followingTrain2, false);
 
                 if (followingTrain2.LiveSchedule != null && followingTrain2.Schedule.Track == SelectedTrack && followingTrain2.LiveSchedule.LiveTrack != null && followingTrain2.Schedule.Track != followingTrain2.LiveSchedule.LiveTrack)
                     FollowingTrain2Info = $"Gleis {followingTrain2.LiveSchedule.LiveTrack.Name}";
@@ -579,10 +579,15 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         #endregion
 
         #region [__GetDestination]
-        private string __GetDestination(ScheduleItem scheduleItem)
+        private string __GetDestination(ScheduleItem scheduleItem, bool isCurrent)
         {
             if (scheduleItem.Schedule.Handling == eHandling.Destination)
-                return $"von {scheduleItem.Schedule.Train.Start}";
+            {
+                if (isCurrent)
+                    return "Bitte nicht einsteigen";
+                else
+                    return $"von {scheduleItem.Schedule.Train.Start}";
+            }
             else
                 return scheduleItem.Schedule.Train.Destination;
         }
@@ -591,6 +596,9 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         #region [__GetViaString]
         private string __GetViaString(ScheduleItem scheduleItem)
         {
+            if (scheduleItem.Schedule.Handling == eHandling.Destination)
+                return $"von {scheduleItem.Schedule.Train.Start}";
+
             var schedulesResult = m_CalculationBll.GetSchedulesByTime(scheduleItem.Schedule.Train.Schedules, scheduleItem.Schedule.Station.ESTW.Time);
 
             if (!schedulesResult.Succeeded)
