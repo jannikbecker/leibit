@@ -103,7 +103,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                 OnPropertyChanged(nameof(Caption));
 
                 if (value != null)
-                    TrackList = value.Tracks.Where(x => x.IsPlatform).ToObservableCollection();
+                    TrackList = value.Tracks.Where(x => x.IsPlatform && x.Blocks.Any()).ToObservableCollection();
             }
         }
         #endregion
@@ -515,7 +515,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
 
                 if (liveSchedule == null)
                 {
-                    if (schedule.Track != SelectedTrack)
+                    if (schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent)
                         continue;
                     if (schedule.Time < currentTime)
                         continue;
@@ -532,7 +532,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                     if (schedule.Handling == eHandling.Destination && schedule.Station.ESTW.Time > liveSchedule.Train.LastModified)
                         continue;
 
-                    if (schedule.Track != SelectedTrack && liveSchedule.LiveTrack != SelectedTrack)
+                    if (schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent && liveSchedule.LiveTrack != SelectedTrack && liveSchedule.LiveTrack != SelectedTrack.Parent)
                         continue;
 
                     var liveScheduleIndex = liveSchedule.Train.Schedules.IndexOf(liveSchedule);
