@@ -497,7 +497,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                     textsToDisplay.Add($"Information zu {__GetLEDBaseText(currentItem)}, heute {infoText}.");
             }
 
-            LEDText = string.Join(LED_SEPARATOR, textsToDisplay) + LED_SEPARATOR;
+            LEDText = LED_SEPARATOR + string.Join(LED_SEPARATOR, textsToDisplay);
         }
         #endregion
 
