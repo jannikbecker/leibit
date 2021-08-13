@@ -73,7 +73,15 @@
                     <ColumnDefinition Width="80"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding TrackName}" FontSize="48" FontWeight="Bold" Margin="2,-10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <Grid Grid.Column="0" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="{Binding TrackName}" FontSize="48" FontWeight="Bold" Margin="2,-10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="1" Text="{Binding SubTrackName}" FontSize="12" Margin="2,-10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="5">
                     <Grid.RowDefinitions>
@@ -84,7 +92,7 @@
 
                     <Grid Grid.Row="0" Background="White" Visibility="{Binding CurrentTrainInfoVisibility}">
                         <TextBlock Text="{Binding CurrentTrainInfo}" FontSize="11" HorizontalAlignment="Center" Foreground="#1071df" Margin="2,0" Visibility="{Binding IsCurrentTrainInfoMarquee, Converter={StaticResource InvertedVisibilityConverter}}" VerticalAlignment="Center"/>
-                        
+
                         <controls:SlidingTextBox Text="{Binding CurrentTrainInfo}"
                                                  IsSliding="{Binding IsCurrentTrainInfoMarquee}"
                                                  Speed="20"

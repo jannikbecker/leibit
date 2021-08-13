@@ -116,6 +116,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
             {
                 Set(value);
                 OnPropertyChanged(nameof(TrackName));
+                OnPropertyChanged(nameof(SubTrackName));
                 OnPropertyChanged(nameof(Caption));
                 SuppressSlide = true;
             }
@@ -145,7 +146,23 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         #endregion
 
         #region [TrackName]
-        public string TrackName => SelectedTrack?.Name;
+        public string TrackName
+        {
+            get
+            {
+                if (SelectedTrack == null)
+                    return string.Empty;
+
+                if (SelectedTrack.DisplayName.IsNullOrWhiteSpace())
+                    return SelectedTrack.Name;
+
+                return SelectedTrack.DisplayName;
+            }
+        }
+        #endregion
+
+        #region [SubTrackName]
+        public string SubTrackName => SelectedTrack?.DisplaySubName;
         #endregion
 
         #region [CurrentTrainInfo]
@@ -378,8 +395,8 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                 else if (delay >= 5)
                     infoTexts.Add($"ca. {delay} Minuten später");
 
-                if (currentItem.LiveSchedule != null && currentItem.Schedule.Track == SelectedTrack && currentItem.LiveSchedule.LiveTrack != null && currentItem.Schedule.Track != currentItem.LiveSchedule.LiveTrack)
-                    infoTexts.Add($"Heute von Gleis {currentItem.LiveSchedule.LiveTrack.Name}");
+                if (currentItem.LiveSchedule != null && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent) && currentItem.LiveSchedule.LiveTrack != null && currentItem.Schedule.Track != currentItem.LiveSchedule.LiveTrack)
+                    infoTexts.Add($"Heute von Gleis {__GetTrackName(currentItem.LiveSchedule.LiveTrack)}");
 
                 var info = string.Join(" - ", infoTexts);
 
@@ -404,8 +421,8 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                 FollowingTrain1Number = __GetTrainNumber(followingTrain1);
                 FollowingTrain1Destination = __GetDestination(followingTrain1, false);
 
-                if (followingTrain1.LiveSchedule != null && followingTrain1.Schedule.Track == SelectedTrack && followingTrain1.LiveSchedule.LiveTrack != null && followingTrain1.Schedule.Track != followingTrain1.LiveSchedule.LiveTrack)
-                    FollowingTrain1Info = $"Gleis {followingTrain1.LiveSchedule.LiveTrack.Name}";
+                if (followingTrain1.LiveSchedule != null && (followingTrain1.Schedule.Track == SelectedTrack || followingTrain1.Schedule.Track == SelectedTrack.Parent) && followingTrain1.LiveSchedule.LiveTrack != null && followingTrain1.Schedule.Track != followingTrain1.LiveSchedule.LiveTrack)
+                    FollowingTrain1Info = $"Gleis {__GetTrackName(followingTrain1.LiveSchedule.LiveTrack)}";
                 else
                     FollowingTrain1Info = string.Empty;
 
@@ -427,8 +444,8 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                 FollowingTrain2Number = __GetTrainNumber(followingTrain2);
                 FollowingTrain2Destination = __GetDestination(followingTrain2, false);
 
-                if (followingTrain2.LiveSchedule != null && followingTrain2.Schedule.Track == SelectedTrack && followingTrain2.LiveSchedule.LiveTrack != null && followingTrain2.Schedule.Track != followingTrain2.LiveSchedule.LiveTrack)
-                    FollowingTrain2Info = $"Gleis {followingTrain2.LiveSchedule.LiveTrack.Name}";
+                if (followingTrain2.LiveSchedule != null && (followingTrain2.Schedule.Track == SelectedTrack || followingTrain2.Schedule.Track == SelectedTrack.Parent) && followingTrain2.LiveSchedule.LiveTrack != null && followingTrain2.Schedule.Track != followingTrain2.LiveSchedule.LiveTrack)
+                    FollowingTrain2Info = $"Gleis {__GetTrackName(followingTrain2.LiveSchedule.LiveTrack)}";
                 else
                     FollowingTrain2Info = string.Empty;
 
@@ -457,7 +474,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
             if (nextTrain != null && nextTrain.Schedule.Time < SelectedStation.ESTW.Time.AddMinutes(10))
             {
                 var track = nextTrain.LiveSchedule?.LiveTrack ?? nextTrain.Schedule.Track;
-                textsToDisplay.Add($"{__GetLEDBaseText(nextTrain)} auf Gleis {track.Name}");
+                textsToDisplay.Add($"{__GetLEDBaseText(nextTrain)} auf Gleis {__GetTrackName(track)}");
             }
 
             foreach (var currentItem in orderedSchedules)
@@ -468,12 +485,12 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                 if (delay > 0)
                     infoText = delay == 1 ? "wenige Minuten später" : $"circa {delay} Minuten später";
 
-                if (currentItem.LiveSchedule != null && currentItem.Schedule.Track == SelectedTrack && currentItem.LiveSchedule.LiveTrack != null && currentItem.Schedule.Track != currentItem.LiveSchedule.LiveTrack)
+                if (currentItem.LiveSchedule != null && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent) && currentItem.LiveSchedule.LiveTrack != null && currentItem.Schedule.Track != currentItem.LiveSchedule.LiveTrack)
                 {
                     if (infoText.IsNotNullOrEmpty())
                         infoText += " und ";
 
-                    infoText += $"von Gleis {currentItem.LiveSchedule.LiveTrack.Name}";
+                    infoText += $"von Gleis {__GetTrackName(currentItem.LiveSchedule.LiveTrack)}";
                 }
 
                 if (infoText.IsNotNullOrEmpty())
@@ -568,6 +585,19 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                 return scheduleItem.Schedule.Arrival.ToString();
             else
                 return scheduleItem.Schedule.Departure.ToString();
+        }
+        #endregion
+
+        #region [__GetTrackName]
+        private string __GetTrackName(Track track)
+        {
+            if (track.DisplayName.IsNullOrWhiteSpace())
+                return track.Name;
+
+            if (track.DisplaySubName.IsNullOrWhiteSpace())
+                return track.DisplayName;
+
+            return $"{track.DisplayName} {track.DisplaySubName}";
         }
         #endregion
 
