@@ -27,7 +27,7 @@
   </station>
 
   <station name="Gotha" short="UGO" refNr="90" scheduleFile="G90_____.abf" localOrderFile="bf90____.abf">
-    <track name="101">
+    <track name="101" displayName="2">
       <block name="90G101" />
       <alternative track="102" />
       <alternative track="103" />
@@ -36,7 +36,7 @@
       <alternative track="106" />
       <alternative track="109" />
     </track>
-    <track name="102">
+    <track name="102" displayName="3">
       <block name="90G102" />
       <alternative track="101" />
       <alternative track="103" />
@@ -45,7 +45,7 @@
       <alternative track="106" />
       <alternative track="109" />
     </track>
-    <track name="103">
+    <track name="103" displayName="1">
       <block name="90G103" />
       <alternative track="102" />
       <alternative track="101" />
@@ -54,7 +54,7 @@
       <alternative track="106" />
       <alternative track="109" />
     </track>
-    <track name="104">
+    <track name="104" displayName="4">
       <block name="90G104" />
       <alternative track="102" />
       <alternative track="103" />
@@ -63,7 +63,7 @@
       <alternative track="106" />
       <alternative track="109" />
     </track>
-    <track name="105">
+    <track name="105" displayName="1a">
       <block name="90G105" />
       <alternative track="102" />
       <alternative track="103" />
@@ -72,7 +72,7 @@
       <alternative track="106" />
       <alternative track="109" />
     </track>
-    <track name="106">
+    <track name="106" displayName="5">
       <block name="90G106" />
       <alternative track="102" />
       <alternative track="103" />
@@ -136,34 +136,34 @@
     <track name="601">
       <block name="89G601" />
     </track>
-    <track name="602">
+    <track name="602" displayName="2">
       <block name="89G602" />
     </track>
-    <track name="603">
+    <track name="603" displayName="1">
       <block name="89G603" />
     </track>
   </station>
 
   <station name="Wandersleben" short="UWA" refNr="88" scheduleFile="G88_____.abf" localOrderFile="bf88____.abf">
-    <track name="501">
+    <track name="501" displayName="1">
       <block name="88G501" />
     </track>
-    <track name="502">
+    <track name="502" displayName="2">
       <block name="88G502" />
     </track>
-    <track name="504">
+    <track name="504" displayName="3">
       <block name="88G504" />
     </track>
   </station>
 
   <station name="Neudietendorf" short="UND" refNr="87" scheduleFile="G87_____.abf" localOrderFile="bf87____.abf">
-    <track name="771">
+    <track name="771" displayName="2">
       <block name="87G771" />
     </track>
-    <track name="772">
+    <track name="772" displayName="1">
       <block name="87G772" />
     </track>
-    <track name="775">
+    <track name="775" displayName="3">
       <block name="87G775" />
     </track>
     <track name="777">
@@ -172,7 +172,7 @@
     <track name="779">
       <block name="87G779" />
     </track>
-    <track name="794">
+    <track name="794" displayName="4">
       <block name="87G794" />
     </track>
   </station>
@@ -187,19 +187,19 @@
   </station>
 
   <station name="Erfurt-Bischleben" short="UEBI" refNr="86" scheduleFile="G86_____.abf" localOrderFile="bf86____.abf">
-    <track name="721">
+    <track name="721" displayName="2">
       <block name="86G721" />
       <alternative track="722" />
       <alternative track="723" />
       <alternative track="725" />
     </track>
-    <track name="722">
+    <track name="722" displayName="1">
       <block name="86G722" />
       <alternative track="721" />
       <alternative track="723" />
       <alternative track="725" />
     </track>
-    <track name="723">
+    <track name="723" displayName="3">
       <block name="86G723" />
       <alternative track="721" />
       <alternative track="722" />
