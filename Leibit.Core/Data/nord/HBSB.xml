@@ -67,7 +67,7 @@
   </station>
 
   <station name="Bremen-Sebaldsbrück Werkbf Hp" short="HAW" refNr="27" scheduleFile="b27_____.abf">
-    <track name="175" calculateDelay="false">
+    <track name="175" calculateDelay="false" displayName="1">
       <block name="27B175"/>
     </track>
   </station>
