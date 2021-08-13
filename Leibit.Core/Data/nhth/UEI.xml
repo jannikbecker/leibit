@@ -20,31 +20,31 @@
   </station>
 
   <station name="Bosserode" short="FBOS" refNr="20" scheduleFile="BOSSER__.ABF">
-    <track name="611" calculateDelay="false">
+    <track name="611" calculateDelay="false" displayName="1">
       <block name="20S611" />
     </track>
-    <track name="602" calculateDelay="false">
+    <track name="602" calculateDelay="false" displayName="2">
       <block name="20S602" />
     </track>
   </station>
 
   <station name="Obersuhl" short="FOBS" refNr="97" scheduleFile="OBERSU__.ABF">
-    <track name="609" calculateDelay="false">
+    <track name="609" calculateDelay="false" displayName="1">
       <block name="97B609" />
     </track>
-    <track name="612" calculateDelay="false">
+    <track name="612" calculateDelay="false" displayName="2">
       <block name="97S612" />
     </track>
   </station>
 
   <station name="Gerstungen" short="UGT" refNr="97" scheduleFile="G97_____.ABF" localOrderFile="bf97____.abf">
-    <track name="801">
+    <track name="801" displayName="2">
       <block name="97G801" />
     </track>
-    <track name="802">
+    <track name="802" displayName="1">
       <block name="97G802" />
     </track>
-    <track name="803">
+    <track name="803" displayName="3">
       <block name="97G803" />
     </track>
     <track name="805">
@@ -59,10 +59,10 @@
   </station>
 
   <station name="Herleshausen" short="UHER" refNr="97" scheduleFile="Herles__.abf">
-    <track name="795" calculateDelay="false">
+    <track name="795" calculateDelay="false" displayName="1">
       <block name="97B795" />
     </track>
-    <track name="798" calculateDelay="false">
+    <track name="798" calculateDelay="false" displayName="2">
       <block name="97B798" />
     </track>
   </station>
@@ -80,10 +80,10 @@
   </station>
 
   <station name="Hörschel" short="UHL" refNr="96" scheduleFile="Hörsch__.abf">
-    <track name="793" calculateDelay="false">
+    <track name="793" calculateDelay="false" displayName="1">
       <block name="96B793" />
     </track>
-    <track name="794" calculateDelay="false">
+    <track name="794" calculateDelay="false" displayName="2">
       <block name="96B794" />
     </track>
   </station>
@@ -104,25 +104,25 @@
   </station>
 
   <station name="Eisenach-Opelwerk" short="UEIP" refNr="95" scheduleFile="Opelwe__.abf">
-    <track name="693" calculateDelay="false">
+    <track name="693" calculateDelay="false" displayName="1">
       <block name="95B693" />
     </track>
-    <track name="694" calculateDelay="false">
+    <track name="694" calculateDelay="false" displayName="2">
       <block name="95B694" />
     </track>
   </station>
 
   <station name="Eisenach-West" short="UEIW" refNr="94" scheduleFile="EISENA__.ABF">
-    <track name="691" calculateDelay="false">
+    <track name="691" calculateDelay="false" displayName="1">
       <block name="94B691" />
     </track>
-    <track name="692" calculateDelay="false">
+    <track name="692" calculateDelay="false" displayName="2">
       <block name="94B692" />
     </track>
   </station>
 
   <station name="Eisenach" short="UEI" refNr="94" scheduleFile="G94_____.ABF" localOrderFile="bf94____.abf">
-    <track name="401">
+    <track name="401" displayName="5">
       <block name="94G401" />
       <alternative track="402" />
       <alternative track="403" />
@@ -131,7 +131,7 @@
       <alternative track="414" />
       <alternative track="418" />
     </track>
-    <track name="402">
+    <track name="402" displayName="4">
       <block name="94G402" />
       <alternative track="401" />
       <alternative track="403" />
@@ -140,7 +140,7 @@
       <alternative track="414" />
       <alternative track="418" />
     </track>
-    <track name="403">
+    <track name="403" displayName="6">
       <block name="94G403" />
       <alternative track="402" />
       <alternative track="401" />
@@ -149,7 +149,7 @@
       <alternative track="414" />
       <alternative track="418" />
     </track>
-    <track name="406">
+    <track name="406" displayName="3">
       <block name="94G406" />
       <alternative track="402" />
       <alternative track="403" />
@@ -167,7 +167,7 @@
       <alternative track="414" />
       <alternative track="418" />
     </track>
-    <track name="414">
+    <track name="414" displayName="2">
       <block name="94G414" />
       <alternative track="402" />
       <alternative track="403" />
@@ -176,7 +176,7 @@
       <alternative track="401" />
       <alternative track="418" />
     </track>
-    <track name="418">
+    <track name="418" displayName="1">
       <block name="94G418" />
       <alternative track="402" />
       <alternative track="403" />
@@ -252,22 +252,22 @@
   </station>
 
   <station name="Wutha" short="UWU" refNr="93" scheduleFile="G93_____.ABF" localOrderFile="bf93____.abf">
-    <track name="501">
+    <track name="501" displayName="2">
       <block name="93G501" />
       <alternative track="552" />
       <alternative track="503" />
     </track>
-    <track name="502">
+    <track name="502" displayName="1">
       <block name="93G502" />
       <alternative track="501" />
       <alternative track="503" />
     </track>
-    <track name="503">
+    <track name="503" displayName="3">
       <block name="93G503" />
       <alternative track="552" />
       <alternative track="501" />
     </track>
-    <track name="552">
+    <track name="552" displayName="1">
       <block name="93G552" />
       <alternative track="501" />
       <alternative track="503" />
@@ -275,19 +275,19 @@
   </station>
 
   <station name="Schönau (Hörsel)" short="USU" refNr="93" scheduleFile="Schöna__.abf">
-    <track name="591" calculateDelay="false">
+    <track name="591" calculateDelay="false" displayName="1">
       <block name="93B591" />
     </track>
-    <track name="594" calculateDelay="false">
+    <track name="594" calculateDelay="false" displayName="2">
       <block name="93B594" />
     </track>
   </station>
 
   <station name="Sättelstädt" short="USAE" refNr="92" scheduleFile="Sättel__.abf">
-    <track name="993" calculateDelay="false">
+    <track name="993" calculateDelay="false" displayName="1">
       <block name="92B993" />
     </track>
-    <track name="994" calculateDelay="false">
+    <track name="994" calculateDelay="false" displayName="2">
       <block name="92B994" />
     </track>
   </station>
@@ -308,23 +308,23 @@
   </station>
 
   <station name="Mechterstädt" short="UME" refNr="91" scheduleFile="Mechte__.abf">
-    <track name="991" calculateDelay="false">
+    <track name="991" calculateDelay="false" displayName="1">
       <block name="91B991" />
     </track>
-    <track name="992" calculateDelay="false">
+    <track name="992" calculateDelay="false" displayName="2">
       <block name="91B992" />
     </track>
   </station>
 
   <station name="Fröttstädt" short="UFT" refNr="91" scheduleFile="G91_____.ABF" localOrderFile="bf91____.abf">
-    <track name="801">
+    <track name="801" displayName="2">
       <block name="91G801" />
       <alternative track="802" />
       <alternative track="804" />
       <alternative track="806" />
       <alternative track="808" />
     </track>
-    <track name="802">
+    <track name="802" displayName="1">
       <block name="91G802" />
       <alternative track="801" />
       <alternative track="804" />
@@ -338,21 +338,21 @@
       <alternative track="806" />
       <alternative track="808" />
     </track>
-    <track name="806">
+    <track name="806" displayName="3">
       <block name="91G806" />
       <alternative track="802" />
       <alternative track="804" />
       <alternative track="801" />
       <alternative track="808" />
     </track>
-    <track name="808">
+    <track name="808" displayName="4">
       <block name="91G808" />
       <alternative track="802" />
       <alternative track="804" />
       <alternative track="806" />
       <alternative track="801" />
     </track>
-    <track name="852">
+    <track name="852" displayName="1">
       <block name="91G852" />
       <alternative track="801" />
       <alternative track="806" />
@@ -361,7 +361,7 @@
   </station>
 
   <station name="Hörselgau" short="UHOS" refNr="37" scheduleFile="Hörsel__.abf">
-    <track name="806" calculateDelay="false">
+    <track name="806" calculateDelay="false" displayName="1">
       <block name="91B806" />
     </track>
   </station>
