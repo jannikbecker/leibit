@@ -101,7 +101,7 @@
       <alternative track="41" />
       <alternative track="42" />
     </track>
-    <track name="103">
+    <track name="103" displayName="3">
       <block name="23G103" />
       <alternative track="1" />
       <alternative track="2" />
@@ -188,7 +188,7 @@
       <alternative track="41" />
       <alternative track="42" />
     </track>
-    <track name="108">
+    <track name="108" displayName="8">
       <block name="23G108" />
       <alternative track="2" />
       <alternative track="103" />
@@ -357,15 +357,15 @@
   </station>
 
   <station name="Hönebach" short="FHNB" refNr="20" scheduleFile="g20_____.abf">
-    <track name="631">
+    <track name="631" displayName="2">
       <block name="20G631" />
       <alternative track="632" />
     </track>
-    <track name="632">
+    <track name="632" displayName="1">
       <block name="20G632" />
       <alternative track="631" />
     </track>
-    <track name="622">
+    <track name="622" displayName="1">
       <block name="20G622" />
     </track>
     <track name="623">
