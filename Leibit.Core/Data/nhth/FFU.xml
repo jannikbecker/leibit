@@ -8,16 +8,16 @@
   </station>
 
   <station name="Mottgers" short="NMOT" refNr="09">
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="09S002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="09S003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="09S004"/>
     </track>
-    <track name="005">
+    <track name="005" displayName="5">
       <block name="09S005"/>
     </track>
   </station>
