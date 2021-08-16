@@ -761,6 +761,25 @@ namespace Leibit.Client.WPF.ViewModels
                             else
                                 continue;
 
+                        case eChildWindowType.PlatformDisplay:
+                            var parts = SerializedWindow.Tag?.ToString().Split(';');
+
+                            if (parts != null && parts.Length >= 3 && int.TryParse(parts[0], out int type))
+                            {
+                                Window = new PlatformDisplayView();
+
+                                var vm = new PlatformDisplayViewModel(Window.Dispatcher, m_CurrentArea);
+                                vm.SelectedType = type;
+                                vm.SelectedStation = vm.StationList.FirstOrDefault(s => s.ShortSymbol == parts[1]);
+                                vm.SelectedTrack = vm.TrackList.FirstOrDefault(t => t.Name == parts[2]);
+
+                                ViewModel = vm;
+                            }
+                            else
+                                continue;
+
+                            break;
+
                         default:
                             continue;
                     }
@@ -833,6 +852,13 @@ namespace Leibit.Client.WPF.ViewModels
 
                     var vm = Window.DataContext as TrainCompositionViewModel;
                     SerializedWindow.Tag = vm.TrainNumber;
+                }
+                else if (Window is PlatformDisplayView)
+                {
+                    SerializedWindow.Type = eChildWindowType.PlatformDisplay;
+
+                    var vm = Window.DataContext as PlatformDisplayViewModel;
+                    SerializedWindow.Tag = $"{vm.SelectedType};{vm.SelectedStation?.ShortSymbol};{vm.SelectedTrack?.Name}";
                 }
                 else
                     continue;
