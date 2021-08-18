@@ -400,15 +400,16 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
 
                 var info = string.Join(" - ", infoTexts);
 
-                if (__MeasureString(info, 11) <= 240)
-                    IsCurrentTrainInfoMarquee = false;
-                else
+                if (info.IsNotNullOrWhiteSpace())
                 {
-                    info += " - ";
+                    CurrentTrainInfo = $" - {info} - ";
                     IsCurrentTrainInfoMarquee = true;
                 }
-
-                CurrentTrainInfo = info;
+                else
+                {
+                    CurrentTrainInfo = info;
+                    IsCurrentTrainInfoMarquee = false;
+                }
             }
             else
                 __ClearCurrentTrain();
