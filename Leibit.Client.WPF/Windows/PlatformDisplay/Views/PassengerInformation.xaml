@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Leibit.Client.WPF.Windows.PlatformDisplay.Views.PassengerInformation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF">
+    
+    <Border BorderBrush="#373d6d" BorderThickness="10" Width="400" HorizontalAlignment="Left">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="#373d6d">
+                <TextBlock Text="Fahrgastinformation" Foreground="White" FontSize="18" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="DimGray">
+                <controls:SlidingTextBox Text="{Binding LEDText}" IsSliding="{Binding IsLEDSliding}" Speed="120" FontFamily="{StaticResource font5by7}" Foreground="Orange" FontSize="44" Margin="0,2,0,0"/>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
