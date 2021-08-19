@@ -24,20 +24,16 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Typ:</TextBlock>
-        <ComboBox Grid.Row="0" Grid.Column="1" SelectedIndex="{Binding SelectedType}" Margin="10,0,20,0">
-            <ComboBox.Items>
-                <ComboBoxItem>LCD</ComboBoxItem>
-                <ComboBoxItem>LED</ComboBoxItem>
-            </ComboBox.Items>
-        </ComboBox>
+        <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding DisplayTypes}" SelectedItem="{Binding SelectedDisplayType}" DisplayMemberPath="Name" Margin="10,0,20,0"/>
+
 
         <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">Bahnhof:</TextBlock>
         <ComboBox Grid.Row="0" Grid.Column="3" ItemsSource="{Binding StationList}" SelectedItem="{Binding SelectedStation}" DisplayMemberPath="Name" Margin="10,0,20,0"/>

@@ -34,7 +34,17 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
             Dispatcher = dispatcher;
             m_CalculationBll = new CalculationBLL();
             StationList = area.ESTWs.Where(e => e.IsLoaded && e.SchedulesLoaded).SelectMany(e => e.Stations.Where(s => s.Tracks.Any(t => t.IsPlatform))).ToObservableCollection();
-            SelectedType = 0;
+
+            DisplayTypes = new ObservableCollection<DisplayType>
+            {
+                //new DisplayType(eDisplayType.PlatformDisplay_Small, "Zugzielanzeiger klein"),
+                new DisplayType(eDisplayType.PlatformDisplay_Large, "Zugzielanzeiger groß"),
+                //new DisplayType(eDisplayType.DepartureBoard_Small, "Abfahrtstafel klein"),
+                //new DisplayType(eDisplayType.DepartureBoard_Large, "Abfahrtstafel groß"),
+                new DisplayType(eDisplayType.PassengerInformation, "Fahrgastinformation"),
+            };
+
+            SelectedDisplayType = DisplayTypes[0];
         }
         #endregion
 
@@ -68,6 +78,28 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
                     caption += $" {SelectedStation.Name}, Gleis {SelectedTrack.Name}";
 
                 return caption;
+            }
+        }
+        #endregion
+
+        #region [DisplayTypes]
+        public ObservableCollection<DisplayType> DisplayTypes
+        {
+            get => Get<ObservableCollection<DisplayType>>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [SelectedDisplayType]
+        public DisplayType SelectedDisplayType
+        {
+            get => Get<DisplayType>();
+            set
+            {
+                Set(value);
+                OnPropertyChanged(nameof(LCDVisibility));
+                OnPropertyChanged(nameof(LEDVisibility));
+                OnPropertyChanged(nameof(IsLEDSliding));
             }
         }
         #endregion
@@ -123,26 +155,12 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         }
         #endregion
 
-        #region [SelectedType]
-        public int SelectedType
-        {
-            get => Get<int>();
-            set
-            {
-                Set(value);
-                OnPropertyChanged(nameof(LCDVisibility));
-                OnPropertyChanged(nameof(LEDVisibility));
-                OnPropertyChanged(nameof(IsLEDSliding));
-            }
-        }
-        #endregion
-
         #region [LCDVisibility]
-        public Visibility LCDVisibility => SelectedType == 0 ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility LCDVisibility => SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Small || SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Large ? Visibility.Visible : Visibility.Collapsed;
         #endregion
 
         #region [LEDVisibility]
-        public Visibility LEDVisibility => SelectedType == 1 ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility LEDVisibility => SelectedDisplayType?.Type == eDisplayType.PassengerInformation ? Visibility.Visible : Visibility.Collapsed;
         #endregion
 
         #region [TrackName]
@@ -344,7 +362,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         #region [IsLEDSliding]
         public bool IsLEDSliding
         {
-            get => SelectedType == 1 && !SuppressSlide;
+            get => SelectedDisplayType?.Type == eDisplayType.PassengerInformation && !SuppressSlide;
         }
         #endregion
 
@@ -357,12 +375,12 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         {
             var wasSlideSuppressed = SuppressSlide;
 
-            if (SelectedStation == null || SelectedTrack == null)
-                __ClearAll();
-            else if (SelectedType == 0)
+            if (SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Large)
                 __GenerateLCD(area);
-            else if (SelectedType == 1)
+            else if (SelectedDisplayType?.Type == eDisplayType.PassengerInformation)
                 __GenerateLED(area);
+            else
+                __ClearAll();
 
             if (wasSlideSuppressed)
                 SuppressSlide = false;

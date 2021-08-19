@@ -764,12 +764,12 @@ namespace Leibit.Client.WPF.ViewModels
                         case eChildWindowType.PlatformDisplay:
                             var parts = SerializedWindow.Tag?.ToString().Split(';');
 
-                            if (parts != null && parts.Length >= 3 && int.TryParse(parts[0], out int type))
+                            if (parts != null && parts.Length >= 3 && Enum.TryParse(parts[0], out eDisplayType type))
                             {
                                 Window = new PlatformDisplayView();
 
                                 var vm = new PlatformDisplayViewModel(Window.Dispatcher, m_CurrentArea);
-                                vm.SelectedType = type;
+                                vm.SelectedDisplayType = vm.DisplayTypes.FirstOrDefault(x => x.Type == type);
                                 vm.SelectedStation = vm.StationList.FirstOrDefault(s => s.ShortSymbol == parts[1]);
                                 vm.SelectedTrack = vm.TrackList.FirstOrDefault(t => t.Name == parts[2]);
 
@@ -858,7 +858,7 @@ namespace Leibit.Client.WPF.ViewModels
                     SerializedWindow.Type = eChildWindowType.PlatformDisplay;
 
                     var vm = Window.DataContext as PlatformDisplayViewModel;
-                    SerializedWindow.Tag = $"{vm.SelectedType};{vm.SelectedStation?.ShortSymbol};{vm.SelectedTrack?.Name}";
+                    SerializedWindow.Tag = $"{(int)vm.SelectedDisplayType.Type};{vm.SelectedStation?.ShortSymbol};{vm.SelectedTrack?.Name}";
                 }
                 else
                     continue;
