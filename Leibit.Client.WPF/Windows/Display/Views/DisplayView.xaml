@@ -45,6 +45,7 @@
         <local:PlatformDisplaySmall Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PlatformDisplay_Small}}"/>
         <local:PlatformDisplayLarge Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PlatformDisplay_Large}}"/>
         <local:PassengerInformation Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PassengerInformation}}"/>
+        <local:DepartureBoardSmall Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.DepartureBoard_Small}}"/>
 
     </Grid>
 </controls:ChildWindow>

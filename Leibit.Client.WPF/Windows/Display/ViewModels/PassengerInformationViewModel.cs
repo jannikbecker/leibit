@@ -51,7 +51,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             }
 
 
-            var candidates = GetScheduleCandidates(area, 30);
+            var candidates = GetScheduleCandidates(area, 30, true);
             var orderedSchedules = candidates.OrderBy(x => x.ReferenceTime);
             var textsToDisplay = new List<string>();
             textsToDisplay.Add($"Zeit: {SelectedStation.ESTW.Time} Uhr");
@@ -72,7 +72,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 if (delay > 0)
                     infoText = delay == 1 ? "wenige Minuten später" : $"circa {delay} Minuten später";
 
-                if (currentItem.LiveSchedule != null && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent) && currentItem.LiveSchedule.LiveTrack != null && currentItem.Schedule.Track != currentItem.LiveSchedule.LiveTrack)
+                if (IsTrackChanged(currentItem) && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent))
                 {
                     if (infoText.IsNotNullOrEmpty())
                         infoText += " und ";

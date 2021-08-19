@@ -20,11 +20,12 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
     public class DisplayType
     {
-        public DisplayType(eDisplayType type, string name, DisplayViewModelBase viewModel)
+        internal DisplayType(eDisplayType type, string name, DisplayViewModelBase viewModel, bool trackRequired)
         {
             Type = type;
             Name = name;
             ViewModel = viewModel;
+            TrackRequired = trackRequired;
         }
 
         public eDisplayType Type { get; }
@@ -32,6 +33,8 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         public string Name { get; }
 
         public DisplayViewModelBase ViewModel { get; }
+
+        public bool TrackRequired { get; }
     }
 
     public class DisplayTypeConverter : IValueConverter

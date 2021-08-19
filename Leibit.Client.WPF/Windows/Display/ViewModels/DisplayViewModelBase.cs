@@ -11,6 +11,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace Leibit.Client.WPF.Windows.Display.ViewModels
 {
@@ -31,6 +32,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region - Properties -
+        protected Dispatcher Dispatcher => m_Parent.Dispatcher;
         protected DisplayType SelectedDisplayType => m_Parent.SelectedDisplayType;
         protected Station SelectedStation => m_Parent.SelectedStation;
         protected Track SelectedTrack => m_Parent.SelectedTrack;
@@ -47,14 +49,14 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region - Protected methods -
 
         #region [GetScheduleCandidates]
-        protected List<ScheduleItem> GetScheduleCandidates(Area area, int leadMinutes)
+        protected List<ScheduleItem> GetScheduleCandidates(Area area, int leadMinutes, bool matchTrack)
         {
             var currentTime = SelectedStation.ESTW.Time;
             var schedulesResult = m_CalculationBll.GetSchedulesByTime(SelectedStation.Schedules, currentTime);
 
             if (!schedulesResult.Succeeded)
             {
-                m_Parent.Dispatcher.Invoke(() => MessageBox.Show(schedulesResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error));
+                Dispatcher.Invoke(() => MessageBox.Show(schedulesResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error));
                 return new List<ScheduleItem>();
             }
 
@@ -77,7 +79,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (liveSchedule == null)
                 {
-                    if (schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent)
+                    if (matchTrack && schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent)
                         continue;
                     if (schedule.Time < currentTime)
                         continue;
@@ -94,7 +96,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     if (schedule.Handling == eHandling.Destination && schedule.Station.ESTW.Time > liveSchedule.Train.LastModified)
                         continue;
 
-                    if (schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent && liveSchedule.LiveTrack != SelectedTrack && liveSchedule.LiveTrack != SelectedTrack.Parent)
+                    if (matchTrack && schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent && liveSchedule.LiveTrack != SelectedTrack && liveSchedule.LiveTrack != SelectedTrack.Parent)
                         continue;
 
                     var liveScheduleIndex = liveSchedule.Train.Schedules.IndexOf(liveSchedule);
@@ -169,7 +171,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region [GetViaString]
-        protected string GetViaString(ScheduleItem scheduleItem)
+        protected string GetViaString(ScheduleItem scheduleItem, double fontSize, double maxSpace)
         {
             if (scheduleItem.Schedule.Handling == eHandling.Destination)
                 return $"von {scheduleItem.Schedule.Train.Start}";
@@ -196,7 +198,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 else
                     candidate = $"{currentViaString} - {schedule.Station.Name}";
 
-                if (MeasureString(candidate, 12) > 240)
+                if (MeasureString(candidate, fontSize) > maxSpace)
                     continue;
 
                 currentViaString = candidate;
@@ -246,6 +248,13 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 return 1;
 
             return (delay + 1) / 5 * 5;
+        }
+        #endregion
+
+        #region [IsTrackChanged]
+        protected bool IsTrackChanged(ScheduleItem scheduleItem)
+        {
+            return scheduleItem.LiveSchedule != null && scheduleItem.LiveSchedule.LiveTrack != null && scheduleItem.Schedule.Track != scheduleItem.LiveSchedule.LiveTrack;
         }
         #endregion
 

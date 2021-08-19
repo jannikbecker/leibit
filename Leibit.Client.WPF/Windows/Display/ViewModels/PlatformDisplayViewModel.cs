@@ -223,7 +223,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 return;
             }
 
-            var candidates = GetScheduleCandidates(area, 120);
+            var candidates = GetScheduleCandidates(area, 120, true);
             var orderedSchedules = candidates.OrderBy(x => x.ReferenceTime);
             var currentItem = orderedSchedules.FirstOrDefault();
 
@@ -231,7 +231,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             {
                 CurrentTrainTime = GetTime(currentItem);
                 CurrentTrainNumber = GetTrainNumber(currentItem);
-                Via = GetViaString(currentItem);
+                Via = GetViaString(currentItem, 12, 240);
                 CurrentTrainDestination = GetDestination(currentItem, true);
 
                 var infoTexts = new List<string>();
@@ -246,7 +246,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 else if (delay >= 5)
                     infoTexts.Add($"ca. {delay} Minuten später");
 
-                if (currentItem.LiveSchedule != null && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent) && currentItem.LiveSchedule.LiveTrack != null && currentItem.Schedule.Track != currentItem.LiveSchedule.LiveTrack)
+                if (IsTrackChanged(currentItem) && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent))
                     infoTexts.Add($"Heute von Gleis {GetTrackName(currentItem.LiveSchedule.LiveTrack)}");
 
                 var info = string.Join(" - ", infoTexts);
@@ -276,7 +276,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 FollowingTrain1Number = GetTrainNumber(followingTrain1);
                 FollowingTrain1Destination = GetDestination(followingTrain1, false);
 
-                if (followingTrain1.LiveSchedule != null && (followingTrain1.Schedule.Track == SelectedTrack || followingTrain1.Schedule.Track == SelectedTrack.Parent) && followingTrain1.LiveSchedule.LiveTrack != null && followingTrain1.Schedule.Track != followingTrain1.LiveSchedule.LiveTrack)
+                if (IsTrackChanged(followingTrain1) && (followingTrain1.Schedule.Track == SelectedTrack || followingTrain1.Schedule.Track == SelectedTrack.Parent))
                     FollowingTrain1Info = $"Gleis {GetTrackName(followingTrain1.LiveSchedule.LiveTrack)}";
                 else
                     FollowingTrain1Info = string.Empty;
@@ -299,7 +299,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 FollowingTrain2Number = GetTrainNumber(followingTrain2);
                 FollowingTrain2Destination = GetDestination(followingTrain2, false);
 
-                if (followingTrain2.LiveSchedule != null && (followingTrain2.Schedule.Track == SelectedTrack || followingTrain2.Schedule.Track == SelectedTrack.Parent) && followingTrain2.LiveSchedule.LiveTrack != null && followingTrain2.Schedule.Track != followingTrain2.LiveSchedule.LiveTrack)
+                if (IsTrackChanged(followingTrain2) && (followingTrain2.Schedule.Track == SelectedTrack || followingTrain2.Schedule.Track == SelectedTrack.Parent))
                     FollowingTrain2Info = $"Gleis {GetTrackName(followingTrain2.LiveSchedule.LiveTrack)}";
                 else
                     FollowingTrain2Info = string.Empty;

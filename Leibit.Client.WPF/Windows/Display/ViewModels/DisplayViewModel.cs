@@ -19,11 +19,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
             DisplayTypes = new ObservableCollection<DisplayType>
             {
-                new DisplayType(eDisplayType.PlatformDisplay_Small, "Zugzielanzeiger klein", new PlatformDisplayViewModel(this)),
-                new DisplayType(eDisplayType.PlatformDisplay_Large, "Zugzielanzeiger groß", new PlatformDisplayViewModel(this)),
-                //new DisplayType(eDisplayType.DepartureBoard_Small, "Abfahrtstafel klein"),
+                new DisplayType(eDisplayType.PlatformDisplay_Small, "Zugzielanzeiger klein", new PlatformDisplayViewModel(this), true),
+                new DisplayType(eDisplayType.PlatformDisplay_Large, "Zugzielanzeiger groß", new PlatformDisplayViewModel(this), true),
+                new DisplayType(eDisplayType.DepartureBoard_Small, "Abfahrtstafel klein", new DepartureBoardViewModel(this), false),
                 //new DisplayType(eDisplayType.DepartureBoard_Large, "Abfahrtstafel groß"),
-                new DisplayType(eDisplayType.PassengerInformation, "Fahrgastinformation", new PassengerInformationViewModel(this)),
+                new DisplayType(eDisplayType.PassengerInformation, "Fahrgastinformation", new PassengerInformationViewModel(this), true),
             };
 
             SelectedDisplayType = DisplayTypes[0];
@@ -41,10 +41,16 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         {
             get
             {
-                var caption = "Zugzielanzeiger";
+                if (SelectedDisplayType == null)
+                    return "Fahrgastinformation";
 
-                if (SelectedStation != null && SelectedTrack != null)
-                    caption += $" {SelectedStation.Name}, Gleis {SelectedTrack.Name}";
+                var caption = SelectedDisplayType.Name;
+
+                if (SelectedStation != null)
+                    caption += $" {SelectedStation.Name}";
+
+                if (SelectedTrack != null && SelectedDisplayType.TrackRequired)
+                    caption += $", Gleis {SelectedTrack.Name}";
 
                 return caption;
             }
@@ -66,6 +72,8 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             set
             {
                 Set(value);
+                OnPropertyChanged(nameof(IsTrackListEnabled));
+                OnPropertyChanged(nameof(Caption));
                 __SelectionChanged();
             }
         }
@@ -88,7 +96,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region [IsTrackListEnabled]
-        public bool IsTrackListEnabled => SelectedStation != null;
+        public bool IsTrackListEnabled => SelectedStation != null && SelectedDisplayType?.TrackRequired == true;
         #endregion
 
         #region [SelectedStation]
