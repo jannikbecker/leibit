@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
+namespace Leibit.Client.WPF.Windows.Display.ViewModels
 {
     public enum eDisplayType
     {

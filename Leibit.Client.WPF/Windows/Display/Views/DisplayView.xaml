@@ -1,15 +1,15 @@
-﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.PlatformDisplay.Views.PlatformDisplayView"
+﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.Display.Views.DisplayView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.PlatformDisplay.Views"
-                      xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels"
+                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.Display.Views"
+                      xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.Display.ViewModels"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
                       xmlns:converter="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                       Caption="{Binding Caption}"
                       ResizeMode="NoResize">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:PlatformDisplayView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:DisplayView" BasedOn="{StaticResource ChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>

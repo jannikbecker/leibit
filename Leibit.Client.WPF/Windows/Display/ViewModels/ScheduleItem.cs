@@ -2,7 +2,7 @@
 using Leibit.Entities.LiveData;
 using Leibit.Entities.Scheduling;
 
-namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
+namespace Leibit.Client.WPF.Windows.Display.ViewModels
 {
     internal class ScheduleItem
     {

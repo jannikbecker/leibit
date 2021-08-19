@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Leibit.Client.WPF.Windows.PlatformDisplay.Views.PlatformDisplaySmall"
+﻿<UserControl x:Class="Leibit.Client.WPF.Windows.Display.Views.PlatformDisplaySmall"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF">

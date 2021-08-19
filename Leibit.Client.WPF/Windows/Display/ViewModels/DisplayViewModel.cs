@@ -15,9 +15,9 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
+namespace Leibit.Client.WPF.Windows.Display.ViewModels
 {
-    public class PlatformDisplayViewModel : ChildWindowViewModelBase, IRefreshable
+    public class DisplayViewModel : ChildWindowViewModelBase, IRefreshable
     {
 
         #region - Needs -
@@ -29,7 +29,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         #endregion
 
         #region - Ctor -
-        public PlatformDisplayViewModel(Dispatcher dispatcher, Area area)
+        public DisplayViewModel(Dispatcher dispatcher, Area area)
         {
             Dispatcher = dispatcher;
             m_CalculationBll = new CalculationBLL();

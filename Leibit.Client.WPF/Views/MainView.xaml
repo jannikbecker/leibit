@@ -104,7 +104,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <MenuItem Header="Zugzielanzeiger" Command="{Binding PlatformDisplayCommand}"/>
+                <MenuItem Header="Fahrgastinformation" Command="{Binding DisplayCommand}"/>
 
                 <MenuItem Header="Systemstatus" Command="{Binding SystemStateCommand}">
                     <MenuItem.Icon>
