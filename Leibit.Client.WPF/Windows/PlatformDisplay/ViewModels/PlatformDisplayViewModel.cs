@@ -37,7 +37,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
 
             DisplayTypes = new ObservableCollection<DisplayType>
             {
-                //new DisplayType(eDisplayType.PlatformDisplay_Small, "Zugzielanzeiger klein"),
+                new DisplayType(eDisplayType.PlatformDisplay_Small, "Zugzielanzeiger klein"),
                 new DisplayType(eDisplayType.PlatformDisplay_Large, "Zugzielanzeiger groß"),
                 //new DisplayType(eDisplayType.DepartureBoard_Small, "Abfahrtstafel klein"),
                 //new DisplayType(eDisplayType.DepartureBoard_Large, "Abfahrtstafel groß"),
@@ -375,7 +375,7 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         {
             var wasSlideSuppressed = SuppressSlide;
 
-            if (SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Large)
+            if (SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Small || SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Large)
                 __GenerateLCD(area);
             else if (SelectedDisplayType?.Type == eDisplayType.PassengerInformation)
                 __GenerateLED(area);
@@ -431,6 +431,9 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
             }
             else
                 __ClearCurrentTrain();
+
+            if (SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Small)
+                return;
 
             var followingTrain1 = orderedSchedules.ElementAtOrDefault(1);
 

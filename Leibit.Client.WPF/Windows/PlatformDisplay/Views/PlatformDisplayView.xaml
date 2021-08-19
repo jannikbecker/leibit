@@ -42,6 +42,7 @@
         <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center">Gleis:</TextBlock>
         <ComboBox Grid.Row="0" Grid.Column="6" ItemsSource="{Binding TrackList}" SelectedItem="{Binding SelectedTrack}" DisplayMemberPath="Name" IsEnabled="{Binding IsTrackListEnabled}" Width="50" HorizontalAlignment="Left" Margin="10,0,0,0"/>
 
+        <local:PlatformDisplaySmall Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PlatformDisplay_Small}}"/>
         <local:PlatformDisplayLarge Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PlatformDisplay_Large}}"/>
         <local:PassengerInformation Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PassengerInformation}}"/>
 
