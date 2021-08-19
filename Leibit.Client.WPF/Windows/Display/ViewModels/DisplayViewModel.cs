@@ -97,8 +97,6 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             set
             {
                 Set(value);
-                OnPropertyChanged(nameof(LCDVisibility));
-                OnPropertyChanged(nameof(LEDVisibility));
                 OnPropertyChanged(nameof(IsLEDSliding));
             }
         }
@@ -153,14 +151,6 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 SuppressSlide = true;
             }
         }
-        #endregion
-
-        #region [LCDVisibility]
-        public Visibility LCDVisibility => SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Small || SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Large ? Visibility.Visible : Visibility.Collapsed;
-        #endregion
-
-        #region [LEDVisibility]
-        public Visibility LEDVisibility => SelectedDisplayType?.Type == eDisplayType.PassengerInformation ? Visibility.Visible : Visibility.Collapsed;
         #endregion
 
         #region [TrackName]
@@ -376,7 +366,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             var wasSlideSuppressed = SuppressSlide;
 
             if ((SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Small || SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Large) && SelectedStation != null && SelectedTrack != null)
-                __GenerateLCD(area);
+                __GeneratePlatformDisplay(area);
             else if (SelectedDisplayType?.Type == eDisplayType.PassengerInformation && SelectedStation != null && SelectedTrack != null)
                 __GenerateLED(area);
             else
@@ -387,8 +377,8 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
-        #region [__GenerateLCD]
-        private void __GenerateLCD(Area area)
+        #region [__GeneratePlatformDisplay]
+        private void __GeneratePlatformDisplay(Area area)
         {
             var candidates = __GetScheduleCandidates(area, 120);
             var orderedSchedules = candidates.OrderBy(x => x.ReferenceTime);
