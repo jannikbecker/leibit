@@ -20,15 +20,18 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
     public class DisplayType
     {
-        public DisplayType(eDisplayType type, string name)
+        public DisplayType(eDisplayType type, string name, DisplayViewModelBase viewModel)
         {
             Type = type;
             Name = name;
+            ViewModel = viewModel;
         }
 
         public eDisplayType Type { get; }
 
         public string Name { get; }
+
+        public DisplayViewModelBase ViewModel { get; }
     }
 
     public class DisplayTypeConverter : IValueConverter

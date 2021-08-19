@@ -4,7 +4,7 @@ using Leibit.Entities.Scheduling;
 
 namespace Leibit.Client.WPF.Windows.Display.ViewModels
 {
-    internal class ScheduleItem
+    public class ScheduleItem
     {
 
         internal ScheduleItem(LeibitTime referenceTime, Schedule schedule, LiveSchedule liveSchedule = null)
