@@ -375,9 +375,9 @@ namespace Leibit.Client.WPF.Windows.PlatformDisplay.ViewModels
         {
             var wasSlideSuppressed = SuppressSlide;
 
-            if (SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Small || SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Large)
+            if ((SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Small || SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Large) && SelectedStation != null && SelectedTrack != null)
                 __GenerateLCD(area);
-            else if (SelectedDisplayType?.Type == eDisplayType.PassengerInformation)
+            else if (SelectedDisplayType?.Type == eDisplayType.PassengerInformation && SelectedStation != null && SelectedTrack != null)
                 __GenerateLED(area);
             else
                 __ClearAll();
