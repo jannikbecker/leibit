@@ -1,0 +1,162 @@
+﻿<UserControl x:Class="Leibit.Client.WPF.Windows.Display.Views.DepartureBoardLarge"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+             xmlns:converter="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF">
+
+    <UserControl.Resources>
+        <converter:VisibilityConverter x:Key="VisibilityConverter"/>
+        <converter:VisibilityConverter x:Key="InvertedVisibilityConverter" Invert="True"/>
+    </UserControl.Resources>
+    
+    <Border DataContext="{Binding SelectedDisplayType.ViewModel}" BorderBrush="#373d6d" Background="#373d6d" BorderThickness="20" HorizontalAlignment="Left">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Foreground="White" Margin="0,0,0,10">
+                <Run FontSize="30" FontWeight="Bold">Abfahrt</Run>
+                <Run></Run>
+                <Run></Run>
+                <Run></Run>
+                <Run></Run>
+                <Run></Run>
+                <Run FontSize="20" FontStyle="Italic">Departure</Run>
+            </TextBlock>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="145"/>
+                    <ColumnDefinition Width="235"/>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="180"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Foreground="White">
+                    <Run FontSize="20">Zeit</Run>
+                    <Run></Run>
+                    <Run></Run>
+                    <Run FontSize="14" FontStyle="Italic">Time</Run>
+                </TextBlock>
+                <TextBlock Grid.Column="1" Foreground="White">
+                    <Run FontSize="20">Über</Run>
+                    <Run></Run>
+                    <Run></Run>
+                    <Run FontSize="14" FontStyle="Italic">Via</Run>
+                </TextBlock>
+                <TextBlock Grid.Column="2" Foreground="White">
+                    <Run FontSize="20">Ziel</Run>
+                    <Run></Run>
+                    <Run></Run>
+                    <Run FontSize="14" FontStyle="Italic">Destination</Run>
+                </TextBlock>
+                <TextBlock Grid.Column="3" Foreground="White">
+                    <Run FontSize="20">Gleis</Run>
+                    <Run></Run>
+                    <Run></Run>
+                    <Run FontSize="14" FontStyle="Italic">Track</Run>
+                </TextBlock>
+            </Grid>
+
+            <Grid Background="#1071df">
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="25" Margin="{Binding Margin}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="240"/>
+                                    <ColumnDefinition Width="170"/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="120"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" FontSize="18" Foreground="White" Text="{Binding Time}" Margin="2,0,0,0"/>
+
+                                <Grid Grid.Column="1" Background="White">
+                                    <TextBlock FontSize="14" Foreground="#1071df" Text="{Binding TrainNumber}" Margin="3,0" VerticalAlignment="Center" />
+                                </Grid>
+
+                                <TextBlock Grid.Column="2" FontSize="14" Foreground="White" Text="{Binding Via}" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="3" FontSize="18" Foreground="White" Text="{Binding Destination}"/>
+
+                                <TextBlock Grid.Column="4" FontSize="18" Foreground="White" Text="{Binding TrackName}" HorizontalAlignment="Center" Visibility="{Binding IsTrackChanged, Converter={StaticResource InvertedVisibilityConverter}}"/>
+
+                                <Grid Grid.Column="4" Background="White" Margin="2,0" Visibility="{Binding IsTrackChanged, Converter={StaticResource VisibilityConverter}}">
+                                    <TextBlock FontSize="18" Foreground="#1071df" Text="{Binding TrackName}" HorizontalAlignment="Center" />
+                                </Grid>
+
+
+                                <Grid Grid.Column="5" Background="White" Visibility="{Binding IsInfoTextVisible, Converter={StaticResource VisibilityConverter}}">
+                                    <controls:SlidingTextBox Text="{Binding InfoText}"
+                                                             IsSliding="{Binding IsInfoTextVisible}"
+                                                             Speed="20"
+                                                             Foreground="#1071df"
+                                                             FontSize="14" />
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="5"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="60"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle Grid.RowSpan="11" Grid.Column="1" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.RowSpan="11" Grid.Column="3" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.RowSpan="11" Grid.Column="5" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.RowSpan="11" Grid.Column="7" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.RowSpan="11" Grid.Column="9" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.RowSpan="11" Grid.Column="11" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.RowSpan="11" Grid.Column="13" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.RowSpan="11" Grid.Column="15" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.RowSpan="11" Grid.Column="17" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.RowSpan="11" Grid.Column="19" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.RowSpan="11" Grid.Column="21" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+                    <Rectangle Grid.Row="1" Grid.ColumnSpan="23" Fill="#373d6d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.Row="3" Grid.ColumnSpan="23" Fill="#373d6d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.Row="5" Grid.ColumnSpan="23" Fill="#373d6d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.Row="7" Grid.ColumnSpan="23" Fill="#373d6d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Rectangle Grid.Row="9" Grid.ColumnSpan="23" Fill="#373d6d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

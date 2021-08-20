@@ -38,8 +38,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 return;
             }
 
+            var count = SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small ? 10 : 12;
             var candidates = GetScheduleCandidates(area, 120, false);
-            var orderedSchedules = candidates.Where(x => x.Schedule.Handling == eHandling.Start || x.Schedule.Handling == eHandling.StopPassengerTrain).OrderBy(x => x.Schedule.Departure).Take(10);
+            var orderedSchedules = candidates.Where(x => x.Schedule.Handling == eHandling.Start || x.Schedule.Handling == eHandling.StopPassengerTrain).OrderBy(x => x.Schedule.Departure).Take(count);
             var currentItems = new List<DepartureBoardItemViewModel>();
 
             foreach (var scheduleItem in orderedSchedules)
@@ -50,7 +51,12 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 {
                     currentItem = new DepartureBoardItemViewModel(scheduleItem);
                     currentItem.TrainNumber = GetTrainNumber(scheduleItem);
-                    currentItem.Via = GetViaString(scheduleItem, 16, 240);
+
+                    if (SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small)
+                        currentItem.Via = GetViaString(scheduleItem, 16, 240);
+                    else
+                        currentItem.Via = GetViaString(scheduleItem, 14, 230);
+
                     Dispatcher.Invoke(() => Items.Add(currentItem));
                 }
 
@@ -65,11 +71,18 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 else if (delay >= 5)
                     infoTexts.Add($"ca. {delay} Minuten später");
 
-                if (IsTrackChanged(scheduleItem))
+                currentItem.IsTrackChanged = IsTrackChanged(scheduleItem);
+
+                if (currentItem.IsTrackChanged && SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small)
                     infoTexts.Add($"Heute von Gleis {GetTrackName(scheduleItem.LiveSchedule.LiveTrack)}");
 
                 if (infoTexts.Any())
-                    currentItem.InfoText = " - " + string.Join(" - ", infoTexts) + " - ";
+                {
+                    if (SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small)
+                        currentItem.InfoText = " - " + string.Join(" - ", infoTexts) + " - ";
+                    else
+                        currentItem.InfoText = string.Join(" - ", infoTexts) + " - ";
+                }
                 else
                     currentItem.InfoText = string.Empty;
 
@@ -78,6 +91,14 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
             var removedItems = Items.Except(currentItems).ToList();
             Dispatcher.Invoke(() => removedItems.ForEach(x => Items.Remove(x)));
+
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (i > 0 && i % 2 == 0)
+                    Items[i].Margin = new System.Windows.Thickness(0, 5, 0, 0);
+                else
+                    Items[i].Margin = new System.Windows.Thickness(0, 0, 0, 0);
+            }
         }
         #endregion
 

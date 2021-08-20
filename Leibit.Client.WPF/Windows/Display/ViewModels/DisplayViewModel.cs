@@ -22,7 +22,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 new DisplayType(eDisplayType.PlatformDisplay_Small, "Zugzielanzeiger klein", new PlatformDisplayViewModel(this), true),
                 new DisplayType(eDisplayType.PlatformDisplay_Large, "Zugzielanzeiger groß", new PlatformDisplayViewModel(this), true),
                 new DisplayType(eDisplayType.DepartureBoard_Small, "Abfahrtstafel klein", new DepartureBoardViewModel(this), false),
-                //new DisplayType(eDisplayType.DepartureBoard_Large, "Abfahrtstafel groß"),
+                new DisplayType(eDisplayType.DepartureBoard_Large, "Abfahrtstafel groß", new DepartureBoardViewModel(this), false),
                 new DisplayType(eDisplayType.PassengerInformation, "Fahrgastinformation", new PassengerInformationViewModel(this), true),
             };
 
