@@ -9,4 +9,5 @@
     <SolidColorBrush x:Key="StatusBarBackground" Color="#eee"/>
     <SolidColorBrush x:Key="WindowBackground" Color="White"/>
     <SolidColorBrush x:Key="TextForeground" Color="Black"/>
+    <SolidColorBrush x:Key="TrainScheduleLineColor" Color="Black"/>
 </ResourceDictionary>
