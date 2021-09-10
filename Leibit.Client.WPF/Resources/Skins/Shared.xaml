@@ -29,6 +29,9 @@
         <Setter Property="YesButtonContent" Value="Ja" />
         <Setter Property="NoButtonContent" Value="Nein" />
         <Setter Property="CancelButtonContent" Value="Abbrechen" />
+        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
+        <Setter Property="ButtonRegionBackground" Value="{DynamicResource WindowBackground}"/>
     </Style>
 
     <Style TargetType="xctk:ColorPicker">
