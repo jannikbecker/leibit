@@ -29,8 +29,8 @@
         </Grid.RowDefinitions>
 
         <Menu IsMainMenu="True" Grid.Row="0" Foreground="{DynamicResource MenuForeground}" Background="{DynamicResource MenuBackground}">
-            <MenuItem Header="Datei">
-                <MenuItem Header="Neu" ItemsSource="{Binding Areas}" DisplayMemberPath="Name">
+            <controls:LeibitMenuItem Header="Datei">
+                <controls:LeibitMenuItem Header="Neu" ItemsSource="{Binding Areas}" DisplayMemberPath="Name">
                     <MenuItem.ItemContainerStyle>
                         <Style TargetType="MenuItem">
                             <Setter Property="Command" Value="{Binding DataContext.NewCommand, ElementName=LayoutRoot}" />
@@ -40,7 +40,7 @@
                     <MenuItem.Icon>
                         <Image Source="{StaticResource imgNew}" />
                     </MenuItem.Icon>
-                </MenuItem>
+                </controls:LeibitMenuItem>
 
                 <MenuItem Header="Öffnen..." Command="{Binding OpenCommand}">
                     <MenuItem.Icon>
@@ -77,9 +77,9 @@
                         <Image Source="{StaticResource imgClose}" />
                     </MenuItem.Icon>
                 </MenuItem>
-            </MenuItem>
+            </controls:LeibitMenuItem>
 
-            <MenuItem Header="Fenster">
+            <controls:LeibitMenuItem Header="Fenster">
                 <MenuItem Header="Aufschaltbereich" Command="{Binding EstwSelectionCommand}">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource imgSelect}" />
@@ -92,7 +92,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <MenuItem Header="Bahnhofsfahrordnung (BFO)" ItemsSource="{Binding Stations}" DisplayMemberPath="Name" IsEnabled="{Binding IsTimeTableEnabled}">
+                <controls:LeibitMenuItem Header="Bahnhofsfahrordnung (BFO)" ItemsSource="{Binding Stations}" DisplayMemberPath="Name" IsEnabled="{Binding IsTimeTableEnabled}">
                     <MenuItem.ItemContainerStyle>
                         <Style TargetType="MenuItem">
                             <Setter Property="Command" Value="{Binding DataContext.TimeTableCommand, ElementName=LayoutRoot}" />
@@ -102,7 +102,7 @@
                     <MenuItem.Icon>
                         <Image Source="{StaticResource imgBfo}" />
                     </MenuItem.Icon>
-                </MenuItem>
+                </controls:LeibitMenuItem>
 
                 <MenuItem Header="Systemstatus" Command="{Binding SystemStateCommand}">
                     <MenuItem.Icon>
@@ -123,9 +123,9 @@
                         <Image Source="{StaticResource imgClear}" />
                     </MenuItem.Icon>
                 </MenuItem>
-            </MenuItem>
+            </controls:LeibitMenuItem>
 
-            <MenuItem Header="Hilfe">
+            <controls:LeibitMenuItem Header="Hilfe">
                 <MenuItem Header="Bedienungsanleitung öffnen" Command="{Binding ShowHelpCommand}">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource imgHelp}" />
@@ -145,7 +145,7 @@
                         <Image Source="{StaticResource imgInfo}" />
                     </MenuItem.Icon>
                 </MenuItem>
-            </MenuItem>
+            </controls:LeibitMenuItem>
         </Menu>
 
         <ToolBarPanel Grid.Row="1" Background="{DynamicResource ToolbarBackground}">

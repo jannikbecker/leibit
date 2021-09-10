@@ -3,6 +3,7 @@
     <SolidColorBrush x:Key="MainViewBackground" Color="White"/>
     <SolidColorBrush x:Key="MenuForeground" Color="#111"/>
     <SolidColorBrush x:Key="MenuBackground" Color="#eee"/>
+    <SolidColorBrush x:Key="SubMenuBackground" Color="#eee"/>
     <SolidColorBrush x:Key="ToolbarBackground" Color="#eee"/>
     <SolidColorBrush x:Key="StatusBarForeground" Color="#111"/>
     <SolidColorBrush x:Key="StatusBarBackground" Color="#eee"/>

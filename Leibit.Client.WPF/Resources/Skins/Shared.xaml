@@ -13,6 +13,10 @@
         <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
     </Style>
 
+    <Style TargetType="controls:LeibitMenuItem">
+        <Setter Property="SubMenuBackground" Value="{DynamicResource SubMenuBackground}"/>
+    </Style>
+
     <Style TargetType="xctk:MessageBox">
         <Setter Property="YesButtonContent" Value="Ja" />
         <Setter Property="NoButtonContent" Value="Nein" />
