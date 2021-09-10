@@ -9,7 +9,7 @@
                       ResizeMode="ResizeHeight">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:SystemStateView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:SystemStateView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>

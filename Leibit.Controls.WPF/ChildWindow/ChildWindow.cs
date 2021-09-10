@@ -4,6 +4,7 @@ using Leibit.Core.Client.Commands;
 using System;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Leibit.Controls
 {
@@ -27,7 +28,19 @@ namespace Leibit.Controls
             var SettingsResult = SettingsBll.GetSettings();
 
             if (SettingsResult.Succeeded)
+            {
                 WindowColor = SettingsResult.Result.WindowColor;
+                CaptionForeground = Brushes.Black;
+
+                if (WindowColor.HasValue)
+                {
+                    var Bytes = BitConverter.GetBytes(WindowColor.Value);
+
+                    if (Bytes.Length == 4)
+                        CaptionForeground = (Bytes[2] + Bytes[1] + Bytes[0]) / 3 > 128 ? Brushes.Black : new SolidColorBrush(Color.FromRgb(225, 225, 225));
+                }
+
+            }
         }
         #endregion
 
@@ -63,6 +76,10 @@ namespace Leibit.Controls
             get;
             private set;
         }
+        #endregion
+
+        #region [CaptionForegroundColor]
+        public Brush CaptionForegroundColor { get; private set; }
         #endregion
 
         #region [ResizeMode]

@@ -9,7 +9,7 @@
                       Caption="Über LeiBIT für ESTWsim">
     
     <controls:ChildWindow.Style>
-        <Style TargetType="local:AboutView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:AboutView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>

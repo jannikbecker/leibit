@@ -23,7 +23,7 @@
                                                 Left="{Binding PositionX, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                                 DoubleClickCommand="{Binding SizeToContentCommand, RelativeSource={RelativeSource TemplatedParent}}"
                                                 ResizeMode="{Binding ResizeMode, RelativeSource={RelativeSource TemplatedParent}}">
-                        <Border BorderThickness="5,0,5,5" Background="White" HorizontalAlignment="Stretch">
+                        <Border BorderThickness="5,0,5,5" HorizontalAlignment="Stretch" Background="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}}">
                             <Border.BorderBrush>
                                 <!-- RelativeSource TemplatedParent causes error here (why ?) -->
                                 <SolidColorBrush Color="{Binding WindowColor, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}, Converter={StaticResource ColorConverter}}" />
@@ -45,7 +45,7 @@
                                         <ColumnDefinition Width="20" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Caption, RelativeSource={RelativeSource TemplatedParent}}" />
+                                    <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Caption, RelativeSource={RelativeSource TemplatedParent}}" Foreground="{Binding CaptionForeground, RelativeSource={RelativeSource TemplatedParent}}" />
 
                                     <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding CloseCommand, RelativeSource={RelativeSource TemplatedParent}}">
                                         <Image Source="{StaticResource imgClose}" RenderOptions.BitmapScalingMode="NearestNeighbor" RenderOptions.EdgeMode="Aliased">

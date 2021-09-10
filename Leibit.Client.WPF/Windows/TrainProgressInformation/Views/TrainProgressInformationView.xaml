@@ -8,7 +8,7 @@
                       Caption="Zugfahrtinformation" ResizeMode="ResizeAll">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:TrainProgressInformationView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:TrainProgressInformationView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>

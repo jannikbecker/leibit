@@ -8,7 +8,7 @@
                       Caption="{Binding Caption}" ResizeMode="ResizeAll">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:TimeTableView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:TimeTableView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>

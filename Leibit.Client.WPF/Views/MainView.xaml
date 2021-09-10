@@ -28,7 +28,7 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <Menu IsMainMenu="True" Grid.Row="0">
+        <Menu IsMainMenu="True" Grid.Row="0" Foreground="{DynamicResource MenuForeground}" Background="{DynamicResource MenuBackground}">
             <MenuItem Header="Datei">
                 <MenuItem Header="Neu" ItemsSource="{Binding Areas}" DisplayMemberPath="Name">
                     <MenuItem.ItemContainerStyle>
@@ -148,7 +148,8 @@
             </MenuItem>
         </Menu>
 
-        <ToolBar Grid.Row="1">
+        <ToolBarPanel Grid.Row="1" Background="{DynamicResource ToolbarBackground}">
+            <ToolBar Background="{DynamicResource ToolbarBackground}">
             <controls:DropDownButton Image="{StaticResource imgNew}" IsDropDownOpen="{Binding IsNewDropDownOpen, Mode=TwoWay}" Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}" ToolTipService.ToolTip="Neu">
                 <controls:DropDownButton.DropDownContent>
                     <controls:SimpleMenu ItemsSource="{Binding Data.Areas, Source={StaticResource proxy}}" DisplayMemberPath="Name" Command="{Binding Data.NewCommand, Source={StaticResource proxy}}" ValueMemberPath="Id" />
@@ -203,11 +204,12 @@
                 </controls:DropDownButton.DropDownContent>
             </controls:DropDownButton>
         </ToolBar>
+        </ToolBarPanel>
 
         <controls:DynamicWindowContainer Grid.Row="2" Windows="{Binding ChildWindows}" Background="{DynamicResource MainViewBackground}" />
 
         <Grid Grid.Row="3">
-            <StatusBar>
+            <StatusBar Foreground="{DynamicResource StatusBarForeground}" Background="{DynamicResource StatusBarBackground}">
                 <StatusBarItem HorizontalContentAlignment="Stretch">
                     <Grid>
                         <Grid.ColumnDefinitions>

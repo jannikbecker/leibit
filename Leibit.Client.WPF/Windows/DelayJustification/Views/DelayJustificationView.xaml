@@ -11,7 +11,7 @@
                       Caption="{Binding Caption}">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:DelayJustificationView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:DelayJustificationView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>
