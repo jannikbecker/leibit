@@ -141,6 +141,11 @@ namespace Leibit.Client.WPF.ViewModels
             ToastNotificationManagerCompat.History.Clear();
             ToastNotificationManagerCompat.OnActivated += __ToastNotificationClicked;
             __CheckForUpdatesIfNeeded();
+
+            var settingsResult = m_SettingsBll.GetSettings();
+
+            if (settingsResult.Succeeded && settingsResult.Result != null)
+                (App.Current as App)?.ChangeSkin(settingsResult.Result.Skin);
         }
         #endregion
 

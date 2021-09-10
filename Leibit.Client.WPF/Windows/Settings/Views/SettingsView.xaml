@@ -5,6 +5,7 @@
                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
                       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                      xmlns:entities="clr-namespace:Leibit.Entities;assembly=Leibit.Entities"
                       Caption="Einstellungen"
                       ResizeMode="NoResize">
 
@@ -153,30 +154,37 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Content="Pfad zu ESTWonline" VerticalAlignment="Center" />
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding EstwOnlinePath, Mode=TwoWay}" Margin="5" />
                     <Button Grid.Row="0" Grid.Column="2" Content="..." Margin="5" Command="{Binding EstwOnlineCommand}" IsTabStop="False" />
 
-                    <Label Grid.Row="1" Grid.Column="0" Content="Farbe der Fenster" VerticalAlignment="Center" />
-                    <xctk:ColorPicker Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                    <Label Grid.Row="1" Grid.Column="0" Content="Farbschema" VerticalAlignment="Center" />
+                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Skin}" SelectedValuePath="Tag" Margin="5,0,5,5">
+                        <ComboBoxItem Tag="{x:Static entities:eSkin.Light}" Content="Hell"/>
+                        <ComboBoxItem Tag="{x:Static entities:eSkin.Dark}" Content="Dunkel"/>
+                    </ComboBox>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Farbe der Fenster" VerticalAlignment="Center" />
+                    <xctk:ColorPicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                                   Width="100"
                                   HorizontalAlignment="Left"
-                                  SelectedColor="{Binding WindowColor, Mode=TwoWay, Converter={StaticResource ColorConverter}}" Margin="5"
+                                  SelectedColor="{Binding WindowColor, Mode=TwoWay, Converter={StaticResource ColorConverter}}" Margin="5,0,5,5"
                                   AdvancedTabHeader="Erweitert..."
                                   AvailableColorsHeader="Verfügbare Farben"
                                   RecentColorsHeader="Zuletzt verwendete Farben"
                                   StandardTabHeader="Zurück"
                                   StandardColorsHeader="Standardfarben"/>
                     
-                    <Label Grid.Row="2" Grid.Column="0" Content="Updates" VerticalAlignment="Center" />
-                    <CheckBox Grid.Row="2" Grid.Column="1"
+                    <Label Grid.Row="3" Grid.Column="0" Content="Updates" VerticalAlignment="Center" />
+                    <CheckBox Grid.Row="3" Grid.Column="1"
                               Content="Automatisch nach Updates suchen"
                               IsChecked="{Binding AutomaticallyCheckForUpdates, Mode=TwoWay}"
                               Margin="5,0,0,0"
                               VerticalAlignment="Center"/>
-                    <CheckBox Grid.Row="3" Grid.Column="1"
+                    <CheckBox Grid.Row="4" Grid.Column="1"
                               Content="Updates automatisch installieren"
                               IsChecked="{Binding AutomaticallyInstallUpdates, Mode=TwoWay}"
                               Margin="5,0,0,5"

@@ -68,4 +68,10 @@ namespace Leibit.Entities
         OEBB,
     }
 
+    public enum eSkin
+    {
+        Light = 0,
+        Dark = 1,
+    }
+
 }

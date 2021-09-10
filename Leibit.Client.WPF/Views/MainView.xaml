@@ -204,7 +204,7 @@
             </controls:DropDownButton>
         </ToolBar>
 
-        <controls:DynamicWindowContainer Grid.Row="2" Windows="{Binding ChildWindows}" />
+        <controls:DynamicWindowContainer Grid.Row="2" Windows="{Binding ChildWindows}" Background="{DynamicResource MainViewBackground}" />
 
         <Grid Grid.Row="3">
             <StatusBar>
