@@ -34,7 +34,7 @@
                                                     <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
                                                 </Grid.ColumnDefinitions>
 
-                                                <Label Grid.Column="0" Content="{Binding EstwName}" VerticalAlignment="Center" />
+                                                <TextBlock Grid.Column="0" Text="{Binding EstwName}" VerticalAlignment="Center" />
                                                 <TextBox Grid.Column="1" Text="{Binding Path, Mode=TwoWay}" Margin="5" />
                                                 <Button Grid.Column="2" Content="..." Margin="5" Command="{Binding BrowseCommand}" IsTabStop="False" />
                                             </Grid>
@@ -157,17 +157,17 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0" Grid.Column="0" Content="Pfad zu ESTWonline" VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Pfad zu ESTWonline" Margin="5,0,0,0" VerticalAlignment="Center" />
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding EstwOnlinePath, Mode=TwoWay}" Margin="5" />
                     <Button Grid.Row="0" Grid.Column="2" Content="..." Margin="5" Command="{Binding EstwOnlineCommand}" IsTabStop="False" />
 
-                    <Label Grid.Row="1" Grid.Column="0" Content="Farbschema" VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Farbschema" Margin="5,0,0,5" VerticalAlignment="Center" />
                     <ComboBox Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Skin}" SelectedValuePath="Tag" Margin="5,0,5,5">
                         <ComboBoxItem Tag="{x:Static entities:eSkin.Light}" Content="Hell"/>
                         <ComboBoxItem Tag="{x:Static entities:eSkin.Dark}" Content="Dunkel"/>
                     </ComboBox>
 
-                    <Label Grid.Row="2" Grid.Column="0" Content="Farbe der Fenster" VerticalAlignment="Center" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Farbe der Fenster" Margin="5,0,0,5" VerticalAlignment="Center" />
                     <xctk:ColorPicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                                   Width="100"
                                   HorizontalAlignment="Left"
@@ -177,12 +177,12 @@
                                   RecentColorsHeader="Zuletzt verwendete Farben"
                                   StandardTabHeader="Zurück"
                                   StandardColorsHeader="Standardfarben"/>
-                    
-                    <Label Grid.Row="3" Grid.Column="0" Content="Updates" VerticalAlignment="Center" />
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Updates" Margin="5,0,0,5" VerticalAlignment="Center" />
                     <CheckBox Grid.Row="3" Grid.Column="1"
                               Content="Automatisch nach Updates suchen"
                               IsChecked="{Binding AutomaticallyCheckForUpdates, Mode=TwoWay}"
-                              Margin="5,0,0,0"
+                              Margin="5,0,0,5"
                               VerticalAlignment="Center"/>
                     <CheckBox Grid.Row="4" Grid.Column="1"
                               Content="Updates automatisch installieren"

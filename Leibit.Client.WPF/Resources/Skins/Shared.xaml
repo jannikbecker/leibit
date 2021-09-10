@@ -17,6 +17,14 @@
         <Setter Property="SubMenuBackground" Value="{DynamicResource SubMenuBackground}"/>
     </Style>
 
+    <Style TargetType="CheckBox">
+        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
+    </Style>
+
+    <Style TargetType="Expander">
+        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
+    </Style>
+
     <Style TargetType="xctk:MessageBox">
         <Setter Property="YesButtonContent" Value="Ja" />
         <Setter Property="NoButtonContent" Value="Nein" />
