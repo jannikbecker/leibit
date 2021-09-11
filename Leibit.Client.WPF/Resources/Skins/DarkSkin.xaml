@@ -30,6 +30,12 @@
     <SolidColorBrush x:Key="DataGridGroupingAreaBackground" Color="#444"/>
     <SolidColorBrush x:Key="DataGridGroupingAreaHover" Color="#678"/>
 
+    <!-- Train progress information -->
+    <SolidColorBrush x:Key="ReadyColor" Color="DarkGreen"/>
+    <SolidColorBrush x:Key="DelayBlue" Color="DarkCyan"/>
+    <SolidColorBrush x:Key="DelayYellow" Color="DarkGoldenrod" />
+    <SolidColorBrush x:Key="DelayRed" Color="DarkRed"/>
+
     <!-- Train Schedule -->
     <SolidColorBrush x:Key="TrainScheduleLineColor" Color="#ccc"/>
 </ResourceDictionary>
