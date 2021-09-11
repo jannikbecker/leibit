@@ -353,12 +353,12 @@ namespace Leibit.Controls
                 currentX += header.ActualWidth;
             }
 
-            currentX -= 12;
+            currentX -= 8;
 
             if (currentX < 0)
                 currentX = 0;
-            if (currentX + 24 >= dataGrid.ActualWidth)
-                currentX = dataGrid.ActualWidth - 24;
+            if (currentX + 16 >= dataGrid.ActualWidth)
+                currentX = dataGrid.ActualWidth - 16;
 
             point.X = currentX;
             return point;
@@ -842,7 +842,7 @@ namespace Leibit.Controls
             if (CanReorderColumn)
             {
                 var point = __GetReorderTargetIndicatorPosition(mousePosition.X);
-                reorderTargetIndicator.Arrange(new Rect(point, new Size(24, 24)));
+                reorderTargetIndicator.Arrange(new Rect(point, new Size(16, 10)));
                 reorderTargetIndicator.Visibility = Visibility.Visible;
             }
             else

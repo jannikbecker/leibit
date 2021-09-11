@@ -1,5 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Common-->
+    <Color x:Key="TextForegroundColor">White</Color>
+    <Color x:Key="WindowBackgroundColor">#111</Color>
+    <SolidColorBrush x:Key="TextForeground" Color="{StaticResource TextForegroundColor}"/>
+    <SolidColorBrush x:Key="WindowBackground" Color="{StaticResource WindowBackgroundColor}"/>
+    
+    <!-- Main View -->
     <SolidColorBrush x:Key="MainViewBackground" Color="#222"/>
     <SolidColorBrush x:Key="MenuForeground" Color="#eee"/>
     <SolidColorBrush x:Key="MenuBackground" Color="#444"/>
@@ -7,7 +15,21 @@
     <SolidColorBrush x:Key="ToolbarBackground" Color="#444"/>
     <SolidColorBrush x:Key="StatusBarForeground" Color="#eee"/>
     <SolidColorBrush x:Key="StatusBarBackground" Color="#333"/>
-    <SolidColorBrush x:Key="WindowBackground" Color="#111"/>
-    <SolidColorBrush x:Key="TextForeground" Color="White"/>
+    
+    <!-- DataGrid -->
+    <Color x:Key="DataGridRowHighlightColor">#6def</Color>
+    <SolidColorBrush x:Key="DataGridBorder" Color="#678"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderBorder" Color="#666"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderBackground" Color="#222"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderSortedBorder" Color="#456"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderSortedBackground" Color="#2def"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderHoverBorder" Color="#567"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderHoverBackground" Color="#4def"/>
+    <SolidColorBrush x:Key="DataGridAlternationBackground" Color="#333"/>
+    <SolidColorBrush x:Key="DataGridRowHover" Color="{StaticResource DataGridRowHighlightColor}"/>
+    <SolidColorBrush x:Key="DataGridGroupingAreaBackground" Color="#444"/>
+    <SolidColorBrush x:Key="DataGridGroupingAreaHover" Color="#678"/>
+
+    <!-- Train Schedule -->
     <SolidColorBrush x:Key="TrainScheduleLineColor" Color="#ccc"/>
 </ResourceDictionary>

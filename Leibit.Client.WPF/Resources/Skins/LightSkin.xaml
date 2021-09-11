@@ -1,5 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Common-->
+    <Color x:Key="TextForegroundColor">Black</Color>
+    <Color x:Key="WindowBackgroundColor">White</Color>
+    <SolidColorBrush x:Key="TextForeground" Color="{StaticResource TextForegroundColor}"/>
+    <SolidColorBrush x:Key="WindowBackground" Color="{StaticResource WindowBackgroundColor}"/>
+
+    <!-- Main View -->
     <SolidColorBrush x:Key="MainViewBackground" Color="White"/>
     <SolidColorBrush x:Key="MenuForeground" Color="#111"/>
     <SolidColorBrush x:Key="MenuBackground" Color="#eee"/>
@@ -7,7 +15,21 @@
     <SolidColorBrush x:Key="ToolbarBackground" Color="#eee"/>
     <SolidColorBrush x:Key="StatusBarForeground" Color="#111"/>
     <SolidColorBrush x:Key="StatusBarBackground" Color="#eee"/>
-    <SolidColorBrush x:Key="WindowBackground" Color="White"/>
-    <SolidColorBrush x:Key="TextForeground" Color="Black"/>
+    
+    <!-- DataGrid -->
+    <Color x:Key="DataGridRowHighlightColor">#6def</Color>
+    <SolidColorBrush x:Key="DataGridBorder" Color="#688caf"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderBorder" Color="#d5d5d5"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderBackground" Color="#f3f4f6"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderSortedBorder" Color="#96d9f9"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderSortedBackground" Color="#dbeef7"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderHoverBorder" Color="#93c9e3"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderHoverBackground" Color="#b8e8fc"/>
+    <SolidColorBrush x:Key="DataGridAlternationBackground" Color="#eee"/>
+    <SolidColorBrush x:Key="DataGridRowHover" Color="{StaticResource DataGridRowHighlightColor}"/>
+    <SolidColorBrush x:Key="DataGridGroupingAreaBackground" Color="LightGray"/>
+    <SolidColorBrush x:Key="DataGridGroupingAreaHover" Color="LightBlue"/>
+    
+    <!-- Train Schedule -->
     <SolidColorBrush x:Key="TrainScheduleLineColor" Color="Black"/>
 </ResourceDictionary>
