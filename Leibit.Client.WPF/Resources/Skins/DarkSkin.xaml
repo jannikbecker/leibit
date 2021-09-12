@@ -22,10 +22,10 @@
     <SolidColorBrush x:Key="DataGridBorder" Color="#678"/>
     <SolidColorBrush x:Key="DataGridColumnHeaderBorder" Color="#666"/>
     <SolidColorBrush x:Key="DataGridColumnHeaderBackground" Color="#222"/>
-    <SolidColorBrush x:Key="DataGridColumnHeaderSortedBorder" Color="#123"/>
-    <SolidColorBrush x:Key="DataGridColumnHeaderSortedBackground" Color="#345"/>
-    <SolidColorBrush x:Key="DataGridColumnHeaderHoverBorder" Color="#456"/>
-    <SolidColorBrush x:Key="DataGridColumnHeaderHoverBackground" Color="#678"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderSortedBorder" Color="#678"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderSortedBackground" Color="#234"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderHoverBorder" Color="#678"/>
+    <SolidColorBrush x:Key="DataGridColumnHeaderHoverBackground" Color="#456"/>
     <SolidColorBrush x:Key="DataGridAlternationBackground" Color="#333"/>
     <SolidColorBrush x:Key="DataGridRowHover" Color="{StaticResource DataGridRowHighlightColor}"/>
     <SolidColorBrush x:Key="DataGridGroupingAreaBackground" Color="#444"/>
@@ -83,6 +83,17 @@
     </Style>
 
     <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}"/>
+
+    <Style x:Key="SimpleMenuButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        <Setter Property="BorderBrush" Value="Transparent"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="#678"/>
+                <Setter Property="Background" Value="#123"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <!-- CheckBox -->
     <Style TargetType="CheckBox">
@@ -178,8 +189,8 @@
             </Trigger>
 
             <Trigger Property="IsDropDownOpen" Value="True">
-                <Setter Property="BorderBrush" Value="#abc"/>
-                <Setter Property="Background" Value="#678"/>
+                <Setter Property="BorderBrush" Value="#678"/>
+                <Setter Property="Background" Value="#345"/>
             </Trigger>
 
             <Trigger Property="IsEnabled" Value="False">
@@ -202,13 +213,13 @@
 
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="BorderBrush" Value="#456"/>
-                <Setter Property="Background" Value="#678"/>
+                <Setter Property="BorderBrush" Value="#678"/>
+                <Setter Property="Background" Value="#345"/>
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" Value="#123"/>
-                <Setter Property="Background" Value="#345"/>
+                <Setter Property="BorderBrush" Value="#678"/>
+                <Setter Property="Background" Value="#123"/>
             </Trigger>
         </Style.Triggers>
     </Style>

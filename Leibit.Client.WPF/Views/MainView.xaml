@@ -180,9 +180,9 @@
                                      Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
                                      ToolTipService.ToolTip="Zuglauf">
                     <controls:DropDownButton.DropDownContent>
-                        <Border BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="1" Background="{x:Static SystemColors.MenuBrush}" Padding="5">
+                        <Border BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="1" Background="{DynamicResource SubMenuBackground}" Padding="5">
                             <StackPanel Orientation="Vertical">
-                                <TextBlock Text="Zugnummer:" Margin="0,0,0,5" />
+                                <TextBlock Text="Zugnummer:" Foreground="{DynamicResource TextForeground}" Margin="0,0,0,5" />
                                 <StackPanel Orientation="Horizontal">
 
                                     <xctk:IntegerUpDown Value="{Binding Data.TrainScheduleNumber, Source={StaticResource proxy}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

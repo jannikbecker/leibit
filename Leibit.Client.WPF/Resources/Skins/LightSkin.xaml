@@ -43,6 +43,11 @@
     <!-- Button -->
     <Style x:Key="ButtonStyle" TargetType="Button" />
 
+    <Style x:Key="SimpleMenuButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+    </Style>
+
     <!-- CheckBox -->
     <Style TargetType="CheckBox">
         <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
