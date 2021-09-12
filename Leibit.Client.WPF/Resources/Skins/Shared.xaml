@@ -17,10 +17,6 @@
         <Setter Property="SubMenuBackground" Value="{DynamicResource SubMenuBackground}"/>
     </Style>
 
-    <Style TargetType="CheckBox">
-        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
-    </Style>
-
     <Style TargetType="RadioButton">
         <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
     </Style>
@@ -36,16 +32,9 @@
         <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
         <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
         <Setter Property="ButtonRegionBackground" Value="{DynamicResource WindowBackground}"/>
-    </Style>
-
-    <Style TargetType="xctk:ColorPicker">
-        <Setter Property="DropDownBackground">
-            <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFFAFBFB" Offset="0" />
-                    <GradientStop Color="#FFF4F4F4" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="YesButtonStyle" Value="{DynamicResource ButtonStyle}"/>
+        <Setter Property="NoButtonStyle" Value="{DynamicResource ButtonStyle}"/>
+        <Setter Property="OkButtonStyle" Value="{DynamicResource ButtonStyle}"/>
+        <Setter Property="CancelButtonStyle" Value="{DynamicResource ButtonStyle}"/>
     </Style>
 </ResourceDictionary>
