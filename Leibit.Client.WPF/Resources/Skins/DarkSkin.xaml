@@ -235,4 +235,20 @@
         <Setter Property="TabBackground" Value="#555"/>
         <Setter Property="TabForeground" Value="{StaticResource TextForeground}"/>
     </Style>
+
+    <!-- Images -->
+    <BitmapImage x:Key="imgNew" UriSource="/Leibit;component/Resources/Images/Dark/new.png" />
+    <BitmapImage x:Key="imgOpen" UriSource="/Leibit;component/Resources/Images/Dark/open.png" />
+    <BitmapImage x:Key="imgSave" UriSource="/Leibit;component/Resources/Images/Dark/save.png" />
+    <BitmapImage x:Key="imgSettings" UriSource="/Leibit;component/Resources/Images/Dark/settings.png" />
+    <BitmapImage x:Key="imgZfi" UriSource="/Leibit;component/Resources/Images/Dark/zfi.png" />
+    <BitmapImage x:Key="imgBfo" UriSource="/Leibit;component/Resources/Images/Dark/bfo.png" />
+    <BitmapImage x:Key="imgTrainSchedule" UriSource="/Leibit;component/Resources/Images/Dark/train_schedule.png" />
+    <BitmapImage x:Key="imgSelect" UriSource="/Leibit;component/Resources/Images/Dark/select.png" />
+    <BitmapImage x:Key="imgClear" UriSource="/Leibit;component/Resources/Images/Dark/clear.png" />
+    <BitmapImage x:Key="imgLocalOrders" UriSource="/Leibit;component/Resources/Images/Dark/local_orders.png" />
+    <BitmapImage x:Key="imgHelp" UriSource="/Leibit;component/Resources/Images/Dark/help.png" />
+    <BitmapImage x:Key="imgInfo" UriSource="/Leibit;component/Resources/Images/Dark/info.png" />
+    <BitmapImage x:Key="imgFlash" UriSource="/Leibit;component/Resources/Images/Dark/flash.png" />
+    <BitmapImage x:Key="imgSaveLayout" UriSource="/Leibit;component/Resources/Images/Dark/save_layout.png" />
 </ResourceDictionary>
