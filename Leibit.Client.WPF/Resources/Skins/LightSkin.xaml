@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
-    
+
     <!-- Common-->
     <Color x:Key="TextForegroundColor">Black</Color>
     <Color x:Key="WindowBackgroundColor">White</Color>
@@ -16,7 +16,7 @@
     <SolidColorBrush x:Key="ToolbarBackground" Color="#eee"/>
     <SolidColorBrush x:Key="StatusBarForeground" Color="#111"/>
     <SolidColorBrush x:Key="StatusBarBackground" Color="#eee"/>
-    
+
     <!-- DataGrid -->
     <Color x:Key="DataGridRowHighlightColor">#6def</Color>
     <SolidColorBrush x:Key="DataGridBorder" Color="#688caf"/>
@@ -30,7 +30,7 @@
     <SolidColorBrush x:Key="DataGridRowHover" Color="{StaticResource DataGridRowHighlightColor}"/>
     <SolidColorBrush x:Key="DataGridGroupingAreaBackground" Color="LightGray"/>
     <SolidColorBrush x:Key="DataGridGroupingAreaHover" Color="LightBlue"/>
-    
+
     <!-- Train progress information -->
     <SolidColorBrush x:Key="ReadyColor" Color="LightGreen"/>
     <SolidColorBrush x:Key="DelayBlue" Color="LightCyan"/>
@@ -64,7 +64,62 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <!-- ImageButton -->
+    <Style x:Key="ImageButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Padding" Value="1"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter Margin="2" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- DropDownButton -->
+    <SolidColorBrush x:Key="DropDownArrowFill" Color="#FF444444"/>
+    <SolidColorBrush x:Key="DropDownHoverBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="DropDownHoverBorderBrush" Color="Transparent"/>
+
+    <Style x:Key="DropDownButtonStyle" TargetType="Button" BasedOn="{StaticResource ImageButtonStyle}">
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter Margin="1,2,1,2" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DropDownButtonArrowStyle" TargetType="Button" BasedOn="{StaticResource ImageButtonStyle}">
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter Margin="2" Opacity="0.3" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- Images -->
     <BitmapImage x:Key="imgNew" UriSource="/Leibit;component/Resources/Images/Light/new.png" />
     <BitmapImage x:Key="imgOpen" UriSource="/Leibit;component/Resources/Images/Light/open.png" />

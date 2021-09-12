@@ -7,57 +7,20 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:DropDownButton">
                     <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=controls:DropDownButton}}">
-                        <Button Background="Transparent" BorderBrush="Transparent" Margin="0" Padding="0">
+                        <Button Style="{DynamicResource DropDownButtonStyle}" Margin="0" Padding="0">
                             <StackPanel Orientation="Horizontal" Margin="-2">
                                 <controls:ImageButton x:Name="btnContent" Image="{Binding Image}" Command="{Binding Command}" CommandParameter="{Binding CommandParameter}" Margin="1,0,0,0" />
 
-                                <Button x:Name="btnToggleMenu" Background="Transparent" BorderBrush="Transparent" Margin="-1,0,1,0" Command="{Binding ToggleMenuCommand}">
+                                <Button x:Name="btnToggleMenu" Style="{DynamicResource DropDownButtonArrowStyle}" Margin="-1,0,1,0" Command="{Binding ToggleMenuCommand}">
                                     <Path x:Name="Arrow"
                                           Grid.Column="1"
+                                          Fill="{DynamicResource DropDownArrowFill}"
                                           HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
                                           Data="M 0 0 L 4 4 L 8 0 Z">
-                                        <Path.Fill>
-                                            <SolidColorBrush Color="#FF444444"/>
-                                        </Path.Fill>
                                     </Path>
-
-                                    <Button.Style>
-                                        <Style TargetType="{x:Type Button}">
-                                            <Style.Triggers>
-                                                <Trigger Property="IsEnabled" Value="False">
-                                                    <Setter Property="Template">
-                                                        <Setter.Value>
-                                                            <ControlTemplate TargetType="Button">
-                                                                <ContentPresenter Margin="2" Opacity="0.3" />
-                                                            </ControlTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Trigger>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="Transparent" />
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Button.Style>
                                 </Button>
                             </StackPanel>
-
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsEnabled" Value="False">
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <ContentPresenter Margin="1,2,1,2" />
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
                         </Button>
 
                         <Popup IsOpen="{Binding IsDropDownOpen, Mode=TwoWay}" StaysOpen="False">
