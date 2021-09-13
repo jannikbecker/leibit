@@ -91,8 +91,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" Value="#678"/>
-                <Setter Property="Background" Value="#123"/>
+                <Setter Property="Background" Value="#333"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -266,16 +265,13 @@
                 </Setter>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" Value="#678"/>
-                <Setter Property="Background" Value="#123"/>
+                <Setter Property="Background" Value="#666"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <!-- DropDownButton -->
     <SolidColorBrush x:Key="DropDownArrowFill" Color="#FFDDDDDD"/>
-    <SolidColorBrush x:Key="DropDownHoverBackground" Color="#123"/>
-    <SolidColorBrush x:Key="DropDownHoverBorderBrush" Color="#678"/>
 
     <Style x:Key="DropDownButtonStyle" TargetType="Button" BasedOn="{StaticResource ImageButtonStyle}">
         <Style.Triggers>
@@ -303,6 +299,25 @@
                 </Setter>
             </Trigger>
         </Style.Triggers>
+    </Style>
+    
+    <!-- ContextMenu -->
+    <Style TargetType="ContextMenu">
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
+        <Setter Property="Background" Value="{StaticResource SubMenuBackground}"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="#888" BorderThickness="1" SnapsToDevicePixels="True">
+                        <Grid>
+                            <Rectangle Fill="#888" Width="1" Margin="29,2,0,2" HorizontalAlignment="Left"/>
+                            <ItemsPresenter />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- Images -->

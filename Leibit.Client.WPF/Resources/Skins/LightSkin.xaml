@@ -81,16 +81,11 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Transparent" />
-            </Trigger>
         </Style.Triggers>
     </Style>
 
     <!-- DropDownButton -->
     <SolidColorBrush x:Key="DropDownArrowFill" Color="#FF444444"/>
-    <SolidColorBrush x:Key="DropDownHoverBackground" Color="Transparent"/>
-    <SolidColorBrush x:Key="DropDownHoverBorderBrush" Color="Transparent"/>
 
     <Style x:Key="DropDownButtonStyle" TargetType="Button" BasedOn="{StaticResource ImageButtonStyle}">
         <Style.Triggers>
