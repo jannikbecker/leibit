@@ -119,14 +119,12 @@
                             <Setter Property="Background" Value="{DynamicResource DataGridRowHover}"/>
                         </Trigger>
                     </Style.Triggers>
-
-                    <Style.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{DynamicResource DataGridRowHighlightColor}" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource TextForegroundColor}" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{DynamicResource DataGridRowHighlightColor}" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="{DynamicResource TextForegroundColor}" />
-                    </Style.Resources>
                 </Style>
+                
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{DynamicResource DataGridRowHighlightColor}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{DynamicResource TextForegroundColor}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{DynamicResource DataGridRowHighlightColor}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="{DynamicResource TextForegroundColor}" />
 
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
