@@ -755,7 +755,9 @@ namespace Leibit.Controls
                         foreach (var condition in backgroundCondition.Conditions)
                             trigger.Conditions.Add(condition);
 
-                        var setter = new Setter(BackgroundProperty, backgroundCondition.BackgroundColor);
+                        var backgroundColorBinding = new Binding(nameof(ColumnBackgroundCondition.BackgroundColor));
+                        backgroundColorBinding.Source = backgroundCondition;
+                        var setter = new Setter(BackgroundProperty, backgroundColorBinding);
                         trigger.Setters.Add(setter);
                         style.Triggers.Add(trigger);
                     }
