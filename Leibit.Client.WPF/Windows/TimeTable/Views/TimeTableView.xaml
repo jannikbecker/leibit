@@ -15,6 +15,12 @@
         <conv:IntComparisonConverter x:Key="IsSmallerThanConverter" ComparisonType="Smaller" />
         <conv:IntComparisonConverter x:Key="IsGreaterThanConverter" ComparisonType="Greater" />
         <conv:VisibilityConverter x:Key="VisibilityConverter" />
+
+        <local:TimeTableColorHelper x:Key="ColorHelper"
+                                    ReadyColor="{DynamicResource ReadyColor}"
+                                    DelayBlue="{DynamicResource DelayBlue}"
+                                    DelayYellow="{DynamicResource DelayYellow}"
+                                    DelayRed="{DynamicResource DelayRed}"/>
     </controls:ChildWindow.Resources>
 
     <controls:LeibitDataGrid ItemsSource="{Binding Schedules}"
@@ -33,7 +39,7 @@
 
             <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber">
                 <controls:LeibitDataGridColumn.BackgroundConditions>
-                    <controls:ColumnBackgroundCondition BackgroundColor="{DynamicResource ReadyColor}">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding ReadyColor, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding IsReady}" Value="True" />
                         </controls:ColumnBackgroundCondition.Conditions>
@@ -49,17 +55,17 @@
             
             <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayString">
                 <controls:LeibitDataGridColumn.BackgroundConditions>
-                    <controls:ColumnBackgroundCondition BackgroundColor="{DynamicResource DelayBlue}">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayBlue, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding Delay, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
                         </controls:ColumnBackgroundCondition.Conditions>
                     </controls:ColumnBackgroundCondition>
-                    <controls:ColumnBackgroundCondition BackgroundColor="{DynamicResource DelayYellow}">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayYellow, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
                         </controls:ColumnBackgroundCondition.Conditions>
                     </controls:ColumnBackgroundCondition>
-                    <controls:ColumnBackgroundCondition BackgroundColor="{DynamicResource DelayRed}">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayRed, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
                         </controls:ColumnBackgroundCondition.Conditions>
