@@ -503,6 +503,19 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
         #endregion
 
+        #region - Internal methods -
+
+        #region [SkinChanged]
+        internal void SkinChanged()
+        {
+            OnPropertyChanged(nameof(ArrivalColor));
+            OnPropertyChanged(nameof(DepartureColor));
+            OnPropertyChanged(nameof(TextColor));
+        }
+        #endregion
+
+        #endregion
+
         #region - Private methods -
 
         #region [__JustifyDelay]

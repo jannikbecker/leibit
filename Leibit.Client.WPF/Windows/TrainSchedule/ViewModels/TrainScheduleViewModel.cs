@@ -30,6 +30,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         private CalculationBLL m_CalculationBll;
         private SettingsBLL m_SettingsBll;
         private TrainInformation m_LiveTrain;
+        private eSkin? m_Skin;
         #endregion
 
         #region - Ctor -
@@ -349,6 +350,12 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
             var RemovedItems = Stations.Except(CurrentSchedules).ToList();
             Dispatcher.Invoke(() => RemovedItems.ForEach(s => Stations.Remove(s)));
+
+            if (Settings.Skin != m_Skin)
+            {
+                m_Skin = Settings.Skin;
+                Stations.ForEach(s => s.SkinChanged());
+            }
         }
         #endregion
 
