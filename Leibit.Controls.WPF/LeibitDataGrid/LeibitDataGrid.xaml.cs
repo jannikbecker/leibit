@@ -321,6 +321,106 @@ namespace Leibit.Controls
         public static readonly DependencyProperty ContextMenuSeparatorBackgroundProperty = DependencyProperty.Register("ContextMenuSeparatorBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(Brushes.Transparent));
         #endregion
 
+        #region [GroupingAreaBackground]
+        public Brush GroupingAreaBackground
+        {
+            get { return (Brush)GetValue(GroupingAreaBackgroundProperty); }
+            set { SetValue(GroupingAreaBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty GroupingAreaBackgroundProperty = DependencyProperty.Register("GroupingAreaBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(Brushes.LightGray));
+        #endregion
+
+        #region [GroupingAreaHover]
+        public Brush GroupingAreaHover
+        {
+            get { return (Brush)GetValue(GroupingAreaHoverProperty); }
+            set { SetValue(GroupingAreaHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty GroupingAreaHoverProperty = DependencyProperty.Register("GroupingAreaHover", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(Brushes.LightBlue));
+        #endregion
+
+        #region [AlternationBackground]
+        public Brush AlternationBackground
+        {
+            get { return (Brush)GetValue(AlternationBackgroundProperty); }
+            set { SetValue(AlternationBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty AlternationBackgroundProperty = DependencyProperty.Register("AlternationBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(238, 238, 238))));
+        #endregion
+
+        #region [RowHover]
+        public Brush RowHover
+        {
+            get { return (Brush)GetValue(RowHoverProperty); }
+            set { SetValue(RowHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty RowHoverProperty = DependencyProperty.Register("RowHover", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromArgb(102, 221, 238, 255))));
+        #endregion
+
+        #region [ColumnHeaderBackground]
+        public Brush ColumnHeaderBackground
+        {
+            get { return (Brush)GetValue(ColumnHeaderBackgroundProperty); }
+            set { SetValue(ColumnHeaderBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderBackgroundProperty = DependencyProperty.Register("ColumnHeaderBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(243, 244, 245))));
+        #endregion
+
+        #region [ColumnHeaderBorder]
+        public Brush ColumnHeaderBorder
+        {
+            get { return (Brush)GetValue(ColumnHeaderBorderProperty); }
+            set { SetValue(ColumnHeaderBorderProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderBorderProperty = DependencyProperty.Register("ColumnHeaderBorder", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(213, 213, 213))));
+        #endregion
+
+        #region [ColumnHeaderHoverBackground]
+        public Brush ColumnHeaderHoverBackground
+        {
+            get { return (Brush)GetValue(ColumnHeaderHoverBackgroundProperty); }
+            set { SetValue(ColumnHeaderHoverBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderHoverBackgroundProperty = DependencyProperty.Register("ColumnHeaderHoverBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(184, 232, 252))));
+        #endregion
+
+        #region [ColumnHeaderHoverBorder]
+        public Brush ColumnHeaderHoverBorder
+        {
+            get { return (Brush)GetValue(ColumnHeaderHoverBorderProperty); }
+            set { SetValue(ColumnHeaderHoverBorderProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderHoverBorderProperty = DependencyProperty.Register("ColumnHeaderHoverBorder", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(147, 201, 227))));
+        #endregion
+
+        #region [ColumnHeaderSortedBackground]
+        public Brush ColumnHeaderSortedBackground
+        {
+            get { return (Brush)GetValue(ColumnHeaderSortedBackgroundProperty); }
+            set { SetValue(ColumnHeaderSortedBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderSortedBackgroundProperty = DependencyProperty.Register("ColumnHeaderSortedBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(219, 238, 247))));
+        #endregion
+
+        #region [ColumnHeaderSortedBorder]
+        public Brush ColumnHeaderSortedBorder
+        {
+            get { return (Brush)GetValue(ColumnHeaderSortedBorderProperty); }
+            set { SetValue(ColumnHeaderSortedBorderProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderSortedBorderProperty = DependencyProperty.Register("ColumnHeaderSortedBorder", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(150, 217, 249))));
+        #endregion
+
         #endregion
 
         #region - Private methods -

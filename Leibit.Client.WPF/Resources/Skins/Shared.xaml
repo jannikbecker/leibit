@@ -31,6 +31,22 @@
         <Setter Property="ButtonStyle" Value="{DynamicResource ImageButtonStyle}"/>
     </Style>
 
+    <Style TargetType="controls:LeibitDataGrid">
+        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource DataGridBorder}"/>
+        <Setter Property="GroupingAreaBackground" Value="{DynamicResource DataGridGroupingAreaBackground}"/>
+        <Setter Property="GroupingAreaHover" Value="{DynamicResource DataGridGroupingAreaHover}"/>
+        <Setter Property="AlternationBackground" Value="{DynamicResource DataGridAlternationBackground}"/>
+        <Setter Property="RowHover" Value="{DynamicResource DataGridRowHover}"/>
+        <Setter Property="ColumnHeaderBackground" Value="{DynamicResource DataGridColumnHeaderBackground}"/>
+        <Setter Property="ColumnHeaderBorder" Value="{DynamicResource DataGridColumnHeaderBorder}"/>
+        <Setter Property="ColumnHeaderHoverBackground" Value="{DynamicResource DataGridColumnHeaderHoverBackground}"/>
+        <Setter Property="ColumnHeaderHoverBorder" Value="{DynamicResource DataGridColumnHeaderHoverBorder}"/>
+        <Setter Property="ColumnHeaderSortedBackground" Value="{DynamicResource DataGridColumnHeaderSortedBackground}"/>
+        <Setter Property="ColumnHeaderSortedBorder" Value="{DynamicResource DataGridColumnHeaderSortedBorder}"/>
+    </Style>
+    
     <Style TargetType="xctk:MessageBox">
         <Setter Property="YesButtonContent" Value="Ja" />
         <Setter Property="NoButtonContent" Value="Nein" />

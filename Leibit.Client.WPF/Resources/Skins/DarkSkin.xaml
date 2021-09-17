@@ -23,7 +23,6 @@
     <SolidColorBrush x:Key="StatusBarBackground" Color="#333"/>
 
     <!-- DataGrid -->
-    <Color x:Key="DataGridRowHighlightColor">#6def</Color>
     <SolidColorBrush x:Key="DataGridBorder" Color="#678"/>
     <SolidColorBrush x:Key="DataGridColumnHeaderBorder" Color="#666"/>
     <SolidColorBrush x:Key="DataGridColumnHeaderBackground" Color="#222"/>
@@ -32,7 +31,7 @@
     <SolidColorBrush x:Key="DataGridColumnHeaderHoverBorder" Color="#678"/>
     <SolidColorBrush x:Key="DataGridColumnHeaderHoverBackground" Color="#456"/>
     <SolidColorBrush x:Key="DataGridAlternationBackground" Color="#333"/>
-    <SolidColorBrush x:Key="DataGridRowHover" Color="{StaticResource DataGridRowHighlightColor}"/>
+    <SolidColorBrush x:Key="DataGridRowHover" Color="#6def"/>
     <SolidColorBrush x:Key="DataGridGroupingAreaBackground" Color="#444"/>
     <SolidColorBrush x:Key="DataGridGroupingAreaHover" Color="#678"/>
 
