@@ -4,11 +4,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="clr-namespace:Leibit.Controls">
 
-    <Border BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="1" Background="{DynamicResource SubMenuBackground}" DataContext="{Binding ElementName=me}">
+    <Border BorderBrush="{Binding BorderBrush, ElementName=me}" BorderThickness="1" Background="{Binding Background, ElementName=me}" DataContext="{Binding ElementName=me}">
         <ItemsControl ItemsSource="{Binding ItemsSource}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Style="{DynamicResource SimpleMenuButtonStyle}" Padding="5,2,5,2" Command="{Binding Command, ElementName=me}" HorizontalContentAlignment="Left" Loaded="__MenuButton_Loaded" />
+                    <Button Style="{Binding ButtonStyle, ElementName=me}" Padding="5,2,5,2" Command="{Binding Command, ElementName=me}" HorizontalContentAlignment="Left" Loaded="__MenuButton_Loaded" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

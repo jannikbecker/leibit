@@ -315,7 +315,7 @@
                 <ControlTemplate TargetType="ContextMenu">
                     <Border Background="{TemplateBinding Background}" BorderBrush="#888" BorderThickness="1" SnapsToDevicePixels="True">
                         <Grid>
-                            <Rectangle Fill="{DynamicResource MenuSeparatorColor}" Width="1" Margin="29,2,0,2" HorizontalAlignment="Left"/>
+                            <Rectangle Fill="{StaticResource MenuSeparatorColor}" Width="1" Margin="29,2,0,2" HorizontalAlignment="Left"/>
                             <ItemsPresenter />
                         </Grid>
                     </Border>
@@ -334,7 +334,7 @@
                        PopupAnimation="Slide"
                        Placement="Bottom"
                        PlacementTarget="{Binding ElementName=layoutRoot}">
-                    <Border Background="{StaticResource SubMenuBackground}" BorderBrush="{DynamicResource SubMenuBorder}" BorderThickness="1" SnapsToDevicePixels="True">
+                    <Border Background="{StaticResource SubMenuBackground}" BorderBrush="{StaticResource SubMenuBorder}" BorderThickness="1" SnapsToDevicePixels="True">
                         <Grid>
                             <Rectangle HorizontalAlignment="Left"
                                            Width="1"
@@ -399,7 +399,7 @@
                        PopupAnimation="Slide"
                        Placement="Right"
                        PlacementTarget="{Binding ElementName=layoutRoot}">
-                    <Border Background="{StaticResource SubMenuBackground}" BorderBrush="{DynamicResource SubMenuBorder}" BorderThickness="1" SnapsToDevicePixels="True">
+                    <Border Background="{StaticResource SubMenuBackground}" BorderBrush="{StaticResource SubMenuBorder}" BorderThickness="1" SnapsToDevicePixels="True">
                         <Grid>
                             <Rectangle HorizontalAlignment="Left"
                                            Width="1"

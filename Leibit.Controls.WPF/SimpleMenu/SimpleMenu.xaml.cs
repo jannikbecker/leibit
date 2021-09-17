@@ -24,6 +24,7 @@ namespace Leibit.Controls
         public static readonly DependencyProperty ValueMemberPathProperty = DependencyProperty.Register("ValueMemberPath", typeof(string), typeof(SimpleMenu), new PropertyMetadata(null));
         public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(SimpleMenu), new PropertyMetadata(null));
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(SimpleMenu), new PropertyMetadata(null));
+        public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register("ButtonStyle", typeof(Style), typeof(SimpleMenu), new PropertyMetadata(null));
         #endregion
 
         #region - Properties -
@@ -57,6 +58,14 @@ namespace Leibit.Controls
         {
             get { return (IEnumerable)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
+        }
+        #endregion
+
+        #region [ButtonStyle]
+        public Style ButtonStyle
+        {
+            get { return (Style)GetValue(ButtonStyleProperty); }
+            set { SetValue(ButtonStyleProperty, value); }
         }
         #endregion
 

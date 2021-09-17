@@ -21,6 +21,12 @@
         <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
     </Style>
 
+    <Style TargetType="controls:SimpleMenu">
+        <Setter Property="Background" Value="{DynamicResource SubMenuBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource SubMenuBorder}"/>
+        <Setter Property="ButtonStyle" Value="{DynamicResource SimpleMenuButtonStyle}"/>
+    </Style>
+
     <Style TargetType="xctk:MessageBox">
         <Setter Property="YesButtonContent" Value="Ja" />
         <Setter Property="NoButtonContent" Value="Nein" />
