@@ -311,6 +311,16 @@ namespace Leibit.Controls
         public static readonly DependencyProperty ContextMenuItemsProperty = ContextMenuItemsPropertyKey.DependencyProperty;
         #endregion
 
+        #region [ContextMenuSeparatorBackground]
+        public Brush ContextMenuSeparatorBackground
+        {
+            get { return (Brush)GetValue(ContextMenuSeparatorBackgroundProperty); }
+            set { SetValue(ContextMenuSeparatorBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContextMenuSeparatorBackgroundProperty = DependencyProperty.Register("ContextMenuSeparatorBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(Brushes.Transparent));
+        #endregion
+
         #endregion
 
         #region - Private methods -
@@ -780,7 +790,13 @@ namespace Leibit.Controls
                 ContextMenu.Items.Add(item);
 
             if (!ContextMenu.Items.IsEmpty)
-                ContextMenu.Items.Add(new Separator());
+            {
+                var separator = new Separator();
+                var binding = new Binding(nameof(ContextMenuSeparatorBackground));
+                binding.Source = this;
+                separator.SetBinding(BackgroundProperty, binding);
+                ContextMenu.Items.Add(separator);
+            }
 
             var printItem = new MenuItem();
             printItem.Header = "Drucken";

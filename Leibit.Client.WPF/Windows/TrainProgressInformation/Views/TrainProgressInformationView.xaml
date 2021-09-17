@@ -29,18 +29,19 @@
                              LayoutKey="ZFI2.0"
                              SaveLayout="{Binding SaveGridLayout,Mode=TwoWay}"
                              Refresh="{Binding RefreshGrid, Mode=TwoWay}"
-                             RowDoubleClickCommand="{Binding DoubleClickCommand}">
+                             RowDoubleClickCommand="{Binding DoubleClickCommand}"
+                             ContextMenuSeparatorBackground="{DynamicResource MenuSeparatorColor}">
 
         <controls:LeibitDataGrid.ContextMenuItems>
             <MenuItem Header="Neu" Command="{Binding NewCommand}"/>
             <MenuItem Header="Löschen" Command="{Binding DeleteCommand}"/>
-            <Separator/>
+            <Separator Background="{DynamicResource MenuSeparatorColor}"/>
             <MenuItem Header="Vsl. Verspätung" Command="{Binding EnterExpectedDelayCommand}"/>
             <MenuItem Header="Gleiswechsel" Command="{Binding ShowTrackChangeCommand}"/>
-            <Separator/>
+            <Separator Background="{DynamicResource MenuSeparatorColor}"/>
             <MenuItem Header="Zugstatus neu" Command="{Binding NewTrainStateCommand}"/>
             <MenuItem Header="Zugstatus eingeben" Command="{Binding EnterTrainStateCommand}"/>
-            <Separator/>
+            <Separator Background="{DynamicResource MenuSeparatorColor}"/>
             <MenuItem Header="Zuglaufdaten" Command="{Binding ShowTrainScheduleCommand}"/>
             <MenuItem Header="Örtliche Anweisungen" Command="{Binding ShowLocalOrdersCommand}"/>
             <MenuItem Header="Zugbildung" Command="{Binding ShowTrainCompositionCommand}"/>

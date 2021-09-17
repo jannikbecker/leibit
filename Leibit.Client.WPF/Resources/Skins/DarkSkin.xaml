@@ -13,8 +13,12 @@
     <SolidColorBrush x:Key="MainViewBackground" Color="#222"/>
     <SolidColorBrush x:Key="MenuForeground" Color="#eee"/>
     <SolidColorBrush x:Key="MenuBackground" Color="#444"/>
+    <SolidColorBrush x:Key="SubMenuBorder" Color="#888"/>
     <SolidColorBrush x:Key="SubMenuBackground" Color="#111"/>
     <SolidColorBrush x:Key="ToolbarBackground" Color="#444"/>
+    <SolidColorBrush x:Key="MenuHighlightBackground" Color="#666"/>
+    <SolidColorBrush x:Key="SubMenuHighlightBackground" Color="#444"/>
+    <SolidColorBrush x:Key="MenuSeparatorColor" Color="#333"/>
     <SolidColorBrush x:Key="StatusBarForeground" Color="#eee"/>
     <SolidColorBrush x:Key="StatusBarBackground" Color="#333"/>
 
@@ -91,7 +95,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#333"/>
+                <Setter Property="Background" Value="{StaticResource SubMenuHighlightBackground}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -265,7 +269,7 @@
                 </Setter>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#666"/>
+                <Setter Property="Background" Value="{StaticResource MenuHighlightBackground}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -311,13 +315,126 @@
                 <ControlTemplate TargetType="ContextMenu">
                     <Border Background="{TemplateBinding Background}" BorderBrush="#888" BorderThickness="1" SnapsToDevicePixels="True">
                         <Grid>
-                            <Rectangle Fill="#888" Width="1" Margin="29,2,0,2" HorizontalAlignment="Left"/>
+                            <Rectangle Fill="{DynamicResource MenuSeparatorColor}" Width="1" Margin="29,2,0,2" HorizontalAlignment="Left"/>
                             <ItemsPresenter />
                         </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <!-- MenuItem -->
+    <ControlTemplate x:Key="TopMenuItemTemplate" TargetType="MenuItem">
+        <Border x:Name="layoutRoot" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1">
+            <Grid>
+                <ContentPresenter ContentSource="Header" Margin="{TemplateBinding Padding}"/>
+
+                <Popup IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                       PopupAnimation="Slide"
+                       Placement="Bottom"
+                       PlacementTarget="{Binding ElementName=layoutRoot}">
+                    <Border Background="{StaticResource SubMenuBackground}" BorderBrush="{DynamicResource SubMenuBorder}" BorderThickness="1" SnapsToDevicePixels="True">
+                        <Grid>
+                            <Rectangle HorizontalAlignment="Left"
+                                           Width="1"
+                                           Margin="29,2,0,2"
+                                           Fill="{StaticResource MenuSeparatorColor}"/>
+                            <ItemsPresenter/>
+                        </Grid>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource MenuHighlightBackground}"/>
+            </Trigger>
+            <Trigger Property="IsSubmenuOpen" Value="True">
+                <Setter Property="Background" Value="{StaticResource SubMenuBackground}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="SubMenuItemTemplate" TargetType="MenuItem">
+        <Border x:Name="layoutRoot" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="Transparent">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="22"/>
+                    <ColumnDefinition Width="13"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+
+                <ContentPresenter x:Name="Icon"
+                                  ContentSource="Icon"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  Width="16"
+                                  Height="16"
+                                  Margin="3"/>
+
+                <ContentPresenter x:Name="menuHeaderContainer"
+                    Grid.Column="2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    ContentSource="Header"
+                    RecognizesAccessKey="True"
+                    Margin="{TemplateBinding MenuItem.Padding}"
+                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+
+                <Path x:Name="RightArrow"
+                      Grid.Column="4"
+                      Data="M 0,0 L 4,3.5 L 0,7 Z"
+                      Margin="10,0,0,0"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Left"
+                      Visibility="Collapsed"
+                      Fill="#ddd" />
+
+                <Popup IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                       PopupAnimation="Slide"
+                       Placement="Right"
+                       PlacementTarget="{Binding ElementName=layoutRoot}">
+                    <Border Background="{StaticResource SubMenuBackground}" BorderBrush="{DynamicResource SubMenuBorder}" BorderThickness="1" SnapsToDevicePixels="True">
+                        <Grid>
+                            <Rectangle HorizontalAlignment="Left"
+                                           Width="1"
+                                           Margin="29,2,0,2"
+                                           Fill="{StaticResource MenuSeparatorColor}"/>
+                            
+                            <ItemsPresenter/>
+                        </Grid>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource SubMenuHighlightBackground}"/>
+                <Setter TargetName="RightArrow" Property="Fill" Value="Blue"/>
+            </Trigger>
+            <Trigger Property="Role" Value="SubmenuHeader">
+                <Setter TargetName="RightArrow" Property="Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#888"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="MenuItem">
+        <Setter Property="Template" Value="{StaticResource SubMenuItemTemplate}"/>
+
+        <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter Property="Template" Value="{StaticResource TopMenuItemTemplate}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <!-- Images -->

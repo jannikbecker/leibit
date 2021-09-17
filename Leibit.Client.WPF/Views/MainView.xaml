@@ -29,10 +29,11 @@
         </Grid.RowDefinitions>
 
         <Menu IsMainMenu="True" Grid.Row="0" Foreground="{DynamicResource MenuForeground}" Background="{DynamicResource MenuBackground}">
-            <controls:LeibitMenuItem Header="Datei">
-                <controls:LeibitMenuItem Header="Neu" ItemsSource="{Binding Areas}" DisplayMemberPath="Name">
+            <MenuItem Header="Datei">
+                <MenuItem Header="Neu" ItemsSource="{Binding Areas}" DisplayMemberPath="Name">
                     <MenuItem.ItemContainerStyle>
                         <Style TargetType="MenuItem">
+                            <Setter Property="Template" Value="{DynamicResource SubMenuItemTemplate}"/>
                             <Setter Property="Command" Value="{Binding DataContext.NewCommand, ElementName=LayoutRoot}" />
                             <Setter Property="CommandParameter" Value="{Binding Id}" />
                         </Style>
@@ -40,7 +41,7 @@
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgNew}" />
                     </MenuItem.Icon>
-                </controls:LeibitMenuItem>
+                </MenuItem>
 
                 <MenuItem Header="Öffnen..." Command="{Binding OpenCommand}">
                     <MenuItem.Icon>
@@ -56,7 +57,7 @@
 
                 <MenuItem Header="Speichern unter..." Command="{Binding SaveAsCommand}" />
 
-                <Separator />
+                <Separator Background="{DynamicResource MenuSeparatorColor}"/>
 
                 <MenuItem Header="Einstellungen..." Command="{Binding SettingsCommand}">
                     <MenuItem.Icon>
@@ -70,16 +71,16 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <Separator />
+                <Separator Background="{DynamicResource MenuSeparatorColor}" />
 
                 <MenuItem Header="Beenden" Command="{Binding ExitCommand}">
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgClose}" />
                     </MenuItem.Icon>
                 </MenuItem>
-            </controls:LeibitMenuItem>
+            </MenuItem>
 
-            <controls:LeibitMenuItem Header="Fenster">
+            <MenuItem Header="Fenster">
                 <MenuItem Header="Aufschaltbereich" Command="{Binding EstwSelectionCommand}">
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgSelect}" />
@@ -92,9 +93,10 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <controls:LeibitMenuItem Header="Bahnhofsfahrordnung (BFO)" ItemsSource="{Binding Stations}" DisplayMemberPath="Name" IsEnabled="{Binding IsTimeTableEnabled}">
+                <MenuItem Header="Bahnhofsfahrordnung (BFO)" ItemsSource="{Binding Stations}" DisplayMemberPath="Name" IsEnabled="{Binding IsTimeTableEnabled}">
                     <MenuItem.ItemContainerStyle>
                         <Style TargetType="MenuItem">
+                            <Setter Property="Template" Value="{DynamicResource SubMenuItemTemplate}"/>
                             <Setter Property="Command" Value="{Binding DataContext.TimeTableCommand, ElementName=LayoutRoot}" />
                             <Setter Property="CommandParameter" Value="{Binding}" />
                         </Style>
@@ -102,7 +104,7 @@
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgBfo}" />
                     </MenuItem.Icon>
-                </controls:LeibitMenuItem>
+                </MenuItem>
 
                 <MenuItem Header="Systemstatus" Command="{Binding SystemStateCommand}">
                     <MenuItem.Icon>
@@ -110,7 +112,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <Separator />
+                <Separator Background="{DynamicResource MenuSeparatorColor}" />
 
                 <MenuItem Header="Layout speichern" Command="{Binding SaveLayoutCommand}">
                     <MenuItem.Icon>
@@ -123,9 +125,9 @@
                         <Image Source="{DynamicResource imgClear}" />
                     </MenuItem.Icon>
                 </MenuItem>
-            </controls:LeibitMenuItem>
+            </MenuItem>
 
-            <controls:LeibitMenuItem Header="Hilfe">
+            <MenuItem Header="Hilfe">
                 <MenuItem Header="Bedienungsanleitung öffnen" Command="{Binding ShowHelpCommand}">
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgHelp}" />
@@ -138,14 +140,14 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <Separator/>
+                <Separator Background="{DynamicResource MenuSeparatorColor}"/>
 
                 <MenuItem Header="Über LeiBIT" Command="{Binding AboutCommand}">
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgInfo}" />
                     </MenuItem.Icon>
                 </MenuItem>
-            </controls:LeibitMenuItem>
+            </MenuItem>
         </Menu>
 
         <ToolBarPanel Grid.Row="1" Background="{DynamicResource ToolbarBackground}">

@@ -14,6 +14,7 @@
     <SolidColorBrush x:Key="MenuBackground" Color="#eee"/>
     <SolidColorBrush x:Key="SubMenuBackground" Color="#eee"/>
     <SolidColorBrush x:Key="ToolbarBackground" Color="#eee"/>
+    <SolidColorBrush x:Key="MenuSeparatorColor" Color="#d7d7d7"/>
     <SolidColorBrush x:Key="StatusBarForeground" Color="#111"/>
     <SolidColorBrush x:Key="StatusBarBackground" Color="#eee"/>
 
@@ -114,6 +115,9 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    <!-- MenuItem -->
+    <!--<Style x:Key="MenuItemStyle" TargetType="MenuItem"/>-->
 
     <!-- Images -->
     <BitmapImage x:Key="imgNew" UriSource="/Leibit;component/Resources/Images/Light/new.png" />
