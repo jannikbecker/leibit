@@ -638,6 +638,7 @@ namespace Leibit.Controls
 
                 var rowGroup = new TableRowGroup();
                 var headerRow = new TableRow();
+                headerRow.Foreground = Foreground;
 
                 foreach (var column in dataGrid.Columns.OrderBy(c => c.DisplayIndex))
                 {
@@ -647,10 +648,10 @@ namespace Leibit.Controls
 
                     var cell = new TableCell();
                     cell.Blocks.Add(new Paragraph(new Run(column.Header.ToString())));
-                    cell.Background = Brushes.LightGray;
+                    cell.Background = ColumnHeaderBackground;
                     cell.FontWeight = FontWeights.Bold;
                     cell.Padding = new Thickness(2, 5, 2, 5);
-                    cell.BorderBrush = Brushes.White;
+                    cell.BorderBrush = ColumnHeaderBorder;
                     cell.BorderThickness = new Thickness(1, 0, 1, 0);
                     headerRow.Cells.Add(cell);
                 }
@@ -703,7 +704,7 @@ namespace Leibit.Controls
                                 try
                                 {
                                     var actualValue = (condition.Binding as Binding)?.Eval(item);
-                                    var expectedValue = Convert.ChangeType(condition.Value, actualValue.GetType());
+                                    var expectedValue = actualValue == null ? condition.Value : Convert.ChangeType(condition.Value, actualValue.GetType());
 
                                     if (expectedValue != null)
                                         matches &= expectedValue.Equals(actualValue);
@@ -742,7 +743,9 @@ namespace Leibit.Controls
                             if (i == 0)
                             {
                                 groupHeaderCell.BorderThickness = new Thickness(0, 1, 0, 0);
-                                groupHeaderCell.BorderBrush = Brushes.Black;
+                                groupHeaderCell.BorderBrush = Foreground;
+                                groupHeaderCell.Foreground = Foreground;
+                                groupHeaderCell.Background = Background;
                             }
                             else
                             {
@@ -760,8 +763,11 @@ namespace Leibit.Controls
                     }
 
                     if (isOdd)
-                        row.Background = new SolidColorBrush(Color.FromRgb(0xee, 0xee, 0xee));
+                        row.Background = AlternationBackground;
+                    else
+                        row.Background = Background;
 
+                    row.Foreground = Foreground;
                     previousGroupValues = groupValues;
                     rowGroup.Rows.Add(row);
                     isOdd ^= true;
