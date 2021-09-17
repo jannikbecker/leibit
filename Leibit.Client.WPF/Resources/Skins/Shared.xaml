@@ -27,6 +27,10 @@
         <Setter Property="ButtonStyle" Value="{DynamicResource SimpleMenuButtonStyle}"/>
     </Style>
 
+    <Style TargetType="controls:ImageButton">
+        <Setter Property="ButtonStyle" Value="{DynamicResource ImageButtonStyle}"/>
+    </Style>
+
     <Style TargetType="xctk:MessageBox">
         <Setter Property="YesButtonContent" Value="Ja" />
         <Setter Property="NoButtonContent" Value="Nein" />

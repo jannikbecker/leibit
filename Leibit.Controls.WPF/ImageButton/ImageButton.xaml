@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Grid DataContext="{Binding ElementName=me}">
-        <Button Style="{DynamicResource ImageButtonStyle}" Command="{Binding Command}" CommandParameter="{Binding CommandParameter}">
+        <Button Style="{Binding ButtonStyle}" Command="{Binding Command}" CommandParameter="{Binding CommandParameter}">
             <Image Source="{Binding Image}" RenderOptions.BitmapScalingMode="NearestNeighbor" RenderOptions.EdgeMode="Aliased">
                 <Image.Style>
                     <Style TargetType="Image">
