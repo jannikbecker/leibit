@@ -152,7 +152,13 @@
 
         <ToolBarPanel Grid.Row="1" Background="{DynamicResource ToolbarBackground}">
             <ToolBar Background="{DynamicResource ToolbarBackground}">
-                <controls:DropDownButton Image="{DynamicResource imgNew}" IsDropDownOpen="{Binding IsNewDropDownOpen, Mode=TwoWay}" Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}" ToolTipService.ToolTip="Neu">
+                <controls:DropDownButton Image="{DynamicResource imgNew}"
+                                         IsDropDownOpen="{Binding IsNewDropDownOpen, Mode=TwoWay}"
+                                         Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
+                                         ButtonStyle="{DynamicResource DropDownButtonStyle}"
+                                         ArrowStyle="{DynamicResource DropDownButtonArrowStyle}"
+                                         ArrowFill="{DynamicResource DropDownArrowFill}"
+                                         ToolTipService.ToolTip="Neu">
                     <controls:DropDownButton.DropDownContent>
                         <controls:SimpleMenu ItemsSource="{Binding Data.Areas, Source={StaticResource proxy}}" DisplayMemberPath="Name" Command="{Binding Data.NewCommand, Source={StaticResource proxy}}" ValueMemberPath="Id" />
                     </controls:DropDownButton.DropDownContent>
@@ -167,20 +173,26 @@
                 <controls:ImageButton Image="{DynamicResource imgZfi}" Command="{Binding TrainProgressInformationCommand}" ToolTipService.ToolTip="Zugfahrtinformation (ZFI)"/>
 
                 <controls:DropDownButton Image="{DynamicResource imgBfo}"
-                                     IsDropDownOpen="{Binding IsTimeTableDropDownOpen, Mode=TwoWay}"
-                                     IsEnabled="{Binding IsTimeTableEnabled}"
-                                     Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
-                                     ToolTipService.ToolTip="Bahnhofsfahrordnung (BFO)">
+                                         IsDropDownOpen="{Binding IsTimeTableDropDownOpen, Mode=TwoWay}"
+                                         IsEnabled="{Binding IsTimeTableEnabled}"
+                                         Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
+                                         ButtonStyle="{DynamicResource DropDownButtonStyle}"
+                                         ArrowStyle="{DynamicResource DropDownButtonArrowStyle}"
+                                         ArrowFill="{DynamicResource DropDownArrowFill}"
+                                         ToolTipService.ToolTip="Bahnhofsfahrordnung (BFO)">
                     <controls:DropDownButton.DropDownContent>
                         <controls:SimpleMenu ItemsSource="{Binding Data.Stations, Source={StaticResource proxy}}" DisplayMemberPath="Name" Command="{Binding Data.TimeTableCommand, Source={StaticResource proxy}}" />
                     </controls:DropDownButton.DropDownContent>
                 </controls:DropDownButton>
 
                 <controls:DropDownButton Image="{DynamicResource imgTrainSchedule}"
-                                     IsDropDownOpen="{Binding IsTrainScheduleDropDownOpen, Mode=TwoWay}"
-                                     IsEnabled="{Binding IsTrainScheduleEnabled}"
-                                     Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
-                                     ToolTipService.ToolTip="Zuglauf">
+                                         IsDropDownOpen="{Binding IsTrainScheduleDropDownOpen, Mode=TwoWay}"
+                                         IsEnabled="{Binding IsTrainScheduleEnabled}"
+                                         Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
+                                         ButtonStyle="{DynamicResource DropDownButtonStyle}"
+                                         ArrowStyle="{DynamicResource DropDownButtonArrowStyle}"
+                                         ArrowFill="{DynamicResource DropDownArrowFill}"
+                                         ToolTipService.ToolTip="Zuglauf">
                     <controls:DropDownButton.DropDownContent>
                         <Border BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="1" Background="{DynamicResource SubMenuBackground}" Padding="5">
                             <StackPanel Orientation="Vertical">
