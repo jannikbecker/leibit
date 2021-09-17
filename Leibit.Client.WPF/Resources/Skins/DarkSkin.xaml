@@ -4,16 +4,14 @@
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <!-- Common-->
-    <Color x:Key="TextForegroundColor">White</Color>
-    <Color x:Key="WindowBackgroundColor">#111</Color>
-    <SolidColorBrush x:Key="TextForeground" Color="{StaticResource TextForegroundColor}"/>
-    <SolidColorBrush x:Key="WindowBackground" Color="{StaticResource WindowBackgroundColor}"/>
+    <SolidColorBrush x:Key="TextForeground" Color="White"/>
+    <SolidColorBrush x:Key="WindowBackground" Color="#111"/>
 
     <!-- Main View -->
     <SolidColorBrush x:Key="MainViewBackground" Color="#222"/>
     <SolidColorBrush x:Key="MenuForeground" Color="#eee"/>
     <SolidColorBrush x:Key="MenuBackground" Color="#444"/>
-    <SolidColorBrush x:Key="SubMenuBorder" Color="#888"/>
+    <SolidColorBrush x:Key="SubMenuBorder" Color="#333"/>
     <SolidColorBrush x:Key="SubMenuBackground" Color="#111"/>
     <SolidColorBrush x:Key="ToolbarBackground" Color="#444"/>
     <SolidColorBrush x:Key="MenuHighlightBackground" Color="#666"/>
@@ -312,7 +310,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContextMenu">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="#888" BorderThickness="1" SnapsToDevicePixels="True">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{StaticResource SubMenuBorder}" BorderThickness="1" SnapsToDevicePixels="True">
                         <Grid>
                             <Rectangle Fill="{StaticResource MenuSeparatorColor}" Width="1" Margin="29,2,0,2" HorizontalAlignment="Left"/>
                             <ItemsPresenter />

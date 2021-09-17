@@ -3,10 +3,8 @@
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <!-- Common-->
-    <Color x:Key="TextForegroundColor">Black</Color>
-    <Color x:Key="WindowBackgroundColor">White</Color>
-    <SolidColorBrush x:Key="TextForeground" Color="{StaticResource TextForegroundColor}"/>
-    <SolidColorBrush x:Key="WindowBackground" Color="{StaticResource WindowBackgroundColor}"/>
+    <SolidColorBrush x:Key="TextForeground" Color="Black"/>
+    <SolidColorBrush x:Key="WindowBackground" Color="White"/>
 
     <!-- Main View -->
     <SolidColorBrush x:Key="MainViewBackground" Color="White"/>
