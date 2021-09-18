@@ -39,10 +39,10 @@
   </station>
 
   <station name="Seifen" short="MSEI" refNr="51" scheduleFile="b51_____.abf" localOrderFile="bf51____.abf">
-    <track name="101">
+    <track name="101" displayName="1">
       <block name="51G101"/>
     </track>
-    <track name="102">
+    <track name="102" displayName="2">
       <block name="51G102"/>
     </track>
   </station>
