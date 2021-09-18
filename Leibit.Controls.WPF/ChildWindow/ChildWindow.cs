@@ -2,14 +2,22 @@
 using Leibit.Core.Client.BaseClasses;
 using Leibit.Core.Client.Commands;
 using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Leibit.Controls
 {
-    public class ChildWindow : Xceed.Wpf.Toolkit.ChildWindow
+    public class ChildWindow : Xceed.Wpf.Toolkit.ChildWindow, INotifyPropertyChanged
     {
+
+        #region - Needs -
+        private SettingsBLL m_SettingsBll;
+        private int? m_WindowColor;
+        private Brush m_CaptionForegroundColor;
+        #endregion
 
         #region - Ctor -
         public ChildWindow(string Identifier)
@@ -24,24 +32,13 @@ namespace Leibit.Controls
             Closed += __Closed;
             WindowState = Xceed.Wpf.Toolkit.WindowState.Open;
 
-            var SettingsBll = new SettingsBLL();
-            var SettingsResult = SettingsBll.GetSettings();
-
-            if (SettingsResult.Succeeded)
-            {
-                WindowColor = SettingsResult.Result.WindowColor;
-                CaptionForeground = Brushes.Black;
-
-                if (WindowColor.HasValue)
-                {
-                    var Bytes = BitConverter.GetBytes(WindowColor.Value);
-
-                    if (Bytes.Length == 4)
-                        CaptionForeground = (Bytes[2] + Bytes[1] + Bytes[0]) / 3 > 128 ? Brushes.Black : new SolidColorBrush(Color.FromRgb(225, 225, 225));
-                }
-
-            }
+            m_SettingsBll = new SettingsBLL();
+            SetWindowColor();
         }
+        #endregion
+
+        #region - Events -
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region - Properties -
@@ -73,13 +70,25 @@ namespace Leibit.Controls
         #region [WindowColor]
         public int? WindowColor
         {
-            get;
-            private set;
+            get => m_WindowColor;
+            private set
+            {
+                m_WindowColor = value;
+                __OnPropertyChanged();
+            }
         }
         #endregion
 
         #region [CaptionForegroundColor]
-        public Brush CaptionForegroundColor { get; private set; }
+        public Brush CaptionForegroundColor
+        {
+            get => m_CaptionForegroundColor;
+            private set
+            {
+                m_CaptionForegroundColor = value;
+                __OnPropertyChanged();
+            }
+        }
         #endregion
 
         #region [ResizeMode]
@@ -114,7 +123,35 @@ namespace Leibit.Controls
         public static readonly DependencyProperty PositionYProperty = DependencyProperty.Register("PositionY", typeof(double), typeof(ChildWindow), new PropertyMetadata(0.0));
         #endregion
 
+        #region [SetWindowColor]
+        public void SetWindowColor()
+        {
+            var settingsResult = m_SettingsBll.GetSettings();
+
+            if (settingsResult.Succeeded)
+            {
+                WindowColor = settingsResult.Result.WindowColor;
+                CaptionForeground = Brushes.Black;
+
+                if (WindowColor.HasValue)
+                {
+                    var Bytes = BitConverter.GetBytes(WindowColor.Value);
+
+                    if (Bytes.Length == 4)
+                        CaptionForeground = (Bytes[2] + Bytes[1] + Bytes[0]) / 3 > 128 ? Brushes.Black : new SolidColorBrush(Color.FromRgb(225, 225, 225));
+                }
+            }
+        }
+        #endregion
+
         #region - Private methods -
+
+        #region [__OnPropertyChanged]
+        private void __OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
 
         #region [__CloseWindow]
         private void __CloseWindow(object sender, EventArgs e)
