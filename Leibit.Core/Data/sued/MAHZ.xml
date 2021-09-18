@@ -8,10 +8,10 @@
   </station>
 
   <station name="Althegnenberg" short="MAHB" refNr="21" scheduleFile="v21_____.abf">
-    <track name="3" calculateDelay="false">
+    <track name="3" calculateDelay="false" displayName="4">
       <block name="21S70"/>
     </track>
-    <track name="4" calculateDelay="false">
+    <track name="4" calculateDelay="false" displayName="3">
       <block name="21S69"/>
     </track>
   </station>
@@ -126,10 +126,10 @@
   </station>
 
   <station name="Augsburg Haunstetterstraße" short="MAHA" refNr="25" scheduleFile="v25_____.abf">
-    <track name="103" calculateDelay="false">
+    <track name="103" calculateDelay="false" displayName="3">
       <block name="25S103"/>
     </track>
-    <track name="104" calculateDelay="false">
+    <track name="104" calculateDelay="false" displayName="4">
       <block name="25S104"/>
     </track>
   </station>
