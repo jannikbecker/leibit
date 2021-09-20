@@ -132,4 +132,5 @@
     <BitmapImage x:Key="imgInfo" UriSource="/Leibit;component/Resources/Images/Light/info.png" />
     <BitmapImage x:Key="imgFlash" UriSource="/Leibit;component/Resources/Images/Light/flash.png" />
     <BitmapImage x:Key="imgSaveLayout" UriSource="/Leibit;component/Resources/Images/Light/save_layout.png" />
+    <BitmapImage x:Key="imgDisplay" UriSource="/Leibit;component/Resources/Images/Light/display.png" />
 </ResourceDictionary>
