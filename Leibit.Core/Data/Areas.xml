@@ -51,5 +51,6 @@
 
   <area id="nrw" name="Nordrhein-Westfalen">
     <estw id="KKM" name="Köln-Mülheim" dataFile="leibit_KÖLN-MÜLHEIM.dat" infrastructureManager="DB" />
+    <estw id="KSO" name="Solingen" dataFile="leibit_SOLINGEN-OL.dat" infrastructureManager="DB" />
   </area>
 </leibit>
