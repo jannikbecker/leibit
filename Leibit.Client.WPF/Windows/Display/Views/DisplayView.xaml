@@ -9,7 +9,7 @@
                       ResizeMode="NoResize">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:DisplayView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:DisplayView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>
