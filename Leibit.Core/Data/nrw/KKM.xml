@@ -6,7 +6,7 @@
     </track>
   </station>
 
-  <station name="Köln-Dellbrück" short="KKDB" refNr="69" scheduleFile="g69_____.abf">
+  <station name="Köln-Dellbrück" short="KKDB" refNr="69" scheduleFile="g69_____.abf" displayName="K-Dellbrück">
     <track name="431" displayName="1">
       <block name="69G431"/>
     </track>
@@ -18,7 +18,7 @@
     </track>
   </station>
 
-  <station name="Köln-Holweide" short="KKH" refNr="69" scheduleFile="b69_____.abf">
+  <station name="Köln-Holweide" short="KKH" refNr="69" scheduleFile="b69_____.abf" displayName="K-Holweide">
     <track name="414" calculateDelay="false" displayName="2">
       <block name="69B414" direction="right"/>
     </track>
@@ -61,7 +61,7 @@
     </track>
   </station>
 
-  <station name="Leverkusen Bayerwerk Hp Üst" short="KBAY" refNr="73" scheduleFile="b73_____.abf">
+  <station name="Leverkusen Bayerwerk Hp Üst" short="KBAY" refNr="73" scheduleFile="b73_____.abf" displayName="Lev-Chempark">
     <track name="285" calculateDelay="false" displayName="1">
       <block name="76B285" />
     </track>
@@ -70,7 +70,7 @@
     </track>
   </station>
 
-  <station name="Köln-Stammheim" short="KKSH" refNr="74" scheduleFile="b74_____.abf">
+  <station name="Köln-Stammheim" short="KKSH" refNr="74" scheduleFile="b74_____.abf" displayName="K-Stammheim">
     <track name="283" calculateDelay="false" displayName="1"/>
     <track name="688" calculateDelay="false" displayName="2"/>
   </station>
@@ -162,7 +162,7 @@
     </track>
   </station>
 
-  <station name="Köln-Mülheim" short="KKM" refNr="77" scheduleFile="g77_____.abf">
+  <station name="Köln-Mülheim" short="KKM" refNr="77" scheduleFile="g77_____.abf" displayName="K-Mülheim">
     <track name="001" displayName="1">
       <block name="77G001"/>
     </track>
@@ -205,7 +205,7 @@
     </track>
   </station>
 
-  <station name="Köln-Buchforst" short="KKBH" refNr="77" scheduleFile="b77_____.abf">
+  <station name="Köln-Buchforst" short="KKBH" refNr="77" scheduleFile="b77_____.abf" displayName="K-Buchforst">
     <track name="176" calculateDelay="false" displayName="1">
       <block name="80B176"/>
     </track>
@@ -230,7 +230,7 @@
     </track>
   </station>
 
-  <station name="Köln Messe/Deutz (tief)" short="KKDT" refNr="78" scheduleFile="g78_____.abf" localOrderFile="BF78____.ABF">
+  <station name="Köln Messe/Deutz (tief)" short="KKDT" refNr="78" scheduleFile="g78_____.abf" localOrderFile="BF78____.ABF" displayName="Köln Messe/Deutz Gl. 11-12">
     <track name="901" displayName="11">
       <block name="78G901"/>
     </track>

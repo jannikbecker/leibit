@@ -281,6 +281,7 @@ namespace Leibit.BLL
             var StationNumber = node.Attributes["refNr"];
             var ScheduleFile = node.Attributes["scheduleFile"];
             var LocalOrderFile = node.Attributes["localOrderFile"];
+            var DisplayName = node.Attributes["displayName"];
 
             if (StationName == null || StationShort == null || StationNumber == null)
                 return null;
@@ -294,6 +295,9 @@ namespace Leibit.BLL
             string LocalOrders = LocalOrderFile == null ? null : LocalOrderFile.InnerText;
 
             var station = new Station(StationName.InnerText, StationShort.InnerText, number, Schedule, LocalOrders, estw);
+
+            if (DisplayName != null)
+                station.DisplayName = DisplayName.InnerText;
 
             foreach (XmlNode scheduleFileNode in node.SelectNodes("scheduleFile"))
             {
