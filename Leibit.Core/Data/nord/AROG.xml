@@ -40,7 +40,7 @@
     </track>
   </station>
 
-  <station name="Bremen-Oberneuland" short="HBON" refNr="50" scheduleFile="g50_____.abf" localOrderFile="bf50____.abf">
+  <station name="Bremen-Oberneuland" short="HBON" refNr="50" scheduleFile="g50_____.abf" localOrderFile="bf50____.abf" displayName="Brm-Oberneuland">
     <track name="901" displayName="1">
       <block name="50G901"/>
     </track>

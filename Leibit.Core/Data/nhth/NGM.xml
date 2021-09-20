@@ -300,7 +300,7 @@
     </track>
   </station>
 
-  <station name="Wernfeld Hp" short="NWFH" refNr="81" scheduleFile="B81_____.ABF">
+  <station name="Wernfeld Hp" short="NWFH" refNr="81" scheduleFile="B81_____.ABF" displayName="Wernfeld">
     <track name="43" calculateDelay="false" displayName="1">
       <block name="81B43"/>
     </track>

@@ -40,7 +40,7 @@
     </track>
   </station>
 
-  <station name="Burghaun (Kr Hünfeld)" short="FBUH" refNr="14" scheduleFile="G14_____.ABF">
+  <station name="Burghaun (Kr Hünfeld)" short="FBUH" refNr="14" scheduleFile="G14_____.ABF" displayName="Burghaun">
     <track name="951" displayName="1">
       <block name="14G951"/>
     </track>
@@ -148,7 +148,7 @@
     </track>
   </station>
 
-  <station name="Friedlos" short="FFL" refNr="17" scheduleFile="b17_____.abf">
+  <station name="Friedlos" short="FFL" refNr="17" scheduleFile="b17_____.abf" displayName="Ludwigsau-Friedlos">
     <track name="1" calculateDelay="false">
       <block name="17B546"/>
     </track>

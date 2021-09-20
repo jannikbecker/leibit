@@ -316,7 +316,7 @@
     </track>
   </station>
 
-  <station name="Aschaffenburg Süd" short="NASU" refNr="53" scheduleFile="g53_____.abf" localOrderFile="bf53____.abf">
+  <station name="Aschaffenburg Süd" short="NASU" refNr="53" scheduleFile="g53_____.abf" localOrderFile="bf53____.abf" displayName="AB-Süd">
     <track name="001" displayName="1">
       <block name="53G001"/>
     </track>

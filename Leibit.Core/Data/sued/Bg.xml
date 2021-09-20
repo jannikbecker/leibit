@@ -160,7 +160,7 @@
     </track>
   </station>
 
-  <station name="Hst Lauterach" short="Lsa H1" refNr="2" scheduleFile="lauter__.abf">
+  <station name="Hst Lauterach" short="Lsa H1" refNr="2" scheduleFile="lauter__.abf" displayName="Lauterach">
     <track name="701" calculateDelay="false"/>
     <track name="702" calculateDelay="false"/>
     <track name="703" calculateDelay="false"/>

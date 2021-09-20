@@ -19,7 +19,7 @@
     </track>
   </station>
 
-  <station name="Bosserode" short="FBOS" refNr="20" scheduleFile="BOSSER__.ABF">
+  <station name="Bosserode" short="FBOS" refNr="20" scheduleFile="BOSSER__.ABF" displayName="Wildeck-Bosserode">
     <track name="611" calculateDelay="false" displayName="1">
       <block name="20S611" />
     </track>
@@ -28,7 +28,7 @@
     </track>
   </station>
 
-  <station name="Obersuhl" short="FOBS" refNr="97" scheduleFile="OBERSU__.ABF">
+  <station name="Obersuhl" short="FOBS" refNr="97" scheduleFile="OBERSU__.ABF" displayName="Wildeck-Obersuhl">
     <track name="609" calculateDelay="false" displayName="1">
       <block name="97B609" />
     </track>

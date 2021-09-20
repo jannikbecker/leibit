@@ -115,7 +115,7 @@
     </track>
   </station>
 
-  <station name="Hagen (Han) Hp" short="HHAGP" refNr="37" scheduleFile="b37_____.abf">
+  <station name="Hagen (Han) Hp" short="HHAGP" refNr="37" scheduleFile="b37_____.abf" displayName="Hagen (Han)">
     <track name="37" calculateDelay="false" displayName="1">
       <block name="37B37"/>
     </track>
@@ -133,7 +133,7 @@
     </track>
   </station>
 
-  <station name="Neustadt a Rübenberge" short="HNRU" refNr="35" scheduleFile="g35_____.abf">
+  <station name="Neustadt a Rübenberge" short="HNRU" refNr="35" scheduleFile="g35_____.abf" displayName="Neustadt am Rübenberge">
     <track name="1">
       <block name="35G1"/>
     </track>
