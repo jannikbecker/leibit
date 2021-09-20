@@ -145,6 +145,11 @@ namespace Leibit.Client.WPF.ViewModels
             ToastNotificationManagerCompat.History.Clear();
             ToastNotificationManagerCompat.OnActivated += __ToastNotificationClicked;
             __CheckForUpdatesIfNeeded();
+
+            var settingsResult = m_SettingsBll.GetSettings();
+
+            if (settingsResult.Succeeded && settingsResult.Result != null)
+                (App.Current as App)?.ChangeSkin(settingsResult.Result.Skin);
         }
         #endregion
 
@@ -938,6 +943,8 @@ namespace Leibit.Client.WPF.ViewModels
             var VM = new SettingsViewModel(Areas);
             var Window = new SettingsView();
 
+            VM.SettingsChanged += __SettingsChanged;
+
             __OpenChildWindow(Window, VM);
         }
         #endregion
@@ -1548,6 +1555,14 @@ namespace Leibit.Client.WPF.ViewModels
                 if (args[NOTIFICATION_ACTION] == "showDetails" && args.Contains("error") && args.Contains("errorMessage"))
                     Application.Current?.Dispatcher?.Invoke(() => MessageBox.Show(args["errorMessage"], args["error"], MessageBoxButton.OK, MessageBoxImage.Error));
             }
+        }
+        #endregion
+
+        #region [__SettingsChanged]
+        private void __SettingsChanged(object sender, EventArgs e)
+        {
+            foreach (var window in ChildWindows)
+                window.SetWindowColor();
         }
         #endregion
 

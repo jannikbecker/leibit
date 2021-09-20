@@ -6,7 +6,7 @@
                       Caption="{Binding Caption}">
     
     <controls:ChildWindow.Style>
-        <Style TargetType="local:TrackChangeView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:TrackChangeView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">

@@ -30,12 +30,65 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\Fonts\5by7.ttf" />
+    <None Remove="Resources\Images\Dark\bfo.png" />
+    <None Remove="Resources\Images\Dark\clear.png" />
+    <None Remove="Resources\Images\Dark\flash.png" />
+    <None Remove="Resources\Images\Dark\help.png" />
+    <None Remove="Resources\Images\Dark\info.png" />
+    <None Remove="Resources\Images\Dark\local_orders.png" />
+    <None Remove="Resources\Images\Dark\new.png" />
+    <None Remove="Resources\Images\Dark\open.png" />
+    <None Remove="Resources\Images\Dark\save.png" />
+    <None Remove="Resources\Images\Dark\save_layout.png" />
+    <None Remove="Resources\Images\Dark\select.png" />
+    <None Remove="Resources\Images\Dark\settings.png" />
+    <None Remove="Resources\Images\Dark\train_schedule.png" />
+    <None Remove="Resources\Images\Dark\zfi.png" />
+    <None Remove="Resources\Images\Light\bfo.png" />
+    <None Remove="Resources\Images\Light\clear.png" />
+    <None Remove="Resources\Images\Light\flash.png" />
+    <None Remove="Resources\Images\Light\help.png" />
+    <None Remove="Resources\Images\Light\info.png" />
+    <None Remove="Resources\Images\Light\local_orders.png" />
+    <None Remove="Resources\Images\Light\new.png" />
+    <None Remove="Resources\Images\Light\open.png" />
+    <None Remove="Resources\Images\Light\save.png" />
+    <None Remove="Resources\Images\Light\save_layout.png" />
+    <None Remove="Resources\Images\Light\select.png" />
+    <None Remove="Resources\Images\Light\settings.png" />
+    <None Remove="Resources\Images\Light\train_schedule.png" />
+    <None Remove="Resources\Images\Light\zfi.png" />
     <None Remove="Resources\Images\flash.png" />
     <None Remove="Resources\Images\help.png" />
     <None Remove="Resources\Images\info.png" />
     <None Remove="Resources\Images\ok.png" />
     <None Remove="Resources\Images\ok_gray.png" />
     <None Remove="Resources\Images\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Dark\bfo.png" />
+    <Resource Include="Resources\Images\Dark\clear.png" />
+    <Resource Include="Resources\Images\Dark\flash.png" />
+    <Resource Include="Resources\Images\Dark\help.png" />
+    <Resource Include="Resources\Images\Dark\info.png" />
+    <Resource Include="Resources\Images\Dark\local_orders.png" />
+    <Resource Include="Resources\Images\Dark\new.png" />
+    <Resource Include="Resources\Images\Dark\open.png" />
+    <Resource Include="Resources\Images\Dark\save.png" />
+    <Resource Include="Resources\Images\Dark\save_layout.png" />
+    <Resource Include="Resources\Images\Dark\select.png" />
+    <Resource Include="Resources\Images\Dark\settings.png" />
+    <Resource Include="Resources\Images\Dark\train_schedule.png" />
+    <Resource Include="Resources\Images\Dark\zfi.png" />
+    <Resource Include="Resources\Images\Light\bfo.png" />
+    <Resource Include="Resources\Images\Light\clear.png" />
+    <Resource Include="Resources\Images\Light\flash.png" />
+    <Resource Include="Resources\Images\Light\help.png" />
+    <Resource Include="Resources\Images\Light\info.png" />
+    <Resource Include="Resources\Images\Light\local_orders.png" />
+    <Resource Include="Resources\Images\Light\new.png" />
+    <Resource Include="Resources\Images\Light\open.png" />
+    <Resource Include="Resources\Images\Light\save.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="4.6.82" />
@@ -54,35 +107,14 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Images\estw_online.png" />
-    <Resource Include="Resources\Images\flash.png" />
-    <Resource Include="Resources\Images\help.png" />
-    <Resource Include="Resources\Images\info.png" />
+    <Resource Include="Resources\Images\Light\save_layout.png" />
+    <Resource Include="Resources\Images\Light\select.png" />
+    <Resource Include="Resources\Images\Light\settings.png" />
+    <Resource Include="Resources\Images\Light\train_schedule.png" />
+    <Resource Include="Resources\Images\Light\zfi.png" />
     <Resource Include="Resources\Images\ok.png" />
     <Resource Include="Resources\Images\ok_gray.png" />
-    <Resource Include="Resources\Images\settings.png" />
-    <Resource Include="Resources\Images\new.png" />
-    <Resource Include="Resources\Images\open.png" />
-    <Resource Include="Resources\Images\save.png" />
     <Resource Include="Resources\Images\warning.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\zfi.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\bfo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\save_layout.png" />
-    <Resource Include="Resources\Images\select.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\train_schedule.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\clear.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\local_orders.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />

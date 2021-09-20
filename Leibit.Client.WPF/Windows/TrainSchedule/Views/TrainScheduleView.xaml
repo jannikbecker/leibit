@@ -11,7 +11,7 @@
                       ResizeMode="ResizeHeight">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:TrainScheduleView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:TrainScheduleView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>

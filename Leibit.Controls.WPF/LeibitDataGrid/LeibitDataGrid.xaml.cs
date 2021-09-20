@@ -311,6 +311,116 @@ namespace Leibit.Controls
         public static readonly DependencyProperty ContextMenuItemsProperty = ContextMenuItemsPropertyKey.DependencyProperty;
         #endregion
 
+        #region [ContextMenuSeparatorBackground]
+        public Brush ContextMenuSeparatorBackground
+        {
+            get { return (Brush)GetValue(ContextMenuSeparatorBackgroundProperty); }
+            set { SetValue(ContextMenuSeparatorBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContextMenuSeparatorBackgroundProperty = DependencyProperty.Register("ContextMenuSeparatorBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(Brushes.Transparent));
+        #endregion
+
+        #region [GroupingAreaBackground]
+        public Brush GroupingAreaBackground
+        {
+            get { return (Brush)GetValue(GroupingAreaBackgroundProperty); }
+            set { SetValue(GroupingAreaBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty GroupingAreaBackgroundProperty = DependencyProperty.Register("GroupingAreaBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(Brushes.LightGray));
+        #endregion
+
+        #region [GroupingAreaHover]
+        public Brush GroupingAreaHover
+        {
+            get { return (Brush)GetValue(GroupingAreaHoverProperty); }
+            set { SetValue(GroupingAreaHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty GroupingAreaHoverProperty = DependencyProperty.Register("GroupingAreaHover", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(Brushes.LightBlue));
+        #endregion
+
+        #region [AlternationBackground]
+        public Brush AlternationBackground
+        {
+            get { return (Brush)GetValue(AlternationBackgroundProperty); }
+            set { SetValue(AlternationBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty AlternationBackgroundProperty = DependencyProperty.Register("AlternationBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(238, 238, 238))));
+        #endregion
+
+        #region [RowHover]
+        public Brush RowHover
+        {
+            get { return (Brush)GetValue(RowHoverProperty); }
+            set { SetValue(RowHoverProperty, value); }
+        }
+
+        public static readonly DependencyProperty RowHoverProperty = DependencyProperty.Register("RowHover", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromArgb(102, 221, 238, 255))));
+        #endregion
+
+        #region [ColumnHeaderBackground]
+        public Brush ColumnHeaderBackground
+        {
+            get { return (Brush)GetValue(ColumnHeaderBackgroundProperty); }
+            set { SetValue(ColumnHeaderBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderBackgroundProperty = DependencyProperty.Register("ColumnHeaderBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(243, 244, 245))));
+        #endregion
+
+        #region [ColumnHeaderBorder]
+        public Brush ColumnHeaderBorder
+        {
+            get { return (Brush)GetValue(ColumnHeaderBorderProperty); }
+            set { SetValue(ColumnHeaderBorderProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderBorderProperty = DependencyProperty.Register("ColumnHeaderBorder", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(213, 213, 213))));
+        #endregion
+
+        #region [ColumnHeaderHoverBackground]
+        public Brush ColumnHeaderHoverBackground
+        {
+            get { return (Brush)GetValue(ColumnHeaderHoverBackgroundProperty); }
+            set { SetValue(ColumnHeaderHoverBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderHoverBackgroundProperty = DependencyProperty.Register("ColumnHeaderHoverBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(184, 232, 252))));
+        #endregion
+
+        #region [ColumnHeaderHoverBorder]
+        public Brush ColumnHeaderHoverBorder
+        {
+            get { return (Brush)GetValue(ColumnHeaderHoverBorderProperty); }
+            set { SetValue(ColumnHeaderHoverBorderProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderHoverBorderProperty = DependencyProperty.Register("ColumnHeaderHoverBorder", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(147, 201, 227))));
+        #endregion
+
+        #region [ColumnHeaderSortedBackground]
+        public Brush ColumnHeaderSortedBackground
+        {
+            get { return (Brush)GetValue(ColumnHeaderSortedBackgroundProperty); }
+            set { SetValue(ColumnHeaderSortedBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderSortedBackgroundProperty = DependencyProperty.Register("ColumnHeaderSortedBackground", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(219, 238, 247))));
+        #endregion
+
+        #region [ColumnHeaderSortedBorder]
+        public Brush ColumnHeaderSortedBorder
+        {
+            get { return (Brush)GetValue(ColumnHeaderSortedBorderProperty); }
+            set { SetValue(ColumnHeaderSortedBorderProperty, value); }
+        }
+
+        public static readonly DependencyProperty ColumnHeaderSortedBorderProperty = DependencyProperty.Register("ColumnHeaderSortedBorder", typeof(Brush), typeof(LeibitDataGrid), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(150, 217, 249))));
+        #endregion
+
         #endregion
 
         #region - Private methods -
@@ -353,12 +463,12 @@ namespace Leibit.Controls
                 currentX += header.ActualWidth;
             }
 
-            currentX -= 12;
+            currentX -= 8;
 
             if (currentX < 0)
                 currentX = 0;
-            if (currentX + 24 >= dataGrid.ActualWidth)
-                currentX = dataGrid.ActualWidth - 24;
+            if (currentX + 16 >= dataGrid.ActualWidth)
+                currentX = dataGrid.ActualWidth - 16;
 
             point.X = currentX;
             return point;
@@ -528,6 +638,7 @@ namespace Leibit.Controls
 
                 var rowGroup = new TableRowGroup();
                 var headerRow = new TableRow();
+                headerRow.Foreground = Foreground;
 
                 foreach (var column in dataGrid.Columns.OrderBy(c => c.DisplayIndex))
                 {
@@ -537,10 +648,10 @@ namespace Leibit.Controls
 
                     var cell = new TableCell();
                     cell.Blocks.Add(new Paragraph(new Run(column.Header.ToString())));
-                    cell.Background = Brushes.LightGray;
+                    cell.Background = ColumnHeaderBackground;
                     cell.FontWeight = FontWeights.Bold;
                     cell.Padding = new Thickness(2, 5, 2, 5);
-                    cell.BorderBrush = Brushes.White;
+                    cell.BorderBrush = ColumnHeaderBorder;
                     cell.BorderThickness = new Thickness(1, 0, 1, 0);
                     headerRow.Cells.Add(cell);
                 }
@@ -593,7 +704,7 @@ namespace Leibit.Controls
                                 try
                                 {
                                     var actualValue = (condition.Binding as Binding)?.Eval(item);
-                                    var expectedValue = Convert.ChangeType(condition.Value, actualValue.GetType());
+                                    var expectedValue = actualValue == null ? condition.Value : Convert.ChangeType(condition.Value, actualValue.GetType());
 
                                     if (expectedValue != null)
                                         matches &= expectedValue.Equals(actualValue);
@@ -632,7 +743,9 @@ namespace Leibit.Controls
                             if (i == 0)
                             {
                                 groupHeaderCell.BorderThickness = new Thickness(0, 1, 0, 0);
-                                groupHeaderCell.BorderBrush = Brushes.Black;
+                                groupHeaderCell.BorderBrush = Foreground;
+                                groupHeaderCell.Foreground = Foreground;
+                                groupHeaderCell.Background = Background;
                             }
                             else
                             {
@@ -650,8 +763,11 @@ namespace Leibit.Controls
                     }
 
                     if (isOdd)
-                        row.Background = new SolidColorBrush(Color.FromRgb(0xee, 0xee, 0xee));
+                        row.Background = AlternationBackground;
+                    else
+                        row.Background = Background;
 
+                    row.Foreground = Foreground;
                     previousGroupValues = groupValues;
                     rowGroup.Rows.Add(row);
                     isOdd ^= true;
@@ -755,7 +871,9 @@ namespace Leibit.Controls
                         foreach (var condition in backgroundCondition.Conditions)
                             trigger.Conditions.Add(condition);
 
-                        var setter = new Setter(BackgroundProperty, backgroundCondition.BackgroundColor);
+                        var backgroundColorBinding = new Binding(nameof(ColumnBackgroundCondition.BackgroundColor));
+                        backgroundColorBinding.Source = backgroundCondition;
+                        var setter = new Setter(BackgroundProperty, backgroundColorBinding);
                         trigger.Setters.Add(setter);
                         style.Triggers.Add(trigger);
                     }
@@ -778,7 +896,13 @@ namespace Leibit.Controls
                 ContextMenu.Items.Add(item);
 
             if (!ContextMenu.Items.IsEmpty)
-                ContextMenu.Items.Add(new Separator());
+            {
+                var separator = new Separator();
+                var binding = new Binding(nameof(ContextMenuSeparatorBackground));
+                binding.Source = this;
+                separator.SetBinding(BackgroundProperty, binding);
+                ContextMenu.Items.Add(separator);
+            }
 
             var printItem = new MenuItem();
             printItem.Header = "Drucken";
@@ -842,7 +966,7 @@ namespace Leibit.Controls
             if (CanReorderColumn)
             {
                 var point = __GetReorderTargetIndicatorPosition(mousePosition.X);
-                reorderTargetIndicator.Arrange(new Rect(point, new Size(24, 24)));
+                reorderTargetIndicator.Arrange(new Rect(point, new Size(16, 10)));
                 reorderTargetIndicator.Visibility = Visibility.Visible;
             }
             else

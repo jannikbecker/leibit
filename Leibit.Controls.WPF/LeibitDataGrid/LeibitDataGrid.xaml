@@ -22,7 +22,7 @@
             
             <ItemsControl.Style>
                 <Style TargetType="ItemsControl">
-                    <Setter Property="Background" Value="LightGray"/>
+                    <Setter Property="Background" Value="{Binding GroupingAreaBackground, ElementName=LeibitDataGridRoot}"/>
 
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
@@ -34,11 +34,11 @@
 
                                             <Grid.Style>
                                                 <Style TargetType="Grid">
-                                                    <Setter Property="Background" Value="LightGray"/>
+                                                    <Setter Property="Background" Value="{Binding GroupingAreaBackground, ElementName=LeibitDataGridRoot}"/>
 
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding CanGroupColumn, ElementName=LeibitDataGridRoot}" Value="True">
-                                                            <Setter Property="Background" Value="LightBlue"/>
+                                                            <Setter Property="Background" Value="{Binding GroupingAreaHover, ElementName=LeibitDataGridRoot}"/>
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
@@ -50,7 +50,7 @@
                         </DataTrigger>
 
                         <DataTrigger Binding="{Binding CanGroupColumn, ElementName=LeibitDataGridRoot}" Value="True">
-                            <Setter Property="Background" Value="LightBlue"/>
+                            <Setter Property="Background" Value="{Binding GroupingAreaHover, ElementName=LeibitDataGridRoot}"/>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -58,7 +58,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="1"
-                            BorderBrush="Black"
+                            BorderBrush="{Binding Foreground, ElementName=LeibitDataGridRoot}"
                             Margin="5,0,5,0"
                             PreviewMouseLeftButtonUp="__GroupedColumn_MouseLeftButtonUp"
                             PreviewMouseMove="__GroupedColumn_MouseMove"
@@ -87,7 +87,8 @@
                   CanUserResizeColumns="True"
                   CanUserResizeRows="False"
                   AlternationCount="2"
-                  Background="White"
+                  Background="{Binding Background, ElementName=LeibitDataGridRoot}"
+                  BorderBrush="{Binding BorderBrush, ElementName=LeibitDataGridRoot}"
                   GridLinesVisibility="None"
                   HeadersVisibility="Column"
                   IsReadOnly="True"
@@ -104,28 +105,82 @@
                     <EventSetter Event="MouseDoubleClick" Handler="__DataRow_DoubleClick" />
 
                     <Style.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                            <Setter Property="Foreground" Value="{Binding Foreground, ElementName=LeibitDataGridRoot}"/>
+                            <Setter Property="Background" Value="{Binding Background, ElementName=LeibitDataGridRoot}"/>
+                        </Trigger>
+
                         <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                            <Setter Property="Background" Value="#eee"/>
+                            <Setter Property="Foreground" Value="{Binding Foreground, ElementName=LeibitDataGridRoot}"/>
+                            <Setter Property="Background" Value="{Binding AlternationBackground, ElementName=LeibitDataGridRoot}"/>
                         </Trigger>
 
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#6def"/>
+                            <Setter Property="Background" Value="{Binding RowHover, ElementName=LeibitDataGridRoot}"/>
                         </Trigger>
                     </Style.Triggers>
-
-                    <Style.Resources>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#def" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#def" />
-                        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black" />
-                    </Style.Resources>
                 </Style>
 
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{Binding RowHover.Color, ElementName=LeibitDataGridRoot}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{Binding Foreground.Color, ElementName=LeibitDataGridRoot}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{Binding RowHover.Color, ElementName=LeibitDataGridRoot}" />
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="{Binding Foreground.Color, ElementName=LeibitDataGridRoot}" />
+
                 <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Foreground" Value="{Binding Foreground, ElementName=LeibitDataGridRoot}"/>
+                    <Setter Property="Background" Value="{Binding ColumnHeaderBackground, ElementName=LeibitDataGridRoot}"/>
+                    <Setter Property="BorderBrush" Value="{Binding ColumnHeaderBorder, ElementName=LeibitDataGridRoot}"/>
                     <EventSetter Event="PreviewMouseLeftButtonDown" Handler="__DataGridColumnHeader_MouseLeftButtonDown"/>
                     <EventSetter Event="PreviewMouseMove" Handler="__DataGridColumnHeader_MouseMove"/>
                     <EventSetter Event="PreviewMouseLeftButtonUp" Handler="__DataGridColumnHeader_MouseLeftButtonUp"/>
                     <EventSetter Event="PreviewMouseDoubleClick" Handler="__DataGridColumnHeader_MouseDoubleClick"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridColumnHeader">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0.5,0,0.5,1">
+                                    <Grid>
+                                        <Path x:Name="SortArrow"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Top"                                           
+                                              Width="9" 
+                                              Height="4" 
+                                              Margin="0,1,0,0"
+                                              Stretch="Fill"
+                                              Opacity="0.3"
+                                              Fill="{Binding Foreground, ElementName=LeibitDataGridRoot}"
+                                              Visibility="Collapsed"
+                                              RenderTransformOrigin="0.5,0.5"
+                                              Data="M 0 0 L 10 10 L 20 0 Z" />
+                                        
+                                        <ContentPresenter Margin="4"/>
+                                    </Grid>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="SortDirection" Value="Ascending">
+                                        <Setter Property="Background" Value="{Binding ColumnHeaderSortedBackground, ElementName=LeibitDataGridRoot}"/>
+                                        <Setter Property="BorderBrush" Value="{Binding ColumnHeaderSortedBorder, ElementName=LeibitDataGridRoot}"/>
+                                        <Setter TargetName="SortArrow" Property="Visibility" Value="Visible"/>
+                                        <Setter TargetName="SortArrow" Property="RenderTransform">
+                                            <Setter.Value>
+                                                <RotateTransform Angle="180" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                    <Trigger Property="SortDirection" Value="Descending">
+                                        <Setter Property="Background" Value="{Binding ColumnHeaderSortedBackground, ElementName=LeibitDataGridRoot}"/>
+                                        <Setter Property="BorderBrush" Value="{Binding ColumnHeaderSortedBorder, ElementName=LeibitDataGridRoot}"/>
+                                        <Setter TargetName="SortArrow" Property="Visibility" Value="Visible"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{Binding ColumnHeaderHoverBackground, ElementName=LeibitDataGridRoot}"/>
+                                        <Setter Property="BorderBrush" Value="{Binding ColumnHeaderHoverBorder, ElementName=LeibitDataGridRoot}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </DataGrid.Resources>
             
@@ -136,7 +191,7 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="GroupItem">
-                                        <Expander IsExpanded="True" Background="White">
+                                        <Expander IsExpanded="True" Background="{Binding Background, ElementName=LeibitDataGridRoot}">
                                             <Expander.Header>
                                                 <Grid HorizontalAlignment="{Binding Path=HorizontalAlignment, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentPresenter}}, Mode=OneWayToSource}">
                                                     <Grid.ColumnDefinitions>
@@ -145,7 +200,7 @@
                                                     </Grid.ColumnDefinitions>
 
                                                     <TextBlock Grid.Column="0" FontWeight="Bold" Text="{Binding Name}" Margin="0,0,10,0"/>
-                                                    <Rectangle Grid.Column="1" Fill="Black" Height="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                                    <Rectangle Grid.Column="1" Fill="{Binding Foreground, ElementName=LeibitDataGridRoot}" Height="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Expander.Header>
                                             <Expander.Content>
@@ -169,25 +224,26 @@
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </DataGrid.GroupStyle>
-
         </DataGrid>
 
-        <Image x:Name="reorderTargetIndicator" 
-               Grid.Row="1"
-               Source="{StaticResource imgArrowUp}" 
-               Width="24"
-               Height="24"
-               Visibility="Hidden"/>
+        <Path x:Name="reorderTargetIndicator" 
+              Grid.Row="1"
+              Width="16"
+              Height="10"
+              Stretch="Fill"
+              Fill="{Binding Foreground, ElementName=LeibitDataGridRoot}"
+              Data="M 0 10 L 20 10 L 10 0 Z"
+              Visibility="Hidden"/>
 
         <Popup x:Name="groupingToolTip" AllowsTransparency="False" Placement="Relative" PlacementTarget="{Binding ElementName=groupedColumnsArea}" IsOpen="False">
             <Border BorderThickness="1" BorderBrush="Gray">
-                <TextBlock Text="{Binding GroupingToolTipText, ElementName=LeibitDataGridRoot}" Background="White" Padding="2,0,2,0"/>
+                <TextBlock Text="{Binding GroupingToolTipText, ElementName=LeibitDataGridRoot}" Foreground="Black" Background="White" Padding="2,0,2,0"/>
             </Border>
         </Popup>
 
         <Popup x:Name="ungroupingToolTip" AllowsTransparency="False" Placement="Relative" PlacementTarget="{Binding ElementName=dataGrid}" IsOpen="False">
             <Border BorderThickness="1" BorderBrush="Gray">
-                <TextBlock Text="{Binding UngroupingToolTipText, ElementName=LeibitDataGridRoot}" Background="White" Padding="2,0,2,0"/>
+                <TextBlock Text="{Binding UngroupingToolTipText, ElementName=LeibitDataGridRoot}" Foreground="Black" Background="White" Padding="2,0,2,0"/>
             </Border>
         </Popup>
     </Grid>

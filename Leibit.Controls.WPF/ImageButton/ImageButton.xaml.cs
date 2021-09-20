@@ -30,6 +30,7 @@ namespace Leibit.Controls
         public static readonly DependencyProperty ImageProperty = DependencyProperty.Register("Image", typeof(ImageSource), typeof(ImageButton));
         public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(ImageButton));
         public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register("CommandParameter", typeof(object), typeof(ImageButton));
+        public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register("ButtonStyle", typeof(Style), typeof(ImageButton), new PropertyMetadata(null));
         #endregion
 
         #region - Properties -
@@ -73,6 +74,14 @@ namespace Leibit.Controls
             {
                 SetValue(CommandParameterProperty, value);
             }
+        }
+        #endregion
+
+        #region [ButtonStyle]
+        public Style ButtonStyle
+        {
+            get { return (Style)GetValue(ButtonStyleProperty); }
+            set { SetValue(ButtonStyleProperty, value); }
         }
         #endregion
 

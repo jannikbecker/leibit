@@ -13,7 +13,7 @@
     <Window.InputBindings>
         <KeyBinding Key="D" Modifiers="Shift" Command="{Binding DataContext.DebugModeCommand, ElementName=LayoutRoot}"/>
     </Window.InputBindings>
-    
+
     <Grid x:Name="LayoutRoot">
         <Grid.Resources>
             <ResourceDictionary>
@@ -28,39 +28,40 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <Menu IsMainMenu="True" Grid.Row="0">
+        <Menu IsMainMenu="True" Grid.Row="0" Foreground="{DynamicResource MenuForeground}" Background="{DynamicResource MenuBackground}">
             <MenuItem Header="Datei">
                 <MenuItem Header="Neu" ItemsSource="{Binding Areas}" DisplayMemberPath="Name">
                     <MenuItem.ItemContainerStyle>
                         <Style TargetType="MenuItem">
+                            <Setter Property="Template" Value="{DynamicResource SubMenuItemTemplate}"/>
                             <Setter Property="Command" Value="{Binding DataContext.NewCommand, ElementName=LayoutRoot}" />
                             <Setter Property="CommandParameter" Value="{Binding Id}" />
                         </Style>
                     </MenuItem.ItemContainerStyle>
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgNew}" />
+                        <Image Source="{DynamicResource imgNew}" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <MenuItem Header="Öffnen..." Command="{Binding OpenCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgOpen}" />
+                        <Image Source="{DynamicResource imgOpen}" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <MenuItem Header="Speichern" Command="{Binding SaveCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgSave}" />
+                        <Image Source="{DynamicResource imgSave}" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <MenuItem Header="Speichern unter..." Command="{Binding SaveAsCommand}" />
 
-                <Separator />
+                <Separator Background="{DynamicResource MenuSeparatorColor}"/>
 
                 <MenuItem Header="Einstellungen..." Command="{Binding SettingsCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgSettings}" />
+                        <Image Source="{DynamicResource imgSettings}" />
                     </MenuItem.Icon>
                 </MenuItem>
 
@@ -70,11 +71,11 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <Separator />
+                <Separator Background="{DynamicResource MenuSeparatorColor}" />
 
                 <MenuItem Header="Beenden" Command="{Binding ExitCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgClose}" />
+                        <Image Source="{DynamicResource imgClose}" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -82,25 +83,26 @@
             <MenuItem Header="Fenster">
                 <MenuItem Header="Aufschaltbereich" Command="{Binding EstwSelectionCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgSelect}" />
+                        <Image Source="{DynamicResource imgSelect}" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <MenuItem Header="Zugfahrtinformation (ZFI)" Command="{Binding TrainProgressInformationCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgZfi}" />
+                        <Image Source="{DynamicResource imgZfi}" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <MenuItem Header="Bahnhofsfahrordnung (BFO)" ItemsSource="{Binding Stations}" DisplayMemberPath="Name" IsEnabled="{Binding IsTimeTableEnabled}">
                     <MenuItem.ItemContainerStyle>
                         <Style TargetType="MenuItem">
+                            <Setter Property="Template" Value="{DynamicResource SubMenuItemTemplate}"/>
                             <Setter Property="Command" Value="{Binding DataContext.TimeTableCommand, ElementName=LayoutRoot}" />
                             <Setter Property="CommandParameter" Value="{Binding}" />
                         </Style>
                     </MenuItem.ItemContainerStyle>
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgBfo}" />
+                        <Image Source="{DynamicResource imgBfo}" />
                     </MenuItem.Icon>
                 </MenuItem>
 
@@ -108,21 +110,21 @@
 
                 <MenuItem Header="Systemstatus" Command="{Binding SystemStateCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgInfo}" />
+                        <Image Source="{DynamicResource imgInfo}" />
                     </MenuItem.Icon>
                 </MenuItem>
-                
-                <Separator />
+
+                <Separator Background="{DynamicResource MenuSeparatorColor}" />
 
                 <MenuItem Header="Layout speichern" Command="{Binding SaveLayoutCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgSaveLayout}" />
+                        <Image Source="{DynamicResource imgSaveLayout}" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <MenuItem Header="Alle Fenster schließen" Command="{Binding ClearChildWindowsCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgClear}" />
+                        <Image Source="{DynamicResource imgClear}" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -130,86 +132,100 @@
             <MenuItem Header="Hilfe">
                 <MenuItem Header="Bedienungsanleitung öffnen" Command="{Binding ShowHelpCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgHelp}" />
+                        <Image Source="{DynamicResource imgHelp}" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <MenuItem Header="Schnellstartanleitung öffnen" Command="{Binding ShowQuickStartHelpCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgFlash}" />
+                        <Image Source="{DynamicResource imgFlash}" />
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <Separator/>
+                <Separator Background="{DynamicResource MenuSeparatorColor}"/>
 
                 <MenuItem Header="Über LeiBIT" Command="{Binding AboutCommand}">
                     <MenuItem.Icon>
-                        <Image Source="{StaticResource imgInfo}" />
+                        <Image Source="{DynamicResource imgInfo}" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
         </Menu>
 
-        <ToolBar Grid.Row="1">
-            <controls:DropDownButton Image="{StaticResource imgNew}" IsDropDownOpen="{Binding IsNewDropDownOpen, Mode=TwoWay}" Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}" ToolTipService.ToolTip="Neu">
-                <controls:DropDownButton.DropDownContent>
-                    <controls:SimpleMenu ItemsSource="{Binding Data.Areas, Source={StaticResource proxy}}" DisplayMemberPath="Name" Command="{Binding Data.NewCommand, Source={StaticResource proxy}}" ValueMemberPath="Id" />
-                </controls:DropDownButton.DropDownContent>
-            </controls:DropDownButton>
+        <ToolBarPanel Grid.Row="1" Background="{DynamicResource ToolbarBackground}">
+            <ToolBar Background="{DynamicResource ToolbarBackground}">
+                <controls:DropDownButton Image="{DynamicResource imgNew}"
+                                         IsDropDownOpen="{Binding IsNewDropDownOpen, Mode=TwoWay}"
+                                         Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
+                                         ButtonStyle="{DynamicResource DropDownButtonStyle}"
+                                         ArrowStyle="{DynamicResource DropDownButtonArrowStyle}"
+                                         ArrowFill="{DynamicResource DropDownArrowFill}"
+                                         ToolTipService.ToolTip="Neu">
+                    <controls:DropDownButton.DropDownContent>
+                        <controls:SimpleMenu ItemsSource="{Binding Data.Areas, Source={StaticResource proxy}}" DisplayMemberPath="Name" Command="{Binding Data.NewCommand, Source={StaticResource proxy}}" ValueMemberPath="Id" />
+                    </controls:DropDownButton.DropDownContent>
+                </controls:DropDownButton>
 
-            <controls:ImageButton Image="{StaticResource imgOpen}" Command="{Binding OpenCommand}" ToolTipService.ToolTip="Öffnen..." />
-            <controls:ImageButton Image="{StaticResource imgSave}" Command="{Binding SaveCommand}" ToolTipService.ToolTip="Speichern" />
-            <Separator />
-            <controls:ImageButton Image="{StaticResource imgSettings}" Command="{Binding SettingsCommand}" ToolTipService.ToolTip="Einstellungen" />
-            <controls:ImageButton Image="{StaticResource imgEstwOnline}" Command="{Binding EstwOnlineCommand}" ToolTipService.ToolTip="ESTWonline starten"/>
-            <Separator />
-            <controls:ImageButton Image="{StaticResource imgZfi}" Command="{Binding TrainProgressInformationCommand}" ToolTipService.ToolTip="Zugfahrtinformation (ZFI)"/>
+                <controls:ImageButton Image="{DynamicResource imgOpen}" Command="{Binding OpenCommand}" ToolTipService.ToolTip="Öffnen..." />
+                <controls:ImageButton Image="{DynamicResource imgSave}" Command="{Binding SaveCommand}" ToolTipService.ToolTip="Speichern" />
+                <Separator />
+                <controls:ImageButton Image="{DynamicResource imgSettings}" Command="{Binding SettingsCommand}" ToolTipService.ToolTip="Einstellungen" />
+                <controls:ImageButton Image="{DynamicResource imgEstwOnline}" Command="{Binding EstwOnlineCommand}" ToolTipService.ToolTip="ESTWonline starten"/>
+                <Separator />
+                <controls:ImageButton Image="{DynamicResource imgZfi}" Command="{Binding TrainProgressInformationCommand}" ToolTipService.ToolTip="Zugfahrtinformation (ZFI)"/>
 
-            <controls:DropDownButton Image="{StaticResource imgBfo}"
-                                     IsDropDownOpen="{Binding IsTimeTableDropDownOpen, Mode=TwoWay}"
-                                     IsEnabled="{Binding IsTimeTableEnabled}"
-                                     Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
-                                     ToolTipService.ToolTip="Bahnhofsfahrordnung (BFO)">
-                <controls:DropDownButton.DropDownContent>
-                    <controls:SimpleMenu ItemsSource="{Binding Data.Stations, Source={StaticResource proxy}}" DisplayMemberPath="Name" Command="{Binding Data.TimeTableCommand, Source={StaticResource proxy}}" />
-                </controls:DropDownButton.DropDownContent>
-            </controls:DropDownButton>
+                <controls:DropDownButton Image="{DynamicResource imgBfo}"
+                                         IsDropDownOpen="{Binding IsTimeTableDropDownOpen, Mode=TwoWay}"
+                                         IsEnabled="{Binding IsTimeTableEnabled}"
+                                         Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
+                                         ButtonStyle="{DynamicResource DropDownButtonStyle}"
+                                         ArrowStyle="{DynamicResource DropDownButtonArrowStyle}"
+                                         ArrowFill="{DynamicResource DropDownArrowFill}"
+                                         ToolTipService.ToolTip="Bahnhofsfahrordnung (BFO)">
+                    <controls:DropDownButton.DropDownContent>
+                        <controls:SimpleMenu ItemsSource="{Binding Data.Stations, Source={StaticResource proxy}}" DisplayMemberPath="Name" Command="{Binding Data.TimeTableCommand, Source={StaticResource proxy}}" />
+                    </controls:DropDownButton.DropDownContent>
+                </controls:DropDownButton>
 
-            <controls:DropDownButton Image="{StaticResource imgTrainSchedule}"
-                                     IsDropDownOpen="{Binding IsTrainScheduleDropDownOpen, Mode=TwoWay}"
-                                     IsEnabled="{Binding IsTrainScheduleEnabled}"
-                                     Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
-                                     ToolTipService.ToolTip="Zuglauf">
-                <controls:DropDownButton.DropDownContent>
-                    <Border BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="1" Background="{x:Static SystemColors.MenuBrush}" Padding="5">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Zugnummer:" Margin="0,0,0,5" />
-                            <StackPanel Orientation="Horizontal">
-                                
-                                <xctk:IntegerUpDown Value="{Binding Data.TrainScheduleNumber, Source={StaticResource proxy}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <controls:DropDownButton Image="{DynamicResource imgTrainSchedule}"
+                                         IsDropDownOpen="{Binding IsTrainScheduleDropDownOpen, Mode=TwoWay}"
+                                         IsEnabled="{Binding IsTrainScheduleEnabled}"
+                                         Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
+                                         ButtonStyle="{DynamicResource DropDownButtonStyle}"
+                                         ArrowStyle="{DynamicResource DropDownButtonArrowStyle}"
+                                         ArrowFill="{DynamicResource DropDownArrowFill}"
+                                         ToolTipService.ToolTip="Zuglauf">
+                    <controls:DropDownButton.DropDownContent>
+                        <Border BorderBrush="{x:Static SystemColors.ActiveBorderBrush}" BorderThickness="1" Background="{DynamicResource SubMenuBackground}" Padding="5">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Zugnummer:" Foreground="{DynamicResource TextForeground}" Margin="0,0,0,5" />
+                                <StackPanel Orientation="Horizontal">
+
+                                    <xctk:IntegerUpDown Value="{Binding Data.TrainScheduleNumber, Source={StaticResource proxy}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                     core:FocusManager.IsFocused="{Binding Data.IsTrainScheduleDropDownOpen, Mode=TwoWay, Source={StaticResource proxy}}"
                                                     Focusable="True"
                                                     Width="50"
                                                     ShowButtonSpinner="False"
                                                     Minimum="1"
                                                     Maximum="99999">
-                                    <xctk:IntegerUpDown.InputBindings>
-                                        <KeyBinding Key="Return" Command="{Binding Data.TrainScheduleCommand, Source={StaticResource proxy}}" />
-                                    </xctk:IntegerUpDown.InputBindings>
-                                </xctk:IntegerUpDown>
+                                        <xctk:IntegerUpDown.InputBindings>
+                                            <KeyBinding Key="Return" Command="{Binding Data.TrainScheduleCommand, Source={StaticResource proxy}}" />
+                                        </xctk:IntegerUpDown.InputBindings>
+                                    </xctk:IntegerUpDown>
 
-                                <Button Content="Ok" Width="30" Margin="5,0,0,0" Command="{Binding Data.TrainScheduleCommand, Source={StaticResource proxy}}" />
+                                    <Button Content="Ok" Width="30" Margin="5,0,0,0" Command="{Binding Data.TrainScheduleCommand, Source={StaticResource proxy}}" />
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </controls:DropDownButton.DropDownContent>
-            </controls:DropDownButton>
-        </ToolBar>
+                        </Border>
+                    </controls:DropDownButton.DropDownContent>
+                </controls:DropDownButton>
+            </ToolBar>
+        </ToolBarPanel>
 
-        <controls:DynamicWindowContainer Grid.Row="2" Windows="{Binding ChildWindows}" />
+        <controls:DynamicWindowContainer Grid.Row="2" Windows="{Binding ChildWindows}" Background="{DynamicResource MainViewBackground}" />
 
         <Grid Grid.Row="3">
-            <StatusBar>
+            <StatusBar Foreground="{DynamicResource StatusBarForeground}" Background="{DynamicResource StatusBarBackground}">
                 <StatusBarItem HorizontalContentAlignment="Stretch">
                     <Grid>
                         <Grid.ColumnDefinitions>

@@ -8,13 +8,19 @@
                       Caption="Zugfahrtinformation" ResizeMode="ResizeAll">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:TrainProgressInformationView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:TrainProgressInformationView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>
         <conv:IntComparisonConverter x:Key="IsSmallerThanConverter" ComparisonType="Smaller" />
         <conv:IntComparisonConverter x:Key="IsGreaterThanConverter" ComparisonType="Greater" />
         <conv:VisibilityConverter x:Key="VisibilityConverter" />
+        
+        <local:TrainProgressInformationColorHelper x:Key="ColorHelper"
+                                                   ReadyColor="{DynamicResource ReadyColor}"
+                                                   DelayBlue="{DynamicResource DelayBlue}"
+                                                   DelayYellow="{DynamicResource DelayYellow}"
+                                                   DelayRed="{DynamicResource DelayRed}"/>
     </controls:ChildWindow.Resources>
 
     <controls:LeibitDataGrid ItemsSource="{Binding Trains}"
@@ -23,18 +29,19 @@
                              LayoutKey="ZFI2.0"
                              SaveLayout="{Binding SaveGridLayout,Mode=TwoWay}"
                              Refresh="{Binding RefreshGrid, Mode=TwoWay}"
-                             RowDoubleClickCommand="{Binding DoubleClickCommand}">
+                             RowDoubleClickCommand="{Binding DoubleClickCommand}"
+                             ContextMenuSeparatorBackground="{DynamicResource MenuSeparatorColor}">
 
         <controls:LeibitDataGrid.ContextMenuItems>
             <MenuItem Header="Neu" Command="{Binding NewCommand}"/>
             <MenuItem Header="Löschen" Command="{Binding DeleteCommand}"/>
-            <Separator/>
+            <Separator Background="{DynamicResource MenuSeparatorColor}"/>
             <MenuItem Header="Vsl. Verspätung" Command="{Binding EnterExpectedDelayCommand}"/>
             <MenuItem Header="Gleiswechsel" Command="{Binding ShowTrackChangeCommand}"/>
-            <Separator/>
+            <Separator Background="{DynamicResource MenuSeparatorColor}"/>
             <MenuItem Header="Zugstatus neu" Command="{Binding NewTrainStateCommand}"/>
             <MenuItem Header="Zugstatus eingeben" Command="{Binding EnterTrainStateCommand}"/>
-            <Separator/>
+            <Separator Background="{DynamicResource MenuSeparatorColor}"/>
             <MenuItem Header="Zuglaufdaten" Command="{Binding ShowTrainScheduleCommand}"/>
             <MenuItem Header="Örtliche Anweisungen" Command="{Binding ShowLocalOrdersCommand}"/>
             <MenuItem Header="Zugbildung" Command="{Binding ShowTrainCompositionCommand}"/>
@@ -53,12 +60,12 @@
             
             <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber">
                 <controls:LeibitDataGridColumn.BackgroundConditions>
-                    <controls:ColumnBackgroundCondition BackgroundColor="LightGreen">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding ReadyColor, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding State}" Value="vorbereitet" />
                         </controls:ColumnBackgroundCondition.Conditions>
                     </controls:ColumnBackgroundCondition>
-                    <controls:ColumnBackgroundCondition BackgroundColor="LightGreen">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding ReadyColor, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding State}" Value="fertig" />
                         </controls:ColumnBackgroundCondition.Conditions>
@@ -71,19 +78,19 @@
 
             <controls:LeibitDataGridColumn Header="&#x0394;t an" FieldName="DelayStringArrival" VisibilityBinding="{Binding IsExpectedArrivalVisible, Converter={StaticResource VisibilityConverter}}">
                 <controls:LeibitDataGridColumn.BackgroundConditions>
-                    <controls:ColumnBackgroundCondition BackgroundColor="LightCyan">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayBlue, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding DelayArrival, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
                             <Condition Binding="{Binding IsExpectedArrivalVisible}" Value="true"/>
                         </controls:ColumnBackgroundCondition.Conditions>
                     </controls:ColumnBackgroundCondition>
-                    <controls:ColumnBackgroundCondition BackgroundColor="Yellow">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayYellow, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding DelayArrival, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
                             <Condition Binding="{Binding IsExpectedArrivalVisible}" Value="true"/>
                         </controls:ColumnBackgroundCondition.Conditions>
                     </controls:ColumnBackgroundCondition>
-                    <controls:ColumnBackgroundCondition BackgroundColor="LightCoral">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayRed, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding DelayArrival, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
                             <Condition Binding="{Binding IsExpectedArrivalVisible}" Value="true"/>
@@ -96,19 +103,19 @@
             
             <controls:LeibitDataGridColumn Header="&#x0394;t ab" FieldName="DelayStringDeparture" VisibilityBinding="{Binding IsExpectedDepartureVisible, Converter={StaticResource VisibilityConverter}}">
                 <controls:LeibitDataGridColumn.BackgroundConditions>
-                    <controls:ColumnBackgroundCondition BackgroundColor="LightCyan">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayBlue, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding DelayDeparture, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
                             <Condition Binding="{Binding IsExpectedDepartureVisible}" Value="true"/>
                         </controls:ColumnBackgroundCondition.Conditions>
                     </controls:ColumnBackgroundCondition>
-                    <controls:ColumnBackgroundCondition BackgroundColor="Yellow">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayYellow, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
                             <Condition Binding="{Binding IsExpectedDepartureVisible}" Value="true"/>
                         </controls:ColumnBackgroundCondition.Conditions>
                     </controls:ColumnBackgroundCondition>
-                    <controls:ColumnBackgroundCondition BackgroundColor="LightCoral">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayRed, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
                             <Condition Binding="{Binding IsExpectedDepartureVisible}" Value="true"/>
@@ -123,12 +130,12 @@
             
             <controls:LeibitDataGridColumn Header="Akt. Betriebsstelle" FieldName="CurrentStation.Name">
                 <controls:LeibitDataGridColumn.BackgroundConditions>
-                    <controls:ColumnBackgroundCondition BackgroundColor="LightGreen">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding ReadyColor, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding State}" Value="vorbereitet" />
                         </controls:ColumnBackgroundCondition.Conditions>
                     </controls:ColumnBackgroundCondition>
-                    <controls:ColumnBackgroundCondition BackgroundColor="LightGreen">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding ReadyColor, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding State}" Value="fertig" />
                         </controls:ColumnBackgroundCondition.Conditions>
@@ -138,17 +145,17 @@
 
             <controls:LeibitDataGridColumn Header="&#x0394;t" FieldName="DelayString">
                 <controls:LeibitDataGridColumn.BackgroundConditions>
-                    <controls:ColumnBackgroundCondition BackgroundColor="LightCyan">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayBlue, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding Delay, Converter={StaticResource IsSmallerThanConverter}, ConverterParameter=-5}" Value="true" />
                         </controls:ColumnBackgroundCondition.Conditions>
                     </controls:ColumnBackgroundCondition>
-                    <controls:ColumnBackgroundCondition BackgroundColor="Yellow">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayYellow, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=5}" Value="true" />
                         </controls:ColumnBackgroundCondition.Conditions>
                     </controls:ColumnBackgroundCondition>
-                    <controls:ColumnBackgroundCondition BackgroundColor="LightCoral">
+                    <controls:ColumnBackgroundCondition BackgroundColor="{Binding DelayRed, Source={StaticResource ColorHelper}}">
                         <controls:ColumnBackgroundCondition.Conditions>
                             <Condition Binding="{Binding Delay, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=10}" Value="true" />
                         </controls:ColumnBackgroundCondition.Conditions>
