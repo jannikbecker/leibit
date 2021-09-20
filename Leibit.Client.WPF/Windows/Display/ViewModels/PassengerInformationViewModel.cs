@@ -47,6 +47,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             if (SelectedStation == null || SelectedTrack == null)
             {
                 LEDText = "...";
+                IsLEDSliding = true;
                 return;
             }
 

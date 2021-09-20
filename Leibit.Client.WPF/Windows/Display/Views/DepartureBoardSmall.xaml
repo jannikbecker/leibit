@@ -12,10 +12,10 @@
                     <ColumnDefinition Width="60"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" FontSize="14" FontWeight="Bold" Margin="1">Zeit</TextBlock>
-                <TextBlock Grid.Column="1" FontSize="14" FontWeight="Bold" Margin="1">Über</TextBlock>
-                <TextBlock Grid.Column="2" FontSize="14" FontWeight="Bold" Margin="1">Nach</TextBlock>
-                <TextBlock Grid.Column="3" FontSize="14" FontWeight="Bold" Margin="1">Gleis</TextBlock>
+                <TextBlock Grid.Column="0" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Zeit</TextBlock>
+                <TextBlock Grid.Column="1" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Über</TextBlock>
+                <TextBlock Grid.Column="2" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Nach</TextBlock>
+                <TextBlock Grid.Column="3" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Gleis</TextBlock>
             </Grid>
 
             <ItemsControl ItemsSource="{Binding Items}" Height="400">

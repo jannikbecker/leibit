@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF">
 
-    <Border DataContext="{Binding SelectedDisplayType.ViewModel}" BorderBrush="Black" Background="#1071df" BorderThickness="20" Width="443">
+    <Border DataContext="{Binding SelectedDisplayType.ViewModel}" BorderBrush="#373d6d" Background="#1071df" BorderThickness="20" Width="443">
         <Border.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="Foreground" Value="White"/>
