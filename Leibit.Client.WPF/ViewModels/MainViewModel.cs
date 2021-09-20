@@ -32,6 +32,7 @@ using Leibit.Entities;
 using Leibit.Entities.Common;
 using Leibit.Entities.Serialization;
 using Leibit.Entities.Settings;
+using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
@@ -56,6 +58,7 @@ namespace Leibit.Client.WPF.ViewModels
         private readonly LiveDataBLL m_LiveDataBll;
         private readonly SettingsBLL m_SettingsBll;
         private readonly SerializationBLL m_SerializationBll;
+        private UpdateBLL m_UpdateBll;
 
         private Area m_CurrentArea;
         private Thread m_RefreshingThread;
@@ -83,6 +86,14 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_ShowQuickStartHelpCommand;
         private CommandHandler m_AboutCommand;
         private CommandHandler m_DebugModeCommand;
+        #endregion
+
+        #region - Const -
+        private const string NOTIFICATION_TYPE = "Type";
+        private const string NOTIFICATION_TYPE_UPDATE_AVAILABLE = "UpdateAvailable";
+        private const string NOTIFICATION_TYPE_UPDATE_INSTALLED = "UpdateInstalled";
+        private const string NOTIFICATION_TYPE_ERROR = "Error";
+        private const string NOTIFICATION_ACTION = "Action";
         #endregion
 
         #region - Ctor -
@@ -128,17 +139,12 @@ namespace Leibit.Client.WPF.ViewModels
                 Areas = new ObservableCollection<Area>();
             }
 
-            var SettingsResult = m_SettingsBll.AreSettingsComplete();
-
-            if (SettingsResult.Succeeded)
-            {
-                if (!SettingsResult.Result)
-                    __Settings();
-            }
-            else
-                ShowMessage(SettingsResult);
-
             StatusBarText = "Herzlich willkommen!";
+            ProgressBarVisibility = Visibility.Collapsed;
+
+            ToastNotificationManagerCompat.History.Clear();
+            ToastNotificationManagerCompat.OnActivated += __ToastNotificationClicked;
+            __CheckForUpdatesIfNeeded();
         }
         #endregion
 
@@ -256,6 +262,14 @@ namespace Leibit.Client.WPF.ViewModels
             {
                 Set(value);
             }
+        }
+        #endregion
+
+        #region [ProgressBarVisibility]
+        public Visibility ProgressBarVisibility
+        {
+            get => Get<Visibility>();
+            set => Set(value);
         }
         #endregion
 
@@ -539,6 +553,22 @@ namespace Leibit.Client.WPF.ViewModels
                 if (windowSettings.Maximized)
                     window.WindowState = WindowState.Maximized;
             }
+
+            var SettingsResult = m_SettingsBll.AreSettingsComplete();
+
+            if (SettingsResult.Succeeded)
+            {
+                if (!SettingsResult.Result)
+                {
+                    Task.Run(async () =>
+                    {
+                        await Task.Delay(500); // Dirty hack. We must ensure that layout is updated. Calling UpdateLayout() does not work :(
+                        Application.Current?.Dispatcher?.Invoke(__Settings);
+                    });
+                }
+            }
+            else
+                ShowMessage(SettingsResult);
         }
         #endregion
 
@@ -696,7 +726,7 @@ namespace Leibit.Client.WPF.ViewModels
                             if (StationShortSymbol.IsNullOrWhiteSpace())
                                 continue;
 
-                            var Station = Stations.FirstOrDefault(s => s.ShortSymbol == StationShortSymbol && s.ScheduleFile.IsNotNullOrEmpty());
+                            var Station = Stations.FirstOrDefault(s => s.ShortSymbol == StationShortSymbol && s.HasScheduleFile);
 
                             if (Station == null)
                                 continue;
@@ -1117,8 +1147,31 @@ namespace Leibit.Client.WPF.ViewModels
             };
 
             ViewModel.StatusBarTextChanged += (sender, text) => StatusBarText = text;
+            ViewModel.ReportProgress += __ReportProgress;
+
+            ViewModel.ShutdownRequested += (sender, force) =>
+            {
+                m_ForceClose = force;
+                __Exit();
+            };
 
             return true;
+        }
+        #endregion
+
+        #region [__ReportProgress]
+        private void __ReportProgress(object sender, ReportProgressEventArgs e)
+        {
+            if (e.Completed)
+            {
+                ProgressBarVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ProgressBarText = e.ProgressText;
+                ProgressBarPercentage = e.ProgressValue;
+                ProgressBarVisibility = Visibility.Visible;
+            }
         }
         #endregion
 
@@ -1160,6 +1213,7 @@ namespace Leibit.Client.WPF.ViewModels
 
             ChildWindows.Clear();
             Runtime.VisibleStations.Clear();
+            ToastNotificationManagerCompat.History.Clear();
         }
         #endregion
 
@@ -1328,6 +1382,172 @@ namespace Leibit.Client.WPF.ViewModels
 
             m_ForceClose = true;
             __Exit();
+        }
+        #endregion
+
+        #region [__CheckForUpdatesIfNeeded]
+        private void __CheckForUpdatesIfNeeded()
+        {
+            var settingsResult = m_SettingsBll.GetSettings();
+            var settings = settingsResult.Result;
+
+            if (settings?.AutomaticallyCheckForUpdates == false)
+                return;
+
+            Task.Run(async () =>
+            {
+                m_UpdateBll = await UpdateHelper.GetUpdateBLL();
+                var checkForUpdateResult = await m_UpdateBll.CheckForUpdates();
+
+                if (!checkForUpdateResult.Succeeded)
+                    return;
+
+                if (checkForUpdateResult.Result.ReleasesToApply.Any() && checkForUpdateResult.Result.FutureVersion != settings?.SkipVersion)
+                {
+                    if (settings?.AutomaticallyInstallUpdates == true)
+                    {
+                        __DoUpdate();
+                        return;
+                    }
+
+                    var installButton = new ToastButton()
+                        .SetContent("Installieren")
+                        .AddArgument(NOTIFICATION_ACTION, "install");
+
+                    var remindButton = new ToastButton()
+                        .SetContent("Später")
+                        .AddArgument(NOTIFICATION_ACTION, "later");
+
+                    var skipButton = new ToastButton()
+                        .SetContent("Überspringen")
+                        .AddArgument(NOTIFICATION_ACTION, "skip")
+                        .AddArgument("versionToSkip", checkForUpdateResult.Result.FutureVersion);
+
+                    new ToastContentBuilder()
+                        .AddArgument(NOTIFICATION_TYPE, NOTIFICATION_TYPE_UPDATE_AVAILABLE)
+                        .AddText("Es steht eine neue Version von LeiBIT zur Verfügung")
+                        .AddText($"Aktuell verwendete Version: {checkForUpdateResult.Result.CurrentVersion}")
+                        .AddText($"Neue Version: {checkForUpdateResult.Result.FutureVersion}")
+                        .AddButton(installButton)
+                        .AddButton(remindButton)
+                        .AddButton(skipButton)
+                        .Show();
+                }
+            });
+        }
+        #endregion
+
+        #region [__DoUpdate]
+        private void __DoUpdate()
+        {
+            Task.Run(async () =>
+            {
+                __UpdateProgress(this, 0);
+
+                m_UpdateBll.UpdateProgress += __UpdateProgress;
+                var updateResult = await m_UpdateBll.Update();
+                m_UpdateBll.UpdateProgress -= __UpdateProgress;
+
+                __ReportProgress(this, new ReportProgressEventArgs(true));
+
+                if (!updateResult.Succeeded)
+                {
+                    var detailsButton = new ToastButton()
+                       .SetContent("Details...")
+                       .AddArgument(NOTIFICATION_ACTION, "showDetails")
+                       .AddArgument("error", "Installation fehlgeschlagen")
+                       .AddArgument("errorMessage", updateResult.Message);
+
+                    new ToastContentBuilder()
+                        .AddArgument(NOTIFICATION_TYPE, NOTIFICATION_TYPE_ERROR)
+                        .AddText("Installation fehlgeschlagen")
+                        .AddButton(detailsButton)
+                        .Show();
+
+                    return;
+                }
+
+                if (updateResult.Result)
+                {
+                    var checkResult = await m_UpdateBll.CheckForUpdates();
+                    var currentVersion = checkResult?.Result?.CurrentVersion ?? "???";
+
+                    var restartButton = new ToastButton()
+                        .SetContent("Jetzt neu starten")
+                        .AddArgument(NOTIFICATION_ACTION, "restart");
+
+                    var laterButton = new ToastButton()
+                        .SetContent("Später")
+                        .AddArgument(NOTIFICATION_ACTION, "later");
+
+                    new ToastContentBuilder()
+                        .AddArgument(NOTIFICATION_TYPE, NOTIFICATION_TYPE_UPDATE_INSTALLED)
+                        .AddText("Update erfolgreich installiert")
+                        .AddText($"LeiBIT wurde auf Version {currentVersion} aktualisiert. Beim nächsten Start steht die neue Version zur Verfügung.")
+                        .AddButton(restartButton)
+                        .AddButton(laterButton)
+                        .Show();
+                }
+            });
+        }
+        #endregion
+
+        #region [__Restart]
+        private void __Restart()
+        {
+            var restartResult = m_UpdateBll.RestartApp();
+
+            if (restartResult.Succeeded && restartResult.Result)
+            {
+                m_ForceClose = true;
+                Application.Current?.Dispatcher?.BeginInvoke(new Action(__Exit));
+            }
+        }
+        #endregion
+
+        #region [__UpdateProgress]
+        private void __UpdateProgress(object sender, int e)
+        {
+            __ReportProgress(this, new ReportProgressEventArgs("Update wird installiert", e));
+        }
+        #endregion
+
+        #region [__ToastNotificationClicked]
+        private void __ToastNotificationClicked(ToastNotificationActivatedEventArgsCompat e)
+        {
+            var args = ToastArguments.Parse(e.Argument);
+
+            if (!args.Contains(NOTIFICATION_TYPE) || !args.Contains(NOTIFICATION_ACTION))
+                return;
+
+            if (args[NOTIFICATION_TYPE] == NOTIFICATION_TYPE_UPDATE_AVAILABLE)
+            {
+                if (args[NOTIFICATION_ACTION] == "install")
+                    __DoUpdate();
+                else if (args[NOTIFICATION_ACTION] == "skip" && args.Contains("versionToSkip"))
+                {
+                    var settingsResult = m_SettingsBll.GetSettings();
+
+                    if (!settingsResult.Succeeded)
+                        return;
+
+                    var settings = settingsResult.Result;
+                    settings.SkipVersion = args["versionToSkip"];
+                    m_SettingsBll.SaveSettings(settings);
+                }
+            }
+
+            if (args[NOTIFICATION_TYPE] == NOTIFICATION_TYPE_UPDATE_INSTALLED)
+            {
+                if (args[NOTIFICATION_ACTION] == "restart")
+                    __Restart();
+            }
+
+            if (args[NOTIFICATION_TYPE] == NOTIFICATION_TYPE_ERROR)
+            {
+                if (args[NOTIFICATION_ACTION] == "showDetails" && args.Contains("error") && args.Contains("errorMessage"))
+                    Application.Current?.Dispatcher?.Invoke(() => MessageBox.Show(args["errorMessage"], args["error"], MessageBoxButton.OK, MessageBoxImage.Error));
+            }
         }
         #endregion
 
