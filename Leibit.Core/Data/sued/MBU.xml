@@ -148,10 +148,10 @@
       <alternative track="9"/>
       <alternative track="10"/>
       
-      <track name="1N">
+      <track name="1N" displayName="1" displaySubName="Nord">
         <block name="24G1N"/>
       </track>
-      <track name="1S">
+      <track name="1S" displayName="1" displaySubName="Süd">
         <block name="24G1S"/>
       </track>
     </track>
@@ -180,10 +180,10 @@
       <alternative track="9"/>
       <alternative track="10"/>
 
-      <track name="3N">
+      <track name="3N" displayName="3" displaySubName="Nord">
         <block name="24G3N"/>
       </track>
-      <track name="3S">
+      <track name="3S" displayName="3" displaySubName="Süd">
         <block name="24G3S"/>
       </track>
     </track>
@@ -345,10 +345,10 @@
   </station>
 
   <station name="Inningen" short="MINI" refNr="26" scheduleFile="b26_____.abf">
-    <track name="11" calculateDelay="false">
+    <track name="11" calculateDelay="false" displayName="1">
       <block name="26B11"/>
     </track>
-    <track name="12" calculateDelay="false">
+    <track name="12" calculateDelay="false" displayName="2">
       <block name="26B12"/>
     </track>
   </station>

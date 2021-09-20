@@ -15,10 +15,10 @@
       <alternative track="5"/>
       <alternative track="6"/>
 
-      <track name="1N">
+      <track name="1N" displayName="1" displaySubName="Nord">
         <block name="50G1N"/>
       </track>
-      <track name="1S">
+      <track name="1S" displayName="1" displaySubName="Süd">
         <block name="50G1S"/>
       </track>
     </track>
@@ -30,10 +30,10 @@
       <alternative track="5"/>
       <alternative track="6"/>
 
-      <track name="2N">
+      <track name="2N" displayName="2" displaySubName="Nord">
         <block name="50G2N"/>
       </track>
-      <track name="2S">
+      <track name="2S" displayName="2" displaySubName="Süd">
         <block name="50G2S"/>
       </track>
     </track>
@@ -63,10 +63,10 @@
       <alternative track="4"/>
       <alternative track="6"/>
 
-      <track name="5N">
+      <track name="5N" displayName="5" displaySubName="Nord">
         <block name="50G5N"/>
       </track>
-      <track name="5S">
+      <track name="5S" displayName="5" displaySubName="Süd">
         <block name="50G5S"/>
       </track>
     </track>
@@ -294,16 +294,16 @@
   </station>
 
   <station name="Reutte in Tirol" short="XART" refNr="8" scheduleFile="g8______.abf" localOrderFile="bf8_____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="08G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="08G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="08G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="08G004"/>
     </track>
   </station>

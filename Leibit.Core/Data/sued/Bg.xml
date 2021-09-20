@@ -18,13 +18,13 @@
   </station>
 
   <station name="Dornbirn" short="Do" refNr="4" scheduleFile="g4______.abf" localOrderFile="bf4_____.abf">
-    <track name="201">
+    <track name="201" displayName="2">
       <block name="04G201"/>
     </track>
-    <track name="202">
+    <track name="202" displayName="1">
       <block name="04G202"/>
     </track>
-    <track name="203">
+    <track name="203" displayName="3">
       <block name="04G203"/>
     </track>
     <track name="205">
@@ -51,10 +51,10 @@
   </station>
 
   <station name="Wolfurt" short="Wo" refNr="2" scheduleFile="g20_____.abf" localOrderFile="bf20____.abf">
-    <track name="501">
+    <track name="501" displayName="1">
       <block name="02G501"/>
     </track>
-    <track name="502">
+    <track name="502" displayName="2">
       <block name="02G502"/>
     </track>
     <track name="531">
@@ -171,13 +171,13 @@
   </station>
 
   <station name="Lustenau" short="Us" refNr="3" scheduleFile="g3______.abf" localOrderFile="bf3_____.abf">
-    <track name="201">
+    <track name="201" displayName="1">
       <block name="03G201"/>
     </track>
-    <track name="202">
+    <track name="202" displayName="2">
       <block name="03G202"/>
     </track>
-    <track name="203">
+    <track name="203" displayName="3">
       <block name="03G203"/>
     </track>
   </station>
@@ -198,7 +198,7 @@
   </station>
 
   <station name="Bregenz" short="Bg" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
-    <track name="301">
+    <track name="301" displayName="4">
       <block name="01G301"/>
       <alternative track="302"/>
       <alternative track="303"/>
@@ -206,7 +206,7 @@
       <alternative track="306"/>
     </track>
     
-    <track name="302">
+    <track name="302" displayName="3">
       <block name="01G302"/>
       <alternative track="301"/>
       <alternative track="303"/>
@@ -214,7 +214,7 @@
       <alternative track="306"/>
     </track>
     
-    <track name="303">
+    <track name="303" displayName="5">
       <block name="01G303"/>
       <alternative track="301"/>
       <alternative track="302"/>
@@ -222,7 +222,7 @@
       <alternative track="306"/>
     </track>
     
-    <track name="304">
+    <track name="304" displayName="2" displaySubName="A-B">
       <block name="01G304"/>
       <alternative track="301"/>
       <alternative track="302"/>
@@ -230,7 +230,7 @@
       <alternative track="306"/>
     </track>
     
-    <track name="306">
+    <track name="306" displayName="1" displaySubName="A-B">
       <block name="01G306"/>
       <alternative track="301"/>
       <alternative track="302"/>
@@ -238,7 +238,7 @@
       <alternative track="304"/>
     </track>
     
-    <track name="314">
+    <track name="314" displayName="2C">
       <block name="01G314"/>
       <alternative track="301"/>
       <alternative track="302"/>
@@ -246,7 +246,7 @@
       <alternative track="316"/>
     </track>
     
-    <track name="316">
+    <track name="316" displayName="1C">
       <block name="01G316"/>
       <alternative track="301"/>
       <alternative track="302"/>
@@ -256,19 +256,19 @@
   </station>
   
   <station name="Bregenz Hafen" short="Bg H1" refNr="1" scheduleFile="g61_____.abf" localOrderFile="bf11____.abf">
-    <track name="411" calculateDelay="false">
+    <track name="411" calculateDelay="false" displayName="1">
       <block name="61G411"/>
     </track>
-    <track name="412">
+    <track name="412" displayName="2">
       <block name="61G412"/>
     </track>
   </station>
 
   <station name="Lochau-Hörbranz" short="Lc" refNr="51" scheduleFile="g51_____.abf" localOrderFile="bf51____.abf">
-    <track name="501">
+    <track name="501" displayName="1">
       <block name="51G501"/>
     </track>
-    <track name="502">
+    <track name="502" displayName="2">
       <block name="51G502"/>
     </track>
   </station>

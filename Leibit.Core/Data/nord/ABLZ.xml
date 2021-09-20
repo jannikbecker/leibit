@@ -29,31 +29,31 @@
   </station>
 
   <station name="Tostedt" short="ATST" refNr="57" scheduleFile="g57_____.abf" localOrderFile="bf57____.abf">
-    <track name="431">
+    <track name="431" displayName="1">
       <block name="57G431"/>
     </track>
-    <track name="432">
+    <track name="432" displayName="2">
       <block name="57G432"/>
     </track>
-    <track name="433">
+    <track name="433" displayName="3">
       <block name="57G433"/>
     </track>
-    <track name="434">
+    <track name="434" displayName="4">
       <block name="57G434"/>
     </track>
-    <track name="435">
+    <track name="435" displayName="5">
       <block name="57G435"/>
     </track>
   </station>
 
   <station name="Sprötze" short="ASP" refNr="57" scheduleFile="b57_____.abf">
-    <track name="500" calculateDelay="false">
+    <track name="500" calculateDelay="false" displayName="1">
       <block name="57B500"/>
     </track>
-    <track name="400" calculateDelay="false">
+    <track name="400" calculateDelay="false" displayName="2">
       <block name="57B400"/>
     </track>
-    <track name="597" calculateDelay="false">
+    <track name="597" calculateDelay="false" displayName="3">
       <block name="57B597"/>
     </track>
   </station>

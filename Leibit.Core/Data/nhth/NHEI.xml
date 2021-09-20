@@ -8,34 +8,34 @@
   </station>
 
   <station name="Hösbach" short="NHOE" refNr="72" scheduleFile="g72_____.abf" localOrderFile="bf72____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="72G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="72G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="72G003"/>
     </track>
   </station>
 
   <station name="Laufach" short="NLA" refNr="73" scheduleFile="g73_____.abf" localOrderFile="bf73____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="73G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="73G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="73G003"/>
     </track>
-    <track name="104">
+    <track name="104" displayName="4">
       <block name="73G104"/>
       <alternative track="001"/>
       <alternative track="002"/>
       <alternative track="003"/>
 
-      <track name="204">
+      <track name="204" displayName="4">
         <block name="73G204"/>
       </track>
     </track>
@@ -54,7 +54,7 @@
   </station>
 
   <station name="Heigenbrücken" short="NHEI" refNr="74" scheduleFile="g74_____.abf" localOrderFile="bf74____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="74G001"/>
       <alternative track="002"/>
       <alternative track="003"/>
@@ -64,25 +64,25 @@
         <block name="74G101"/>
       </track>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="74G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="74G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="74G004"/>
     </track>
   </station>
 
   <station name="Wiesthal" short="NWI" refNr="75" scheduleFile="g75_____.abf" localOrderFile="bf75____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="75G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="75G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="75G003"/>
     </track>
   </station>

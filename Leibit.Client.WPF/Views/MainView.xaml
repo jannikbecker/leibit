@@ -104,6 +104,8 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
+                <MenuItem Header="Fahrgastinformation" Command="{Binding DisplayCommand}"/>
+
                 <MenuItem Header="Systemstatus" Command="{Binding SystemStateCommand}">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource imgInfo}" />
