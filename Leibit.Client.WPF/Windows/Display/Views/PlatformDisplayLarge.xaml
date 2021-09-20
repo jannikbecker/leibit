@@ -107,7 +107,7 @@
                 <TextBlock Text="{Binding FollowingTrain2Info}" FontSize="12" Foreground="#1071df" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
 
-            <Rectangle Grid.Row="1" Grid.ColumnSpan="9" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Rectangle Grid.Row="1" Grid.ColumnSpan="9" Fill="#373d6d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <Rectangle Grid.Column="1" Grid.RowSpan="5" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <Rectangle Grid.Column="3" Grid.RowSpan="5" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <Rectangle Grid.Column="5" Grid.RowSpan="5" Fill="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
