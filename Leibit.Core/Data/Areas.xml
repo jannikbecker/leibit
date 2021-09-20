@@ -48,4 +48,8 @@
     <estw id="MWH" name="Weilheim" dataFile="leibit_WEILHEIM.dat" infrastructureManager="DB"/>
     <estw id="MGP" name="Garmisch-Partenkirchen" dataFile="leibit_GARMISCH-PARTENK.dat" infrastructureManager="DB"/>
   </area>
+
+  <area id="nrw" name="Nordrhein-Westfalen">
+    <estw id="KKM" name="Köln-Mülheim" dataFile="leibit_KÖLN-MÜLHEIM.dat" infrastructureManager="DB" />
+  </area>
 </leibit>
