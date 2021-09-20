@@ -102,6 +102,8 @@ namespace Leibit.Entities.Common
             }
         }
 
+        public string DisplayName { get; set; }
+
         public List<ScheduleFile> ScheduleFiles { get; }
 
         public bool HasScheduleFile => ScheduleFile.IsNotNullOrWhiteSpace() || ScheduleFiles.Any();

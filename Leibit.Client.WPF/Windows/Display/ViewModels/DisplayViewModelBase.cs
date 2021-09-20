@@ -125,16 +125,6 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
-        #region [GetTime]
-        protected string GetTime(ScheduleItem scheduleItem)
-        {
-            if (scheduleItem.Schedule.Handling == eHandling.Destination)
-                return scheduleItem.Schedule.Arrival.ToString();
-            else
-                return scheduleItem.Schedule.Departure.ToString();
-        }
-        #endregion
-
         #region [GetTrackName]
         protected string GetTrackName(Track track)
         {
@@ -152,21 +142,6 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         protected string GetTrainNumber(ScheduleItem scheduleItem)
         {
             return $"{scheduleItem.Schedule.Train.Type} {scheduleItem.Schedule.Train.Number}";
-        }
-        #endregion
-
-        #region [GetDestination]
-        protected string GetDestination(ScheduleItem scheduleItem, bool isCurrent)
-        {
-            if (scheduleItem.Schedule.Handling == eHandling.Destination)
-            {
-                if (isCurrent)
-                    return "Bitte nicht einsteigen";
-                else
-                    return $"von {scheduleItem.Schedule.Train.Start}";
-            }
-            else
-                return scheduleItem.Schedule.Train.Destination;
         }
         #endregion
 
@@ -194,11 +169,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 string candidate;
 
                 if (currentViaString.IsNullOrEmpty())
-                    candidate = schedule.Station.Name;
+                    candidate = __GetDisplayName(schedule.Station);
                 else
-                    candidate = $"{currentViaString} - {schedule.Station.Name}";
+                    candidate = $"{currentViaString} - {__GetDisplayName(schedule.Station)}";
 
-                if (MeasureString(candidate, fontSize) > maxSpace)
+                if (__MeasureString(candidate, fontSize) > maxSpace)
                     continue;
 
                 currentViaString = candidate;
@@ -208,9 +183,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             foreach (var schedule in viaSchedules.OrderBy(s => s.Time))
             {
                 if (result.IsNullOrEmpty())
-                    result += schedule.Station.Name;
+                    result += __GetDisplayName(schedule.Station);
                 else
-                    result += $" - {schedule.Station.Name}";
+                    result += $" - {__GetDisplayName(schedule.Station)}";
             }
 
             return result;
@@ -258,13 +233,27 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
-        #region [MeasureString]
-        protected double MeasureString(string candidate, double size)
+        #endregion
+
+        #region - Private methods -
+
+        #region [__MeasureString]
+        private double __MeasureString(string candidate, double size)
         {
             var formattedText = new FormattedText(candidate, CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Segoe"), size, Brushes.Black, 1);
             return formattedText.Width;
         }
-        #endregion 
+        #endregion
+
+        #region [__GetDisplayName]
+        private string __GetDisplayName(Station station)
+        {
+            if (station.DisplayName.IsNullOrWhiteSpace())
+                return station.Name;
+            else
+                return station.DisplayName;
+        }
+        #endregion
 
         #endregion
 
