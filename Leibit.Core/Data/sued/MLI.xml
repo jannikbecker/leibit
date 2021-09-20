@@ -48,10 +48,10 @@
   </station>
 
   <station name="Oberstaufen" short="MOSF" refNr="62" scheduleFile="b62_____.abf">
-    <track name="3" calculateDelay="false">
+    <track name="3" calculateDelay="false" displayName="2">
       <block name="62B3"/>
     </track>
-    <track name="6" calculateDelay="false">
+    <track name="6" calculateDelay="false" displayName="1">
       <block name="62B6"/>
     </track>
   </station>

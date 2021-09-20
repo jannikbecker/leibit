@@ -55,12 +55,16 @@
                         <xs:attribute name="isPlatform" type="xs:boolean" use="optional" />
                         <xs:attribute name="calculateDelay" type="xs:boolean" use="optional" />
                         <xs:attribute name="name" type="xs:string" use="optional" />
+                        <xs:attribute name="displayName" type="xs:string" use="optional" />
+                        <xs:attribute name="displaySubName" type="xs:string" use="optional" />
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
                   <xs:attribute name="isPlatform" type="xs:boolean" use="optional" />
                   <xs:attribute name="calculateDelay" type="xs:boolean" use="optional" />
                   <xs:attribute name="name" type="xs:string" use="optional" />
+                  <xs:attribute name="displayName" type="xs:string" use="optional" />
+                  <xs:attribute name="displaySubName" type="xs:string" use="optional" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>

@@ -8,7 +8,7 @@
   </station>
 
   <station name="Rieneck" short="NRCK" refNr="11" scheduleFile="B11_____.ABF">
-    <track name="351" calculateDelay="false" />
+    <track name="351" calculateDelay="false" displayName="1" />
   </station>
 
   <station name="Rieneck Sinnberg" short="NSB" refNr="11" scheduleFile="G11_____.ABF">
@@ -29,26 +29,26 @@
     <track name="001">
       <block name="12G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="3">
       <block name="12G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="4">
       <block name="12G003"/>
     </track>
   </station>
 
   <station name="Mittelsinn" short="NMSN" refNr="12" scheduleFile="B12_____.ABF">
-    <track name="031" calculateDelay="false"/>
-    <track name="032" calculateDelay="false"/>
+    <track name="031" calculateDelay="false" displayName="3"/>
+    <track name="032" calculateDelay="false" displayName="2"/>
   </station>
 
   <station name="Obersinn" short="NOBS" refNr="13" scheduleFile="B13_____.ABF">
-    <track name="031" calculateDelay="false"/>
-    <track name="032" calculateDelay="false"/>
+    <track name="031" calculateDelay="false" displayName="1"/>
+    <track name="032" calculateDelay="false" displayName="2"/>
   </station>
 
   <station name="Jossa" short="NJS" refNr="13" scheduleFile="G13_____.ABF" localOrderFile="BF13____.ABF">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="13G001"/>
       <alternative track="002"/>
       <alternative track="003"/>
@@ -56,7 +56,7 @@
       <alternative track="007"/>
       <alternative track="009"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="13G002"/>
       <alternative track="001"/>
       <alternative track="003"/>
@@ -64,7 +64,7 @@
       <alternative track="007"/>
       <alternative track="009"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="13G003"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -79,7 +79,7 @@
       <alternative track="007"/>
       <alternative track="009"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="13G004"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -87,13 +87,13 @@
       <alternative track="007"/>
       <alternative track="009"/>
     </track>
-    <track name="007">
+    <track name="007" displayName="7">
       <block name="13G007"/>
       <alternative track="001"/>
       <alternative track="002"/>
       <alternative track="103"/>
     </track>
-    <track name="009">
+    <track name="009" displayName="9">
       <block name="13G009"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -109,31 +109,31 @@
   </station>
 
   <station name="Sterbfritz" short="FSTZ" refNr="14" scheduleFile="G14_____.ABF" localOrderFile="BF14____.ABF">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="14G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="14G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="14G003"/>
     </track>
   </station>
 
   <station name="Elm" short="FEL" refNr="15" scheduleFile="G15_____.ABF" localOrderFile="BF15____.ABF">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="15G001"/>
       <alternative track="002"/>
       <alternative track="003"/>
       <alternative track="004"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="15G002"/>
       <alternative track="001"/>
       <alternative track="003"/>
       <alternative track="004"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="15G003"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -145,7 +145,7 @@
       <alternative track="002"/>
       <alternative track="004"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="15G004"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -173,37 +173,37 @@
   </station>
 
   <station name="Flieden" short="FFD" refNr="16" scheduleFile="G16_____.ABF" localOrderFile="BF16____.ABF">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="16G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="16G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="16G003"/>
     </track>
-    <track name="006">
+    <track name="006" displayName="6">
       <block name="16G006"/>
     </track>
-    <track name="007">
+    <track name="007" displayName="7">
       <block name="16G007"/>
     </track>
-    <track name="008">
+    <track name="008" displayName="8">
       <block name="16G008"/>
     </track>
-    <track name="009">
+    <track name="009" displayName="9">
       <block name="16G009"/>
     </track>
   </station>
 
   <station name="Neuhof (Kr Fulda)" short="FNF" refNr="17" scheduleFile="G17_____.ABF" localOrderFile="BF17____.ABF">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="17G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="17G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="17G003"/>
     </track>
   </station>
@@ -244,22 +244,22 @@
   </station>
 
   <station name="Burgsinn Bbf" short="NBNB" refNr="6" scheduleFile="G6______.ABF" localOrderFile="BF6_____.ABF">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="06G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="06G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="06G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="06G004"/>
     </track>
-    <track name="005">
+    <track name="005" displayName="5">
       <block name="06G005"/>
     </track>
-    <track name="006">
+    <track name="006" displayName="6">
       <block name="06G006"/>
     </track>
   </station>
@@ -287,16 +287,16 @@
   </station>
 
   <station name="Mottgers" short="NMOT" refNr="9" scheduleFile="G9______.ABF" localOrderFile="BF9_____.ABF">
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="09G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="09G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="09G004"/>
     </track>
-    <track name="005">
+    <track name="005" displayName="5">
       <block name="09G005"/>
     </track>
   </station>

@@ -69,7 +69,7 @@
   </station>
 
   <station name="Sipplingen" short="RSIN" refNr="68" scheduleFile="sippli__.abf">
-    <track name="N" calculateDelay="false">
+    <track name="N" calculateDelay="false" displayName="1">
       <block name="68BN"/>
     </track>
   </station>
@@ -86,7 +86,7 @@
   </station>
 
   <station name="Überlingen-Ost" short="RUEO" refNr="69" scheduleFile="überli__.abf">
-    <track name="N" calculateDelay="false">
+    <track name="N" calculateDelay="false" displayName="1">
       <block name="69BN"/>
     </track>
   </station>
@@ -112,7 +112,7 @@
   </station>
 
   <station name="Bermatingen-Ahausen" short="RBAH" refNr="71" scheduleFile="bermat__.abf">
-    <track name="N" calculateDelay="false">
+    <track name="N" calculateDelay="false" displayName="1">
       <block name="71BN"/>
     </track>
   </station>
@@ -228,16 +228,16 @@
   </station>
 
   <station name="Friedrichshafen Hafen" short="TFH" refNr="77" scheduleFile="fn-haf__.abf" localOrderFile="fn-haf__.abf">
-    <track name="152">
+    <track name="152" displayName="2b">
       <block name="07G152"/>
     </track>
-    <track name="153">
+    <track name="153" displayName="3b">
       <block name="07G153"/>
     </track>
   </station>
   
   <station name="Friedrichshafen-Ost" short="TFOS" refNr="77" scheduleFile="fn-ost__.abf">
-    <track name="P2" calculateDelay="false">
+    <track name="P2" calculateDelay="false" displayName="1">
       <block name="77BP2"/>
     </track>
   </station>
@@ -276,10 +276,10 @@
   </station>
 
   <station name="Weingarten-Berg" short="TWEB" refNr="40" scheduleFile="weinga__.abf">
-    <track name="N1" calculateDelay="false">
+    <track name="N1" calculateDelay="false" displayName="2">
       <block name="40BN1"/>
     </track>
-    <track name="P" calculateDelay="false">
+    <track name="P" calculateDelay="false" displayName="1">
       <block name="79BP"/>
     </track>
   </station>

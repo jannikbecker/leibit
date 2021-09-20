@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Leibit.Controls.SlidingTextBox"
+             Name="me"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Canvas ClipToBounds="True">
+        <Grid x:Name="slideGrid">
+            <Grid.RenderTransform>
+                <TranslateTransform x:Name="translate"/>
+            </Grid.RenderTransform>
+
+            <Canvas>
+                <TextBlock x:Name="txtOriginal"
+                           Foreground="{Binding Foreground, ElementName=me}"
+                           FontFamily="{Binding FontFamily, ElementName=me}"
+                           FontSize="{Binding FontSize, ElementName=me}"
+                           VerticalAlignment="Center"
+                           SizeChanged="__SizeChanged"/>
+                
+                <TextBlock x:Name="txtCopy"
+                           Text="{Binding Text, ElementName=txtOriginal}"
+                           Foreground="{Binding Foreground, ElementName=txtOriginal}"
+                           FontFamily="{Binding FontFamily, ElementName=txtOriginal}"
+                           FontSize="{Binding FontSize, ElementName=txtOriginal}"
+                           VerticalAlignment="Center"/>
+            </Canvas>
+        </Grid>
+    </Canvas>
+</UserControl>

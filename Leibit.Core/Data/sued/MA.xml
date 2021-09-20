@@ -7,19 +7,19 @@
   </station>
 
   <station name="Inningen" short="MINI" refNr="26" scheduleFile="v26_____.abf">
-    <track name="11" calculateDelay="false">
+    <track name="11" calculateDelay="false" displayName="1">
       <block name="26S11"/>
     </track>
-    <track name="12" calculateDelay="false">
+    <track name="12" calculateDelay="false" displayName="2">
       <block name="26B12"/>
     </track>
   </station>
 
   <station name="Augsburg Morellstraße" short="MAMS" refNr="25" scheduleFile="v25_____.abf">
-    <track name="720">
+    <track name="720" displayName="1">
       <block name="25G720"/>
     </track>
-    <track name="920">
+    <track name="920" displayName="2">
       <block name="25G920"/>
     </track>
   </station>
@@ -32,16 +32,16 @@
   </station>
 
   <station name="Augsburg Haunstetterstraße" short="MAHA" refNr="25" scheduleFile="b25_____.abf">
-    <track name="103" calculateDelay="false">
+    <track name="103" calculateDelay="false" displayName="3">
       <block name="25B103"/>
     </track>
-    <track name="104" calculateDelay="false">
+    <track name="104" calculateDelay="false" displayName="4">
       <block name="25B104"/>
     </track>
   </station>
 
   <station name="Augsburg Hbf" short="MA" refNr="25" scheduleFile="g25_____.abf" localOrderFile="bf25____.abf">
-    <track name="1">
+    <track name="1" displayName="1" displaySubName="Süd">
       <block name="25G001"/>
       <alternative track="2"/>
       <alternative track="3"/>
@@ -57,7 +57,7 @@
       <alternative track="23"/>
       <alternative track="55"/>
 
-      <track name="11">
+      <track name="11" displayName="1" displaySubName="Nord">
         <block name="25G011"/>
       </track>
     </track>
@@ -113,7 +113,7 @@
       <alternative track="55"/>
     </track>
 
-    <track name="23">
+    <track name="23" displayName="501">
       <block name="25G023"/>
       <alternative track="1"/>
       <alternative track="2"/>
@@ -164,7 +164,7 @@
       <alternative track="55"/>
     </track>
 
-    <track name="7">
+    <track name="7" displayName="7" displaySubName="Süd">
       <block name="25G007"/>
       <alternative track="1"/>
       <alternative track="2"/>
@@ -180,12 +180,12 @@
       <alternative track="23"/>
       <alternative track="55"/>
 
-      <track name="17">
+      <track name="17" displayName="7" displaySubName="Nord">
         <block name="25G017"/>
       </track>
     </track>
 
-    <track name="8">
+    <track name="8" displayName="8" displaySubName="Süd">
       <block name="25G008"/>
       <alternative track="1"/>
       <alternative track="2"/>
@@ -201,12 +201,12 @@
       <alternative track="23"/>
       <alternative track="55"/>
 
-      <track name="18">
+      <track name="18" displayName="8" displaySubName="Nord">
         <block name="25G018"/>
       </track>
     </track>
 
-    <track name="55">
+    <track name="55" displayName="801">
       <block name="25G055"/>
       <alternative track="1"/>
       <alternative track="2"/>
@@ -223,7 +223,7 @@
       <alternative track="23"/>
     </track>
 
-    <track name="9">
+    <track name="9" displayName="9" displaySubName="Süd">
       <block name="25G009"/>
       <alternative track="1"/>
       <alternative track="2"/>
@@ -239,12 +239,12 @@
       <alternative track="23"/>
       <alternative track="55"/>
 
-      <track name="19">
+      <track name="19" displayName="9" displaySubName="Nord">
         <block name="25G019"/>
       </track>
     </track>
 
-    <track name="110">
+    <track name="110" displayName="10">
       <block name="25G110"/>
       <alternative track="1"/>
       <alternative track="2"/>
@@ -261,7 +261,7 @@
       <alternative track="55"/>
     </track>
 
-    <track name="111">
+    <track name="111" displayName="11">
       <block name="25G111"/>
       <alternative track="1"/>
       <alternative track="2"/>
@@ -278,7 +278,7 @@
       <alternative track="55"/>
     </track>
 
-    <track name="112">
+    <track name="112" displayName="12">
       <block name="25G112"/>
       <alternative track="1"/>
       <alternative track="2"/>
@@ -335,25 +335,25 @@
   </station>
 
   <station name="Augsburg-Oberhausen" short="MAOB" refNr="26" scheduleFile="g26_____.abf" localOrderFile="bf26____.abf">
-    <track name="273">
+    <track name="273" displayName="1">
       <block name="26G273"/>
     </track>
-    <track name="472">
+    <track name="472" displayName="2">
       <block name="26G472"/>
     </track>
-    <track name="577">
+    <track name="577" displayName="3">
       <block name="26G577"/>
     </track>
-    <track name="597">
+    <track name="597" displayName="4">
       <block name="26G597"/>
     </track>
-    <track name="677">
+    <track name="677" displayName="5">
       <block name="26G677"/>
     </track>
-    <track name="877">
+    <track name="877" displayName="6">
       <block name="26G877"/>
     </track>
-    <track name="977">
+    <track name="977" displayName="7">
       <block name="26G977"/>
     </track>
   </station>

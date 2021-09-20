@@ -6,6 +6,8 @@ using Leibit.Client.WPF.Windows.About.ViewModels;
 using Leibit.Client.WPF.Windows.About.Views;
 using Leibit.Client.WPF.Windows.DelayJustification.ViewModels;
 using Leibit.Client.WPF.Windows.DelayJustification.Views;
+using Leibit.Client.WPF.Windows.Display.ViewModels;
+using Leibit.Client.WPF.Windows.Display.Views;
 using Leibit.Client.WPF.Windows.ESTWSelection.ViewModels;
 using Leibit.Client.WPF.Windows.ESTWSelection.Views;
 using Leibit.Client.WPF.Windows.LocalOrders.ViewModels;
@@ -75,6 +77,7 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_EstwSelectionCommand;
         private CommandHandler m_TrainProgressInformationCommand;
         private CommandHandler m_TimeTableCommand;
+        private CommandHandler m_DisplayCommand;
         private CommandHandler m_TrainScheduleCommand;
         private CommandHandler m_SystemStateCommand;
         private CommandHandler m_SaveLayoutCommand;
@@ -106,6 +109,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_EstwSelectionCommand = new CommandHandler(__ShowEstwSelectionWindow, false);
             m_TrainProgressInformationCommand = new CommandHandler(__ShowTrainProgressInformationWindow, false);
             m_TimeTableCommand = new CommandHandler<Station>(__ShowTimeTableWindow, true);
+            m_DisplayCommand = new CommandHandler(__ShowDisplay, false);
             m_TrainScheduleCommand = new CommandHandler(__ShowTrainScheduleWindow, false);
             m_SystemStateCommand = new CommandHandler(__ShowSystemStateWindow, false);
             m_SaveLayoutCommand = new CommandHandler(__SaveLayout, true);
@@ -429,6 +433,16 @@ namespace Leibit.Client.WPF.ViewModels
             get
             {
                 return m_TimeTableCommand;
+            }
+        }
+        #endregion
+
+        #region [DisplayCommand]
+        public ICommand DisplayCommand
+        {
+            get
+            {
+                return m_DisplayCommand;
             }
         }
         #endregion
@@ -782,6 +796,25 @@ namespace Leibit.Client.WPF.ViewModels
                             else
                                 continue;
 
+                        case eChildWindowType.Display:
+                            var parts = SerializedWindow.Tag?.ToString().Split(';');
+
+                            if (parts != null && parts.Length >= 3 && Enum.TryParse(parts[0], out eDisplayType type))
+                            {
+                                Window = new DisplayView();
+
+                                var vm = new DisplayViewModel(Window.Dispatcher, m_CurrentArea);
+                                vm.SelectedDisplayType = vm.DisplayTypes.FirstOrDefault(x => x.Type == type);
+                                vm.SelectedStation = vm.StationList.FirstOrDefault(s => s.ShortSymbol == parts[1]);
+                                vm.SelectedTrack = vm.TrackList.FirstOrDefault(t => t.Name == parts[2]);
+
+                                ViewModel = vm;
+                            }
+                            else
+                                continue;
+
+                            break;
+
                         default:
                             continue;
                     }
@@ -854,6 +887,13 @@ namespace Leibit.Client.WPF.ViewModels
 
                     var vm = Window.DataContext as TrainCompositionViewModel;
                     SerializedWindow.Tag = vm.TrainNumber;
+                }
+                else if (Window is DisplayView)
+                {
+                    SerializedWindow.Type = eChildWindowType.Display;
+
+                    var vm = Window.DataContext as DisplayViewModel;
+                    SerializedWindow.Tag = $"{(int)vm.SelectedDisplayType.Type};{vm.SelectedStation?.ShortSymbol};{vm.SelectedTrack?.Name}";
                 }
                 else
                     continue;
@@ -980,6 +1020,16 @@ namespace Leibit.Client.WPF.ViewModels
         }
         #endregion
 
+        #region [__ShowDisplay]
+        private void __ShowDisplay()
+        {
+            var window = new DisplayView();
+            var vm = new DisplayViewModel(window.Dispatcher, m_CurrentArea);
+
+            __OpenChildWindow(window, vm);
+        }
+        #endregion
+
         #region [__ShowTrainScheduleWindow]
         private void __ShowTrainScheduleWindow()
         {
@@ -1080,7 +1130,7 @@ namespace Leibit.Client.WPF.ViewModels
         #region [__OpenChildWindow]
         private bool __OpenChildWindow(ChildWindow Window, ChildWindowViewModelBase ViewModel)
         {
-            var Temp = ChildWindows.FirstOrDefault(c => c.Identifier == Window.Identifier);
+            var Temp = ChildWindows.FirstOrDefault(c => c.Identifier != null && c.Identifier == Window.Identifier);
 
             if (Temp != null)
             {
@@ -1144,6 +1194,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_SaveAsCommand.SetCanExecute(true);
             m_EstwSelectionCommand.SetCanExecute(true);
             m_TrainProgressInformationCommand.SetCanExecute(true);
+            m_DisplayCommand.SetCanExecute(true);
             m_SystemStateCommand.SetCanExecute(true);
             IsTrainScheduleEnabled = true;
 

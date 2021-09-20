@@ -8,13 +8,13 @@
   </station>
 
   <station name="Partenstein" short="NPAR" refNr="76" scheduleFile="g76_____.abf" localOrderFile="bf76____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="76G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="76G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="76G003"/>
     </track>
   </station>
@@ -26,19 +26,19 @@
   </station>
 
   <station name="Lohr Bahnhof" short="NLO" refNr="77" scheduleFile="g77_____.abf" localOrderFile="bf77____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="77G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="77G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="77G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="77G004"/>
     </track>
-    <track name="005">
+    <track name="005" displayName="5">
       <block name="77G005"/>
     </track>
   </station>
@@ -73,13 +73,13 @@
   </station>
 
   <station name="Burgsinn Bbf" short="NBNB" refNr="6" scheduleFile="v6______.abf">
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="06S3"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="06S4"/>
     </track>
-    <track name="005">
+    <track name="005" displayName="5">
       <block name="06S5"/>
     </track>
   </station>
@@ -96,16 +96,16 @@
   </station>
 
   <station name="Rohrbach" short="NRB" refNr="4" scheduleFile="g4______.abf" localOrderFile="bf4_____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="04G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="04G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="04G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="04G004"/>
     </track>
   </station>

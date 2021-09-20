@@ -1,0 +1,52 @@
+﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.Display.Views.DisplayView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.Display.Views"
+                      xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.Display.ViewModels"
+                      xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                      xmlns:converter="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                      Caption="{Binding Caption}"
+                      ResizeMode="NoResize">
+
+    <controls:ChildWindow.Style>
+        <Style TargetType="local:DisplayView" BasedOn="{StaticResource ChildWindowStyle}" />
+    </controls:ChildWindow.Style>
+
+    <controls:ChildWindow.Resources>
+        <converter:VisibilityConverter x:Key="VisibilityConverter"/>
+        <converter:VisibilityConverter x:Key="InvertedVisibilityConverter" Invert="True"/>
+        <vm:DisplayTypeConverter x:Key="DisplayTypeConverter"/>
+    </controls:ChildWindow.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">Typ:</TextBlock>
+        <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding DisplayTypes}" SelectedItem="{Binding SelectedDisplayType}" DisplayMemberPath="Name" Margin="10,0,20,0"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">Bahnhof:</TextBlock>
+        <ComboBox Grid.Row="0" Grid.Column="3" ItemsSource="{Binding StationList}" SelectedItem="{Binding SelectedStation}" DisplayMemberPath="Name" Margin="10,0,20,0"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center">Gleis:</TextBlock>
+        <ComboBox Grid.Row="0" Grid.Column="6" ItemsSource="{Binding TrackList}" SelectedItem="{Binding SelectedTrack}" DisplayMemberPath="Name" IsEnabled="{Binding IsTrackListEnabled}" Width="50" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+
+        <local:PlatformDisplaySmall Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PlatformDisplay_Small}}"/>
+        <local:PlatformDisplayLarge Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PlatformDisplay_Large}}"/>
+        <local:PassengerInformation Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PassengerInformation}}"/>
+        <local:DepartureBoardSmall Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.DepartureBoard_Small}}"/>
+        <local:DepartureBoardLarge Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.DepartureBoard_Large}}"/>
+
+    </Grid>
+</controls:ChildWindow>

@@ -10,16 +10,16 @@
   </station>
 
   <station name="Ludesch" short="Lt" refNr="10" scheduleFile="G10_____.ABF" localOrderFile="bf10____.abf">
-    <track name="201">
+    <track name="201" displayName="1">
       <block name="10G201"/>
     </track>
-    <track name="202">
+    <track name="202" displayName="2">
       <block name="10G202"/>
     </track>
-    <track name="203">
+    <track name="203" displayName="3">
       <block name="10G203"/>
     </track>
-    <track name="204">
+    <track name="204" displayName="4">
       <block name="10G204"/>
     </track>
   </station>
@@ -46,13 +46,13 @@
   </station>
 
   <station name="Frastanz" short="Fa" refNr="9" scheduleFile="G9______.ABF" localOrderFile="bf9_____.abf">
-    <track name="201">
+    <track name="201" displayName="1">
       <block name="09G201"/>
     </track>
-    <track name="202">
+    <track name="202" displayName="2">
       <block name="09G202"/>
     </track>
-    <track name="203">
+    <track name="203" displayName="3">
       <block name="09G203"/>
     </track>
     <track name="205">
@@ -64,7 +64,7 @@
   </station>
 
   <station name="Feldkirch" short="Fk" refNr="8" scheduleFile="G8______.ABF" localOrderFile="bf8_____.abf">
-    <track name="301">
+    <track name="301" displayName="3" displaySubName="A-B">
       <block name="08G301"/>
       <alternative track="302"/>
       <alternative track="303"/>
@@ -72,7 +72,7 @@
       <alternative track="305"/>
     </track>
     
-    <track name="302">
+    <track name="302" displayName="4" displaySubName="A-B">
       <block name="08G302"/>
       <alternative track="301"/>
       <alternative track="303"/>
@@ -80,7 +80,7 @@
       <alternative track="305"/>
     </track>
     
-    <track name="303">
+    <track name="303" displayName="2" displaySubName="A-B">
       <block name="08G303"/>
       <alternative track="301"/>
       <alternative track="302"/>
@@ -88,7 +88,7 @@
       <alternative track="305"/>
     </track>
     
-    <track name="304">
+    <track name="304" displayName="5" displaySubName="A-B">
       <block name="08G304"/>
       <alternative track="301"/>
       <alternative track="302"/>
@@ -96,7 +96,7 @@
       <alternative track="305"/>
     </track>
     
-    <track name="305">
+    <track name="305" displayName="1">
       <block name="08G305"/>
       <alternative track="301"/>
       <alternative track="302"/>
@@ -104,7 +104,7 @@
       <alternative track="304"/>
     </track>
 
-    <track name="401">
+    <track name="401" displayName="3" displaySubName="C-D">
       <block name="08G401"/>
       <alternative track="402"/>
       <alternative track="403"/>
@@ -116,7 +116,7 @@
       <alternative track="513"/>
     </track>
 
-    <track name="402">
+    <track name="402" displayName="4" displaySubName="C-D">
       <block name="08G402"/>
       <alternative track="401"/>
       <alternative track="403"/>
@@ -128,7 +128,7 @@
       <alternative track="513"/>
     </track>
 
-    <track name="403">
+    <track name="403" displayName="2" displaySubName="C-D">
       <block name="08G403"/>
       <alternative track="401"/>
       <alternative track="402"/>
@@ -140,7 +140,7 @@
       <alternative track="513"/>
     </track>
 
-    <track name="404">
+    <track name="404" displayName="5" displaySubName="C-D">
       <block name="08G404"/>
       <alternative track="401"/>
       <alternative track="402"/>
@@ -323,10 +323,10 @@
   </station>
 
   <station name="Nendeln" short="Nd" refNr="70" scheduleFile="G70_____.ABF" localOrderFile="bf70____.abf">
-    <track name="201">
+    <track name="201" displayName="1">
       <block name="70G201"/>
     </track>
-    <track name="203">
+    <track name="203" displayName="2">
       <block name="70G203"/>
     </track>
   </station>
@@ -355,13 +355,13 @@
   </station>
 
   <station name="Rankweil" short="Rk" refNr="7" scheduleFile="G7______.ABF" localOrderFile="bf7_____.abf">
-    <track name="201">
+    <track name="201" displayName="2">
       <block name="07G201"/>
     </track>
-    <track name="202">
+    <track name="202" displayName="1">
       <block name="07G202"/>
     </track>
-    <track name="203">
+    <track name="203" displayName="3">
       <block name="07G203"/>
     </track>
     <track name="205">
@@ -388,16 +388,16 @@
   </station>
 
   <station name="Götzis" short="Got" refNr="6" scheduleFile="G6______.ABF" localOrderFile="bf6_____.abf">
-    <track name="201">
+    <track name="201" displayName="2">
       <block name="06G201"/>
     </track>
     <track name="202">
       <block name="06G202"/>
     </track>
-    <track name="203">
+    <track name="203" displayName="3">
       <block name="06G203"/>
     </track>
-    <track name="204">
+    <track name="204" displayName="1">
       <block name="06G204"/>
     </track>
   </station>
@@ -412,13 +412,13 @@
   </station>
 
   <station name="Hohenems" short="Hos" refNr="5" scheduleFile="G5______.ABF" localOrderFile="bf5_____.abf">
-    <track name="201">
+    <track name="201" displayName="1">
       <block name="05G201"/>
     </track>
-    <track name="202">
+    <track name="202" displayName="1">
       <block name="05G202"/>
     </track>
-    <track name="203">
+    <track name="203" displayName="3">
       <block name="05G203"/>
     </track>
     <track name="205">

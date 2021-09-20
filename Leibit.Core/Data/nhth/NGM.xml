@@ -8,10 +8,10 @@
   </station>
 
   <station name="Langenprozelten" short="NLP" refNr="79" scheduleFile="G79_____.ABF" localOrderFile="bf79____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="79G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="79G002"/>
     </track>
   </station>
@@ -24,7 +24,7 @@
   </station>
 
   <station name="Rieneck" short="NRCK" refNr="11" scheduleFile="B11_____.ABF">
-    <track name="51" calculateDelay="false"/>
+    <track name="51" calculateDelay="false" displayName="1"/>
   </station>
 
   <station name="Gemünden Zollberg" short="NZG" refNr="10" scheduleFile="G10_____.abf" localOrderFile="bf10____.abf">
@@ -50,7 +50,7 @@
   </station>
 
   <station name="Gemünden" short="NGM" refNr="80" scheduleFile="G80_____.ABF" localOrderFile="bf80____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="80G001"/>
       <alternative track="002"/>
       <alternative track="003"/>
@@ -66,7 +66,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="80G002"/>
       <alternative track="001"/>
       <alternative track="003"/>
@@ -82,7 +82,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="80G003"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -98,7 +98,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="80G004"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -114,7 +114,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="005">
+    <track name="005" displayName="5">
       <block name="80G005"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -130,7 +130,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="006">
+    <track name="006" displayName="6">
       <block name="80G006"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -146,7 +146,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="007">
+    <track name="007" displayName="7">
       <block name="80G007"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -162,7 +162,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="008">
+    <track name="008" displayName="8">
       <block name="80G008"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -178,7 +178,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="009">
+    <track name="009" displayName="9">
       <block name="80G009"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -194,7 +194,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="010">
+    <track name="010" displayName="10">
       <block name="80G010"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -210,7 +210,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="011">
+    <track name="011" displayName="11">
       <block name="80G011"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -226,7 +226,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="012">
+    <track name="012" displayName="12">
       <block name="80G012"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -242,7 +242,7 @@
       <alternative track="013"/>
       <alternative track="014"/>
     </track>
-    <track name="013">
+    <track name="013" displayName="13">
       <block name="80G013"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -258,7 +258,7 @@
       <alternative track="012"/>
       <alternative track="014"/>
     </track>
-    <track name="014">
+    <track name="014" displayName="14">
       <block name="80G014"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -275,21 +275,21 @@
       <alternative track="013"/>
     </track>
 
-    <track name="053">
+    <track name="053" displayName="53">
       <block name="80G053"/>
       <alternative track="054"/>
     </track>
-    <track name="054">
+    <track name="054" displayName="54">
       <block name="80G054"/>
       <alternative track="053"/>
     </track>
   </station>
 
   <station name="Wernfeld" short="NWFD" refNr="81" scheduleFile="G81_____.ABF" localOrderFile="bf81____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="81G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="81G002"/>
     </track>
   </station>
@@ -301,35 +301,35 @@
   </station>
 
   <station name="Wernfeld Hp" short="NWFH" refNr="81" scheduleFile="B81_____.ABF">
-    <track name="43" calculateDelay="false">
+    <track name="43" calculateDelay="false" displayName="1">
       <block name="81B43"/>
     </track>
-    <track name="43" calculateDelay="false">
+    <track name="46" calculateDelay="false" displayName="2">
       <block name="81B46"/>
     </track>
   </station>
 
   <station name="Karlstadt" short="NKA" refNr="82" scheduleFile="G82_____.ABF" localOrderFile="bf82____.abf">
-    <track name="053">
+    <track name="053" displayName="53">
       <block name="82G053"/>
       <alternative track="054"/>
     </track>
-    <track name="054">
+    <track name="054" displayName="54">
       <block name="82G054"/>
       <alternative track="053"/>
     </track>
 
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="82G001"/>
       <alternative track="002"/>
       <alternative track="003"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="82G002"/>
       <alternative track="001"/>
       <alternative track="003"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="82G003"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -353,74 +353,74 @@
   </station>
 
   <station name="Himmelstadt" short="NHIS" refNr="83" scheduleFile="B83_____.ABF">
-    <track name="23" calculateDelay="false">
+    <track name="23" calculateDelay="false" displayName="2">
       <block name="83B23"/>
     </track>
-    <track name="24" calculateDelay="false">
+    <track name="24" calculateDelay="false" displayName="1">
       <block name="83B24"/>
     </track>
   </station>
 
   <station name="Retzbach-Zellingen" short="NREZ" refNr="83" scheduleFile="G83_____.ABF" localOrderFile="bf83____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="83G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="83G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="83G003"/>
     </track>
   </station>
 
   <station name="Thüngersheim" short="NTHM" refNr="84" scheduleFile="G84_____.ABF" localOrderFile="bf84____.abf">
     <!-- Disable delay calculation, this is not really a true station... -->
-    <track name="001" calculateDelay="false">
+    <track name="001" calculateDelay="false" displayName="1">
       <block name="84G001"/>
     </track>
-    <track name="002" calculateDelay="false">
+    <track name="002" calculateDelay="false" displayName="2">
       <block name="84G002"/>
     </track>
   </station>
 
   <station name="Veitshöchheim" short="NVE" refNr="85" scheduleFile="G85_____.ABF" localOrderFile="bf85____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="85G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="85G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="85G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="85G004"/>
     </track>
-    <track name="005">
+    <track name="005" displayName="5">
       <block name="85G005"/>
     </track>
-    <track name="006">
+    <track name="006" displayName="5">
       <block name="85G006"/>
     </track>
-    <track name="007">
+    <track name="007" displayName="7">
       <block name="85G007"/>
     </track>
-    <track name="008">
+    <track name="008" displayName="8">
       <block name="85G008"/>
     </track>
-    <track name="009">
+    <track name="009" displayName="9">
       <block name="85G009"/>
     </track>
-    <track name="010">
+    <track name="010" displayName="10">
       <block name="85G010"/>
     </track>
   </station>
 
   <station name="Würzburg-Zell" short="NWZ" refNr="85" scheduleFile="B85_____.ABF">
-    <track name="03" calculateDelay="false">
+    <track name="03" calculateDelay="false" displayName="3">
       <block name="87B03"/>
     </track>
-    <track name="04" calculateDelay="false">
+    <track name="04" calculateDelay="false" displayName="2">
       <block name="85B04"/>
     </track>
   </station>

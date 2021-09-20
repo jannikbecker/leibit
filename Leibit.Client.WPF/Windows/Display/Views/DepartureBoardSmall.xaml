@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Leibit.Client.WPF.Windows.Display.Views.DepartureBoardSmall"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Border DataContext="{Binding SelectedDisplayType.ViewModel}" BorderBrush="#373d6d" Background="#1071df" BorderThickness="20" HorizontalAlignment="Left">
+        <StackPanel Orientation="Vertical">
+            <Grid Background="Yellow" Height="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Zeit</TextBlock>
+                <TextBlock Grid.Column="1" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Über</TextBlock>
+                <TextBlock Grid.Column="2" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Nach</TextBlock>
+                <TextBlock Grid.Column="3" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Gleis</TextBlock>
+            </Grid>
+
+            <ItemsControl ItemsSource="{Binding Items}" Height="400">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="40">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Background="White">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" FontSize="16" Foreground="#1071df" FontWeight="Bold" Text="{Binding Time}" Margin="1,1,1,0" />
+                                <TextBlock Grid.Row="1" FontSize="11" Foreground="#1071df" Text="{Binding TrainNumber}" Margin="1,0,1,1"/>
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="160"/>
+                                    <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" FontSize="16" Foreground="White" Margin="1,1,0,0" Text="{Binding Via}"/>
+                                <TextBlock Grid.Column="1" FontSize="16" Foreground="White" Margin="1,1,0,0" Text="{Binding Destination}"/>
+                                <TextBlock Grid.Column="2" FontSize="16" Foreground="White" Margin="1,1,0,0" Text="{Binding TrackName}"/>
+
+                                <TextBlock Grid.Row="1" Grid.ColumnSpan="3" FontSize="12" Foreground="Yellow" Margin="1,0,0,1" Text="{Binding InfoText}"/>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Border>
+</UserControl>

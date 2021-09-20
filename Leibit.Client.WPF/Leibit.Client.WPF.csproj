@@ -29,6 +29,7 @@
     <RepositoryUrl>https://github.com/jannikbecker/leibit</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources\Fonts\5by7.ttf" />
     <None Remove="Resources\Images\Dark\bfo.png" />
     <None Remove="Resources\Images\Dark\clear.png" />
     <None Remove="Resources\Images\Dark\flash.png" />
@@ -57,6 +58,9 @@
     <None Remove="Resources\Images\Light\settings.png" />
     <None Remove="Resources\Images\Light\train_schedule.png" />
     <None Remove="Resources\Images\Light\zfi.png" />
+    <None Remove="Resources\Images\flash.png" />
+    <None Remove="Resources\Images\help.png" />
+    <None Remove="Resources\Images\info.png" />
     <None Remove="Resources\Images\ok.png" />
     <None Remove="Resources\Images\ok_gray.png" />
     <None Remove="Resources\Images\warning.png" />
@@ -99,6 +103,9 @@
     <ProjectReference Include="..\Leibit.Entities\Leibit.Entities.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Fonts\5by7.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Images\estw_online.png" />
     <Resource Include="Resources\Images\Light\save_layout.png" />
     <Resource Include="Resources\Images\Light\select.png" />

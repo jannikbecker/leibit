@@ -9,10 +9,10 @@
   </station>
   
   <station name="München-Langwied" short="MLW" refNr="16" scheduleFile="v16_____.abf">
-    <track name="029" calculateDelay="false">
+    <track name="029" calculateDelay="false" displayName="2">
       <block name="16S1033"/>
     </track>
-    <track name="030" calculateDelay="false">
+    <track name="030" calculateDelay="false" displayName="1">
       <block name="16S1030"/>
     </track>
   </station>
@@ -140,10 +140,10 @@
   </station>
 
   <station name="Althegnenberg" short="MAHB" refNr="21" scheduleFile="b21_____.abf">
-    <track name="3" calculateDelay="false">
+    <track name="3" calculateDelay="false" displayName="4">
       <block name="21B70"/>
     </track>
-    <track name="4" calculateDelay="false">
+    <track name="4" calculateDelay="false" displayName="3">
       <block name="21B69"/>
     </track>
   </station>
