@@ -120,17 +120,17 @@
                                     
                                     <Hyperlink.Style>
                                         <Style TargetType="Hyperlink">
-                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
                                             <Setter Property="TextDecorations" Value="Underline" />
                                             
                                             <Style.Triggers>
                                                 <Trigger Property="IsEnabled" Value="False">
                                                     <Setter Property="TextDecorations" Value="None" />
-                                                    <Setter Property="Foreground" Value="Black" />
+                                                    <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
                                                 </Trigger>
                                                 
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Foreground" Value="Black" />
+                                                    <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
