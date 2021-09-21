@@ -44,6 +44,7 @@
     <None Remove="Data\nrw\KKM.xml" />
     <None Remove="Data\nrw\KSO.xml" />
     <None Remove="Data\nrw\KW.xml" />
+    <None Remove="Data\nrw\KWO.xml" />
     <None Remove="Data\sued\Bg.xml" />
     <None Remove="Data\sued\Fk.xml" />
     <None Remove="Data\sued\MA.xml" />
@@ -97,6 +98,7 @@
     <EmbeddedResource Include="Data\nrw\KKM.xml" />
     <EmbeddedResource Include="Data\nrw\KSO.xml" />
     <EmbeddedResource Include="Data\nrw\KW.xml" />
+    <EmbeddedResource Include="Data\nrw\KWO.xml" />
     <EmbeddedResource Include="Data\sued\Bg.xml" />
     <EmbeddedResource Include="Data\sued\Fk.xml" />
     <EmbeddedResource Include="Data\sued\MA.xml" />
