@@ -13,10 +13,6 @@
         <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
     </Style>
 
-    <Style TargetType="RadioButton">
-        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
-    </Style>
-
     <Style TargetType="Expander">
         <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
     </Style>

@@ -226,6 +226,18 @@
         </Style.Triggers>
     </Style>
 
+    <!-- RadioButton -->
+    <Style TargetType="RadioButton">
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#888"/>
+                <Setter Property="BorderBrush" Value="#888"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- IntegerUpDown -->
     <Style TargetType="xctk:IntegerUpDown">
         <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
