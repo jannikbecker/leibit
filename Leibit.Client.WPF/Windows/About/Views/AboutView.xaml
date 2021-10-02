@@ -44,10 +44,10 @@
         </TextBlock>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-            <fa:ImageAwesome Visibility="{Binding IsSpinnerVisible, Converter={StaticResource VisibilityConverter}}" Icon="Solid_Spinner" Spin="True" Width="16" Height="16"/>
+            <fa:ImageAwesome Visibility="{Binding IsSpinnerVisible, Converter={StaticResource VisibilityConverter}}" Icon="Solid_Spinner" Spin="True" Foreground="{DynamicResource TextForeground}" Width="16" Height="16"/>
             <Image Source="{StaticResource imgOk}" VerticalAlignment="Center" Visibility="{Binding IsOkIconVisible, Converter={StaticResource VisibilityConverter}}"/>
             <Image Source="{StaticResource imgWarning}" VerticalAlignment="Center" Visibility="{Binding IsWarningIconVisible, Converter={StaticResource VisibilityConverter}}"/>
-            <Image Source="{StaticResource imgInfo}" VerticalAlignment="Center" Visibility="{Binding IsInfoIconVisible, Converter={StaticResource VisibilityConverter}}"/>
+            <Image Source="{DynamicResource imgInfo}" VerticalAlignment="Center" Visibility="{Binding IsInfoIconVisible, Converter={StaticResource VisibilityConverter}}" Width="16" Height="16"/>
             <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">
                 <Run Text="{Binding VersionStatusText}"/>
                 <Hyperlink Command="{Binding VersionCommand}">
