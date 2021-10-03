@@ -393,7 +393,7 @@
     </track>
   </station>
 
-  <station name="Meckelfeld Hp" short="AMDH" refNr="45" scheduleFile="V45_____.abf">
+  <station name="Meckelfeld Hp" short="AMDH" refNr="45" scheduleFile="V45_____.abf" displayName="Meckelfeld">
     <track name="179" calculateDelay="false">
       <block name="45S179"/>
     </track>

@@ -8,51 +8,51 @@
   </station>
 
   <station name="Haitz-Höchst" short="FHAI" refNr="62" scheduleFile="B62_____.ABF">
-    <track name="93" calculateDelay="false">
+    <track name="93" calculateDelay="false" displayName="2">
       <block name="62B93"/>
     </track>
-    <track name="94" calculateDelay="false">
+    <track name="94" calculateDelay="false" displayName="1">
       <block name="62B94"/>
     </track>
   </station>
 
   <station name="Wirtheim" short="FWIR" refNr="62" scheduleFile="G62_____.ABF" localOrderFile="Bf62____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="62G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="62G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="62G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="62G004"/>
     </track>
   </station>
 
   <station name="Wächtersbach" short="FWAE" refNr="63" scheduleFile="G63_____.ABF" localOrderFile="Bf63____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="63G001"/>
       <alternative track="002"/>
       <alternative track="003"/>
       <alternative track="103"/>
     </track>
 
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="63G002"/>
       <alternative track="001"/>
       <alternative track="003"/>
       <alternative track="103"/>
     </track>
 
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="63G003"/>
       <alternative track="001"/>
       <alternative track="002"/>
     </track>
 
-    <track name="103">
+    <track name="103" displayName="3">
       <block name="63G103"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -60,37 +60,37 @@
   </station>
   
   <station name="Bad Soden-Salmünster" short="FBSS" refNr="64" scheduleFile="G64_____.ABF" localOrderFile="Bf64____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="64G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="64G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="64G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="64G004"/>
     </track>
   </station>
 
   <station name="Steinau (Straße)" short="FSA" refNr="65" scheduleFile="G65_____.ABF" localOrderFile="Bf65____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="65G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="65G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="65G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="65G004"/>
     </track>
   </station>
 
   <station name="Schlüchtern" short="FSUE" refNr="66" scheduleFile="G66_____.ABF" localOrderFile="Bf66____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="66G001"/>
       <alternative track="002"/>
       <alternative track="003"/>
@@ -104,7 +104,7 @@
       <alternative track="004"/>
     </track>
 
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="66G002"/>
       <alternative track="001"/>
       <alternative track="101"/>
@@ -112,7 +112,7 @@
       <alternative track="004"/>
     </track>
 
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="66G003"/>
       <alternative track="001"/>
       <alternative track="101"/>
@@ -120,7 +120,7 @@
       <alternative track="004"/>
     </track>
 
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="66G004"/>
       <alternative track="001"/>
       <alternative track="101"/>

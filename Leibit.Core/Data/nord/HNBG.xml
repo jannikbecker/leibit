@@ -115,25 +115,25 @@
     </track>
   </station>
 
-  <station name="Hagen (Han) Hp" short="HHAGP" refNr="37" scheduleFile="b37_____.abf">
-    <track name="37" calculateDelay="false">
+  <station name="Hagen (Han) Hp" short="HHAGP" refNr="37" scheduleFile="b37_____.abf" displayName="Hagen (Han)">
+    <track name="37" calculateDelay="false" displayName="1">
       <block name="37B37"/>
     </track>
-    <track name="P" calculateDelay="false">
+    <track name="P" calculateDelay="false" displayName="2">
       <block name="37BP"/>
     </track>
   </station>
 
   <station name="Eilvese" short="HEIV" refNr="36" scheduleFile="b36_____.abf">
-    <track name="33" calculateDelay="false">
+    <track name="33" calculateDelay="false" displayName="1">
       <block name="36B33"/>
     </track>
-    <track name="34" calculateDelay="false">
+    <track name="34" calculateDelay="false" displayName="2">
       <block name="36B34"/>
     </track>
   </station>
 
-  <station name="Neustadt a Rübenberge" short="HNRU" refNr="35" scheduleFile="g35_____.abf">
+  <station name="Neustadt a Rübenberge" short="HNRU" refNr="35" scheduleFile="g35_____.abf" displayName="Neustadt am Rübenberge">
     <track name="1">
       <block name="35G1"/>
     </track>

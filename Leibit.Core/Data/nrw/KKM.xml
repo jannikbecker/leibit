@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Duckterath" short="KDUK" refNr="68" scheduleFile="b68_____.abf">
+    <track name="449" calculateDelay="false" displayName="1">
+      <block name="68B449"/>
+    </track>
+  </station>
+
+  <station name="Köln-Dellbrück" short="KKDB" refNr="69" scheduleFile="g69_____.abf" displayName="K-Dellbrück">
+    <track name="431" displayName="1">
+      <block name="69G431"/>
+    </track>
+    <track name="432" displayName="2">
+      <block name="69G432"/>
+    </track>
+    <track name="433" displayName="3">
+      <block name="69G433"/>
+    </track>
+  </station>
+
+  <station name="Köln-Holweide" short="KKH" refNr="69" scheduleFile="b69_____.abf" displayName="K-Holweide">
+    <track name="414" calculateDelay="false" displayName="2">
+      <block name="69B414" direction="right"/>
+    </track>
+    <track name="415" calculateDelay="false" displayName="1">
+      <block name="69B415"/>
+    </track>
+  </station>
+
+  <station name="Höhenhaus" short="KHOS" refNr="70" scheduleFile="g70_____.abf">
+    <track name="505" isPlatform="false">
+      <block name="69B414" direction="left"/>
+      <block name="70G505" direction="right"/>
+    </track>
+    <track name="506" isPlatform="false">
+      <block name="70B413" direction="left"/>
+      <block name="77G506" direction="right"/>
+    </track>
+    <track name="518" isPlatform="false">
+      <block name="70G518" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Leverkusen-Schlebusch" short="KLS" refNr="51">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="76S401" direction="right"/>
+      <block name="51S919" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Leverkusen-Küppersteg" short="KLK" refNr="74">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="74S618" direction="right"/>
+      <block name="75S617" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Leverkusen Bayerwerk" short="KLBY" refNr="74">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="76B603" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Leverkusen Bayerwerk Hp Üst" short="KBAY" refNr="73" scheduleFile="b73_____.abf" displayName="Lev-Chempark">
+    <track name="285" calculateDelay="false" displayName="1">
+      <block name="76B285" />
+    </track>
+    <track name="688" calculateDelay="false" displayName="2">
+      <block name="74B688" />
+    </track>
+  </station>
+
+  <station name="Köln-Stammheim" short="KKSH" refNr="74" scheduleFile="b74_____.abf" displayName="K-Stammheim">
+    <track name="283" calculateDelay="false" displayName="1"/>
+    <track name="688" calculateDelay="false" displayName="2"/>
+  </station>
+
+  <station name="Köln Bruder Klaus Siedlung" short="KBKS" refNr="75" scheduleFile="g75_____.abf">
+    <track name="301" isPlatform="false">
+      <block name="74B801" direction="left"/>
+      <block name="75G301" direction="right"/>
+    </track>
+    <track name="302" isPlatform="false">
+      <block name="75B802" direction="left"/>
+      <block name="76G302" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Köln-Mülheim Gbf" short="KKM G" refNr="76" localOrderFile="Bf76____.ABF">
+    <scheduleFile fileName="g76_____.abf">
+      <track>305</track>
+      <track>306</track>
+      <track>307</track>
+    </scheduleFile>
+
+    <track name="305">
+      <block name="76G305"/>
+    </track>
+
+    <track name="306">
+      <block name="76G306"/>
+    </track>
+
+    <track name="307">
+      <block name="76G307"/>
+    </track>
+  </station>
+
+  <station name="Köln-Mülheim Berliner Straße" short="KKMN" refNr="76">
+    <scheduleFile fileName="g76_____.abf">
+      <track>257</track>
+      <track>286</track>
+      <track>301</track>
+      <track>502</track>
+      <track>503</track>
+      <track>504</track>
+      <track>515</track>
+      <track>516</track>
+      <track>517</track>
+    </scheduleFile>
+
+    <track name="257" isPlatform="false">
+      <block name="76B283" direction="left"/>
+      <block name="77G257" direction="right"/>
+    </track>
+
+    <track name="286" isPlatform="false">
+      <block name="76B286" direction="left"/>
+      <block name="76G256" direction="right"/>
+    </track>
+
+    <track name="301" isPlatform="false">
+      <block name="75G301" direction="left"/>
+      <block name="76G501" direction="right"/>
+    </track>
+
+    <track name="502" isPlatform="false">
+      <block name="51B921" direction="left"/>
+      <block name="76G502" direction="right"/>
+    </track>
+
+    <track name="503" isPlatform="false">
+      <block name="76G302" direction="left"/>
+      <block name="76G503" direction="right"/>
+    </track>
+
+    <track name="504" isPlatform="false">
+      <block name="76B202" direction="left"/>
+      <block name="76G504" direction="right"/>
+    </track>
+
+    <track name="515" isPlatform="false">
+      <block name="76G515" direction="right"/>
+    </track>
+
+    <track name="516" isPlatform="false">
+      <block name="76G516" direction="right"/>
+    </track>
+
+    <track name="517" isPlatform="false">
+      <block name="76G517" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Köln-Mülheim" short="KKM" refNr="77" scheduleFile="g77_____.abf" displayName="K-Mülheim">
+    <track name="001" displayName="1">
+      <block name="77G001"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="77G002"/>
+    </track>
+    <track name="003" displayName="3">
+      <block name="77G003"/>
+    </track>
+    <track name="004" displayName="4">
+      <block name="77G004"/>
+    </track>
+    <track name="005" displayName="5">
+      <block name="77G005"/>
+    </track>
+    <track name="006" displayName="6">
+      <block name="77G006"/>
+    </track>
+    <track name="007" displayName="7">
+      <block name="77G007"/>
+    </track>
+    <track name="015" displayName="15">
+      <block name="77G015"/>
+    </track>
+    <track name="021" displayName="21">
+      <block name="77G021"/>
+    </track>
+    <track name="522">
+      <block name="77G522"/>
+    </track>
+    <track name="532">
+      <block name="77G532"/>
+    </track>
+  </station>
+
+  <station name="Köln-Kalk Nord" short="KKAN" refNr="77">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="77BV522" direction="left"/>
+      <block name="77BV532" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Köln-Buchforst" short="KKBH" refNr="77" scheduleFile="b77_____.abf" displayName="K-Buchforst">
+    <track name="176" calculateDelay="false" displayName="1">
+      <block name="80B176"/>
+    </track>
+    <track name="179" calculateDelay="false" displayName="2">
+      <block name="77B179"/>
+    </track>
+  </station>
+
+  <station name="Köln Zoobrücke" short="KKZO" refNr="80">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="80S172" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Köln Messe/Deutz" short="KKDZ" refNr="79">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="79SV621" direction="left"/>
+      <block name="79SV622" direction="left"/>
+      <block name="77S650" direction="left"/>
+      <block name="77S660" direction="left"/>
+      <block name="77B463" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Köln Messe/Deutz (tief)" short="KKDT" refNr="78" scheduleFile="g78_____.abf" localOrderFile="BF78____.ABF" displayName="Köln Messe/Deutz Gl. 11-12">
+    <track name="901" displayName="11">
+      <block name="78G901"/>
+    </track>
+    <track name="902" displayName="12">
+      <block name="78G902"/>
+    </track>
+  </station>
+
+  <station name="Köln Gummersbacher Straße" short="KKGU" refNr="78">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="78B945" direction="left"/>
+    </track>
+  </station>
+</estw>

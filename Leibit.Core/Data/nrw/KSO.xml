@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Köln-Kalk Nord" short="KKAN" refNr="49">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="49B3" direction="right"/>
+      <block name="49BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Leverkusen Morsbroich" short="KLM" refNr="61" scheduleFile="g61_____.abf">
+    <track name="302">
+      <block name="61G302"/>
+    </track>
+    <track name="303">
+      <block name="61G303"/>
+    </track>
+    <track name="304">
+      <block name="61G304"/>
+    </track>
+  </station>
+
+  <station name="Köln-Mülheim" short="KKM" refNr="77">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="50S504" direction="right"/>
+      <block name="50S517" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Köln-Mülheim Berliner Straße" short="KKMN" refNr="76">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="50S504" direction="left"/>
+      <block name="50S517" direction="left"/>
+      <block name="76S202" direction="right"/>
+      <block name="51B921" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Leverkusen-Schlebusch" short="KLS" refNr="51" scheduleFile="g51_____.abf" localOrderFile="bf51____.abf" displayName="Lev-Schlebusch">
+    <track name="401" displayName="1">
+      <block name="51G401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+    </track>
+    <track name="402" displayName="2">
+      <block name="51G402"/>
+    </track>
+    <track name="403" displayName="3">
+      <block name="51G403"/>
+    </track>
+    <track name="407">
+      <block name="51G407"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="408"/>
+      <alternative track="409"/>
+    </track>
+    <track name="408">
+      <block name="51G408"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+    </track>
+    <track name="409">
+      <block name="51G409"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="407"/>
+      <alternative track="408"/>
+    </track>
+  </station>
+
+  <station name="Opladen" short="KOPL" refNr="52" scheduleFile="g52_____.abf" localOrderFile="bf52____.abf">
+    <track name="1">
+      <block name="52G1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="37"/>
+      <alternative track="38"/>
+      <alternative track="39"/>
+    </track>
+    <track name="2">
+      <block name="52G2"/>
+      <alternative track="1"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="37"/>
+      <alternative track="38"/>
+      <alternative track="39"/>
+    </track>
+    <track name="5">
+      <block name="52G5"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="37"/>
+      <alternative track="38"/>
+      <alternative track="39"/>
+    </track>
+    <track name="6">
+      <block name="52G6"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="37"/>
+      <alternative track="38"/>
+      <alternative track="39"/>
+    </track>
+    <track name="7">
+      <block name="52G7"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="37"/>
+      <alternative track="38"/>
+      <alternative track="39"/>
+    </track>
+    <track name="8">
+      <block name="52G8"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="37"/>
+      <alternative track="38"/>
+      <alternative track="39"/>
+    </track>
+    <track name="9">
+      <block name="52G9"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+      <alternative track="37"/>
+      <alternative track="38"/>
+      <alternative track="39"/>
+    </track>
+    <track name="10">
+      <block name="52G10"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="37"/>
+      <alternative track="38"/>
+      <alternative track="39"/>
+    </track>
+    <track name="37">
+      <block name="52G37"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="38"/>
+      <alternative track="39"/>
+    </track>
+    <track name="38">
+      <block name="52G38"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="37"/>
+      <alternative track="39"/>
+    </track>
+    <track name="39">
+      <block name="52G39"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="37"/>
+      <alternative track="38"/>
+    </track>
+    
+    <track name="138">
+      <block name="52G138"/>
+      <alternative track="139"/>
+      <alternative track="159"/>
+    </track>
+    <track name="139">
+      <block name="52G139"/>
+      <alternative track="138"/>
+      <alternative track="159"/>
+    </track>
+    <track name="159">
+      <block name="52G159"/>
+      <alternative track="138"/>
+      <alternative track="139"/>
+    </track>
+  </station>
+
+  <station name="Immigrath" short="KIMI" refNr="62">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="52B494" direction="left"/>
+      <block name="62SN" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Leichlingen" short="KLEL" refNr="53" scheduleFile="g53_____.abf" localOrderFile="bf53____.abf">
+    <track name="1">
+      <block name="53G1"/>
+    </track>
+    <track name="2">
+      <block name="53G2"/>
+    </track>
+    <track name="3">
+      <block name="53G3"/>
+    </track>
+  </station>
+
+  <station name="Solingen Hbf" short="KS" refNr="78">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="54BN8" direction="right"/>
+      <block name="78BP3" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Solingen-Ohligs" short="KSO" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf" displayName="SG-Ohligs">
+    <track name="1">
+      <block name="54G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="1a">
+      <block name="54G1a"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="2">
+      <block name="54G2"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="3">
+      <block name="54G3"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="3.1">
+      <block name="54G3.1"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8.2"/>
+      <alternative track="9.3"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="4">
+      <block name="54G4"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="3.1"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8.2"/>
+      <alternative track="9.3"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="5">
+      <block name="54G5"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="3.1"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+      <alternative track="8.2"/>
+      <alternative track="9.3"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="7">
+      <block name="54G7"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="3.1"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="8.2"/>
+      <alternative track="9.3"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="8">
+      <block name="54G8"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+
+      <track name="8.7" displayName="8">
+        <block name="54G8.7"/>
+      </track>
+    </track>
+
+    <track name="8.2">
+      <block name="54G8.2"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="3.1"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="9.3"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="9">
+      <block name="54G9"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="9.3">
+      <block name="54G9.3"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="3.1"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8.2"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="10">
+      <block name="54G10"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="11">
+      <block name="54G11"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+      <alternative track="12"/>
+    </track>
+
+    <track name="12">
+      <block name="54G12"/>
+      <alternative track="1"/>
+      <alternative track="1a"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+    </track>
+  </station>
+
+  <station name="Solingen Vogelpark" short="KSV" refNr="54" scheduleFile="b54_____.abf" displayName="SG Vogelpark">
+    <track name="1" calculateDelay="false">
+      <block name="39B1"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="54BP10"/>
+    </track>
+  </station>
+
+  <station name="Hilden Süd" short="KHIS" refNr="55" scheduleFile="B55_____.abf">
+    <track name="N" calculateDelay="false" displayName="1">
+      <block name="39SN"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="54B2"/>
+    </track>
+  </station>
+
+  <station name="Haan" short="KHAN" refNr="13" scheduleFile="b13_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="54B17"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="13S520"/>
+    </track>
+  </station>
+
+  <station name="Gruiten" short="KGUI" refNr="13">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="13S536" direction="left"/>
+      <block name="54B19" direction="left"/>
+    </track>
+  </station>
+</estw>

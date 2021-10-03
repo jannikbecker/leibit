@@ -23,28 +23,28 @@
   </station>
 
   <station name="Hünfeld" short="FHUE" refNr="13" scheduleFile="G13_____.ABF" localOrderFile="BF13____.ABF">
-    <track name="901">
+    <track name="901" displayName="1">
       <block name="13G901"/>
     </track>
-    <track name="902">
+    <track name="902" displayName="2">
       <block name="13G902"/>
     </track>
-    <track name="903">
+    <track name="903" displayName="3">
       <block name="13G903"/>
     </track>
-    <track name="904">
+    <track name="904" displayName="4">
       <block name="13G904"/>
     </track>
-    <track name="905">
+    <track name="905" displayName="5">
       <block name="13G905"/>
     </track>
   </station>
 
-  <station name="Burghaun (Kr Hünfeld)" short="FBUH" refNr="14" scheduleFile="G14_____.ABF">
-    <track name="951">
+  <station name="Burghaun (Kr Hünfeld)" short="FBUH" refNr="14" scheduleFile="G14_____.ABF" displayName="Burghaun">
+    <track name="951" displayName="1">
       <block name="14G951"/>
     </track>
-    <track name="952">
+    <track name="952" displayName="2">
       <block name="14G952"/>
     </track>
   </station>
@@ -148,7 +148,7 @@
     </track>
   </station>
 
-  <station name="Friedlos" short="FFL" refNr="17" scheduleFile="b17_____.abf">
+  <station name="Friedlos" short="FFL" refNr="17" scheduleFile="b17_____.abf" displayName="Ludwigsau-Friedlos">
     <track name="1" calculateDelay="false">
       <block name="17B546"/>
     </track>

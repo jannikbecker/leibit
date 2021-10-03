@@ -30,6 +30,9 @@ namespace Leibit.Controls
         public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register("CommandParameter", typeof(object), typeof(DropDownButton));
         public static readonly DependencyProperty DropDownContentProperty = DependencyProperty.Register("DropDownContent", typeof(object), typeof(DropDownButton), new PropertyMetadata(null));
         public static readonly DependencyProperty IsDropDownOpenProperty = DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(DropDownButton), new PropertyMetadata(false));
+        public static readonly DependencyProperty ButtonStyleProperty = DependencyProperty.Register("ButtonStyle", typeof(Style), typeof(DropDownButton), new PropertyMetadata(null));
+        public static readonly DependencyProperty ArrowStyleProperty = DependencyProperty.Register("ArrowStyle", typeof(Style), typeof(DropDownButton), new PropertyMetadata(null));
+        public static readonly DependencyProperty ArrowFillProperty = DependencyProperty.Register("ArrowFill", typeof(Brush), typeof(DropDownButton), new PropertyMetadata(Brushes.Transparent));
         #endregion
 
         #region - Properties -
@@ -99,6 +102,30 @@ namespace Leibit.Controls
         {
             get { return (bool)GetValue(IsDropDownOpenProperty); }
             set { SetValue(IsDropDownOpenProperty, value); }
+        }
+        #endregion
+
+        #region [ButtonStyle]
+        public Style ButtonStyle
+        {
+            get { return (Style)GetValue(ButtonStyleProperty); }
+            set { SetValue(ButtonStyleProperty, value); }
+        }
+        #endregion
+
+        #region [ArrowStyle]
+        public Style ArrowStyle
+        {
+            get { return (Style)GetValue(ArrowStyleProperty); }
+            set { SetValue(ArrowStyleProperty, value); }
+        }
+        #endregion
+
+        #region [ArrowFill]
+        public Brush ArrowFill
+        {
+            get { return (Brush)GetValue(ArrowFillProperty); }
+            set { SetValue(ArrowFillProperty, value); }
         }
         #endregion
 

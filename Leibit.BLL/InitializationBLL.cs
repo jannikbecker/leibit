@@ -281,6 +281,7 @@ namespace Leibit.BLL
             var StationNumber = node.Attributes["refNr"];
             var ScheduleFile = node.Attributes["scheduleFile"];
             var LocalOrderFile = node.Attributes["localOrderFile"];
+            var DisplayName = node.Attributes["displayName"];
 
             if (StationName == null || StationShort == null || StationNumber == null)
                 return null;
@@ -294,6 +295,9 @@ namespace Leibit.BLL
             string LocalOrders = LocalOrderFile == null ? null : LocalOrderFile.InnerText;
 
             var station = new Station(StationName.InnerText, StationShort.InnerText, number, Schedule, LocalOrders, estw);
+
+            if (DisplayName != null)
+                station.DisplayName = DisplayName.InnerText;
 
             foreach (XmlNode scheduleFileNode in node.SelectNodes("scheduleFile"))
             {
@@ -320,18 +324,20 @@ namespace Leibit.BLL
             var TrackName = node.Attributes["name"];
             var IsPlatformAttr = node.Attributes["isPlatform"];
             var CalculateDelayAttr = node.Attributes["calculateDelay"];
+            var DisplayNameAttr = node.Attributes["displayName"];
+            var DisplaySubNameAttr = node.Attributes["displaySubName"];
 
             string Name = TrackName == null ? null : TrackName.InnerText;
 
             bool IsPlatform = true;
-            if (IsPlatformAttr != null && !Boolean.TryParse(IsPlatformAttr.InnerText, out IsPlatform))
+            if (IsPlatformAttr != null && !bool.TryParse(IsPlatformAttr.InnerText, out IsPlatform))
                 return null;
 
             bool CalculateDelay = true;
-            if (CalculateDelayAttr != null && !Boolean.TryParse(CalculateDelayAttr.InnerText, out CalculateDelay))
+            if (CalculateDelayAttr != null && !bool.TryParse(CalculateDelayAttr.InnerText, out CalculateDelay))
                 return null;
 
-            var Track = new Track(Name, IsPlatform, CalculateDelay, station, parent);
+            var Track = new Track(Name, IsPlatform, CalculateDelay, station, parent, DisplayNameAttr?.InnerText, DisplaySubNameAttr?.InnerText);
             __GetBlocks(node, Track);
 
             return Track;

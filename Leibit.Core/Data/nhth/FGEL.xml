@@ -46,73 +46,73 @@
   </station>
 
   <station name="Wolfgang (Kr Hanau)" short="FWFG" refNr="58" scheduleFile="G58_____.ABF" localOrderFile="bf58____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="58G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="58G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="58G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="58G004"/>
     </track>
   </station>
 
   <station name="Rodenbach" short="FROD" refNr="58" scheduleFile="B58_____.abf">
-    <track name="065" calculateDelay="false">
+    <track name="065" calculateDelay="false" displayName="3">
       <block name="58B65"/>
     </track>
-    <track name="066" calculateDelay="false">
+    <track name="066" calculateDelay="false" displayName="1">
       <block name="58B66"/>
     </track>
-    <track name="265" calculateDelay="false">
+    <track name="265" calculateDelay="false" displayName="2">
       <block name="58B1265"/>
     </track>
   </station>
 
   <station name="Langenselbold" short="FSLB" refNr="59" scheduleFile="G59_____.ABF" localOrderFile="Bf59____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="59G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="59G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="59G003"/>
     </track>
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="59G004"/>
     </track>
   </station>
 
   <station name="Niedermittlau" short="FNMI" refNr="59" scheduleFile="B59_____.abf">
-    <track name="075" calculateDelay="false">
+    <track name="075" calculateDelay="false" displayName="1">
       <block name="59B75"/>
     </track>
-    <track name="076" calculateDelay="false">
+    <track name="076" calculateDelay="false" displayName="3">
       <block name="59B76"/>
     </track>
-    <track name="275" calculateDelay="false">
+    <track name="275" calculateDelay="false" displayName="2">
       <block name="59B1275"/>
     </track>
   </station>
 
   <station name="Hailer-Meerholz" short="FHME" refNr="60" scheduleFile="G60_____.ABF" localOrderFile="Bf60____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="60G001"/>
     </track>
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="60G002"/>
     </track>
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="60G003"/>
     </track>
   </station>
 
   <station name="Gelnhausen" short="FGEL" refNr="61" scheduleFile="G61_____.ABF" localOrderFile="Bf61____.abf">
-    <track name="001">
+    <track name="001" displayName="1">
       <block name="61G001"/>
       <alternative track="002"/>
       <alternative track="003"/>
@@ -123,7 +123,7 @@
       <alternative track="519"/>
     </track>
 
-    <track name="002">
+    <track name="002" displayName="2">
       <block name="61G002"/>
       <alternative track="001"/>
       <alternative track="003"/>
@@ -134,7 +134,7 @@
       <alternative track="519"/>
     </track>
 
-    <track name="003">
+    <track name="003" displayName="3">
       <block name="61G003"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -145,7 +145,7 @@
       <alternative track="519"/>
     </track>
 
-    <track name="004">
+    <track name="004" displayName="4">
       <block name="61G004"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -156,7 +156,7 @@
       <alternative track="519"/>
     </track>
 
-    <track name="005">
+    <track name="005" displayName="5">
       <block name="61G005"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -167,7 +167,7 @@
       <alternative track="519"/>
     </track>
 
-    <track name="006">
+    <track name="006" displayName="6">
       <block name="61G006"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -178,7 +178,7 @@
       <alternative track="519"/>
     </track>
 
-    <track name="019">
+    <track name="019" displayName="18">
       <block name="61G019"/>
       <alternative track="001"/>
       <alternative track="002"/>
@@ -187,7 +187,7 @@
       <alternative track="005"/>
       <alternative track="006"/>
 
-      <track name="519">
+      <track name="519" displayName="18">
         <block name="61G519"/>
       </track>
     </track>
@@ -210,10 +210,10 @@
   </station>
 
   <station name="Haitz-Höchst" short="FHAI" refNr="62" scheduleFile="B62_____.ABF">
-    <track name="93" calculateDelay="false">
+    <track name="93" calculateDelay="false" displayName="2">
       <block name="62S93"/>
     </track>
-    <track name="94" calculateDelay="false">
+    <track name="94" calculateDelay="false" displayName="1">
       <block name="62S94"/>
     </track>
   </station>

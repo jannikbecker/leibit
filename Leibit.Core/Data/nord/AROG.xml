@@ -40,14 +40,14 @@
     </track>
   </station>
 
-  <station name="Bremen-Oberneuland" short="HBON" refNr="50" scheduleFile="g50_____.abf" localOrderFile="bf50____.abf">
-    <track name="901">
+  <station name="Bremen-Oberneuland" short="HBON" refNr="50" scheduleFile="g50_____.abf" localOrderFile="bf50____.abf" displayName="Brm-Oberneuland">
+    <track name="901" displayName="1">
       <block name="50G901"/>
     </track>
-    <track name="902">
+    <track name="902" displayName="2">
       <block name="50G902"/>
     </track>
-    <track name="903">
+    <track name="903" displayName="3">
       <block name="50G903"/>
     </track>
   </station>
@@ -167,7 +167,7 @@
       <alternative track="27"/>
     </track>
 
-    <track name="41">
+    <track name="41" displayName="1">
       <block name="54G41"/>
       <alternative track="42"/>
       <alternative track="43"/>
@@ -176,7 +176,7 @@
       <alternative track="46"/>
     </track>
 
-    <track name="42">
+    <track name="42" displayName="2">
       <block name="54G42"/>
       <alternative track="41"/>
       <alternative track="43"/>
@@ -185,7 +185,7 @@
       <alternative track="46"/>
     </track>
 
-    <track name="43">
+    <track name="43" displayName="3">
       <block name="54G43"/>
       <alternative track="41"/>
       <alternative track="42"/>
@@ -194,7 +194,7 @@
       <alternative track="46"/>
     </track>
 
-    <track name="44">
+    <track name="44" displayName="4">
       <block name="54G44"/>
       <alternative track="41"/>
       <alternative track="42"/>
@@ -203,7 +203,7 @@
       <alternative track="46"/>
     </track>
 
-    <track name="45">
+    <track name="45" displayName="5">
       <block name="54G45"/>
       <alternative track="41"/>
       <alternative track="42"/>
@@ -212,7 +212,7 @@
       <alternative track="46"/>
     </track>
 
-    <track name="46">
+    <track name="46" displayName="6">
       <block name="54G46"/>
       <alternative track="41"/>
       <alternative track="42"/>
@@ -223,13 +223,13 @@
   </station>
 
   <station name="Scheeßel" short="ASL" refNr="55" scheduleFile="g55_____.abf" localOrderFile="bf55____.abf">
-    <track name="131">
+    <track name="131" displayName="1">
       <block name="55G131"/>
     </track>
-    <track name="132">
+    <track name="132" displayName="2">
       <block name="55G132"/>
     </track>
-    <track name="133">
+    <track name="133" displayName="3">
       <block name="55G133"/>
     </track>
     <track name="137">
@@ -238,16 +238,16 @@
   </station>
 
   <station name="Lauenbrück" short="ALUB" refNr="56" scheduleFile="g56_____.abf" localOrderFile="bf56____.abf">
-    <track name="231">
+    <track name="231" displayName="1">
       <block name="56G231"/>
     </track>
-    <track name="232">
+    <track name="232" displayName="2">
       <block name="56G232"/>
     </track>
-    <track name="233">
+    <track name="233" displayName="3">
       <block name="56G233"/>
     </track>
-    <track name="234">
+    <track name="234" displayName="4">
       <block name="56G234"/>
     </track>
   </station>

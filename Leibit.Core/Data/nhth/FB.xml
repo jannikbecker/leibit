@@ -101,7 +101,7 @@
       <alternative track="41" />
       <alternative track="42" />
     </track>
-    <track name="103">
+    <track name="103" displayName="3">
       <block name="23G103" />
       <alternative track="1" />
       <alternative track="2" />
@@ -188,7 +188,7 @@
       <alternative track="41" />
       <alternative track="42" />
     </track>
-    <track name="108">
+    <track name="108" displayName="8">
       <block name="23G108" />
       <alternative track="2" />
       <alternative track="103" />
@@ -331,7 +331,7 @@
     </track>
   </station>
 
-  <station name="Friedlos" short="FFL" refNr="17" scheduleFile="v17_____.abf">
+  <station name="Friedlos" short="FFL" refNr="17" scheduleFile="v17_____.abf" displayName="Ludwigsau-Friedlos">
     <track name="2" calculateDelay="false">
       <block name="17S533" />
     </track>
@@ -356,16 +356,16 @@
     </track>
   </station>
 
-  <station name="Hönebach" short="FHNB" refNr="20" scheduleFile="g20_____.abf">
-    <track name="631">
+  <station name="Hönebach" short="FHNB" refNr="20" scheduleFile="g20_____.abf" displayName="Wildeck-Hönebach">
+    <track name="631" displayName="2">
       <block name="20G631" />
       <alternative track="632" />
     </track>
-    <track name="632">
+    <track name="632" displayName="1">
       <block name="20G632" />
       <alternative track="631" />
     </track>
-    <track name="622">
+    <track name="622" displayName="1">
       <block name="20G622" />
     </track>
     <track name="623">
@@ -375,7 +375,7 @@
     </track>
   </station>
 
-  <station name="Bosserode" short="FBOS" refNr="20" scheduleFile="bosser__.abf">
+  <station name="Bosserode" short="FBOS" refNr="20" scheduleFile="bosser__.abf" displayName="Wildeck-Bosserode">
     <track name="1" calculateDelay="false">
       <block name="20B611" />
     </track>
@@ -384,7 +384,7 @@
     </track>
   </station>
 
-  <station name="Obersuhl" short="FOBS" refNr="97" scheduleFile="Obersu__.ABF">
+  <station name="Obersuhl" short="FOBS" refNr="97" scheduleFile="Obersu__.ABF" displayName="Wildeck-Obersuhl">
     <track name="1" calculateDelay="false">
       <block name="97B609" />
     </track>
@@ -400,7 +400,7 @@
     </track>
   </station>
 
-  <station name="Rotenburg (Fulda)" short="FROF" refNr="24" scheduleFile="rotenb__.abf">
+  <station name="Rotenburg (Fulda)" short="FROF" refNr="24" scheduleFile="rotenb__.abf" displayName="Rotenburg a.d. Fulda">
     <track name="1" calculateDelay="false" />
     <track name="2" calculateDelay="false" />
   </station>

@@ -7,7 +7,7 @@
                       Caption="{Binding Caption}">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:LocalOrdersView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:LocalOrdersView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">

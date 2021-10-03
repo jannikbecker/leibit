@@ -15,10 +15,10 @@
   </station>
 
   <station name="Hamburg Dammtor" short="ADF" refNr="22" scheduleFile="v22_____.abf">
-    <track name="103" calculateDelay="false">
+    <track name="103" calculateDelay="false" displayName="3">
       <block name="22S103"/>
     </track>
-    <track name="106" calculateDelay="false">
+    <track name="106" calculateDelay="false" displayName="4">
       <block name="22S106"/>
     </track>
   </station>
@@ -100,10 +100,10 @@
   </station>
 
   <station name="Hamburg Hasselbrook" short="AHSF" refNr="20" scheduleFile="b20_____.abf">
-    <track name="364" calculateDelay="false">
+    <track name="364" calculateDelay="false" displayName="7">
       <block name="20B364"/>
     </track>
-    <track name="393" calculateDelay="false">
+    <track name="393" calculateDelay="false" displayName="6">
       <block name="20B393"/>
     </track>
   </station>

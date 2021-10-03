@@ -384,7 +384,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                 if (IsSkipped)
                     return Brushes.LightCoral;
 
-                return IsArrived ? Brushes.Red : Brushes.Black;
+                return IsArrived ? Brushes.Red : App.Current.Resources["TrainScheduleLineColor"] as Brush;
             }
         }
         #endregion
@@ -397,7 +397,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                 if (IsSkipped)
                     return Brushes.LightCoral;
 
-                return IsDeparted ? Brushes.Red : Brushes.Black;
+                return IsDeparted ? Brushes.Red : App.Current.Resources["TrainScheduleLineColor"] as Brush;
             }
         }
         #endregion
@@ -407,7 +407,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get
             {
-                return IsSkipped ? Brushes.Gray : Brushes.Black;
+                return IsSkipped ? Brushes.Gray : App.Current.Resources["TextForeground"] as Brush;
             }
         }
         #endregion
@@ -498,6 +498,19 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get => Get<bool>();
             set => Set(value);
+        }
+        #endregion
+
+        #endregion
+
+        #region - Internal methods -
+
+        #region [SkinChanged]
+        internal void SkinChanged()
+        {
+            OnPropertyChanged(nameof(ArrivalColor));
+            OnPropertyChanged(nameof(DepartureColor));
+            OnPropertyChanged(nameof(TextColor));
         }
         #endregion
 

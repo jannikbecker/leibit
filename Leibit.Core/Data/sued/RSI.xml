@@ -46,14 +46,14 @@
   </station>
 
   <station name="Konstanz" short="RKO" refNr="59" scheduleFile="g59_____.abf" localOrderFile="bf59____.abf">
-    <track name="1">
+    <track name="1" displayName="1b">
       <block name="59G1"/>
       <alternative track="2"/>
       <alternative track="3"/>
       <alternative track="4"/>
       <alternative track="5"/>
       <alternative track="6"/>
-      <track name="41">
+      <track name="41" displayName="1a">
         <block name="59G41"/>
       </track>
     </track>
@@ -64,10 +64,10 @@
       <alternative track="4"/>
       <alternative track="5"/>
       <alternative track="6"/>
-      <track name="52">
+      <track name="52" displayName="2b">
         <block name="59G52"/>
       </track>
-      <track name="42">
+      <track name="42" displayName="2a">
         <block name="59G42"/>
       </track>
     </track>
@@ -78,10 +78,10 @@
       <alternative track="4"/>
       <alternative track="5"/>
       <alternative track="6"/>
-      <track name="53">
+      <track name="53" displayName="3b">
         <block name="59G53"/>
       </track>
-      <track name="43">
+      <track name="43" displayName="3a">
         <block name="59G43"/>
       </track>
     </track>
@@ -275,7 +275,7 @@
       <alternative track="14"/>
       <alternative track="15"/>
       <alternative track="116"/>
-      <track name="51">
+      <track name="51" displayName="1">
         <block name="55G51"/>
       </track>
     </track>
@@ -346,7 +346,7 @@
       <alternative track="14"/>
       <alternative track="15"/>
       <alternative track="116"/>
-      <track name="50">
+      <track name="50" displayName="5">
         <block name="55G50"/>
       </track>
       <track name="55">

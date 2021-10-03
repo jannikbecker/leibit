@@ -8,28 +8,28 @@
   </station>
 
   <station name="München-Westkreuz" short="MWKR" refNr="70" scheduleFile="g70_____.abf" localOrderFile="bf70____.abf">
-    <track name="650">
+    <track name="650" displayName="2">
       <block name="70BPAWKG"/>
     </track>
-    <track name="651">
+    <track name="651" displayName="1">
       <block name="16BPAWK"/>
     </track>
   </station>
 
   <station name="Lochham" short="MLCH" refNr="70" scheduleFile="b70_____.abf">
-    <track name="53" calculateDelay="false">
+    <track name="53" calculateDelay="false" displayName="1">
       <block name="70B53"/>
     </track>
-    <track name="54" calculateDelay="false">
+    <track name="54" calculateDelay="false" displayName="2">
       <block name="70B54"/>
     </track>
   </station>
 
   <station name="Gräfelfing" short="MGFL" refNr="33" scheduleFile="b33_____.abf">
-    <track name="55" calculateDelay="false">
+    <track name="55" calculateDelay="false" displayName="1">
       <block name="33B55"/>
     </track>
-    <track name="56" calculateDelay="false">
+    <track name="56" calculateDelay="false" displayName="2">
       <block name="33BP"/>
     </track>
   </station>
@@ -44,47 +44,47 @@
     <track name="3">
       <block name="33G3"/>
     </track>
-    <track name="101">
+    <track name="101" displayName="1">
       <block name="33G101"/>
     </track>
-    <track name="102">
+    <track name="102" displayName="2">
       <block name="33G102"/>
     </track>
   </station>
 
   <station name="Stockdorf" short="MSD" refNr="34" scheduleFile="b34_____.abf">
-    <track name="56" calculateDelay="false">
+    <track name="56" calculateDelay="false" displayName="2">
       <block name="34B56"/>
     </track>
-    <track name="57" calculateDelay="false">
+    <track name="57" calculateDelay="false" displayName="1">
       <block name="34BN"/>
     </track>
   </station>
 
   <station name="Gauting" short="MGT" refNr="35" scheduleFile="g35_____.abf" localOrderFile="bf35____.abf">
-    <track name="2">
+    <track name="2" displayName="1">
       <block name="35G2"/>
       <alternative track="3"/>
       <alternative track="4"/>
       <alternative track="5"/>
     </track>
-    <track name="3">
+    <track name="3" displayName="2">
       <block name="35G3"/>
       <alternative track="2"/>
       <alternative track="4"/>
       <alternative track="5"/>
     </track>
-    <track name="4">
+    <track name="4" displayName="3">
       <block name="35G4"/>
       <alternative track="2"/>
       <alternative track="3"/>
       <alternative track="5"/>
 
-      <track name="54">
+      <track name="54" displayName="3">
         <block name="35G54"/>
       </track>
     </track>
-    <track name="5">
+    <track name="5" displayName="4">
       <block name="35G5"/>
       <alternative track="2"/>
       <alternative track="3"/>
@@ -93,10 +93,10 @@
   </station>
 
   <station name="Mühlthal" short="MMTL" refNr="35" scheduleFile="b35_____.abf">
-    <track name="13" calculateDelay="false">
+    <track name="13" calculateDelay="false" displayName="1">
       <block name="35B13"/>
     </track>
-    <track name="16" calculateDelay="false">
+    <track name="16" calculateDelay="false" displayName="2">
       <block name="35B16"/>
     </track>
   </station>
@@ -120,31 +120,31 @@
   </station>
 
   <station name="Possenhofen" short="MPH" refNr="36" scheduleFile="v36_____.abf">
-    <track name="19">
+    <track name="19" displayName="1">
       <block name="36G19.5"/>
     </track>
-    <track name="22">
+    <track name="22" displayName="2">
       <block name="36G22.5"/>
     </track>
   </station>
 
   <station name="Feldafing" short="MFA" refNr="36" scheduleFile="b36_____.abf">
-    <track name="21" calculateDelay="false">
+    <track name="21" calculateDelay="false" displayName="1">
       <block name="36B21"/>
     </track>
-    <track name="24" calculateDelay="false">
+    <track name="24" calculateDelay="false" displayName="2">
       <block name="36B24"/>
     </track>
   </station>
 
   <station name="Tutzing" short="MTZ" refNr="37" scheduleFile="g37_____.abf" localOrderFile="bf37____.abf">
-    <track name="1">
+    <track name="1" displayName="1" displaySubName="Nord">
       <block name="37G1"/>
       <alternative track="2"/>
       <alternative track="3"/>
       <alternative track="4"/>
       
-      <track name="51">
+      <track name="51" displayName="1" displaySubName="Süd">
         <block name="37G51"/>
       </track>
     </track>
@@ -275,7 +275,7 @@
       <alternative track="1"/>
       <alternative track="3"/>
 
-      <track name="52">
+      <track name="52" displayName="2">
         <block name="73G52"/>
       </track>
     </track>

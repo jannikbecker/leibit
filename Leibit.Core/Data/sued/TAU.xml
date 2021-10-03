@@ -14,7 +14,7 @@
   </station>
 
   <station name="Aulendorf" short="TAU" refNr="38" scheduleFile="g38_____.abf" localOrderFile="bf38____.abf">
-    <track name="50">
+    <track name="50" displayName="1a">
       <block name="38G50"/>
       <alternative track="1"/>
       <alternative track="2"/>
@@ -53,7 +53,7 @@
       <alternative track="6"/>
       <alternative track="50"/>
 
-      <track name="53">
+      <track name="53" displayName="3">
         <block name="38G53"/>
       </track>
     </track>
@@ -66,7 +66,7 @@
       <alternative track="6"/>
       <alternative track="50"/>
 
-      <track name="54">
+      <track name="54" displayName="4">
         <block name="38G54"/>
       </track>
     </track>
@@ -135,10 +135,10 @@
   </station>
 
   <station name="Schemmerberg" short="TSX" refNr="35" scheduleFile="b35_____.abf">
-    <track name="41" calculateDelay="false">
+    <track name="41" calculateDelay="false" displayName="1">
       <block name="35BN2"/>
     </track>
-    <track name="42" calculateDelay="false">
+    <track name="42" calculateDelay="false" displayName="2">
       <block name="35B42"/>
     </track>
   </station>
@@ -156,7 +156,7 @@
     <track name="4">
       <block name="35G4"/>
     </track>
-    <track name="20">
+    <track name="20" displayName="6">
       <block name="35G20"/>
     </track>
   </station>

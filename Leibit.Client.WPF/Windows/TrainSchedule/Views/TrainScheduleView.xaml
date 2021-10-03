@@ -11,7 +11,7 @@
                       ResizeMode="ResizeHeight">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:TrainScheduleView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:TrainScheduleView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <controls:ChildWindow.Resources>
@@ -120,17 +120,17 @@
                                     
                                     <Hyperlink.Style>
                                         <Style TargetType="Hyperlink">
-                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
                                             <Setter Property="TextDecorations" Value="Underline" />
                                             
                                             <Style.Triggers>
                                                 <Trigger Property="IsEnabled" Value="False">
                                                     <Setter Property="TextDecorations" Value="None" />
-                                                    <Setter Property="Foreground" Value="Black" />
+                                                    <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
                                                 </Trigger>
                                                 
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Foreground" Value="Black" />
+                                                    <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>

@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Solingen-Ohligs" short="KSO" refNr="54">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="13B518" direction="right"/>
+      <block name="54SP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Haan" short="KHAN" refNr="10" scheduleFile="V10_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="10S17"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="10B520"/>
+    </track>
+  </station>
+  
+  <station name="Düsseldorf-Gerresheim" short="KDGE" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11S304" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Erkrath" short="KER" refNr="9" scheduleFile="B09_____.abf">
+    <track name="111" calculateDelay="false" displayName="1">
+      <block name="11S111"/>
+    </track>
+    <track name="302" calculateDelay="false" displayName="2">
+      <block name="11S302"/>
+    </track>
+  </station>
+
+  <station name="Hochdahl Hp" short="KHO" refNr="11" scheduleFile="B11_____.abf" displayName="Hochdahl">
+    <track name="301" calculateDelay="false" displayName="1">
+      <block name="11S301"/>
+    </track>
+    <track name="404" calculateDelay="false" displayName="2">
+      <block name="11S404"/>
+    </track>
+  </station>
+
+  <station name="Hochdahl-Millrath" short="KHOM" refNr="12" scheduleFile="B12_____.abf">
+    <track name="403" calculateDelay="false" displayName="1">
+      <block name="12B403"/>
+    </track>
+    <track name="533" calculateDelay="false" displayName="2">
+      <block name="12B533"/>
+    </track>
+  </station>
+
+  <station name="Hochdahl Abzw" short="KHO" refNr="12">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12S406" direction="left"/>
+      <block name="13B405" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Gruiten" short="KGUI" refNr="13" displayName="Haan-Gruiten">
+    <scheduleFile fileName="G13_____.abf">
+      <track>505</track>
+      <track>506</track>
+      <track>507</track>
+      <track>508</track>
+    </scheduleFile>
+
+    <track name="505">
+      <block name="13G505"/>
+    </track>
+
+    <track name="506" displayName="6">
+      <block name="13G506"/>
+    </track>
+
+    <track name="507" displayName="7">
+      <block name="13G507"/>
+    </track>
+
+    <track name="508">
+      <block name="13G508"/>
+    </track>
+  </station>
+
+  <station name="Gruiten Hp" short="KGUH" refNr="13" scheduleFile="B13_____.abf" displayName="Haan-Gruiten">
+    <track name="515" calculateDelay="false" displayName="3">
+      <block name="13B515"/>
+    </track>
+    <track name="544" calculateDelay="false" displayName="4">
+      <block name="13B544"/>
+    </track>
+  </station>
+
+  <station name="Gruiten Abzw" short="KGUA" refNr="13">
+    <scheduleFile fileName="G13_____.abf">
+      <track>541</track>
+      <track>542</track>
+    </scheduleFile>
+
+    <track name="541" isPlatform="false">
+      <block name="13B405" direction="left"/>
+      <block name="14B541" direction="right"/>
+    </track>
+
+    <track name="542" isPlatform="false">
+      <block name="13B542" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Wuppertal Linden" short="KLID" refNr="14" scheduleFile="G14_____.abf">
+    <track name="561" isPlatform="false">
+      <block name="14B541" direction="left"/>
+    </track>
+    <track name="576" isPlatform="false">
+      <block name="14B566" direction="left"/>
+      <block name="15B326" direction="right"/>
+    </track>
+    <track name="597" isPlatform="false">
+      <block name="13B542" direction="left"/>
+      <block name="13B557" direction="left"/>
+      <block name="14B597" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Langenberg (Rheinl)" short="ELBG" refNr="40">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="40S944" direction="right"/>
+      <block name="40S945" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Neviges" short="ENV" refNr="1" scheduleFile="B01_____.abf" displayName="Velbert-Neviges">
+    <track name="942" calculateDelay="false" displayName="1"/>
+    <track name="945" calculateDelay="false" displayName="2"/>
+  </station>
+
+  <station name="Rosenhügel" short="EVLR" refNr="2" scheduleFile="B02_____.abf" displayName="Velbert Rosenhügel">
+    <track name="942" calculateDelay="false" displayName="1"/>
+    <track name="945" calculateDelay="false" displayName="2"/>
+  </station>
+
+  <station name="Wülfrath-Aprath" short="EWAP" refNr="3" scheduleFile="B03_____.abf">
+    <track name="942" calculateDelay="false" displayName="1"/>
+    <track name="943" calculateDelay="false" displayName="2"/>
+  </station>
+
+  <station name="Wuppertal-Vohwinkel" short="KWV" refNr="15" scheduleFile="G15_____.abf" localOrderFile="bf15____.abf" displayName="W-Vohwinkel">
+    <track name="001" displayName="1">
+      <block name="15G001"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="15G002"/>
+    </track>
+    <track name="003" displayName="3">
+      <block name="15G003"/>
+    </track>
+    <track name="004" displayName="4">
+      <block name="15G004"/>
+    </track>
+    <track name="005" displayName="5">
+      <block name="15G005"/>
+    </track>
+    <track name="006" displayName="6">
+      <block name="15G006"/>
+    </track>
+    <track name="011" displayName="11">
+      <block name="15G011"/>
+    </track>
+    <track name="012" displayName="12">
+      <block name="15G012"/>
+    </track>
+  </station>
+
+  <station name="Wuppertal-Varresbeck" short="KWVA" refNr="15">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="15B358" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Wuppertal-Sonnborn" short="KWSO" refNr="15" scheduleFile="B15_____.abf" displayName="W-Sonnborn">
+    <track name="42" calculateDelay="false" displayName="3">
+      <block name="15B42"/>
+    </track>
+    <track name="343" calculateDelay="false" displayName="4">
+      <block name="15B343"/>
+    </track>
+  </station>
+
+  <station name="Wuppertal Zoologischer Garten" short="KWZ" refNr="17" scheduleFile="G17_____.abf" displayName="W-Zoo">
+    <track name="P" calculateDelay="false" displayName="3">
+      <block name="17BP"/>
+    </track>
+    <track name="345" calculateDelay="false" displayName="4">
+      <block name="17G345"/>
+    </track>
+  </station>
+
+  <station name="Wuppertal-Steinbeck" short="KWS" refNr="18" scheduleFile="G18_____.abf" localOrderFile="bf18____.abf" displayName="W-Steinbeck">
+    <track name="44" displayName="3">
+      <block name="18G44"/>
+      <alternative track="45"/>
+      <alternative track="48"/>
+      <alternative track="49"/>
+    </track>
+    <track name="45" displayName="4">
+      <block name="18G45"/>
+      <alternative track="44"/>
+      <alternative track="48"/>
+      <alternative track="49"/>
+    </track>
+    <track name="48">
+      <block name="18G48"/>
+      <alternative track="44"/>
+      <alternative track="45"/>
+      <alternative track="49"/>
+    </track>
+    <track name="49">
+      <block name="18G49"/>
+      <alternative track="44"/>
+      <alternative track="45"/>
+      <alternative track="48"/>
+    </track>
+    
+    <track name="65">
+      <block name="18G65"/>
+      <alternative track="66"/>
+      <alternative track="67"/>
+      <alternative track="68"/>
+      <alternative track="69"/>
+    </track>
+    <track name="66">
+      <block name="18G66"/>
+      <alternative track="65"/>
+      <alternative track="67"/>
+      <alternative track="68"/>
+      <alternative track="69"/>
+    </track>
+    <track name="67">
+      <block name="18G67"/>
+      <alternative track="65"/>
+      <alternative track="66"/>
+      <alternative track="68"/>
+      <alternative track="69"/>
+    </track>
+    <track name="68">
+      <block name="18G68"/>
+      <alternative track="65"/>
+      <alternative track="66"/>
+      <alternative track="67"/>
+      <alternative track="69"/>
+    </track>
+    <track name="69">
+      <block name="18G69"/>
+      <alternative track="65"/>
+      <alternative track="66"/>
+      <alternative track="67"/>
+      <alternative track="68"/>
+    </track>
+    
+    <track name="161">
+      <block name="18G161"/>
+      <alternative track="63.1"/>
+      <alternative track="64.2"/>
+    </track>
+
+    <track name="63.1">
+      <block name="17G63.1" />
+    </track>
+
+    <track name="64.2">
+      <block name="17G64.2" />
+    </track>
+  </station>
+
+  <station name="Wuppertal Hbf" short="KW" refNr="19" scheduleFile="G19_____.abf" localOrderFile="bf19____.abf">
+    <track name="1">
+      <block name="19G1"/>
+    </track>
+    <track name="2">
+      <block name="19G2"/>
+    </track>
+    <track name="3">
+      <block name="19G3"/>
+    </track>
+    <track name="4">
+      <block name="19G4"/>
+    </track>
+    <track name="5">
+      <block name="19G5"/>
+    </track>
+  </station>
+
+  <station name="Wuppertal-Unterbarmen" short="KWU" refNr="20" scheduleFile="G20_____.abf" displayName="W-Unterbarmen">
+    <track name="303" displayName="3">
+      <block name="20S303"/>
+    </track>
+    <track name="304" displayName="4">
+      <block name="20S304"/>
+    </track>
+    <track name="305">
+      <block name="20S305"/>
+    </track>
+  </station>
+
+  <station name="Wuppertal-Barmen" short="KWBA" refNr="21" scheduleFile="V21_____.abf" displayName="W-Barmen">
+    <track name="137" calculateDelay="false" displayName="2">
+      <block name="21B137"/>
+    </track>
+    <track name="138" calculateDelay="false" displayName="1">
+      <block name="21S138"/>
+    </track>
+    <track name="145" calculateDelay="false" displayName="4">
+      <block name="21S145"/>
+    </track>
+    <track name="148" calculateDelay="false" displayName="3">
+      <block name="21S148"/>
+    </track>
+  </station>
+</estw>

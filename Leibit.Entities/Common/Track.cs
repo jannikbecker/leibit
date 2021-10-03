@@ -16,12 +16,21 @@ namespace Leibit.Entities.Common
         private List<Track> m_Alternatives;
 
         public Track(string name, bool isPlatform, bool calculateDelay, Station station, Track parent)
+            : this(name, isPlatform, calculateDelay, station, parent, null, null)
+        {
+
+        }
+
+        public Track(string name, bool isPlatform, bool calculateDelay, Station station, Track parent, string displayName, string displaySubName)
         {
             m_Name = name;
             m_IsPlatform = isPlatform;
             m_CalculateDelay = calculateDelay;
             m_Station = station;
             m_Parent = parent;
+
+            DisplayName = displayName;
+            DisplaySubName = displaySubName;
 
             m_Blocks = new List<Block>();
             m_Alternatives = new List<Track>();
@@ -37,6 +46,9 @@ namespace Leibit.Entities.Common
                 return m_Name;
             }
         }
+
+        public string DisplayName { get; }
+        public string DisplaySubName { get; }
 
         public bool IsPlatform
         {

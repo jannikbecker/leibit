@@ -7,7 +7,7 @@
                       Caption="{Binding Caption}">
 
     <controls:ChildWindow.Style>
-        <Style TargetType="local:TrainCompositionView" BasedOn="{StaticResource ChildWindowStyle}" />
+        <Style TargetType="local:TrainCompositionView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
     </controls:ChildWindow.Style>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">

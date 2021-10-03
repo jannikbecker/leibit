@@ -54,7 +54,7 @@
     </track>
   </station>
 
-  <station name="Bremen-Neustadt" short="HBN" refNr="16" scheduleFile="v16_____.abf">
+  <station name="Bremen-Neustadt" short="HBN" refNr="16" scheduleFile="v16_____.abf" displayName="Brm-Neustadt">
     <track name="1" calculateDelay="false">
       <block name="16S1" />
     </track>
@@ -99,10 +99,10 @@
       <alternative track="9"/>
       <alternative track="10"/>
 
-      <track name="1 N">
+      <track name="1 N" displayName="1" displaySubName="Nord">
         <block name="11G001N"/>
       </track>
-      <track name="1 S">
+      <track name="1 S" displayName="1" displaySubName="Süd">
         <block name="11G001S"/>
       </track>
     </track>
@@ -119,10 +119,10 @@
       <alternative track="9"/>
       <alternative track="10"/>
 
-      <track name="2 N">
+      <track name="2 N" displayName="2" displaySubName="Nord">
         <block name="11G002N"/>
       </track>
-      <track name="2 S">
+      <track name="2 S" displayName="2" displaySubName="Süd">
         <block name="11G002S"/>
       </track>
     </track>
@@ -181,10 +181,10 @@
       <alternative track="9"/>
       <alternative track="10"/>
 
-      <track name="5 N">
+      <track name="5 N" displayName="5" displaySubName="Nord">
         <block name="11G005N"/>
       </track>
-      <track name="5 S">
+      <track name="5 S" displayName="5" displaySubName="Süd">
         <block name="11G005S"/>
       </track>
     </track>
@@ -201,10 +201,10 @@
       <alternative track="9"/>
       <alternative track="10"/>
 
-      <track name="6 N">
+      <track name="6 N" displayName="6" displaySubName="Nord">
         <block name="11G006N"/>
       </track>
-      <track name="6 S">
+      <track name="6 S" displayName="6" displaySubName="Süd">
         <block name="11G006S"/>
       </track>
     </track>
@@ -235,10 +235,10 @@
       <alternative track="9"/>
       <alternative track="10"/>
 
-      <track name="8 N">
+      <track name="8 N" displayName="8" displaySubName="Nord">
         <block name="11G008N"/>
       </track>
-      <track name="8 S">
+      <track name="8 S" displayName="8" displaySubName="Süd">
         <block name="11G008S"/>
       </track>
     </track>
@@ -335,7 +335,7 @@
     </track>
   </station>
 
-  <station name="Bremen-Walle" short="HBWA" refNr="11" scheduleFile="b11_____.abf">
+  <station name="Bremen-Walle" short="HBWA" refNr="11" scheduleFile="b11_____.abf" displayName="Brm-Walle">
     <track name="5" calculateDelay="false">
       <block name="11B204"/>
     </track>
@@ -361,16 +361,16 @@
     </track>
   </station>
 
-  <station name="Bremen-Oberneuland" short="HBON" refNr="50" scheduleFile="v50_____.abf">
-    <track name="901">
+  <station name="Bremen-Oberneuland" short="HBON" refNr="50" scheduleFile="v50_____.abf" displayName="Brm-Oberneuland">
+    <track name="901" displayName="1">
       <block name="50S901"/>
     </track>
 
-    <track name="902">
+    <track name="902" displayName="2">
       <block name="50S902"/>
     </track>
 
-    <track name="903">
+    <track name="903" displayName="3">
       <block name="50S903"/>
     </track>
   </station>

@@ -139,11 +139,11 @@
       <alternative track="4"/>
       <alternative track="5"/>
       
-      <track name="3N">
+      <track name="3N" displayName="3" displaySubName="Nord">
         <block name="15G3N"/>
       </track>
       
-      <track name="3S">
+      <track name="3S" displayName="3" displaySubName="Süd">
         <block name="15G3S"/>
       </track>
     </track>
@@ -261,11 +261,11 @@
       <alternative track="4"/>
       <alternative track="5"/>
 
-      <track name="3W">
+      <track name="3W" displayName="3" displaySubName="West">
         <block name="41G3W"/>
       </track>
 
-      <track name="3O">
+      <track name="3O" displayName="3" displaySubName="Ost">
         <block name="41G3O"/>
       </track>
     </track>
@@ -288,7 +288,7 @@
   </station>
 
   <station name="Bad Wörishofen" short="MBWH" refNr="41" scheduleFile="b41_____.abf">
-    <track name="100" calculateDelay="false">
+    <track name="100" calculateDelay="false" displayName="1">
       <block name="41B100"/>
     </track>
   </station>

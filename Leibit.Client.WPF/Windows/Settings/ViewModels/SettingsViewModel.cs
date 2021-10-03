@@ -1,7 +1,9 @@
 ﻿using Leibit.BLL;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Core.Client.Commands;
+using Leibit.Entities;
 using Leibit.Entities.Common;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -24,6 +26,10 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         private CommandHandler m_SaveCommand;
         private CommandHandler m_CancelCommand;
         private CommandHandler m_EstwOnlineCommand;
+        #endregion
+
+        #region - Events -
+        public event EventHandler SettingsChanged;
         #endregion
 
         #region - Ctor -
@@ -279,6 +285,21 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [Skin]
+        public eSkin Skin
+        {
+            get
+            {
+                return m_Settings.Skin;
+            }
+            set
+            {
+                m_Settings.Skin = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
         #region - Commands -
 
         #region [SaveCommand]
@@ -335,7 +356,8 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 || PropertyName == nameof(LeadTime)
                 || PropertyName == nameof(FollowUpTime)
                 || PropertyName == nameof(AutomaticallyCheckForUpdates)
-                || PropertyName == nameof(AutomaticallyInstallUpdates))
+                || PropertyName == nameof(AutomaticallyInstallUpdates)
+                || PropertyName == nameof(Skin))
             {
                 m_SaveCommand.SetCanExecute(true);
             }
@@ -379,6 +401,8 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
             {
                 OnStatusBarTextChanged("Einstellungen gespeichert");
                 OnCloseWindow();
+                (App.Current as App)?.ChangeSkin(m_Settings.Skin);
+                SettingsChanged?.Invoke(this, EventArgs.Empty);
             }
             else
                 ShowMessage(SaveResult);

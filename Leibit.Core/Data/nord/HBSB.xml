@@ -22,7 +22,7 @@
     </track>
   </station>
 
-  <station name="Bremen-Sebaldsbrück" short="HBSB" refNr="26" localOrderFile="bf26____.abf">
+  <station name="Bremen-Sebaldsbrück" short="HBSB" refNr="26" localOrderFile="bf26____.abf" displayName="Brm-Sebaldsbrück">
     <scheduleFile fileName="g26_____.abf"/>
     <scheduleFile fileName="g27_____.abf">
       <track>1</track>
@@ -66,13 +66,13 @@
     </track>
   </station>
 
-  <station name="Bremen-Sebaldsbrück Werkbf Hp" short="HAW" refNr="27" scheduleFile="b27_____.abf">
-    <track name="175" calculateDelay="false">
+  <station name="Bremen-Sebaldsbrück Werkbf Hp" short="HAW" refNr="27" scheduleFile="b27_____.abf" displayName="Brm-Sebaldsbrück Werkbf">
+    <track name="175" calculateDelay="false" displayName="1">
       <block name="27B175"/>
     </track>
   </station>
 
-  <station name="Bremen-Mahndorf" short="HBM" refNr="25" scheduleFile="g25_____.abf" localOrderFile="bf25____.abf">
+  <station name="Bremen-Mahndorf" short="HBM" refNr="25" scheduleFile="g25_____.abf" localOrderFile="bf25____.abf" displayName="Brm-Mahndorf">
     <track name="1">
       <block name="25G1"/>
       <alternative track="2"/>
@@ -120,7 +120,7 @@
     </track>
   </station>
 
-  <station name="Baden (Kr Verden)" short="HBDV" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.abf">
+  <station name="Baden (Kr Verden)" short="HBDV" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.abf" displayName="Baden">
     <track name="1">
       <block name="23G1"/>
       <alternative track="2"/>

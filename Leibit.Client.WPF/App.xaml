@@ -5,27 +5,6 @@
              Startup="Application_Startup">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resources/ResourceDictionary.xaml" />
-                <ResourceDictionary Source="/Leibit.Controls.WPF;component/Controls.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-            <Style TargetType="xctk:MessageBox">
-                <Setter Property="YesButtonContent" Value="Ja" />
-                <Setter Property="NoButtonContent" Value="Nein" />
-                <Setter Property="CancelButtonContent" Value="Abbrechen" />
-            </Style>
-
-            <Style TargetType="xctk:ColorPicker">
-                <Setter Property="DropDownBackground">
-                    <Setter.Value>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFFAFBFB" Offset="0" />
-                            <GradientStop Color="#FFF4F4F4" Offset="1" />
-                        </LinearGradientBrush>
-                    </Setter.Value>
-                </Setter>
-            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
