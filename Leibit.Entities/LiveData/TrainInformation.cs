@@ -69,6 +69,10 @@ namespace Leibit.Entities.LiveData
 
         public LeibitTime CreatedOn { get; set; }
 
+        public int? PreviousService { get; set; }
+
+        public int? FollowUpService { get; set; }
+
         public ReadOnlyCollection<LiveSchedule> Schedules
         {
             get

@@ -522,6 +522,15 @@ namespace Leibit.BLL
                     Result.AddSchedule(LiveSchedule);
                 }
 
+                // Don't validate result here. When this fails, it's not so dramatic...
+                var prevResult = CalculationBLL.GetPreviousService(Result, estw);
+                if (prevResult.Succeeded)
+                    Result.PreviousService = prevResult.Result;
+
+                var followUpResult = CalculationBLL.GetFollowUpService(Result, estw);
+                if (followUpResult.Succeeded)
+                    Result.FollowUpService = followUpResult.Result;
+
                 return Result;
             }
             else
