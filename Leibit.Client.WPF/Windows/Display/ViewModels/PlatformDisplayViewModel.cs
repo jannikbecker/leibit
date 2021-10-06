@@ -229,15 +229,41 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
             if (currentItem != null)
             {
+                var infoTexts = new List<string>();
                 CurrentTrainTime = __GetTime(currentItem);
                 CurrentTrainNumber = GetTrainNumber(currentItem);
-                Via = GetViaString(currentItem, 12, 240);
-                CurrentTrainDestination = __GetDestination(currentItem, true);
-
-                var infoTexts = new List<string>();
 
                 if (currentItem.Schedule.Handling == eHandling.Destination)
-                    infoTexts.Add("Zug endet hier");
+                {
+                    int? followUpService = null;
+
+                    if (currentItem.LiveSchedule != null)
+                    {
+                        if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
+                            followUpService = currentItem.LiveSchedule.Train.FollowUpService;
+                    }
+                    else
+                        followUpService = currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
+
+                    if (followUpService.HasValue && area.Trains.ContainsKey(followUpService.Value))
+                    {
+                        var followUpTrain = area.Trains[followUpService.Value];
+                        infoTexts.Add($"Fährt weiter als {followUpTrain.Type} {followUpTrain.Number} nach {followUpTrain.Destination}");
+                        Via = string.Empty;
+                        CurrentTrainDestination = $"von {currentItem.Schedule.Train.Start}";
+                    }
+                    else
+                    {
+                        infoTexts.Add("Zug endet hier");
+                        Via = $"von {currentItem.Schedule.Train.Start}";
+                        CurrentTrainDestination = "Bitte nicht einsteigen";
+                    }
+                }
+                else
+                {
+                    Via = GetViaString(currentItem, 12, 240);
+                    CurrentTrainDestination = __GetDestination(currentItem);
+                }
 
                 var delay = GetDelayMinutes(currentItem);
 
@@ -274,7 +300,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             {
                 FollowingTrain1Time = __GetTime(followingTrain1);
                 FollowingTrain1Number = GetTrainNumber(followingTrain1);
-                FollowingTrain1Destination = __GetDestination(followingTrain1, false);
+                FollowingTrain1Destination = __GetDestination(followingTrain1);
 
                 if (IsTrackChanged(followingTrain1) && (followingTrain1.Schedule.Track == SelectedTrack || followingTrain1.Schedule.Track == SelectedTrack.Parent))
                     FollowingTrain1Info = $"Gleis {GetTrackName(followingTrain1.LiveSchedule.LiveTrack)}";
@@ -297,7 +323,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             {
                 FollowingTrain2Time = __GetTime(followingTrain2);
                 FollowingTrain2Number = GetTrainNumber(followingTrain2);
-                FollowingTrain2Destination = __GetDestination(followingTrain2, false);
+                FollowingTrain2Destination = __GetDestination(followingTrain2);
 
                 if (IsTrackChanged(followingTrain2) && (followingTrain2.Schedule.Track == SelectedTrack || followingTrain2.Schedule.Track == SelectedTrack.Parent))
                     FollowingTrain2Info = $"Gleis {GetTrackName(followingTrain2.LiveSchedule.LiveTrack)}";
@@ -340,15 +366,10 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region [__GetDestination]
-        private string __GetDestination(ScheduleItem scheduleItem, bool isCurrent)
+        private string __GetDestination(ScheduleItem scheduleItem)
         {
             if (scheduleItem.Schedule.Handling == eHandling.Destination)
-            {
-                if (isCurrent)
-                    return "Bitte nicht einsteigen";
-                else
-                    return $"von {scheduleItem.Schedule.Train.Start}";
-            }
+                return $"von {scheduleItem.Schedule.Train.Start}";
             else
                 return scheduleItem.Schedule.Train.Destination;
         }

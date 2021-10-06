@@ -148,9 +148,6 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [GetViaString]
         protected string GetViaString(ScheduleItem scheduleItem, double fontSize, double maxSpace)
         {
-            if (scheduleItem.Schedule.Handling == eHandling.Destination)
-                return $"von {scheduleItem.Schedule.Train.Start}";
-
             var schedulesResult = m_CalculationBll.GetSchedulesByTime(scheduleItem.Schedule.Train.Schedules, scheduleItem.Schedule.Station.ESTW.Time);
 
             if (!schedulesResult.Succeeded)
