@@ -199,10 +199,19 @@
       <alternative track="8"/>
       <alternative track="9"/>
       <alternative track="10"/>
+    </track>
 
-      <track name="54">
-        <block name="24G54"/>
-      </track>
+    <track name="54">
+      <block name="24G54"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="55"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
     </track>
 
     <track name="5">
@@ -216,10 +225,19 @@
       <alternative track="8"/>
       <alternative track="9"/>
       <alternative track="10"/>
+    </track>
 
-      <track name="55">
-        <block name="24G55"/>
-      </track>
+    <track name="55">
+      <block name="24G55"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="54"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
     </track>
 
     <track name="6">
