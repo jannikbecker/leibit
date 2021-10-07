@@ -301,11 +301,11 @@ namespace Leibit.BLL
                     }
 
                     // Don't validate result here. When this fails, it's not so dramatic...
-                    var prevResult = CalculationBll.GetPreviousService(LiveTrain, Estw);
+                    var prevResult = CalculationBll.GetPreviousService(Train, Estw);
                     if (prevResult.Succeeded)
                         LiveTrain.PreviousService = prevResult.Result;
 
-                    var followUpResult = CalculationBll.GetFollowUpService(LiveTrain, Estw);
+                    var followUpResult = CalculationBll.GetFollowUpService(Train, Estw);
                     if (followUpResult.Succeeded)
                         LiveTrain.FollowUpService = followUpResult.Result;
 

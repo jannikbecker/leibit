@@ -217,17 +217,17 @@ namespace Leibit.BLL
         #endregion
 
         #region [GetPreviousService]
-        public OperationResult<int?> GetPreviousService(TrainInformation train, ESTW estw)
+        public OperationResult<int?> GetPreviousService(Train train, ESTW estw)
         {
             try
             {
                 // Performance optimization. This covers most of the cases so that no complex calculation is needed.
-                if (train.Train.PreviousServices.Count == 1 && train.Train.PreviousServices[0].Days.Count == 7)
-                    return OperationResult<int?>.Ok(train.Train.PreviousServices[0].TrainNumber);
+                if (train.PreviousServices.Count == 1 && train.PreviousServices[0].Days.Count == 7)
+                    return OperationResult<int?>.Ok(train.PreviousServices[0].TrainNumber);
 
-                if (train.Train.PreviousServices.Any())
+                if (train.PreviousServices.Any())
                 {
-                    foreach (var relation in train.Train.PreviousServices)
+                    foreach (var relation in train.PreviousServices)
                     {
                         Schedule previousTrainSchedule = null;
 
@@ -259,20 +259,20 @@ namespace Leibit.BLL
         #endregion
 
         #region [GetFollowUpService]
-        public OperationResult<int?> GetFollowUpService(TrainInformation train, ESTW estw)
+        public OperationResult<int?> GetFollowUpService(Train train, ESTW estw)
         {
             try
             {
                 // Performance optimization. This covers most of the cases so that no complex calculation is needed.
-                if (train.Train.FollowUpServices.Count == 1 && train.Train.FollowUpServices[0].Days.Count == 7)
-                    return OperationResult<int?>.Ok(train.Train.FollowUpServices[0].TrainNumber);
+                if (train.FollowUpServices.Count == 1 && train.FollowUpServices[0].Days.Count == 7)
+                    return OperationResult<int?>.Ok(train.FollowUpServices[0].TrainNumber);
 
-                var destinationSchedule = train.Schedules.FirstOrDefault(s => s.Schedule.Handling == eHandling.Destination);
+                var destinationSchedule = train.Schedules.FirstOrDefault(s => s.Handling == eHandling.Destination);
 
-                if (destinationSchedule != null && train.Train.FollowUpServices.Any())
+                if (destinationSchedule != null && train.FollowUpServices.Any())
                 {
-                    var dayOfService = __GetDayOfService(destinationSchedule.Schedule, estw.Time);
-                    var relation = train.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(dayOfService));
+                    var dayOfService = __GetDayOfService(destinationSchedule, estw.Time);
+                    var relation = train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(dayOfService));
 
                     if (relation != null)
                         return OperationResult<int?>.Ok(relation.TrainNumber);

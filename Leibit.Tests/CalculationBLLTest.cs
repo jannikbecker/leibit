@@ -397,7 +397,6 @@ namespace Leibit.Tests
         {
             var estw = new ESTW("ID", "Name", string.Empty, null);
             var train = new Train(1);
-            var liveTrain = new TrainInformation(train);
 
             var relation = new TrainRelation(2);
             relation.Days.Add(eDaysOfService.Monday);
@@ -410,7 +409,7 @@ namespace Leibit.Tests
             train.FollowUpServices.Add(relation);
 
             var bll = new CalculationBLL();
-            var result = bll.GetFollowUpService(liveTrain, estw);
+            var result = bll.GetFollowUpService(train, estw);
             Assert.IsTrue(result.Succeeded);
             Assert.AreEqual(2, result.Result);
         }
@@ -424,11 +423,7 @@ namespace Leibit.Tests
             estw.Time = new LeibitTime(eDaysOfService.Thursday, 14, 45);
 
             var train = new Train(0);
-            var liveTrain = new TrainInformation(train);
-
-            var schedule = new Schedule(train, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
-            var liveSchedule = new LiveSchedule(liveTrain, schedule);
-            liveTrain.AddSchedule(liveSchedule);
+            new Schedule(train, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
 
             var relation = new TrainRelation(1);
             relation.Days.Add(eDaysOfService.Monday);
@@ -451,7 +446,7 @@ namespace Leibit.Tests
             train.FollowUpServices.Add(relation);
 
             var bll = new CalculationBLL();
-            var result = bll.GetFollowUpService(liveTrain, estw);
+            var result = bll.GetFollowUpService(train, estw);
             Assert.IsTrue(result.Succeeded);
             Assert.AreEqual(4, result.Result);
         }
@@ -465,11 +460,7 @@ namespace Leibit.Tests
             estw.Time = new LeibitTime(eDaysOfService.Saturday, 14, 45);
 
             var train = new Train(1);
-            var liveTrain = new TrainInformation(train);
-
-            var schedule = new Schedule(train, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
-            var liveSchedule = new LiveSchedule(liveTrain, schedule);
-            liveTrain.AddSchedule(liveSchedule);
+            new Schedule(train, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
 
             var relation = new TrainRelation(2);
             relation.Days.Add(eDaysOfService.Monday);
@@ -480,7 +471,7 @@ namespace Leibit.Tests
             train.FollowUpServices.Add(relation);
 
             var bll = new CalculationBLL();
-            var result = bll.GetFollowUpService(liveTrain, estw);
+            var result = bll.GetFollowUpService(train, estw);
             Assert.IsTrue(result.Succeeded);
             Assert.IsNull(result.Result);
         }
@@ -494,11 +485,7 @@ namespace Leibit.Tests
             estw.Time = new LeibitTime(eDaysOfService.Thursday, 0, 5);
 
             var train = new Train(0);
-            var liveTrain = new TrainInformation(train);
-
-            var schedule = new Schedule(train, new LeibitTime(23, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
-            var liveSchedule = new LiveSchedule(liveTrain, schedule);
-            liveTrain.AddSchedule(liveSchedule);
+            new Schedule(train, new LeibitTime(23, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
 
             var relation = new TrainRelation(1);
             relation.Days.Add(eDaysOfService.Monday);
@@ -521,7 +508,7 @@ namespace Leibit.Tests
             train.FollowUpServices.Add(relation);
 
             var bll = new CalculationBLL();
-            var result = bll.GetFollowUpService(liveTrain, estw);
+            var result = bll.GetFollowUpService(train, estw);
             Assert.IsTrue(result.Succeeded);
             Assert.AreEqual(3, result.Result);
         }
@@ -535,11 +522,7 @@ namespace Leibit.Tests
             estw.Time = new LeibitTime(eDaysOfService.Thursday, 23, 55);
 
             var train = new Train(0);
-            var liveTrain = new TrainInformation(train);
-
-            var schedule = new Schedule(train, new LeibitTime(0, 5), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
-            var liveSchedule = new LiveSchedule(liveTrain, schedule);
-            liveTrain.AddSchedule(liveSchedule);
+            new Schedule(train, new LeibitTime(0, 5), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
 
             var relation = new TrainRelation(1);
             relation.Days.Add(eDaysOfService.Monday);
@@ -562,7 +545,7 @@ namespace Leibit.Tests
             train.FollowUpServices.Add(relation);
 
             var bll = new CalculationBLL();
-            var result = bll.GetFollowUpService(liveTrain, estw);
+            var result = bll.GetFollowUpService(train, estw);
             Assert.IsTrue(result.Succeeded);
             Assert.AreEqual(5, result.Result);
         }
@@ -574,7 +557,6 @@ namespace Leibit.Tests
         {
             var estw = new ESTW("ID", "Name", string.Empty, null);
             var train = new Train(1);
-            var liveTrain = new TrainInformation(train);
 
             var relation = new TrainRelation(2);
             relation.Days.Add(eDaysOfService.Monday);
@@ -587,7 +569,7 @@ namespace Leibit.Tests
             train.PreviousServices.Add(relation);
 
             var bll = new CalculationBLL();
-            var result = bll.GetPreviousService(liveTrain, estw);
+            var result = bll.GetPreviousService(train, estw);
             Assert.IsTrue(result.Succeeded);
             Assert.AreEqual(2, result.Result);
         }
@@ -602,7 +584,6 @@ namespace Leibit.Tests
             estw.Time = new LeibitTime(eDaysOfService.Thursday, 15, 5);
 
             var train = new Train(0);
-            var liveTrain = new TrainInformation(train);
 
             var train1 = new Train(1);
             new Schedule(train1, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
@@ -645,7 +626,7 @@ namespace Leibit.Tests
             train.PreviousServices.Add(relation);
 
             var bll = new CalculationBLL();
-            var result = bll.GetPreviousService(liveTrain, estw);
+            var result = bll.GetPreviousService(train, estw);
             Assert.IsTrue(result.Succeeded);
             Assert.AreEqual(4, result.Result);
         }
@@ -660,7 +641,6 @@ namespace Leibit.Tests
             estw.Time = new LeibitTime(eDaysOfService.Saturday, 15, 5);
 
             var train = new Train(0);
-            var liveTrain = new TrainInformation(train);
 
             var train1 = new Train(1);
             new Schedule(train1, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
@@ -703,7 +683,7 @@ namespace Leibit.Tests
             train.PreviousServices.Add(relation);
 
             var bll = new CalculationBLL();
-            var result = bll.GetPreviousService(liveTrain, estw);
+            var result = bll.GetPreviousService(train, estw);
             Assert.IsTrue(result.Succeeded);
             Assert.IsNull(result.Result);
         }
@@ -718,7 +698,6 @@ namespace Leibit.Tests
             estw.Time = new LeibitTime(eDaysOfService.Thursday, 0, 5);
 
             var train = new Train(0);
-            var liveTrain = new TrainInformation(train);
 
             var train1 = new Train(1);
             new Schedule(train1, new LeibitTime(23, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
@@ -761,7 +740,7 @@ namespace Leibit.Tests
             train.PreviousServices.Add(relation);
 
             var bll = new CalculationBLL();
-            var result = bll.GetPreviousService(liveTrain, estw);
+            var result = bll.GetPreviousService(train, estw);
             Assert.IsTrue(result.Succeeded);
             Assert.AreEqual(3, result.Result);
         }
@@ -776,7 +755,6 @@ namespace Leibit.Tests
             estw.Time = new LeibitTime(eDaysOfService.Thursday, 23, 45);
 
             var train = new Train(0);
-            var liveTrain = new TrainInformation(train);
 
             var train1 = new Train(1);
             new Schedule(train1, new LeibitTime(0, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
@@ -819,7 +797,7 @@ namespace Leibit.Tests
             train.PreviousServices.Add(relation);
 
             var bll = new CalculationBLL();
-            var result = bll.GetPreviousService(liveTrain, estw);
+            var result = bll.GetPreviousService(train, estw);
             Assert.IsTrue(result.Succeeded);
             Assert.AreEqual(5, result.Result);
         }
