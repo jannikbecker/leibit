@@ -248,13 +248,13 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     if (followUpService.HasValue && area.Trains.ContainsKey(followUpService.Value))
                     {
                         var followUpTrain = area.Trains[followUpService.Value];
-                        infoTexts.Add($"Fährt weiter als {followUpTrain.Type} {followUpTrain.Number} nach {followUpTrain.Destination}");
+                        infoTexts.Add($"Dieser Zug endet hier und fährt weiter als {followUpTrain.Type} {followUpTrain.Number} nach {followUpTrain.Destination}");
                         Via = string.Empty;
                         CurrentTrainDestination = $"von {currentItem.Schedule.Train.Start}";
                     }
                     else
                     {
-                        infoTexts.Add("Zug endet hier");
+                        infoTexts.Add("Dieser Zug endet hier");
                         Via = $"von {currentItem.Schedule.Train.Start}";
                         CurrentTrainDestination = "Bitte nicht einsteigen";
                     }
