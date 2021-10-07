@@ -105,9 +105,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         private string __GetLEDBaseText(ScheduleItem scheduleItem)
         {
             if (scheduleItem.Schedule.Handling == eHandling.Destination)
-                return $"{scheduleItem.Schedule.Train.Type} {scheduleItem.Schedule.Train.Number} von {scheduleItem.Schedule.Train.Start}, Ankunft {scheduleItem.Schedule.Arrival} Uhr";
+                return $"{scheduleItem.Schedule.TrainType} {scheduleItem.Schedule.Train.Number} von {scheduleItem.Schedule.Train.Start}, Ankunft {scheduleItem.Schedule.Arrival} Uhr";
             else
-                return $"{scheduleItem.Schedule.Train.Type} {scheduleItem.Schedule.Train.Number} nach {scheduleItem.Schedule.Train.Destination}, Abfahrt {scheduleItem.Schedule.Departure} Uhr";
+                return $"{scheduleItem.Schedule.TrainType} {scheduleItem.Schedule.Train.Number} nach {scheduleItem.Schedule.Train.Destination}, Abfahrt {scheduleItem.Schedule.Departure} Uhr";
         }
         #endregion
 

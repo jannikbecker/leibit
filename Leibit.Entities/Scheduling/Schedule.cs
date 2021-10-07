@@ -67,6 +67,8 @@ namespace Leibit.Entities.Scheduling
             }
         }
 
+        public string TrainType { get; set; }
+
         public Station Station
         {
             get
