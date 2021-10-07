@@ -219,8 +219,10 @@ namespace Leibit.BLL
                 }
 
                 if (PathResult.Result.IsNotNullOrWhiteSpace())
+                {
                     __LoadTrainCompositions(Estw, PathResult.Result);
-
+                    __LoadTrainRelations(Estw, PathResult.Result);
+                }
                 Estw.SchedulesLoaded = PathResult.Result.IsNotNullOrWhiteSpace();
                 Estw.IsLoaded = true;
                 return Result;
@@ -670,8 +672,73 @@ namespace Leibit.BLL
                         estw.Area.Trains[trainNumber].Composition = content;
                 }
             }
-            #endregion
         }
+        #endregion
+
+        #region [__LoadTrainRelations]
+        private void __LoadTrainRelations(ESTW estw, string path)
+        {
+            var routingFilesPath = Path.Combine(path, Constants.TRAIN_ROUTING_FOLDER);
+
+            if (!Directory.Exists(routingFilesPath))
+                return;
+
+            foreach (var file in Directory.EnumerateFiles(routingFilesPath, "*.znu"))
+            {
+                using (var fileReader = File.OpenText(file))
+                {
+                    while (!fileReader.EndOfStream)
+                    {
+                        var line = fileReader.ReadLine();
+                        var parts = line.Split(' ');
+
+                        if (parts.Length < 4)
+                            continue;
+
+                        var sFromTrainNumber = parts[0];
+                        var sToTrainNumber = parts[1];
+                        var sFromDay = parts[2];
+                        var sToDay = parts[3];
+
+                        if (!int.TryParse(sFromTrainNumber, out var fromTrainNumber)
+                            || !int.TryParse(sToTrainNumber, out var toTrainNumber)
+                            || !estw.Area.Trains.ContainsKey(fromTrainNumber)
+                            || !estw.Area.Trains.ContainsKey(toTrainNumber)
+                            || !LeibitTime.TryParseSingleDay(sFromDay, out var fromDay)
+                            || !LeibitTime.TryParseSingleDay(sToDay, out var toDay))
+                        {
+                            continue;
+                        }
+
+                        var daysOfService = new List<eDaysOfService>();
+
+                        for (int i = (int)fromDay; i != (int)toDay;)
+                        {
+                            daysOfService.Add((eDaysOfService)i);
+
+                            i *= 2;
+
+                            if (i > 64)
+                                i = 1;
+                        }
+
+                        daysOfService.Add(toDay);
+
+                        var fromTrain = estw.Area.Trains[fromTrainNumber];
+                        var toTrain = estw.Area.Trains[toTrainNumber];
+
+                        var trainRelation = new TrainRelation(toTrainNumber);
+                        trainRelation.Days.AddRange(daysOfService);
+                        fromTrain.FollowUpServices.Add(trainRelation);
+
+                        trainRelation = new TrainRelation(fromTrainNumber);
+                        trainRelation.Days.AddRange(daysOfService);
+                        toTrain.PreviousServices.Add(trainRelation);
+                    }
+                }
+            }
+        }
+        #endregion
 
         #region [__AreSchedulesClose]
         private bool __AreSchedulesClose(Schedule schedule1, Schedule schedule2)

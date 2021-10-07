@@ -391,5 +391,417 @@ namespace Leibit.Tests
         }
         #endregion
 
+        #region [CalculationBLLTest_GetFollowUpService_SimpleCase]
+        [TestMethod]
+        public void CalculationBLLTest_GetFollowUpService_SimpleCase()
+        {
+            var estw = new ESTW("ID", "Name", string.Empty, null);
+            var train = new Train(1);
+
+            var relation = new TrainRelation(2);
+            relation.Days.Add(eDaysOfService.Monday);
+            relation.Days.Add(eDaysOfService.Tuesday);
+            relation.Days.Add(eDaysOfService.Wednesday);
+            relation.Days.Add(eDaysOfService.Thursday);
+            relation.Days.Add(eDaysOfService.Friday);
+            relation.Days.Add(eDaysOfService.Saturday);
+            relation.Days.Add(eDaysOfService.Sunday);
+            train.FollowUpServices.Add(relation);
+
+            var bll = new CalculationBLL();
+            var result = bll.GetFollowUpService(train, estw);
+            Assert.IsTrue(result.Succeeded);
+            Assert.AreEqual(2, result.Result);
+        }
+        #endregion
+
+        #region [CalculationBLLTest_GetFollowUpService_SameDay]
+        [TestMethod]
+        public void CalculationBLLTest_GetFollowUpService_SameDay()
+        {
+            var estw = new ESTW("ID", "Name", string.Empty, null);
+            estw.Time = new LeibitTime(eDaysOfService.Thursday, 14, 45);
+
+            var train = new Train(0);
+            new Schedule(train, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+
+            var relation = new TrainRelation(1);
+            relation.Days.Add(eDaysOfService.Monday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(2);
+            relation.Days.Add(eDaysOfService.Tuesday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(3);
+            relation.Days.Add(eDaysOfService.Wednesday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(4);
+            relation.Days.Add(eDaysOfService.Thursday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(5);
+            relation.Days.Add(eDaysOfService.Friday);
+            train.FollowUpServices.Add(relation);
+
+            var bll = new CalculationBLL();
+            var result = bll.GetFollowUpService(train, estw);
+            Assert.IsTrue(result.Succeeded);
+            Assert.AreEqual(4, result.Result);
+        }
+        #endregion
+
+        #region [CalculationBLLTest_GetFollowUpService_WrongDay]
+        [TestMethod]
+        public void CalculationBLLTest_GetFollowUpService_WrongDay()
+        {
+            var estw = new ESTW("ID", "Name", string.Empty, null);
+            estw.Time = new LeibitTime(eDaysOfService.Saturday, 14, 45);
+
+            var train = new Train(1);
+            new Schedule(train, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+
+            var relation = new TrainRelation(2);
+            relation.Days.Add(eDaysOfService.Monday);
+            relation.Days.Add(eDaysOfService.Tuesday);
+            relation.Days.Add(eDaysOfService.Wednesday);
+            relation.Days.Add(eDaysOfService.Thursday);
+            relation.Days.Add(eDaysOfService.Friday);
+            train.FollowUpServices.Add(relation);
+
+            var bll = new CalculationBLL();
+            var result = bll.GetFollowUpService(train, estw);
+            Assert.IsTrue(result.Succeeded);
+            Assert.IsNull(result.Result);
+        }
+        #endregion
+
+        #region [CalculationBLLTest_GetFollowUpService_AfterMidnight]
+        [TestMethod]
+        public void CalculationBLLTest_GetFollowUpService_AfterMidnight()
+        {
+            var estw = new ESTW("ID", "Name", string.Empty, null);
+            estw.Time = new LeibitTime(eDaysOfService.Thursday, 0, 5);
+
+            var train = new Train(0);
+            new Schedule(train, new LeibitTime(23, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+
+            var relation = new TrainRelation(1);
+            relation.Days.Add(eDaysOfService.Monday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(2);
+            relation.Days.Add(eDaysOfService.Tuesday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(3);
+            relation.Days.Add(eDaysOfService.Wednesday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(4);
+            relation.Days.Add(eDaysOfService.Thursday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(5);
+            relation.Days.Add(eDaysOfService.Friday);
+            train.FollowUpServices.Add(relation);
+
+            var bll = new CalculationBLL();
+            var result = bll.GetFollowUpService(train, estw);
+            Assert.IsTrue(result.Succeeded);
+            Assert.AreEqual(3, result.Result);
+        }
+        #endregion
+
+        #region [CalculationBLLTest_GetFollowUpService_BeforeMidnight]
+        [TestMethod]
+        public void CalculationBLLTest_GetFollowUpService_BeforeMidnight()
+        {
+            var estw = new ESTW("ID", "Name", string.Empty, null);
+            estw.Time = new LeibitTime(eDaysOfService.Thursday, 23, 55);
+
+            var train = new Train(0);
+            new Schedule(train, new LeibitTime(0, 5), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+
+            var relation = new TrainRelation(1);
+            relation.Days.Add(eDaysOfService.Monday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(2);
+            relation.Days.Add(eDaysOfService.Tuesday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(3);
+            relation.Days.Add(eDaysOfService.Wednesday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(4);
+            relation.Days.Add(eDaysOfService.Thursday);
+            train.FollowUpServices.Add(relation);
+
+            relation = new TrainRelation(5);
+            relation.Days.Add(eDaysOfService.Friday);
+            train.FollowUpServices.Add(relation);
+
+            var bll = new CalculationBLL();
+            var result = bll.GetFollowUpService(train, estw);
+            Assert.IsTrue(result.Succeeded);
+            Assert.AreEqual(5, result.Result);
+        }
+        #endregion
+
+        #region [CalculationBLLTest_GetPreviousService_SimpleCase]
+        [TestMethod]
+        public void CalculationBLLTest_GetPreviousService_SimpleCase()
+        {
+            var estw = new ESTW("ID", "Name", string.Empty, null);
+            var train = new Train(1);
+
+            var relation = new TrainRelation(2);
+            relation.Days.Add(eDaysOfService.Monday);
+            relation.Days.Add(eDaysOfService.Tuesday);
+            relation.Days.Add(eDaysOfService.Wednesday);
+            relation.Days.Add(eDaysOfService.Thursday);
+            relation.Days.Add(eDaysOfService.Friday);
+            relation.Days.Add(eDaysOfService.Saturday);
+            relation.Days.Add(eDaysOfService.Sunday);
+            train.PreviousServices.Add(relation);
+
+            var bll = new CalculationBLL();
+            var result = bll.GetPreviousService(train, estw);
+            Assert.IsTrue(result.Succeeded);
+            Assert.AreEqual(2, result.Result);
+        }
+        #endregion
+
+        #region [CalculationBLLTest_GetPreviousService_SameDay]
+        [TestMethod]
+        public void CalculationBLLTest_GetPreviousService_SameDay()
+        {
+            var area = new Area("ID", "Name");
+            var estw = new ESTW("ID", "Name", string.Empty, area);
+            estw.Time = new LeibitTime(eDaysOfService.Thursday, 15, 5);
+
+            var train = new Train(0);
+
+            var train1 = new Train(1);
+            new Schedule(train1, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(1, train1);
+
+            var train2 = new Train(2);
+            new Schedule(train2, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(2, train2);
+
+            var train3 = new Train(3);
+            new Schedule(train3, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(3, train3);
+
+            var train4 = new Train(4);
+            new Schedule(train4, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(4, train4);
+
+            var train5 = new Train(5);
+            new Schedule(train5, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(5, train5);
+
+            var relation = new TrainRelation(1);
+            relation.Days.Add(eDaysOfService.Monday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(2);
+            relation.Days.Add(eDaysOfService.Tuesday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(3);
+            relation.Days.Add(eDaysOfService.Wednesday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(4);
+            relation.Days.Add(eDaysOfService.Thursday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(5);
+            relation.Days.Add(eDaysOfService.Friday);
+            train.PreviousServices.Add(relation);
+
+            var bll = new CalculationBLL();
+            var result = bll.GetPreviousService(train, estw);
+            Assert.IsTrue(result.Succeeded);
+            Assert.AreEqual(4, result.Result);
+        }
+        #endregion
+
+        #region [CalculationBLLTest_GetPreviousService_WrongDay]
+        [TestMethod]
+        public void CalculationBLLTest_GetPreviousService_WrongDay()
+        {
+            var area = new Area("ID", "Name");
+            var estw = new ESTW("ID", "Name", string.Empty, area);
+            estw.Time = new LeibitTime(eDaysOfService.Saturday, 15, 5);
+
+            var train = new Train(0);
+
+            var train1 = new Train(1);
+            new Schedule(train1, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(1, train1);
+
+            var train2 = new Train(2);
+            new Schedule(train2, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(2, train2);
+
+            var train3 = new Train(3);
+            new Schedule(train3, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(3, train3);
+
+            var train4 = new Train(4);
+            new Schedule(train4, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(4, train4);
+
+            var train5 = new Train(5);
+            new Schedule(train5, new LeibitTime(14, 56), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(5, train5);
+
+            var relation = new TrainRelation(1);
+            relation.Days.Add(eDaysOfService.Monday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(2);
+            relation.Days.Add(eDaysOfService.Tuesday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(3);
+            relation.Days.Add(eDaysOfService.Wednesday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(4);
+            relation.Days.Add(eDaysOfService.Thursday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(5);
+            relation.Days.Add(eDaysOfService.Friday);
+            train.PreviousServices.Add(relation);
+
+            var bll = new CalculationBLL();
+            var result = bll.GetPreviousService(train, estw);
+            Assert.IsTrue(result.Succeeded);
+            Assert.IsNull(result.Result);
+        }
+        #endregion
+
+        #region [CalculationBLLTest_GetPreviousService_AfterMidnight]
+        [TestMethod]
+        public void CalculationBLLTest_GetPreviousService_AfterMidnight()
+        {
+            var area = new Area("ID", "Name");
+            var estw = new ESTW("ID", "Name", string.Empty, area);
+            estw.Time = new LeibitTime(eDaysOfService.Thursday, 0, 5);
+
+            var train = new Train(0);
+
+            var train1 = new Train(1);
+            new Schedule(train1, new LeibitTime(23, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(1, train1);
+
+            var train2 = new Train(2);
+            new Schedule(train2, new LeibitTime(23, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(2, train2);
+
+            var train3 = new Train(3);
+            new Schedule(train3, new LeibitTime(23, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(3, train3);
+
+            var train4 = new Train(4);
+            new Schedule(train4, new LeibitTime(23, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(4, train4);
+
+            var train5 = new Train(5);
+            new Schedule(train5, new LeibitTime(23, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(5, train5);
+
+            var relation = new TrainRelation(1);
+            relation.Days.Add(eDaysOfService.Monday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(2);
+            relation.Days.Add(eDaysOfService.Tuesday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(3);
+            relation.Days.Add(eDaysOfService.Wednesday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(4);
+            relation.Days.Add(eDaysOfService.Thursday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(5);
+            relation.Days.Add(eDaysOfService.Friday);
+            train.PreviousServices.Add(relation);
+
+            var bll = new CalculationBLL();
+            var result = bll.GetPreviousService(train, estw);
+            Assert.IsTrue(result.Succeeded);
+            Assert.AreEqual(3, result.Result);
+        }
+        #endregion
+
+        #region [CalculationBLLTest_GetPreviousService_BeforeMidnight]
+        [TestMethod]
+        public void CalculationBLLTest_GetPreviousService_BeforeMidnight()
+        {
+            var area = new Area("ID", "Name");
+            var estw = new ESTW("ID", "Name", string.Empty, area);
+            estw.Time = new LeibitTime(eDaysOfService.Thursday, 23, 45);
+
+            var train = new Train(0);
+
+            var train1 = new Train(1);
+            new Schedule(train1, new LeibitTime(0, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(1, train1);
+
+            var train2 = new Train(2);
+            new Schedule(train2, new LeibitTime(0, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(2, train2);
+
+            var train3 = new Train(3);
+            new Schedule(train3, new LeibitTime(0, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(3, train3);
+
+            var train4 = new Train(4);
+            new Schedule(train4, new LeibitTime(0, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(4, train4);
+
+            var train5 = new Train(5);
+            new Schedule(train5, new LeibitTime(0, 55), null, null, new List<eDaysOfService>(), eScheduleDirection.Unknown, eHandling.Destination, string.Empty);
+            area.Trains.TryAdd(5, train5);
+
+            var relation = new TrainRelation(1);
+            relation.Days.Add(eDaysOfService.Monday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(2);
+            relation.Days.Add(eDaysOfService.Tuesday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(3);
+            relation.Days.Add(eDaysOfService.Wednesday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(4);
+            relation.Days.Add(eDaysOfService.Thursday);
+            train.PreviousServices.Add(relation);
+
+            relation = new TrainRelation(5);
+            relation.Days.Add(eDaysOfService.Friday);
+            train.PreviousServices.Add(relation);
+
+            var bll = new CalculationBLL();
+            var result = bll.GetPreviousService(train, estw);
+            Assert.IsTrue(result.Succeeded);
+            Assert.AreEqual(5, result.Result);
+        }
+        #endregion
+
     }
 }

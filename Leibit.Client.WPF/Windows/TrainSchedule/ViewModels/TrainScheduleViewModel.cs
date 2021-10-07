@@ -6,6 +6,8 @@ using Leibit.Client.WPF.Windows.DelayJustification.ViewModels;
 using Leibit.Client.WPF.Windows.DelayJustification.Views;
 using Leibit.Client.WPF.Windows.LocalOrders.ViewModels;
 using Leibit.Client.WPF.Windows.LocalOrders.Views;
+using Leibit.Client.WPF.Windows.TrainSchedule.Views;
+using Leibit.Core.Client.Commands;
 using Leibit.Core.Common;
 using Leibit.Entities;
 using Leibit.Entities.Common;
@@ -17,6 +19,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
@@ -31,6 +34,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         private SettingsBLL m_SettingsBll;
         private TrainInformation m_LiveTrain;
         private eSkin? m_Skin;
+        private Area m_Area;
         #endregion
 
         #region - Ctor -
@@ -39,9 +43,11 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             this.Dispatcher = Dispatcher;
             CurrentTrain = Train;
+            m_Area = Area;
             m_CalculationBll = new CalculationBLL();
             m_SettingsBll = new SettingsBLL();
             Stations = new ObservableCollection<TrainScheduleStationViewModel>();
+            OpenTrainScheduleCommand = new CommandHandler<int?>(__OpenTrainSchedule, true);
 
             if (Area != null)
                 Refresh(Area);
@@ -87,6 +93,46 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             {
                 Set(value);
             }
+        }
+        #endregion
+
+        #region [PreviousServiceVisibility]
+        public Visibility PreviousServiceVisibility
+        {
+            get => Get<Visibility>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [FollowUpServiceVisibility]
+        public Visibility FollowUpServiceVisibility
+        {
+            get => Get<Visibility>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [PreviousTrainNumber]
+        public int? PreviousTrainNumber
+        {
+            get => Get<int?>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [FollowUpTrainNumber]
+        public int? FollowUpTrainNumber
+        {
+            get => Get<int?>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [OpenTrainScheduleCommand]
+        public ICommand OpenTrainScheduleCommand
+        {
+            get => Get<ICommand>();
+            private set => Set(value);
         }
         #endregion
 
@@ -351,6 +397,58 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             var RemovedItems = Stations.Except(CurrentSchedules).ToList();
             Dispatcher.Invoke(() => RemovedItems.ForEach(s => Stations.Remove(s)));
 
+            if (HasStartStation)
+            {
+                if (m_LiveTrain == null)
+                {
+                    var startSchedule = SchedulesResult.Result.First(s => s.Handling == eHandling.Start);
+                    var prevResult = m_CalculationBll.GetPreviousService(CurrentTrain, startSchedule.Station.ESTW);
+
+                    if (prevResult.Succeeded && prevResult.Result.HasValue)
+                    {
+                        PreviousTrainNumber = prevResult.Result;
+                        PreviousServiceVisibility = Visibility.Visible;
+                    }
+                    else
+                        PreviousServiceVisibility = Visibility.Collapsed;
+                }
+                else if (m_LiveTrain.PreviousService.HasValue)
+                {
+                    PreviousTrainNumber = m_LiveTrain.PreviousService;
+                    PreviousServiceVisibility = Visibility.Visible;
+                }
+                else
+                    PreviousServiceVisibility = Visibility.Collapsed;
+            }
+            else
+                PreviousServiceVisibility = Visibility.Collapsed;
+
+            if (HasDestinationStation)
+            {
+                if (m_LiveTrain == null)
+                {
+                    var startSchedule = SchedulesResult.Result.First(s => s.Handling == eHandling.Destination);
+                    var followUpResult = m_CalculationBll.GetFollowUpService(CurrentTrain, startSchedule.Station.ESTW);
+
+                    if (followUpResult.Succeeded && followUpResult.Result.HasValue)
+                    {
+                        FollowUpTrainNumber = followUpResult.Result;
+                        FollowUpServiceVisibility = Visibility.Visible;
+                    }
+                    else
+                        FollowUpServiceVisibility = Visibility.Collapsed;
+                }
+                else if (m_LiveTrain.FollowUpService.HasValue)
+                {
+                    FollowUpTrainNumber = m_LiveTrain.FollowUpService;
+                    FollowUpServiceVisibility = Visibility.Visible;
+                }
+                else
+                    FollowUpServiceVisibility = Visibility.Collapsed;
+            }
+            else
+                FollowUpServiceVisibility = Visibility.Collapsed;
+
             if (Settings.Skin != m_Skin)
             {
                 m_Skin = Settings.Skin;
@@ -386,6 +484,18 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
                 OnOpenWindow(VM, Window);
             }
+        }
+        #endregion
+
+        #region [__OpenTrainSchedule]
+        private void __OpenTrainSchedule(int? trainNumber)
+        {
+            if (!trainNumber.HasValue || m_Area == null || !m_Area.Trains.ContainsKey(trainNumber.Value))
+                return;
+
+            var Window = new TrainScheduleView(trainNumber.Value);
+            var VM = new TrainScheduleViewModel(Window.Dispatcher, m_Area.Trains[trainNumber.Value], m_Area);
+            OnOpenWindow(VM, Window);
         }
         #endregion
 

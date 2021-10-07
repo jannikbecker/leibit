@@ -32,27 +32,7 @@ namespace Leibit.BLL
         {
             try
             {
-                var Result = new OperationResult<List<Schedule>>();
-                Result.Result = new List<Schedule>();
-
-                foreach (var Schedule in Schedules.OrderBy(s => s.Time))
-                {
-                    foreach (eDaysOfService value in Enum.GetValues(typeof(eDaysOfService)))
-                    {
-                        if (Schedule.Days.Contains(value) || !Schedule.Days.Any())
-                        {
-                            var ScheduleTime = new LeibitTime(value, Schedule.Time.Hour, Schedule.Time.Minute);
-
-                            if (ScheduleTime > time.AddHours(-12) && ScheduleTime <= time.AddHours(12))
-                            {
-                                Result.Result.Add(Schedule);
-                            }
-                        }
-                    }
-                }
-
-                Result.Succeeded = true;
-                return Result;
+                return OperationResult<List<Schedule>>.Ok(__GetSchedulesByTime(Schedules, time));
             }
             catch (Exception ex)
             {
@@ -233,6 +213,127 @@ namespace Leibit.BLL
             {
                 return new OperationResult<bool> { Message = ex.Message };
             }
+        }
+        #endregion
+
+        #region [GetPreviousService]
+        public OperationResult<int?> GetPreviousService(Train train, ESTW estw)
+        {
+            try
+            {
+                // Performance optimization. This covers most of the cases so that no complex calculation is needed.
+                if (train.PreviousServices.Count == 1 && train.PreviousServices[0].Days.Count == 7)
+                    return OperationResult<int?>.Ok(train.PreviousServices[0].TrainNumber);
+
+                if (train.PreviousServices.Any())
+                {
+                    foreach (var relation in train.PreviousServices)
+                    {
+                        Schedule previousTrainSchedule = null;
+
+                        if (estw.Area.LiveTrains.ContainsKey(relation.TrainNumber))
+                            previousTrainSchedule = estw.Area.LiveTrains[relation.TrainNumber].Schedules.FirstOrDefault(s => s.Schedule.Handling == eHandling.Destination)?.Schedule;
+                        else
+                        {
+                            var previousTrainSchedules = __GetSchedulesByTime(estw.Area.Trains[relation.TrainNumber].Schedules, estw.Time);
+                            previousTrainSchedule = previousTrainSchedules.FirstOrDefault(s => s.Handling == eHandling.Destination);
+                        }
+
+                        if (previousTrainSchedule != null)
+                        {
+                            var dayOfService = __GetDayOfService(previousTrainSchedule, estw.Time);
+
+                            if (relation.Days.Contains(dayOfService))
+                                return OperationResult<int?>.Ok(relation.TrainNumber);
+                        }
+                    }
+                }
+
+                return OperationResult<int?>.Ok(null);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<int?>.Fail(ex.ToString());
+            }
+        }
+        #endregion
+
+        #region [GetFollowUpService]
+        public OperationResult<int?> GetFollowUpService(Train train, ESTW estw)
+        {
+            try
+            {
+                // Performance optimization. This covers most of the cases so that no complex calculation is needed.
+                if (train.FollowUpServices.Count == 1 && train.FollowUpServices[0].Days.Count == 7)
+                    return OperationResult<int?>.Ok(train.FollowUpServices[0].TrainNumber);
+
+                var destinationSchedule = train.Schedules.FirstOrDefault(s => s.Handling == eHandling.Destination);
+
+                if (destinationSchedule != null && train.FollowUpServices.Any())
+                {
+                    var dayOfService = __GetDayOfService(destinationSchedule, estw.Time);
+                    var relation = train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(dayOfService));
+
+                    if (relation != null)
+                        return OperationResult<int?>.Ok(relation.TrainNumber);
+                }
+
+                return OperationResult<int?>.Ok(null);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<int?>.Fail(ex.ToString());
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region - Private methods -
+
+        #region [__GetSchedulesByTime]
+        private List<Schedule> __GetSchedulesByTime(IEnumerable<Schedule> Schedules, LeibitTime time)
+        {
+            var result = new List<Schedule>();
+
+            foreach (var Schedule in Schedules.OrderBy(s => s.Time))
+            {
+                if (__GetDayOfService(Schedule, time) != eDaysOfService.None)
+                    result.Add(Schedule);
+
+                //foreach (eDaysOfService value in Enum.GetValues(typeof(eDaysOfService)))
+                //{
+                //    if (Schedule.Days.Contains(value) || !Schedule.Days.Any())
+                //    {
+                //        var ScheduleTime = new LeibitTime(value, Schedule.Time.Hour, Schedule.Time.Minute);
+
+                //        if (ScheduleTime > time.AddHours(-12) && ScheduleTime <= time.AddHours(12))
+                //        {
+                //            Result.Result.Add(Schedule);
+                //        }
+                //    }
+                //}
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region [__GetDayOfService]
+        private eDaysOfService __GetDayOfService(Schedule schedule, LeibitTime time)
+        {
+            foreach (eDaysOfService day in Enum.GetValues(typeof(eDaysOfService)))
+            {
+                if (schedule.Days.Contains(day) || !schedule.Days.Any())
+                {
+                    var ScheduleTime = new LeibitTime(day, schedule.Time.Hour, schedule.Time.Minute);
+
+                    if (ScheduleTime > time.AddHours(-12) && ScheduleTime <= time.AddHours(12))
+                        return day;
+                }
+            }
+
+            return eDaysOfService.None;
         }
         #endregion
 

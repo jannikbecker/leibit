@@ -522,6 +522,15 @@ namespace Leibit.BLL
                     Result.AddSchedule(LiveSchedule);
                 }
 
+                // Don't validate result here. When this fails, it's not so dramatic...
+                var prevResult = CalculationBLL.GetPreviousService(Train, estw);
+                if (prevResult.Succeeded)
+                    Result.PreviousService = prevResult.Result;
+
+                var followUpResult = CalculationBLL.GetFollowUpService(Train, estw);
+                if (followUpResult.Succeeded)
+                    Result.FollowUpService = followUpResult.Result;
+
                 return Result;
             }
             else
@@ -672,6 +681,16 @@ namespace Leibit.BLL
 
             Train.LastModified = Estw.Time;
             Train.RealBlock = Block;
+
+            if (Train.PreviousService.HasValue && Estw.Area.LiveTrains.ContainsKey(Train.PreviousService.Value) && CurrentSchedule != null && CurrentSchedule.Schedule.Handling == eHandling.Start)
+            {
+                var previousTrain = Estw.Area.LiveTrains[Train.PreviousService.Value];
+
+                if (previousTrain.Schedules.FirstOrDefault(s => s.Schedule.Handling == eHandling.Destination)?.IsArrived == false)
+                {
+                    __RefreshTrainInformation(previousTrain, Block, Estw);
+                }
+            }
         }
 
         private void __RefreshLiveSchedules(TrainInformation Train, ESTW estw)

@@ -300,6 +300,15 @@ namespace Leibit.BLL
                         LiveTrain.AddSchedule(LiveSchedule);
                     }
 
+                    // Don't validate result here. When this fails, it's not so dramatic...
+                    var prevResult = CalculationBll.GetPreviousService(Train, Estw);
+                    if (prevResult.Succeeded)
+                        LiveTrain.PreviousService = prevResult.Result;
+
+                    var followUpResult = CalculationBll.GetFollowUpService(Train, Estw);
+                    if (followUpResult.Succeeded)
+                        LiveTrain.FollowUpService = followUpResult.Result;
+
                     if (LiveTrain.Schedules.Any())
                         Area.LiveTrains.TryAdd(Train.Number, LiveTrain);
                 }

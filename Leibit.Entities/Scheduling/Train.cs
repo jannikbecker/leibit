@@ -17,6 +17,8 @@ namespace Leibit.Entities.Scheduling
         {
             m_Number = number;
             m_Schedules = new List<Schedule>();
+            PreviousServices = new List<TrainRelation>();
+            FollowUpServices = new List<TrainRelation>();
         }
 
         public Train(int number, string type, string start, string destination)
@@ -42,6 +44,10 @@ namespace Leibit.Entities.Scheduling
         public string Destination { get; set; }
 
         public string Composition { get; set; }
+
+        public List<TrainRelation> PreviousServices { get; }
+
+        public List<TrainRelation> FollowUpServices { get; }
 
         public ReadOnlyCollection<Schedule> Schedules
         {

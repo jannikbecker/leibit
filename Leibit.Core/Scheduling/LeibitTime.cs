@@ -206,24 +206,31 @@ namespace Leibit.Core.Scheduling
             switch (day.Trim().ToLower())
             {
                 case "mo":
+                case "1":
                     result = eDaysOfService.Monday;
                     return true;
                 case "di":
+                case "2":
                     result = eDaysOfService.Tuesday;
                     return true;
                 case "mi":
+                case "3":
                     result = eDaysOfService.Wednesday;
                     return true;
                 case "do":
+                case "4":
                     result = eDaysOfService.Thursday;
                     return true;
                 case "fr":
+                case "5":
                     result = eDaysOfService.Friday;
                     return true;
                 case "sa":
+                case "6":
                     result = eDaysOfService.Saturday;
                     return true;
                 case "so":
+                case "7":
                     result = eDaysOfService.Sunday;
                     return true;
                 default:
