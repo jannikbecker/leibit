@@ -541,7 +541,8 @@ namespace Leibit.BLL
                     if (Track == null)
                         Track = new Track(sTrack, true, false, station, null);
 
-                    new Schedule(Train, Arrival, Departure, Track, Days, Direction, Handling, Remark);
+                    var schedule = new Schedule(Train, Arrival, Departure, Track, Days, Direction, Handling, Remark);
+                    schedule.TrainType = Type;
                 }
             }
         }

@@ -68,7 +68,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 var train = schedule.Train;
                 LiveSchedule liveSchedule = null;
 
-                if (train == null)
+                if (train == null || !schedule.TrainType.IsPassengerTrain())
                     continue;
 
                 if (area.LiveTrains.ContainsKey(train.Number))
@@ -141,7 +141,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [GetTrainNumber]
         protected string GetTrainNumber(ScheduleItem scheduleItem)
         {
-            return $"{scheduleItem.Schedule.Train.Type} {scheduleItem.Schedule.Train.Number}";
+            return $"{scheduleItem.Schedule.TrainType} {scheduleItem.Schedule.Train.Number}";
         }
         #endregion
 
@@ -227,6 +227,28 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         protected bool IsTrackChanged(ScheduleItem scheduleItem)
         {
             return scheduleItem.LiveSchedule != null && scheduleItem.LiveSchedule.LiveTrack != null && scheduleItem.Schedule.Track != scheduleItem.LiveSchedule.LiveTrack;
+        }
+        #endregion
+
+        #region [IsDestination]
+        protected bool IsDestination(ScheduleItem scheduleItem)
+        {
+            if (scheduleItem.Schedule.Handling == eHandling.StopPassengerTrain)
+            {
+                var schedulesResult = m_CalculationBll.GetSchedulesByTime(scheduleItem.Schedule.Train.Schedules, scheduleItem.Schedule.Station.ESTW.Time);
+
+                if (schedulesResult.Succeeded)
+                {
+                    var schedules = schedulesResult.Result;
+                    var scheduleIndex = schedules.IndexOf(scheduleItem.Schedule);
+                    var nextSchedule = schedules.Skip(scheduleIndex + 1).FirstOrDefault();
+
+                    if (nextSchedule != null && !nextSchedule.TrainType.IsPassengerTrain())
+                        return true;
+                }
+            }
+
+            return scheduleItem.Schedule.Handling == eHandling.Destination;
         }
         #endregion
 

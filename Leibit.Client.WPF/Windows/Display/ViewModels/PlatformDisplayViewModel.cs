@@ -233,17 +233,20 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 CurrentTrainTime = __GetTime(currentItem);
                 CurrentTrainNumber = GetTrainNumber(currentItem);
 
-                if (currentItem.Schedule.Handling == eHandling.Destination)
+                if (IsDestination(currentItem))
                 {
                     int? followUpService = null;
 
-                    if (currentItem.LiveSchedule != null)
+                    if (currentItem.Schedule.Handling == eHandling.Destination)
                     {
-                        if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
-                            followUpService = currentItem.LiveSchedule.Train.FollowUpService;
+                        if (currentItem.LiveSchedule != null)
+                        {
+                            if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
+                                followUpService = currentItem.LiveSchedule.Train.FollowUpService;
+                        }
+                        else
+                            followUpService = currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
                     }
-                    else
-                        followUpService = currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
 
                     if (followUpService.HasValue && area.Trains.ContainsKey(followUpService.Value))
                     {
@@ -358,7 +361,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [__GetTime]
         private string __GetTime(ScheduleItem scheduleItem)
         {
-            if (scheduleItem.Schedule.Handling == eHandling.Destination)
+            if (IsDestination(scheduleItem))
                 return scheduleItem.Schedule.Arrival.ToString();
             else
                 return scheduleItem.Schedule.Departure.ToString();
@@ -368,7 +371,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [__GetDestination]
         private string __GetDestination(ScheduleItem scheduleItem)
         {
-            if (scheduleItem.Schedule.Handling == eHandling.Destination)
+            if (IsDestination(scheduleItem))
                 return $"von {scheduleItem.Schedule.Train.Start}";
             else
                 return scheduleItem.Schedule.Train.Destination;

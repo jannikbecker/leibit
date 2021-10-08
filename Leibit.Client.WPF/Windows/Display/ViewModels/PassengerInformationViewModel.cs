@@ -1,5 +1,4 @@
 ﻿using Leibit.Core.Common;
-using Leibit.Entities;
 using Leibit.Entities.Common;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,10 +103,10 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [__GetLEDBaseText]
         private string __GetLEDBaseText(ScheduleItem scheduleItem)
         {
-            if (scheduleItem.Schedule.Handling == eHandling.Destination)
-                return $"{scheduleItem.Schedule.Train.Type} {scheduleItem.Schedule.Train.Number} von {scheduleItem.Schedule.Train.Start}, Ankunft {scheduleItem.Schedule.Arrival} Uhr";
+            if (IsDestination(scheduleItem))
+                return $"{scheduleItem.Schedule.TrainType} {scheduleItem.Schedule.Train.Number} von {scheduleItem.Schedule.Train.Start}, Ankunft {scheduleItem.Schedule.Arrival} Uhr";
             else
-                return $"{scheduleItem.Schedule.Train.Type} {scheduleItem.Schedule.Train.Number} nach {scheduleItem.Schedule.Train.Destination}, Abfahrt {scheduleItem.Schedule.Departure} Uhr";
+                return $"{scheduleItem.Schedule.TrainType} {scheduleItem.Schedule.Train.Number} nach {scheduleItem.Schedule.Train.Destination}, Abfahrt {scheduleItem.Schedule.Departure} Uhr";
         }
         #endregion
 

@@ -40,7 +40,10 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
             var count = SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small ? 10 : 12;
             var candidates = GetScheduleCandidates(area, 120, false);
-            var orderedSchedules = candidates.Where(x => x.Schedule.Handling == eHandling.Start || x.Schedule.Handling == eHandling.StopPassengerTrain).OrderBy(x => x.Schedule.Departure).Take(count);
+            var orderedSchedules = candidates.Where(x => x.Schedule.Handling == eHandling.Start || x.Schedule.Handling == eHandling.StopPassengerTrain)
+                                             .Where(x => !IsDestination(x))
+                                             .OrderBy(x => x.Schedule.Departure)
+                                             .Take(count);
             var currentItems = new List<DepartureBoardItemViewModel>();
 
             foreach (var scheduleItem in orderedSchedules)

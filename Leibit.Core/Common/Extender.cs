@@ -1,13 +1,37 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Serialization;
 
 namespace Leibit.Core.Common
 {
     public static class Extender
     {
+
+        private class PassengerTrains
+        {
+            public List<string> TrainTypes { get; set; }
+        }
+
+        #region - Needs -
+        private static List<string> m_PassengerTrainTypes;
+        #endregion
+
+        #region - Properties -
+        public static List<string> PassengerTrainTypes
+        {
+            get
+            {
+                if (m_PassengerTrainTypes == null)
+                    m_PassengerTrainTypes = __LoadPassengerTrainTypes();
+
+                return m_PassengerTrainTypes;
+            }
+        }
+        #endregion
 
         #region - String extender -
 
@@ -29,6 +53,14 @@ namespace Leibit.Core.Common
         public static bool IsNotNullOrWhiteSpace(this string input)
         {
             return !String.IsNullOrWhiteSpace(input);
+        }
+
+        public static bool IsPassengerTrain(this string trainType)
+        {
+            if (trainType.IsNullOrWhiteSpace())
+                return false;
+
+            return PassengerTrainTypes.Contains(trainType.ToUpper());
         }
 
         #endregion
@@ -93,6 +125,27 @@ namespace Leibit.Core.Common
                 Stream.Seek(0, SeekOrigin.Begin);
                 return (T)Ser.ReadObject(Stream);
             }
+        }
+        #endregion
+
+        #region [__LoadPassengerTrainTypes]
+        private static List<string> __LoadPassengerTrainTypes()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+
+            using (var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Data.passenger_trains.json"))
+            {
+                if (stream != null)
+                {
+                    using (var reader = new StreamReader(stream))
+                    {
+                        var obj = JsonConvert.DeserializeObject<PassengerTrains>(reader.ReadToEnd());
+                        return obj.TrainTypes;
+                    }
+                }
+            }
+
+            return null;
         }
         #endregion
 

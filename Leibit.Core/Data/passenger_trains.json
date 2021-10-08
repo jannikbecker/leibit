@@ -1,0 +1,28 @@
+{
+  "trainTypes": [
+    "CNL",
+    "D",
+    "DNR",
+    "DZ",
+    "E",
+    "EC",
+    "EIB",
+    "EN",
+    "FLX",
+    "IC",
+    "ICE",
+    "IR",
+    "IRE",
+    "MET",
+    "NWB",
+    "NZ",
+    "NZT",
+    "R",
+    "RB",
+    "RE",
+    "S",
+    "SE",
+    "STB",
+    "UEX"
+  ]
+}
