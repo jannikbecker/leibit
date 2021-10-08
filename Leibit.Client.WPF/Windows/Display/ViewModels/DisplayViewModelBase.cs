@@ -68,7 +68,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 var train = schedule.Train;
                 LiveSchedule liveSchedule = null;
 
-                if (train == null)
+                if (train == null || !schedule.TrainType.IsPassengerTrain())
                     continue;
 
                 if (area.LiveTrains.ContainsKey(train.Number))
