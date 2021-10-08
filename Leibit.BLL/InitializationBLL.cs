@@ -692,13 +692,23 @@ namespace Leibit.BLL
                         var line = fileReader.ReadLine();
                         var parts = line.Split(' ');
 
-                        if (parts.Length < 4)
+                        if (parts.Length < 2)
                             continue;
 
                         var sFromTrainNumber = parts[0];
                         var sToTrainNumber = parts[1];
-                        var sFromDay = parts[2];
-                        var sToDay = parts[3];
+                        string sFromDay, sToDay;
+
+                        if (parts.Length >= 4)
+                        {
+                            sFromDay = parts[2];
+                            sToDay = parts[3];
+                        }
+                        else
+                        {
+                            sFromDay = "1"; // Monday
+                            sToDay = "7"; // Sunday
+                        }
 
                         if (!int.TryParse(sFromTrainNumber, out var fromTrainNumber)
                             || !int.TryParse(sToTrainNumber, out var toTrainNumber)
