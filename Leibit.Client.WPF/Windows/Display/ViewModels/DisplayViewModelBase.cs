@@ -230,6 +230,28 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
+        #region [IsDestination]
+        protected bool IsDestination(ScheduleItem scheduleItem)
+        {
+            if (scheduleItem.Schedule.Handling == eHandling.StopPassengerTrain)
+            {
+                var schedulesResult = m_CalculationBll.GetSchedulesByTime(scheduleItem.Schedule.Train.Schedules, scheduleItem.Schedule.Station.ESTW.Time);
+
+                if (schedulesResult.Succeeded)
+                {
+                    var schedules = schedulesResult.Result;
+                    var scheduleIndex = schedules.IndexOf(scheduleItem.Schedule);
+                    var nextSchedule = schedules.Skip(scheduleIndex + 1).FirstOrDefault();
+
+                    if (nextSchedule != null && !nextSchedule.TrainType.IsPassengerTrain())
+                        return true;
+                }
+            }
+
+            return scheduleItem.Schedule.Handling == eHandling.Destination;
+        }
+        #endregion
+
         #endregion
 
         #region - Private methods -
