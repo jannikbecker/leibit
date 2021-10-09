@@ -33,6 +33,7 @@
     <None Remove="Resources\Images\Dark\bfo.png" />
     <None Remove="Resources\Images\Dark\clear.png" />
     <None Remove="Resources\Images\Dark\display.png" />
+    <None Remove="Resources\Images\Dark\edit.png" />
     <None Remove="Resources\Images\Dark\flash.png" />
     <None Remove="Resources\Images\Dark\help.png" />
     <None Remove="Resources\Images\Dark\info.png" />
@@ -48,6 +49,7 @@
     <None Remove="Resources\Images\Light\bfo.png" />
     <None Remove="Resources\Images\Light\clear.png" />
     <None Remove="Resources\Images\Light\display.png" />
+    <None Remove="Resources\Images\Light\edit.png" />
     <None Remove="Resources\Images\Light\flash.png" />
     <None Remove="Resources\Images\Light\help.png" />
     <None Remove="Resources\Images\Light\info.png" />
@@ -71,6 +73,7 @@
     <Resource Include="Resources\Images\Dark\bfo.png" />
     <Resource Include="Resources\Images\Dark\clear.png" />
     <Resource Include="Resources\Images\Dark\display.png" />
+    <Resource Include="Resources\Images\Dark\edit.png" />
     <Resource Include="Resources\Images\Dark\flash.png" />
     <Resource Include="Resources\Images\Dark\help.png" />
     <Resource Include="Resources\Images\Dark\info.png" />
@@ -86,6 +89,7 @@
     <Resource Include="Resources\Images\Light\bfo.png" />
     <Resource Include="Resources\Images\Light\clear.png" />
     <Resource Include="Resources\Images\Light\display.png" />
+    <Resource Include="Resources\Images\Light\edit.png" />
     <Resource Include="Resources\Images\Light\flash.png" />
     <Resource Include="Resources\Images\Light\help.png" />
     <Resource Include="Resources\Images\Light\info.png" />

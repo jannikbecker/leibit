@@ -56,7 +56,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
             m_DoubleClickCommand = new CommandHandler(__RowDoubleClick, true);
             EnterExpectedDelayCommand = new CommandHandler(__EnterExpectedDelay, false);
-            ShowTrainScheduleCommand = new CommandHandler(__ShowTrainSchedule, false);
+            ShowTrainScheduleCommand = new CommandHandler(() => __ShowTrainSchedule(false), false);
+            EditTrainScheduleCommand = new CommandHandler(() => __ShowTrainSchedule(true), false);
             ShowTrackChangeCommand = new CommandHandler(__ShowTrackChange, false);
             ShowLocalOrdersCommand = new CommandHandler(__ShowLocalOrders, false);
             ShowTrainCompositionCommand = new CommandHandler(__ShowTrainComposition, false);
@@ -102,6 +103,10 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
 
         #region [ShowTrackChangeCommand]
         public CommandHandler ShowTrackChangeCommand { get; }
+        #endregion
+
+        #region [EditTrainScheduleCommand]
+        public CommandHandler EditTrainScheduleCommand { get; }
         #endregion
 
         #region [NewTrainStateCommand]
@@ -261,6 +266,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 EnterExpectedDelayCommand.SetCanExecute(false);
                 ShowTrackChangeCommand.SetCanExecute(false);
                 ShowTrainScheduleCommand.SetCanExecute(false);
+                EditTrainScheduleCommand.SetCanExecute(false);
                 ShowLocalOrdersCommand.SetCanExecute(false);
                 ShowTrainCompositionCommand.SetCanExecute(false);
                 ShowDelayJustificationCommand.SetCanExecute(false);
@@ -272,6 +278,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 var liveSchedule = SelectedItem.CurrentTrain?.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == SelectedItem.Schedule.Station.ShortSymbol && s.Schedule.Time == SelectedItem.Schedule.Time);
 
                 ShowTrainScheduleCommand.SetCanExecute(true);
+                EditTrainScheduleCommand.SetCanExecute(true);
                 DeleteCommand.SetCanExecute(true);
                 ShowTrainCompositionCommand.SetCanExecute(SelectedItem.Schedule.Train.Composition.IsNotNullOrWhiteSpace());
                 ShowLocalOrdersCommand.SetCanExecute(SelectedItem.Schedule.LocalOrders.IsNotNullOrWhiteSpace());
@@ -294,7 +301,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             else if (SelectedColumn == "LocalOrders" && SelectedItem.LocalOrders == 'J')
                 __ShowLocalOrders();
             else
-                __ShowTrainSchedule();
+                __ShowTrainSchedule(false);
         }
         #endregion
 
@@ -338,10 +345,10 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         #endregion
 
         #region [__ShowTrainSchedule]
-        private void __ShowTrainSchedule()
+        private void __ShowTrainSchedule(bool editMode)
         {
             var Window = new TrainScheduleView(SelectedItem.TrainNumber);
-            var VM = new TrainScheduleViewModel(Window.Dispatcher, SelectedItem.Schedule.Train, SelectedItem.Station.ESTW.Area);
+            var VM = new TrainScheduleViewModel(Window.Dispatcher, SelectedItem.Schedule.Train, SelectedItem.Station.ESTW.Area, editMode);
             OnOpenWindow(VM, Window);
         }
         #endregion

@@ -26,19 +26,29 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             IsFirstStation = true;
             IsLastStation = true;
+            CancelVisibility = Visibility.Collapsed;
         }
 
-        public TrainScheduleStationViewModel(string StationName, bool IsDestination)
+        public TrainScheduleStationViewModel(string StationName, bool IsDestination, bool IsInEditMode)
             : base()
         {
             this.StationName = StationName;
             IsFirstStation = !IsDestination;
             IsLastStation = IsDestination;
+
+            if (IsDestination && IsInEditMode)
+            {
+                CancelVisibility = Visibility.Visible;
+                CanCancel = true;
+            }
+            else
+                CancelVisibility = Visibility.Collapsed;
         }
 
-        public TrainScheduleStationViewModel(Schedule Schedule)
+        public TrainScheduleStationViewModel(Schedule Schedule, bool IsInEditMode)
             : base()
         {
+            CancelVisibility = IsInEditMode ? Visibility.Visible : Visibility.Collapsed;
             CurrentSchedule = Schedule;
             StationName = String.Format("{0} ({1})", Schedule.Station.Name, Schedule.Station.RefNumber);
             Arrival = Schedule.Arrival;
@@ -295,7 +305,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                 if (IsFirstStation || IsLastStation)
                     return Visibility.Visible;
 
-                return IsSkipped ? Visibility.Collapsed : Visibility.Visible;
+                return IsSkipped || IsCancelled ? Visibility.Collapsed : Visibility.Visible;
             }
         }
         #endregion
@@ -381,10 +391,14 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get
             {
+                if (IsArrived)
+                    return Brushes.Red;
                 if (IsSkipped)
                     return Brushes.LightCoral;
+                if (IsCancelled)
+                    return Brushes.Gray;
 
-                return IsArrived ? Brushes.Red : App.Current.Resources["TrainScheduleLineColor"] as Brush;
+                return App.Current.Resources["TrainScheduleLineColor"] as Brush;
             }
         }
         #endregion
@@ -394,10 +408,14 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get
             {
+                if (IsDeparted)
+                    return Brushes.Red;
                 if (IsSkipped)
                     return Brushes.LightCoral;
+                if (IsCancelled)
+                    return Brushes.Gray;
 
-                return IsDeparted ? Brushes.Red : App.Current.Resources["TrainScheduleLineColor"] as Brush;
+                return App.Current.Resources["TrainScheduleLineColor"] as Brush;
             }
         }
         #endregion
@@ -407,7 +425,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get
             {
-                return IsSkipped ? Brushes.Gray : App.Current.Resources["TextForeground"] as Brush;
+                return IsSkipped || IsCancelled ? Brushes.Gray : App.Current.Resources["TextForeground"] as Brush;
             }
         }
         #endregion
@@ -506,6 +524,33 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get => Get<bool>();
             set => Set(value);
+        }
+        #endregion
+
+        #region [CancelVisibility]
+        public Visibility CancelVisibility { get; }
+        #endregion
+
+        #region [CanCancel]
+        public bool CanCancel
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [IsCancelled]
+        public bool IsCancelled
+        {
+            get => Get<bool>();
+            set
+            {
+                Set(value);
+                OnPropertyChanged(nameof(ArrivalColor));
+                OnPropertyChanged(nameof(DepartureColor));
+                OnPropertyChanged(nameof(TextColor));
+                OnPropertyChanged(nameof(StationDotVisibility));
+            }
         }
         #endregion
 

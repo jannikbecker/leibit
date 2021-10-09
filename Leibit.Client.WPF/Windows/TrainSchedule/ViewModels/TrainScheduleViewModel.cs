@@ -30,6 +30,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
     {
 
         #region - Needs -
+        private LiveDataBLL m_LiveDataBll;
         private CalculationBLL m_CalculationBll;
         private SettingsBLL m_SettingsBll;
         private TrainInformation m_LiveTrain;
@@ -39,15 +40,25 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
         #region - Ctor -
         public TrainScheduleViewModel(Dispatcher Dispatcher, Train Train, Area Area)
+            : this(Dispatcher, Train, Area, false)
+        {
+
+        }
+
+        public TrainScheduleViewModel(Dispatcher Dispatcher, Train Train, Area Area, bool IsInEditMode)
             : base()
         {
+            this.IsInEditMode = IsInEditMode;
             this.Dispatcher = Dispatcher;
             CurrentTrain = Train;
             m_Area = Area;
+            m_LiveDataBll = new LiveDataBLL();
             m_CalculationBll = new CalculationBLL();
             m_SettingsBll = new SettingsBLL();
             Stations = new ObservableCollection<TrainScheduleStationViewModel>();
             OpenTrainScheduleCommand = new CommandHandler<int?>(__OpenTrainSchedule, true);
+            SaveCommand = new CommandHandler(__Save, true);
+            CancelTrainCommand = new CommandHandler(__CancelTrain, true);
 
             if (Area != null)
                 Refresh(Area);
@@ -61,7 +72,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get
             {
-                return String.Format("Zuglauf {0} {1}", CurrentTrain.Type, CurrentTrain.Number);
+                return $"Zuglauf {CurrentTrain.Type} {CurrentTrain.Number}";
             }
         }
         #endregion
@@ -136,6 +147,18 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         }
         #endregion
 
+        #region [SaveCommand]
+        public ICommand SaveCommand { get; }
+        #endregion
+
+        #region [CancelTrainCommand]
+        public ICommand CancelTrainCommand { get; }
+        #endregion
+
+        #region [IsInEditMode]
+        public bool IsInEditMode { get; }
+        #endregion
+
         #endregion
 
         #region - Public methods -
@@ -177,7 +200,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                 if (FirstStationSchedule == null || FirstStationSchedule.HasSchedule)
                 {
                     FirstStationDummy = new TrainScheduleStationViewModel();
-                    FirstStationSchedule = new TrainScheduleStationViewModel(CurrentTrain.Start, false);
+                    FirstStationSchedule = new TrainScheduleStationViewModel(CurrentTrain.Start, false, IsInEditMode);
 
                     Dispatcher.Invoke(() => Stations.Insert(0, FirstStationDummy));
                     Dispatcher.Invoke(() => Stations.Insert(0, FirstStationSchedule));
@@ -195,12 +218,13 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                 if (LastStationSchedule == null || LastStationSchedule.HasSchedule || LastStationSchedule == FirstStationDummy)
                 {
                     LastStationDummy = new TrainScheduleStationViewModel();
-                    LastStationSchedule = new TrainScheduleStationViewModel(CurrentTrain.Destination, true);
+                    LastStationSchedule = new TrainScheduleStationViewModel(CurrentTrain.Destination, true, IsInEditMode);
 
                     Dispatcher.Invoke(() => Stations.Add(LastStationDummy));
                     Dispatcher.Invoke(() => Stations.Add(LastStationSchedule));
                 }
 
+                LastStationDummy.IsCancelled = LastStationSchedule.IsCancelled;
                 CurrentSchedules.Add(LastStationDummy);
                 CurrentSchedules.Add(LastStationSchedule);
             }
@@ -227,7 +251,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
                     if (Current == null)
                     {
-                        Current = new TrainScheduleStationViewModel(Schedule);
+                        Current = new TrainScheduleStationViewModel(Schedule, IsInEditMode);
                         Current.PropertyChanged += __Station_PropertyChanged;
                         IsNew = true;
                     }
@@ -261,18 +285,21 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                                 FirstStationDummy.IsDeparted = FirstStationDummy.IsArrived;
                             }
 
-                            if (LiveSchedule.ExpectedArrival != null && Schedule.Arrival != null)
+                            if (LiveSchedule.ExpectedArrival != null && Schedule.Arrival != null && !IsInEditMode)
                                 Current.DelayArrival = (LiveSchedule.ExpectedArrival - Schedule.Arrival).TotalMinutes;
                             else
                                 Current.DelayArrival = null;
 
-                            if (LiveSchedule.ExpectedDeparture != null && Schedule.Departure != null)
+                            if (LiveSchedule.ExpectedDeparture != null && Schedule.Departure != null && !IsInEditMode)
                                 Current.DelayDeparture = (LiveSchedule.ExpectedDeparture - Schedule.Departure).TotalMinutes;
                             else
                                 Current.DelayDeparture = null;
 
                             Current.IsDelayArrivalManuallySet = LiveSchedule.ExpectedDelayArrival.HasValue && !LiveSchedule.IsArrived;
                             Current.IsDelayDepartureManuallySet = LiveSchedule.ExpectedDelayDeparture.HasValue && !LiveSchedule.IsDeparted;
+
+                            if (IsNew)
+                                Current.IsCancelled = LiveSchedule.IsCancelled;
 
                             var Index = m_LiveTrain.Schedules.IndexOf(LiveSchedule);
 
@@ -303,12 +330,12 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
                             var Minutes = LiveSchedule.Delays.Sum(d => d.Minutes);
 
-                            if (LiveSchedule.Delays.Any(d => d.Reason.IsNullOrWhiteSpace()) && Schedule.Station.ESTW.Stations.Any(s => Runtime.VisibleStations.Contains(s)))
+                            if (LiveSchedule.Delays.Any(d => d.Reason.IsNullOrWhiteSpace()) && Schedule.Station.ESTW.Stations.Any(s => Runtime.VisibleStations.Contains(s)) && !IsInEditMode)
                             {
                                 Current.DelayInfo = String.Format("+{0} Bitte begründen!", Minutes);
                                 Dispatcher.Invoke(() => Current.IsDelayJustified = false);
                             }
-                            else if (LiveSchedule.Delays.Any(d => d.Reason.IsNotNullOrWhiteSpace()))
+                            else if (LiveSchedule.Delays.Any(d => d.Reason.IsNotNullOrWhiteSpace()) && !IsInEditMode)
                             {
                                 Current.DelayInfo = String.Format("+{0} {1}", Minutes, String.Join(", ", LiveSchedule.Delays.Where(d => d.Reason.IsNotNullOrWhiteSpace()).Select(d =>
                                 {
@@ -328,6 +355,10 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                     }
 
                     GroupVisible |= Visible;
+                    Current.CanCancel = IsInEditMode && !Current.IsArrived && !Current.IsDeparted;
+
+                    if (!Current.CanCancel)
+                        Current.IsCancelled = false;
 
                     if (Visible)
                     {
@@ -398,7 +429,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             var RemovedItems = Stations.Except(CurrentSchedules).ToList();
             Dispatcher.Invoke(() => RemovedItems.ForEach(s => Stations.Remove(s)));
 
-            if (HasStartStation)
+            if (HasStartStation && !IsInEditMode)
             {
                 if (m_LiveTrain == null)
                 {
@@ -424,7 +455,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             else
                 PreviousServiceVisibility = Visibility.Collapsed;
 
-            if (HasDestinationStation)
+            if (HasDestinationStation && !IsInEditMode)
             {
                 if (m_LiveTrain == null)
                 {
@@ -497,6 +528,47 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             var Window = new TrainScheduleView(trainNumber.Value);
             var VM = new TrainScheduleViewModel(Window.Dispatcher, m_Area.Trains[trainNumber.Value], m_Area);
             OnOpenWindow(VM, Window);
+        }
+        #endregion
+
+        #region [__Save]
+        private void __Save()
+        {
+            TrainInformation liveTrain;
+
+            if (m_Area.LiveTrains.ContainsKey(CurrentTrain.Number))
+                liveTrain = m_Area.LiveTrains[CurrentTrain.Number];
+            else
+            {
+                var estw = m_Area.ESTWs.FirstOrDefault(e => e.Time == m_Area.ESTWs.Max(e => e.Time));
+                var createResult = m_LiveDataBll.CreateLiveTrainInformation(CurrentTrain.Number, estw);
+
+                if (createResult.Succeeded)
+                    liveTrain = m_Area.LiveTrains.GetOrAdd(CurrentTrain.Number, createResult.Result);
+                else
+                {
+                    MessageBox.Show(createResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+
+            foreach (var station in Stations)
+            {
+                liveTrain.Schedules.Where(s => s.Schedule.Station.ShortSymbol == station.CurrentSchedule?.Station.ShortSymbol && s.Schedule.Time == station.CurrentSchedule?.Time)
+                                   .ForEach(s => s.IsCancelled = station.IsCancelled);
+
+                if (station.IsLastStation)
+                    liveTrain.IsDestinationStationCancelled = station.IsCancelled;
+            }
+
+            OnCloseWindow();
+        }
+        #endregion
+
+        #region [__CancelTrain]
+        private void __CancelTrain()
+        {
+            Stations.Where(s => s.CanCancel).ForEach(s => s.IsCancelled = true);
         }
         #endregion
 

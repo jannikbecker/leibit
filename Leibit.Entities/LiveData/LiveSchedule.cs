@@ -110,6 +110,8 @@ namespace Leibit.Entities.LiveData
 
         public bool IsPrepared { get; set; }
 
+        public bool IsCancelled { get; set; }
+
         public ReadOnlyCollection<DelayInfo> Delays
         {
             get

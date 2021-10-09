@@ -73,6 +73,8 @@ namespace Leibit.Entities.LiveData
 
         public int? FollowUpService { get; set; }
 
+        public bool IsDestinationStationCancelled { get; set; }
+
         public ReadOnlyCollection<LiveSchedule> Schedules
         {
             get
