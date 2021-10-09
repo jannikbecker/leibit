@@ -311,7 +311,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __ShowTrackChange()
         {
             var Window = new TrackChangeView(SelectedItem.TrainNumber);
-            var VM = new TrackChangeViewModel(SelectedItem.CurrentTrain, SelectedItem.Schedule);
+            var VM = new TrackChangeViewModel(m_Area, SelectedItem.CurrentTrain, SelectedItem.Schedule);
             OnOpenWindow(VM, Window);
         }
         #endregion
