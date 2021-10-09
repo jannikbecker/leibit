@@ -220,6 +220,9 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                     LastStationDummy = new TrainScheduleStationViewModel();
                     LastStationSchedule = new TrainScheduleStationViewModel(CurrentTrain.Destination, true, IsInEditMode);
 
+                    if (Area.LiveTrains.ContainsKey(CurrentTrain.Number) && Area.LiveTrains[CurrentTrain.Number].IsDestinationStationCancelled)
+                        LastStationSchedule.IsCancelled = true;
+
                     Dispatcher.Invoke(() => Stations.Add(LastStationDummy));
                     Dispatcher.Invoke(() => Stations.Add(LastStationSchedule));
                 }
