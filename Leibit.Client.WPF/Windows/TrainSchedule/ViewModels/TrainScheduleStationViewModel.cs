@@ -493,8 +493,16 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         }
         #endregion
 
-        #region [IsDelayManuallySet]
-        public bool IsDelayManuallySet
+        #region [IsDelayArrivalManuallySet]
+        public bool IsDelayArrivalManuallySet
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [IsDelayDepartureManuallySet]
+        public bool IsDelayDepartureManuallySet
         {
             get => Get<bool>();
             set => Set(value);

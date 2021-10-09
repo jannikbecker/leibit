@@ -271,7 +271,8 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                             else
                                 Current.DelayDeparture = null;
 
-                            Current.IsDelayManuallySet = LiveSchedule.ExpectedDelay.HasValue && !LiveSchedule.IsDeparted;
+                            Current.IsDelayArrivalManuallySet = LiveSchedule.ExpectedDelayArrival.HasValue && !LiveSchedule.IsArrived;
+                            Current.IsDelayDepartureManuallySet = LiveSchedule.ExpectedDelayDeparture.HasValue && !LiveSchedule.IsDeparted;
 
                             var Index = m_LiveTrain.Schedules.IndexOf(LiveSchedule);
 

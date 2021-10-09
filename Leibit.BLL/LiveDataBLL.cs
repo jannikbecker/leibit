@@ -199,17 +199,17 @@ namespace Leibit.BLL
         #endregion
 
         #region [SetExpectedDelay]
-        public OperationResult<bool> SetExpectedDelay(LiveSchedule schedule, int expectedDelay)
+        public OperationResult<bool> SetExpectedDelay(LiveSchedule schedule, int? expectedDelayArrival, int? expectedDelayDeparture)
         {
             try
             {
                 // Validation
                 var validationMessages = new List<string>();
 
+                if (expectedDelayArrival.HasValue && schedule.IsArrived)
+                    validationMessages.Add($"Die Ankunftsverspätung kann nicht gesetzt werden, da der Zug {schedule.Train.Train.Number} die Betriebsstelle {schedule.Schedule.Station.ShortSymbol} bereits erreicht hat.");
                 if (schedule.IsDeparted)
                     validationMessages.Add($"Der Zug {schedule.Train.Train.Number} hat die Betriebsstelle {schedule.Schedule.Station.ShortSymbol} bereits verlassen.");
-                if (schedule.Schedule.Handling == eHandling.Destination)
-                    validationMessages.Add($"Der Zug {schedule.Train.Train.Number} endet in {schedule.Schedule.Station.ShortSymbol}.");
 
                 if (validationMessages.Any())
                 {
@@ -219,7 +219,11 @@ namespace Leibit.BLL
                 }
 
                 // Let's do it
-                schedule.ExpectedDelay = expectedDelay;
+                if (expectedDelayArrival.HasValue)
+                    schedule.ExpectedDelayArrival = expectedDelayArrival;
+
+                if (expectedDelayDeparture.HasValue)
+                    schedule.ExpectedDelayDeparture = expectedDelayDeparture;
 
                 var calculationResult = CalculationBLL.CalculateExpectedTimes(schedule.Train, schedule.Schedule.Station.ESTW);
                 ValidateResult(calculationResult);
@@ -343,6 +347,20 @@ namespace Leibit.BLL
             catch (Exception ex)
             {
                 return new OperationResult<bool> { Message = ex.Message };
+            }
+        }
+        #endregion
+
+        #region [CreateLiveTrainInformation]
+        public OperationResult<TrainInformation> CreateLiveTrainInformation(int trainNumber, ESTW estw)
+        {
+            try
+            {
+                return OperationResult<TrainInformation>.Ok(__CreateLiveTrainInformation(trainNumber, estw));
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<TrainInformation>.Fail(ex.ToString());
             }
         }
         #endregion

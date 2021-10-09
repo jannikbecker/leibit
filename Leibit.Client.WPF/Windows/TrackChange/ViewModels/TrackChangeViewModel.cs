@@ -17,22 +17,39 @@ namespace Leibit.Client.WPF.Windows.TrackChange.ViewModels
     {
 
         #region - Needs -
+        private Area m_Area;
         private TrainInformation m_Train;
         private LiveDataBLL m_LiveDataBll;
         #endregion
 
         #region - Ctor -
-        public TrackChangeViewModel(TrainInformation train, Schedule schedule)
+        public TrackChangeViewModel(Area area, TrainInformation train, Schedule schedule)
         {
+            m_Area = area;
             m_Train = train;
             SaveCommand = new CommandHandler(__Save, false);
             m_LiveDataBll = new LiveDataBLL();
 
-            var candidates = train.Schedules.Where((s1, i1) => !train.Schedules.Skip(i1 + 1).Any(s2 => s2.IsArrived)) // Must be first criterion due to indizes
-                                            .Where(s => !s.IsArrived && (s.Schedule.Track == null || s.Schedule.Track.IsPlatform))
-                                            .Where(s => s.Schedule.Station.ESTW.Stations.Any(s2 => Runtime.VisibleStations.Contains(s2)))
-                                            .GroupBy(s => new { s.Schedule.Station.ShortSymbol, s.Schedule.Time })
-                                            .Select(g => g.FirstOrDefault());
+            if (m_Train == null)
+            {
+                var createResult = m_LiveDataBll.CreateLiveTrainInformation(schedule.Train.Number, schedule.Station.ESTW);
+
+                if (createResult.Succeeded)
+                {
+                    m_Train = createResult.Result;
+                }
+                else
+                {
+                    MessageBox.Show(createResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+
+            var candidates = m_Train.Schedules.Where((s1, i1) => !m_Train.Schedules.Skip(i1 + 1).Any(s2 => s2.IsArrived)) // Must be first criterion due to indizes
+                                              .Where(s => !s.IsArrived && (s.Schedule.Track == null || s.Schedule.Track.IsPlatform))
+                                              .Where(s => s.Schedule.Station.ESTW.Stations.Any(s2 => Runtime.VisibleStations.Contains(s2)))
+                                              .GroupBy(s => new { s.Schedule.Station.ShortSymbol, s.Schedule.Time })
+                                              .Select(g => g.FirstOrDefault());
 
             Schedules = new ObservableCollection<LiveSchedule>(candidates);
             SelectedSchedule = Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == schedule.Station.ShortSymbol && s.Schedule.Time == schedule.Time);
@@ -94,6 +111,7 @@ namespace Leibit.Client.WPF.Windows.TrackChange.ViewModels
 
         #region - Private methods -
 
+        #region [__RefreshTracks]
         private void __RefreshTracks()
         {
             if (SelectedSchedule == null)
@@ -142,12 +160,22 @@ namespace Leibit.Client.WPF.Windows.TrackChange.ViewModels
                 }
             }
         }
+        #endregion
 
         #region [__Save]
         private void __Save()
         {
             if (SelectedSchedule == null || SelectedTrack == null)
                 return;
+
+            var schedule = SelectedSchedule;
+
+            // Set LastModified before adding train to LiveTrain list.
+            m_Train.LastModified = schedule.Schedule.Station.ESTW.Time;
+
+            // It could happen that live data has been generated while the window was open.
+            var liveTrain = m_Area.LiveTrains.GetOrAdd(m_Train.Train.Number, m_Train);
+            schedule = liveTrain.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == SelectedSchedule.Schedule.Station.ShortSymbol && s.Schedule.Time == SelectedSchedule.Schedule.Time);
 
             var result = m_LiveDataBll.ChangeTrack(SelectedSchedule, SelectedTrack);
 

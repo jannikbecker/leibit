@@ -146,6 +146,8 @@ namespace Leibit.BLL
                         Schedule.ExpectedArrival = Schedule.LiveArrival;
                     else if (SkipCalculation && !Schedule.IsArrived)
                         Schedule.ExpectedArrival = null;
+                    else if (Schedule.ExpectedDelayArrival.HasValue)
+                        Schedule.ExpectedArrival = Arrival.AddMinutes(Schedule.ExpectedDelayArrival.Value);
                     else
                     {
                         Schedule.ExpectedArrival = Arrival.AddMinutes(Delay);
@@ -163,9 +165,9 @@ namespace Leibit.BLL
                         Schedule.ExpectedDeparture = null;
                     else if (Schedule.Schedule.Departure != null)
                     {
-                        if (Schedule.ExpectedDelay.HasValue)
+                        if (Schedule.ExpectedDelayDeparture.HasValue)
                         {
-                            Schedule.ExpectedDeparture = Schedule.Schedule.Departure.AddMinutes(Schedule.ExpectedDelay.Value);
+                            Schedule.ExpectedDeparture = Schedule.Schedule.Departure.AddMinutes(Schedule.ExpectedDelayDeparture.Value);
                         }
                         else
                         {
