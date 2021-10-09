@@ -55,13 +55,15 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     currentItem = new DepartureBoardItemViewModel(scheduleItem);
                     currentItem.TrainNumber = GetTrainNumber(scheduleItem);
 
-                    if (SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small)
-                        currentItem.Via = GetViaString(scheduleItem, 16, 240);
-                    else
-                        currentItem.Via = GetViaString(scheduleItem, 14, 230);
-
                     Dispatcher.Invoke(() => Items.Add(currentItem));
                 }
+
+                currentItem.Destination = GetDestination(scheduleItem);
+
+                if (SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small)
+                    currentItem.Via = GetViaString(scheduleItem, 16, 240);
+                else
+                    currentItem.Via = GetViaString(scheduleItem, 14, 230);
 
                 var track = scheduleItem.LiveSchedule?.LiveTrack ?? scheduleItem.Schedule.Track;
                 currentItem.TrackName = GetTrackName(track);

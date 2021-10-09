@@ -265,7 +265,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 else
                 {
                     Via = GetViaString(currentItem, 12, 240);
-                    CurrentTrainDestination = __GetDestination(currentItem);
+                    CurrentTrainDestination = GetDestination(currentItem);
                 }
 
                 var delay = GetDelayMinutes(currentItem);
@@ -303,7 +303,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             {
                 FollowingTrain1Time = __GetTime(followingTrain1);
                 FollowingTrain1Number = GetTrainNumber(followingTrain1);
-                FollowingTrain1Destination = __GetDestination(followingTrain1);
+                FollowingTrain1Destination = GetDestination(followingTrain1);
 
                 if (IsTrackChanged(followingTrain1) && (followingTrain1.Schedule.Track == SelectedTrack || followingTrain1.Schedule.Track == SelectedTrack.Parent))
                     FollowingTrain1Info = $"Gleis {GetTrackName(followingTrain1.LiveSchedule.LiveTrack)}";
@@ -326,7 +326,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             {
                 FollowingTrain2Time = __GetTime(followingTrain2);
                 FollowingTrain2Number = GetTrainNumber(followingTrain2);
-                FollowingTrain2Destination = __GetDestination(followingTrain2);
+                FollowingTrain2Destination = GetDestination(followingTrain2);
 
                 if (IsTrackChanged(followingTrain2) && (followingTrain2.Schedule.Track == SelectedTrack || followingTrain2.Schedule.Track == SelectedTrack.Parent))
                     FollowingTrain2Info = $"Gleis {GetTrackName(followingTrain2.LiveSchedule.LiveTrack)}";
@@ -365,16 +365,6 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 return scheduleItem.Schedule.Arrival.ToString();
             else
                 return scheduleItem.Schedule.Departure.ToString();
-        }
-        #endregion
-
-        #region [__GetDestination]
-        private string __GetDestination(ScheduleItem scheduleItem)
-        {
-            if (IsDestination(scheduleItem))
-                return $"von {scheduleItem.Schedule.Train.Start}";
-            else
-                return scheduleItem.Schedule.Train.Destination;
         }
         #endregion
 

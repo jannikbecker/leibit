@@ -59,7 +59,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region [Destination]
-        public string Destination => Schedule.Train.Destination;
+        public string Destination
+        {
+            get => Get<string>();
+            internal set => Set(value);
+        }
         #endregion
 
         #region [TrackName]

@@ -156,12 +156,34 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             var schedules = schedulesResult.Result;
             var scheduleIndex = schedules.IndexOf(scheduleItem.Schedule);
             var nextSchedules = schedules.Skip(scheduleIndex + 1);
-            var candidateSchedules = nextSchedules.Where(x => x.Handling == eHandling.StopPassengerTrain).OrderByDescending(s => s.Station.Tracks.Count(t => t.IsPlatform)).ThenBy(x => x.Time);
+            var candidateSchedules = nextSchedules.Where(x => x.Handling == eHandling.StopPassengerTrain);
             var viaSchedules = new List<Schedule>();
             var currentViaString = string.Empty;
             var result = string.Empty;
 
-            foreach (var schedule in candidateSchedules)
+            if (scheduleItem.LiveSchedule != null)
+            {
+                // Remove all cancelled stations
+                candidateSchedules = candidateSchedules.Where(s =>
+                {
+                    var liveSchedule = scheduleItem.LiveSchedule.Train.Schedules.FirstOrDefault(s2 => s.Station.ShortSymbol == s2.Schedule.Station.ShortSymbol && s.Time == s2.Schedule.Time);
+
+                    if (liveSchedule == null)
+                        return true;
+
+                    return !liveSchedule.IsCancelled;
+                });
+
+                if (scheduleItem.LiveSchedule.Train.IsDestinationStationCancelled)
+                {
+                    var destinationSchedule = scheduleItem.LiveSchedule.Train.Schedules.LastOrDefault(s => s.Schedule.Handling == eHandling.StopPassengerTrain && !s.IsCancelled).Schedule;
+                    candidateSchedules = candidateSchedules.Where(s => s.Station.ShortSymbol != destinationSchedule.Station.ShortSymbol && s.Time != destinationSchedule.Time);
+                }
+            }
+
+            var orderedSchedules = candidateSchedules.OrderByDescending(s => s.Station.Tracks.Count(t => t.IsPlatform)).ThenBy(x => x.Time);
+
+            foreach (var schedule in orderedSchedules)
             {
                 string candidate;
 
@@ -233,6 +255,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [IsDestination]
         protected bool IsDestination(ScheduleItem scheduleItem)
         {
+            if (scheduleItem.Schedule.Handling == eHandling.Destination)
+                return true;
+
             if (scheduleItem.Schedule.Handling == eHandling.StopPassengerTrain)
             {
                 var schedulesResult = m_CalculationBll.GetSchedulesByTime(scheduleItem.Schedule.Train.Schedules, scheduleItem.Schedule.Station.ESTW.Time);
@@ -246,9 +271,30 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     if (nextSchedule != null && !nextSchedule.TrainType.IsPassengerTrain())
                         return true;
                 }
+
+                if (scheduleItem.LiveSchedule != null && scheduleItem.LiveSchedule.Train.IsDestinationStationCancelled)
+                {
+                    var liveTrain = scheduleItem.LiveSchedule.Train;
+                    var scheduleIndex = liveTrain.Schedules.IndexOf(scheduleItem.LiveSchedule);
+
+                    if (liveTrain.Schedules.Skip(scheduleIndex + 1).Where(s => s.Schedule.Handling == eHandling.StopPassengerTrain).All(s => s.IsCancelled))
+                        return true;
+                }
             }
 
-            return scheduleItem.Schedule.Handling == eHandling.Destination;
+            return false;
+        }
+        #endregion
+
+        #region [GetDestination]
+        protected string GetDestination(ScheduleItem scheduleItem)
+        {
+            if (IsDestination(scheduleItem))
+                return $"von {scheduleItem.Schedule.Train.Start}";
+            else if (scheduleItem.LiveSchedule != null && scheduleItem.LiveSchedule.Train.IsDestinationStationCancelled)
+                return scheduleItem.LiveSchedule.Train.Schedules.LastOrDefault(s => s.Schedule.Handling == eHandling.StopPassengerTrain && !s.IsCancelled).Schedule.Station.Name;
+            else
+                return scheduleItem.Schedule.Train.Destination;
         }
         #endregion
 
