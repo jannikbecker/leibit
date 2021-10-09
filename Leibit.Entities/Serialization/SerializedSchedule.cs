@@ -28,5 +28,6 @@ namespace Leibit.Entities.Serialization
         public int? ExpectedDelayDeparture { get; set; }
         public bool IsComposed { get; set; }
         public bool IsPrepared { get; set; }
+        public bool IsCancelled { get; set; }
     }
 }

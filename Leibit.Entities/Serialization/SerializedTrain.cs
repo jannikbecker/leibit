@@ -23,5 +23,6 @@ namespace Leibit.Entities.Serialization
         public LeibitTime LastModified { get; set; }
         public LeibitTime CreatedOn { get; set; }
         public List<SerializedSchedule> Schedules { get; set; }
+        public bool IsDestinationStationCancelled { get; set; }
     }
 }
