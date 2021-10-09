@@ -78,6 +78,10 @@
                                                 <DataTrigger Binding="{Binding DelayArrival, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=2}" Value="True">
                                                     <Setter Property="Foreground" Value="Red" />
                                                 </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsDelayArrivalManuallySet}" Value="true">
+                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                    <Setter Property="FontStyle" Value="Italic"/>
+                                                </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </TextBlock.Style>
@@ -92,8 +96,9 @@
                                                 <DataTrigger Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=2}" Value="True">
                                                     <Setter Property="Foreground" Value="Red" />
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding IsDelayManuallySet}" Value="true">
+                                                <DataTrigger Binding="{Binding IsDelayDepartureManuallySet}" Value="true">
                                                     <Setter Property="FontWeight" Value="Bold"/>
+                                                    <Setter Property="FontStyle" Value="Italic"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>

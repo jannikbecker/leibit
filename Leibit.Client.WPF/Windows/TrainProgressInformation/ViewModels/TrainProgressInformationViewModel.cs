@@ -269,27 +269,16 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             }
             else
             {
+                var liveSchedule = SelectedItem.CurrentTrain?.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == SelectedItem.Schedule.Station.ShortSymbol && s.Schedule.Time == SelectedItem.Schedule.Time);
+
                 ShowTrainScheduleCommand.SetCanExecute(true);
                 DeleteCommand.SetCanExecute(true);
                 ShowTrainCompositionCommand.SetCanExecute(SelectedItem.Schedule.Train.Composition.IsNotNullOrWhiteSpace());
                 ShowLocalOrdersCommand.SetCanExecute(SelectedItem.Schedule.LocalOrders.IsNotNullOrWhiteSpace());
-
-                if (SelectedItem.CurrentTrain == null)
-                {
-                    EnterExpectedDelayCommand.SetCanExecute(false);
-                    ShowTrackChangeCommand.SetCanExecute(false);
-                    ShowDelayJustificationCommand.SetCanExecute(false);
-                    EnterTrainStateCommand.SetCanExecute(false);
-                }
-                else
-                {
-                    var liveSchedule = SelectedItem.CurrentTrain.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == SelectedItem.Schedule.Station.ShortSymbol && s.Schedule.Time == SelectedItem.Schedule.Time);
-
-                    EnterExpectedDelayCommand.SetCanExecute(SelectedItem.Schedule.Handling != eHandling.Destination && SelectedItem.State != "beendet");
-                    ShowTrackChangeCommand.SetCanExecute(liveSchedule != null && !liveSchedule.IsArrived && (SelectedItem.Schedule.Track == null || SelectedItem.Schedule.Track.IsPlatform));
-                    ShowDelayJustificationCommand.SetCanExecute(SelectedItem.DelayInfo == 'U');
-                    EnterTrainStateCommand.SetCanExecute(liveSchedule.IsArrived && !liveSchedule.IsDeparted);
-                }
+                EnterExpectedDelayCommand.SetCanExecute(SelectedItem.State != "beendet");
+                ShowTrackChangeCommand.SetCanExecute((liveSchedule == null || !liveSchedule.IsArrived) && (SelectedItem.Schedule.Track == null || SelectedItem.Schedule.Track.IsPlatform));
+                ShowDelayJustificationCommand.SetCanExecute(SelectedItem.DelayInfo == 'U');
+                EnterTrainStateCommand.SetCanExecute(liveSchedule != null && liveSchedule.IsArrived && !liveSchedule.IsDeparted);
             }
         }
         #endregion
@@ -313,7 +302,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __EnterExpectedDelay()
         {
             var window = new ExpectedDelayView(SelectedItem.TrainNumber);
-            var vm = new ExpectedDelayViewModel(SelectedItem.CurrentTrain, SelectedItem.Schedule);
+            var vm = new ExpectedDelayViewModel(m_Area, SelectedItem.CurrentTrain, SelectedItem.Schedule);
             OnOpenWindow(vm, window);
         }
         #endregion

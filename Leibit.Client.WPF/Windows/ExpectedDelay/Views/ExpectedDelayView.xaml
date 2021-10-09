@@ -15,7 +15,6 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 
                 <Grid.ColumnDefinitions>
@@ -23,15 +22,12 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Für Betriebsstelle" Margin="0,0,10,0"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Für Betriebsstelle" Margin="0,0,10,0" VerticalAlignment="Center"/>
                 <ComboBox Grid.Row="0" Grid.Column="1"
                           ItemsSource="{Binding Schedules}"
                           SelectedItem="{Binding SelectedSchedule, Mode=TwoWay}"
                           DisplayMemberPath="Schedule.Station.ShortSymbol"
                           Margin="0,0,0,5"/>
-                
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Vsl. Verspätung" Margin="0,0,10,0"/>
-                <xctk:IntegerUpDown Value="{Binding ExpectedDelayDeparture, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" TextAlignment="Left"/>
             </Grid>
 
             <Rectangle Margin="0,10,0,10" Fill="LightGray" Height="1"/>
@@ -51,19 +47,19 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Ankunft" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"/>
-                <TextBlock Text="{Binding SelectedSchedule.Schedule.Arrival}" Grid.Row="0" Grid.Column="1"/>
-                <TextBlock Text="Vsl. Verspätung" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"/>
-                <TextBlock Text="{Binding DelayArrivalString}" Grid.Row="1" Grid.Column="1"/>
-                <TextBlock Text="Vsl. Ankunft" Grid.Row="2" Grid.Column="0" FontWeight="Bold" Margin="0,0,10,0"/>
-                <TextBlock Text="{Binding SelectedSchedule.ExpectedArrival}" FontWeight="Bold" Grid.Row="3" Grid.Column="1"/>
+                <TextBlock Text="Ankunft" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5" Visibility="{Binding ArrivalVisibility}"/>
+                <TextBlock Text="{Binding SelectedSchedule.Schedule.Arrival}" Grid.Row="0" Grid.Column="1" Visibility="{Binding ArrivalVisibility}"/>
+                <TextBlock Text="Vsl. Verspätung" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5" Visibility="{Binding ArrivalVisibility}"/>
+                <xctk:IntegerUpDown Value="{Binding ExpectedDelayArrival, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" TextAlignment="Left" Visibility="{Binding ArrivalVisibility}"/>
+                <TextBlock Text="Vsl. Ankunft" Grid.Row="2" Grid.Column="0" FontWeight="Bold" Margin="0,0,10,0" Visibility="{Binding ArrivalVisibility}"/>
+                <TextBlock Text="{Binding ExpectedArrival}" FontWeight="Bold" Grid.Row="3" Grid.Column="1" Visibility="{Binding ArrivalVisibility}"/>
 
-                <TextBlock Text="Abfahrt" Grid.Row="0" Grid.Column="3" Margin="0,0,10,5"/>
-                <TextBlock Text="{Binding SelectedSchedule.Schedule.Departure}" Grid.Row="0" Grid.Column="4"/>
-                <TextBlock Text="Vsl. Verspätung" Grid.Row="1" Grid.Column="3" Margin="0,0,10,5"/>
-                <TextBlock Text="{Binding DelayDepartureString}" Grid.Row="1" Grid.Column="4"/>
-                <TextBlock Text="Vsl. Abfahrt" Grid.Row="2" Grid.Column="3" FontWeight="Bold" Margin="0,0,10,0"/>
-                <TextBlock Text="{Binding ExpectedDeparture}" FontWeight="Bold" Grid.Row="2" Grid.Column="4"/>
+                <TextBlock Text="Abfahrt" Grid.Row="0" Grid.Column="3" Margin="0,0,10,5" Visibility="{Binding DepartureVisibility}"/>
+                <TextBlock Text="{Binding SelectedSchedule.Schedule.Departure}" Grid.Row="0" Grid.Column="4" Visibility="{Binding DepartureVisibility}"/>
+                <TextBlock Text="Vsl. Verspätung" Grid.Row="1" Grid.Column="3" Margin="0,0,10,5" Visibility="{Binding DepartureVisibility}"/>
+                <xctk:IntegerUpDown Value="{Binding ExpectedDelayDeparture, Mode=TwoWay}" Grid.Row="1" Grid.Column="4" Margin="0,0,0,5" TextAlignment="Left" Visibility="{Binding DepartureVisibility}"/>
+                <TextBlock Text="Vsl. Abfahrt" Grid.Row="2" Grid.Column="3" FontWeight="Bold" Margin="0,0,10,0" Visibility="{Binding DepartureVisibility}"/>
+                <TextBlock Text="{Binding ExpectedDeparture}" FontWeight="Bold" Grid.Row="2" Grid.Column="4" Visibility="{Binding DepartureVisibility}"/>
             </Grid>
 
             <Rectangle Margin="0,10,0,10" Fill="LightGray" Height="1"/>
