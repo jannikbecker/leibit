@@ -456,13 +456,7 @@ namespace Leibit.BLL
                     if (tracks.Any() && !tracks.Contains(sTrack))
                         continue;
 
-                    Train Train = station.ESTW.Area.Trains.AddOrUpdate(TrainNr, new Train(TrainNr, Type, Start, Destination), (trainNo, existingTrain) =>
-                    {
-                        existingTrain.Type = Type;
-                        existingTrain.Start = Start;
-                        existingTrain.Destination = Destination;
-                        return existingTrain;
-                    });
+                    var Train = station.ESTW.Area.Trains.GetOrAdd(TrainNr, new Train(TrainNr, Type, Start, Destination));
 
                     int Hour;
                     if (!Int32.TryParse(sHour, out Hour))
@@ -543,6 +537,13 @@ namespace Leibit.BLL
 
                     var schedule = new Schedule(Train, Arrival, Departure, Track, Days, Direction, Handling, Remark);
                     schedule.TrainType = Type;
+
+                    Train.Type = Train.Schedules.Select(s => s.TrainType).FirstOrDefault(t => t.IsPassengerTrain()) ?? Type;
+
+                    if (Train.Schedules.OrderBy(s => s.Time).First() == schedule)
+                        Train.Start = Start;
+                    if (Train.Schedules.OrderBy(s => s.Time).Last() == schedule)
+                        Train.Destination = Destination;
                 }
             }
         }
