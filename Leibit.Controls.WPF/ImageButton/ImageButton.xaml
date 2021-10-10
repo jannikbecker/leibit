@@ -5,7 +5,7 @@
 
     <Grid DataContext="{Binding ElementName=me}">
         <Button Style="{Binding ButtonStyle}" Command="{Binding Command}" CommandParameter="{Binding CommandParameter}">
-            <Image Source="{Binding Image}" RenderOptions.BitmapScalingMode="NearestNeighbor" RenderOptions.EdgeMode="Aliased">
+            <Image Source="{Binding Image}" RenderOptions.BitmapScalingMode="Linear" RenderOptions.EdgeMode="Aliased">
                 <Image.Style>
                     <Style TargetType="Image">
                         <Style.Triggers>
