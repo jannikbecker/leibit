@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Berlin-Spandau" short="BSPD" refNr="85">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10B19" direction="right"/>
+      <block name="85BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Berlin-Grunewald" short="BGD" refNr="53">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10B361" direction="right"/>
+      <block name="53B362" direction="right"/>
+      <block name="10BVGDN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Berlin-Charlottenburg" short="BCHB" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
+    <track name="1">
+      <block name="10G331" />
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+    </track>
+    <track name="2">
+      <block name="10G332" />
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+    </track>
+    <track name="3">
+      <block name="10G333" />
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+    </track>
+    <track name="4">
+      <block name="10G334A" />
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+    <track name="340">
+      <block name="10G340" />
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+    </track>
+  </station>
+
+  <station name="Berlin Zoologischer Garten" short="BZOO" refNr="11" scheduleFile="g11_____.abf" localOrderFile="bf11____.abf">
+    <track name="1">
+      <block name="11G51"/>
+    </track>
+    <track name="2">
+      <block name="11G52"/>
+    </track>
+    <track name="3">
+      <block name="11G53"/>
+    </track>
+    <track name="4">
+      <block name="11G54"/>
+    </track>
+  </station>
+
+  <station name="Berlin Friedrichstraße" short="BFRI" refNr="12" scheduleFile="g12_____.abf" localOrderFile="bf12____.abf">
+    <track name="1">
+      <block name="12G51"/>
+    </track>
+    <track name="2">
+      <block name="12G52"/>
+    </track>
+    <track name="3">
+      <block name="12G53"/>
+    </track>
+    <track name="4">
+      <block name="12G54"/>
+    </track>
+  </station>
+
+  <station name="Berlin Alexanderplatz Hp" short="BALEF" refNr="13" scheduleFile="b13_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="12B12"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="13B07"/>
+    </track>
+  </station>
+
+  <station name="Berlin Ostbahnhof" short="BHF" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf">
+    <track name="1">
+      <block name="13G01"/>
+    </track>
+    <track name="2">
+      <block name="13G02"/>
+    </track>
+    <track name="3">
+      <block name="13G03A"/>
+    </track>
+    <track name="4">
+      <block name="13G04"/>
+    </track>
+    <track name="6">
+      <block name="13G06"/>
+    </track>
+    <track name="7">
+      <block name="13G07"/>
+    </track>
+  </station>
+
+  <station name="Berlin Ostgüterbahnhof" short="BOSG" refNr="15" scheduleFile="g15_____.abf" localOrderFile="bf15____.abf">
+    <track name="1">
+      <block name="15G01"/>
+    </track>
+    <track name="22">
+      <block name="15G22"/>
+    </track>
+    <track name="13">
+      <block name="15G13"/>
+    </track>
+    <track name="62">
+      <block name="15G62"/>
+    </track>
+    <track name="64">
+      <block name="15G64"/>
+    </track>
+    <track name="65">
+      <block name="15G65"/>
+    </track>
+    <track name="66">
+      <block name="15G66"/>
+    </track>
+    <track name="67">
+      <block name="15G67"/>
+    </track>
+    <track name="71">
+      <block name="15G71"/>
+    </track>
+    <track name="72">
+      <block name="15G72"/>
+    </track>
+  </station>
+
+  <station name="Berlin-Rummelsburg" short="BRGB" refNr="16">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="15B01" direction="left"/>
+      <block name="16B02" direction="left"/>
+      <block name="15B03" direction="left"/>
+    </track>
+  </station>
+</estw>
