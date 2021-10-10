@@ -167,7 +167,7 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
                         if (LiveSchedule.LiveDeparture != null || LiveTrain.Schedules.Where((s, i) => i > Index && s.LiveArrival != null).Count() > 0)
                             Visible = false;
 
-                        if (LiveSchedule.IsCancelled && !LiveSchedule.IsArrived)
+                        if (LiveSchedule.IsCancelled)
                             Visible = false;
                     }
 
