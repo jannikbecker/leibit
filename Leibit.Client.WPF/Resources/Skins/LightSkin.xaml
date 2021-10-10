@@ -114,9 +114,6 @@
         </Style.Triggers>
     </Style>
     
-    <!-- MenuItem -->
-    <!--<Style x:Key="MenuItemStyle" TargetType="MenuItem"/>-->
-
     <!-- Images -->
     <BitmapImage x:Key="imgNew" UriSource="/Leibit;component/Resources/Images/Light/new.png" />
     <BitmapImage x:Key="imgOpen" UriSource="/Leibit;component/Resources/Images/Light/open.png" />
@@ -134,4 +131,6 @@
     <BitmapImage x:Key="imgSaveLayout" UriSource="/Leibit;component/Resources/Images/Light/save_layout.png" />
     <BitmapImage x:Key="imgDisplay" UriSource="/Leibit;component/Resources/Images/Light/display.png" />
     <BitmapImage x:Key="imgEdit" UriSource="/Leibit;component/Resources/Images/Light/edit.png" />
+    <BitmapImage x:Key="imgDelay" UriSource="/Leibit;component/Resources/Images/Light/delay.png" />
+    <BitmapImage x:Key="imgTrain" UriSource="/Leibit;component/Resources/Images/Light/train.png" />
 </ResourceDictionary>

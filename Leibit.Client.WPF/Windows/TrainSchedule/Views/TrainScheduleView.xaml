@@ -24,10 +24,41 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Visibility="{Binding IsInEditMode, Converter={StaticResource VisibilityConverter}}" BorderBrush="Red" BorderThickness="2" Padding="5">
+        <Menu IsMainMenu="True" Grid.Row="0" Foreground="{DynamicResource MenuForeground}" Background="{DynamicResource MenuBackground}">
+            <MenuItem Header="Aktionen">
+                <MenuItem Header="Zuglauf bearbeiten" Command="{Binding EditCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource imgEdit}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Verspätungsbegründung" Command="{Binding DelayJustificationCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource imgDelay}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Zugbildung" Command="{Binding ShowTrainCompositionCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource imgTrain}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <Separator Background="{DynamicResource MenuSeparatorColor}"/>
+
+                <MenuItem Header="Schließen" Command="{Binding CloseCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource imgClose}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Border Grid.Row="1" Visibility="{Binding IsInEditMode, Converter={StaticResource VisibilityConverter}}" BorderBrush="Red" BorderThickness="2" Padding="5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -50,7 +81,7 @@
             </Grid>
         </Border>
         
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" Margin="10,10,10,0" Visibility="{Binding PreviousServiceVisibility}">
                     <Path Fill="{DynamicResource TextForeground}" Data="M 0 0 L 10 10 L 0 20 Z" Margin="0,0,5,0" Width="10" Height="10" Stretch="Fill"/>
@@ -206,15 +237,5 @@
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
-
-        <controls:ImageButton Grid.RowSpan="2"
-                              Image="{DynamicResource imgEdit}"
-                              Command="{Binding EditCommand}"
-                              Visibility="{Binding IsInEditMode, Converter={StaticResource InvertedVisibilityConverter}}"
-                              Width="18"
-                              Height="18"
-                              Margin="2,2,0,0"
-                              HorizontalAlignment="Left"
-                              VerticalAlignment="Top"/>
     </Grid>
 </controls:ChildWindow>

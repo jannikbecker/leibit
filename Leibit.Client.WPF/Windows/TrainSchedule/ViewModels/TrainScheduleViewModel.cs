@@ -6,6 +6,8 @@ using Leibit.Client.WPF.Windows.DelayJustification.ViewModels;
 using Leibit.Client.WPF.Windows.DelayJustification.Views;
 using Leibit.Client.WPF.Windows.LocalOrders.ViewModels;
 using Leibit.Client.WPF.Windows.LocalOrders.Views;
+using Leibit.Client.WPF.Windows.TrainComposition.ViewModels;
+using Leibit.Client.WPF.Windows.TrainComposition.Views;
 using Leibit.Client.WPF.Windows.TrainSchedule.Views;
 using Leibit.Core.Client.Commands;
 using Leibit.Core.Common;
@@ -50,6 +52,9 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             Stations = new ObservableCollection<TrainScheduleStationViewModel>();
             OpenTrainScheduleCommand = new CommandHandler<int?>(__OpenTrainSchedule, true);
             EditCommand = new CommandHandler(__EnterEditMode, true);
+            DelayJustificationCommand = new CommandHandler(__ShowDelayJustificationWindow, false);
+            ShowTrainCompositionCommand = new CommandHandler(__ShowTrainComposition, Train.Composition.IsNotNullOrWhiteSpace());
+            CloseCommand = new CommandHandler(OnCloseWindow, true);
             SaveCommand = new CommandHandler(__Save, true);
             CancelCommand = new CommandHandler(__ExitEditMode, true);
             CancelTrainCommand = new CommandHandler(__CancelTrain, true);
@@ -142,7 +147,19 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         #endregion
 
         #region [EditCommand]
-        public ICommand EditCommand { get; }
+        public CommandHandler EditCommand { get; }
+        #endregion
+
+        #region [DelayJustificationCommand]
+        public CommandHandler DelayJustificationCommand { get; }
+        #endregion
+
+        #region [ShowTrainCompositionCommand]
+        public CommandHandler ShowTrainCompositionCommand { get; }
+        #endregion
+
+        #region [CloseCommand]
+        public CommandHandler CloseCommand { get; }
         #endregion
 
         #region [SaveCommand]
@@ -165,6 +182,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             {
                 Set(value);
                 Stations.ForEach(s => s.IsInEditMode = value);
+                EditCommand.SetCanExecute(!value);
             }
         }
         #endregion
@@ -441,7 +459,12 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             }
 
             var RemovedItems = Stations.Except(CurrentSchedules).ToList();
-            Dispatcher.Invoke(() => RemovedItems.ForEach(s => Stations.Remove(s)));
+
+            Dispatcher.Invoke(() =>
+            {
+                RemovedItems.ForEach(s => Stations.Remove(s));
+                DelayJustificationCommand.SetCanExecute(Stations.Any(s => s.DelayInfo != null && s.DelayJustificationCommand.CanExecute(null)));
+            });
 
             if (HasStartStation && !IsInEditMode)
             {
@@ -517,10 +540,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
             if (e.PropertyName == "JustifyDelay" && m_LiveTrain != null)
             {
-                var Window = new DelayJustificationView(CurrentTrain.Number);
-                var VM = new DelayJustificationViewModel(m_LiveTrain);
-
-                OnOpenWindow(VM, Window);
+                __ShowDelayJustificationWindow();
             }
 
             if (e.PropertyName == "ShowLocalOrders")
@@ -541,6 +561,25 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
             var Window = new TrainScheduleView(trainNumber.Value);
             var VM = new TrainScheduleViewModel(Window.Dispatcher, m_Area.Trains[trainNumber.Value], m_Area);
+            OnOpenWindow(VM, Window);
+        }
+        #endregion
+
+        #region [__ShowDelayJustificationWindow]
+        private void __ShowDelayJustificationWindow()
+        {
+            var Window = new DelayJustificationView(CurrentTrain.Number);
+            var VM = new DelayJustificationViewModel(m_LiveTrain);
+
+            OnOpenWindow(VM, Window);
+        }
+        #endregion
+
+        #region [__ShowTrainComposition]
+        private void __ShowTrainComposition()
+        {
+            var Window = new TrainCompositionView(CurrentTrain.Number);
+            var VM = new TrainCompositionViewModel(CurrentTrain);
             OnOpenWindow(VM, Window);
         }
         #endregion
