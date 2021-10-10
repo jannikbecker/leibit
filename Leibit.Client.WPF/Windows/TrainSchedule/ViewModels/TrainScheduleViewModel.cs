@@ -537,13 +537,13 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         #region [__Save]
         private void __Save()
         {
+            var estw = m_Area.ESTWs.FirstOrDefault(e => e.Time == m_Area.ESTWs.Max(e => e.Time));
             TrainInformation liveTrain;
 
             if (m_Area.LiveTrains.ContainsKey(CurrentTrain.Number))
                 liveTrain = m_Area.LiveTrains[CurrentTrain.Number];
             else
             {
-                var estw = m_Area.ESTWs.FirstOrDefault(e => e.Time == m_Area.ESTWs.Max(e => e.Time));
                 var createResult = m_LiveDataBll.CreateLiveTrainInformation(CurrentTrain.Number, estw);
 
                 if (createResult.Succeeded)
@@ -554,6 +554,8 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                     return;
                 }
             }
+
+            liveTrain.LastModified = estw.Time;
 
             foreach (var station in Stations)
             {
