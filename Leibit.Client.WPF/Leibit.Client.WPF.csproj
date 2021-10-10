@@ -32,7 +32,9 @@
     <None Remove="Resources\Fonts\5by7.ttf" />
     <None Remove="Resources\Images\Dark\bfo.png" />
     <None Remove="Resources\Images\Dark\clear.png" />
+    <None Remove="Resources\Images\Dark\delay.png" />
     <None Remove="Resources\Images\Dark\display.png" />
+    <None Remove="Resources\Images\Dark\edit.png" />
     <None Remove="Resources\Images\Dark\flash.png" />
     <None Remove="Resources\Images\Dark\help.png" />
     <None Remove="Resources\Images\Dark\info.png" />
@@ -43,11 +45,14 @@
     <None Remove="Resources\Images\Dark\save_layout.png" />
     <None Remove="Resources\Images\Dark\select.png" />
     <None Remove="Resources\Images\Dark\settings.png" />
+    <None Remove="Resources\Images\Dark\train.png" />
     <None Remove="Resources\Images\Dark\train_schedule.png" />
     <None Remove="Resources\Images\Dark\zfi.png" />
     <None Remove="Resources\Images\Light\bfo.png" />
     <None Remove="Resources\Images\Light\clear.png" />
+    <None Remove="Resources\Images\Light\delay.png" />
     <None Remove="Resources\Images\Light\display.png" />
+    <None Remove="Resources\Images\Light\edit.png" />
     <None Remove="Resources\Images\Light\flash.png" />
     <None Remove="Resources\Images\Light\help.png" />
     <None Remove="Resources\Images\Light\info.png" />
@@ -58,6 +63,7 @@
     <None Remove="Resources\Images\Light\save_layout.png" />
     <None Remove="Resources\Images\Light\select.png" />
     <None Remove="Resources\Images\Light\settings.png" />
+    <None Remove="Resources\Images\Light\train.png" />
     <None Remove="Resources\Images\Light\train_schedule.png" />
     <None Remove="Resources\Images\Light\zfi.png" />
     <None Remove="Resources\Images\flash.png" />
@@ -70,7 +76,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Dark\bfo.png" />
     <Resource Include="Resources\Images\Dark\clear.png" />
+    <Resource Include="Resources\Images\Dark\delay.png" />
     <Resource Include="Resources\Images\Dark\display.png" />
+    <Resource Include="Resources\Images\Dark\edit.png" />
     <Resource Include="Resources\Images\Dark\flash.png" />
     <Resource Include="Resources\Images\Dark\help.png" />
     <Resource Include="Resources\Images\Dark\info.png" />
@@ -81,11 +89,14 @@
     <Resource Include="Resources\Images\Dark\save_layout.png" />
     <Resource Include="Resources\Images\Dark\select.png" />
     <Resource Include="Resources\Images\Dark\settings.png" />
+    <Resource Include="Resources\Images\Dark\train.png" />
     <Resource Include="Resources\Images\Dark\train_schedule.png" />
     <Resource Include="Resources\Images\Dark\zfi.png" />
     <Resource Include="Resources\Images\Light\bfo.png" />
     <Resource Include="Resources\Images\Light\clear.png" />
+    <Resource Include="Resources\Images\Light\delay.png" />
     <Resource Include="Resources\Images\Light\display.png" />
+    <Resource Include="Resources\Images\Light\edit.png" />
     <Resource Include="Resources\Images\Light\flash.png" />
     <Resource Include="Resources\Images\Light\help.png" />
     <Resource Include="Resources\Images\Light\info.png" />
@@ -114,6 +125,7 @@
     <Resource Include="Resources\Images\Light\save_layout.png" />
     <Resource Include="Resources\Images\Light\select.png" />
     <Resource Include="Resources\Images\Light\settings.png" />
+    <Resource Include="Resources\Images\Light\train.png" />
     <Resource Include="Resources\Images\Light\train_schedule.png" />
     <Resource Include="Resources\Images\Light\zfi.png" />
     <Resource Include="Resources\Images\ok.png" />

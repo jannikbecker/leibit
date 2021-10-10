@@ -106,6 +106,7 @@ namespace Leibit.BLL
                     SerializedTrain.LastModified = Train.LastModified;
                     SerializedTrain.CreatedOn = Train.CreatedOn;
                     SerializedTrain.TrainDirection = Train.Direction;
+                    SerializedTrain.IsDestinationStationCancelled = Train.IsDestinationStationCancelled;
 
                     foreach (var block in Train.BlockHistory)
                     {
@@ -139,6 +140,7 @@ namespace Leibit.BLL
                         SerializedSchedule.ExpectedDelayDeparture = Schedule.ExpectedDelayDeparture;
                         SerializedSchedule.IsComposed = Schedule.IsComposed;
                         SerializedSchedule.IsPrepared = Schedule.IsPrepared;
+                        SerializedSchedule.IsCancelled = Schedule.IsCancelled;
 
                         if (Schedule.LiveTrack != null)
                             SerializedSchedule.LiveTrack = Schedule.LiveTrack.Name;
@@ -243,6 +245,7 @@ namespace Leibit.BLL
                     LiveTrain.LastModified = SerializedTrain.LastModified;
                     LiveTrain.CreatedOn = SerializedTrain.CreatedOn;
                     LiveTrain.Direction = SerializedTrain.TrainDirection;
+                    LiveTrain.IsDestinationStationCancelled = SerializedTrain.IsDestinationStationCancelled;
 
                     if (SerializedTrain.BlockHistory != null)
                     {
@@ -281,6 +284,7 @@ namespace Leibit.BLL
                         LiveSchedule.ExpectedDeparture = SerializedSchedule.ExpectedDeparture;
                         LiveSchedule.IsComposed = SerializedSchedule.IsComposed;
                         LiveSchedule.IsPrepared = SerializedSchedule.IsPrepared;
+                        LiveSchedule.IsCancelled = SerializedSchedule.IsCancelled;
 
                         if (SerializedSchedule.ExpectedDelay.HasValue)
                         {

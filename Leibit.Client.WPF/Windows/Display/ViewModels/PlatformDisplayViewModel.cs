@@ -230,10 +230,12 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             if (currentItem != null)
             {
                 var infoTexts = new List<string>();
+                var isDestination = IsDestination(currentItem);
+                var isCancelled = currentItem.LiveSchedule?.IsCancelled == true;
                 CurrentTrainTime = __GetTime(currentItem);
                 CurrentTrainNumber = GetTrainNumber(currentItem);
 
-                if (IsDestination(currentItem))
+                if (isDestination && !isCancelled)
                 {
                     int? followUpService = null;
 
@@ -265,24 +267,49 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 else
                 {
                     Via = GetViaString(currentItem, 12, 240);
-                    CurrentTrainDestination = __GetDestination(currentItem);
+                    CurrentTrainDestination = GetDestination(currentItem);
                 }
 
-                var delay = GetDelayMinutes(currentItem);
+                if (!isCancelled)
+                {
+                    var delay = GetDelayMinutes(currentItem);
 
-                if (delay == 1)
-                    infoTexts.Add("Wenige Minuten später");
-                else if (delay >= 5)
-                    infoTexts.Add($"ca. {delay} Minuten später");
+                    if (delay == 1)
+                        infoTexts.Add("Wenige Minuten später");
+                    else if (delay >= 5)
+                        infoTexts.Add($"ca. {delay} Minuten später");
 
-                if (IsTrackChanged(currentItem) && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent))
-                    infoTexts.Add($"Heute von Gleis {GetTrackName(currentItem.LiveSchedule.LiveTrack)}");
+                    if (IsTrackChanged(currentItem) && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent))
+                        infoTexts.Add($"Heute von Gleis {GetTrackName(currentItem.LiveSchedule.LiveTrack)}");
+                }
+
+                if (currentItem.LiveSchedule != null)
+                {
+                    if (isCancelled)
+                        infoTexts.Add("Zug fällt heute aus");
+                    else
+                    {
+                        var differingDestination = GetDifferingDestinationSchedule(currentItem);
+
+                        if (differingDestination != null)
+                            infoTexts.Add($"Fährt heute nur bis {GetDisplayName(differingDestination.Station)}");
+
+                        var skippedStations = GetSkippedSchedules(currentItem);
+
+                        if (skippedStations.Any())
+                            infoTexts.Add($"Hält nicht in {GetStationList(skippedStations)}");
+                    }
+                }
 
                 var info = string.Join(" - ", infoTexts);
 
                 if (info.IsNotNullOrWhiteSpace())
                 {
-                    CurrentTrainInfo = $" - {info} - ";
+                    if (MeasureString(info, 11) > 240)
+                        CurrentTrainInfo = $" - {info}";
+                    else
+                        CurrentTrainInfo = $" - {info} - ";
+
                     IsCurrentTrainInfoMarquee = true;
                 }
                 else
@@ -303,9 +330,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             {
                 FollowingTrain1Time = __GetTime(followingTrain1);
                 FollowingTrain1Number = GetTrainNumber(followingTrain1);
-                FollowingTrain1Destination = __GetDestination(followingTrain1);
+                FollowingTrain1Destination = GetDestination(followingTrain1);
 
-                if (IsTrackChanged(followingTrain1) && (followingTrain1.Schedule.Track == SelectedTrack || followingTrain1.Schedule.Track == SelectedTrack.Parent))
+                if (followingTrain1.LiveSchedule?.IsCancelled == true)
+                    FollowingTrain1Info = "fällt aus";
+                else if (IsTrackChanged(followingTrain1) && (followingTrain1.Schedule.Track == SelectedTrack || followingTrain1.Schedule.Track == SelectedTrack.Parent))
                     FollowingTrain1Info = $"Gleis {GetTrackName(followingTrain1.LiveSchedule.LiveTrack)}";
                 else
                     FollowingTrain1Info = string.Empty;
@@ -326,9 +355,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             {
                 FollowingTrain2Time = __GetTime(followingTrain2);
                 FollowingTrain2Number = GetTrainNumber(followingTrain2);
-                FollowingTrain2Destination = __GetDestination(followingTrain2);
+                FollowingTrain2Destination = GetDestination(followingTrain2);
 
-                if (IsTrackChanged(followingTrain2) && (followingTrain2.Schedule.Track == SelectedTrack || followingTrain2.Schedule.Track == SelectedTrack.Parent))
+                if (followingTrain2.LiveSchedule?.IsCancelled == true)
+                    FollowingTrain2Info = "fällt aus";
+                else if (IsTrackChanged(followingTrain2) && (followingTrain2.Schedule.Track == SelectedTrack || followingTrain2.Schedule.Track == SelectedTrack.Parent))
                     FollowingTrain2Info = $"Gleis {GetTrackName(followingTrain2.LiveSchedule.LiveTrack)}";
                 else
                     FollowingTrain2Info = string.Empty;
@@ -365,16 +396,6 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 return scheduleItem.Schedule.Arrival.ToString();
             else
                 return scheduleItem.Schedule.Departure.ToString();
-        }
-        #endregion
-
-        #region [__GetDestination]
-        private string __GetDestination(ScheduleItem scheduleItem)
-        {
-            if (IsDestination(scheduleItem))
-                return $"von {scheduleItem.Schedule.Train.Start}";
-            else
-                return scheduleItem.Schedule.Train.Destination;
         }
         #endregion
 

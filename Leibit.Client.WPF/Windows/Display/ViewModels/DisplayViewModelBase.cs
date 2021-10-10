@@ -156,21 +156,46 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             var schedules = schedulesResult.Result;
             var scheduleIndex = schedules.IndexOf(scheduleItem.Schedule);
             var nextSchedules = schedules.Skip(scheduleIndex + 1);
-            var candidateSchedules = nextSchedules.Where(x => x.Handling == eHandling.StopPassengerTrain).OrderByDescending(s => s.Station.Tracks.Count(t => t.IsPlatform)).ThenBy(x => x.Time);
+            var candidateSchedules = nextSchedules.Where(x => x.Handling == eHandling.StopPassengerTrain);
             var viaSchedules = new List<Schedule>();
             var currentViaString = string.Empty;
             var result = string.Empty;
 
-            foreach (var schedule in candidateSchedules)
+            if (scheduleItem.LiveSchedule != null && !scheduleItem.LiveSchedule.IsCancelled)
+            {
+                var destinationSchedule = GetDifferingDestinationSchedule(scheduleItem);
+
+                if (destinationSchedule == null || destinationSchedule.Station.ShortSymbol != scheduleItem.Schedule.Station.ShortSymbol || destinationSchedule.Time != scheduleItem.Schedule.Time)
+                {
+                    // Remove all cancelled stations
+                    candidateSchedules = candidateSchedules.Where(s =>
+                    {
+                        var liveSchedule = scheduleItem.LiveSchedule.Train.Schedules.FirstOrDefault(s2 => s.Station.ShortSymbol == s2.Schedule.Station.ShortSymbol && s.Time == s2.Schedule.Time);
+
+                        if (liveSchedule == null)
+                            return true;
+
+                        return !liveSchedule.IsCancelled;
+                    });
+
+                    // Remove destination station
+                    if (scheduleItem.LiveSchedule.Train.IsDestinationStationCancelled)
+                        candidateSchedules = candidateSchedules.Where(s => s.Station.ShortSymbol != destinationSchedule.Station.ShortSymbol && s.Time != destinationSchedule.Time);
+                }
+            }
+
+            var orderedSchedules = candidateSchedules.OrderByDescending(s => s.Station.Tracks.Count(t => t.IsPlatform)).ThenBy(x => x.Time);
+
+            foreach (var schedule in orderedSchedules)
             {
                 string candidate;
 
                 if (currentViaString.IsNullOrEmpty())
-                    candidate = __GetDisplayName(schedule.Station);
+                    candidate = GetDisplayName(schedule.Station);
                 else
-                    candidate = $"{currentViaString} - {__GetDisplayName(schedule.Station)}";
+                    candidate = $"{currentViaString} - {GetDisplayName(schedule.Station)}";
 
-                if (__MeasureString(candidate, fontSize) > maxSpace)
+                if (MeasureString(candidate, fontSize) > maxSpace)
                     continue;
 
                 currentViaString = candidate;
@@ -180,9 +205,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             foreach (var schedule in viaSchedules.OrderBy(s => s.Time))
             {
                 if (result.IsNullOrEmpty())
-                    result += __GetDisplayName(schedule.Station);
+                    result += GetDisplayName(schedule.Station);
                 else
-                    result += $" - {__GetDisplayName(schedule.Station)}";
+                    result += $" - {GetDisplayName(schedule.Station)}";
             }
 
             return result;
@@ -192,7 +217,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [GetDelayMinutes]
         protected int GetDelayMinutes(ScheduleItem scheduleItem)
         {
-            if (scheduleItem.LiveSchedule == null)
+            if (scheduleItem.LiveSchedule == null || scheduleItem.LiveSchedule.IsCancelled)
                 return 0;
 
             LeibitTime scheduledTime, expectedTime;
@@ -231,8 +256,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region [IsDestination]
-        protected bool IsDestination(ScheduleItem scheduleItem)
+        protected bool IsDestination(ScheduleItem scheduleItem, bool considerCancellations = true)
         {
+            if (scheduleItem.Schedule.Handling == eHandling.Destination)
+                return true;
+
             if (scheduleItem.Schedule.Handling == eHandling.StopPassengerTrain)
             {
                 var schedulesResult = m_CalculationBll.GetSchedulesByTime(scheduleItem.Schedule.Train.Schedules, scheduleItem.Schedule.Station.ESTW.Time);
@@ -246,31 +274,97 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     if (nextSchedule != null && !nextSchedule.TrainType.IsPassengerTrain())
                         return true;
                 }
+
+                if (considerCancellations && scheduleItem.LiveSchedule != null && !scheduleItem.LiveSchedule.IsCancelled && scheduleItem.LiveSchedule.Train.IsDestinationStationCancelled)
+                {
+                    var liveTrain = scheduleItem.LiveSchedule.Train;
+                    var scheduleIndex = liveTrain.Schedules.IndexOf(scheduleItem.LiveSchedule);
+
+                    if (liveTrain.Schedules.Skip(scheduleIndex + 1).Where(s => s.Schedule.Handling == eHandling.StopPassengerTrain).All(s => s.IsCancelled))
+                        return true;
+                }
             }
 
-            return scheduleItem.Schedule.Handling == eHandling.Destination;
+            return false;
         }
         #endregion
 
-        #endregion
-
-        #region - Private methods -
-
-        #region [__MeasureString]
-        private double __MeasureString(string candidate, double size)
+        #region [GetDestination]
+        protected string GetDestination(ScheduleItem scheduleItem)
         {
-            var formattedText = new FormattedText(candidate, CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Segoe"), size, Brushes.Black, 1);
-            return formattedText.Width;
+            if (IsDestination(scheduleItem))
+                return $"von {scheduleItem.Schedule.Train.Start}";
+
+            var differingDestination = GetDifferingDestinationSchedule(scheduleItem);
+
+            if (differingDestination != null)
+                return GetDisplayName(differingDestination.Station);
+
+            return scheduleItem.Schedule.Train.Destination;
         }
         #endregion
 
-        #region [__GetDisplayName]
-        private string __GetDisplayName(Station station)
+        #region [GetDifferingDestinationSchedule]
+        protected Schedule GetDifferingDestinationSchedule(ScheduleItem scheduleItem)
+        {
+            if (scheduleItem.LiveSchedule != null && !scheduleItem.LiveSchedule.IsCancelled && scheduleItem.LiveSchedule.Train.IsDestinationStationCancelled)
+                return scheduleItem.LiveSchedule.Train.Schedules.LastOrDefault(s => s.Schedule.Handling == eHandling.StopPassengerTrain && !s.IsCancelled).Schedule;
+
+            return null;
+        }
+        #endregion
+
+        #region [GetSkippedSchedules]
+        protected List<Schedule> GetSkippedSchedules(ScheduleItem scheduleItem)
+        {
+            if (scheduleItem.LiveSchedule == null)
+                return new List<Schedule>();
+
+            var liveTrain = scheduleItem.LiveSchedule.Train;
+            var scheduleIndex = liveTrain.Schedules.IndexOf(scheduleItem.LiveSchedule);
+
+            var result = liveTrain.Schedules.Skip(scheduleIndex + 1).Where(s => s.Schedule.Handling == eHandling.StopPassengerTrain && s.IsCancelled).Select(s => s.Schedule);
+
+            if (liveTrain.IsDestinationStationCancelled)
+            {
+                var destinationSchedule = GetDifferingDestinationSchedule(scheduleItem);
+                result = result.Where(s => s.Station.ShortSymbol != destinationSchedule.Station.ShortSymbol && s.Time < destinationSchedule.Time);
+            }
+
+            return result.ToList();
+        }
+        #endregion
+
+        #region [GetDisplayName]
+        protected string GetDisplayName(Station station)
         {
             if (station.DisplayName.IsNullOrWhiteSpace())
                 return station.Name;
             else
                 return station.DisplayName;
+        }
+        #endregion
+
+        #region [GetStationList]
+        protected string GetStationList(List<Schedule> schedules)
+        {
+            if (!schedules.Any())
+                return string.Empty;
+
+            var stationNames = schedules.Select(s => GetDisplayName(s.Station)).ToList();
+
+            if (stationNames.Count == 1)
+                return stationNames.Single();
+
+            return $"{string.Join(", ", stationNames.Take(stationNames.Count - 1))} und {stationNames.Last()}";
+        }
+        #endregion
+
+        #region [MeasureString]
+        protected double MeasureString(string candidate, double size)
+        {
+            var formattedText = new FormattedText(candidate, CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Segoe"), size, Brushes.Black, 1);
+            return formattedText.Width;
         }
         #endregion
 

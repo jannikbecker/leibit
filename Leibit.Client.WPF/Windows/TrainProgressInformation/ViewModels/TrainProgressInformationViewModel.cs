@@ -483,6 +483,9 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 return false;
             }
 
+            if (liveSchedule.IsCancelled)
+                return false;
+
             var liveScheduleIndex = liveSchedule.Train.Schedules.IndexOf(liveSchedule);
             var nextSchedules = liveSchedule.Train.Schedules.Skip(liveScheduleIndex + 1);
 

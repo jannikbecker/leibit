@@ -41,7 +41,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             var count = SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small ? 10 : 12;
             var candidates = GetScheduleCandidates(area, 120, false);
             var orderedSchedules = candidates.Where(x => x.Schedule.Handling == eHandling.Start || x.Schedule.Handling == eHandling.StopPassengerTrain)
-                                             .Where(x => !IsDestination(x))
+                                             .Where(x => !IsDestination(x, false))
                                              .OrderBy(x => x.Schedule.Departure)
                                              .Take(count);
             var currentItems = new List<DepartureBoardItemViewModel>();
@@ -55,29 +55,65 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     currentItem = new DepartureBoardItemViewModel(scheduleItem);
                     currentItem.TrainNumber = GetTrainNumber(scheduleItem);
 
-                    if (SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small)
-                        currentItem.Via = GetViaString(scheduleItem, 16, 240);
-                    else
-                        currentItem.Via = GetViaString(scheduleItem, 14, 230);
-
                     Dispatcher.Invoke(() => Items.Add(currentItem));
                 }
 
-                var track = scheduleItem.LiveSchedule?.LiveTrack ?? scheduleItem.Schedule.Track;
-                currentItem.TrackName = GetTrackName(track);
+                if (SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small)
+                    currentItem.Via = GetViaString(scheduleItem, 16, 240);
+                else
+                    currentItem.Via = GetViaString(scheduleItem, 14, 230);
 
                 var infoTexts = new List<string>();
-                var delay = GetDelayMinutes(scheduleItem);
+                var isDestination = IsDestination(scheduleItem);
 
-                if (delay == 1)
-                    infoTexts.Add("Wenige Minuten später");
-                else if (delay >= 5)
-                    infoTexts.Add($"ca. {delay} Minuten später");
+                if (scheduleItem.LiveSchedule?.IsCancelled != true && !isDestination)
+                {
+                    var track = scheduleItem.LiveSchedule?.LiveTrack ?? scheduleItem.Schedule.Track;
+                    currentItem.TrackName = GetTrackName(track);
 
-                currentItem.IsTrackChanged = IsTrackChanged(scheduleItem);
+                    var delay = GetDelayMinutes(scheduleItem);
 
-                if (currentItem.IsTrackChanged && SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small)
-                    infoTexts.Add($"Heute von Gleis {GetTrackName(scheduleItem.LiveSchedule.LiveTrack)}");
+                    if (delay == 1)
+                        infoTexts.Add("Wenige Minuten später");
+                    else if (delay >= 5)
+                        infoTexts.Add($"ca. {delay} Minuten später");
+
+                    currentItem.IsTrackChanged = IsTrackChanged(scheduleItem);
+
+                    if (currentItem.IsTrackChanged && SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small)
+                        infoTexts.Add($"Heute von Gleis {GetTrackName(scheduleItem.LiveSchedule.LiveTrack)}");
+                }
+                else
+                {
+                    currentItem.TrackName = GetTrackName(scheduleItem.Schedule.Track);
+                    currentItem.IsTrackChanged = false;
+                }
+
+                if (isDestination)
+                {
+                    currentItem.Destination = scheduleItem.Schedule.Train.Destination;
+                    infoTexts.Add("Zug fällt heute aus");
+                }
+                else
+                    currentItem.Destination = GetDestination(scheduleItem);
+
+                if (scheduleItem.LiveSchedule != null)
+                {
+                    if (scheduleItem.LiveSchedule.IsCancelled)
+                        infoTexts.Add("Zug fällt heute aus");
+                    else
+                    {
+                        var differingDestination = GetDifferingDestinationSchedule(scheduleItem);
+
+                        if (differingDestination != null)
+                            infoTexts.Add($"Fährt heute nur bis {GetDisplayName(differingDestination.Station)}");
+
+                        var skippedStations = GetSkippedSchedules(scheduleItem);
+
+                        if (skippedStations.Any())
+                            infoTexts.Add($"Hält nicht in {GetStationList(skippedStations)}");
+                    }
+                }
 
                 if (infoTexts.Any())
                 {

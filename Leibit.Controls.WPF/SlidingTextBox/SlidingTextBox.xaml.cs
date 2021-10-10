@@ -59,6 +59,16 @@ namespace Leibit.Controls
         public static readonly DependencyProperty SpeedProperty = DependencyProperty.Register("Speed", typeof(int), typeof(SlidingTextBox), new PropertyMetadata(100));
         #endregion
 
+        #region [AllowInterruptAnimation]
+        public bool AllowInterruptAnimation
+        {
+            get { return (bool)GetValue(AllowInterruptAnimationProperty); }
+            set { SetValue(AllowInterruptAnimationProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowInterruptAnimationProperty = DependencyProperty.Register("AllowInterruptAnimation", typeof(bool), typeof(SlidingTextBox), new PropertyMetadata(false));
+        #endregion
+
         #endregion
 
         #region - Private methods -
@@ -103,6 +113,12 @@ namespace Leibit.Controls
         {
             if (m_Storyboard == null)
                 txtOriginal.Text = Text; // Animation is currently not running -> set text directly
+            else if (AllowInterruptAnimation)
+            {
+                __Stop();
+                txtOriginal.Text = Text;
+                __Start(false);
+            }
             else if (!m_TextChanged)
             {
                 // Stop the animation after the next iteration.

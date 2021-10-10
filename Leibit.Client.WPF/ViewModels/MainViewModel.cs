@@ -867,7 +867,7 @@ namespace Leibit.Client.WPF.ViewModels
                 }
                 else if (Window is TrainProgressInformationView)
                     SerializedWindow.Type = eChildWindowType.TrainProgressInformation;
-                else if (Window is TrainScheduleView)
+                else if (Window is TrainScheduleView && !(Window.DataContext as TrainScheduleViewModel).IsInEditMode)
                 {
                     SerializedWindow.Type = eChildWindowType.TrainSchedule;
                     SerializedWindow.Tag = (Window.DataContext as TrainScheduleViewModel).CurrentTrain.Number;

@@ -631,6 +631,7 @@ namespace Leibit.BLL
                         else
                         {
                             CurrentSchedule.IsArrived = true;
+                            CurrentSchedule.IsCancelled = false;
 
                             if ((CurrentSchedule.Schedule.Track == null || CurrentSchedule.Schedule.Track.CalculateDelay) && CurrentSchedule.LiveArrival == null)
                                 CurrentSchedule.LiveArrival = Estw.Time;

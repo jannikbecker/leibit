@@ -56,7 +56,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             var textsToDisplay = new List<string>();
             textsToDisplay.Add($"Zeit: {SelectedStation.ESTW.Time} Uhr");
 
-            var nextTrain = candidates.FirstOrDefault();
+            var nextTrain = orderedSchedules.Where(x => x.LiveSchedule?.IsCancelled != true).FirstOrDefault();
 
             if (nextTrain != null && nextTrain.Schedule.Time < SelectedStation.ESTW.Time.AddMinutes(10))
             {
@@ -67,21 +67,53 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             foreach (var currentItem in orderedSchedules)
             {
                 string infoText = string.Empty;
-                var delay = GetDelayMinutes(currentItem);
 
-                if (delay > 0)
-                    infoText = delay == 1 ? "wenige Minuten später" : $"circa {delay} Minuten später";
-
-                if (IsTrackChanged(currentItem) && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent))
+                if (currentItem.LiveSchedule?.IsCancelled != true)
                 {
-                    if (infoText.IsNotNullOrEmpty())
-                        infoText += " und ";
+                    var delay = GetDelayMinutes(currentItem);
 
-                    infoText += $"von Gleis {GetTrackName(currentItem.LiveSchedule.LiveTrack)}";
+                    if (delay > 0)
+                        infoText = delay == 1 ? "wenige Minuten später" : $"circa {delay} Minuten später";
+
+                    if (IsTrackChanged(currentItem) && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent))
+                    {
+                        if (infoText.IsNotNullOrEmpty())
+                            infoText += " und ";
+
+                        infoText += $"von Gleis {GetTrackName(currentItem.LiveSchedule.LiveTrack)}";
+                    }
+
+                    if (infoText.IsNotNullOrEmpty())
+                        textsToDisplay.Add($"Information zu {__GetLEDBaseText(currentItem)}, heute {infoText}.");
                 }
 
-                if (infoText.IsNotNullOrEmpty())
-                    textsToDisplay.Add($"Information zu {__GetLEDBaseText(currentItem)}, heute {infoText}.");
+                infoText = string.Empty;
+
+                if (currentItem.LiveSchedule != null)
+                {
+                    if (currentItem.LiveSchedule.IsCancelled)
+                        textsToDisplay.Add($"Information zu {__GetLEDBaseText(currentItem)}, fällt heute leider aus.");
+                    else
+                    {
+                        var differingDestination = GetDifferingDestinationSchedule(currentItem);
+
+                        if (differingDestination != null)
+                            infoText = $"fährt heute nur bis {GetDisplayName(differingDestination.Station)}";
+
+                        var skippedStations = GetSkippedSchedules(currentItem);
+
+                        if (skippedStations.Any())
+                        {
+                            if (infoText.IsNotNullOrEmpty())
+                                infoText += " und ";
+
+                            infoText += $"hält nicht in {GetStationList(skippedStations)}";
+                        }
+                    }
+
+                    if (infoText.IsNotNullOrEmpty())
+                        textsToDisplay.Add($"Information zu {__GetLEDBaseText(currentItem)}, {infoText}.");
+                }
             }
 
             LEDText = LED_SEPARATOR + string.Join(LED_SEPARATOR, textsToDisplay);
