@@ -360,9 +360,6 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                     GroupVisible |= Visible;
                     Current.CanCancel = IsInEditMode && !Current.IsArrived && !Current.IsDeparted;
 
-                    if (!Current.CanCancel)
-                        Current.IsCancelled = false;
-
                     if (Visible)
                     {
                         if (IsNew)
