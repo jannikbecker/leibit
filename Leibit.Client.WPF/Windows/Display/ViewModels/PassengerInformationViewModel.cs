@@ -107,7 +107,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                             if (infoText.IsNotNullOrEmpty())
                                 infoText += " und ";
 
-                            infoText += $"hält nicht in {string.Join(", ", skippedStations.Select(s => GetDisplayName(s.Station)))}";
+                            infoText += $"hält nicht in {GetStationList(skippedStations)}";
                         }
                     }
 

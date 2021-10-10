@@ -195,7 +195,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 else
                     candidate = $"{currentViaString} - {GetDisplayName(schedule.Station)}";
 
-                if (__MeasureString(candidate, fontSize) > maxSpace)
+                if (MeasureString(candidate, fontSize) > maxSpace)
                     continue;
 
                 currentViaString = candidate;
@@ -345,12 +345,23 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
+        #region [GetStationList]
+        protected string GetStationList(List<Schedule> schedules)
+        {
+            if (!schedules.Any())
+                return string.Empty;
+
+            var stationNames = schedules.Select(s => GetDisplayName(s.Station)).ToList();
+
+            if (stationNames.Count == 1)
+                return stationNames.Single();
+
+            return $"{string.Join(", ", stationNames.Take(stationNames.Count - 1))} und {stationNames.Last()}";
+        }
         #endregion
 
-        #region - Private methods -
-
-        #region [__MeasureString]
-        private double __MeasureString(string candidate, double size)
+        #region [MeasureString]
+        protected double MeasureString(string candidate, double size)
         {
             var formattedText = new FormattedText(candidate, CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Segoe"), size, Brushes.Black, 1);
             return formattedText.Width;

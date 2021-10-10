@@ -292,12 +292,12 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                         var differingDestination = GetDifferingDestinationSchedule(currentItem);
 
                         if (differingDestination != null)
-                            infoTexts.Add($"Fährt heute nur bis { GetDisplayName(differingDestination.Station)}");
+                            infoTexts.Add($"Fährt heute nur bis {GetDisplayName(differingDestination.Station)}");
 
                         var skippedStations = GetSkippedSchedules(currentItem);
 
                         if (skippedStations.Any())
-                            infoTexts.Add($"Hält nicht in {string.Join(", ", skippedStations.Select(s => GetDisplayName(s.Station)))}");
+                            infoTexts.Add($"Hält nicht in {GetStationList(skippedStations)}");
                     }
                 }
 
@@ -305,7 +305,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (info.IsNotNullOrWhiteSpace())
                 {
-                    CurrentTrainInfo = $" - {info} - ";
+                    if (MeasureString(info, 11) > 240)
+                        CurrentTrainInfo = $" - {info}";
+                    else
+                        CurrentTrainInfo = $" - {info} - ";
+
                     IsCurrentTrainInfoMarquee = true;
                 }
                 else

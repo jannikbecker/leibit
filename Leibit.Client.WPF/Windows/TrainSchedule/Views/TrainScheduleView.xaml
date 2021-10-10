@@ -21,182 +21,200 @@
         <conv:IntComparisonConverter x:Key="IsGreaterThanConverter" ComparisonType="Greater" />
     </controls:ChildWindow.Resources>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <StackPanel Orientation="Vertical">
-            <Border Visibility="{Binding IsInEditMode, Converter={StaticResource VisibilityConverter}}" BorderBrush="Red" BorderThickness="2" Padding="5">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="70"/>
-                    </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Visibility="{Binding IsInEditMode, Converter={StaticResource VisibilityConverter}}" BorderBrush="Red" BorderThickness="2" Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
 
-                    <Image Source="{DynamicResource imgEdit}" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,5,0"/>
-                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Bearbeitungsmodus" VerticalAlignment="Center" />
-                    <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
-                <Hyperlink Command="{Binding CancelTrainCommand}">Zug fällt heute aus</Hyperlink>
-                    </TextBlock>
-                    <Button Grid.Column="2" Grid.RowSpan="2" Content="Speichern" Command="{Binding SaveCommand}"/>
-                </Grid>
-            </Border>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal" Margin="10,10,10,0" Visibility="{Binding PreviousServiceVisibility}">
-                <Path Fill="{DynamicResource TextForeground}" Data="M 0 0 L 10 10 L 0 20 Z" Margin="0,0,5,0" Width="10" Height="10" Stretch="Fill"/>
-                <TextBlock VerticalAlignment="Center">
-                    <Run>Übergang von</Run>
-                    <Hyperlink Command="{Binding OpenTrainScheduleCommand}" CommandParameter="{Binding PreviousTrainNumber, Mode=OneWay}">
-                        <Run Text="{Binding PreviousTrainNumber, Mode=OneWay}"/>
-                    </Hyperlink>
+                <Image Source="{DynamicResource imgEdit}" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,5,0"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="Bearbeitungsmodus" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
+                    <Hyperlink Command="{Binding CancelTrainCommand}">Zug fällt heute aus</Hyperlink>
                 </TextBlock>
-            </StackPanel>
+                <Button Grid.Column="2" Grid.Row="0" Content="Speichern" Command="{Binding SaveCommand}" Margin="0,0,0,2"/>
+                <Button Grid.Column="2" Grid.Row="1" Content="Abbrechen" Command="{Binding CancelCommand}"/>
+            </Grid>
+        </Border>
+        
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="10,10,10,0" Visibility="{Binding PreviousServiceVisibility}">
+                    <Path Fill="{DynamicResource TextForeground}" Data="M 0 0 L 10 10 L 0 20 Z" Margin="0,0,5,0" Width="10" Height="10" Stretch="Fill"/>
+                    <TextBlock VerticalAlignment="Center">
+                        <Run>Übergang von</Run>
+                        <Hyperlink Command="{Binding OpenTrainScheduleCommand}" CommandParameter="{Binding PreviousTrainNumber, Mode=OneWay}">
+                            <Run Text="{Binding PreviousTrainNumber, Mode=OneWay}"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
             
-            <ItemsControl ItemsSource="{Binding Stations}" Grid.IsSharedSizeScope="True">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25" SharedSizeGroup="Lines" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid Grid.Column="0" Margin="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30" />
-                                    <RowDefinition Height="30" />
-                                </Grid.RowDefinitions>
-
-                                <Line Grid.RowSpan="2" Y2="1" Margin="0,-3,0,-3" Stretch="Fill" StrokeThickness="5" StrokeDashArray="2 1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stroke="{Binding DepartureColor}" Visibility="{Binding HasStation, Converter={StaticResource InvertedVisibilityConverter}}" />
-                                <Line Grid.Row="0" Y2="1" Margin="0,-3,0,-3" Stretch="Fill" StrokeThickness="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stroke="{Binding ArrivalColor}" Visibility="{Binding IsFirstStation, Converter={StaticResource InvertedVisibilityConverter}}" />
-                                <Line Grid.Row="1" Y2="1" Margin="0,-3,0,-3" Stretch="Fill" StrokeThickness="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stroke="{Binding DepartureColor}" Visibility="{Binding IsLastStation, Converter={StaticResource InvertedVisibilityConverter}}" />
-                                <Ellipse Grid.RowSpan="2" Width="10" Height="10" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding ArrivalColor}" Visibility="{Binding StationDotVisibility}" />
-                            </Grid>
-
-                            <Grid Grid.Column="1" VerticalAlignment="Center">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-
+                <ItemsControl ItemsSource="{Binding Stations}" Grid.IsSharedSizeScope="True">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Times" />
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Delays" />
+                                    <ColumnDefinition Width="25" SharedSizeGroup="Lines" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Arrival}" Margin="0,5,5,0" VerticalAlignment="Bottom" Foreground="{Binding TextColor}" Visibility="{Binding ArrivalVisibility}" />
-                                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Departure}" Margin="0,5,5,5" VerticalAlignment="Top" Foreground="{Binding TextColor}" Visibility="{Binding DepartureVisibility}" />
+                                <Grid Grid.Column="0" Margin="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                    </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding DelayArrivalString}" Margin="0,5,5,0" VerticalAlignment="Bottom" Visibility="{Binding Arrival, Converter={StaticResource VisibilityNullConverter}}">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Foreground" Value="Green" />
+                                    <Line Grid.RowSpan="2" Y2="1" Margin="0,-3,0,-3" Stretch="Fill" StrokeThickness="5" StrokeDashArray="2 1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stroke="{Binding DepartureColor}" Visibility="{Binding HasStation, Converter={StaticResource InvertedVisibilityConverter}}" />
+                                    <Line Grid.Row="0" Y2="1" Margin="0,-3,0,-3" Stretch="Fill" StrokeThickness="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stroke="{Binding ArrivalColor}" Visibility="{Binding IsFirstStation, Converter={StaticResource InvertedVisibilityConverter}}" />
+                                    <Line Grid.Row="1" Y2="1" Margin="0,-3,0,-3" Stretch="Fill" StrokeThickness="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stroke="{Binding DepartureColor}" Visibility="{Binding IsLastStation, Converter={StaticResource InvertedVisibilityConverter}}" />
+                                    <Ellipse Grid.RowSpan="2" Width="10" Height="10" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{Binding ArrivalColor}" Visibility="{Binding StationDotVisibility}" />
+                                </Grid>
 
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding DelayArrival, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=2}" Value="True">
-                                                    <Setter Property="Foreground" Value="Red" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding IsDelayArrivalManuallySet}" Value="true">
-                                                    <Setter Property="FontWeight" Value="Bold"/>
-                                                    <Setter Property="FontStyle" Value="Italic"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                <Grid Grid.Column="1" VerticalAlignment="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DelayDepartureString}" Margin="0,5,5,5" VerticalAlignment="Top" Visibility="{Binding Departure, Converter={StaticResource VisibilityNullConverter}}">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Foreground" Value="Green" />
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="Times" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="Delays" />
+                                    </Grid.ColumnDefinitions>
 
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=2}" Value="True">
-                                                    <Setter Property="Foreground" Value="Red" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding IsDelayDepartureManuallySet}" Value="true">
-                                                    <Setter Property="FontWeight" Value="Bold"/>
-                                                    <Setter Property="FontStyle" Value="Italic"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                            </Grid>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Arrival}" Margin="0,5,5,0" VerticalAlignment="Bottom" Foreground="{Binding TextColor}" Visibility="{Binding ArrivalVisibility}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Departure}" Margin="0,5,5,5" VerticalAlignment="Top" Foreground="{Binding TextColor}" Visibility="{Binding DepartureVisibility}" />
 
-                            <Grid Grid.Column="2" VerticalAlignment="Center" Margin="0,5,0,5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding DelayArrivalString}" Margin="0,5,5,0" VerticalAlignment="Bottom" Visibility="{Binding Arrival, Converter={StaticResource VisibilityNullConverter}}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="Green" />
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" MaxWidth="20" SharedSizeGroup="LocalOrders" />
-                                    <ColumnDefinition Width="*" SharedSizeGroup="Stations" />
-                                    <ColumnDefinition Width="Auto" SharedSizeGroup="Tracks" />
-                                </Grid.ColumnDefinitions>
-
-                                <controls:ImageButton Grid.RowSpan="3" Grid.Column="0" Image="{StaticResource imgLocalOrders}" Margin="0" Command="{Binding LocalOrdersCommand}" Visibility="{Binding HasLocalOrders, Converter={StaticResource VisibilityConverter}}" />
-
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding StationName}" Foreground="{Binding TextColor}" Margin="5,0,5,0" />
-
-                                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,0,5,0" Visibility="{Binding HasSchedule, Converter={StaticResource VisibilityConverter}}">
-                                    <TextBlock Text="Gleis " Foreground="{Binding TextColor}" />
-                                    <TextBlock Text="{Binding TrackName}" Foreground="{Binding TextColor}" />
-                                </StackPanel>
-
-                                <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Remark}" Foreground="{Binding TextColor}" Margin="5,0,5,0" Visibility="{Binding HasRemark, Converter={StaticResource VisibilityConverter}}"/>
-
-                                <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Visibility="{Binding DelayInfo, Converter={StaticResource VisibilityNullConverter}}" Margin="5,0,5,0">
-                                    <Hyperlink Command="{Binding DelayJustificationCommand}">
-                                        <TextBlock Text="{Binding DelayInfo}" />
-                                    
-                                        <Hyperlink.Style>
-                                            <Style TargetType="Hyperlink">
-                                                <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
-                                                <Setter Property="TextDecorations" Value="Underline" />
-                                            
                                                 <Style.Triggers>
-                                                    <Trigger Property="IsEnabled" Value="False">
-                                                        <Setter Property="TextDecorations" Value="None" />
-                                                        <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
-                                                    </Trigger>
-                                                
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
-                                                    </Trigger>
+                                                    <DataTrigger Binding="{Binding DelayArrival, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=2}" Value="True">
+                                                        <Setter Property="Foreground" Value="Red" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsDelayArrivalManuallySet}" Value="true">
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                        <Setter Property="FontStyle" Value="Italic"/>
+                                                    </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
-                                        </Hyperlink.Style>
-                                    </Hyperlink>
-                                </TextBlock>
+                                        </TextBlock.Style>
+                                    </TextBlock>
 
-                                <CheckBox Grid.Row="2" Grid.Column="1"
-                                            Content="Halt entfällt"
-                                            IsChecked="{Binding IsCancelled, Mode=TwoWay}"
-                                            Visibility="{Binding CancelVisibility}"
-                                            IsEnabled="{Binding CanCancel}"
-                                            Margin="5,0,5,0"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DelayDepartureString}" Margin="0,5,5,5" VerticalAlignment="Top" Visibility="{Binding Departure, Converter={StaticResource VisibilityNullConverter}}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="Green" />
+
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=2}" Value="True">
+                                                        <Setter Property="Foreground" Value="Red" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsDelayDepartureManuallySet}" Value="true">
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                        <Setter Property="FontStyle" Value="Italic"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+
+                                <Grid Grid.Column="2" VerticalAlignment="Center" Margin="0,5,0,5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" MaxWidth="20" SharedSizeGroup="LocalOrders" />
+                                        <ColumnDefinition Width="*" SharedSizeGroup="Stations" />
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="Tracks" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <controls:ImageButton Grid.RowSpan="3" Grid.Column="0" Image="{StaticResource imgLocalOrders}" Margin="0" Command="{Binding LocalOrdersCommand}" Visibility="{Binding HasLocalOrders, Converter={StaticResource VisibilityConverter}}" />
+
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding StationName}" Foreground="{Binding TextColor}" Margin="5,0,5,0" />
+
+                                    <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,0,5,0" Visibility="{Binding HasSchedule, Converter={StaticResource VisibilityConverter}}">
+                                        <TextBlock Text="Gleis " Foreground="{Binding TextColor}" />
+                                        <TextBlock Text="{Binding TrackName}" Foreground="{Binding TextColor}" />
+                                    </StackPanel>
+
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Remark}" Foreground="{Binding TextColor}" Margin="5,0,5,0" Visibility="{Binding HasRemark, Converter={StaticResource VisibilityConverter}}"/>
+
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Visibility="{Binding DelayInfo, Converter={StaticResource VisibilityNullConverter}}" Margin="5,0,5,0">
+                                        <Hyperlink Command="{Binding DelayJustificationCommand}">
+                                            <TextBlock Text="{Binding DelayInfo}" />
+                                    
+                                            <Hyperlink.Style>
+                                                <Style TargetType="Hyperlink">
+                                                    <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
+                                                    <Setter Property="TextDecorations" Value="Underline" />
+                                            
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsEnabled" Value="False">
+                                                            <Setter Property="TextDecorations" Value="None" />
+                                                            <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
+                                                        </Trigger>
+                                                
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Foreground" Value="{DynamicResource TextForeground}" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Hyperlink.Style>
+                                        </Hyperlink>
+                                    </TextBlock>
+
+                                    <CheckBox Grid.Row="2" Grid.Column="1"
+                                                Content="Halt entfällt"
+                                                IsChecked="{Binding IsCancelled, Mode=TwoWay}"
+                                                Visibility="{Binding CancelVisibility}"
+                                                IsEnabled="{Binding CanCancel}"
+                                                Margin="5,0,5,0"/>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-            <StackPanel Orientation="Horizontal" Margin="10,0,10,10" Visibility="{Binding FollowUpServiceVisibility}">
-                <Path Fill="{DynamicResource TextForeground}" Data="M 0 0 L 10 10 L 0 20 Z" Margin="0,0,5,0" Width="10" Height="10" Stretch="Fill"/>
-                <TextBlock VerticalAlignment="Center">
-                    <Run>Übergang auf</Run>
-                    <Hyperlink Command="{Binding OpenTrainScheduleCommand}" CommandParameter="{Binding FollowUpTrainNumber, Mode=OneWay}">
-                        <Run Text="{Binding FollowUpTrainNumber, Mode=OneWay}"/>
-                    </Hyperlink>
-                </TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="10,0,10,10" Visibility="{Binding FollowUpServiceVisibility}">
+                    <Path Fill="{DynamicResource TextForeground}" Data="M 0 0 L 10 10 L 0 20 Z" Margin="0,0,5,0" Width="10" Height="10" Stretch="Fill"/>
+                    <TextBlock VerticalAlignment="Center">
+                        <Run>Übergang auf</Run>
+                        <Hyperlink Command="{Binding OpenTrainScheduleCommand}" CommandParameter="{Binding FollowUpTrainNumber, Mode=OneWay}">
+                            <Run Text="{Binding FollowUpTrainNumber, Mode=OneWay}"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+
+        <controls:ImageButton Grid.RowSpan="2"
+                              Image="{DynamicResource imgEdit}"
+                              Command="{Binding EditCommand}"
+                              Visibility="{Binding IsInEditMode, Converter={StaticResource InvertedVisibilityConverter}}"
+                              Width="18"
+                              Height="18"
+                              Margin="2,2,0,0"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"/>
+    </Grid>
 </controls:ChildWindow>

@@ -38,7 +38,6 @@
             <Separator Background="{DynamicResource MenuSeparatorColor}"/>
             <MenuItem Header="Vsl. Verspätung" Command="{Binding EnterExpectedDelayCommand}"/>
             <MenuItem Header="Gleiswechsel" Command="{Binding ShowTrackChangeCommand}"/>
-            <MenuItem Header="Zuglauf bearbeiten" Command="{Binding EditTrainScheduleCommand}"/>
             <Separator Background="{DynamicResource MenuSeparatorColor}"/>
             <MenuItem Header="Zugstatus neu" Command="{Binding NewTrainStateCommand}"/>
             <MenuItem Header="Zugstatus eingeben" Command="{Binding EnterTrainStateCommand}"/>

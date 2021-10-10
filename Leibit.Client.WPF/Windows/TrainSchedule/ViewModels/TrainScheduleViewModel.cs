@@ -40,15 +40,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
         #region - Ctor -
         public TrainScheduleViewModel(Dispatcher Dispatcher, Train Train, Area Area)
-            : this(Dispatcher, Train, Area, false)
         {
-
-        }
-
-        public TrainScheduleViewModel(Dispatcher Dispatcher, Train Train, Area Area, bool IsInEditMode)
-            : base()
-        {
-            this.IsInEditMode = IsInEditMode;
             this.Dispatcher = Dispatcher;
             CurrentTrain = Train;
             m_Area = Area;
@@ -57,7 +49,9 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             m_SettingsBll = new SettingsBLL();
             Stations = new ObservableCollection<TrainScheduleStationViewModel>();
             OpenTrainScheduleCommand = new CommandHandler<int?>(__OpenTrainSchedule, true);
+            EditCommand = new CommandHandler(__EnterEditMode, true);
             SaveCommand = new CommandHandler(__Save, true);
+            CancelCommand = new CommandHandler(__ExitEditMode, true);
             CancelTrainCommand = new CommandHandler(__CancelTrain, true);
 
             if (Area != null)
@@ -147,8 +141,16 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         }
         #endregion
 
+        #region [EditCommand]
+        public ICommand EditCommand { get; }
+        #endregion
+
         #region [SaveCommand]
         public ICommand SaveCommand { get; }
+        #endregion
+
+        #region [CancelCommand]
+        public ICommand CancelCommand { get; }
         #endregion
 
         #region [CancelTrainCommand]
@@ -156,7 +158,15 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         #endregion
 
         #region [IsInEditMode]
-        public bool IsInEditMode { get; }
+        public bool IsInEditMode
+        {
+            get => Get<bool>();
+            private set
+            {
+                Set(value);
+                Stations.ForEach(s => s.IsInEditMode = value);
+            }
+        }
         #endregion
 
         #endregion
@@ -200,7 +210,8 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                 if (FirstStationSchedule == null || FirstStationSchedule.HasSchedule)
                 {
                     FirstStationDummy = new TrainScheduleStationViewModel();
-                    FirstStationSchedule = new TrainScheduleStationViewModel(CurrentTrain.Start, false, IsInEditMode);
+                    FirstStationSchedule = new TrainScheduleStationViewModel(CurrentTrain.Start, false);
+                    FirstStationSchedule.IsInEditMode = IsInEditMode;
 
                     Dispatcher.Invoke(() => Stations.Insert(0, FirstStationDummy));
                     Dispatcher.Invoke(() => Stations.Insert(0, FirstStationSchedule));
@@ -218,7 +229,9 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                 if (LastStationSchedule == null || LastStationSchedule.HasSchedule || LastStationSchedule == FirstStationDummy)
                 {
                     LastStationDummy = new TrainScheduleStationViewModel();
-                    LastStationSchedule = new TrainScheduleStationViewModel(CurrentTrain.Destination, true, IsInEditMode);
+                    LastStationSchedule = new TrainScheduleStationViewModel(CurrentTrain.Destination, true);
+                    LastStationSchedule.IsInEditMode = IsInEditMode;
+                    LastStationSchedule.CanCancel = true;
 
                     if (Area.LiveTrains.ContainsKey(CurrentTrain.Number) && Area.LiveTrains[CurrentTrain.Number].IsDestinationStationCancelled)
                         LastStationSchedule.IsCancelled = true;
@@ -254,7 +267,8 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
 
                     if (Current == null)
                     {
-                        Current = new TrainScheduleStationViewModel(Schedule, IsInEditMode);
+                        Current = new TrainScheduleStationViewModel(Schedule);
+                        Current.IsInEditMode = IsInEditMode;
                         Current.PropertyChanged += __Station_PropertyChanged;
                         IsNew = true;
                     }
@@ -531,6 +545,13 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         }
         #endregion
 
+        #region [__EnterEditMode]
+        private void __EnterEditMode()
+        {
+            IsInEditMode = true;
+        }
+        #endregion
+
         #region [__Save]
         private void __Save()
         {
@@ -563,7 +584,30 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                     liveTrain.IsDestinationStationCancelled = station.IsCancelled;
             }
 
-            OnCloseWindow();
+            IsInEditMode = false;
+        }
+        #endregion
+
+        #region [__ExitEditMode]
+        private void __ExitEditMode()
+        {
+            if (m_Area.LiveTrains.ContainsKey(CurrentTrain.Number))
+            {
+                var liveTrain = m_Area.LiveTrains[CurrentTrain.Number];
+                Stations.Where(s => s.IsLastStation).ForEach(s => s.IsCancelled = liveTrain.IsDestinationStationCancelled);
+
+                foreach (var station in Stations)
+                {
+                    var liveSchedule = liveTrain.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == station.CurrentSchedule?.Station.ShortSymbol && s.Schedule.Time == station.CurrentSchedule?.Time);
+
+                    if (liveSchedule != null)
+                        station.IsCancelled = liveSchedule.IsCancelled;
+                }
+            }
+            else
+                Stations.ForEach(s => s.IsCancelled = false);
+
+            IsInEditMode = false;
         }
         #endregion
 

@@ -26,29 +26,19 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             IsFirstStation = true;
             IsLastStation = true;
-            CancelVisibility = Visibility.Collapsed;
         }
 
-        public TrainScheduleStationViewModel(string StationName, bool IsDestination, bool IsInEditMode)
+        public TrainScheduleStationViewModel(string StationName, bool IsDestination)
             : base()
         {
             this.StationName = StationName;
             IsFirstStation = !IsDestination;
             IsLastStation = IsDestination;
-
-            if (IsDestination && IsInEditMode)
-            {
-                CancelVisibility = Visibility.Visible;
-                CanCancel = true;
-            }
-            else
-                CancelVisibility = Visibility.Collapsed;
         }
 
-        public TrainScheduleStationViewModel(Schedule Schedule, bool IsInEditMode)
+        public TrainScheduleStationViewModel(Schedule Schedule)
             : base()
         {
-            CancelVisibility = IsInEditMode ? Visibility.Visible : Visibility.Collapsed;
             CurrentSchedule = Schedule;
             StationName = String.Format("{0} ({1})", Schedule.Station.Name, Schedule.Station.RefNumber);
             Arrival = Schedule.Arrival;
@@ -528,7 +518,19 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         #endregion
 
         #region [CancelVisibility]
-        public Visibility CancelVisibility { get; }
+        public Visibility CancelVisibility
+        {
+            get
+            {
+                if (!IsInEditMode)
+                    return Visibility.Collapsed;
+
+                if (CurrentSchedule != null)
+                    return Visibility.Visible;
+
+                return IsFirstStation ? Visibility.Collapsed : Visibility.Visible;
+            }
+        }
         #endregion
 
         #region [CanCancel]
@@ -536,6 +538,18 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         {
             get => Get<bool>();
             set => Set(value);
+        }
+        #endregion
+
+        #region [IsInEditMode]
+        public bool IsInEditMode
+        {
+            get => Get<bool>();
+            internal set
+            {
+                Set(value);
+                OnPropertyChanged(nameof(CancelVisibility));
+            }
         }
         #endregion
 

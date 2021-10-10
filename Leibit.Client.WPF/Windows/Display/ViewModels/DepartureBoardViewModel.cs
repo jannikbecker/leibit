@@ -111,7 +111,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                         var skippedStations = GetSkippedSchedules(scheduleItem);
 
                         if (skippedStations.Any())
-                            infoTexts.Add($"Hält nicht in {string.Join(", ", skippedStations.Select(s => GetDisplayName(s.Station)))}");
+                            infoTexts.Add($"Hält nicht in {GetStationList(skippedStations)}");
                     }
                 }
 
