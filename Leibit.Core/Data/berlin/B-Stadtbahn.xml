@@ -15,7 +15,7 @@
     </track>
   </station>
 
-  <station name="Berlin-Charlottenburg" short="BCHB" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
+  <station name="Berlin-Charlottenburg" short="BCHB" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf" displayName="B-Charlottenburg">
     <track name="1">
       <block name="10G331" />
       <alternative track="2"/>
@@ -48,7 +48,7 @@
     </track>
   </station>
 
-  <station name="Berlin Zoologischer Garten" short="BZOO" refNr="11" scheduleFile="g11_____.abf" localOrderFile="bf11____.abf">
+  <station name="Berlin Zoologischer Garten" short="BZOO" refNr="11" scheduleFile="g11_____.abf" localOrderFile="bf11____.abf" displayName="Berlin Zoo">
     <track name="1">
       <block name="11G51"/>
     </track>
@@ -63,7 +63,7 @@
     </track>
   </station>
 
-  <station name="Berlin Friedrichstraße" short="BFRI" refNr="12" scheduleFile="g12_____.abf" localOrderFile="bf12____.abf">
+  <station name="Berlin Friedrichstraße" short="BFRI" refNr="12" scheduleFile="g12_____.abf" localOrderFile="bf12____.abf" displayName="B Friedrichstr">
     <track name="1">
       <block name="12G51"/>
     </track>
@@ -78,7 +78,7 @@
     </track>
   </station>
 
-  <station name="Berlin Alexanderplatz Hp" short="BALEF" refNr="13" scheduleFile="b13_____.abf">
+  <station name="Berlin Alexanderplatz Hp" short="BALEF" refNr="13" scheduleFile="b13_____.abf" displayName="B Alexanderplatz">
     <track name="1" calculateDelay="false">
       <block name="12B12"/>
     </track>
@@ -87,7 +87,7 @@
     </track>
   </station>
 
-  <station name="Berlin Ostbahnhof" short="BHF" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf">
+  <station name="Berlin Ostbahnhof" short="BHF" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf" displayName="B Ostbahnhof">
     <track name="1">
       <block name="13G01"/>
     </track>
