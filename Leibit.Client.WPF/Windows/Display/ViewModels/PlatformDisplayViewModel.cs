@@ -255,12 +255,12 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                         var followUpTrain = area.Trains[followUpService.Value];
                         infoTexts.Add($"Dieser Zug endet hier und fährt weiter als {followUpTrain.Type} {followUpTrain.Number} nach {followUpTrain.Destination}");
                         Via = string.Empty;
-                        CurrentTrainDestination = $"von {currentItem.Schedule.Train.Start}";
+                        CurrentTrainDestination = $"von {currentItem.Schedule.Start}";
                     }
                     else
                     {
                         infoTexts.Add("Dieser Zug endet hier");
-                        Via = $"von {currentItem.Schedule.Train.Start}";
+                        Via = $"von {currentItem.Schedule.Start}";
                         CurrentTrainDestination = "Bitte nicht einsteigen";
                     }
                 }

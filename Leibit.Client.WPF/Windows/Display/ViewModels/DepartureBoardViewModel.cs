@@ -91,7 +91,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (isDestination)
                 {
-                    currentItem.Destination = scheduleItem.Schedule.Train.Destination;
+                    currentItem.Destination = scheduleItem.Schedule.Destination;
                     infoTexts.Add("Zug fällt heute aus");
                 }
                 else
