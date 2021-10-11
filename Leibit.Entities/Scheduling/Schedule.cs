@@ -157,6 +157,10 @@ namespace Leibit.Entities.Scheduling
 
         public bool IsUnscheduled { get; set; }
 
+        public Schedule TwinScheduleArrival { get; set; }
+        public Schedule TwinScheduleDeparture { get; set; }
+        public string SplitStation { get; set; }
+
         public LeibitTime Time
         {
             get

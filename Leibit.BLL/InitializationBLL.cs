@@ -25,6 +25,11 @@ namespace Leibit.BLL
         private object m_LockXml = new object();
         #endregion
 
+        #region - Const -
+        private const string SPLIT_STATION_REGEX1 = @"\[{0}>\[{1}> bis ([\w\s\-\(\)]+)";
+        private const string SPLIT_STATION_REGEX2 = @"<{0}\]<{1}\] bis ([\w\s\-\(\)]+)";
+        #endregion
+
         #region - Ctor -
         public InitializationBLL()
             : base()
@@ -202,6 +207,7 @@ namespace Leibit.BLL
                             {
                                 __GetSchedule(Station, PathResult.Result);
                                 __ResolveDuplicates(Station.Schedules);
+                                __DetectTwinSchedules(Station.Schedules);
                                 __GetLocalOrders(Station, PathResult.Result);
                             }
 
@@ -570,6 +576,73 @@ namespace Leibit.BLL
                     Schedule.Train.RemoveSchedule(Schedule);
                 }
             }
+        }
+        #endregion
+
+        #region [__DetectTwinSchedules]
+        private void __DetectTwinSchedules(List<Schedule> schedules)
+        {
+            var twinSchedulesArrival = schedules.Where(s => s.Arrival != null).GroupBy(s => new { Track = s.Track, Arrival = s.Arrival, Days = s.Days.Sum(d => (int)d) }).Where(g => g.Count() == 2);
+
+            foreach (var pair in twinSchedulesArrival)
+            {
+                var schedule1 = pair.ElementAt(0);
+                var schedule2 = pair.ElementAt(1);
+                schedule1.TwinScheduleArrival = schedule2;
+                schedule2.TwinScheduleArrival = schedule1;
+            }
+
+            var twinSchedulesDeparture = schedules.Where(s => s.Departure != null).GroupBy(s => new { Track = s.Track, Departure = s.Departure, Days = s.Days.Sum(d => (int)d) }).Where(g => g.Count() == 2);
+
+            foreach (var pair in twinSchedulesDeparture)
+            {
+                var schedule1 = pair.ElementAt(0);
+                var schedule2 = pair.ElementAt(1);
+                schedule1.TwinScheduleDeparture = schedule2;
+                schedule2.TwinScheduleDeparture = schedule1;
+
+                var trainNumber1 = schedule1.Train.Number;
+                var trainNumber2 = schedule2.Train.Number;
+
+                if (__TryGetSplitStation(trainNumber1, trainNumber2, schedule1.Remark, out var splitSpation1)
+                    && __TryGetSplitStation(trainNumber1, trainNumber2, schedule2.Remark, out var splitSpation2)
+                    && splitSpation1 == splitSpation2)
+                {
+                    schedule1.SplitStation = splitSpation1;
+                    schedule2.SplitStation = splitSpation2;
+                }
+            }
+        }
+        #endregion
+
+        #region [__TryGetSplitStation]
+        private bool __TryGetSplitStation(int trainNumber1, int trainNumber2, string remark, out string splitStation)
+        {
+            if (__TryGetSplitStation(string.Format(SPLIT_STATION_REGEX1, trainNumber1, trainNumber2), remark, out splitStation))
+                return true;
+            if (__TryGetSplitStation(string.Format(SPLIT_STATION_REGEX1, trainNumber2, trainNumber1), remark, out splitStation))
+                return true;
+            if (__TryGetSplitStation(string.Format(SPLIT_STATION_REGEX2, trainNumber1, trainNumber2), remark, out splitStation))
+                return true;
+            if (__TryGetSplitStation(string.Format(SPLIT_STATION_REGEX2, trainNumber2, trainNumber1), remark, out splitStation))
+                return true;
+
+            return false;
+        }
+
+        private bool __TryGetSplitStation(string regex, string remark, out string splitStation)
+        {
+            splitStation = string.Empty;
+            var match = Regex.Match(remark, regex);
+
+            if (match == null || !match.Success)
+                return false;
+
+            if (match.Groups.Count < 2 || !match.Groups[1].Success)
+                return false;
+
+            splitStation = match.Groups[1].Value;
+            return true;
         }
         #endregion
 
