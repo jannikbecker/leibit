@@ -548,7 +548,7 @@ namespace Leibit.BLL
 
                     Train.Type = Train.Schedules.Select(s => s.TrainType).FirstOrDefault(t => t.IsPassengerTrain()) ?? Type;
                     Train.Start = Train.Schedules.OrderBy(s => s.Time).First().Start;
-                    Train.Destination = Train.Schedules.OrderBy(s => s.Time).First().Destination;
+                    Train.Destination = Train.Schedules.OrderBy(s => s.Time).Last().Destination;
                 }
             }
         }
@@ -582,7 +582,7 @@ namespace Leibit.BLL
         #region [__DetectTwinSchedules]
         private void __DetectTwinSchedules(List<Schedule> schedules)
         {
-            var twinSchedulesArrival = schedules.Where(s => s.Arrival != null).GroupBy(s => new { Track = s.Track, Arrival = s.Arrival, Days = s.Days.Sum(d => (int)d) }).Where(g => g.Count() == 2);
+            var twinSchedulesArrival = schedules.Where(s => s.Arrival != null).GroupBy(s => new { Track = s.Track, Arrival = s.Arrival, Handling = s.Handling, Days = s.Days.Sum(d => (int)d) }).Where(g => g.Count() == 2);
 
             foreach (var pair in twinSchedulesArrival)
             {
@@ -592,7 +592,7 @@ namespace Leibit.BLL
                 schedule2.TwinScheduleArrival = schedule1;
             }
 
-            var twinSchedulesDeparture = schedules.Where(s => s.Departure != null).GroupBy(s => new { Track = s.Track, Departure = s.Departure, Days = s.Days.Sum(d => (int)d) }).Where(g => g.Count() == 2);
+            var twinSchedulesDeparture = schedules.Where(s => s.Departure != null).GroupBy(s => new { Track = s.Track, Departure = s.Departure, Handling = s.Handling, Days = s.Days.Sum(d => (int)d) }).Where(g => g.Count() == 2);
 
             foreach (var pair in twinSchedulesDeparture)
             {
@@ -600,6 +600,12 @@ namespace Leibit.BLL
                 var schedule2 = pair.ElementAt(1);
                 schedule1.TwinScheduleDeparture = schedule2;
                 schedule2.TwinScheduleDeparture = schedule1;
+
+                if (schedule1.Handling == eHandling.Transit)
+                {
+                    schedule1.TwinScheduleArrival = schedule2;
+                    schedule2.TwinScheduleArrival = schedule1;
+                }
 
                 var trainNumber1 = schedule1.Train.Number;
                 var trainNumber2 = schedule2.Train.Number;
