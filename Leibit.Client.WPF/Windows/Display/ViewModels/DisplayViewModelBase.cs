@@ -141,7 +141,12 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [GetTrainNumber]
         protected string GetTrainNumber(ScheduleItem scheduleItem)
         {
-            return $"{scheduleItem.Schedule.TrainType} {scheduleItem.Schedule.Train.Number}";
+            return GetTrainNumber(scheduleItem.Schedule);
+        }
+
+        protected string GetTrainNumber(Schedule schedule)
+        {
+            return $"{schedule.TrainType} {schedule.Train.Number}";
         }
         #endregion
 

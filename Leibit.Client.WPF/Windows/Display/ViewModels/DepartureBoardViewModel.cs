@@ -1,4 +1,5 @@
-﻿using Leibit.Entities;
+﻿using Leibit.Core.Common;
+using Leibit.Entities;
 using Leibit.Entities.Common;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -65,6 +66,14 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 var infoTexts = new List<string>();
                 var isDestination = IsDestination(scheduleItem);
+
+                if (currentItem.Schedule.TwinScheduleArrival != null)
+                {
+                    if (currentItem.Schedule.TwinScheduleDeparture == null)
+                        infoTexts.Add("Zug wird hier geteilt");
+                    else if (currentItem.Schedule.SplitStation.IsNotNullOrWhiteSpace())
+                        infoTexts.Add($"Zug wird in {currentItem.Schedule.SplitStation} geteilt");
+                }
 
                 if (scheduleItem.LiveSchedule?.IsCancelled != true && !isDestination)
                 {
