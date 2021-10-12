@@ -766,6 +766,26 @@ namespace Leibit.BLL
                     }
                 }
             }
+
+            var currentSchedule = train.Schedules.LastOrDefault(s => s.IsArrived && s.Schedule.Station.ShortSymbol == train.Block.Track.Station.ShortSymbol);
+
+            if (currentSchedule != null && !currentSchedule.IsDeparted && currentSchedule.Schedule.TwinScheduleArrival != null)
+            {
+                var twinTrainNumber = currentSchedule.Schedule.TwinScheduleArrival.Train.Number;
+                var twinTrain = __GetOrCreateLiveTrainInformation(twinTrainNumber, estw);
+                twinTrain.Block = train.Block;
+                twinTrain.Delay = train.Delay;
+                twinTrain.LastModified = estw.Time;
+            }
+
+            if (currentSchedule != null && currentSchedule.IsDeparted && currentSchedule.Schedule.TwinScheduleDeparture != null)
+            {
+                var twinTrainNumber = currentSchedule.Schedule.TwinScheduleDeparture.Train.Number;
+                var twinTrain = __GetOrCreateLiveTrainInformation(twinTrainNumber, estw);
+                twinTrain.Block = train.Block;
+                twinTrain.Delay = train.Delay;
+                twinTrain.LastModified = estw.Time;
+            }
         }
 
         private void __SynchronizeDelayToTwinSchedule(DelayInfo delay, Schedule twinSchedule)
