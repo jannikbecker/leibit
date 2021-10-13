@@ -89,6 +89,30 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
+        #region [CurrentTrainDestinationSize]
+        public double CurrentTrainDestinationSize
+        {
+            get => Get<double>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [TimeSize]
+        public double TimeSize
+        {
+            get => Get<double>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [TrainNumberSize]
+        public double TrainNumberSize
+        {
+            get => Get<double>();
+            private set => Set(value);
+        }
+        #endregion
+
         #region [CurrentTrainTime]
         public string CurrentTrainTime
         {
@@ -359,6 +383,10 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     }
                 }
 
+                CurrentTrainDestinationSize = IsInTwinTrainMode ? 20 : 24;
+                TimeSize = IsInTwinTrainMode ? 20 : 24;
+                TrainNumberSize = IsInTwinTrainMode ? 12 : 14;
+
                 if (!isCancelled)
                 {
                     var delay = GetDelayMinutes(currentItem);
@@ -410,7 +438,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             else
                 __ClearCurrentTrain();
 
-            if (SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Small || IsInTwinTrainMode)
+            if (SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Small)
                 return;
 
             var followingTrain1 = orderedSchedules.ElementAtOrDefault(1);
