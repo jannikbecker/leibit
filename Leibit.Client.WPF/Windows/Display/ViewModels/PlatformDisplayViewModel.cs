@@ -333,13 +333,18 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (twinSchedule != null)
                 {
-                    TwinTrainNumber = GetTrainNumber(twinSchedule);
                     twinScheduleItem = candidates.FirstOrDefault(x => x.Schedule == twinSchedule);
 
                     if (twinScheduleItem == null)
+                    {
                         IsInTwinTrainMode = false;
+                        TwinTrainNumber = string.Empty;
+                    }
                     else
+                    {
+                        TwinTrainNumber = GetTrainNumber(twinSchedule);
                         orderedSchedules = candidates.Except(new List<ScheduleItem> { twinScheduleItem }).OrderBy(x => x.ReferenceTime);
+                    }
                 }
                 else
                     TwinTrainNumber = string.Empty;
