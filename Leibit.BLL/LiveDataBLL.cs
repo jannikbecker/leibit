@@ -444,6 +444,9 @@ namespace Leibit.BLL
                         if (!Int32.TryParse(sTrainNumber, out TrainNumber) || !Int32.TryParse(sDelay, out Delay) || (sDirection != "L" && sDirection != "R"))
                             continue;
 
+                        if (Delay == 99)
+                            Delay = 0;
+
                         TrainInformation Train;
 
                         if (estw.Area.LiveTrains.ContainsKey(TrainNumber))
