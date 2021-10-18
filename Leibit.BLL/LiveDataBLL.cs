@@ -728,6 +728,8 @@ namespace Leibit.BLL
 
         private void __SynchronizeTwinSchedules(TrainInformation train, ESTW estw)
         {
+            var twinTrains = new List<TrainInformation>();
+
             foreach (var schedule in train.Schedules)
             {
                 if (schedule.Schedule.TwinScheduleArrival != null)
@@ -744,6 +746,7 @@ namespace Leibit.BLL
                         twinSchedule.ExpectedDelayArrival = schedule.ExpectedDelayArrival;
                         twinSchedule.LiveTrack = schedule.LiveTrack;
                         twinTrain.LastModified = estw.Time;
+                        twinTrains.Add(twinTrain);
                     }
                 }
 
@@ -763,6 +766,7 @@ namespace Leibit.BLL
                         twinSchedule.IsComposed = schedule.IsComposed;
                         twinSchedule.IsPrepared = schedule.IsPrepared;
                         twinTrain.LastModified = estw.Time;
+                        twinTrains.Add(twinTrain);
                     }
                 }
             }
@@ -776,6 +780,7 @@ namespace Leibit.BLL
                 twinTrain.Block = train.Block;
                 twinTrain.Delay = train.Delay;
                 twinTrain.LastModified = estw.Time;
+                twinTrains.Add(twinTrain);
             }
 
             if (currentSchedule != null && currentSchedule.IsDeparted && currentSchedule.Schedule.TwinScheduleDeparture != null)
@@ -785,7 +790,11 @@ namespace Leibit.BLL
                 twinTrain.Block = train.Block;
                 twinTrain.Delay = train.Delay;
                 twinTrain.LastModified = estw.Time;
+                twinTrains.Add(twinTrain);
             }
+
+            foreach (var twinTrain in twinTrains.Distinct())
+                CalculationBLL.CalculateExpectedTimes(twinTrain, estw);
         }
 
         private void __SynchronizeDelayToTwinSchedule(DelayInfo delay, Schedule twinSchedule)
