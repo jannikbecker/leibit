@@ -90,7 +90,7 @@ namespace Leibit.Tests.ExpectedData
             var Train2007 = new Train(2007, "IC", "Linksdorf Hbf", "Rechtsheim");
             Train2007.Composition = string.Format("IC 2007{0}<-- [101]-Am-Am-Bm-Bm-Bm-Bm-Bm{0}Zuglänge = 210 m", Environment.NewLine);
             Area.Trains.TryAdd(2007, Train2007);
-            new Schedule(Train2007, null, new LeibitTime(13, 1), ProbeTrack2, _ALL_DAYS, eScheduleDirection.LeftToRight, eHandling.Transit, String.Empty, null);
+            new Schedule(Train2007, null, new LeibitTime(13, 1), ProbeTrack2, _ALL_DAYS, eScheduleDirection.LeftToRight, eHandling.Transit, String.Empty, " 2007 IC    Durchfahrt Gl. 2");
             new Schedule(Train2007, new LeibitTime(13, 6), new LeibitTime(13, 8), TestdorfTrack1, _ALL_DAYS, eScheduleDirection.LeftToRight, eHandling.StopPassengerTrain, String.Empty, null);
 
             var Train86312 = new Train(86312, "GC", "Irgendwo", "Linksdorf Gbf");

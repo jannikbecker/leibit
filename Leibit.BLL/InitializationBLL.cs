@@ -689,18 +689,16 @@ namespace Leibit.BLL
                     }
                     else
                     {
-                        var LineParts = Regex.Split(Line, @"\s");
+                        var LineParts = Regex.Split(Line.Trim(), @"\s");
+                        var TrainNumber = 0;
 
-                        if (LineParts[0].IsNotNullOrEmpty())
+                        if ((LineParts.Any() && int.TryParse(LineParts[0], out TrainNumber)) || !Regex.IsMatch(Line, @"^\s"))
                         {
-                            // Line does not start with whitespace
+                            // Line does not start with whitespace or a new train number was found
                             __SetLocalOrders(station, CurrentTrainNumber, Content.ToString());
-                            CurrentTrainNumber = 0;
+                            CurrentTrainNumber = TrainNumber;
                             Content = new StringBuilder();
                         }
-
-                        if (int.TryParse(LineParts[0], out int TrainNumber))
-                            CurrentTrainNumber = TrainNumber;
                     }
 
                     Content.AppendLine(Line);
