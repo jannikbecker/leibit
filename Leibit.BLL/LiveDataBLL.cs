@@ -771,7 +771,10 @@ namespace Leibit.BLL
                 }
             }
 
-            var currentSchedule = train.Schedules.LastOrDefault(s => s.IsArrived && s.Schedule.Station.ShortSymbol == train.Block.Track.Station.ShortSymbol);
+            var currentSchedule = train.Schedules.LastOrDefault(s => s.IsArrived);
+
+            if (currentSchedule == null)
+                currentSchedule = train.Schedules.FirstOrDefault();
 
             if (currentSchedule != null && !currentSchedule.IsDeparted && currentSchedule.Schedule.TwinScheduleArrival != null)
             {

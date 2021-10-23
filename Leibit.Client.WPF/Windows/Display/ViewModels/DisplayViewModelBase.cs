@@ -227,7 +227,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
             LeibitTime scheduledTime, expectedTime;
 
-            if (scheduleItem.Schedule.Handling == eHandling.Destination)
+            if (IsDestination(scheduleItem))
             {
                 scheduledTime = scheduleItem.Schedule.Arrival;
                 expectedTime = scheduleItem.LiveSchedule.ExpectedArrival;
