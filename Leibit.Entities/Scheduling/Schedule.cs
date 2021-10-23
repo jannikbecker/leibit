@@ -68,6 +68,8 @@ namespace Leibit.Entities.Scheduling
         }
 
         public string TrainType { get; set; }
+        public string Start { get; set; }
+        public string Destination { get; set; }
 
         public Station Station
         {
@@ -154,6 +156,10 @@ namespace Leibit.Entities.Scheduling
         }
 
         public bool IsUnscheduled { get; set; }
+
+        public Schedule TwinScheduleArrival { get; set; }
+        public Schedule TwinScheduleDeparture { get; set; }
+        public string SplitStation { get; set; }
 
         public LeibitTime Time
         {

@@ -186,6 +186,12 @@ namespace Leibit.BLL
                 delay.Reason = reason;
                 delay.CausedBy = causedBy;
 
+                if (delay.Type == eDelayType.Arrival && delay.Schedule.Schedule.TwinScheduleArrival != null)
+                    __SynchronizeDelayToTwinSchedule(delay, delay.Schedule.Schedule.TwinScheduleArrival);
+
+                if (delay.Type == eDelayType.Departure && delay.Schedule.Schedule.TwinScheduleDeparture != null)
+                    __SynchronizeDelayToTwinSchedule(delay, delay.Schedule.Schedule.TwinScheduleDeparture);
+
                 var Result = new OperationResult<bool>();
                 Result.Result = true;
                 Result.Succeeded = true;
@@ -227,6 +233,8 @@ namespace Leibit.BLL
 
                 var calculationResult = CalculationBLL.CalculateExpectedTimes(schedule.Train, schedule.Schedule.Station.ESTW);
                 ValidateResult(calculationResult);
+
+                __SynchronizeTwinSchedules(schedule.Train, schedule.Schedule.Station.ESTW);
 
                 var result = new OperationResult<bool>();
                 result.Result = true;
@@ -281,6 +289,8 @@ namespace Leibit.BLL
                     schedule.LiveTrack = null;
                 else
                     schedule.LiveTrack = track;
+
+                __SynchronizeTwinSchedules(schedule.Train, schedule.Schedule.Station.ESTW);
 
                 var result = new OperationResult<bool>();
                 result.Result = true;
@@ -338,6 +348,8 @@ namespace Leibit.BLL
                         schedule.IsPrepared = true;
                         break;
                 }
+
+                __SynchronizeTwinSchedules(schedule.Train, schedule.Schedule.Station.ESTW);
 
                 var result = new OperationResult<bool>();
                 result.Result = true;
@@ -704,6 +716,8 @@ namespace Leibit.BLL
             Train.LastModified = Estw.Time;
             Train.RealBlock = Block;
 
+            __SynchronizeTwinSchedules(Train, Estw);
+
             if (Train.PreviousService.HasValue && Estw.Area.LiveTrains.ContainsKey(Train.PreviousService.Value) && CurrentSchedule != null && CurrentSchedule.Schedule.Handling == eHandling.Start)
             {
                 var previousTrain = Estw.Area.LiveTrains[Train.PreviousService.Value];
@@ -713,6 +727,108 @@ namespace Leibit.BLL
                     __RefreshTrainInformation(previousTrain, Block, Estw);
                 }
             }
+        }
+
+        private void __SynchronizeTwinSchedules(TrainInformation train, ESTW estw)
+        {
+            var twinTrains = new List<TrainInformation>();
+
+            foreach (var schedule in train.Schedules)
+            {
+                if (schedule.Schedule.TwinScheduleArrival != null)
+                {
+                    var twinTrainNumber = schedule.Schedule.TwinScheduleArrival.Train.Number;
+                    var twinTrain = __GetOrCreateLiveTrainInformation(twinTrainNumber, estw);
+                    var twinSchedule = twinTrain.Schedules.FirstOrDefault(s => s.Schedule == schedule.Schedule.TwinScheduleArrival);
+
+                    if (twinSchedule != null && !twinSchedule.IsCancelled)
+                    {
+                        twinSchedule.IsArrived = schedule.IsArrived;
+                        twinSchedule.LiveArrival = schedule.LiveArrival;
+                        twinSchedule.ExpectedArrival = schedule.ExpectedArrival;
+                        twinSchedule.ExpectedDelayArrival = schedule.ExpectedDelayArrival;
+                        twinSchedule.LiveTrack = schedule.LiveTrack;
+                        twinTrain.LastModified = estw.Time;
+                        twinTrains.Add(twinTrain);
+                    }
+                }
+
+                if (schedule.Schedule.TwinScheduleDeparture != null)
+                {
+                    var twinTrainNumber = schedule.Schedule.TwinScheduleDeparture.Train.Number;
+                    var twinTrain = __GetOrCreateLiveTrainInformation(twinTrainNumber, estw);
+                    var twinSchedule = twinTrain.Schedules.FirstOrDefault(s => s.Schedule == schedule.Schedule.TwinScheduleDeparture);
+
+                    if (twinSchedule != null && !twinSchedule.IsCancelled)
+                    {
+                        twinSchedule.IsDeparted = schedule.IsDeparted;
+                        twinSchedule.LiveDeparture = schedule.LiveDeparture;
+                        twinSchedule.ExpectedDeparture = schedule.ExpectedDeparture;
+                        twinSchedule.ExpectedDelayDeparture = schedule.ExpectedDelayDeparture;
+                        twinSchedule.LiveTrack = schedule.LiveTrack;
+                        twinSchedule.IsComposed = schedule.IsComposed;
+                        twinSchedule.IsPrepared = schedule.IsPrepared;
+                        twinTrain.LastModified = estw.Time;
+                        twinTrains.Add(twinTrain);
+                    }
+                }
+            }
+
+            var currentSchedule = train.Schedules.LastOrDefault(s => s.IsArrived);
+
+            if (currentSchedule == null)
+                currentSchedule = train.Schedules.FirstOrDefault();
+
+            if (currentSchedule != null && !currentSchedule.IsDeparted && currentSchedule.Schedule.TwinScheduleArrival != null)
+            {
+                var twinTrainNumber = currentSchedule.Schedule.TwinScheduleArrival.Train.Number;
+                var twinTrain = __GetOrCreateLiveTrainInformation(twinTrainNumber, estw);
+                twinTrain.Block = train.Block;
+                twinTrain.Delay = train.Delay;
+                twinTrain.LastModified = estw.Time;
+                twinTrains.Add(twinTrain);
+            }
+
+            if (currentSchedule != null && currentSchedule.IsDeparted && currentSchedule.Schedule.TwinScheduleDeparture != null)
+            {
+                var twinTrainNumber = currentSchedule.Schedule.TwinScheduleDeparture.Train.Number;
+                var twinTrain = __GetOrCreateLiveTrainInformation(twinTrainNumber, estw);
+                twinTrain.Block = train.Block;
+                twinTrain.Delay = train.Delay;
+                twinTrain.LastModified = estw.Time;
+                twinTrains.Add(twinTrain);
+            }
+
+            foreach (var twinTrain in twinTrains.Distinct())
+                CalculationBLL.CalculateExpectedTimes(twinTrain, estw);
+        }
+
+        private void __SynchronizeDelayToTwinSchedule(DelayInfo delay, Schedule twinSchedule)
+        {
+            var twinTrainNumber = twinSchedule.Train.Number;
+            var twinTrain = __GetOrCreateLiveTrainInformation(twinTrainNumber, delay.Schedule.Schedule.Station.ESTW);
+            var twinLiveSchedule = twinTrain.Schedules.FirstOrDefault(s => s.Schedule == twinSchedule);
+
+            if (twinLiveSchedule != null && !twinLiveSchedule.IsCancelled)
+            {
+                var twinDelay = twinLiveSchedule.Delays.FirstOrDefault(d => d.Type == delay.Type);
+
+                if (twinDelay == null)
+                    twinDelay = twinLiveSchedule.AddDelay(delay.Minutes, delay.Type);
+
+                twinDelay.Reason = delay.Reason;
+                twinDelay.CausedBy = delay.CausedBy;
+            }
+        }
+
+        private TrainInformation __GetOrCreateLiveTrainInformation(int trainNumber, ESTW estw)
+        {
+            if (estw.Area.LiveTrains.ContainsKey(trainNumber))
+                return estw.Area.LiveTrains[trainNumber];
+
+            var train = __CreateLiveTrainInformation(trainNumber, estw);
+            train.CreatedOn = estw.Time;
+            return estw.Area.LiveTrains.GetOrAdd(trainNumber, train);
         }
 
         private void __RefreshLiveSchedules(TrainInformation Train, ESTW estw)

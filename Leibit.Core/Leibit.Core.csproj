@@ -18,6 +18,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Data\Areas.xml" />
+    <None Remove="Data\berlin\B-Stadtbahn.xml" />
     <None Remove="Data\nhth\FB.xml" />
     <None Remove="Data\nhth\FBHF.xml" />
     <None Remove="Data\nhth\FEL.xml" />
@@ -73,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Areas.xml" />
+    <EmbeddedResource Include="Data\berlin\B-Stadtbahn.xml" />
     <EmbeddedResource Include="Data\nhth\FB.xml" />
     <EmbeddedResource Include="Data\nhth\FBHF.xml" />
     <EmbeddedResource Include="Data\nhth\FEL.xml" />

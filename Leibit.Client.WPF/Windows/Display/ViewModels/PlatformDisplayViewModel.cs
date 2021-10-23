@@ -1,6 +1,7 @@
 ﻿using Leibit.Core.Common;
 using Leibit.Entities;
 using Leibit.Entities.Common;
+using Leibit.Entities.Scheduling;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -19,6 +20,14 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region - Properties -
+
+        #region [IsInTwinTrainMode]
+        public bool IsInTwinTrainMode
+        {
+            get => Get<bool>();
+            private set => Set(value);
+        }
+        #endregion
 
         #region [TrackName]
         public string TrackName
@@ -77,6 +86,30 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         {
             get => Get<string>();
             set => Set(value);
+        }
+        #endregion
+
+        #region [CurrentTrainDestinationSize]
+        public double CurrentTrainDestinationSize
+        {
+            get => Get<double>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [TimeSize]
+        public double TimeSize
+        {
+            get => Get<double>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [TrainNumberSize]
+        public double TrainNumberSize
+        {
+            get => Get<double>();
+            private set => Set(value);
         }
         #endregion
 
@@ -208,6 +241,38 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         public Visibility FollowingTrain2InfoVisibility => FollowingTrain2Info.IsNullOrWhiteSpace() ? Visibility.Collapsed : Visibility.Visible;
         #endregion
 
+        #region [TwinTrainVia]
+        public string TwinTrainVia
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [TwinTrainDestination]
+        public string TwinTrainDestination
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [TwinTrainTime]
+        public string TwinTrainTime
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [TwinTrainNumber]
+        public string TwinTrainNumber
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        #endregion
+
         #endregion
 
         #region - Overrides -
@@ -232,43 +297,100 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 var infoTexts = new List<string>();
                 var isDestination = IsDestination(currentItem);
                 var isCancelled = currentItem.LiveSchedule?.IsCancelled == true;
+                Schedule twinSchedule = null;
+                ScheduleItem twinScheduleItem = null;
                 CurrentTrainTime = __GetTime(currentItem);
                 CurrentTrainNumber = GetTrainNumber(currentItem);
 
+                if (currentItem.Schedule.TwinScheduleArrival != null)
+                {
+                    twinSchedule = currentItem.Schedule.TwinScheduleArrival;
+
+                    if (isDestination)
+                        IsInTwinTrainMode = true;
+                    else if (currentItem.Schedule.TwinScheduleDeparture == null)
+                    {
+                        IsInTwinTrainMode = true;
+                        infoTexts.Add("Zug wird hier geteilt");
+                    }
+                    else if (currentItem.Schedule.Destination != currentItem.Schedule.TwinScheduleDeparture.Destination || currentItem.Schedule.SplitStation.IsNotNullOrWhiteSpace())
+                    {
+                        IsInTwinTrainMode = true;
+
+                        if (currentItem.Schedule.SplitStation.IsNotNullOrWhiteSpace())
+                            infoTexts.Add($"Zug wird in {currentItem.Schedule.SplitStation} geteilt");
+                    }
+                    else
+                        IsInTwinTrainMode = false;
+                }
+                else if (currentItem.Schedule.TwinScheduleDeparture != null)
+                {
+                    twinSchedule = currentItem.Schedule.TwinScheduleDeparture;
+                    IsInTwinTrainMode = false;
+                }
+                else
+                    IsInTwinTrainMode = false;
+
+                if (twinSchedule != null)
+                {
+                    twinScheduleItem = candidates.FirstOrDefault(x => x.Schedule == twinSchedule);
+
+                    if (twinScheduleItem == null)
+                    {
+                        IsInTwinTrainMode = false;
+                        TwinTrainNumber = string.Empty;
+                    }
+                    else
+                    {
+                        TwinTrainNumber = GetTrainNumber(twinSchedule);
+                        orderedSchedules = candidates.Except(new List<ScheduleItem> { twinScheduleItem }).OrderBy(x => x.ReferenceTime);
+                    }
+                }
+                else
+                    TwinTrainNumber = string.Empty;
+
+                if (IsInTwinTrainMode)
+                    TwinTrainTime = __GetTime(twinScheduleItem);
+
                 if (isDestination && !isCancelled)
                 {
-                    int? followUpService = null;
+                    int? followUpService = __GetFollowUpService(currentItem);
 
-                    if (currentItem.Schedule.Handling == eHandling.Destination)
-                    {
-                        if (currentItem.LiveSchedule != null)
-                        {
-                            if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
-                                followUpService = currentItem.LiveSchedule.Train.FollowUpService;
-                        }
-                        else
-                            followUpService = currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
-                    }
-
-                    if (followUpService.HasValue && area.Trains.ContainsKey(followUpService.Value))
+                    if (followUpService.HasValue && area.Trains.ContainsKey(followUpService.Value) && !IsInTwinTrainMode)
                     {
                         var followUpTrain = area.Trains[followUpService.Value];
                         infoTexts.Add($"Dieser Zug endet hier und fährt weiter als {followUpTrain.Type} {followUpTrain.Number} nach {followUpTrain.Destination}");
                         Via = string.Empty;
-                        CurrentTrainDestination = $"von {currentItem.Schedule.Train.Start}";
+                        CurrentTrainDestination = $"von {currentItem.Schedule.Start}";
                     }
                     else
                     {
                         infoTexts.Add("Dieser Zug endet hier");
-                        Via = $"von {currentItem.Schedule.Train.Start}";
+                        Via = $"von {currentItem.Schedule.Start}";
                         CurrentTrainDestination = "Bitte nicht einsteigen";
+
+                        if (IsInTwinTrainMode)
+                        {
+                            TwinTrainVia = $"von {twinScheduleItem.Schedule.Start}";
+                            TwinTrainDestination = "Bitte nicht einsteigen";
+                        }
                     }
                 }
                 else
                 {
                     Via = GetViaString(currentItem, 12, 240);
                     CurrentTrainDestination = GetDestination(currentItem);
+
+                    if (IsInTwinTrainMode)
+                    {
+                        TwinTrainVia = GetViaString(twinScheduleItem, 12, 240);
+                        TwinTrainDestination = GetDestination(twinScheduleItem);
+                    }
                 }
+
+                CurrentTrainDestinationSize = IsInTwinTrainMode ? 20 : 24;
+                TimeSize = IsInTwinTrainMode ? 20 : 24;
+                TrainNumberSize = IsInTwinTrainMode ? 12 : 14;
 
                 if (!isCancelled)
                 {
@@ -399,6 +521,24 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
+        #region [__GetFollowUpService]
+        private int? __GetFollowUpService(ScheduleItem currentItem)
+        {
+            if (currentItem.Schedule.Handling == eHandling.Destination)
+            {
+                if (currentItem.LiveSchedule != null)
+                {
+                    if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
+                        return currentItem.LiveSchedule.Train.FollowUpService;
+                }
+                else
+                    return currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
+            }
+
+            return null;
+        }
+        #endregion
+
         #region [__ClearCurrentTrain]
         private void __ClearCurrentTrain()
         {
@@ -407,6 +547,8 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             CurrentTrainInfo = string.Empty;
             Via = string.Empty;
             CurrentTrainDestination = string.Empty;
+            TwinTrainNumber = string.Empty;
+            IsInTwinTrainMode = false;
         }
         #endregion
 

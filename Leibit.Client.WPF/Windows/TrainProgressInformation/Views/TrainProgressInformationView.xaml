@@ -166,8 +166,8 @@
             <controls:LeibitDataGridColumn Header="Zugstatus" FieldName="State" />
             <controls:LeibitDataGridColumn Header="Gleis" FieldName="Track.Name" />
             <controls:LeibitDataGridColumn Header="Abw. Gleis" FieldName="LiveTrack.Name" />
-            <controls:LeibitDataGridColumn Header="Start" FieldName="Schedule.Train.Start" />
-            <controls:LeibitDataGridColumn Header="Ziel" FieldName="Schedule.Train.Destination" />
+            <controls:LeibitDataGridColumn Header="Start" FieldName="Schedule.Start" />
+            <controls:LeibitDataGridColumn Header="Ziel" FieldName="Schedule.Destination" />
         </controls:LeibitDataGrid.Columns>
 
         <controls:LeibitDataGrid.DefaultLayout>
@@ -189,8 +189,8 @@
                     <entities:GridColumnSetting ColumnName="State" Position="13" Width="80"/>
                     <entities:GridColumnSetting ColumnName="Track.Name" Position="14" Width="50"/>
                     <entities:GridColumnSetting ColumnName="LiveTrack.Name" Position="15" Width="65"/>
-                    <entities:GridColumnSetting ColumnName="Schedule.Train.Start" Position="16" Width="120"/>
-                    <entities:GridColumnSetting ColumnName="Schedule.Train.Destination" Position="17" Width="120"/>
+                    <entities:GridColumnSetting ColumnName="Schedule.Start" Position="16" Width="120"/>
+                    <entities:GridColumnSetting ColumnName="Schedule.Destination" Position="17" Width="120"/>
                 </entities:GridSetting.ColumnSettings>
 
                 <entities:GridSetting.GroupedColumns>

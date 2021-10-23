@@ -15,8 +15,8 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
             CurrentTrain = schedule.Train;
             Type = schedule.TrainType;
             TrainNumber = schedule.Train.Number;
-            Start = schedule.Train.Start;
-            Destination = schedule.Train.Destination;
+            Start = schedule.Start;
+            Destination = schedule.Destination;
             Track = schedule.Track;
             Remark = schedule.Remark;
 

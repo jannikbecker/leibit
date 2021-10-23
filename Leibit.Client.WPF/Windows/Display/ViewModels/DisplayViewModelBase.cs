@@ -60,7 +60,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 return new List<ScheduleItem>();
             }
 
-            var schedules = schedulesResult.Result.Where(s => s.Handling == eHandling.Start || s.Handling == eHandling.StopPassengerTrain || s.Handling == eHandling.Destination);
+            var schedules = schedulesResult.Result.Where(s => s.Handling == eHandling.Start || s.Handling == eHandling.StopPassengerTrain || s.Handling == eHandling.StopFreightTrain || s.Handling == eHandling.Destination);
             var candidates = new List<ScheduleItem>();
 
             foreach (var schedule in schedules)
@@ -141,7 +141,12 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [GetTrainNumber]
         protected string GetTrainNumber(ScheduleItem scheduleItem)
         {
-            return $"{scheduleItem.Schedule.TrainType} {scheduleItem.Schedule.Train.Number}";
+            return GetTrainNumber(scheduleItem.Schedule);
+        }
+
+        protected string GetTrainNumber(Schedule schedule)
+        {
+            return $"{schedule.TrainType} {schedule.Train.Number}";
         }
         #endregion
 
@@ -222,7 +227,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
             LeibitTime scheduledTime, expectedTime;
 
-            if (scheduleItem.Schedule.Handling == eHandling.Destination)
+            if (IsDestination(scheduleItem))
             {
                 scheduledTime = scheduleItem.Schedule.Arrival;
                 expectedTime = scheduleItem.LiveSchedule.ExpectedArrival;
@@ -261,7 +266,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             if (scheduleItem.Schedule.Handling == eHandling.Destination)
                 return true;
 
-            if (scheduleItem.Schedule.Handling == eHandling.StopPassengerTrain)
+            if (scheduleItem.Schedule.Handling == eHandling.StopPassengerTrain || scheduleItem.Schedule.Handling == eHandling.StopFreightTrain)
             {
                 var schedulesResult = m_CalculationBll.GetSchedulesByTime(scheduleItem.Schedule.Train.Schedules, scheduleItem.Schedule.Station.ESTW.Time);
 
@@ -293,14 +298,14 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         protected string GetDestination(ScheduleItem scheduleItem)
         {
             if (IsDestination(scheduleItem))
-                return $"von {scheduleItem.Schedule.Train.Start}";
+                return $"von {scheduleItem.Schedule.Start}";
 
             var differingDestination = GetDifferingDestinationSchedule(scheduleItem);
 
             if (differingDestination != null)
                 return GetDisplayName(differingDestination.Station);
 
-            return scheduleItem.Schedule.Train.Destination;
+            return scheduleItem.Schedule.Destination;
         }
         #endregion
 
