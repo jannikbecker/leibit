@@ -7,7 +7,7 @@
     <UserControl.Resources>
         <conv:VisibilityConverter x:Key="VisibilityConverter"/>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,7 +19,7 @@
                       ItemsSource="{Binding GroupedColumns, ElementName=LeibitDataGridRoot}"
                       Visibility="{Binding CanGroup, ElementName=LeibitDataGridRoot, Converter={StaticResource VisibilityConverter}}"
                       Height="40">
-            
+
             <ItemsControl.Style>
                 <Style TargetType="ItemsControl">
                     <Setter Property="Background" Value="{Binding GroupingAreaBackground, ElementName=LeibitDataGridRoot}"/>
@@ -138,9 +138,10 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="DataGridColumnHeader">
-                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0.5,0,0.5,1">
-                                    <Grid>
-                                        <Path x:Name="SortArrow"
+                                <Grid>
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0.5,0,0.5,1">
+                                        <Grid>
+                                            <Path x:Name="SortArrow"
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Top"                                           
                                               Width="9" 
@@ -152,10 +153,24 @@
                                               Visibility="Collapsed"
                                               RenderTransformOrigin="0.5,0.5"
                                               Data="M 0 0 L 10 10 L 20 0 Z" />
-                                        
-                                        <ContentPresenter Margin="4"/>
-                                    </Grid>
-                                </Border>
+
+                                            <ContentPresenter Margin="4"/>
+                                        </Grid>
+                                    </Border>
+
+
+                                    <Thumb x:Name="PART_LeftHeaderGripper"
+                                           HorizontalAlignment="Left"
+                                           Width="8"
+                                           Opacity="0"
+                                           Cursor="SizeWE"/>
+                                    
+                                    <Thumb x:Name="PART_RightHeaderGripper"
+                                           HorizontalAlignment="Right"
+                                           Width="8"
+                                           Opacity="0"
+                                           Cursor="SizeWE"/>
+                                </Grid>
 
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="SortDirection" Value="Ascending">
@@ -183,7 +198,7 @@
                     </Setter>
                 </Style>
             </DataGrid.Resources>
-            
+
             <DataGrid.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.ContainerStyle>
