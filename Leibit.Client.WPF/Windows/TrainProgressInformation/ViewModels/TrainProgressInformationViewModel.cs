@@ -546,6 +546,9 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     return false;
             }
 
+            if (liveSchedule.Train.Schedules.All(s => !s.IsArrived) && liveSchedule.Train.LastModified < schedule.Station.ESTW.Time)
+                return false;
+
             return true;
         }
         #endregion
