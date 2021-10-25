@@ -569,7 +569,18 @@ namespace Leibit.BLL
 
                 if (Duplicate != null)
                 {
-                    new Schedule(Schedule.Train, Duplicate.Arrival, Schedule.Departure, Schedule.Track, Schedule.Days, Schedule.Direction, eHandling.StopPassengerTrain, Schedule.Remark, Schedule.LocalOrders);
+                    var NewSchedule = new Schedule(Schedule.Train, Duplicate.Arrival, Schedule.Departure, Schedule.Track, Schedule.Days, Schedule.Direction, eHandling.StopPassengerTrain, Schedule.Remark, Schedule.LocalOrders);
+                    NewSchedule.Start = Duplicate.Start;
+                    NewSchedule.Destination = Schedule.Destination;
+                    NewSchedule.IsPassengerDestination = Duplicate.TrainType.IsPassengerTrain() && !Schedule.TrainType.IsPassengerTrain();
+
+                    if (Schedule.TrainType.IsPassengerTrain())
+                        NewSchedule.TrainType = Schedule.TrainType;
+                    else if (Duplicate.TrainType.IsPassengerTrain())
+                        NewSchedule.TrainType = Duplicate.TrainType;
+                    else
+                        NewSchedule.TrainType = Schedule.TrainType;
+
                     schedules.Remove(Schedule);
                     schedules.Remove(Duplicate);
                     Schedule.Train.RemoveSchedule(Duplicate);

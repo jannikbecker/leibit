@@ -266,7 +266,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [IsDestination]
         protected bool IsDestination(ScheduleItem scheduleItem, bool considerCancellations = true)
         {
-            if (scheduleItem.Schedule.Handling == eHandling.Destination)
+            if (scheduleItem.Schedule.Handling == eHandling.Destination || scheduleItem.Schedule.IsPassengerDestination)
                 return true;
 
             if (scheduleItem.Schedule.Handling == eHandling.StopPassengerTrain || scheduleItem.Schedule.Handling == eHandling.StopFreightTrain)

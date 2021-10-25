@@ -156,6 +156,7 @@ namespace Leibit.Entities.Scheduling
         }
 
         public bool IsUnscheduled { get; set; }
+        public bool IsPassengerDestination { get; set; }
 
         public Schedule TwinScheduleArrival { get; set; }
         public Schedule TwinScheduleDeparture { get; set; }
