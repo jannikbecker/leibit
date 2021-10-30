@@ -448,13 +448,18 @@ namespace Leibit.BLL
                         string sSpeed = Parts[4];
                         string sDirection = Parts[5];
 
-                        if (sTrainNumber.Length > 5)
-                            sTrainNumber = sTrainNumber.Substring(sTrainNumber.Length - 5);
-
                         int TrainNumber, Delay;
 
                         if (!Int32.TryParse(sTrainNumber, out TrainNumber) || !Int32.TryParse(sDelay, out Delay) || (sDirection != "L" && sDirection != "R"))
                             continue;
+
+                        // Special codes, i.e. 0F0F0 results in 1000002 --> ignore that
+                        if (TrainNumber >= 1_000_000)
+                            continue;
+
+                        // Cut the first digit, i.e. routing digit
+                        if (TrainNumber >= 100_000)
+                            TrainNumber = TrainNumber % 100_000;
 
                         if (Delay == 99)
                             Delay = 0;
