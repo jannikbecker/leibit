@@ -269,27 +269,16 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             }
             else
             {
+                var liveSchedule = SelectedItem.CurrentTrain?.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == SelectedItem.Schedule.Station.ShortSymbol && s.Schedule.Time == SelectedItem.Schedule.Time);
+
                 ShowTrainScheduleCommand.SetCanExecute(true);
                 DeleteCommand.SetCanExecute(true);
                 ShowTrainCompositionCommand.SetCanExecute(SelectedItem.Schedule.Train.Composition.IsNotNullOrWhiteSpace());
                 ShowLocalOrdersCommand.SetCanExecute(SelectedItem.Schedule.LocalOrders.IsNotNullOrWhiteSpace());
-
-                if (SelectedItem.CurrentTrain == null)
-                {
-                    EnterExpectedDelayCommand.SetCanExecute(false);
-                    ShowTrackChangeCommand.SetCanExecute(false);
-                    ShowDelayJustificationCommand.SetCanExecute(false);
-                    EnterTrainStateCommand.SetCanExecute(false);
-                }
-                else
-                {
-                    var liveSchedule = SelectedItem.CurrentTrain.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == SelectedItem.Schedule.Station.ShortSymbol && s.Schedule.Time == SelectedItem.Schedule.Time);
-
-                    EnterExpectedDelayCommand.SetCanExecute(SelectedItem.Schedule.Handling != eHandling.Destination && SelectedItem.State != "beendet");
-                    ShowTrackChangeCommand.SetCanExecute(liveSchedule != null && !liveSchedule.IsArrived && (SelectedItem.Schedule.Track == null || SelectedItem.Schedule.Track.IsPlatform));
-                    ShowDelayJustificationCommand.SetCanExecute(SelectedItem.DelayInfo == 'U');
-                    EnterTrainStateCommand.SetCanExecute(liveSchedule.IsArrived && !liveSchedule.IsDeparted);
-                }
+                EnterExpectedDelayCommand.SetCanExecute(SelectedItem.State != "beendet");
+                ShowTrackChangeCommand.SetCanExecute((liveSchedule == null || !liveSchedule.IsArrived) && (SelectedItem.Schedule.Track == null || SelectedItem.Schedule.Track.IsPlatform));
+                ShowDelayJustificationCommand.SetCanExecute(SelectedItem.DelayInfo == 'U');
+                EnterTrainStateCommand.SetCanExecute(liveSchedule != null && liveSchedule.IsArrived && !liveSchedule.IsDeparted);
             }
         }
         #endregion
@@ -313,7 +302,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __EnterExpectedDelay()
         {
             var window = new ExpectedDelayView(SelectedItem.TrainNumber);
-            var vm = new ExpectedDelayViewModel(SelectedItem.CurrentTrain, SelectedItem.Schedule);
+            var vm = new ExpectedDelayViewModel(m_Area, SelectedItem.CurrentTrain, SelectedItem.Schedule);
             OnOpenWindow(vm, window);
         }
         #endregion
@@ -322,7 +311,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __ShowTrackChange()
         {
             var Window = new TrackChangeView(SelectedItem.TrainNumber);
-            var VM = new TrackChangeViewModel(SelectedItem.CurrentTrain, SelectedItem.Schedule);
+            var VM = new TrackChangeViewModel(m_Area, SelectedItem.CurrentTrain, SelectedItem.Schedule);
             OnOpenWindow(VM, Window);
         }
         #endregion
@@ -494,6 +483,9 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 return false;
             }
 
+            if (liveSchedule.IsCancelled)
+                return false;
+
             var liveScheduleIndex = liveSchedule.Train.Schedules.IndexOf(liveSchedule);
             var nextSchedules = liveSchedule.Train.Schedules.Skip(liveScheduleIndex + 1);
 
@@ -553,6 +545,9 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 if ((referenceTime - schedule.Station.ESTW.Time).TotalMinutes > settings.LeadTime)
                     return false;
             }
+
+            if (liveSchedule.Train.Schedules.All(s => !s.IsArrived) && liveSchedule.Train.LastModified < schedule.Station.ESTW.Time)
+                return false;
 
             return true;
         }

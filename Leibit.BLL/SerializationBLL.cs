@@ -106,6 +106,7 @@ namespace Leibit.BLL
                     SerializedTrain.LastModified = Train.LastModified;
                     SerializedTrain.CreatedOn = Train.CreatedOn;
                     SerializedTrain.TrainDirection = Train.Direction;
+                    SerializedTrain.IsDestinationStationCancelled = Train.IsDestinationStationCancelled;
 
                     foreach (var block in Train.BlockHistory)
                     {
@@ -135,9 +136,11 @@ namespace Leibit.BLL
                         SerializedSchedule.IsDeparted = Schedule.IsDeparted;
                         SerializedSchedule.ExpectedArrival = Schedule.ExpectedArrival;
                         SerializedSchedule.ExpectedDeparture = Schedule.ExpectedDeparture;
-                        SerializedSchedule.ExpectedDelay = Schedule.ExpectedDelay;
+                        SerializedSchedule.ExpectedDelayArrival = Schedule.ExpectedDelayArrival;
+                        SerializedSchedule.ExpectedDelayDeparture = Schedule.ExpectedDelayDeparture;
                         SerializedSchedule.IsComposed = Schedule.IsComposed;
                         SerializedSchedule.IsPrepared = Schedule.IsPrepared;
+                        SerializedSchedule.IsCancelled = Schedule.IsCancelled;
 
                         if (Schedule.LiveTrack != null)
                             SerializedSchedule.LiveTrack = Schedule.LiveTrack.Name;
@@ -242,6 +245,7 @@ namespace Leibit.BLL
                     LiveTrain.LastModified = SerializedTrain.LastModified;
                     LiveTrain.CreatedOn = SerializedTrain.CreatedOn;
                     LiveTrain.Direction = SerializedTrain.TrainDirection;
+                    LiveTrain.IsDestinationStationCancelled = SerializedTrain.IsDestinationStationCancelled;
 
                     if (SerializedTrain.BlockHistory != null)
                     {
@@ -278,9 +282,21 @@ namespace Leibit.BLL
                         LiveSchedule.IsDeparted = SerializedSchedule.IsDeparted;
                         LiveSchedule.ExpectedArrival = SerializedSchedule.ExpectedArrival;
                         LiveSchedule.ExpectedDeparture = SerializedSchedule.ExpectedDeparture;
-                        LiveSchedule.ExpectedDelay = SerializedSchedule.ExpectedDelay;
                         LiveSchedule.IsComposed = SerializedSchedule.IsComposed;
                         LiveSchedule.IsPrepared = SerializedSchedule.IsPrepared;
+                        LiveSchedule.IsCancelled = SerializedSchedule.IsCancelled;
+
+                        if (SerializedSchedule.ExpectedDelay.HasValue)
+                        {
+                            // Ensure compatibility
+                            LiveSchedule.ExpectedDelayDeparture = SerializedSchedule.ExpectedDelay;
+                        }
+                        else
+                        {
+                            LiveSchedule.ExpectedDelayArrival = SerializedSchedule.ExpectedDelayArrival;
+                            LiveSchedule.ExpectedDelayDeparture = SerializedSchedule.ExpectedDelayDeparture;
+
+                        }
 
                         if (SerializedSchedule.LiveTrack.IsNotNullOrEmpty())
                             LiveSchedule.LiveTrack = Schedule.Station.Tracks.SingleOrDefault(t => t.Name == SerializedSchedule.LiveTrack);
@@ -299,6 +315,15 @@ namespace Leibit.BLL
 
                         LiveTrain.AddSchedule(LiveSchedule);
                     }
+
+                    // Don't validate result here. When this fails, it's not so dramatic...
+                    var prevResult = CalculationBll.GetPreviousService(Train, Estw);
+                    if (prevResult.Succeeded)
+                        LiveTrain.PreviousService = prevResult.Result;
+
+                    var followUpResult = CalculationBll.GetFollowUpService(Train, Estw);
+                    if (followUpResult.Succeeded)
+                        LiveTrain.FollowUpService = followUpResult.Result;
 
                     if (LiveTrain.Schedules.Any())
                         Area.LiveTrains.TryAdd(Train.Number, LiveTrain);

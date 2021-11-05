@@ -55,4 +55,8 @@
     <estw id="KW" name="Wuppertal Hbf" dataFile="leibit_WUPPERTAL HBF.dat" infrastructureManager="DB" />
     <estw id="KWO" name="Wuppertal-Oberbarmen" dataFile="leibit_W-OBERBARMEN.dat" infrastructureManager="DB" />
   </area>
+
+  <area id="berlin" name="Berlin">
+    <estw id="B-Stadtbahn" name="Berlin-Stadtbahn" dataFile="leibit_B-STADTBAHN.dat" infrastructureManager="DB"/>
+  </area>
 </leibit>

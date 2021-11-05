@@ -462,4 +462,7 @@
     <BitmapImage x:Key="imgFlash" UriSource="/Leibit;component/Resources/Images/Dark/flash.png" />
     <BitmapImage x:Key="imgSaveLayout" UriSource="/Leibit;component/Resources/Images/Dark/save_layout.png" />
     <BitmapImage x:Key="imgDisplay" UriSource="/Leibit;component/Resources/Images/Dark/display.png" />
+    <BitmapImage x:Key="imgEdit" UriSource="/Leibit;component/Resources/Images/Dark/edit.png" />
+    <BitmapImage x:Key="imgDelay" UriSource="/Leibit;component/Resources/Images/Dark/delay.png" />
+    <BitmapImage x:Key="imgTrain" UriSource="/Leibit;component/Resources/Images/Dark/train.png" />
 </ResourceDictionary>

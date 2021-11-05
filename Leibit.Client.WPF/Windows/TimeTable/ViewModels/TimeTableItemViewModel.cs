@@ -13,10 +13,10 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
         public TimeTableItemViewModel(Schedule schedule)
         {
             CurrentTrain = schedule.Train;
-            Type = schedule.Train.Type;
+            Type = schedule.TrainType;
             TrainNumber = schedule.Train.Number;
-            Start = schedule.Train.Start;
-            Destination = schedule.Train.Destination;
+            Start = schedule.Start;
+            Destination = schedule.Destination;
             Track = schedule.Track;
             Remark = schedule.Remark;
 

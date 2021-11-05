@@ -8,9 +8,7 @@ using Leibit.Tests.Comparer;
 using Leibit.Tests.ExpectedData;
 using Leibit.Tests.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace Leibit.Tests
@@ -2067,12 +2065,49 @@ namespace Leibit.Tests
             liveTrain.AddSchedule(liveSchedule);
 
             var bll = new LiveDataBLL();
-            var result = bll.SetExpectedDelay(liveSchedule, 5);
+            var result = bll.SetExpectedDelay(liveSchedule, 6, 5);
             DefaultChecks.IsOperationSucceeded(result);
             Assert.IsTrue(result.Result);
-            Assert.AreEqual(new LeibitTime(eDaysOfService.Monday, 20, 36), liveSchedule.ExpectedArrival);
+            Assert.AreEqual(new LeibitTime(eDaysOfService.Monday, 20, 42), liveSchedule.ExpectedArrival);
             Assert.AreEqual(new LeibitTime(eDaysOfService.Monday, 20, 43), liveSchedule.ExpectedDeparture);
-            Assert.AreEqual(5, liveSchedule.ExpectedDelay);
+            Assert.AreEqual(6, liveSchedule.ExpectedDelayArrival);
+            Assert.AreEqual(5, liveSchedule.ExpectedDelayDeparture);
+        }
+        #endregion
+
+        #region [LiveDataBLLTest_SetExpectedTimes_AlreadyArrived]
+        [TestMethod]
+        public void LiveDataBLLTest_SetExpectedTimes_AlreadyArrived()
+        {
+            var train = new Train(65432);
+            var liveTrain = new TrainInformation(train);
+
+            var estw = new ESTW("Test", "Test", string.Empty, null);
+            estw.Time = new LeibitTime(eDaysOfService.Monday, 20, 30);
+
+            var station = new Station("Testbahnhof", "JTST", 333, string.Empty, string.Empty, estw);
+            var track = new Track("1", true, true, station, null);
+
+            var schedule = new Schedule(train,
+                                        arrival: new LeibitTime(eDaysOfService.Monday, 20, 36),
+                                        departure: new LeibitTime(eDaysOfService.Monday, 20, 38),
+                                        track,
+                                        days: new List<eDaysOfService> { eDaysOfService.Monday },
+                                        direction: eScheduleDirection.LeftToRight,
+                                        handling: eHandling.Transit,
+                                        remark: string.Empty);
+
+            var liveSchedule = new LiveSchedule(liveTrain, schedule);
+            liveSchedule.IsArrived = true;
+            liveSchedule.LiveArrival = new LeibitTime(eDaysOfService.Monday, 20, 35);
+            liveTrain.AddSchedule(liveSchedule);
+
+            var bll = new LiveDataBLL();
+            var result = bll.SetExpectedDelay(liveSchedule, 6, 5);
+            DefaultChecks.IsOperationNotSucceeded(result);
+            Assert.IsTrue(result.Message.Contains("Die Ankunftsverspätung kann nicht gesetzt werden, da der Zug 65432 die Betriebsstelle JTST bereits erreicht hat."));
+            Assert.IsNull(liveSchedule.ExpectedDelayArrival);
+            Assert.IsNull(liveSchedule.ExpectedDelayDeparture);
         }
         #endregion
 
@@ -2106,43 +2141,11 @@ namespace Leibit.Tests
             liveTrain.AddSchedule(liveSchedule);
 
             var bll = new LiveDataBLL();
-            var result = bll.SetExpectedDelay(liveSchedule, 5);
+            var result = bll.SetExpectedDelay(liveSchedule, 6, 5);
             DefaultChecks.IsOperationNotSucceeded(result);
             Assert.IsTrue(result.Message.Contains("Der Zug 65432 hat die Betriebsstelle JTST bereits verlassen."));
-            Assert.IsNull(liveSchedule.ExpectedDelay);
-        }
-        #endregion
-
-        #region [LiveDataBLLTest_SetExpectedTimes_Destination]
-        [TestMethod]
-        public void LiveDataBLLTest_SetExpectedTimes_Destination()
-        {
-            var train = new Train(65432);
-            var liveTrain = new TrainInformation(train);
-
-            var estw = new ESTW("Test", "Test", string.Empty, null);
-            estw.Time = new LeibitTime(eDaysOfService.Monday, 20, 30);
-
-            var station = new Station("Testbahnhof", "JTST", 333, string.Empty, string.Empty, estw);
-            var track = new Track("1", true, true, station, null);
-
-            var schedule = new Schedule(train,
-                                        arrival: new LeibitTime(eDaysOfService.Monday, 20, 36),
-                                        departure: new LeibitTime(eDaysOfService.Monday, 20, 38),
-                                        track,
-                                        days: new List<eDaysOfService> { eDaysOfService.Monday },
-                                        direction: eScheduleDirection.LeftToRight,
-                                        handling: eHandling.Destination,
-                                        remark: string.Empty);
-
-            var liveSchedule = new LiveSchedule(liveTrain, schedule);
-            liveTrain.AddSchedule(liveSchedule);
-
-            var bll = new LiveDataBLL();
-            var result = bll.SetExpectedDelay(liveSchedule, 5);
-            DefaultChecks.IsOperationNotSucceeded(result);
-            Assert.IsTrue(result.Message.Contains("Der Zug 65432 endet in JTST."));
-            Assert.IsNull(liveSchedule.ExpectedDelay);
+            Assert.IsNull(liveSchedule.ExpectedDelayArrival);
+            Assert.IsNull(liveSchedule.ExpectedDelayDeparture);
         }
         #endregion
 

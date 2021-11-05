@@ -25,6 +25,11 @@ namespace Leibit.BLL
         private object m_LockXml = new object();
         #endregion
 
+        #region - Const -
+        private const string SPLIT_STATION_REGEX1 = @"\[{0}>\[{1}> bis ([\w\s\-\(\)]+)";
+        private const string SPLIT_STATION_REGEX2 = @"<{0}\]<{1}\] bis ([\w\s\-\(\)]+)";
+        #endregion
+
         #region - Ctor -
         public InitializationBLL()
             : base()
@@ -202,6 +207,7 @@ namespace Leibit.BLL
                             {
                                 __GetSchedule(Station, PathResult.Result);
                                 __ResolveDuplicates(Station.Schedules);
+                                __DetectTwinSchedules(Station.Schedules);
                                 __GetLocalOrders(Station, PathResult.Result);
                             }
 
@@ -219,8 +225,10 @@ namespace Leibit.BLL
                 }
 
                 if (PathResult.Result.IsNotNullOrWhiteSpace())
+                {
                     __LoadTrainCompositions(Estw, PathResult.Result);
-
+                    __LoadTrainRelations(Estw, PathResult.Result);
+                }
                 Estw.SchedulesLoaded = PathResult.Result.IsNotNullOrWhiteSpace();
                 Estw.IsLoaded = true;
                 return Result;
@@ -454,13 +462,7 @@ namespace Leibit.BLL
                     if (tracks.Any() && !tracks.Contains(sTrack))
                         continue;
 
-                    Train Train = station.ESTW.Area.Trains.AddOrUpdate(TrainNr, new Train(TrainNr, Type, Start, Destination), (trainNo, existingTrain) =>
-                    {
-                        existingTrain.Type = Type;
-                        existingTrain.Start = Start;
-                        existingTrain.Destination = Destination;
-                        return existingTrain;
-                    });
+                    var Train = station.ESTW.Area.Trains.GetOrAdd(TrainNr, new Train(TrainNr, Type, Start, Destination));
 
                     int Hour;
                     if (!Int32.TryParse(sHour, out Hour))
@@ -539,7 +541,14 @@ namespace Leibit.BLL
                     if (Track == null)
                         Track = new Track(sTrack, true, false, station, null);
 
-                    new Schedule(Train, Arrival, Departure, Track, Days, Direction, Handling, Remark);
+                    var schedule = new Schedule(Train, Arrival, Departure, Track, Days, Direction, Handling, Remark);
+                    schedule.TrainType = Type;
+                    schedule.Start = Start;
+                    schedule.Destination = Destination;
+
+                    Train.Type = Train.Schedules.Select(s => s.TrainType).FirstOrDefault(t => t.IsPassengerTrain()) ?? Type;
+                    Train.Start = Train.Schedules.OrderBy(s => s.Time).First().Start;
+                    Train.Destination = Train.Schedules.OrderBy(s => s.Time).Last().Destination;
                 }
             }
         }
@@ -560,13 +569,97 @@ namespace Leibit.BLL
 
                 if (Duplicate != null)
                 {
-                    new Schedule(Schedule.Train, Duplicate.Arrival, Schedule.Departure, Schedule.Track, Schedule.Days, Schedule.Direction, eHandling.StopPassengerTrain, Schedule.Remark, Schedule.LocalOrders);
+                    var NewSchedule = new Schedule(Schedule.Train, Duplicate.Arrival, Schedule.Departure, Schedule.Track, Schedule.Days, Schedule.Direction, eHandling.StopPassengerTrain, Schedule.Remark, Schedule.LocalOrders);
+                    NewSchedule.Start = Duplicate.Start;
+                    NewSchedule.Destination = Schedule.Destination;
+                    NewSchedule.IsPassengerDestination = Duplicate.TrainType.IsPassengerTrain() && !Schedule.TrainType.IsPassengerTrain();
+
+                    if (Schedule.TrainType.IsPassengerTrain())
+                        NewSchedule.TrainType = Schedule.TrainType;
+                    else if (Duplicate.TrainType.IsPassengerTrain())
+                        NewSchedule.TrainType = Duplicate.TrainType;
+                    else
+                        NewSchedule.TrainType = Schedule.TrainType;
+
                     schedules.Remove(Schedule);
                     schedules.Remove(Duplicate);
                     Schedule.Train.RemoveSchedule(Duplicate);
                     Schedule.Train.RemoveSchedule(Schedule);
                 }
             }
+        }
+        #endregion
+
+        #region [__DetectTwinSchedules]
+        private void __DetectTwinSchedules(List<Schedule> schedules)
+        {
+            var twinSchedulesArrival = schedules.Where(s => s.Arrival != null).GroupBy(s => new { Track = s.Track, Arrival = s.Arrival, Handling = s.Handling, Days = s.Days.Sum(d => (int)d) }).Where(g => g.Count() == 2);
+
+            foreach (var pair in twinSchedulesArrival)
+            {
+                var schedule1 = pair.ElementAt(0);
+                var schedule2 = pair.ElementAt(1);
+                schedule1.TwinScheduleArrival = schedule2;
+                schedule2.TwinScheduleArrival = schedule1;
+            }
+
+            var twinSchedulesDeparture = schedules.Where(s => s.Departure != null).GroupBy(s => new { Track = s.Track, Departure = s.Departure, Handling = s.Handling, Days = s.Days.Sum(d => (int)d) }).Where(g => g.Count() == 2);
+
+            foreach (var pair in twinSchedulesDeparture)
+            {
+                var schedule1 = pair.ElementAt(0);
+                var schedule2 = pair.ElementAt(1);
+                schedule1.TwinScheduleDeparture = schedule2;
+                schedule2.TwinScheduleDeparture = schedule1;
+
+                if (schedule1.Handling == eHandling.Transit)
+                {
+                    schedule1.TwinScheduleArrival = schedule2;
+                    schedule2.TwinScheduleArrival = schedule1;
+                }
+
+                var trainNumber1 = schedule1.Train.Number;
+                var trainNumber2 = schedule2.Train.Number;
+
+                if (__TryGetSplitStation(trainNumber1, trainNumber2, schedule1.Remark, out var splitSpation1)
+                    && __TryGetSplitStation(trainNumber1, trainNumber2, schedule2.Remark, out var splitSpation2)
+                    && splitSpation1 == splitSpation2)
+                {
+                    schedule1.SplitStation = splitSpation1;
+                    schedule2.SplitStation = splitSpation2;
+                }
+            }
+        }
+        #endregion
+
+        #region [__TryGetSplitStation]
+        private bool __TryGetSplitStation(int trainNumber1, int trainNumber2, string remark, out string splitStation)
+        {
+            if (__TryGetSplitStation(string.Format(SPLIT_STATION_REGEX1, trainNumber1, trainNumber2), remark, out splitStation))
+                return true;
+            if (__TryGetSplitStation(string.Format(SPLIT_STATION_REGEX1, trainNumber2, trainNumber1), remark, out splitStation))
+                return true;
+            if (__TryGetSplitStation(string.Format(SPLIT_STATION_REGEX2, trainNumber1, trainNumber2), remark, out splitStation))
+                return true;
+            if (__TryGetSplitStation(string.Format(SPLIT_STATION_REGEX2, trainNumber2, trainNumber1), remark, out splitStation))
+                return true;
+
+            return false;
+        }
+
+        private bool __TryGetSplitStation(string regex, string remark, out string splitStation)
+        {
+            splitStation = string.Empty;
+            var match = Regex.Match(remark, regex);
+
+            if (match == null || !match.Success)
+                return false;
+
+            if (match.Groups.Count < 2 || !match.Groups[1].Success)
+                return false;
+
+            splitStation = match.Groups[1].Value;
+            return true;
         }
         #endregion
 
@@ -607,18 +700,16 @@ namespace Leibit.BLL
                     }
                     else
                     {
-                        var LineParts = Regex.Split(Line, @"\s");
+                        var LineParts = Regex.Split(Line.Trim(), @"\s");
+                        var TrainNumber = 0;
 
-                        if (LineParts[0].IsNotNullOrEmpty())
+                        if ((LineParts.Any() && int.TryParse(LineParts[0], out TrainNumber)) || !Regex.IsMatch(Line, @"^\s"))
                         {
-                            // Line does not start with whitespace
+                            // Line does not start with whitespace or a new train number was found
                             __SetLocalOrders(station, CurrentTrainNumber, Content.ToString());
-                            CurrentTrainNumber = 0;
+                            CurrentTrainNumber = TrainNumber;
                             Content = new StringBuilder();
                         }
-
-                        if (int.TryParse(LineParts[0], out int TrainNumber))
-                            CurrentTrainNumber = TrainNumber;
                     }
 
                     Content.AppendLine(Line);
@@ -670,8 +761,83 @@ namespace Leibit.BLL
                         estw.Area.Trains[trainNumber].Composition = content;
                 }
             }
-            #endregion
         }
+        #endregion
+
+        #region [__LoadTrainRelations]
+        private void __LoadTrainRelations(ESTW estw, string path)
+        {
+            var routingFilesPath = Path.Combine(path, Constants.TRAIN_ROUTING_FOLDER);
+
+            if (!Directory.Exists(routingFilesPath))
+                return;
+
+            foreach (var file in Directory.EnumerateFiles(routingFilesPath, "*.znu"))
+            {
+                using (var fileReader = File.OpenText(file))
+                {
+                    while (!fileReader.EndOfStream)
+                    {
+                        var line = fileReader.ReadLine();
+                        var parts = line.Split(' ');
+
+                        if (parts.Length < 2)
+                            continue;
+
+                        var sFromTrainNumber = parts[0];
+                        var sToTrainNumber = parts[1];
+                        string sFromDay, sToDay;
+
+                        if (parts.Length >= 4)
+                        {
+                            sFromDay = parts[2];
+                            sToDay = parts[3];
+                        }
+                        else
+                        {
+                            sFromDay = "1"; // Monday
+                            sToDay = "7"; // Sunday
+                        }
+
+                        if (!int.TryParse(sFromTrainNumber, out var fromTrainNumber)
+                            || !int.TryParse(sToTrainNumber, out var toTrainNumber)
+                            || !estw.Area.Trains.ContainsKey(fromTrainNumber)
+                            || !estw.Area.Trains.ContainsKey(toTrainNumber)
+                            || !LeibitTime.TryParseSingleDay(sFromDay, out var fromDay)
+                            || !LeibitTime.TryParseSingleDay(sToDay, out var toDay))
+                        {
+                            continue;
+                        }
+
+                        var daysOfService = new List<eDaysOfService>();
+
+                        for (int i = (int)fromDay; i != (int)toDay;)
+                        {
+                            daysOfService.Add((eDaysOfService)i);
+
+                            i *= 2;
+
+                            if (i > 64)
+                                i = 1;
+                        }
+
+                        daysOfService.Add(toDay);
+
+                        var fromTrain = estw.Area.Trains[fromTrainNumber];
+                        var toTrain = estw.Area.Trains[toTrainNumber];
+
+                        var trainRelation = new TrainRelation(toTrainNumber);
+                        trainRelation.Days.AddRange(daysOfService);
+                        fromTrain.FollowUpServices.Add(trainRelation);
+
+                        trainRelation = new TrainRelation(fromTrainNumber);
+                        trainRelation.Days.AddRange(daysOfService);
+                        toTrain.PreviousServices.Add(trainRelation);
+                    }
+                }
+            }
+        }
+        #endregion
 
         #region [__AreSchedulesClose]
         private bool __AreSchedulesClose(Schedule schedule1, Schedule schedule2)

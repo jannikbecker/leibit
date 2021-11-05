@@ -103,15 +103,14 @@ namespace Leibit.Entities.LiveData
             set;
         }
 
-        public int? ExpectedDelay
-        {
-            get;
-            set;
-        }
+        public int? ExpectedDelayArrival { get; set; }
+        public int? ExpectedDelayDeparture { get; set; }
 
         public bool IsComposed { get; set; }
 
         public bool IsPrepared { get; set; }
+
+        public bool IsCancelled { get; set; }
 
         public ReadOnlyCollection<DelayInfo> Delays
         {
