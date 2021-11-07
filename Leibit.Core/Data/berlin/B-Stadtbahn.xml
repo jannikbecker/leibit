@@ -78,7 +78,7 @@
     </track>
   </station>
 
-  <station name="Berlin Alexanderplatz Hp" short="BALEF" refNr="13" scheduleFile="b13_____.abf" displayName="B Alexanderplatz">
+  <station name="Berlin Alexanderplatz Hp" short="BALEF" refNr="12" scheduleFile="b12_____.abf" displayName="B Alexanderplatz">
     <track name="1" calculateDelay="false">
       <block name="12B12"/>
     </track>
