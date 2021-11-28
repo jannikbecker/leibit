@@ -273,11 +273,11 @@
   </station>
 
   <station name="Vils" short="XAV" refNr="7" scheduleFile="g7______.abf" localOrderFile="bf7_____.abf">
-    <track name="001">
-      <block name="07G001"/>
+    <track name="201">
+      <block name="07G201"/>
     </track>
-    <track name="003">
-      <block name="07G003"/>
+    <track name="203">
+      <block name="07G203"/>
     </track>
   </station>
 
@@ -294,17 +294,17 @@
   </station>
 
   <station name="Reutte in Tirol" short="XART" refNr="8" scheduleFile="g8______.abf" localOrderFile="bf8_____.abf">
-    <track name="001" displayName="1">
-      <block name="08G001"/>
+    <track name="201" displayName="1">
+      <block name="08G201"/>
     </track>
-    <track name="002" displayName="2">
-      <block name="08G002"/>
+    <track name="202" displayName="2">
+      <block name="08G202"/>
     </track>
-    <track name="003" displayName="3">
-      <block name="08G003"/>
+    <track name="203" displayName="3">
+      <block name="08G203"/>
     </track>
-    <track name="004" displayName="4">
-      <block name="08G004"/>
+    <track name="204" displayName="4">
+      <block name="08G204"/>
     </track>
   </station>
 
