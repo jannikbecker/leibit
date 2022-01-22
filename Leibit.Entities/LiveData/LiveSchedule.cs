@@ -112,6 +112,8 @@ namespace Leibit.Entities.LiveData
 
         public bool IsCancelled { get; set; }
 
+        public bool IsManuallyModified { get; set; }
+
         public ReadOnlyCollection<DelayInfo> Delays
         {
             get

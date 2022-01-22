@@ -231,6 +231,8 @@ namespace Leibit.BLL
                 if (expectedDelayDeparture.HasValue)
                     schedule.ExpectedDelayDeparture = expectedDelayDeparture;
 
+                schedule.IsManuallyModified = true;
+
                 var calculationResult = CalculationBLL.CalculateExpectedTimes(schedule.Train, schedule.Schedule.Station.ESTW);
                 ValidateResult(calculationResult);
 
@@ -289,6 +291,8 @@ namespace Leibit.BLL
                     schedule.LiveTrack = null;
                 else
                     schedule.LiveTrack = track;
+
+                schedule.IsManuallyModified = true;
 
                 __SynchronizeTwinSchedules(schedule.Train, schedule.Schedule.Station.ESTW);
 
