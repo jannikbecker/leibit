@@ -117,7 +117,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     if (referenceTime > currentTime.AddMinutes(leadMinutes))
                         continue;
 
-                    if (liveSchedule.Train.Schedules.All(s => !s.IsArrived) && liveSchedule.Train.LastModified < schedule.Station.ESTW.Time)
+                    if (liveSchedule.Train.Schedules.All(s => !s.IsArrived) && liveSchedule.Train.LastModified < schedule.Station.ESTW.Time && !liveSchedule.IsManuallyModified)
                         continue;
 
                     candidates.Add(new ScheduleItem(referenceTime, schedule, liveSchedule));
