@@ -141,6 +141,7 @@ namespace Leibit.BLL
                         SerializedSchedule.IsComposed = Schedule.IsComposed;
                         SerializedSchedule.IsPrepared = Schedule.IsPrepared;
                         SerializedSchedule.IsCancelled = Schedule.IsCancelled;
+                        SerializedSchedule.IsManuallyModified = Schedule.IsManuallyModified;
 
                         if (Schedule.LiveTrack != null)
                             SerializedSchedule.LiveTrack = Schedule.LiveTrack.Name;
@@ -236,7 +237,7 @@ namespace Leibit.BLL
                 {
                     var Estw = Area.ESTWs.SingleOrDefault(e => e.Id == SerializedTrain.CurrentEstwId);
 
-                    if (Estw == null || !Estw.IsLoaded || !Area.Trains.ContainsKey(SerializedTrain.TrainNumber))
+                    if (Estw?.IsLoaded == false || !Area.Trains.ContainsKey(SerializedTrain.TrainNumber))
                         continue;
 
                     var Train = Area.Trains[SerializedTrain.TrainNumber];
@@ -260,10 +261,10 @@ namespace Leibit.BLL
                         }
                     }
 
-                    if (Estw.Blocks.ContainsKey(SerializedTrain.Block))
+                    if (SerializedTrain.Block != null && Estw.Blocks.ContainsKey(SerializedTrain.Block))
                         LiveTrain.Block = Estw.Blocks[SerializedTrain.Block].FirstOrDefault(b => b.Direction == SerializedTrain.BlockDirection);
 
-                    var SchedulesResult = CalculationBll.GetSchedulesByTime(Train.Schedules, Estw.Time);
+                    var SchedulesResult = CalculationBll.GetSchedulesByTime(Train.Schedules, Estw?.Time ?? SerializedTrain.LastModified);
                     ValidateResult(SchedulesResult);
 
                     foreach (var SerializedSchedule in SerializedTrain.Schedules)
@@ -285,6 +286,7 @@ namespace Leibit.BLL
                         LiveSchedule.IsComposed = SerializedSchedule.IsComposed;
                         LiveSchedule.IsPrepared = SerializedSchedule.IsPrepared;
                         LiveSchedule.IsCancelled = SerializedSchedule.IsCancelled;
+                        LiveSchedule.IsManuallyModified = SerializedSchedule.IsManuallyModified;
 
                         if (SerializedSchedule.ExpectedDelay.HasValue)
                         {
@@ -316,14 +318,17 @@ namespace Leibit.BLL
                         LiveTrain.AddSchedule(LiveSchedule);
                     }
 
-                    // Don't validate result here. When this fails, it's not so dramatic...
-                    var prevResult = CalculationBll.GetPreviousService(Train, Estw);
-                    if (prevResult.Succeeded)
-                        LiveTrain.PreviousService = prevResult.Result;
+                    if (Estw != null)
+                    {
+                        // Don't validate result here. When this fails, it's not so dramatic...
+                        var prevResult = CalculationBll.GetPreviousService(Train, Estw);
+                        if (prevResult.Succeeded)
+                            LiveTrain.PreviousService = prevResult.Result;
 
-                    var followUpResult = CalculationBll.GetFollowUpService(Train, Estw);
-                    if (followUpResult.Succeeded)
-                        LiveTrain.FollowUpService = followUpResult.Result;
+                        var followUpResult = CalculationBll.GetFollowUpService(Train, Estw);
+                        if (followUpResult.Succeeded)
+                            LiveTrain.FollowUpService = followUpResult.Result;
+                    }
 
                     if (LiveTrain.Schedules.Any())
                         Area.LiveTrains.TryAdd(Train.Number, LiveTrain);

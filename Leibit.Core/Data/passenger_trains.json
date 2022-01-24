@@ -1,8 +1,11 @@
 {
   "trainTypes": [
+    "CIS",
     "CNL",
     "D",
     "DNR",
+    "DPV",
+    "DRV",
     "DZ",
     "E",
     "EC",
@@ -14,15 +17,27 @@
     "IR",
     "IRE",
     "MET",
+    "NJ",
     "NWB",
     "NZ",
     "NZT",
+    "OEC",
+    "OIC",
     "R",
     "RB",
     "RE",
+    "REX",
+    "RGJ",
+    "RJ",
+    "RSB",
     "S",
+    "SB",
+    "SD",
+    "SDZ",
     "SE",
+    "SR",
     "STB",
-    "UEX"
+    "UEX",
+    "WB"
   ]
 }
