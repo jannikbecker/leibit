@@ -62,5 +62,6 @@
 
   <area id="ts" name="Stuttgart">
     <estw id="TS_O" name="Stuttgart Hbf Ostseite" dataFile="leibit_S-HBF OSTSEITE.dat" infrastructureManager="DB"/>
+    <estw id="TS_W" name="Stuttgart Hbf Westseite" dataFile="leibit_S-HBF WESTSEITE.dat" infrastructureManager="DB"/>
   </area>
 </leibit>

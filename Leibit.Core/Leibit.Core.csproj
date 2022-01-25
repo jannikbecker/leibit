@@ -65,6 +65,7 @@
     <None Remove="Data\sued\TAU.xml" />
     <None Remove="Data\sued\TF.xml" />
     <None Remove="Data\ts\TS_O.xml" />
+    <None Remove="Data\ts\TS_W.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -122,6 +123,7 @@
     <EmbeddedResource Include="Data\sued\TAU.xml" />
     <EmbeddedResource Include="Data\sued\TF.xml" />
     <EmbeddedResource Include="Data\ts\TS_O.xml" />
+    <EmbeddedResource Include="Data\ts\TS_W.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />

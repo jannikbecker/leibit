@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Stuttgart Österfeld" short="TSOS" refNr="79" scheduleFile="v79_____.abf">
+    <track name="165" calculateDelay="false" displayName="1">
+      <block name="79S165"/>
+    </track>
+    <track name="166" calculateDelay="false" displayName="2">
+      <block name="79S166"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Universität" short="TSUN" refNr="11" scheduleFile="v11_____.abf">
+    <track name="158" calculateDelay="false" displayName="2">
+      <block name="11S158"/>
+    </track>
+    <track name="159" calculateDelay="false" displayName="1">
+      <block name="11S159"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Schwabstraße Wendeanlage" short="TSS W" refNr="11" scheduleFile="G1______.abf" localOrderFile="bf1_____.abf">
+    <track name="973">
+      <block name="11G973"/>
+    </track>
+    <track name="975">
+      <block name="11G975"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Schwabstraße" short="TSS" refNr="11" scheduleFile="g11_____.abf" localOrderFile="bf11____.abf">
+    <track name="944" displayName="2">
+      <block name="11G944"/>
+      <block name="11G946"/>
+    </track>
+    <track name="945" displayName="1">
+      <block name="11G943"/>
+      <block name="11G945"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Feuersee" short="TSFS" refNr="11" scheduleFile="b11_____.abf">
+    <track name="936" displayName="2">
+      <block name="11G936"/>
+      <block name="11G938"/>
+    </track>
+    <track name="937" displayName="1">
+      <block name="11G935"/>
+      <block name="11G937"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Stadtmitte" short="TSMI" refNr="12" scheduleFile="b12_____.abf">
+    <track name="928" displayName="2">
+      <block name="12G928"/>
+      <block name="12G930"/>
+    </track>
+    <track name="929" displayName="1">
+      <block name="12G927"/>
+      <block name="12G929"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Hbf (Tief)" short="TST" refNr="12" scheduleFile="G12_____.abf" localOrderFile="bf12____.abf">
+    <track name="918" displayName="102">
+      <block name="12G918"/>
+      <block name="12G920"/>
+    </track>
+    <track name="919" displayName="101">
+      <block name="12G917"/>
+      <block name="12G919"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Hbf" short="TS_W" refNr="13" scheduleFile="G13_____.ABF" localOrderFile="bf13____.abf">
+    <track name="1">
+      <block name="13G11"/>
+      <block name="13G13"/>
+    </track>
+    <track name="2">
+      <block name="13G21"/>
+      <block name="13G23"/>
+    </track>
+    <track name="3">
+      <block name="13G31"/>
+      <block name="13G33"/>
+    </track>
+    <track name="191">
+      <block name="13G191"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Hbf" short="TS_O" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="13BHOHW1" direction="right"/>
+      <block name="13BHOHW3" direction="right"/>
+      <block name="13BHOHW5" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Hbf Gw Rosenstein" short="TS R" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="13BHOHW6" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Nordbahnhof" short="TSN" refNr="15" scheduleFile="b15_____.ABF">
+    <track name="203" calculateDelay="false">
+      <block name="15S203"/>
+    </track>
+    <track name="204" calculateDelay="false">
+      <block name="15S204"/>
+    </track>
+    <track calculateDelay="false" isPlatform="false">
+      <block name="14B581" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart-Bad Cannstatt" short="TSC" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="13B528" direction="left"/>
+      <block name="13B547" direction="left"/>
+    </track>
+  </station>
+</estw>
