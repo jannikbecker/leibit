@@ -29,5 +29,6 @@ namespace Leibit.Entities.Serialization
         public bool IsComposed { get; set; }
         public bool IsPrepared { get; set; }
         public bool IsCancelled { get; set; }
+        public bool IsManuallyModified { get; set; }
     }
 }
