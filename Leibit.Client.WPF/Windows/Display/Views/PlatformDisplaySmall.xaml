@@ -39,7 +39,7 @@
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="{Binding TrackName}" FontSize="48" FontWeight="Bold" Margin="2,-10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Grid.Row="0" Text="{Binding TrackName}" FontSize="44" FontWeight="Bold" Margin="2,-10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <TextBlock Grid.Row="1" Text="{Binding SubTrackName}" FontSize="12" Margin="2,-10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
             </Grid>
 
