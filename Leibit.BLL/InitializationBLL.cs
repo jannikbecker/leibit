@@ -270,11 +270,17 @@ namespace Leibit.BLL
             var EstwName = node.Attributes["name"];
             var EstwDataFile = node.Attributes["dataFile"];
             var InfrastructureManagerAttr = node.Attributes["infrastructureManager"];
+            var IgnoreRoutingDigitsAttr = node.Attributes["ignoreRoutingDigits"];
 
             if (EstwId == null || EstwName == null || EstwDataFile == null || InfrastructureManagerAttr == null || !Enum.TryParse(InfrastructureManagerAttr.InnerText, true, out eInfrastructureManager InfrastructureManager))
                 return null;
 
-            return new ESTW(EstwId.InnerText, EstwName.InnerText, EstwDataFile.InnerText, InfrastructureManager, area);
+            var IgnoreRoutingDigits = false;
+
+            if (IgnoreRoutingDigitsAttr != null && !bool.TryParse(IgnoreRoutingDigitsAttr.InnerText, out IgnoreRoutingDigits))
+                return null;
+
+            return new ESTW(EstwId.InnerText, EstwName.InnerText, EstwDataFile.InnerText, InfrastructureManager, IgnoreRoutingDigits, area);
         }
         #endregion
 
