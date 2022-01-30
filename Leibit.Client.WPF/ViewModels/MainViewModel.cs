@@ -132,7 +132,7 @@ namespace Leibit.Client.WPF.ViewModels
             var AreaResult = m_InitializationBll.GetAreaInformation();
 
             if (AreaResult.Succeeded)
-                Areas = AreaResult.Result.ToObservableCollection();
+                Areas = AreaResult.Result.OrderBy(a => a.Name).ToObservableCollection();
             else
             {
                 ShowMessage(AreaResult);
