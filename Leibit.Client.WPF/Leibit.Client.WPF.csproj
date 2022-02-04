@@ -27,6 +27,7 @@
     <Version>0.5.3</Version>
     <PackageProjectUrl>https://github.com/jannikbecker/leibit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jannikbecker/leibit</RepositoryUrl>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\Fonts\5by7.ttf" />
