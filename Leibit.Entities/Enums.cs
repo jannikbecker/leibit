@@ -75,4 +75,11 @@ namespace Leibit.Entities
         Dark = 1,
     }
 
+    public enum eAutomaticReadyMessageBehaviour
+    {
+        Disabled = 0,
+        Fix = 1,
+        Random = 2,
+    }
+
 }
