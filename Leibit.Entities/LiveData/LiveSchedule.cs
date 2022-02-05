@@ -114,6 +114,8 @@ namespace Leibit.Entities.LiveData
 
         public bool IsManuallyModified { get; set; }
 
+        public DateTime? ReadyTime { get; set; }
+
         public ReadOnlyCollection<DelayInfo> Delays
         {
             get
