@@ -408,7 +408,14 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 }
 
                 var removedItems = Items.Except(currentItems).ToList();
-                Dispatcher.Invoke(() => removedItems.ForEach(x => Items.Remove(x)));
+
+                Dispatcher.Invoke(() =>
+                {
+                    removedItems.ForEach(x => Items.Remove(x));
+
+                    for (int i = 0; i < currentItems.Count; i++)
+                        Items.Move(Items.IndexOf(currentItems[i]), i);
+                });
 
                 ShowPreview = true;
             }
