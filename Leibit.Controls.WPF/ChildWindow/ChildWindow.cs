@@ -144,6 +144,26 @@ namespace Leibit.Controls
         }
         #endregion
 
+        #region [OnClosing]
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (DataContext is WindowViewModelBase vm)
+                vm.OnWindowClosing(this, e);
+
+            base.OnClosing(e);
+        }
+        #endregion
+
+        #region [OnClosed]
+        protected override void OnClosed(EventArgs e)
+        {
+            if (DataContext is WindowViewModelBase vm)
+                vm.OnWindowClosed();
+
+            base.OnClosed(e);
+        }
+        #endregion
+
         #region - Private methods -
 
         #region [__OnPropertyChanged]

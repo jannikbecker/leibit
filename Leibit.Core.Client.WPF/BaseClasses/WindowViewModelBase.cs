@@ -34,14 +34,14 @@ namespace Leibit.Core.Client.BaseClasses
         #endregion
 
         #region [OnWindowClosing]
-        protected internal virtual void OnWindowClosing(object sender, CancelEventArgs e)
+        public virtual void OnWindowClosing(object sender, CancelEventArgs e)
         {
 
         }
         #endregion
 
         #region [OnWindowClosed]
-        protected internal virtual void OnWindowClosed()
+        public virtual void OnWindowClosed()
         {
 
         }

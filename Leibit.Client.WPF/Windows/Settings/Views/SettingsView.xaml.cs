@@ -1,4 +1,6 @@
-﻿using Leibit.Controls;
+﻿using Leibit.Client.WPF.Windows.Settings.ViewModels;
+using Leibit.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Leibit.Client.WPF.Windows.Settings.Views
 {
@@ -11,6 +13,18 @@ namespace Leibit.Client.WPF.Windows.Settings.Views
             : base("Settings")
         {
             InitializeComponent();
+        }
+
+        private void __ScaleFactor_DragStarted(object sender, DragStartedEventArgs e)
+        {
+            if (DataContext is SettingsViewModel vm)
+                vm.IsScaleFactorDragging = true;
+        }
+
+        private void __ScaleFactor_DragCompleted(object sender, DragCompletedEventArgs e)
+        {
+            if (DataContext is SettingsViewModel vm)
+                vm.IsScaleFactorDragging = false;
         }
     }
 }
