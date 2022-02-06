@@ -18,7 +18,7 @@ namespace Leibit.Controls
         public DynamicWindowContainer()
             : base()
         {
-
+            SizeChanged += __SizeChanged;
         }
         #endregion
 
@@ -230,6 +230,25 @@ namespace Leibit.Controls
             }
 
             return null;
+        }
+        #endregion
+
+        #region [__SizeChanged]
+        private void __SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (Windows == null)
+                return;
+
+            foreach (var Window in Windows)
+            {
+                if (Window.PositionX > ActualWidth)
+                    Window.PositionX = 0;
+                if (Window.PositionY > ActualHeight)
+                    Window.PositionY = 0;
+
+                Window.MaxWidth = ActualWidth - Window.PositionX;
+                Window.MaxHeight = ActualHeight - Window.PositionY;
+            }
         }
         #endregion
 
