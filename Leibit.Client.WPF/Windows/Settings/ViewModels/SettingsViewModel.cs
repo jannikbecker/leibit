@@ -72,8 +72,8 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
-        #region [ArePathsExpanded]
-        public bool ArePathsExpanded { get; private set; }
+        #region [ShowPathsWarning]
+        public bool ShowPathsWarning { get; private set; }
         #endregion
 
         #region [DelayJustificationEnabled]
@@ -424,7 +424,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 Areas.Add(VM);
             }
 
-            ArePathsExpanded = !m_Settings.Paths.Any();
+            ShowPathsWarning = !m_Settings.Paths.Any();
         }
 
         private void AreaVM_PropertyChanged(object sender, PropertyChangedEventArgs e)

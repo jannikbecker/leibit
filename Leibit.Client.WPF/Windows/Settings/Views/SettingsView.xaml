@@ -15,15 +15,23 @@
 
     <controls:ChildWindow.Resources>
         <conv:ColorConverter x:Key="ColorConverter" />
+        <conv:VisibilityConverter x:Key="VisibilityConverter"/>
     </controls:ChildWindow.Resources>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">
         <StackPanel Orientation="Vertical" Margin="10" Grid.IsSharedSizeScope="True">
+            <Border Visibility="{Binding ShowPathsWarning, Converter={StaticResource VisibilityConverter}}" Background="#3ff0" BorderBrush="#cff0" BorderThickness="2" Padding="5">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{StaticResource imgWarning}"/>
+                    <TextBlock Margin="5,0,0,0">Es sind keine Pfade zu ESTWsim konfiguriert. Bitte tragen Sie die Pfade zu den Simulationen ein, die Sie besitzen.</TextBlock>
+                </StackPanel>
+            </Border>
+            
             <GroupBox Header="Pfade">
                 <ItemsControl ItemsSource="{Binding Areas}" IsTabStop="False">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Expander Header="{Binding AreaName}" IsExpanded="{Binding DataContext.ArePathsExpanded, Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SettingsView}}}">
+                            <Expander Header="{Binding AreaName}">
                                 <ItemsControl ItemsSource="{Binding Paths}" IsTabStop="False">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
