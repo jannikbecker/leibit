@@ -32,6 +32,7 @@ namespace Leibit.Entities.Settings
         public bool AutomaticallyInstallUpdates { get; set; }
         public string SkipVersion { get; set; }
         public eSkin Skin { get; set; }
+        public int? ScaleFactor { get; set; }
 
         public Settings Clone()
         {
@@ -56,6 +57,7 @@ namespace Leibit.Entities.Settings
             Result.AutomaticallyInstallUpdates = this.AutomaticallyInstallUpdates;
             Result.SkipVersion = this.SkipVersion;
             Result.Skin = this.Skin;
+            Result.ScaleFactor = this.ScaleFactor;
             Result.GridSettings = this.GridSettings; // No deep clone required
             Result.WindowSettings = this.WindowSettings; // No deep clone required
 

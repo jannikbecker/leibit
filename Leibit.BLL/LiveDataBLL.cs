@@ -461,9 +461,14 @@ namespace Leibit.BLL
                         if (TrainNumber >= 1_000_000)
                             continue;
 
-                        // Cut the first digit, i.e. routing digit
                         if (TrainNumber >= 100_000)
+                        {
+                            if (estw.IgnoreRoutingDigits)
+                                continue;
+
+                            // Cut the first digit, i.e. routing digit
                             TrainNumber = TrainNumber % 100_000;
+                        }
 
                         if (Delay == 99)
                             Delay = 0;

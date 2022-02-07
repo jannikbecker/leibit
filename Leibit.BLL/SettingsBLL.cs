@@ -231,7 +231,9 @@ namespace Leibit.BLL
             if (!settings.AutomaticallyCheckForUpdates.HasValue)
                 settings.AutomaticallyCheckForUpdates = defaultSettings.AutomaticallyCheckForUpdates;
             if (!settings.AutomaticReadyMessageBehaviour.HasValue)
-                settings.AutomaticReadyMessageBehaviour = eAutomaticReadyMessageBehaviour.Fix;
+                settings.AutomaticReadyMessageBehaviour = defaultSettings.AutomaticReadyMessageBehaviour;
+            if (!settings.ScaleFactor.HasValue)
+                settings.ScaleFactor = defaultSettings.ScaleFactor;
         }
 
         private Settings __GetDefaultSettings()
@@ -251,6 +253,7 @@ namespace Leibit.BLL
             settings.FollowUpTime = 5;
             settings.AutomaticallyCheckForUpdates = true;
             settings.AutomaticallyInstallUpdates = false;
+            settings.ScaleFactor = 100;
             return settings;
         }
 

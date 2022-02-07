@@ -132,7 +132,7 @@ namespace Leibit.Client.WPF.ViewModels
             var AreaResult = m_InitializationBll.GetAreaInformation();
 
             if (AreaResult.Succeeded)
-                Areas = AreaResult.Result.ToObservableCollection();
+                Areas = AreaResult.Result.OrderBy(a => a.Name).ToObservableCollection();
             else
             {
                 ShowMessage(AreaResult);
@@ -149,7 +149,10 @@ namespace Leibit.Client.WPF.ViewModels
             var settingsResult = m_SettingsBll.GetSettings();
 
             if (settingsResult.Succeeded && settingsResult.Result != null)
+            {
                 (App.Current as App)?.ChangeSkin(settingsResult.Result.Skin);
+                (App.Current as App)?.ChangeScaleFactor(settingsResult.Result.ScaleFactor.Value);
+            }
         }
         #endregion
 
@@ -578,7 +581,7 @@ namespace Leibit.Client.WPF.ViewModels
         #endregion
 
         #region [OnWindowClosing]
-        protected override void OnWindowClosing(object sender, CancelEventArgs e)
+        public override void OnWindowClosing(object sender, CancelEventArgs e)
         {
             base.OnWindowClosing(sender, e);
             e.Cancel |= !__CheckForSaving();
@@ -610,7 +613,7 @@ namespace Leibit.Client.WPF.ViewModels
         #endregion
 
         #region [OnWindowClosed]
-        protected override void OnWindowClosed()
+        public override void OnWindowClosed()
         {
             base.OnWindowClosed();
             __CleanUp();

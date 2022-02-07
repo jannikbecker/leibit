@@ -94,10 +94,9 @@ namespace Leibit.BLL
                         continue;
 
                     foreach (XmlNode EstwNode in AreaNode.SelectNodes("estw"))
-                    {
                         __GetEstw(EstwNode, Area);
-                    }
 
+                    __GetTrainNumberInfos(Area);
                     Result.Result.Add(Area);
                 }
 
@@ -270,11 +269,45 @@ namespace Leibit.BLL
             var EstwName = node.Attributes["name"];
             var EstwDataFile = node.Attributes["dataFile"];
             var InfrastructureManagerAttr = node.Attributes["infrastructureManager"];
+            var IgnoreRoutingDigitsAttr = node.Attributes["ignoreRoutingDigits"];
 
             if (EstwId == null || EstwName == null || EstwDataFile == null || InfrastructureManagerAttr == null || !Enum.TryParse(InfrastructureManagerAttr.InnerText, true, out eInfrastructureManager InfrastructureManager))
                 return null;
 
-            return new ESTW(EstwId.InnerText, EstwName.InnerText, EstwDataFile.InnerText, InfrastructureManager, area);
+            var IgnoreRoutingDigits = false;
+
+            if (IgnoreRoutingDigitsAttr != null && !bool.TryParse(IgnoreRoutingDigitsAttr.InnerText, out IgnoreRoutingDigits))
+                return null;
+
+            return new ESTW(EstwId.InnerText, EstwName.InnerText, EstwDataFile.InnerText, InfrastructureManager, IgnoreRoutingDigits, area);
+        }
+        #endregion
+
+        #region [__GetTrainNumberInfos]
+        private void __GetTrainNumberInfos(Area area)
+        {
+            var assembly = typeof(Resources).Assembly;
+
+            using (var xmlStream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Data.{area.Id}.TrainNumbers.xml"))
+            {
+                if (xmlStream == null)
+                    return;
+
+                var xml = new XmlDocument();
+                xml.Load(xmlStream);
+
+                foreach (XmlNode node in xml.DocumentElement.SelectNodes("TrainNumber"))
+                {
+                    var typeAttr = node.Attributes["type"];
+                    var patternAttr = node.Attributes["pattern"];
+                    var lineAttr = node.Attributes["line"];
+
+                    if (typeAttr == null || patternAttr == null || lineAttr == null)
+                        continue;
+
+                    area.TrainNumberInfos.Add(new TrainNumberInfo(typeAttr.InnerText, patternAttr.InnerText, lineAttr.InnerText));
+                }
+            }
         }
         #endregion
 
@@ -462,7 +495,9 @@ namespace Leibit.BLL
                     if (tracks.Any() && !tracks.Contains(sTrack))
                         continue;
 
-                    var Train = station.ESTW.Area.Trains.GetOrAdd(TrainNr, new Train(TrainNr, Type, Start, Destination));
+                    var Train = new Train(TrainNr, Type, Start, Destination);
+                    __SetTrainLine(Train, station.ESTW.Area);
+                    Train = station.ESTW.Area.Trains.GetOrAdd(TrainNr, Train);
 
                     int Hour;
                     if (!Int32.TryParse(sHour, out Hour))
@@ -549,6 +584,24 @@ namespace Leibit.BLL
                     Train.Type = Train.Schedules.Select(s => s.TrainType).FirstOrDefault(t => t.IsPassengerTrain()) ?? Type;
                     Train.Start = Train.Schedules.OrderBy(s => s.Time).First().Start;
                     Train.Destination = Train.Schedules.OrderBy(s => s.Time).Last().Destination;
+                }
+            }
+        }
+        #endregion
+
+        #region [__SetTrainLine]
+        private void __SetTrainLine(Train train, Area area)
+        {
+            var trainNumber = train.Number.ToString();
+
+            foreach (var trainNumberInfo in area.TrainNumberInfos)
+            {
+                var regex = trainNumberInfo.Pattern.Replace("x", "[0-9]");
+
+                if (train.Type == trainNumberInfo.Type && Regex.IsMatch(trainNumber, $"^{regex}$"))
+                {
+                    train.Line = trainNumberInfo.Line;
+                    break;
                 }
             }
         }

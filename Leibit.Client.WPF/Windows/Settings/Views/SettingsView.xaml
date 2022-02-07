@@ -15,15 +15,23 @@
 
     <controls:ChildWindow.Resources>
         <conv:ColorConverter x:Key="ColorConverter" />
+        <conv:VisibilityConverter x:Key="VisibilityConverter"/>
     </controls:ChildWindow.Resources>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">
         <StackPanel Orientation="Vertical" Margin="10" Grid.IsSharedSizeScope="True">
+            <Border Visibility="{Binding ShowPathsWarning, Converter={StaticResource VisibilityConverter}}" Background="#3ff0" BorderBrush="#cff0" BorderThickness="2" Padding="5">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="{StaticResource imgWarning}"/>
+                    <TextBlock Margin="5,0,0,0">Es sind keine Pfade zu ESTWsim konfiguriert. Bitte tragen Sie die Pfade zu den Simulationen ein, die Sie besitzen.</TextBlock>
+                </StackPanel>
+            </Border>
+            
             <GroupBox Header="Pfade">
                 <ItemsControl ItemsSource="{Binding Areas}" IsTabStop="False">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Expander Header="{Binding AreaName}" IsExpanded="{Binding DataContext.ArePathsExpanded, Mode=OneTime, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SettingsView}}}">
+                            <Expander Header="{Binding AreaName}">
                                 <ItemsControl ItemsSource="{Binding Paths}" IsTabStop="False">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -187,6 +195,7 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Pfad zu ESTWonline" Margin="5,0,0,0" VerticalAlignment="Center" />
@@ -221,6 +230,45 @@
                               IsChecked="{Binding AutomaticallyInstallUpdates, Mode=TwoWay}"
                               Margin="5,0,0,5"
                               VerticalAlignment="Center"/>
+                    
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Zoom" Margin="5,0,0,5" VerticalAlignment="Top" />
+
+                    <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Slider Grid.Row="0" Grid.ColumnSpan="3"
+                                Value="{Binding ScaleFactor, Mode=TwoWay}"
+                                Minimum="50"
+                                Maximum="150"
+                                TickPlacement="BottomRight"
+                                TickFrequency="10"
+                                Thumb.DragStarted="__ScaleFactor_DragStarted"
+                                Thumb.DragCompleted="__ScaleFactor_DragCompleted"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">50</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">100</TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right">150</TextBlock>
+
+                        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+                            <xctk:IntegerUpDown Value="{Binding ScaleFactor, Mode=TwoWay}"
+                                                Minimum="50"
+                                                Maximum="150"
+                                                Width="30"
+                                                Margin="5,0,0,0"
+                                                ShowButtonSpinner="False"/>
+                            <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">%</TextBlock>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </GroupBox>
 

@@ -49,6 +49,8 @@ namespace Leibit.Entities.Scheduling
 
         public List<TrainRelation> FollowUpServices { get; }
 
+        public string Line { get; set; }
+
         public ReadOnlyCollection<Schedule> Schedules
         {
             get
