@@ -71,28 +71,60 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Automatische Fertigmeldung" Margin="5,0,0,0" VerticalAlignment="Center"/>
 
-                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
-                        <CheckBox Content="aktiv"
-                                  IsChecked="{Binding AutomaticReadyMessageEnabled, Mode=TwoWay}"
-                                  VerticalAlignment="Center"/>
+                    <RadioButton Grid.Row="0" Grid.Column="1" 
+                                 Content="deaktiviert"
+                                 GroupName="AutomaticReadyMessageBehaviour"
+                                 IsChecked="{Binding AutomaticReadyMessageIsDisabled, Mode=TwoWay}"
+                                 VerticalAlignment="Center"
+                                 Margin="5,5,0,0"/>
 
-                        <TextBlock Text=" ab" Margin="0,-2,0,0" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                        <RadioButton Content="genau"
+                                     GroupName="AutomaticReadyMessageBehaviour"
+                                     IsChecked="{Binding AutomaticReadyMessageIsFix, Mode=TwoWay}"
+                                     VerticalAlignment="Center"/>
 
                         <xctk:IntegerUpDown Value="{Binding AutomaticReadyMessageTime, Mode=TwoWay}"
                                             Minimum="0"
                                             Height="20"
                                             Margin="5,0,5,0"
-                                            IsEnabled="{Binding AutomaticReadyMessageEnabled}"/>
+                                            IsEnabled="{Binding AutomaticReadyMessageIsFix}"/>
                         <TextBlock Text="Minuten vor Abfahrt" VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Verspätungsbegründung" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                        <RadioButton Content="zufällig zwischen"
+                                     GroupName="AutomaticReadyMessageBehaviour"
+                                     IsChecked="{Binding AutomaticReadyMessageIsRandom, Mode=TwoWay}"
+                                     VerticalAlignment="Center"/>
 
-                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                        <xctk:IntegerUpDown Value="{Binding AutomaticReadyMessageBeginTime, Mode=TwoWay}"
+                                            Minimum="{Binding AutomaticReadyMessageEndTime, TargetNullValue=0}"
+                                            Height="20"
+                                            Margin="5,0,5,0"
+                                            IsEnabled="{Binding AutomaticReadyMessageIsRandom}"/>
+                        
+                        <TextBlock Text="und" VerticalAlignment="Center"/>
+
+                        <xctk:IntegerUpDown Value="{Binding AutomaticReadyMessageEndTime, Mode=TwoWay}"
+                                            Minimum="0"
+                                            Maximum="{Binding AutomaticReadyMessageBeginTime}"
+                                            Height="20"
+                                            Margin="5,0,5,0"
+                                            IsEnabled="{Binding AutomaticReadyMessageIsRandom}"/>
+
+                        <TextBlock Text="Minuten vor Abfahrt" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Verspätungsbegründung" Margin="5,0,0,0" VerticalAlignment="Center"/>
+
+                    <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
                         <CheckBox Content="aktiv"
                                   IsChecked="{Binding DelayJustificationEnabled, Mode=TwoWay}"
                                   VerticalAlignment="Center"/>
@@ -108,7 +140,7 @@
                         <TextBlock Text="Verspätungsminuten" Margin="0,-2,0,0" VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <CheckBox Grid.Row="2"
+                    <CheckBox Grid.Row="4"
                               Grid.Column="1"
                               Content="Plausibilitätsprüfung"
                               IsChecked="{Binding CheckPlausibility, Mode=TwoWay}"
@@ -116,34 +148,34 @@
                               Margin="5,5,0,0"
                               VerticalAlignment="Center"/>
 
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Kompletten Zuglauf" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Row="3" Grid.Column="1"
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Kompletten Zuglauf" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Row="5" Grid.Column="1"
                               Content="anzeigen"
                               IsChecked="{Binding DisplayCompleteTrainSchedule, Mode=TwoWay}"
                               Margin="5,5,0,0"
                               VerticalAlignment="Center"/>
 
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Inaktive ESTW" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Row="4" Grid.Column="1"
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Inaktive ESTW" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Row="6" Grid.Column="1"
                               Content="laden"
                               IsChecked="{Binding LoadInactiveEstws, Mode=TwoWay}"
                               Margin="5,5,0,0"
                               VerticalAlignment="Center"/>
 
-                    <TextBlock Grid.Row="5" Grid.Column="0" Text="ESTW inaktiv nach" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                    <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="ESTW inaktiv nach" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
                         <xctk:IntegerUpDown Value="{Binding EstwTimeout, Mode=TwoWay}" Minimum="6" Height="20" Margin="0,0,5,0"/>
                         <TextBlock Text="Sekunden ohne Daten" VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <TextBlock Grid.Row="6" Grid.Column="0" Text="ZFI-Vorlaufzeit" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                    <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                    <TextBlock Grid.Row="8" Grid.Column="0" Text="ZFI-Vorlaufzeit" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
                         <xctk:IntegerUpDown Value="{Binding LeadTime, Mode=TwoWay}" Minimum="1" Maximum="360" Height="20" Margin="0,0,5,0"/>
                         <TextBlock Text="Minuten" VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <TextBlock Grid.Row="7" Grid.Column="0" Text="ZFI-Nachlaufzeit" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                    <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,5">
+                    <TextBlock Grid.Row="9" Grid.Column="0" Text="ZFI-Nachlaufzeit" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,5">
                         <xctk:IntegerUpDown Value="{Binding FollowUpTime, Mode=TwoWay}" Minimum="0" Maximum="360" Height="20" Margin="0,0,5,0"/>
                         <TextBlock Text="Minuten" VerticalAlignment="Center"/>
                     </StackPanel>

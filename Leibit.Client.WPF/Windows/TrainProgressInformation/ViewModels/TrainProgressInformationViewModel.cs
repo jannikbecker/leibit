@@ -24,6 +24,7 @@ using Leibit.Entities;
 using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
 using Leibit.Entities.Scheduling;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -43,6 +44,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private CalculationBLL m_CalculationBll;
         private Area m_Area;
         private bool m_NewItemAdded;
+        private Random m_Random;
         #endregion
 
         #region - Ctor -
@@ -53,6 +55,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             m_SettingsBll = new SettingsBLL();
             m_CalculationBll = new CalculationBLL();
             m_Area = area;
+            m_Random = new Random();
 
             m_DoubleClickCommand = new CommandHandler(__RowDoubleClick, true);
             EnterExpectedDelayCommand = new CommandHandler(__EnterExpectedDelay, false);
@@ -624,7 +627,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     }
                     else if (currentSchedule.IsDeparted)
                         currentVm.State = "ab";
-                    else if (isFirstStation && settings.AutomaticReadyMessageEnabled && currentSchedule.Schedule.Station.ESTW.Time >= currentSchedule.Schedule.Departure.AddMinutes(-settings.AutomaticReadyMessageTime))
+                    else if (isFirstStation && currentSchedule.Schedule.Handling == eHandling.Start && __IsReady(currentSchedule, settings))
                         currentVm.State = "fertig";
                     else if (currentSchedule.IsPrepared)
                         currentVm.State = "vorbereitet";
@@ -642,6 +645,33 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             }
 
             return currentVm;
+        }
+        #endregion
+
+        #region [__IsReady]
+        private bool __IsReady(LiveSchedule liveSchedule, Entities.Settings.Settings settings)
+        {
+            if (settings.AutomaticReadyMessageBehaviour == eAutomaticReadyMessageBehaviour.Disabled)
+                return false;
+
+            if (settings.AutomaticReadyMessageBehaviour == eAutomaticReadyMessageBehaviour.Fix && settings.AutomaticReadyMessageTime.HasValue)
+                return liveSchedule.Schedule.Station.ESTW.Time >= liveSchedule.Schedule.Departure.AddMinutes(-settings.AutomaticReadyMessageTime.Value);
+
+            if (settings.AutomaticReadyMessageBehaviour == eAutomaticReadyMessageBehaviour.Random && settings.AutomaticReadyMessageBeginTime.HasValue && settings.AutomaticReadyMessageEndTime.HasValue)
+            {
+                if (liveSchedule.Schedule.Station.ESTW.Time < liveSchedule.Schedule.Departure.AddMinutes(-settings.AutomaticReadyMessageBeginTime.Value))
+                    return false;
+
+                if (liveSchedule.Schedule.Station.ESTW.Time >= liveSchedule.Schedule.Departure.AddMinutes(-settings.AutomaticReadyMessageEndTime.Value))
+                    return true;
+
+                if (!liveSchedule.ReadyTime.HasValue)
+                    liveSchedule.ReadyTime = DateTime.Now.AddSeconds(m_Random.Next(settings.AutomaticReadyMessageEndTime.Value * 60, settings.AutomaticReadyMessageBeginTime.Value * 60));
+
+                return DateTime.Now >= liveSchedule.ReadyTime;
+            }
+
+            return false;
         }
         #endregion
 
