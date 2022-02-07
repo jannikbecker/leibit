@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TrainNumbers>
+  <TrainNumber type="RE" pattern="380xx" line="RE 1"/>
+  <TrainNumber type="RE" pattern="381xx" line="RE 2"/>
+  
+  <TrainNumber type="RE" pattern="3834x" line="RE 3"/>
+  <TrainNumber type="RE" pattern="3835x" line="RE 3"/>
+  <TrainNumber type="RE" pattern="3836x" line="RE 3"/>
+  <TrainNumber type="RE" pattern="3837x" line="RE 3"/>
+  <TrainNumber type="RE" pattern="3838x" line="RE 3"/>
+  <TrainNumber type="RE" pattern="3839x" line="RE 3"/>
+  <TrainNumber type="RE" pattern="3840x" line="RE 3"/>
+  <TrainNumber type="RE" pattern="3841x" line="RE 3"/>
+  <TrainNumber type="RE" pattern="3842x" line="RE 3"/>
+  
+  <TrainNumber type="RE" pattern="382xx" line="RE 4"/>
+  
+  <TrainNumber type="RE" pattern="331xx" line="RE 5"/>
+  <TrainNumber type="RE" pattern="3830x" line="RE 5"/>
+  <TrainNumber type="RE" pattern="3831x" line="RE 5"/>
+  <TrainNumber type="RE" pattern="3832x" line="RE 5"/>
+  <TrainNumber type="RE" pattern="3833x" line="RE 5"/>
+
+  <TrainNumber type="RB" pattern="394xx" line="RB 10"/>
+</TrainNumbers>

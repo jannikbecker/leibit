@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TrainNumbers>
+  <TrainNumber type="RE" pattern="81xx" line="RE 13"/>
+  <TrainNumber type="RE" pattern="100xx" line="RE 1"/>
+  <TrainNumber type="RE" pattern="103xx" line="RE 4"/>
+  <TrainNumber type="RE" pattern="111xx" line="RE 5"/>
+  <TrainNumber type="RB" pattern="112xx" line="RB 48"/>
+  <TrainNumber type="RE" pattern="127xx" line="RE 7"/>
+
+  <TrainNumber type="RB" pattern="730xx" line="RB 47"/>
+  <TrainNumber type="RB" pattern="731xx" line="RB 47"/>
+
+  <TrainNumber type="S" pattern="975xx" line="S6"/>
+  <TrainNumber type="S" pattern="976xx" line="S6"/>
+  <TrainNumber type="S" pattern="9770x" line="S6"/>
+  <TrainNumber type="S" pattern="9771x" line="S6"/>
+  <TrainNumber type="S" pattern="9772x" line="S6"/>
+  <TrainNumber type="S" pattern="9773x" line="S6"/>
+  <TrainNumber type="S" pattern="9774x" line="S6"/>
+  <TrainNumber type="S" pattern="9775x" line="S6"/>
+  <TrainNumber type="S" pattern="9776x" line="S6"/>
+  
+  <TrainNumber type="S" pattern="9777x" line="S7"/>
+  <TrainNumber type="S" pattern="9778x" line="S7"/>
+  <TrainNumber type="S" pattern="9779x" line="S7"/>
+  <TrainNumber type="S" pattern="978xx" line="S7"/>
+  <TrainNumber type="S" pattern="979xx" line="S7"/>
+  
+  <TrainNumber type="S" pattern="981xx" line="S9"/>
+  <TrainNumber type="S" pattern="982xx" line="S9"/>
+  <TrainNumber type="S" pattern="983xx" line="S8"/>
+  <TrainNumber type="S" pattern="984xx" line="S8"/>
+  <TrainNumber type="S" pattern="985xx" line="S9"/>
+  <TrainNumber type="S" pattern="9860x" line="S9"/>
+  <TrainNumber type="S" pattern="9862x" line="S8"/>
+  <TrainNumber type="S" pattern="9863x" line="S8"/>
+  
+  <TrainNumber type="S" pattern="987xx" line="S11"/>
+  <TrainNumber type="S" pattern="988xx" line="S11"/>
+</TrainNumbers>

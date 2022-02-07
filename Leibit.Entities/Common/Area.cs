@@ -23,6 +23,7 @@ namespace Leibit.Entities.Common
             m_Estws = new List<ESTW>();
             m_Trains = new ConcurrentDictionary<int, Train>();
             m_LiveTrains = new ConcurrentDictionary<int, TrainInformation>();
+            TrainNumberInfos = new List<TrainNumberInfo>();
         }
 
         public string Id
@@ -64,6 +65,8 @@ namespace Leibit.Entities.Common
                 return m_LiveTrains;
             }
         }
+
+        public List<TrainNumberInfo> TrainNumberInfos { get; }
 
     }
 }

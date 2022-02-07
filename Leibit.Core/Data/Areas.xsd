@@ -19,6 +19,7 @@
                   <xs:attribute name="name" type="xs:string" use="required" />
                   <xs:attribute name="dataFile" type="xs:string" use="required" />
                   <xs:attribute name="infrastructureManager" type="infrastructureManager" use="required" />
+                  <xs:attribute name="ignoreRoutingDigits" type="xs:boolean" use="optional" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
