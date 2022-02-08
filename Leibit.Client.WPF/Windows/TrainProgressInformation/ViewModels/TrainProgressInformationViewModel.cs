@@ -666,7 +666,10 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     return true;
 
                 if (!liveSchedule.ReadyTime.HasValue)
-                    liveSchedule.ReadyTime = DateTime.Now.AddSeconds(m_Random.Next(settings.AutomaticReadyMessageEndTime.Value * 60, settings.AutomaticReadyMessageBeginTime.Value * 60));
+                {
+                    var diff = settings.AutomaticReadyMessageBeginTime.Value - settings.AutomaticReadyMessageEndTime.Value;
+                    liveSchedule.ReadyTime = DateTime.Now.AddSeconds(m_Random.Next(0, diff * 60));
+                }
 
                 return DateTime.Now >= liveSchedule.ReadyTime;
             }
