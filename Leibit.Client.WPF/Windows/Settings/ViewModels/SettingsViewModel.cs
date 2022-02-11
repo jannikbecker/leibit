@@ -22,6 +22,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         private SettingsBLL m_SettingsBll;
         private IEnumerable<Area> m_Areas;
         private Entities.Settings.Settings m_Settings;
+        private bool m_IsScaleFactorDragging;
 
         private CommandHandler m_SaveCommand;
         private CommandHandler m_CancelCommand;
@@ -71,8 +72,8 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
-        #region [ArePathsExpanded]
-        public bool ArePathsExpanded { get; private set; }
+        #region [ShowPathsWarning]
+        public bool ShowPathsWarning { get; private set; }
         #endregion
 
         #region [DelayJustificationEnabled]
@@ -165,23 +166,62 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
-        #region [AutomaticReadyMessageEnabled]
-        public bool AutomaticReadyMessageEnabled
+        #region [AutomaticReadyMessageTime]
+        public eAutomaticReadyMessageBehaviour? AutomaticReadyMessageBehaviour
         {
             get
             {
-                return m_Settings.AutomaticReadyMessageEnabled;
+                return m_Settings.AutomaticReadyMessageBehaviour;
             }
             set
             {
-                m_Settings.AutomaticReadyMessageEnabled = value;
+                m_Settings.AutomaticReadyMessageBehaviour = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(AutomaticReadyMessageIsDisabled));
+                OnPropertyChanged(nameof(AutomaticReadyMessageIsFix));
+                OnPropertyChanged(nameof(AutomaticReadyMessageIsRandom));
+            }
+        }
+        #endregion
+
+        #region [AutomaticReadyMessageIsDisabled]
+        public bool AutomaticReadyMessageIsDisabled
+        {
+            get => AutomaticReadyMessageBehaviour == eAutomaticReadyMessageBehaviour.Disabled;
+            set
+            {
+                if (value)
+                    AutomaticReadyMessageBehaviour = eAutomaticReadyMessageBehaviour.Disabled;
+            }
+        }
+        #endregion
+
+        #region [AutomaticReadyMessageIsFix]
+        public bool AutomaticReadyMessageIsFix
+        {
+            get => AutomaticReadyMessageBehaviour == eAutomaticReadyMessageBehaviour.Fix;
+            set
+            {
+                if (value)
+                    AutomaticReadyMessageBehaviour = eAutomaticReadyMessageBehaviour.Fix;
+            }
+        }
+        #endregion
+
+        #region [AutomaticReadyMessageIsRandom]
+        public bool AutomaticReadyMessageIsRandom
+        {
+            get => AutomaticReadyMessageBehaviour == eAutomaticReadyMessageBehaviour.Random;
+            set
+            {
+                if (value)
+                    AutomaticReadyMessageBehaviour = eAutomaticReadyMessageBehaviour.Random;
             }
         }
         #endregion
 
         #region [AutomaticReadyMessageTime]
-        public int AutomaticReadyMessageTime
+        public int? AutomaticReadyMessageTime
         {
             get
             {
@@ -190,6 +230,36 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
             set
             {
                 m_Settings.AutomaticReadyMessageTime = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region [AutomaticReadyMessageBeginTime]
+        public int? AutomaticReadyMessageBeginTime
+        {
+            get
+            {
+                return m_Settings.AutomaticReadyMessageBeginTime;
+            }
+            set
+            {
+                m_Settings.AutomaticReadyMessageBeginTime = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region [AutomaticReadyMessageEndTime]
+        public int? AutomaticReadyMessageEndTime
+        {
+            get
+            {
+                return m_Settings.AutomaticReadyMessageEndTime;
+            }
+            set
+            {
+                m_Settings.AutomaticReadyMessageEndTime = value;
                 OnPropertyChanged();
             }
         }
@@ -300,6 +370,38 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [ScaleFactor]
+        public int? ScaleFactor
+        {
+            get
+            {
+                return m_Settings.ScaleFactor;
+            }
+            set
+            {
+                m_Settings.ScaleFactor = value;
+                OnPropertyChanged();
+
+                if (!m_IsScaleFactorDragging)
+                    (App.Current as App)?.ChangeScaleFactor(ScaleFactor.Value);
+            }
+        }
+        #endregion
+
+        #region [IsScaleFactorDragging]
+        internal bool IsScaleFactorDragging
+        {
+            get => m_IsScaleFactorDragging;
+            set
+            {
+                if (m_IsScaleFactorDragging && !value)
+                    (App.Current as App)?.ChangeScaleFactor(ScaleFactor.Value);
+
+                m_IsScaleFactorDragging = value;
+            }
+        }
+        #endregion
+
         #region - Commands -
 
         #region [SaveCommand]
@@ -349,17 +451,33 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 || PropertyName == nameof(DisplayCompleteTrainSchedule)
                 || PropertyName == nameof(EstwTimeout)
                 || PropertyName == nameof(LoadInactiveEstws)
-                || PropertyName == nameof(AutomaticReadyMessageEnabled)
+                || PropertyName == nameof(AutomaticReadyMessageBehaviour)
                 || PropertyName == nameof(AutomaticReadyMessageTime)
+                || PropertyName == nameof(AutomaticReadyMessageBeginTime)
+                || PropertyName == nameof(AutomaticReadyMessageEndTime)
                 || PropertyName == nameof(EstwOnlinePath)
                 || PropertyName == nameof(WindowColor)
                 || PropertyName == nameof(LeadTime)
                 || PropertyName == nameof(FollowUpTime)
                 || PropertyName == nameof(AutomaticallyCheckForUpdates)
                 || PropertyName == nameof(AutomaticallyInstallUpdates)
-                || PropertyName == nameof(Skin))
+                || PropertyName == nameof(Skin)
+                || PropertyName == nameof(ScaleFactor))
             {
                 m_SaveCommand.SetCanExecute(true);
+            }
+        }
+        #endregion
+
+        #region [OnWindowClosing]
+        public override void OnWindowClosing(object sender, CancelEventArgs e)
+        {
+            var settingsResult = m_SettingsBll.GetSettings();
+
+            if (settingsResult.Succeeded)
+            {
+                var settings = settingsResult.Result;
+                (App.Current as App)?.ChangeScaleFactor(settings.ScaleFactor.Value);
             }
         }
         #endregion
@@ -377,7 +495,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 Areas.Add(VM);
             }
 
-            ArePathsExpanded = !m_Settings.Paths.Any();
+            ShowPathsWarning = !m_Settings.Paths.Any();
         }
 
         private void AreaVM_PropertyChanged(object sender, PropertyChangedEventArgs e)

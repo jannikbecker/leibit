@@ -24,9 +24,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
-    <Version>0.5.3</Version>
+    <Version>0.5.4</Version>
     <PackageProjectUrl>https://github.com/jannikbecker/leibit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jannikbecker/leibit</RepositoryUrl>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\Fonts\5by7.ttf" />
@@ -134,5 +135,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Windows\Display\Views\CountdownDisplay.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
   </ItemGroup>
 </Project>

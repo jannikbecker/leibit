@@ -3,6 +3,7 @@ using Leibit.Client.WPF.Views;
 using Leibit.Entities;
 using System;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Leibit.Client.WPF
 {
@@ -22,6 +23,14 @@ namespace Leibit.Client.WPF
                 ApplyResources("Resources/Skins/DarkSkin.xaml");
 
             ApplyResources("Resources/Skins/Shared.xaml");
+        }
+
+        internal void ChangeScaleFactor(int newScaleFactor)
+        {
+            var factor = newScaleFactor / 100.0;
+
+            if (MainWindow.Content is FrameworkElement frameworkElement)
+                frameworkElement.LayoutTransform = new ScaleTransform(factor, factor);
         }
 
         protected override void OnStartup(StartupEventArgs e)

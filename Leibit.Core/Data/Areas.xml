@@ -59,4 +59,9 @@
   <area id="berlin" name="Berlin">
     <estw id="B-Stadtbahn" name="Berlin-Stadtbahn" dataFile="leibit_B-STADTBAHN.dat" infrastructureManager="DB"/>
   </area>
+
+  <area id="ts" name="Stuttgart">
+    <estw id="TS_O" name="Stuttgart Hbf Ostseite" dataFile="leibit_S-HBF OSTSEITE.dat" infrastructureManager="DB" ignoreRoutingDigits="true"/>
+    <estw id="TS_W" name="Stuttgart Hbf Westseite" dataFile="leibit_S-HBF WESTSEITE.dat" infrastructureManager="DB" ignoreRoutingDigits="true"/>
+  </area>
 </leibit>

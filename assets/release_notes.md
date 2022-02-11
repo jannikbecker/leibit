@@ -2,10 +2,8 @@
 Die Datei *Setup.exe* herunterladen und ausführen. Nach wenigen Sekunden startet LeiBIT.
 
 # Neue Funktionen in dieser Version
-In dieser Version wurden diverse Fehler korrigiert.
-- Fehlerhafte Fahrplandatei in Berlin Alexanderplatz korrigiert (#167)
-- Gleisbezeichnungen in Vils und Reutte korrigiert (#166)
-- Österreichische und schweizerische Personenzuggattungen ergänzt (#161, #169)
-- Darstellung von Wenden auf Leerfahrten verbessert (#163)
-- Züge verschwinden nicht mehr aus der ZFI, wenn man einen Gleiswechsel oder eine voraussichtliche Verspätung eingegeben hat. (#162)
-- ESTWonline auf Version 2.6.5 aktualisiert (#168)
+- Die ESTW Stuttgart Hbf Ostseite (#52) und Westseite (#53) stehen nun zur Verfügung.
+- Es steht ein neuer Anzeigentyp "Zugzielanzeiger S-Bahn" zur Verfügung, der anstelle der planmäßigen Abfahrtszeit die verbleibende Zeit in Minuten anzeigt.
+- Auf den Anzeigetafeln wird in einigen Simulationen nun die Liniennummer anstelle der Zugnummer angezeigt. Dieses Feature wurde zunächst nur für die Bereiche NRW und Berlin sowie die S-Bahnen Stuttgart und München umgesetzt.
+- Es besteht nun die Möglichkeit, die automatische Zugfertigmeldung zufallsgesteuert zu erzeugen. In den Einstellungen gibt es dafür neue Optionen. (#149)
+- Die Darstellung auf 4k-Monitoren wurde verbessert. Dazu wurde u.a. eine Zoom-Funktion hinzugefügt, mit der sich die komplette Programmoberfläche vergrößern oder verkleinern lässt. (#144)

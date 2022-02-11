@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Stuttgart Hbf" short="TS_O" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
+    <track name="4">
+      <block name="10G41"/>
+      <block name="10G43"/>
+    </track>
+    <track name="5">
+      <block name="10G51"/>
+      <block name="10G53"/>
+    </track>
+    <track name="6">
+      <block name="10G61"/>
+      <block name="10G63"/>
+    </track>
+    <track name="7">
+      <block name="10G70"/>
+      <block name="10G71"/>
+      <block name="10G73"/>
+    </track>
+    <track name="8">
+      <block name="10G81"/>
+      <block name="10G83"/>
+    </track>
+    <track name="9">
+      <block name="10G91"/>
+      <block name="10G93"/>
+    </track>
+    <track name="10">
+      <block name="10G101"/>
+      <block name="10G103"/>
+    </track>
+    <track name="11">
+      <block name="10G111"/>
+    </track>
+    <track name="12">
+      <block name="10G121"/>
+    </track>
+    <track name="13">
+      <block name="10G131"/>
+    </track>
+    <track name="14">
+      <block name="10G141"/>
+    </track>
+    <track name="15">
+      <block name="10G151"/>
+      <block name="10G153"/>
+      <block name="10G154"/>
+    </track>
+    <track name="16">
+      <block name="10G161"/>
+      <block name="10G164"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Hbf" short="TS_W" refNr="13">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10BHWHO2" direction="right"/>
+      <block name="10BHWHO4" direction="right"/>
+      <block name="10BHWHO6" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Nordbahnhof" short="TSN" refNr="15">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10BHWHO1" direction="left"/>
+      <block name="10BHWHO5" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Hbf Em Nord" short="TS N" refNr="12">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12BG558Y" direction="left"/>
+      <block name="12BG559Y" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart-Zuffenhausen" short="TSZ" refNr="12">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12S104" direction="left"/>
+      <block name="12S179" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Pragtunnel" short="TPT" refNr="12">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10B539" direction="left"/>
+      <block name="12B598" direction="left"/>
+      <block name="12S114" direction="right"/>
+      <block name="12S177" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Hbf Gw Rosenstein" short="TS R" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10G510" direction="left"/>
+      <block name="10G511" direction="left"/>
+      <block name="12B518" direction="right"/>
+      <block name="10B557" direction="right"/>
+      <block name="10BHWHO6" direction="left"/>
+    </track>
+  </station>
+  
+  <station name="Stuttgart-Bad Cannstatt" short="TSC" refNr="10" scheduleFile="v10_____.abf">
+    <track name="1"/>
+    <track name="4"/>
+
+    <track name="5">
+      <block name="10S05"/>
+    </track>
+    <track name="6">
+      <block name="10S06"/>
+    </track>
+    <track name="7">
+      <block name="10S07"/>
+    </track>
+    <track name="8">
+      <block name="10S08"/>
+    </track>
+
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10BHWHO3" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart Nürnberger Straße" short="TSNU" refNr="22">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10S01" direction="left"/>
+      <block name="10S02" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Stuttgart-Untertürkheim" short="TSU" refNr="23">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10S13" direction="left"/>
+      <block name="10S14" direction="left"/>
+    </track>
+  </station>
+</estw>

@@ -18,8 +18,10 @@ namespace Leibit.Entities.Settings
         public bool DisplayCompleteTrainSchedule { get; set; }
         public int EstwTimeout { get; set; }
         public bool LoadInactiveEstws { get; set; }
-        public bool AutomaticReadyMessageEnabled { get; set; }
-        public int AutomaticReadyMessageTime { get; set; }
+        public eAutomaticReadyMessageBehaviour? AutomaticReadyMessageBehaviour { get; set; }
+        public int? AutomaticReadyMessageTime { get; set; }
+        public int? AutomaticReadyMessageBeginTime { get; set; }
+        public int? AutomaticReadyMessageEndTime { get; set; }
         public string EstwOnlinePath { get; set; }
         public int? WindowColor { get; set; }
         public List<GridSetting> GridSettings { get; set; }
@@ -30,6 +32,7 @@ namespace Leibit.Entities.Settings
         public bool AutomaticallyInstallUpdates { get; set; }
         public string SkipVersion { get; set; }
         public eSkin Skin { get; set; }
+        public int? ScaleFactor { get; set; }
 
         public Settings Clone()
         {
@@ -42,8 +45,10 @@ namespace Leibit.Entities.Settings
             Result.DisplayCompleteTrainSchedule = this.DisplayCompleteTrainSchedule;
             Result.EstwTimeout = this.EstwTimeout;
             Result.LoadInactiveEstws = this.LoadInactiveEstws;
-            Result.AutomaticReadyMessageEnabled = this.AutomaticReadyMessageEnabled;
+            Result.AutomaticReadyMessageBehaviour = this.AutomaticReadyMessageBehaviour;
             Result.AutomaticReadyMessageTime = this.AutomaticReadyMessageTime;
+            Result.AutomaticReadyMessageBeginTime = this.AutomaticReadyMessageBeginTime;
+            Result.AutomaticReadyMessageEndTime = this.AutomaticReadyMessageEndTime;
             Result.EstwOnlinePath = this.EstwOnlinePath;
             Result.WindowColor = this.WindowColor;
             Result.LeadTime = this.LeadTime;
@@ -52,6 +57,7 @@ namespace Leibit.Entities.Settings
             Result.AutomaticallyInstallUpdates = this.AutomaticallyInstallUpdates;
             Result.SkipVersion = this.SkipVersion;
             Result.Skin = this.Skin;
+            Result.ScaleFactor = this.ScaleFactor;
             Result.GridSettings = this.GridSettings; // No deep clone required
             Result.WindowSettings = this.WindowSettings; // No deep clone required
 

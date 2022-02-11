@@ -1,5 +1,6 @@
 ﻿using Leibit.Core.Common;
 using Leibit.Core.Exceptions;
+using Leibit.Entities;
 using Leibit.Entities.Settings;
 using Newtonsoft.Json;
 using System;
@@ -229,6 +230,10 @@ namespace Leibit.BLL
                 settings.FollowUpTime = defaultSettings.FollowUpTime;
             if (!settings.AutomaticallyCheckForUpdates.HasValue)
                 settings.AutomaticallyCheckForUpdates = defaultSettings.AutomaticallyCheckForUpdates;
+            if (!settings.AutomaticReadyMessageBehaviour.HasValue)
+                settings.AutomaticReadyMessageBehaviour = defaultSettings.AutomaticReadyMessageBehaviour;
+            if (!settings.ScaleFactor.HasValue)
+                settings.ScaleFactor = defaultSettings.ScaleFactor;
         }
 
         private Settings __GetDefaultSettings()
@@ -240,7 +245,7 @@ namespace Leibit.BLL
             settings.DisplayCompleteTrainSchedule = true;
             settings.EstwTimeout = 30;
             settings.LoadInactiveEstws = true;
-            settings.AutomaticReadyMessageEnabled = true;
+            settings.AutomaticReadyMessageBehaviour = eAutomaticReadyMessageBehaviour.Fix;
             settings.AutomaticReadyMessageTime = 2;
             settings.WindowColor = -16728065;
             settings.WindowSettings = new WindowSettings { Width = 900, Height = 600, Maximized = true };
@@ -248,6 +253,7 @@ namespace Leibit.BLL
             settings.FollowUpTime = 5;
             settings.AutomaticallyCheckForUpdates = true;
             settings.AutomaticallyInstallUpdates = false;
+            settings.ScaleFactor = 100;
             return settings;
         }
 

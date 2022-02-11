@@ -149,7 +149,10 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
         protected string GetTrainNumber(Schedule schedule)
         {
-            return $"{schedule.TrainType} {schedule.Train.Number}";
+            if (schedule.Train.Line.IsNullOrWhiteSpace())
+                return $"{schedule.TrainType} {schedule.Train.Number}";
+            else
+                return schedule.Train.Line;
         }
         #endregion
 
