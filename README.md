@@ -16,18 +16,8 @@ Das LeiBIT für ESTWsim bietet u.a. folgende Features:
 
 Folgende Simulationen werden aktuell unterstützt:
 
-- Bereich Berlin (NEU)
-    - Berlin-Stadtbahn (NEU)
-- Bereich Norddeutschland
-    - Soltau
-    - Nienburg
-    - Verden
-    - Bremen-Sebaldsbrück
-    - Bremen Hbf
-    - Rotenburg
-    - Buchholz
-    - Hamburg-Harburg
-    - Hamburg Hbf
+- Bereich Berlin
+    - Berlin-Stadtbahn
 - Bereich Mitteldeutschland
     - Würzburg Hbf
     - Gemünden
@@ -43,11 +33,24 @@ Folgende Simulationen werden aktuell unterstützt:
     - Bebra
     - Eisenach
     - Gotha
+- Bereich Norddeutschland
+    - Soltau
+    - Nienburg
+    - Verden
+    - Bremen-Sebaldsbrück
+    - Bremen Hbf
+    - Rotenburg
+    - Buchholz
+    - Hamburg-Harburg
+    - Hamburg Hbf
 - Bereich Nordrhein-Westfalen
     - Köln-Mülheim
     - Solingen
     - Wuppertal Hbf
     - Wuppertal-Oberbarmen
+- Bereich Stuttgart (NEU)
+    - Stuttgart Hbf Ostseite (NEU)
+    - Stuttgart Hbf Westseite (NEU)
 - Bereich Süddeutschland / Vorarlberg
     - Singen
     - Friedrichshafen
