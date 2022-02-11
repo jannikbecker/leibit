@@ -117,9 +117,9 @@
                                 <ColumnDefinition Width="80"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="{Binding TrainNumber}" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Destination}" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                            <TextBlock Grid.Column="4" Text="{Binding ExpectedDeparture}" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,2,0"/>
+                            <TextBlock Grid.Column="0" Text="{Binding TrainNumber}" FontSize="15" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Destination}" FontSize="15" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
+                            <TextBlock Grid.Column="4" Text="{Binding ExpectedDeparture}" FontSize="15" HorizontalAlignment="Right" Foreground="White" VerticalAlignment="Center" Margin="0,0,2,0"/>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
