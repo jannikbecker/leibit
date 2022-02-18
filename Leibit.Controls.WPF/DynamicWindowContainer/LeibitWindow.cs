@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Leibit.Core.Client.BaseClasses;
+using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -11,6 +13,7 @@ namespace Leibit.Controls
         public LeibitWindow(string identifier)
         {
             Identifier = identifier;
+            DataContextChanged += __DataContextChanged;
         }
         #endregion
 
@@ -118,6 +121,9 @@ namespace Leibit.Controls
             __SetBinding(window, nameof(PositionX), Window.LeftProperty);
             __SetBinding(window, nameof(PositionY), Window.TopProperty);
 
+            window.Closing += __Window_Closing;
+            window.Closed += __Window_Closed;
+
             return window;
         }
         #endregion
@@ -133,6 +139,41 @@ namespace Leibit.Controls
             binding.Source = this;
             binding.Mode = BindingMode.TwoWay;
             obj.SetBinding(dependencyProperty, binding);
+        }
+        #endregion
+
+        #region [__DataContextChanged]
+        private void __DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (e.OldValue != null && e.OldValue is WindowViewModelBase)
+                (e.OldValue as WindowViewModelBase).CloseWindow -= __CloseWindow;
+
+            if (e.NewValue != null && e.NewValue is WindowViewModelBase)
+                (e.NewValue as WindowViewModelBase).CloseWindow += __CloseWindow;
+        }
+        #endregion
+
+        #region [__CloseWindow]
+        private void __CloseWindow(object sender, EventArgs e)
+        {
+            ChildWindow?.Close();
+            Window?.Close();
+        }
+        #endregion
+
+        #region [__Window_Closing]
+        private void __Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (DataContext is WindowViewModelBase vm)
+                vm.OnWindowClosing(this, e);
+        }
+        #endregion
+
+        #region [__Window_Closed]
+        private void __Window_Closed(object sender, EventArgs e)
+        {
+            if (DataContext is WindowViewModelBase vm)
+                vm.OnWindowClosed();
         }
         #endregion
 

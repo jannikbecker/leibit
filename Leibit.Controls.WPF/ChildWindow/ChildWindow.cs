@@ -27,7 +27,6 @@ namespace Leibit.Controls
             DockOutCommand = new CommandHandler(__DockOut, true);
             SizeToContentCommand = new CommandHandler(__SizeToContent, true);
 
-            DataContextChanged += __DataContextChanged;
             Closed += __Closed;
             WindowState = Xceed.Wpf.Toolkit.WindowState.Open;
 
@@ -176,28 +175,10 @@ namespace Leibit.Controls
         }
         #endregion
 
-        #region [__CloseWindow]
-        private void __CloseWindow(object sender, EventArgs e)
-        {
-            Close();
-        }
-        #endregion
-
         #region [__Closed]
         private void __Closed(object sender, EventArgs e)
         {
             Visibility = Visibility.Collapsed;
-        }
-        #endregion
-
-        #region [__DataContextChanged]
-        private void __DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (e.OldValue != null && e.OldValue is WindowViewModelBase)
-                (e.OldValue as WindowViewModelBase).CloseWindow -= __CloseWindow;
-
-            if (e.NewValue != null && e.NewValue is WindowViewModelBase)
-                (e.NewValue as WindowViewModelBase).CloseWindow += __CloseWindow;
         }
         #endregion
 

@@ -51,7 +51,7 @@
 
                                     <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Caption, RelativeSource={RelativeSource TemplatedParent}}" Foreground="{Binding CaptionForeground, RelativeSource={RelativeSource TemplatedParent}}" />
 
-                                    <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding DockOutCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding DockOutCommand, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="Fenster lösen">
                                         <Grid>
                                             <Image Source="{StaticResource imgDockOutBlack}" Visibility="{Binding HasLightWindowColor, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}, Converter={StaticResource VisibilityConverter}}">
                                                 <Image.Style>
@@ -95,7 +95,7 @@
                                         </Button.Style>
                                     </Button>
 
-                                    <Button Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding CloseCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Button Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding CloseCommand, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="Schließen">
                                         <Image Source="{StaticResource imgClose}" RenderOptions.BitmapScalingMode="NearestNeighbor" RenderOptions.EdgeMode="Aliased">
                                             <Image.Style>
                                                 <Style TargetType="Image">
