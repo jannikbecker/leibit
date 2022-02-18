@@ -10,12 +10,6 @@ namespace Leibit.Core.Client.BaseClasses
         public event EventHandler CloseWindow;
         #endregion
 
-        #region - Properties -
-
-        public object DialogResult { get; protected set; }
-
-        #endregion
-
         #region - Protected methods -
 
         #region [OnSourceInitialized]

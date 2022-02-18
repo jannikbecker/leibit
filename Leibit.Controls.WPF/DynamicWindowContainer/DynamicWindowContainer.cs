@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using Xceed.Wpf.Toolkit.Primitives;
@@ -23,17 +24,17 @@ namespace Leibit.Controls
         #endregion
 
         #region - Dependency Properties -
-        public static readonly DependencyProperty WindowsProperty = DependencyProperty.Register("Windows", typeof(ObservableCollection<ChildWindow>), typeof(DynamicWindowContainer), new PropertyMetadata(null, OnWindowsPropertyChanged));
+        public static readonly DependencyProperty WindowsProperty = DependencyProperty.Register("Windows", typeof(ObservableCollection<LeibitWindow>), typeof(DynamicWindowContainer), new PropertyMetadata(null, OnWindowsPropertyChanged));
         #endregion
 
         #region - Properties -
 
         #region [Windows]
-        public ObservableCollection<ChildWindow> Windows
+        public ObservableCollection<LeibitWindow> Windows
         {
             get
             {
-                return (ObservableCollection<ChildWindow>)GetValue(WindowsProperty);
+                return (ObservableCollection<LeibitWindow>)GetValue(WindowsProperty);
             }
             set
             {
@@ -49,23 +50,23 @@ namespace Leibit.Controls
         #region [WindowsChanged]
         private static void OnWindowsPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            ((DynamicWindowContainer)sender).OnWindowsChanged(e.OldValue as ObservableCollection<ChildWindow>, e.NewValue as ObservableCollection<ChildWindow>);
+            ((DynamicWindowContainer)sender).OnWindowsChanged(e.OldValue as ObservableCollection<LeibitWindow>, e.NewValue as ObservableCollection<LeibitWindow>);
         }
 
-        private void OnWindowsChanged(ObservableCollection<ChildWindow> OldValue, ObservableCollection<ChildWindow> NewValue)
+        private void OnWindowsChanged(ObservableCollection<LeibitWindow> OldValue, ObservableCollection<LeibitWindow> NewValue)
         {
             if (OldValue != null)
             {
                 OldValue.CollectionChanged -= Windows_CollectionChanged;
-                Children.Clear();
+                //Children.Clear();
             }
 
             if (NewValue != null)
             {
                 NewValue.CollectionChanged += Windows_CollectionChanged;
 
-                foreach (var Child in NewValue)
-                    Children.Add(Child);
+                //foreach (var Child in NewValue)
+                //    Children.Add(Child);
             }
         }
         #endregion
@@ -99,20 +100,15 @@ namespace Leibit.Controls
             {
                 foreach (var Old in e.OldItems)
                 {
-                    var OldWindow = Old as ChildWindow;
+                    var OldWindow = Old as LeibitWindow;
 
-                    //if (OldWindow.IsVisible)
-                    //{
-                    //    OldWindow.IsVisibleChanged += ChildWindow_VisibleChanged;
-                    //    OldWindow.Close();
-                    //}
-                    //else
-                    //    Children.Remove(OldWindow);
+                    if (OldWindow.ChildWindow != null)
+                    {
+                        if (OldWindow.ChildWindow.IsVisible)
+                            OldWindow.ChildWindow.Visibility = Visibility.Collapsed;
 
-                    if (OldWindow.IsVisible)
-                        OldWindow.Visibility = Visibility.Collapsed;
-
-                    Children.Remove(OldWindow);
+                        Children.Remove(OldWindow.ChildWindow);
+                    }
                 }
             }
 
@@ -120,21 +116,32 @@ namespace Leibit.Controls
             {
                 foreach (var New in e.NewItems)
                 {
-                    var Window = New as ChildWindow;
+                    var Window = New as LeibitWindow;
 
-                    if (double.IsInfinity(Window.MaxWidth))
-                        Window.MaxWidth = ActualWidth;
-                    if (double.IsInfinity(Window.MaxHeight))
-                        Window.MaxHeight = ActualHeight;
+                    if (Window.IsDockedOut)
+                    {
+                        // TODO
+                    }
+                    else
+                    {
+                        var ChildWindow = Window.CreateChildWindow();
+                        Window.ChildWindow = ChildWindow;
 
-                    if (Window.PositionX > ActualWidth)
-                        Window.PositionX = 0;
-                    if (Window.PositionY > ActualHeight)
-                        Window.PositionY = 0;
+                        if (double.IsInfinity(ChildWindow.MaxWidth))
+                            ChildWindow.MaxWidth = ActualWidth;
+                        if (double.IsInfinity(ChildWindow.MaxHeight))
+                            ChildWindow.MaxHeight = ActualHeight;
 
-                    Window.Visibility = Visibility.Hidden;
-                    Window.Loaded += __ChildWindow_Loaded;
-                    Children.Add(Window);
+                        if (Window.PositionX > ActualWidth)
+                            Window.PositionX = 0;
+                        if (Window.PositionY > ActualHeight)
+                            Window.PositionY = 0;
+
+                        ChildWindow.Visibility = Visibility.Hidden;
+                        ChildWindow.Loaded += __ChildWindow_Loaded;
+                        ChildWindow.Closed += __ChildWindow_Closed;
+                        Children.Add(ChildWindow);
+                    }
                 }
             }
         }
@@ -145,6 +152,17 @@ namespace Leibit.Controls
             window.Loaded -= __ChildWindow_Loaded;
             __CalculateWindowPosition(window);
             window.Visibility = Visibility.Visible;
+        }
+
+        private void __ChildWindow_Closed(object sender, EventArgs e)
+        {
+            var childWindow = sender as ChildWindow;
+            childWindow.Closed -= __ChildWindow_Closed;
+
+            var leibitWindow = Windows.FirstOrDefault(w => w.ChildWindow == childWindow);
+
+            if (leibitWindow != null)
+                Windows.Remove(leibitWindow);
         }
 
         private void __CalculateWindowPosition(ChildWindow window)
@@ -236,10 +254,10 @@ namespace Leibit.Controls
         #region [__SizeChanged]
         private void __SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (Windows == null)
+            if (Children == null)
                 return;
 
-            foreach (var Window in Windows)
+            foreach (ChildWindow Window in Children)
             {
                 if (Window.PositionX > ActualWidth)
                     Window.PositionX = 0;
@@ -251,20 +269,6 @@ namespace Leibit.Controls
             }
         }
         #endregion
-
-        //private void ChildWindow_VisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        //{
-        //    if (!(bool)e.NewValue)
-        //    {
-        //        var Window = sender as ChildWindow;
-
-        //        if (Window != null)
-        //        {
-        //            Children.Remove(Window);
-        //            Window.IsVisibleChanged -= ChildWindow_VisibleChanged;
-        //        }
-        //    }
-        //}
 
         #endregion
 

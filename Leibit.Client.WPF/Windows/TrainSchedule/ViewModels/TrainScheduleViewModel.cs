@@ -546,9 +546,9 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             if (e.PropertyName == "ShowLocalOrders")
             {
                 var Window = new LocalOrdersView(CurrentTrain.Number, SenderVM.CurrentSchedule.Station.ShortSymbol);
-                var VM = new LocalOrdersViewModel(SenderVM.CurrentSchedule);
+                Window.DataContext = new LocalOrdersViewModel(SenderVM.CurrentSchedule);
 
-                OnOpenWindow(VM, Window);
+                OnOpenWindow(Window);
             }
         }
         #endregion
@@ -560,8 +560,8 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                 return;
 
             var Window = new TrainScheduleView(trainNumber.Value);
-            var VM = new TrainScheduleViewModel(Window.Dispatcher, m_Area.Trains[trainNumber.Value], m_Area);
-            OnOpenWindow(VM, Window);
+            Window.DataContext = new TrainScheduleViewModel(Window.Dispatcher, m_Area.Trains[trainNumber.Value], m_Area);
+            OnOpenWindow(Window);
         }
         #endregion
 
@@ -569,9 +569,9 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         private void __ShowDelayJustificationWindow()
         {
             var Window = new DelayJustificationView(CurrentTrain.Number);
-            var VM = new DelayJustificationViewModel(m_LiveTrain);
+            Window.DataContext = new DelayJustificationViewModel(m_LiveTrain);
 
-            OnOpenWindow(VM, Window);
+            OnOpenWindow(Window);
         }
         #endregion
 
@@ -579,8 +579,8 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
         private void __ShowTrainComposition()
         {
             var Window = new TrainCompositionView(CurrentTrain.Number);
-            var VM = new TrainCompositionViewModel(CurrentTrain);
-            OnOpenWindow(VM, Window);
+            Window.DataContext = new TrainCompositionViewModel(CurrentTrain);
+            OnOpenWindow(Window);
         }
         #endregion
 

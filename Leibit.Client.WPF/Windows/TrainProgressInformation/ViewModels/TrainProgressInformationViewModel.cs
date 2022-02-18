@@ -305,8 +305,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __EnterExpectedDelay()
         {
             var window = new ExpectedDelayView(SelectedItem.TrainNumber);
-            var vm = new ExpectedDelayViewModel(m_Area, SelectedItem.CurrentTrain, SelectedItem.Schedule);
-            OnOpenWindow(vm, window);
+            window.DataContext = new ExpectedDelayViewModel(m_Area, SelectedItem.CurrentTrain, SelectedItem.Schedule);
+            OnOpenWindow(window);
         }
         #endregion
 
@@ -314,8 +314,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __ShowTrackChange()
         {
             var Window = new TrackChangeView(SelectedItem.TrainNumber);
-            var VM = new TrackChangeViewModel(m_Area, SelectedItem.CurrentTrain, SelectedItem.Schedule);
-            OnOpenWindow(VM, Window);
+            Window.DataContext = new TrackChangeViewModel(m_Area, SelectedItem.CurrentTrain, SelectedItem.Schedule);
+            OnOpenWindow(Window);
         }
         #endregion
 
@@ -326,8 +326,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 return;
 
             var window = new TrainStateView();
-            var vm = new TrainStateViewModel(SelectedItem.Station.ESTW.Area, null);
-            OnOpenWindow(vm, window);
+            window.DataContext = new TrainStateViewModel(SelectedItem.Station.ESTW.Area, null);
+            OnOpenWindow(window);
         }
         #endregion
 
@@ -335,8 +335,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __EnterTrainState()
         {
             var window = new TrainStateView();
-            var vm = new TrainStateViewModel(SelectedItem.Station.ESTW.Area, SelectedItem.TrainNumber);
-            OnOpenWindow(vm, window);
+            window.DataContext = new TrainStateViewModel(SelectedItem.Station.ESTW.Area, SelectedItem.TrainNumber);
+            OnOpenWindow(window);
         }
         #endregion
 
@@ -344,8 +344,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __ShowTrainSchedule()
         {
             var Window = new TrainScheduleView(SelectedItem.TrainNumber);
-            var VM = new TrainScheduleViewModel(Window.Dispatcher, SelectedItem.Schedule.Train, SelectedItem.Station.ESTW.Area);
-            OnOpenWindow(VM, Window);
+            Window.DataContext = new TrainScheduleViewModel(Window.Dispatcher, SelectedItem.Schedule.Train, SelectedItem.Station.ESTW.Area);
+            OnOpenWindow(Window);
         }
         #endregion
 
@@ -353,8 +353,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __ShowLocalOrders()
         {
             var Window = new LocalOrdersView(SelectedItem.TrainNumber, SelectedItem.Station.ShortSymbol);
-            var VM = new LocalOrdersViewModel(SelectedItem.Schedule);
-            OnOpenWindow(VM, Window);
+            Window.DataContext = new LocalOrdersViewModel(SelectedItem.Schedule);
+            OnOpenWindow(Window);
         }
         #endregion
 
@@ -362,8 +362,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __ShowTrainComposition()
         {
             var Window = new TrainCompositionView(SelectedItem.TrainNumber);
-            var VM = new TrainCompositionViewModel(SelectedItem.Schedule.Train);
-            OnOpenWindow(VM, Window);
+            Window.DataContext = new TrainCompositionViewModel(SelectedItem.Schedule.Train);
+            OnOpenWindow(Window);
         }
         #endregion
 
@@ -371,8 +371,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __ShowDelayJustification()
         {
             var Window = new DelayJustificationView(SelectedItem.TrainNumber);
-            var VM = new DelayJustificationViewModel(SelectedItem.CurrentTrain);
-            OnOpenWindow(VM, Window);
+            Window.DataContext = new DelayJustificationViewModel(SelectedItem.CurrentTrain);
+            OnOpenWindow(Window);
         }
         #endregion
 

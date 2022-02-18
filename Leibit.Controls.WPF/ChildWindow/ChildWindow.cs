@@ -16,15 +16,12 @@ namespace Leibit.Controls
         #region - Needs -
         private SettingsBLL m_SettingsBll;
         private int? m_WindowColor;
-        private Brush m_CaptionForegroundColor;
         #endregion
 
         #region - Ctor -
-        public ChildWindow(string Identifier)
+        public ChildWindow()
             : base()
         {
-            this.Identifier = Identifier;
-
             CloseCommand = new CommandHandler(Close, true);
             SizeToContentCommand = new CommandHandler(__SizeToContent, true);
 
@@ -42,14 +39,6 @@ namespace Leibit.Controls
         #endregion
 
         #region - Properties -
-
-        #region [Identifier]
-        public string Identifier
-        {
-            get;
-            private set;
-        }
-        #endregion
 
         #region [CloseCommand]
         public ICommand CloseCommand
@@ -74,18 +63,6 @@ namespace Leibit.Controls
             private set
             {
                 m_WindowColor = value;
-                __OnPropertyChanged();
-            }
-        }
-        #endregion
-
-        #region [CaptionForegroundColor]
-        public Brush CaptionForegroundColor
-        {
-            get => m_CaptionForegroundColor;
-            private set
-            {
-                m_CaptionForegroundColor = value;
                 __OnPropertyChanged();
             }
         }

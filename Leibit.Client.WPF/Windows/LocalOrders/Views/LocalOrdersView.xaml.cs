@@ -6,7 +6,7 @@ namespace Leibit.Client.WPF.Windows.LocalOrders.Views
     /// <summary>
     /// Interaction logic for LocalOrdersView.xaml
     /// </summary>
-    public partial class LocalOrdersView : ChildWindow
+    public partial class LocalOrdersView : LeibitWindow
     {
         public LocalOrdersView()
             : base("LocalOrders")

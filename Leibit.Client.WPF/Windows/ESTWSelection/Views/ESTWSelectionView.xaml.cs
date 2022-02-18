@@ -5,7 +5,7 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.Views
     /// <summary>
     /// Interaktionslogik für ESTWSelectionView.xaml
     /// </summary>
-    public partial class ESTWSelectionView : ChildWindow
+    public partial class ESTWSelectionView : LeibitWindow
     {
         public ESTWSelectionView()
             : base("ESTWSelection")
