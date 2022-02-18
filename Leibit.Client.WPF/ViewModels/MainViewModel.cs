@@ -824,6 +824,7 @@ namespace Leibit.Client.WPF.ViewModels
                     Window.Height = SerializedWindow.Height;
                     Window.PositionX = SerializedWindow.PositionX;
                     Window.PositionY = SerializedWindow.PositionY;
+                    Window.IsDockedOut = SerializedWindow.IsDockedOut;
                     Window.DataContext = ViewModel;
 
                     __OpenChildWindow(Window);
@@ -898,6 +899,7 @@ namespace Leibit.Client.WPF.ViewModels
                 SerializedWindow.Height = Window.Height;
                 SerializedWindow.PositionX = Window.PositionX;
                 SerializedWindow.PositionY = Window.PositionY;
+                SerializedWindow.IsDockedOut = Window.IsDockedOut;
 
                 Container.Windows.Add(SerializedWindow);
             }

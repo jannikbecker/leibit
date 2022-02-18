@@ -185,6 +185,7 @@ namespace Leibit.Controls
 
             var window = leibitWindow.CreateWindow();
             leibitWindow.Window = window;
+            leibitWindow.IsDockedOut = true;
             window.WindowStartupLocation = WindowStartupLocation.Manual;
             window.Closed += __Window_Closed;
             window.Show();
