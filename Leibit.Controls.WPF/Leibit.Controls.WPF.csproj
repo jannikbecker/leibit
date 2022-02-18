@@ -25,6 +25,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\Images\arrow_up.png" />
+    <None Remove="Resources\Images\dock_out_black.png" />
+    <None Remove="Resources\Images\dock_out_white.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="4.6.82" />
@@ -44,5 +46,7 @@
   <ItemGroup>
     <Resource Include="Resources\Images\arrow_up.png" />
     <Resource Include="Resources\Images\close.png" />
+    <Resource Include="Resources\Images\dock_out_black.png" />
+    <Resource Include="Resources\Images\dock_out_white.png" />
   </ItemGroup>
 </Project>

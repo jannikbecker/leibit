@@ -16,6 +16,7 @@ namespace Leibit.Controls
         #region - Needs -
         private SettingsBLL m_SettingsBll;
         private int? m_WindowColor;
+        private bool m_HasLightWindowColor;
         #endregion
 
         #region - Ctor -
@@ -23,6 +24,7 @@ namespace Leibit.Controls
             : base()
         {
             CloseCommand = new CommandHandler(Close, true);
+            DockOutCommand = new CommandHandler(__DockOut, true);
             SizeToContentCommand = new CommandHandler(__SizeToContent, true);
 
             DataContextChanged += __DataContextChanged;
@@ -36,12 +38,21 @@ namespace Leibit.Controls
 
         #region - Events -
         public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler DockOutRequested;
         #endregion
 
         #region - Properties -
 
         #region [CloseCommand]
         public ICommand CloseCommand
+        {
+            get;
+            private set;
+        }
+        #endregion
+
+        #region [DockOutCommand]
+        public ICommand DockOutCommand
         {
             get;
             private set;
@@ -63,6 +74,18 @@ namespace Leibit.Controls
             private set
             {
                 m_WindowColor = value;
+                __OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region [HasLightWindowColor]
+        public bool HasLightWindowColor
+        {
+            get => m_HasLightWindowColor;
+            private set
+            {
+                m_HasLightWindowColor = value;
                 __OnPropertyChanged();
             }
         }
@@ -115,7 +138,10 @@ namespace Leibit.Controls
                     var Bytes = BitConverter.GetBytes(WindowColor.Value);
 
                     if (Bytes.Length == 4)
-                        CaptionForeground = (Bytes[2] + Bytes[1] + Bytes[0]) / 3 > 128 ? Brushes.Black : new SolidColorBrush(Color.FromRgb(225, 225, 225));
+                    {
+                        HasLightWindowColor = (Bytes[2] + Bytes[1] + Bytes[0]) / 3 > 128;
+                        CaptionForeground = HasLightWindowColor ? Brushes.Black : new SolidColorBrush(Color.FromRgb(225, 225, 225));
+                    }
                 }
             }
         }
@@ -172,6 +198,13 @@ namespace Leibit.Controls
 
             if (e.NewValue != null && e.NewValue is WindowViewModelBase)
                 (e.NewValue as WindowViewModelBase).CloseWindow += __CloseWindow;
+        }
+        #endregion
+
+        #region [__DockOut]
+        private void __DockOut()
+        {
+            DockOutRequested?.Invoke(this, EventArgs.Empty);
         }
         #endregion
 

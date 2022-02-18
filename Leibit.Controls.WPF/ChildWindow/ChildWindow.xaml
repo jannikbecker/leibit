@@ -1,18 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
-                    xmlns:controls="clr-namespace:Leibit.Controls"
-                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+                    xmlns:controls="clr-namespace:Leibit.Controls">
 
     <BitmapImage x:Key="imgClose" UriSource="/Leibit.Controls.WPF;component/Resources/Images/close.png" />
+    <BitmapImage x:Key="imgDockOutBlack" UriSource="/Leibit.Controls.WPF;component/Resources/Images/dock_out_black.png" />
+    <BitmapImage x:Key="imgDockOutWhite" UriSource="/Leibit.Controls.WPF;component/Resources/Images/dock_out_white.png" />
     <conv:ColorConverter x:Key="ColorConverter" />
+    <conv:VisibilityConverter x:Key="VisibilityConverter" />
+    <conv:VisibilityConverter x:Key="InvertedVisibilityConverter" Invert="True" />
 
     <Style x:Key="ChildWindowStyle" TargetType="controls:ChildWindow">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ChildWindow">
                     <controls:DesignerContainer MoveThumbHeight="25"
-                                                MoveThumbMargin="0,0,25,0"
+                                                MoveThumbMargin="0,0,50,0"
                                                 Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                                 Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                                 MinWidth="{TemplateBinding MinWidth}"
@@ -43,11 +46,56 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="20" />
+                                        <ColumnDefinition Width="20" />
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Caption, RelativeSource={RelativeSource TemplatedParent}}" Foreground="{Binding CaptionForeground, RelativeSource={RelativeSource TemplatedParent}}" />
 
-                                    <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding CloseCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Button Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding DockOutCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                                        <Grid>
+                                            <Image Source="{StaticResource imgDockOutBlack}" Visibility="{Binding HasLightWindowColor, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}, Converter={StaticResource VisibilityConverter}}">
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
+                                                        <Setter Property="Opacity" Value="0.7" />
+
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Opacity" Value="1" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+
+                                            <Image Source="{StaticResource imgDockOutWhite}" Visibility="{Binding HasLightWindowColor, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}, Converter={StaticResource InvertedVisibilityConverter}}">
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
+                                                        <Setter Property="Opacity" Value="0.7" />
+
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Opacity" Value="1" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </Grid>
+
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <ContentPresenter Margin="2" />
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+
+                                    <Button Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding CloseCommand, RelativeSource={RelativeSource TemplatedParent}}">
                                         <Image Source="{StaticResource imgClose}" RenderOptions.BitmapScalingMode="NearestNeighbor" RenderOptions.EdgeMode="Aliased">
                                             <Image.Style>
                                                 <Style TargetType="Image">

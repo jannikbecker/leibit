@@ -15,10 +15,13 @@ namespace Leibit.Controls
     public partial class DynamicWindowContainer : WindowContainer
     {
 
+        private List<Window> m_Windows;
+
         #region - Ctor -
         public DynamicWindowContainer()
             : base()
         {
+            m_Windows = new List<Window>();
             SizeChanged += __SizeChanged;
         }
         #endregion
@@ -94,6 +97,11 @@ namespace Leibit.Controls
                 }
 
                 Windows.ForEach(w => Children.Remove(w));
+
+                foreach (var window in m_Windows)
+                    window.Close();
+
+                m_Windows.Clear();
             }
 
             if (e.OldItems != null)
@@ -109,6 +117,12 @@ namespace Leibit.Controls
 
                         Children.Remove(OldWindow.ChildWindow);
                     }
+
+                    if (OldWindow.Window != null)
+                    {
+                        OldWindow.Window.Close();
+                        m_Windows.Remove(OldWindow.Window);
+                    }
                 }
             }
 
@@ -116,34 +130,65 @@ namespace Leibit.Controls
             {
                 foreach (var New in e.NewItems)
                 {
-                    var Window = New as LeibitWindow;
+                    var leibitWindow = New as LeibitWindow;
 
-                    if (Window.IsDockedOut)
+                    if (leibitWindow.IsDockedOut)
                     {
-                        // TODO
+                        var window = leibitWindow.CreateWindow();
+                        leibitWindow.Window = window;
+                        window.WindowStartupLocation = WindowStartupLocation.Manual;
+                        window.Closed += __Window_Closed;
+                        window.Show();
+                        m_Windows.Add(window);
                     }
                     else
                     {
-                        var ChildWindow = Window.CreateChildWindow();
-                        Window.ChildWindow = ChildWindow;
+                        var childWindow = leibitWindow.CreateChildWindow();
+                        leibitWindow.ChildWindow = childWindow;
 
-                        if (double.IsInfinity(ChildWindow.MaxWidth))
-                            ChildWindow.MaxWidth = ActualWidth;
-                        if (double.IsInfinity(ChildWindow.MaxHeight))
-                            ChildWindow.MaxHeight = ActualHeight;
+                        if (double.IsInfinity(childWindow.MaxWidth))
+                            childWindow.MaxWidth = ActualWidth;
+                        if (double.IsInfinity(childWindow.MaxHeight))
+                            childWindow.MaxHeight = ActualHeight;
 
-                        if (Window.PositionX > ActualWidth)
-                            Window.PositionX = 0;
-                        if (Window.PositionY > ActualHeight)
-                            Window.PositionY = 0;
+                        if (leibitWindow.PositionX > ActualWidth)
+                            leibitWindow.PositionX = 0;
+                        if (leibitWindow.PositionY > ActualHeight)
+                            leibitWindow.PositionY = 0;
 
-                        ChildWindow.Visibility = Visibility.Hidden;
-                        ChildWindow.Loaded += __ChildWindow_Loaded;
-                        ChildWindow.Closed += __ChildWindow_Closed;
-                        Children.Add(ChildWindow);
+                        childWindow.Visibility = Visibility.Hidden;
+                        childWindow.Loaded += __ChildWindow_Loaded;
+                        childWindow.Closed += __ChildWindow_Closed;
+                        childWindow.DockOutRequested += __ChildWindow_DockOutRequested;
+                        Children.Add(childWindow);
                     }
                 }
             }
+        }
+
+        private void __ChildWindow_DockOutRequested(object sender, EventArgs e)
+        {
+            var childWindow = sender as ChildWindow;
+
+            var leibitWindow = Windows.FirstOrDefault(w => w.ChildWindow == childWindow);
+
+            if (leibitWindow == null)
+                return;
+
+            var coord = PointToScreen(new Point(0, 0));
+            childWindow.DockOutRequested -= __ChildWindow_DockOutRequested;
+            childWindow.Closed -= __ChildWindow_Closed;
+            childWindow.Close();
+
+            leibitWindow.PositionX += coord.X;
+            leibitWindow.PositionY += coord.Y;
+
+            var window = leibitWindow.CreateWindow();
+            leibitWindow.Window = window;
+            window.WindowStartupLocation = WindowStartupLocation.Manual;
+            window.Closed += __Window_Closed;
+            window.Show();
+            m_Windows.Add(window);
         }
 
         private void __ChildWindow_Loaded(object sender, RoutedEventArgs e)
@@ -160,6 +205,17 @@ namespace Leibit.Controls
             childWindow.Closed -= __ChildWindow_Closed;
 
             var leibitWindow = Windows.FirstOrDefault(w => w.ChildWindow == childWindow);
+
+            if (leibitWindow != null)
+                Windows.Remove(leibitWindow);
+        }
+
+        private void __Window_Closed(object sender, EventArgs e)
+        {
+            var window = sender as Window;
+            window.Closed -= __Window_Closed;
+
+            var leibitWindow = Windows.FirstOrDefault(w => w.Window == window);
 
             if (leibitWindow != null)
                 Windows.Remove(leibitWindow);

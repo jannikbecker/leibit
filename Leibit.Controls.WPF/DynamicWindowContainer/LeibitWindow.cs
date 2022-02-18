@@ -18,6 +18,7 @@ namespace Leibit.Controls
         public string Identifier { get; private set; }
         public bool IsDockedOut { get; set; }
         public ChildWindow ChildWindow { get; internal set; }
+        public Window Window { get; internal set; }
         public Style ChildWindowStyle { get; set; }
         #endregion
 
@@ -71,6 +72,7 @@ namespace Leibit.Controls
         public void BringToFront()
         {
             ChildWindow?.Focus();
+            Window?.Focus();
         }
         #endregion
 
@@ -97,17 +99,40 @@ namespace Leibit.Controls
         }
         #endregion
 
+        #region [CreateWindow]
+        internal Window CreateWindow()
+        {
+            var window = new Window();
+            window.DataContext = DataContext;
+            window.Content = Content;
+            window.SizeToContent = SizeToContent.WidthAndHeight;
+
+            if (ResizeMode == eResizeMode.NoResize)
+                window.ResizeMode = System.Windows.ResizeMode.NoResize;
+            else
+                window.ResizeMode = System.Windows.ResizeMode.CanResize;
+
+            __SetBinding(window, nameof(Caption), Window.TitleProperty);
+            __SetBinding(window, nameof(Width), Window.WidthProperty);
+            __SetBinding(window, nameof(Height), Window.HeightProperty);
+            __SetBinding(window, nameof(PositionX), Window.LeftProperty);
+            __SetBinding(window, nameof(PositionY), Window.TopProperty);
+
+            return window;
+        }
+        #endregion
+
         #endregion
 
         #region - Private methods -
 
         #region [__SetBinding]
-        private void __SetBinding(ChildWindow window, string propertyName, DependencyProperty dependencyProperty)
+        private void __SetBinding(FrameworkElement obj, string propertyName, DependencyProperty dependencyProperty)
         {
             var binding = new Binding(propertyName);
             binding.Source = this;
             binding.Mode = BindingMode.TwoWay;
-            window.SetBinding(dependencyProperty, binding);
+            obj.SetBinding(dependencyProperty, binding);
         }
         #endregion
 
