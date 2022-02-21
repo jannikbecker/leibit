@@ -16,19 +16,17 @@ namespace Leibit.Controls
         #region - Needs -
         private SettingsBLL m_SettingsBll;
         private int? m_WindowColor;
-        private Brush m_CaptionForegroundColor;
+        private bool m_HasLightWindowColor;
         #endregion
 
         #region - Ctor -
-        public ChildWindow(string Identifier)
+        public ChildWindow()
             : base()
         {
-            this.Identifier = Identifier;
-
             CloseCommand = new CommandHandler(Close, true);
+            DockOutCommand = new CommandHandler(__DockOut, true);
             SizeToContentCommand = new CommandHandler(__SizeToContent, true);
 
-            DataContextChanged += __DataContextChanged;
             Closed += __Closed;
             WindowState = Xceed.Wpf.Toolkit.WindowState.Open;
 
@@ -39,20 +37,21 @@ namespace Leibit.Controls
 
         #region - Events -
         public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler DockOutRequested;
         #endregion
 
         #region - Properties -
 
-        #region [Identifier]
-        public string Identifier
+        #region [CloseCommand]
+        public ICommand CloseCommand
         {
             get;
             private set;
         }
         #endregion
 
-        #region [CloseCommand]
-        public ICommand CloseCommand
+        #region [DockOutCommand]
+        public ICommand DockOutCommand
         {
             get;
             private set;
@@ -79,13 +78,13 @@ namespace Leibit.Controls
         }
         #endregion
 
-        #region [CaptionForegroundColor]
-        public Brush CaptionForegroundColor
+        #region [HasLightWindowColor]
+        public bool HasLightWindowColor
         {
-            get => m_CaptionForegroundColor;
+            get => m_HasLightWindowColor;
             private set
             {
-                m_CaptionForegroundColor = value;
+                m_HasLightWindowColor = value;
                 __OnPropertyChanged();
             }
         }
@@ -138,7 +137,10 @@ namespace Leibit.Controls
                     var Bytes = BitConverter.GetBytes(WindowColor.Value);
 
                     if (Bytes.Length == 4)
-                        CaptionForeground = (Bytes[2] + Bytes[1] + Bytes[0]) / 3 > 128 ? Brushes.Black : new SolidColorBrush(Color.FromRgb(225, 225, 225));
+                    {
+                        HasLightWindowColor = (Bytes[2] + Bytes[1] + Bytes[0]) / 3 > 128;
+                        CaptionForeground = HasLightWindowColor ? Brushes.Black : new SolidColorBrush(Color.FromRgb(225, 225, 225));
+                    }
                 }
             }
         }
@@ -173,13 +175,6 @@ namespace Leibit.Controls
         }
         #endregion
 
-        #region [__CloseWindow]
-        private void __CloseWindow(object sender, EventArgs e)
-        {
-            Close();
-        }
-        #endregion
-
         #region [__Closed]
         private void __Closed(object sender, EventArgs e)
         {
@@ -187,14 +182,10 @@ namespace Leibit.Controls
         }
         #endregion
 
-        #region [__DataContextChanged]
-        private void __DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        #region [__DockOut]
+        private void __DockOut()
         {
-            if (e.OldValue != null && e.OldValue is WindowViewModelBase)
-                (e.OldValue as WindowViewModelBase).CloseWindow -= __CloseWindow;
-
-            if (e.NewValue != null && e.NewValue is WindowViewModelBase)
-                (e.NewValue as WindowViewModelBase).CloseWindow += __CloseWindow;
+            DockOutRequested?.Invoke(this, EventArgs.Empty);
         }
         #endregion
 

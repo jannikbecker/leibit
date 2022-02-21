@@ -66,8 +66,8 @@ namespace Leibit.Client.WPF.Windows.LocalOrders.ViewModels
                 return;
 
             var Window = new TrainScheduleView(trainNumber);
-            var VM = new TrainScheduleViewModel(Window.Dispatcher, area.Trains[trainNumber], area);
-            OnOpenWindow(VM, Window);
+            Window.DataContext = new TrainScheduleViewModel(Window.Dispatcher, area.Trains[trainNumber], area);
+            OnOpenWindow(Window);
         }
         #endregion
 

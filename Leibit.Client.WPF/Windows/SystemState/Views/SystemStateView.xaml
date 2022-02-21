@@ -1,21 +1,16 @@
-﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.SystemState.Views.SystemStateView"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.SystemState.Views"
-                      xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
-                      xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
-                      xmlns:entities="clr-namespace:Leibit.Entities.Settings;assembly=Leibit.Entities"
-                      Caption="Systemstatus"
-                      ResizeMode="ResizeHeight">
+﻿<controls:LeibitWindow x:Class="Leibit.Client.WPF.Windows.SystemState.Views.SystemStateView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                       xmlns:entities="clr-namespace:Leibit.Entities.Settings;assembly=Leibit.Entities"
+                       Caption="Systemstatus"
+                       ResizeMode="ResizeHeight">
 
-    <controls:ChildWindow.Style>
-        <Style TargetType="local:SystemStateView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
-    </controls:ChildWindow.Style>
-
-    <controls:ChildWindow.Resources>
+    <controls:LeibitWindow.Resources>
         <conv:LeibitTimeConverter x:Key="LeibitTimeConverter"/>
         <conv:VisibilityConverter Invert="False" x:Key="VisibilityConverter"/>
-    </controls:ChildWindow.Resources>
+    </controls:LeibitWindow.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -128,4 +123,4 @@
             </controls:LeibitDataGrid>
         </Expander>
     </Grid>
-</controls:ChildWindow>
+</controls:LeibitWindow>

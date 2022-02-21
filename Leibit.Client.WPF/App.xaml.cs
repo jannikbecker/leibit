@@ -29,8 +29,9 @@ namespace Leibit.Client.WPF
         {
             var factor = newScaleFactor / 100.0;
 
-            if (MainWindow.Content is FrameworkElement frameworkElement)
-                frameworkElement.LayoutTransform = new ScaleTransform(factor, factor);
+            foreach (Window window in Current.Windows)
+                if (window.Content is FrameworkElement frameworkElement)
+                    frameworkElement.LayoutTransform = new ScaleTransform(factor, factor);
         }
 
         protected override void OnStartup(StartupEventArgs e)

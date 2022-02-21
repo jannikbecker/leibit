@@ -5,7 +5,7 @@ namespace Leibit.Client.WPF.Windows.TrackChange.Views
     /// <summary>
     /// Interaction logic for TrackChangeView.xaml
     /// </summary>
-    public partial class TrackChangeView : ChildWindow
+    public partial class TrackChangeView : LeibitWindow
     {
         public TrackChangeView()
             : base("TrackChange")

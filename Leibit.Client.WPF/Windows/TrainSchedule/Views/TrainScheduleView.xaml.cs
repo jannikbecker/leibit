@@ -6,7 +6,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.Views
     /// <summary>
     /// Interaction logic for TrainScheduleView.xaml
     /// </summary>
-    public partial class TrainScheduleView : ChildWindow
+    public partial class TrainScheduleView : LeibitWindow
     {
         public TrainScheduleView()
             : base("TrainSchedule")

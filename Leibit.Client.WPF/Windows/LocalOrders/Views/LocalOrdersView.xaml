@@ -1,14 +1,10 @@
-﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.LocalOrders.Views.LocalOrdersView"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.LocalOrders.Views"
-                      xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
-                      ResizeMode="ResizeAll"
-                      Caption="{Binding Caption}">
-
-    <controls:ChildWindow.Style>
-        <Style TargetType="local:LocalOrdersView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
-    </controls:ChildWindow.Style>
+﻿<controls:LeibitWindow x:Class="Leibit.Client.WPF.Windows.LocalOrders.Views.LocalOrdersView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.LocalOrders.Views"
+                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                       ResizeMode="ResizeAll"
+                       Caption="{Binding Caption}">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <TextBlock FontFamily="Courier New" 
@@ -16,4 +12,4 @@
                    local:LocalOrdersFormatter.Command="{Binding OpenTrainScheduleCommand}" 
                    local:LocalOrdersFormatter.Content="{Binding LocalOrders}"/>
     </ScrollViewer>
-</controls:ChildWindow>
+</controls:LeibitWindow>

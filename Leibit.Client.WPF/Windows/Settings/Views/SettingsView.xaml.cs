@@ -7,7 +7,7 @@ namespace Leibit.Client.WPF.Windows.Settings.Views
     /// <summary>
     /// Interaktionslogik für SettingsView.xaml
     /// </summary>
-    public partial class SettingsView : ChildWindow
+    public partial class SettingsView : LeibitWindow
     {
         public SettingsView()
             : base("Settings")

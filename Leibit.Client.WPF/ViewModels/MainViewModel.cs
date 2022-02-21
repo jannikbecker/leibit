@@ -63,7 +63,6 @@ namespace Leibit.Client.WPF.ViewModels
         private Area m_CurrentArea;
         private Thread m_RefreshingThread;
         private CancellationTokenSource m_CancellationTokenSource;
-        private List<ViewModelBase> m_ChildViewModels;
         private string m_CurrentFilename;
         private bool m_ForceClose;
 
@@ -124,8 +123,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_SettingsBll = new SettingsBLL();
             m_SerializationBll = new SerializationBLL();
 
-            m_ChildViewModels = new List<ViewModelBase>();
-            ChildWindows = new ObservableCollection<ChildWindow>();
+            ChildWindows = new ObservableCollection<LeibitWindow>();
 
             Runtime.VisibleStationsChanged += __VisibleStationsChanged;
 
@@ -218,11 +216,11 @@ namespace Leibit.Client.WPF.ViewModels
         #endregion
 
         #region [ChildWindows]
-        public ObservableCollection<ChildWindow> ChildWindows
+        public ObservableCollection<LeibitWindow> ChildWindows
         {
             get
             {
-                return Get<ObservableCollection<ChildWindow>>();
+                return Get<ObservableCollection<LeibitWindow>>();
             }
             set
             {
@@ -698,7 +696,7 @@ namespace Leibit.Client.WPF.ViewModels
 
                 foreach (var SerializedWindow in OpenResult.Result.Windows)
                 {
-                    ChildWindow Window;
+                    LeibitWindow Window;
                     ChildWindowViewModelBase ViewModel;
 
                     int TrainNumber;
@@ -826,8 +824,10 @@ namespace Leibit.Client.WPF.ViewModels
                     Window.Height = SerializedWindow.Height;
                     Window.PositionX = SerializedWindow.PositionX;
                     Window.PositionY = SerializedWindow.PositionY;
+                    Window.IsDockedOut = SerializedWindow.IsDockedOut;
+                    Window.DataContext = ViewModel;
 
-                    __OpenChildWindow(Window, ViewModel);
+                    __OpenChildWindow(Window);
                 }
 
                 m_CurrentFilename = Filename;
@@ -854,49 +854,43 @@ namespace Leibit.Client.WPF.ViewModels
             {
                 var SerializedWindow = new SerializedWindowInformation();
 
-                if (Window is DelayJustificationView)
+                if (Window.DataContext is DelayJustificationViewModel delayJustificationViewModel)
                 {
                     SerializedWindow.Type = eChildWindowType.DelayJustification;
-                    SerializedWindow.Tag = (Window.DataContext as DelayJustificationViewModel).CurrentTrain.Train.Number;
+                    SerializedWindow.Tag = delayJustificationViewModel.CurrentTrain.Train.Number;
                 }
-                else if (Window is ESTWSelectionView)
+                else if (Window.DataContext is ESTWSelectionViewModel)
                     SerializedWindow.Type = eChildWindowType.ESTWSelection;
-                else if (Window is SettingsView)
+                else if (Window.DataContext is SettingsViewModel)
                     SerializedWindow.Type = eChildWindowType.Settings;
-                else if (Window is TimeTableView)
+                else if (Window.DataContext is TimeTableViewModel timeTableViewModel)
                 {
                     SerializedWindow.Type = eChildWindowType.TimeTable;
-                    SerializedWindow.Tag = (Window.DataContext as TimeTableViewModel).CurrentStation.ShortSymbol;
+                    SerializedWindow.Tag = timeTableViewModel.CurrentStation.ShortSymbol;
                 }
-                else if (Window is TrainProgressInformationView)
+                else if (Window.DataContext is TrainProgressInformationViewModel)
                     SerializedWindow.Type = eChildWindowType.TrainProgressInformation;
-                else if (Window is TrainScheduleView && !(Window.DataContext as TrainScheduleViewModel).IsInEditMode)
+                else if (Window.DataContext is TrainScheduleViewModel trainScheduleViewModel && !trainScheduleViewModel.IsInEditMode)
                 {
                     SerializedWindow.Type = eChildWindowType.TrainSchedule;
                     SerializedWindow.Tag = (Window.DataContext as TrainScheduleViewModel).CurrentTrain.Number;
                 }
-                else if (Window is LocalOrdersView)
+                else if (Window.DataContext is LocalOrdersViewModel localOrdersViewModel)
                 {
                     SerializedWindow.Type = eChildWindowType.LocalOrders;
-
-                    var VM = Window.DataContext as LocalOrdersViewModel;
-                    SerializedWindow.Tag = new KeyValuePair<int, string>(VM.CurrentSchedule.Train.Number, VM.CurrentSchedule.Station.ShortSymbol);
+                    SerializedWindow.Tag = new KeyValuePair<int, string>(localOrdersViewModel.CurrentSchedule.Train.Number, localOrdersViewModel.CurrentSchedule.Station.ShortSymbol);
                 }
-                else if (Window is SystemStateView)
+                else if (Window.DataContext is SystemStateViewModel)
                     SerializedWindow.Type = eChildWindowType.SystemState;
-                else if (Window is TrainCompositionView)
+                else if (Window.DataContext is TrainCompositionViewModel trainCompositionViewModel)
                 {
                     SerializedWindow.Type = eChildWindowType.TrainComposition;
-
-                    var vm = Window.DataContext as TrainCompositionViewModel;
-                    SerializedWindow.Tag = vm.TrainNumber;
+                    SerializedWindow.Tag = trainCompositionViewModel.TrainNumber;
                 }
-                else if (Window is DisplayView)
+                else if (Window.DataContext is DisplayViewModel displayViewModel)
                 {
                     SerializedWindow.Type = eChildWindowType.Display;
-
-                    var vm = Window.DataContext as DisplayViewModel;
-                    SerializedWindow.Tag = $"{(int)vm.SelectedDisplayType.Type};{vm.SelectedStation?.ShortSymbol};{vm.SelectedTrack?.Name}";
+                    SerializedWindow.Tag = $"{(int)displayViewModel.SelectedDisplayType.Type};{displayViewModel.SelectedStation?.ShortSymbol};{displayViewModel.SelectedTrack?.Name}";
                 }
                 else
                     continue;
@@ -905,6 +899,7 @@ namespace Leibit.Client.WPF.ViewModels
                 SerializedWindow.Height = Window.Height;
                 SerializedWindow.PositionX = Window.PositionX;
                 SerializedWindow.PositionY = Window.PositionY;
+                SerializedWindow.IsDockedOut = Window.IsDockedOut;
 
                 Container.Windows.Add(SerializedWindow);
             }
@@ -945,10 +940,11 @@ namespace Leibit.Client.WPF.ViewModels
         {
             var VM = new SettingsViewModel(Areas);
             var Window = new SettingsView();
+            Window.DataContext = VM;
 
             VM.SettingsChanged += __SettingsChanged;
 
-            __OpenChildWindow(Window, VM);
+            __OpenChildWindow(Window);
         }
         #endregion
 
@@ -998,8 +994,8 @@ namespace Leibit.Client.WPF.ViewModels
         private void __ShowEstwSelectionWindow()
         {
             var Window = new ESTWSelectionView();
-            var VM = new ESTWSelectionViewModel(Window.Dispatcher);
-            __OpenChildWindow(Window, VM);
+            Window.DataContext = new ESTWSelectionViewModel(Window.Dispatcher);
+            __OpenChildWindow(Window);
         }
         #endregion
 
@@ -1007,8 +1003,8 @@ namespace Leibit.Client.WPF.ViewModels
         private void __ShowTrainProgressInformationWindow()
         {
             var Window = new TrainProgressInformationView();
-            var VM = new TrainProgressInformationViewModel(Window.Dispatcher, m_CurrentArea);
-            __OpenChildWindow(Window, VM);
+            Window.DataContext = new TrainProgressInformationViewModel(Window.Dispatcher, m_CurrentArea);
+            __OpenChildWindow(Window);
         }
         #endregion
 
@@ -1018,8 +1014,8 @@ namespace Leibit.Client.WPF.ViewModels
             IsTimeTableDropDownOpen = false;
 
             var Window = new TimeTableView(Station.ShortSymbol);
-            var VM = new TimeTableViewModel(Window.Dispatcher, Station);
-            __OpenChildWindow(Window, VM);
+            Window.DataContext = new TimeTableViewModel(Window.Dispatcher, Station);
+            __OpenChildWindow(Window);
         }
         #endregion
 
@@ -1027,9 +1023,9 @@ namespace Leibit.Client.WPF.ViewModels
         private void __ShowDisplay()
         {
             var window = new DisplayView();
-            var vm = new DisplayViewModel(window.Dispatcher, m_CurrentArea);
+            window.DataContext = new DisplayViewModel(window.Dispatcher, m_CurrentArea);
 
-            __OpenChildWindow(window, vm);
+            __OpenChildWindow(window);
         }
         #endregion
 
@@ -1043,15 +1039,15 @@ namespace Leibit.Client.WPF.ViewModels
             {
                 var Train = m_CurrentArea.Trains[TrainScheduleNumber.Value];
                 var Window = new TrainScheduleView(TrainScheduleNumber.Value);
-                var VM = new TrainScheduleViewModel(Window.Dispatcher, Train, m_CurrentArea);
-                __OpenChildWindow(Window, VM);
+                Window.DataContext = new TrainScheduleViewModel(Window.Dispatcher, Train, m_CurrentArea);
+                __OpenChildWindow(Window);
             }
             else if (m_CurrentArea.LiveTrains.ContainsKey(TrainScheduleNumber.Value))
             {
                 var Train = m_CurrentArea.LiveTrains[TrainScheduleNumber.Value];
                 var Window = new TrainScheduleView(TrainScheduleNumber.Value);
-                var VM = new TrainScheduleViewModel(Window.Dispatcher, Train.Train, m_CurrentArea);
-                __OpenChildWindow(Window, VM);
+                Window.DataContext = new TrainScheduleViewModel(Window.Dispatcher, Train.Train, m_CurrentArea);
+                __OpenChildWindow(Window);
             }
             else
             {
@@ -1066,15 +1062,15 @@ namespace Leibit.Client.WPF.ViewModels
         private void __ShowSystemStateWindow()
         {
             var Window = new SystemStateView();
-            var VM = new SystemStateViewModel(Window.Dispatcher);
-            __OpenChildWindow(Window, VM);
+            Window.DataContext = new SystemStateViewModel(Window.Dispatcher);
+            __OpenChildWindow(Window);
         }
         #endregion
 
         #region [__SaveLayout]
         private void __SaveLayout()
         {
-            m_ChildViewModels.Where(vm => vm is ILayoutSavable).Cast<ILayoutSavable>().ForEach(vm => vm.SaveLayout());
+            ChildWindows.Select(w => w.DataContext).Where(vm => vm is ILayoutSavable).Cast<ILayoutSavable>().ForEach(vm => vm.SaveLayout());
             StatusBarText = "Layout wurde gespeichert";
         }
         #endregion
@@ -1107,9 +1103,10 @@ namespace Leibit.Client.WPF.ViewModels
         #region [__ShowAboutWindow]
         private void __ShowAboutWindow()
         {
-            var Window = new AboutView();
-            var VM = new AboutViewModel();
-            __OpenChildWindow(Window, VM);
+            var window = new AboutView();
+            window.DataContext = new AboutViewModel();
+
+            __OpenChildWindow(window);
         }
         #endregion
 
@@ -1131,41 +1128,35 @@ namespace Leibit.Client.WPF.ViewModels
         #endregion
 
         #region [__OpenChildWindow]
-        private bool __OpenChildWindow(ChildWindow Window, ChildWindowViewModelBase ViewModel)
+        private void __OpenChildWindow(LeibitWindow window)
         {
-            var Temp = ChildWindows.FirstOrDefault(c => c.Identifier != null && c.Identifier == Window.Identifier);
+            var existingWindow = ChildWindows.FirstOrDefault(c => c.Identifier != null && c.Identifier == window.Identifier);
 
-            if (Temp != null)
+            if (existingWindow != null)
             {
-                Temp.Focus();
-                return false;
+                existingWindow.BringToFront();
+                return;
             }
 
-            Window.DataContext = ViewModel;
-            m_ChildViewModels.Add(ViewModel);
-            ChildWindows.Add(Window);
+            window.ChildWindowStyle = Application.Current.Resources["LeibitChildWindowStyle"] as Style;
+            ChildWindows.Add(window);
 
-            Window.Closed += (sender, e) =>
+            if (window.DataContext is ChildWindowViewModelBase vm)
             {
-                ChildWindows.Remove(Window);
-                m_ChildViewModels.Remove(ViewModel);
-            };
+                vm.OpenWindow += (sender, e) =>
+                {
+                    __OpenChildWindow(e);
+                };
 
-            ViewModel.OpenWindow += (sender, e) =>
-            {
-                __OpenChildWindow(e.Window, e.ViewModel);
-            };
+                vm.StatusBarTextChanged += (sender, text) => StatusBarText = text;
+                vm.ReportProgress += __ReportProgress;
 
-            ViewModel.StatusBarTextChanged += (sender, text) => StatusBarText = text;
-            ViewModel.ReportProgress += __ReportProgress;
-
-            ViewModel.ShutdownRequested += (sender, force) =>
-            {
-                m_ForceClose = force;
-                __Exit();
-            };
-
-            return true;
+                vm.ShutdownRequested += (sender, force) =>
+                {
+                    m_ForceClose = force;
+                    __Exit();
+                };
+            }
         }
         #endregion
 
@@ -1244,7 +1235,8 @@ namespace Leibit.Client.WPF.ViewModels
 
                 if (Result.Succeeded && Result.Result)
                 {
-                    var vmList = m_ChildViewModels.Where(vm => vm is IRefreshable).Cast<IRefreshable>().ToList();
+                    List<IRefreshable> vmList = null;
+                    Application.Current?.Dispatcher?.Invoke(() => vmList = ChildWindows.Select(w => w.DataContext).Where(vm => vm is IRefreshable).Cast<IRefreshable>().ToList());
 
                     foreach (var vm in vmList)
                     {
@@ -1565,7 +1557,7 @@ namespace Leibit.Client.WPF.ViewModels
         private void __SettingsChanged(object sender, EventArgs e)
         {
             foreach (var window in ChildWindows)
-                window.SetWindowColor();
+                window.ChildWindow?.SetWindowColor();
         }
         #endregion
 
