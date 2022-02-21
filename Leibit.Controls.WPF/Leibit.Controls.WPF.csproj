@@ -25,6 +25,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\Images\arrow_up.png" />
+    <None Remove="Resources\Images\close_black.png" />
+    <None Remove="Resources\Images\close_white.png" />
     <None Remove="Resources\Images\dock_out_black.png" />
     <None Remove="Resources\Images\dock_out_white.png" />
   </ItemGroup>
@@ -45,7 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\arrow_up.png" />
-    <Resource Include="Resources\Images\close.png" />
+    <Resource Include="Resources\Images\close_black.png" />
+    <Resource Include="Resources\Images\close_white.png" />
     <Resource Include="Resources\Images\dock_out_black.png" />
     <Resource Include="Resources\Images\dock_out_white.png" />
   </ItemGroup>

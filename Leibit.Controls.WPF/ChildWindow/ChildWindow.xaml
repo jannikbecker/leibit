@@ -3,7 +3,8 @@
                     xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                     xmlns:controls="clr-namespace:Leibit.Controls">
 
-    <BitmapImage x:Key="imgClose" UriSource="/Leibit.Controls.WPF;component/Resources/Images/close.png" />
+    <BitmapImage x:Key="imgCloseBlack" UriSource="/Leibit.Controls.WPF;component/Resources/Images/close_black.png" />
+    <BitmapImage x:Key="imgCloseWhite" UriSource="/Leibit.Controls.WPF;component/Resources/Images/close_white.png" />
     <BitmapImage x:Key="imgDockOutBlack" UriSource="/Leibit.Controls.WPF;component/Resources/Images/dock_out_black.png" />
     <BitmapImage x:Key="imgDockOutWhite" UriSource="/Leibit.Controls.WPF;component/Resources/Images/dock_out_white.png" />
     <conv:ColorConverter x:Key="ColorConverter" />
@@ -26,7 +27,7 @@
                                                 Left="{Binding PositionX, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                                 DoubleClickCommand="{Binding SizeToContentCommand, RelativeSource={RelativeSource TemplatedParent}}"
                                                 ResizeMode="{Binding ResizeMode, RelativeSource={RelativeSource TemplatedParent}}">
-                        <Border BorderThickness="5,0,5,5" HorizontalAlignment="Stretch" Background="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}}">
+                        <Border BorderThickness="5,0,5,5" HorizontalAlignment="Stretch" Background="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}}" SnapsToDevicePixels="True">
                             <Border.BorderBrush>
                                 <!-- RelativeSource TemplatedParent causes error here (why ?) -->
                                 <SolidColorBrush Color="{Binding WindowColor, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}, Converter={StaticResource ColorConverter}}" />
@@ -96,19 +97,35 @@
                                     </Button>
 
                                     <Button Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding CloseCommand, RelativeSource={RelativeSource TemplatedParent}}" ToolTip="Schließen">
-                                        <Image Source="{StaticResource imgClose}" RenderOptions.BitmapScalingMode="NearestNeighbor" RenderOptions.EdgeMode="Aliased">
-                                            <Image.Style>
-                                                <Style TargetType="Image">
-                                                    <Setter Property="Opacity" Value="0.7" />
+                                        <Grid>
+                                            <Image Source="{StaticResource imgCloseBlack}" Visibility="{Binding HasLightWindowColor, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}, Converter={StaticResource VisibilityConverter}}">
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
+                                                        <Setter Property="Opacity" Value="0.7" />
 
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Opacity" Value="1" />
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Image.Style>
-                                        </Image>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Opacity" Value="1" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+
+                                            <Image Source="{StaticResource imgCloseWhite}" Visibility="{Binding HasLightWindowColor, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:ChildWindow}, Converter={StaticResource InvertedVisibilityConverter}}">
+                                                <Image.Style>
+                                                    <Style TargetType="Image">
+                                                        <Setter Property="Opacity" Value="0.7" />
+
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Opacity" Value="1" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </Grid>
 
                                         <Button.Style>
                                             <Style TargetType="Button">
