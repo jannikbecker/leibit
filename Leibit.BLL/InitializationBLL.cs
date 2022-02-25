@@ -230,7 +230,7 @@ namespace Leibit.BLL
                     schedulesToDelete.ForEach(train.RemoveSchedule);
                 }
 
-                return new OperationResult<bool> { Message = ex.Message };
+                return new OperationResult<bool> { Message = ex.ToString() };
             }
         }
         #endregion
