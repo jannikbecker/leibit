@@ -116,18 +116,15 @@ namespace Leibit.BLL
             try
             {
                 var Result = new OperationResult<bool>();
-                Estw.Stations.Clear();
-                Estw.Blocks.Clear();
-                Estw.IsLoaded = false;
+
+                if (Estw.IsLoaded)
+                {
+                    Result.Succeeded = true;
+                    return Result;
+                }
 
                 var PathResult = SettingsBLL.GetPath(Estw.Id);
                 ValidateResult(PathResult);
-
-                //if (PathResult.Result.IsNullOrWhiteSpace())
-                //{
-                //    Result.Succeeded = true;
-                //    return Result;
-                //}
 
                 using (var xmlStream = __GetEstwXmlStream(Estw))
                 {
@@ -154,71 +151,57 @@ namespace Leibit.BLL
 
                     foreach (XmlNode StationNode in Stations)
                     {
-                        Station Station = null;
+                        var Station = __GetStation(StationNode, Estw);
 
-                        try
+                        if (Station == null)
+                            continue;
+
+                        var Tracks = StationNode.SelectNodes("track");
+
+                        foreach (XmlNode TrackNode in Tracks)
                         {
-                            Station = __GetStation(StationNode, Estw);
-                            if (Station == null)
+                            var Track = __GetTrack(TrackNode, Station);
+                            if (Track == null)
                                 continue;
 
-                            var Tracks = StationNode.SelectNodes("track");
-
-                            foreach (XmlNode TrackNode in Tracks)
+                            foreach (XmlNode ChildTrackNode in TrackNode.SelectNodes("track"))
                             {
-                                var Track = __GetTrack(TrackNode, Station);
-                                if (Track == null)
-                                    continue;
-
-                                foreach (XmlNode ChildTrackNode in TrackNode.SelectNodes("track"))
-                                {
-                                    __GetTrack(ChildTrackNode, Station, Track);
-                                }
+                                __GetTrack(ChildTrackNode, Station, Track);
                             }
-
-                            foreach (XmlNode TrackNode in Tracks)
-                            {
-                                var TrackName = TrackNode.Attributes["name"];
-                                if (TrackName == null)
-                                    continue;
-
-                                var Track = Station.Tracks.FirstOrDefault(t => t.Name == TrackName.InnerText);
-                                if (Track == null)
-                                    continue;
-
-                                __GetAlternatives(TrackNode, Track);
-
-                                foreach (XmlNode ChildTrackNode in TrackNode.SelectNodes("track"))
-                                {
-                                    var ChildTrackName = ChildTrackNode.Attributes["name"];
-                                    if (ChildTrackName == null)
-                                        continue;
-
-                                    var ChildTrack = Station.Tracks.FirstOrDefault(t => t.Name == ChildTrackName.InnerText);
-                                    if (ChildTrack == null)
-                                        continue;
-
-                                    __GetAlternatives(ChildTrackNode, ChildTrack);
-                                }
-                            }
-
-                            if (PathResult.Result.IsNotNullOrWhiteSpace())
-                            {
-                                __GetSchedule(Station, PathResult.Result);
-                                __ResolveDuplicates(Station.Schedules);
-                                __DetectTwinSchedules(Station.Schedules);
-                                __GetLocalOrders(Station, PathResult.Result);
-                            }
-
-                            Result.Succeeded = true;
                         }
-                        catch (Exception ex)
-                        {
-                            if (Station != null)
-                                Estw.Stations.Remove(Station);
 
-                            Result.Message = ex.Message;
-                            Result.Result = false;
+                        foreach (XmlNode TrackNode in Tracks)
+                        {
+                            var TrackName = TrackNode.Attributes["name"];
+                            if (TrackName == null)
+                                continue;
+
+                            var Track = Station.Tracks.FirstOrDefault(t => t.Name == TrackName.InnerText);
+                            if (Track == null)
+                                continue;
+
+                            __GetAlternatives(TrackNode, Track);
+
+                            foreach (XmlNode ChildTrackNode in TrackNode.SelectNodes("track"))
+                            {
+                                var ChildTrackName = ChildTrackNode.Attributes["name"];
+                                if (ChildTrackName == null)
+                                    continue;
+
+                                var ChildTrack = Station.Tracks.FirstOrDefault(t => t.Name == ChildTrackName.InnerText);
+                                if (ChildTrack == null)
+                                    continue;
+
+                                __GetAlternatives(ChildTrackNode, ChildTrack);
+                            }
+                        }
+
+                        if (PathResult.Result.IsNotNullOrWhiteSpace())
+                        {
+                            __GetSchedule(Station, PathResult.Result);
+                            __ResolveDuplicates(Station.Schedules);
+                            __DetectTwinSchedules(Station.Schedules);
+                            __GetLocalOrders(Station, PathResult.Result);
                         }
                     }
                 }
@@ -228,13 +211,26 @@ namespace Leibit.BLL
                     __LoadTrainCompositions(Estw, PathResult.Result);
                     __LoadTrainRelations(Estw, PathResult.Result);
                 }
+
                 Estw.SchedulesLoaded = PathResult.Result.IsNotNullOrWhiteSpace();
                 Estw.IsLoaded = true;
+                Result.Result = true;
+                Result.Succeeded = true;
                 return Result;
             }
             catch (Exception ex)
             {
-                return new OperationResult<bool> { Message = ex.Message };
+                Estw.Stations.Clear();
+                Estw.Blocks.Clear();
+                Estw.IsLoaded = false;
+
+                foreach (var train in Estw.Area.Trains.Values)
+                {
+                    var schedulesToDelete = train.Schedules.Where(s => s.Station.ESTW.Id == Estw.Id).ToList();
+                    schedulesToDelete.ForEach(train.RemoveSchedule);
+                }
+
+                return new OperationResult<bool> { Message = ex.ToString() };
             }
         }
         #endregion

@@ -432,7 +432,8 @@ namespace Leibit.BLL
 
                     if (!estw.IsLoaded)
                     {
-                        InitializationBLL.LoadESTW(estw);
+                        var LoadResult = InitializationBLL.LoadESTW(estw);
+                        ValidateResult(LoadResult);
 
                         foreach (var Train in estw.Area.LiveTrains.Values)
                             __RefreshLiveSchedules(Train, estw);
