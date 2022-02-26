@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Puttgarden" short="APU" refNr="30" scheduleFile="g30_____.abf" localOrderFile="bf30____.abf">
+    <track name="2">
+      <block name="30G2"/>
+    </track>
+    <track name="3">
+      <block name="30G3"/>
+    </track>
+    <track name="5">
+      <block name="30G5"/>
+    </track>
+    <track name="6">
+      <block name="30G6"/>
+    </track>
+    <track name="8">
+      <block name="30G8"/>
+    </track>
+    <track name="9">
+      <block name="30G9"/>
+    </track>
+    <track name="72">
+      <block name="30G72"/>
+    </track>
+    <track name="73">
+      <block name="30G73"/>
+    </track>
+    <track name="74">
+      <block name="30G74"/>
+    </track>
+    <track name="75">
+      <block name="30G75"/>
+    </track>
+    <track name="76">
+      <block name="30G76"/>
+    </track>
+    <track name="77">
+      <block name="30G77"/>
+    </track>
+    <track name="78">
+      <block name="30G78"/>
+    </track>
+  </station>
+
+  <station name="Puttgarden Fähre" short="APU F" refNr="31" scheduleFile="g31_____.abf">
+    <track name="1"/>
+    <track name="2"/>
+    <track name="3"/>
+  </station>
+
+  <station name="Burg West" short="ABUW" refNr="29">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="29BN" direction="right"/>
+    </track>
+  </station>
+</estw>
