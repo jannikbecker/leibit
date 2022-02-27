@@ -48,7 +48,7 @@
     <track name="3"/>
   </station>
 
-  <station name="Burg West" short="ABUW" refNr="29">
+  <station name="Burg (Fehmarn) West" short="ABUW" refNr="29">
     <track calculateDelay="false" isPlatform="false">
       <block name="29BN" direction="right"/>
     </track>

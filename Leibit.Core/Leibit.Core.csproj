@@ -21,6 +21,7 @@
     <None Remove="Data\berlin\B-Stadtbahn.xml" />
     <None Remove="Data\berlin\TrainNumbers.xml" />
     <None Remove="Data\fehmarn\APU.xml" />
+    <None Remove="Data\fehmarn\Fehmarn.xml" />
     <None Remove="Data\nhth\FB.xml" />
     <None Remove="Data\nhth\FBHF.xml" />
     <None Remove="Data\nhth\FEL.xml" />
@@ -84,6 +85,7 @@
     <EmbeddedResource Include="Data\berlin\B-Stadtbahn.xml" />
     <EmbeddedResource Include="Data\berlin\TrainNumbers.xml" />
     <EmbeddedResource Include="Data\fehmarn\APU.xml" />
+    <EmbeddedResource Include="Data\fehmarn\Fehmarn.xml" />
     <EmbeddedResource Include="Data\nhth\FB.xml" />
     <EmbeddedResource Include="Data\nhth\FBHF.xml" />
     <EmbeddedResource Include="Data\nhth\FEL.xml" />

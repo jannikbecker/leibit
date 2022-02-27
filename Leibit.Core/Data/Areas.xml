@@ -66,6 +66,7 @@
   </area>
 
   <area id="fehmarn" name="Fehmarn">
+    <estw id="Fehmarn" name="Fehmarn" dataFile="leibit_FEHMARN.dat" infrastructureManager="DB"/>
     <estw id="APU" name="Puttgarden" dataFile="leibit_PUTTGARDEN.dat" infrastructureManager="DB"/>
   </area>
 </leibit>

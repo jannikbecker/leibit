@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Lübeck Hbf" short="AL" refNr="90">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10B2" direction="right"/>
+      <block name="90BN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Schwartau Waldhalle" short="ASWL" refNr="10">
+    <scheduleFile fileName="G10_____.ABF">
+      <track>1</track>
+      <track>2</track>
+    </scheduleFile>
+
+    <track name="1">
+      <block name="10G1"/>
+    </track>
+    <track name="2">
+      <block name="10G2"/>
+    </track>
+  </station>
+
+  <station name="Schwartau Waldhalle (Wr)" short="AWR" refNr="10">
+    <scheduleFile fileName="G10_____.ABF">
+      <track>91</track>
+      <track>92</track>
+    </scheduleFile>
+
+    <track name="91" calculateDelay="false" isPlatform="false">
+      <block name="10BP" direction="left"/>
+      <block name="11BP" direction="right"/>
+    </track>
+    <track name="92" calculateDelay="false" isPlatform="false">
+      <block name="10B3" direction="left"/>
+      <block name="10BN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Lübeck-Dänischburg" short="ALD" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10BND" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Bad Schwartau" short="ASCH" refNr="11" scheduleFile="G11_____.ABF" localOrderFile="BF11____.ABF">
+    <track name="1">
+      <block name="11G1"/>
+    </track>
+    <track name="2">
+      <block name="11G2"/>
+    </track>
+    <track name="3">
+      <block name="11G3"/>
+    </track>
+    <track name="4">
+      <block name="11G4"/>
+    </track>
+  </station>
+
+  <station name="Pansdorf" short="APF" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11BNP" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Ratekau" short="ARAT" refNr="12" scheduleFile="G12_____.ABF" localOrderFile="BF12____.ABF">
+    <track name="1">
+      <block name="12G1"/>
+    </track>
+    <track name="2">
+      <block name="12G2"/>
+    </track>
+  </station>
+
+  <station name="Timmendorfer Strand" short="ATIM" refNr="13" scheduleFile="G13_____.ABF" localOrderFile="BF13____.ABF">
+    <track name="1">
+      <block name="13G1"/>
+    </track>
+    <track name="2">
+      <block name="13G2"/>
+    </track>
+    <track name="3">
+      <block name="13G3"/>
+    </track>
+  </station>
+
+  <station name="Scharbeutz" short="ASZ" refNr="14" scheduleFile="G14_____.ABF" localOrderFile="BF14____.ABF">
+    <track name="1">
+      <block name="14G1"/>
+    </track>
+    <track name="2">
+      <block name="14G2"/>
+    </track>
+  </station>
+
+  <station name="Haffkrug" short="AHAF" refNr="15" scheduleFile="G15_____.ABF" localOrderFile="BF15____.ABF">
+    <track name="1">
+      <block name="15G1"/>
+    </track>
+    <track name="2">
+      <block name="15G2"/>
+    </track>
+  </station>
+
+  <station name="Sierksdorf" short="ASID" refNr="16" localOrderFile="BF16____.ABF">
+    <scheduleFile fileName="G16_____.ABF">
+      <track>1</track>
+      <track>2</track>
+    </scheduleFile>
+    
+    <track name="1">
+      <block name="16G1"/>
+    </track>
+    <track name="2">
+      <block name="16G2"/>
+    </track>
+  </station>
+
+  <station name="Neustadt (Holst) Gbf" short="ANN" refNr="17" scheduleFile="G17_____.ABF" localOrderFile="BF17____.ABF">
+    <track name="7">
+      <block name="17G7"/>
+    </track>
+    <track name="8">
+      <block name="17G8"/>
+    </track>
+    <track name="9">
+      <block name="17G9"/>
+    </track>
+    <track name="12">
+      <block name="17G12"/>
+    </track>
+  </station>
+
+  <station name="Neustadt (Holst)" short="ANT" refNr="37" scheduleFile="G37_____.ABF" localOrderFile="BF37____.ABF">
+    <track name="1">
+      <block name="37G1"/>
+    </track>
+    <track name="2">
+      <block name="37G2"/>
+    </track>
+  </station>
+
+  <station name="Hasselburg" short="AHSG" refNr="18" scheduleFile="G18_____.ABF" localOrderFile="BF18____.ABF">
+    <track name="1">
+      <block name="18G1"/>
+    </track>
+    <track name="2">
+      <block name="18G2"/>
+    </track>
+  </station>
+
+  <station name="Groß Schlamin" short="AGR" refNr="19" scheduleFile="G19_____.ABF" localOrderFile="BF19____.ABF">
+    <track name="1">
+      <block name="19G1"/>
+    </track>
+    <track name="2">
+      <block name="19G2"/>
+    </track>
+    <track name="3">
+      <block name="19G3"/>
+    </track>
+  </station>
+
+  <station name="Beschendorf" short="ABDF" refNr="20" scheduleFile="G20_____.ABF" localOrderFile="BF20____.ABF">
+    <track name="1">
+      <block name="20G1"/>
+    </track>
+    <track name="2">
+      <block name="20G2"/>
+    </track>
+  </station>
+
+  <station name="Lensahn" short="ALS" refNr="21" scheduleFile="G21_____.ABF" localOrderFile="BF21____.ABF">
+    <track name="1">
+      <block name="21G1"/>
+    </track>
+    <track name="2">
+      <block name="21G2"/>
+    </track>
+  </station>
+
+  <station name="Grüner Hirsch" short="AGHI" refNr="22" scheduleFile="G22_____.ABF" localOrderFile="BF22____.ABF">
+    <track name="1">
+      <block name="22G1"/>
+    </track>
+    <track name="2">
+      <block name="22G2"/>
+    </track>
+  </station>
+
+  <station name="Oldenburg (Holst)" short="AOL" refNr="23" scheduleFile="G23_____.ABF" localOrderFile="BF23____.ABF">
+    <track name="1">
+      <block name="23G1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="2">
+      <block name="23G2"/>
+      <alternative track="1"/>
+    </track>
+    <track name="6">
+      <block name="23G6"/>
+      <alternative track="7"/>
+    </track>
+    <track name="7">
+      <block name="23G7"/>
+      <alternative track="6"/>
+    </track>
+  </station>
+
+  <station name="Göhl" short="AGÖ" refNr="24" scheduleFile="G24_____.ABF" localOrderFile="BF24____.ABF">
+    <track name="1">
+      <block name="24G1"/>
+    </track>
+    <track name="2">
+      <block name="24G2"/>
+    </track>
+  </station>
+
+  <station name="Heringsdorf" short="AHR" refNr="25" scheduleFile="G25_____.ABF" localOrderFile="BF25____.ABF">
+    <track name="1">
+      <block name="25G1"/>
+    </track>
+    <track name="2">
+      <block name="25G2"/>
+    </track>
+  </station>
+
+  <station name="Neukirchen" short="ANEK" refNr="26" scheduleFile="G26_____.ABF" localOrderFile="BF26____.ABF">
+    <track name="1">
+      <block name="26G1"/>
+    </track>
+    <track name="2">
+      <block name="26G2"/>
+    </track>
+  </station>
+
+  <station name="Lütjenbrode" short="ALTB" refNr="26">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="26BN1" direction="left" />
+      <block name="26BN2" direction="right" />
+    </track>
+  </station>
+
+  <station name="Großenbrode" short="AGRO" refNr="27" scheduleFile="G27_____.ABF" localOrderFile="BF27____.ABF">
+    <track name="1">
+      <block name="27G1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="2">
+      <block name="27G2"/>
+      <alternative track="1"/>
+    </track>
+    <track name="7">
+      <block name="27G7"/>
+      <alternative track="8"/>
+    </track>
+    <track name="8">
+      <block name="27G8"/>
+      <alternative track="7"/>
+    </track>
+  </station>
+
+  <station name="Strukkamp" short="ASTK" refNr="28" scheduleFile="G28_____.ABF" localOrderFile="BF28____.ABF">
+    <track name="1">
+      <block name="28G1"/>
+    </track>
+    <track name="2">
+      <block name="28G2"/>
+    </track>
+  </station>
+
+  <station name="Burg (Fehmarn) West" short="ABUW" refNr="29" scheduleFile="G29_____.ABF">
+    <track name="1">
+      <block name="29G1"/>
+    </track>
+    <track name="2">
+      <block name="29G2"/>
+    </track>
+    <track name="3">
+      <block name="29G3"/>
+    </track>
+    <track name="4">
+      <block name="29G4"/>
+    </track>
+  </station>
+
+  <station name="Burg (Fehmarn)" short="ABUF" refNr="29" scheduleFile="B29_____.ABF" localOrderFile="BF29____.ABF" displayName="Fehmarn-Burg">
+    <track name="9">
+      <block name="29G9"/>
+    </track>
+  </station>
+
+  <station name="Puttgarden" short="APU" refNr="30">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="29BN" direction="left"/>
+    </track>
+  </station>
+</estw>
