@@ -602,30 +602,7 @@ namespace Leibit.BLL
                 }
                 else
                 {
-                    var Schedules = Train.Schedules.Where(s => s.Schedule.Station.ShortSymbol == Block.Track.Station.ShortSymbol);
-
-                    // Find schedule that fits to the current direction of travel
-                    foreach (var Schedule in Schedules)
-                    {
-                        if ((Schedule.Schedule.Direction == eScheduleDirection.LeftToRight && Train.Direction == eBlockDirection.Right)
-                            || (Schedule.Schedule.Direction == eScheduleDirection.RightToLeft && Train.Direction == eBlockDirection.Left))
-                        {
-                            CurrentSchedule = Schedule;
-                            break;
-                        }
-                    }
-
-                    // When no schedule has been found according to the direction, take the first one.
-                    if (CurrentSchedule == null)
-                        CurrentSchedule = Schedules.FirstOrDefault();
-
-                    // The train has no schedule for the current station (e.g. special or misdirected trains).
-                    if (CurrentSchedule == null && Block.Track.Station.HasScheduleFile && Block.Track.CalculateDelay)
-                    {
-                        CurrentSchedule = new LiveSchedule(Train, Block.Track.Station);
-                        Train.AddSchedule(CurrentSchedule);
-                        Train.Train.AddSchedule(CurrentSchedule.Schedule);
-                    }
+                    CurrentSchedule = __GetCurrentSchedule(Train, Block);
 
                     if (CurrentSchedule == null)
                         Train.Block = Block;
@@ -742,6 +719,52 @@ namespace Leibit.BLL
                     __RefreshTrainInformation(previousTrain, Block, Estw);
                 }
             }
+        }
+
+        private LiveSchedule __GetCurrentSchedule(TrainInformation train, Block block)
+        {
+            var Schedules = train.Schedules.Where(s => s.Schedule.Station.ShortSymbol == block.Track.Station.ShortSymbol);
+
+            // If there is only one schedule, it's easy. This will accommodate most cases.
+            if (Schedules.Count() == 1)
+                return Schedules.Single();
+
+            // Find the schedule that fits to the train's direction (only if this is unique).
+            // LeftToLeft and RightToRight can't be handled here as the train changes its direction.
+            var scheduleDirection = eScheduleDirection.Unknown;
+
+            if (train.Direction == eBlockDirection.Left)
+                scheduleDirection = eScheduleDirection.RightToLeft;
+            else if (train.Direction == eBlockDirection.Right)
+                scheduleDirection = eScheduleDirection.LeftToRight;
+
+            var candidates = Schedules.Where(s => s.Schedule.Direction == scheduleDirection);
+
+            if (candidates.Count() == 1)
+                return candidates.Single();
+
+            // Next, check the schedules with the correct directions and take the first one that is not departed.
+            if (candidates.Any(s => !s.IsDeparted))
+                return candidates.First(s => !s.IsDeparted);
+
+            // Okay, we were unlucky with the direction, so try again with all schedules.
+            if (Schedules.Any(s => !s.IsDeparted))
+                return Schedules.First(s => !s.IsDeparted);
+
+            // As a last resort, assume the last schedule as the current schedule, even if it's already departed.
+            if (Schedules.Any())
+                return Schedules.Last();
+
+            // The train has no schedule for the current station (e.g. special or misdirected trains).
+            if (block.Track.Station.HasScheduleFile && block.Track.CalculateDelay)
+            {
+                var schedule = new LiveSchedule(train, block.Track.Station);
+                train.AddSchedule(schedule);
+                train.Train.AddSchedule(schedule.Schedule);
+                return schedule;
+            }
+
+            return null;
         }
 
         private void __SynchronizeTwinSchedules(TrainInformation train, ESTW estw)
