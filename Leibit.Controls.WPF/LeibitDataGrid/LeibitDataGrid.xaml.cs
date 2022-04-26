@@ -857,6 +857,9 @@ namespace Leibit.Controls
                     if (column.VisibilityBinding != null)
                         gridColumn.ElementStyle.Setters.Add(new Setter(VisibilityProperty, column.VisibilityBinding));
 
+                    if (column.ToolTipFieldName != null)
+                        gridColumn.ElementStyle.Setters.Add(new Setter(ToolTipProperty, new Binding(column.ToolTipFieldName)));
+
                     foreach (var backgroundCondition in column.BackgroundConditions)
                     {
                         Style style;

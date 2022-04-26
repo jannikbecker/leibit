@@ -583,9 +583,15 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 var unjustifiedDelays = delays.Where(d => d.Reason.IsNullOrWhiteSpace() && d.Schedule.Schedule.Station.ESTW.Stations.Any(s => Runtime.VisibleStations.Contains(s)));
 
                 if (unjustifiedDelays.Any())
+                {
                     currentVm.DelayInfo = 'U';
+                    currentVm.DelayDetails = string.Join(Environment.NewLine, unjustifiedDelays.Select(d => $"+{d.Minutes} von {d.Schedule.Schedule.Station.Name}"));
+                }
                 else if (delays.Any(d => d.Reason.IsNotNullOrWhiteSpace()))
+                {
                     currentVm.DelayInfo = 'J';
+                    currentVm.DelayDetails = string.Join(Environment.NewLine, delays.Where(d => d.Reason.IsNotNullOrWhiteSpace()).Select(d => $"+{d.Minutes} von {d.Schedule.Schedule.Station.Name}, Grund: {d.Reason}"));
+                }
                 else
                     currentVm.DelayInfo = ' ';
 
