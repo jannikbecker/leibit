@@ -19,6 +19,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             TrainNumber = schedule.Train.Number;
             Track = schedule.Track;
             LocalOrders = schedule.LocalOrders.IsNotNullOrWhiteSpace() ? 'J' : ' ';
+            LocalOrdersToolTip = schedule.LocalOrders;
 
             Arrival = schedule.Arrival;
             Departure = schedule.Departure;
@@ -287,10 +288,26 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         }
         #endregion
 
+        #region [DelayDetails]
+        public string DelayDetails
+        {
+            get => Get<string>();
+            set => Set(value);
+        }
+        #endregion
+
         #region [LocalOrders]
         public char LocalOrders
         {
             get => Get<char>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [LocalOrdersToolTip]
+        public string LocalOrdersToolTip
+        {
+            get => Get<string>();
             set => Set(value);
         }
         #endregion

@@ -16,6 +16,8 @@ namespace Leibit.Controls
 
         public string FieldName { get; set; }
 
+        public string ToolTipFieldName { get; set; }
+
         public Binding VisibilityBinding { get; set; }
 
         public TextAlignment TextAlignment { get; set; }
