@@ -492,7 +492,9 @@ namespace Leibit.BLL
                             // In this case delay is calculated by LeiBIT. Ignore the delay information from ESTWsim!
                         }
 
-                        Train.Direction = sDirection == "L" ? eBlockDirection.Left : eBlockDirection.Right;
+                        // When speed is not set, the direction in the file is random. So it's safer to not change it.
+                        if (sSpeed != "0")
+                            Train.Direction = sDirection == "L" ? eBlockDirection.Left : eBlockDirection.Right;
 
                         var Block = estw.Blocks.ContainsKey(BlockName) ? estw.Blocks[BlockName].FirstOrDefault(b => b.Direction == eBlockDirection.Both || b.Direction == Train.Direction) : null;
 
