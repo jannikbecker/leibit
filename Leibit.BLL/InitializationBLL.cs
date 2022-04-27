@@ -732,33 +732,37 @@ namespace Leibit.BLL
                 while (!reader.EndOfStream)
                 {
                     var Line = reader.ReadLine();
+                    var NewTrain = false;
+                    var NextTrainNumber = 0;
+
+                    if (Line.IsNotNullOrEmpty() && !Regex.IsMatch(Line, @"^\s")) // Line doesn't start with whitespace
+                        NewTrain = true;
 
                     if (Line.StartsWith("*"))
                     {
                         var match = Regex.Match(Line, @"^\*( )+[a-z]+( )+([0-9]+)", RegexOptions.IgnoreCase);
 
                         if (match != null && match.Success)
-                        {
-                            if (int.TryParse(match.Groups[3].Value, out int TrainNumber))
-                            {
-                                __SetLocalOrders(station, CurrentTrainNumber, Content.ToString());
-                                CurrentTrainNumber = TrainNumber;
-                                Content = new StringBuilder();
-                            }
-                        }
+                            int.TryParse(match.Groups[3].Value, out NextTrainNumber);
                     }
+                    else if (Line.StartsWith("["))
+                        NewTrain = false;
                     else
                     {
-                        var LineParts = Regex.Split(Line.Trim(), @"\s");
-                        var TrainNumber = 0;
+                        var match = Regex.Match(Line, @"^\s*([0-9]+)");
 
-                        if ((LineParts.Any() && int.TryParse(LineParts[0], out TrainNumber)) || !Regex.IsMatch(Line, @"^\s"))
+                        if (match != null && match.Success)
                         {
-                            // Line does not start with whitespace or a new train number was found
-                            __SetLocalOrders(station, CurrentTrainNumber, Content.ToString());
-                            CurrentTrainNumber = TrainNumber;
-                            Content = new StringBuilder();
+                            NewTrain = true;
+                            int.TryParse(match.Groups[1].Value, out NextTrainNumber);
                         }
+                    }
+
+                    if (NewTrain)
+                    {
+                        __SetLocalOrders(station, CurrentTrainNumber, Content.ToString());
+                        Content = new StringBuilder();
+                        CurrentTrainNumber = NextTrainNumber;
                     }
 
                     Content.AppendLine(Line);
@@ -776,7 +780,14 @@ namespace Leibit.BLL
                 return;
 
             var Schedules = station.Schedules.Where(s => s.Train.Number == trainNumber);
-            Schedules.ForEach(s => s.LocalOrders = content.TrimEnd());
+
+            foreach (var schedule in Schedules)
+            {
+                if (schedule.LocalOrders.IsNullOrWhiteSpace())
+                    schedule.LocalOrders = content.TrimEnd();
+                else
+                    schedule.LocalOrders += Environment.NewLine + content.TrimEnd();
+            }
         }
         #endregion
 
