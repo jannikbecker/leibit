@@ -11,12 +11,6 @@
         <conv:IntComparisonConverter x:Key="IsSmallerThanConverter" ComparisonType="Smaller" />
         <conv:IntComparisonConverter x:Key="IsGreaterThanConverter" ComparisonType="Greater" />
         <conv:VisibilityConverter x:Key="VisibilityConverter" />
-
-        <local:TimeTableColorHelper x:Key="ColorHelper"
-                                    ReadyColor="{DynamicResource ReadyColor}"
-                                    DelayBlue="{DynamicResource DelayBlue}"
-                                    DelayYellow="{DynamicResource DelayYellow}"
-                                    DelayRed="{DynamicResource DelayRed}"/>
     </controls:LeibitWindow.Resources>
 
     <controls:LeibitDataGrid ItemsSource="{Binding Schedules}"
@@ -28,6 +22,12 @@
             <Style TargetType="DataGridCell">
                 <Setter Property="BorderThickness" Value="0"/>
             </Style>
+
+            <local:TimeTableColorHelper x:Key="ColorHelper"
+                                    ReadyColor="{DynamicResource ReadyColor}"
+                                    DelayBlue="{DynamicResource DelayBlue}"
+                                    DelayYellow="{DynamicResource DelayYellow}"
+                                    DelayRed="{DynamicResource DelayRed}"/>
         </controls:LeibitDataGrid.Resources>
 
         <controls:LeibitDataGrid.Columns>
