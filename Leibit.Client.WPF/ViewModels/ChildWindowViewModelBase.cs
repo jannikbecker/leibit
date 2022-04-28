@@ -18,7 +18,7 @@ namespace Leibit.Client.WPF.ViewModels
         #endregion
 
         #region - Events -
-        public event EventHandler<OpenWindowEventArgs> OpenWindow;
+        public event EventHandler<LeibitWindow> OpenWindow;
         public event EventHandler<string> StatusBarTextChanged;
         public event EventHandler<ReportProgressEventArgs> ReportProgress;
         public event EventHandler<bool> ShutdownRequested;
@@ -27,10 +27,10 @@ namespace Leibit.Client.WPF.ViewModels
         #region - Protected methods -
 
         #region [OnOpenWindow]
-        protected void OnOpenWindow(ChildWindowViewModelBase ViewModel, ChildWindow Window)
+        protected void OnOpenWindow(LeibitWindow window)
         {
             if (OpenWindow != null)
-                OpenWindow(this, new OpenWindowEventArgs(ViewModel, Window));
+                OpenWindow(this, window);
         }
         #endregion
 
@@ -63,20 +63,6 @@ namespace Leibit.Client.WPF.ViewModels
 
         #endregion
 
-    }
-    #endregion
-
-    #region OpenWindowEventArgs
-    public class OpenWindowEventArgs : EventArgs
-    {
-        public OpenWindowEventArgs(ChildWindowViewModelBase ViewModel, ChildWindow Window)
-        {
-            this.ViewModel = ViewModel;
-            this.Window = Window;
-        }
-
-        public ChildWindowViewModelBase ViewModel { get; set; }
-        public ChildWindow Window { get; set; }
     }
     #endregion
 

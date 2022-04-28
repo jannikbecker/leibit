@@ -18,6 +18,9 @@ Folgende Simulationen werden aktuell unterstützt:
 
 - Bereich Berlin
     - Berlin-Stadtbahn
+- Bereich Fehmarn (NEU)
+    - Fehmarn (NEU)
+    - Puttgarden (NEU)
 - Bereich Mitteldeutschland
     - Würzburg Hbf
     - Gemünden
@@ -48,9 +51,9 @@ Folgende Simulationen werden aktuell unterstützt:
     - Solingen
     - Wuppertal Hbf
     - Wuppertal-Oberbarmen
-- Bereich Stuttgart (NEU)
-    - Stuttgart Hbf Ostseite (NEU)
-    - Stuttgart Hbf Westseite (NEU)
+- Bereich Stuttgart
+    - Stuttgart Hbf Ostseite
+    - Stuttgart Hbf Westseite
 - Bereich Süddeutschland / Vorarlberg
     - Singen
     - Friedrichshafen

@@ -13,6 +13,11 @@
         <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
     </Style>
 
+    <Style TargetType="Window">
+        <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
+        <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
+    </Style>
+
     <Style TargetType="Expander">
         <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>
     </Style>

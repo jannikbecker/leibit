@@ -5,7 +5,7 @@ namespace Leibit.Client.WPF.Windows.TimeTable.Views
     /// <summary>
     /// Interaction logic for TimeTableView.xaml
     /// </summary>
-    public partial class TimeTableView : ChildWindow
+    public partial class TimeTableView : LeibitWindow
     {
         public TimeTableView()
             : base("TimeTable")

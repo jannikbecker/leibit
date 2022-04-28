@@ -103,6 +103,7 @@ namespace Leibit.Controls
                 source.Source = e.NewValue;
                 source.IsLiveSortingRequested = true;
                 sender.Collection = source.View;
+                sender.__InitializeCollection();
             }
         }
         #endregion
@@ -785,12 +786,10 @@ namespace Leibit.Controls
         }
         #endregion
 
-        #region - Event handler -
-
-        #region [__DataGrid_Loaded]
-        private void __DataGrid_Loaded(object sender, RoutedEventArgs e)
+        #region [__InitializeCollection]
+        private void __InitializeCollection()
         {
-            if (LayoutKey == null)
+            if (LayoutKey == null || Collection == null || dataGrid == null || !dataGrid.IsLoaded)
                 return;
 
             DataGridUtils.LoadLayout(dataGrid, Collection, LayoutKey, DefaultLayout);
@@ -802,6 +801,15 @@ namespace Leibit.Controls
                 Collection.GroupDescriptions.Clear();
                 Collection.Refresh();
             }
+        }
+        #endregion
+
+        #region - Event handler -
+
+        #region [__DataGrid_Loaded]
+        private void __DataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            __InitializeCollection();
         }
         #endregion
 
@@ -848,6 +856,9 @@ namespace Leibit.Controls
 
                     if (column.VisibilityBinding != null)
                         gridColumn.ElementStyle.Setters.Add(new Setter(VisibilityProperty, column.VisibilityBinding));
+
+                    if (column.ToolTipFieldName != null)
+                        gridColumn.ElementStyle.Setters.Add(new Setter(ToolTipProperty, new Binding(column.ToolTipFieldName)));
 
                     foreach (var backgroundCondition in column.BackgroundConditions)
                     {

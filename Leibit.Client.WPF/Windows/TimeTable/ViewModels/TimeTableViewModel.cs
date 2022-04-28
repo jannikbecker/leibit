@@ -225,8 +225,8 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
                 return;
 
             var Window = new TrainScheduleView(SelectedItem.TrainNumber);
-            var VM = new TrainScheduleViewModel(Window.Dispatcher, SelectedItem.CurrentTrain, CurrentStation.ESTW.Area);
-            OnOpenWindow(VM, Window);
+            Window.DataContext = new TrainScheduleViewModel(Window.Dispatcher, SelectedItem.CurrentTrain, CurrentStation.ESTW.Area);
+            OnOpenWindow(Window);
         }
         #endregion
 

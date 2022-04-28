@@ -1,27 +1,17 @@
-﻿<controls:ChildWindow x:Class="Leibit.Client.WPF.Windows.TimeTable.Views.TimeTableView"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.TimeTable.Views"
-                      xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
-                      xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
-                      xmlns:entities="clr-namespace:Leibit.Entities.Settings;assembly=Leibit.Entities"
-                      Caption="{Binding Caption}" ResizeMode="ResizeAll">
+﻿<controls:LeibitWindow x:Class="Leibit.Client.WPF.Windows.TimeTable.Views.TimeTableView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.TimeTable.Views"
+                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                       xmlns:entities="clr-namespace:Leibit.Entities.Settings;assembly=Leibit.Entities"
+                       Caption="{Binding Caption}" ResizeMode="ResizeAll">
 
-    <controls:ChildWindow.Style>
-        <Style TargetType="local:TimeTableView" BasedOn="{StaticResource LeibitChildWindowStyle}" />
-    </controls:ChildWindow.Style>
-
-    <controls:ChildWindow.Resources>
+    <controls:LeibitWindow.Resources>
         <conv:IntComparisonConverter x:Key="IsSmallerThanConverter" ComparisonType="Smaller" />
         <conv:IntComparisonConverter x:Key="IsGreaterThanConverter" ComparisonType="Greater" />
         <conv:VisibilityConverter x:Key="VisibilityConverter" />
-
-        <local:TimeTableColorHelper x:Key="ColorHelper"
-                                    ReadyColor="{DynamicResource ReadyColor}"
-                                    DelayBlue="{DynamicResource DelayBlue}"
-                                    DelayYellow="{DynamicResource DelayYellow}"
-                                    DelayRed="{DynamicResource DelayRed}"/>
-    </controls:ChildWindow.Resources>
+    </controls:LeibitWindow.Resources>
 
     <controls:LeibitDataGrid ItemsSource="{Binding Schedules}"
                              SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
@@ -32,6 +22,12 @@
             <Style TargetType="DataGridCell">
                 <Setter Property="BorderThickness" Value="0"/>
             </Style>
+
+            <local:TimeTableColorHelper x:Key="ColorHelper"
+                                    ReadyColor="{DynamicResource ReadyColor}"
+                                    DelayBlue="{DynamicResource DelayBlue}"
+                                    DelayYellow="{DynamicResource DelayYellow}"
+                                    DelayRed="{DynamicResource DelayRed}"/>
         </controls:LeibitDataGrid.Resources>
 
         <controls:LeibitDataGrid.Columns>
@@ -99,4 +95,4 @@
             </entities:GridSetting>
         </controls:LeibitDataGrid.DefaultLayout>
     </controls:LeibitDataGrid>
-</controls:ChildWindow>
+</controls:LeibitWindow>
