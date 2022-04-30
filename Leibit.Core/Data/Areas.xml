@@ -12,19 +12,19 @@
     <estw id="FEL" name="Elm" dataFile="leibit_ELM.dat" infrastructureManager="DB"/>
     <estw id="FFU" name="Fulda" dataFile="leibit_FULDA.dat" infrastructureManager="DB"/>
     <estw id="FBHF" name="Bad Hersfeld" dataFile="leibit_BAD HERSFELD.dat" infrastructureManager="DB"/>
-    <estw id="FB" name="Bebra" dataFile="leibit_BEBRA PBF.dat" infrastructureManager="DB"/>
-    <estw id="UEI" name="Eisenach" dataFile="leibit_EISENACH.dat" infrastructureManager="DB"/>
-    <estw id="UGO" name="Gotha" dataFile="leibit_GOTHA.dat" infrastructureManager="DB"/>
+    <estw id="FB" name="Bebra Pbf" dataFile="leibit_BEBRA PBF.dat" infrastructureManager="DB"/>
+    <estw id="UEI" name="Eisenach" dataFile="leibit_EISENACH.dat" infrastructureManager="DB" productName="Thüringer Bahn"/>
+    <estw id="UGO" name="Gotha" dataFile="leibit_GOTHA.dat" infrastructureManager="DB" productName="Thüringer Bahn"/>
   </area>
 
   <area id="nord" name="Norddeutschland">
-    <estw id="HNBG" name="Nienburg" dataFile="leibit_NIENBURG.dat" infrastructureManager="DB"/>
-    <estw id="HV" name="Verden" dataFile="leibit_VERDEN.dat" infrastructureManager="DB"/>
-    <estw id="HSO" name="Soltau" dataFile="leibit_SOLTAU.dat" infrastructureManager="DB"/>
-    <estw id="HBSB" name="Sebaldsbrück" dataFile="leibit_SEBALDSBRÜCK.dat" infrastructureManager="DB"/>
+    <estw id="HNBG" name="Nienburg" dataFile="leibit_NIENBURG.dat" infrastructureManager="DB" productName="Verden Süd"/>
+    <estw id="HV" name="Verden" dataFile="leibit_VERDEN.dat" infrastructureManager="DB" productName="Verden Süd"/>
+    <estw id="HSO" name="Soltau" dataFile="leibit_SOLTAU.dat" infrastructureManager="DB" productName="Verden Nord"/>
+    <estw id="HBSB" name="Sebaldsbrück" dataFile="leibit_SEBALDSBRÜCK.dat" infrastructureManager="DB" productName="Verden Nord"/>
     <estw id="HB" name="Bremen Hbf" dataFile="leibit_BREMEN HBF.dat" infrastructureManager="DB"/>
-    <estw id="AROG" name="Rotenburg" dataFile="leibit_ROTENBURG.dat" infrastructureManager="DB"/>
-    <estw id="ABLZ" name="Buchholz" dataFile="leibit_BUCHHOLZ.dat" infrastructureManager="DB"/>
+    <estw id="AROG" name="Rotenburg" dataFile="leibit_ROTENBURG.dat" infrastructureManager="DB" productName="Rollbahn I"/>
+    <estw id="ABLZ" name="Buchholz" dataFile="leibit_BUCHHOLZ.dat" infrastructureManager="DB" productName="Rollbahn I"/>
     <estw id="AHAR" name="Hamburg-Harburg" dataFile="leibit_HAMBURG-HARBURG.dat" infrastructureManager="DB"/>
     <estw id="AH" name="Hamburg Hbf" dataFile="leibit_HAMBURG HBF.dat" infrastructureManager="DB"/>
   </area>
@@ -34,12 +34,12 @@
     <estw id="TF" name="Friedrichshafen" dataFile="leibit_FRIEDRICHSHAFEN.dat" infrastructureManager="DB"/>
     <estw id="TAU" name="Aulendorf" dataFile="leibit_AULENDORF.dat" infrastructureManager="DB"/>
     <estw id="MLI" name="Lindau" dataFile="leibit_LINDAU .dat" infrastructureManager="DB"/>
-    <estw id="Bg" name="Bregenz" dataFile="leibit_BREGENZ.dat" infrastructureManager="OEBB"/>
-    <estw id="Fk" name="Feldkirch" dataFile="leibit_FELDKIRCH.dat" infrastructureManager="OEBB"/>
-    <estw id="MIMS" name="Immenstadt" dataFile="leibit_IMMENSTADT.dat" infrastructureManager="DB"/>
-    <estw id="MM" name="Memmingen" dataFile="leibit_MEMMINGEN.dat" infrastructureManager="DB"/>
-    <estw id="MKP" name="Kempten" dataFile="leibit_KEMPTEN.dat" infrastructureManager="DB"/>
-    <estw id="MBU" name="Buchloe" dataFile="leibit_BUCHLOE.dat" infrastructureManager="DB"/>
+    <estw id="Bg" name="Bregenz" dataFile="leibit_BREGENZ.dat" infrastructureManager="OEBB" productName="Vorarlberg"/>
+    <estw id="Fk" name="Feldkirch" dataFile="leibit_FELDKIRCH.dat" infrastructureManager="OEBB" productName="Vorarlberg"/>
+    <estw id="MIMS" name="Immenstadt" dataFile="leibit_IMMENSTADT.dat" infrastructureManager="DB" productName="Allgäu Süd"/>
+    <estw id="MM" name="Memmingen" dataFile="leibit_MEMMINGEN.dat" infrastructureManager="DB" productName="Allgäu Nord"/>
+    <estw id="MKP" name="Kempten" dataFile="leibit_KEMPTEN.dat" infrastructureManager="DB" productName="Allgäu Süd"/>
+    <estw id="MBU" name="Buchloe" dataFile="leibit_BUCHLOE.dat" infrastructureManager="DB" productName="Allgäu Nord"/>
     <estw id="MA" name="Augsburg Hbf" dataFile="leibit_AUGSBURG HBF.dat" infrastructureManager="DB"/>
     <estw id="MAHZ" name="Augsburg-Hochzoll" dataFile="leibit_A-HOCHZOLL.dat" infrastructureManager="DB"/>
     <estw id="MOL" name="Olching" dataFile="leibit_OLCHING.dat" infrastructureManager="DB"/>
@@ -52,8 +52,8 @@
   <area id="nrw" name="Nordrhein-Westfalen">
     <estw id="KKM" name="Köln-Mülheim" dataFile="leibit_KÖLN-MÜLHEIM.dat" infrastructureManager="DB" />
     <estw id="KSO" name="Solingen" dataFile="leibit_SOLINGEN-OL.dat" infrastructureManager="DB" />
-    <estw id="KW" name="Wuppertal Hbf" dataFile="leibit_WUPPERTAL HBF.dat" infrastructureManager="DB" />
-    <estw id="KWO" name="Wuppertal-Oberbarmen" dataFile="leibit_W-OBERBARMEN.dat" infrastructureManager="DB" />
+    <estw id="KW" name="Wuppertal Hbf" dataFile="leibit_WUPPERTAL HBF.dat" infrastructureManager="DB" productName="Wuppertal" />
+    <estw id="KWO" name="Wuppertal-Oberbarmen" dataFile="leibit_W-OBERBARMEN.dat" infrastructureManager="DB" productName="Wuppertal" />
   </area>
 
   <area id="berlin" name="Berlin">
@@ -67,6 +67,6 @@
 
   <area id="fehmarn" name="Fehmarn">
     <estw id="Fehmarn" name="Fehmarn" dataFile="leibit_FEHMARN.dat" infrastructureManager="DB"/>
-    <estw id="APU" name="Puttgarden" dataFile="leibit_PUTTGARDEN.dat" infrastructureManager="DB"/>
+    <estw id="APU" name="Puttgarden" dataFile="leibit_PUTTGARDEN.dat" infrastructureManager="DB" productName="Fehmarn"/>
   </area>
 </leibit>

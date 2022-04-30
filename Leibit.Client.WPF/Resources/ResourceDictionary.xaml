@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <BitmapImage x:Key="imgBildFpl" UriSource="/Leibit;component/Resources/Images/bildfpl.png" />
     <BitmapImage x:Key="imgEstwOnline" UriSource="/Leibit;component/Resources/Images/estw_online.png" />
     <BitmapImage x:Key="imgClose" UriSource="/Leibit.Controls.WPF;component/Resources/Images/close.png" />
     <BitmapImage x:Key="imgOk" UriSource="/Leibit;component/Resources/Images/ok.png" />

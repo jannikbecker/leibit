@@ -58,6 +58,7 @@ namespace Leibit.Client.WPF.ViewModels
         private readonly LiveDataBLL m_LiveDataBll;
         private readonly SettingsBLL m_SettingsBll;
         private readonly SerializationBLL m_SerializationBll;
+        private readonly SoftwareInfoBLL m_SoftwareInfoBll;
         private UpdateBLL m_UpdateBll;
 
         private Area m_CurrentArea;
@@ -65,6 +66,7 @@ namespace Leibit.Client.WPF.ViewModels
         private CancellationTokenSource m_CancellationTokenSource;
         private string m_CurrentFilename;
         private bool m_ForceClose;
+        private SoftwareInfo m_BildFplInfo;
 
         private CommandHandler m_NewCommand;
         private CommandHandler m_OpenCommand;
@@ -72,6 +74,7 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_SaveAsCommand;
         private CommandHandler m_SettingsCommand;
         private CommandHandler m_EstwOnlineCommand;
+        private CommandHandler m_BildFplCommand;
         private CommandHandler m_ExitCommand;
         private CommandHandler m_EstwSelectionCommand;
         private CommandHandler m_TrainProgressInformationCommand;
@@ -98,12 +101,29 @@ namespace Leibit.Client.WPF.ViewModels
         #region - Ctor -
         public MainViewModel()
         {
+            m_InitializationBll = new InitializationBLL();
+            m_LiveDataBll = new LiveDataBLL();
+            m_SettingsBll = new SettingsBLL();
+            m_SerializationBll = new SerializationBLL();
+            m_SoftwareInfoBll = new SoftwareInfoBLL();
+
+            var BildFplResult = m_SoftwareInfoBll.GetSoftwareInfo("Bildfahrplan");
+
+            if (BildFplResult.Succeeded)
+                m_BildFplInfo = BildFplResult.Result;
+            else
+            {
+                ShowMessage(BildFplResult);
+                m_BildFplInfo = new SoftwareInfo { IsInstalled = false };
+            }
+
             m_NewCommand = new CommandHandler<string>(__New, true);
             m_OpenCommand = new CommandHandler(__Open, true);
             m_SaveCommand = new CommandHandler(__Save, false);
             m_SaveAsCommand = new CommandHandler(__SaveAs, false);
             m_SettingsCommand = new CommandHandler(__Settings, true);
             m_EstwOnlineCommand = new CommandHandler(__StartEstwOnline, true);
+            m_BildFplCommand = new CommandHandler(__StartBildFpl, IsBildFplInstalled);
             m_ExitCommand = new CommandHandler(__Exit, true);
             m_EstwSelectionCommand = new CommandHandler(__ShowEstwSelectionWindow, false);
             m_TrainProgressInformationCommand = new CommandHandler(__ShowTrainProgressInformationWindow, false);
@@ -117,11 +137,6 @@ namespace Leibit.Client.WPF.ViewModels
             m_ShowQuickStartHelpCommand = new CommandHandler(__ShowQuickStartHelp, true);
             m_AboutCommand = new CommandHandler(__ShowAboutWindow, true);
             m_DebugModeCommand = new CommandHandler(__ToggleDebugMode, true);
-
-            m_InitializationBll = new InitializationBLL();
-            m_LiveDataBll = new LiveDataBLL();
-            m_SettingsBll = new SettingsBLL();
-            m_SerializationBll = new SerializationBLL();
 
             ChildWindows = new ObservableCollection<LeibitWindow>();
 
@@ -336,6 +351,13 @@ namespace Leibit.Client.WPF.ViewModels
         }
         #endregion
 
+        #region [IsBildFplInstalled]
+        public bool IsBildFplInstalled
+        {
+            get => m_BildFplInfo?.IsInstalled == true;
+        }
+        #endregion
+
         #region - Commands -
 
         #region [NewCommand]
@@ -394,6 +416,16 @@ namespace Leibit.Client.WPF.ViewModels
             get
             {
                 return m_EstwOnlineCommand;
+            }
+        }
+        #endregion
+
+        #region [BildFplCommand]
+        public ICommand BildFplCommand
+        {
+            get
+            {
+                return m_BildFplCommand;
             }
         }
         #endregion
@@ -980,6 +1012,19 @@ namespace Leibit.Client.WPF.ViewModels
                     }
                 }
             }
+        }
+        #endregion
+
+        #region [__StartBildFpl]
+        private void __StartBildFpl()
+        {
+            if (m_BildFplInfo == null || !m_BildFplInfo.IsInstalled || m_BildFplInfo.InstallLocation.IsNullOrWhiteSpace())
+                return;
+
+            var exePath = Path.Combine(m_BildFplInfo.InstallLocation, "BildFpl_V2.exe");
+
+            if (File.Exists(exePath))
+                Process.Start(exePath);
         }
         #endregion
 
