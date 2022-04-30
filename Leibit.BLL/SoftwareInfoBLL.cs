@@ -19,10 +19,10 @@ namespace Leibit.BLL
                 if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     return OperationResult<SoftwareInfo>.Ok(new SoftwareInfo { IsInstalled = false });
 
-                var key = __Search(Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"), softwareName);
+                var key = __Search(Registry.CurrentUser, softwareName);
 
                 if (key == null)
-                    key = __Search(Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall"), softwareName);
+                    key = __Search(Registry.LocalMachine, softwareName);
 
                 if (key == null)
                     return OperationResult<SoftwareInfo>.Ok(new SoftwareInfo { IsInstalled = false });
@@ -48,9 +48,11 @@ namespace Leibit.BLL
         #region [__Search]
         private RegistryKey __Search(RegistryKey key, string softwareName)
         {
-            foreach (var subKeyName in key.GetSubKeyNames())
+            var baseKey = key.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall");
+
+            foreach (var subKeyName in baseKey.GetSubKeyNames())
             {
-                var candidate = key.OpenSubKey(subKeyName);
+                var candidate = baseKey.OpenSubKey(subKeyName);
                 var displayName = candidate.GetValue("DisplayName")?.ToString();
 
                 if (displayName == null)

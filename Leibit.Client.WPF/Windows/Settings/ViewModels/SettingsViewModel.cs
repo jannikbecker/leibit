@@ -580,7 +580,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
             if (changedPaths == 0 && ShowPathsWarning)
             {
-                MessageBox.Show("Es konnten keine Pfade automatisch ermittelt werden", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Es konnten keine Pfade automatisch ermittelt werden.", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
