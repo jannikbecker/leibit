@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\Fonts\5by7.ttf" />
+    <None Remove="Resources\Images\bildfpl.png" />
     <None Remove="Resources\Images\Dark\bfo.png" />
     <None Remove="Resources\Images\Dark\clear.png" />
     <None Remove="Resources\Images\Dark\delay.png" />
@@ -77,6 +78,7 @@
     <None Remove="Resources\Images\warning.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\bildfpl.png" />
     <Resource Include="Resources\Images\Dark\bfo.png" />
     <Resource Include="Resources\Images\Dark\clear.png" />
     <Resource Include="Resources\Images\Dark\delay.png" />
