@@ -27,6 +27,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         private CommandHandler m_SaveCommand;
         private CommandHandler m_CancelCommand;
         private CommandHandler m_EstwOnlineCommand;
+        private CommandHandler m_DeterminePathsCommand;
         #endregion
 
         #region - Events -
@@ -53,6 +54,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
             m_SaveCommand = new CommandHandler(__Save, false);
             m_CancelCommand = new CommandHandler(__Cancel, true);
             m_EstwOnlineCommand = new CommandHandler(__BrowseEstwOnline, true);
+            m_DeterminePathsCommand = new CommandHandler(__DeterminePaths, true);
         }
         #endregion
 
@@ -73,7 +75,27 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         #endregion
 
         #region [ShowPathsWarning]
-        public bool ShowPathsWarning { get; private set; }
+        public bool ShowPathsWarning
+        {
+            get => Get<bool>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [ShowPathsInfo]
+        public bool ShowPathsInfo
+        {
+            get => Get<bool>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [PathsInfoText]
+        public string PathsInfoText
+        {
+            get => Get<string>();
+            private set => Set(value);
+        }
         #endregion
 
         #region [DelayJustificationEnabled]
@@ -434,6 +456,13 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         }
         #endregion
 
+        #region [DeterminePathsCommand]
+        public ICommand DeterminePathsCommand
+        {
+            get => m_DeterminePathsCommand;
+        }
+        #endregion
+
         #endregion
 
         #endregion
@@ -538,6 +567,28 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
             if (Dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 EstwOnlinePath = Dialog.SelectedPath;
+        }
+
+        private void __DeterminePaths()
+        {
+            var changedPaths = 0;
+
+            foreach (var area in Areas)
+                foreach (var path in area.Paths)
+                    if (path.DeterminePath())
+                        changedPaths++;
+
+            if (changedPaths == 0 && ShowPathsWarning)
+            {
+                MessageBox.Show("Es konnten keine Pfade automatisch ermittelt werden", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (changedPaths > 0)
+                ShowPathsWarning = false;
+
+            PathsInfoText = $"Es wurden {changedPaths} neue Pfade ermittelt.";
+            ShowPathsInfo = true;
         }
 
         #endregion

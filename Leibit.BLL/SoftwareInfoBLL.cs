@@ -51,9 +51,15 @@ namespace Leibit.BLL
             foreach (var subKeyName in key.GetSubKeyNames())
             {
                 var candidate = key.OpenSubKey(subKeyName);
-                var displayName = candidate.GetValue("DisplayName");
+                var displayName = candidate.GetValue("DisplayName")?.ToString();
 
-                if (displayName != null && displayName.ToString().Contains(softwareName))
+                if (displayName == null)
+                    continue;
+
+                displayName = displayName.Replace(" ", string.Empty).Replace("-", string.Empty);
+                softwareName = softwareName.Replace(" ", string.Empty).Replace("-", string.Empty);
+
+                if (displayName.Contains(softwareName))
                     return candidate;
             }
 

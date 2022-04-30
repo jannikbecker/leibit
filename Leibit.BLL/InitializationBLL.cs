@@ -266,6 +266,7 @@ namespace Leibit.BLL
             var EstwDataFile = node.Attributes["dataFile"];
             var InfrastructureManagerAttr = node.Attributes["infrastructureManager"];
             var IgnoreRoutingDigitsAttr = node.Attributes["ignoreRoutingDigits"];
+            var ProductNameAttr = node.Attributes["productName"];
 
             if (EstwId == null || EstwName == null || EstwDataFile == null || InfrastructureManagerAttr == null || !Enum.TryParse(InfrastructureManagerAttr.InnerText, true, out eInfrastructureManager InfrastructureManager))
                 return null;
@@ -275,7 +276,7 @@ namespace Leibit.BLL
             if (IgnoreRoutingDigitsAttr != null && !bool.TryParse(IgnoreRoutingDigitsAttr.InnerText, out IgnoreRoutingDigits))
                 return null;
 
-            return new ESTW(EstwId.InnerText, EstwName.InnerText, EstwDataFile.InnerText, InfrastructureManager, IgnoreRoutingDigits, area);
+            return new ESTW(EstwId.InnerText, EstwName.InnerText, EstwDataFile.InnerText, InfrastructureManager, IgnoreRoutingDigits, ProductNameAttr?.InnerText ?? EstwName.InnerText, area);
         }
         #endregion
 
