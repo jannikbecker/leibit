@@ -21,7 +21,8 @@ namespace Leibit.BLL
         #region - Ctor -
         public SettingsBLL()
         {
-            m_SettingsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LeiBIT", "settings.json");
+            __MoveSettingsFileIfNeeded();
+            m_SettingsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LeibitForESTWsim", "settings.json");
         }
         #endregion
 
@@ -255,6 +256,21 @@ namespace Leibit.BLL
             settings.AutomaticallyInstallUpdates = false;
             settings.ScaleFactor = 100;
             return settings;
+        }
+
+        private void __MoveSettingsFileIfNeeded()
+        {
+            var oldFileDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LeiBIT");
+            var oldFilePath = Path.Combine(oldFileDirectory, "settings.json");
+            var newFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LeibitForESTWsim", "settings.json");
+
+            if (File.Exists(oldFilePath) && !File.Exists(newFilePath))
+                File.Move(oldFilePath, newFilePath);
+            else if (File.Exists(oldFilePath) && File.Exists(newFilePath))
+                File.Delete(oldFilePath);
+
+            if (Directory.Exists(oldFileDirectory) && !Directory.EnumerateFiles(oldFileDirectory).Any())
+                Directory.Delete(oldFileDirectory);
         }
 
         #endregion

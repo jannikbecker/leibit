@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <AssemblyName>LeiBIT</AssemblyName>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.17763.0</TargetFramework>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <SccProjectName>SAK</SccProjectName>
@@ -18,19 +18,22 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
+    <NoWarn>1701;1702;WFAC010</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
+    <NoWarn>1701;1702;WFAC010</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
-    <Version>0.5.5</Version>
+    <Version>0.6.0</Version>
     <PackageProjectUrl>https://github.com/jannikbecker/leibit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jannikbecker/leibit</RepositoryUrl>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Resources\Fonts\5by7.ttf" />
+    <None Remove="Resources\Images\bildfpl.png" />
     <None Remove="Resources\Images\Dark\bfo.png" />
     <None Remove="Resources\Images\Dark\clear.png" />
     <None Remove="Resources\Images\Dark\delay.png" />
@@ -75,6 +78,7 @@
     <None Remove="Resources\Images\warning.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\bildfpl.png" />
     <Resource Include="Resources\Images\Dark\bfo.png" />
     <Resource Include="Resources\Images\Dark\clear.png" />
     <Resource Include="Resources\Images\Dark\delay.png" />

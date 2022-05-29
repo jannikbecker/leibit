@@ -20,6 +20,7 @@
                   <xs:attribute name="dataFile" type="xs:string" use="required" />
                   <xs:attribute name="infrastructureManager" type="infrastructureManager" use="required" />
                   <xs:attribute name="ignoreRoutingDigits" type="xs:boolean" use="optional" />
+                  <xs:attribute name="productName" type="xs:string" use="optional" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>

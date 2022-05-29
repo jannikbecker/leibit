@@ -18,18 +18,19 @@ namespace Leibit.Entities.Common
         private LeibitTime m_Time;
 
         public ESTW(string id, string name, string dataFile, Area area)
-            : this(id, name, dataFile, eInfrastructureManager.DB, false, area)
+            : this(id, name, dataFile, eInfrastructureManager.DB, false, null, area)
         {
 
         }
 
-        public ESTW(string id, string name, string dataFile, eInfrastructureManager infrastructureManager, bool ignoreRoutingDigits, Area area)
+        public ESTW(string id, string name, string dataFile, eInfrastructureManager infrastructureManager, bool ignoreRoutingDigits, string productName, Area area)
         {
             m_Id = id;
             m_Name = name;
             m_DataFile = dataFile;
             InfrastructureManager = infrastructureManager;
             IgnoreRoutingDigits = ignoreRoutingDigits;
+            ProductName = productName;
             m_Area = area;
 
             m_Stations = new List<Station>();
@@ -65,6 +66,7 @@ namespace Leibit.Entities.Common
 
         public eInfrastructureManager InfrastructureManager { get; }
         public bool IgnoreRoutingDigits { get; }
+        public string ProductName { get; set; }
 
         public Area Area
         {
