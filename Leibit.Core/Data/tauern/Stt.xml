@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Lendorf" short="Ssn H1" refNr="27">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="27Sr11" direction="right"/>
+      <block name="27Sr12" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Spittal-Millstättersee" short="Stt" refNr="28" scheduleFile="g28_____.abf" localOrderFile="bf28____.abf">
+    <track name="401" displayName="3">
+      <block name="28G401"/>
+    </track>
+    <track name="402" displayName="4">
+      <block name="28G402"/>
+    </track>
+    <track name="403" displayName="2">
+      <block name="28G403"/>
+    </track>
+    <track name="404" displayName="5">
+      <block name="28G404"/>
+    </track>
+    <track name="405">
+      <block name="28G405"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="408"/>
+      <alternative track="410"/>
+      <alternative track="412"/>
+      <alternative track="414"/>
+      <alternative track="416"/>
+    </track>
+    <track name="505" displayName="1">
+      <block name="28G505"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="408"/>
+      <alternative track="410"/>
+      <alternative track="412"/>
+      <alternative track="414"/>
+      <alternative track="416"/>
+    </track>
+    <track name="406">
+      <block name="28G406"/>
+    </track>
+    <track name="407">
+      <block name="28G407"/>
+    </track>
+    <track name="408">
+      <block name="28G408"/>
+    </track>
+    <track name="410">
+      <block name="28G410"/>
+    </track>
+    <track name="412">
+      <block name="28G412"/>
+    </track>
+    <track name="414">
+      <block name="28G414"/>
+    </track>
+    <track name="416">
+      <block name="28G416"/>
+    </track>
+  </station>
+
+  <station name="Rothenthurn" short="Ro" refNr="29" scheduleFile="g29_____.abf" localOrderFile="bf29____.abf">
+    <track name="201">
+      <block name="29G201"/>
+    </track>
+    <track name="202">
+      <block name="29G202"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="29G203"/>
+    </track>
+    <track name="204">
+      <block name="29G204"/>
+    </track>
+  </station>
+
+  <station name="Ferndorf" short="Ro H1" refNr="29" scheduleFile="b29_____.abf">
+    <track name="001" calculateDelay="false" displayName="1">
+      <block name="29Bt21"/>
+    </track>
+    <track name="002" calculateDelay="false" displayName="2">
+      <block name="29Bt22"/>
+    </track>
+  </station>
+
+  <station name="Markt Paternion" short="Ro H2" refNr="30" scheduleFile="b30_____.abf">
+    <track name="001" calculateDelay="false" displayName="1">
+      <block name="30Bt31"/>
+    </track>
+    <track name="002" calculateDelay="false" displayName="2">
+      <block name="30Bt32"/>
+    </track>
+  </station>
+
+  <station name="Paternion-Feistritz" short="Pf" refNr="30" scheduleFile="g30_____.abf" localOrderFile="bf30____.abf">
+    <track name="201" displayName="2">
+      <block name="30G201"/>
+    </track>
+    <track name="202" displayName="3">
+      <block name="30G202"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="30G203"/>
+    </track>
+    <track name="204">
+      <block name="30G204"/>
+    </track>
+  </station>
+
+  <station name="Weißenstein-Kellerberg" short="Pf H1" refNr="31" scheduleFile="b31_____.abf">
+    <track name="001" calculateDelay="false" displayName="1">
+      <block name="31Bu11"/>
+    </track>
+    <track name="002" calculateDelay="false" displayName="2">
+      <block name="31Bu12"/>
+    </track>
+  </station>
+
+  <station name="Gummern" short="Gu" refNr="31" scheduleFile="g31_____.abf" localOrderFile="bf31____.abf">
+    <track name="201" displayName="2">
+      <block name="31G201"/>
+    </track>
+    <track name="202" displayName="3">
+      <block name="31G202"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="31G203"/>
+    </track>
+    <track name="204">
+      <block name="31G204"/>
+    </track>
+  </station>
+
+  <station name="Lind" short="Ld" refNr="32" scheduleFile="g32_____.abf" localOrderFile="bf32____.abf">
+    <track name="001" isPlatform="false">
+      <block name="32Bv11" direction="left"/>
+      <block name="32Bw11" direction="right"/>
+    </track>
+    <track name="002" isPlatform="false">
+      <block name="32Bv12" direction="left"/>
+      <block name="32Bw12" direction="right"/>
+    </track>
+    <track name="003" isPlatform="false">
+      <block name="32Ba11" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Villach Westbf" short="Vf" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="32Ba11" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Villach Hbf" short="Vb" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="32Bw11" direction="left"/>
+      <block name="32Bw12" direction="left"/>
+    </track>
+  </station>
+</estw>

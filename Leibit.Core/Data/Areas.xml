@@ -71,6 +71,6 @@
   </area>
 
   <area id="tauern" name="Tauernbahn">
-    
+    <estw id="Stt" name="Spittal-Millstättersee" dataFile="leibit_SPITTAL-MILLST.dat" infrastructureManager="OEBB"/>
   </area>
 </leibit>
