@@ -71,6 +71,6 @@
   </area>
 
   <area id="tauern" name="Tauernbahn">
-    
+    <estw id="Bag" name="Badgastein" dataFile="leibit_BADGASTEIN.dat" infrastructureManager="OEBB"/>
   </area>
 </leibit>
