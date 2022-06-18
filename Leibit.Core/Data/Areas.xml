@@ -71,6 +71,6 @@
   </area>
 
   <area id="tauern" name="Tauernbahn">
-    
+    <estw id="Swa" name="Schwarzach-St. Veit" dataFile="leibit_SCHWARZACH-ST.VEIT.dat" infrastructureManager="OEBB"/>
   </area>
 </leibit>
