@@ -69,4 +69,8 @@
     <estw id="Fehmarn" name="Fehmarn" dataFile="leibit_FEHMARN.dat" infrastructureManager="DB"/>
     <estw id="APU" name="Puttgarden" dataFile="leibit_PUTTGARDEN.dat" infrastructureManager="DB" productName="Fehmarn"/>
   </area>
+
+  <area id="tauern" name="Tauernbahn">
+    <estw id="Stt" name="Spittal-Millstättersee" dataFile="leibit_SPITTAL-MILLST.dat" infrastructureManager="OEBB"/>
+  </area>
 </leibit>
