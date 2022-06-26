@@ -2,6 +2,9 @@
 using Leibit.Entities;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace Leibit.BLL
@@ -19,19 +22,10 @@ namespace Leibit.BLL
                 if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     return OperationResult<SoftwareInfo>.Ok(new SoftwareInfo { IsInstalled = false });
 
-                var key = __Search(Registry.CurrentUser, softwareName);
+                var candidates = __Search(Registry.CurrentUser, softwareName);
+                candidates.AddRange(__Search(Registry.LocalMachine, softwareName));
 
-                if (key == null)
-                    key = __Search(Registry.LocalMachine, softwareName);
-
-                if (key == null)
-                    return OperationResult<SoftwareInfo>.Ok(new SoftwareInfo { IsInstalled = false });
-
-                var result = new SoftwareInfo();
-                result.IsInstalled = true;
-                result.DisplayName = key.GetValue("DisplayName")?.ToString();
-                result.DisplayVersion = key.GetValue("DisplayVersion")?.ToString();
-                result.InstallLocation = key.GetValue("InstallLocation")?.ToString();
+                var result = candidates.OrderByDescending(x => x.DisplayVersion).FirstOrDefault() ?? new SoftwareInfo { IsInstalled = false };
                 return OperationResult<SoftwareInfo>.Ok(result);
             }
             catch (Exception ex)
@@ -46,26 +40,39 @@ namespace Leibit.BLL
         #region - Private helpers -
 
         #region [__Search]
-        private RegistryKey __Search(RegistryKey key, string softwareName)
+        private List<SoftwareInfo> __Search(RegistryKey key, string softwareName)
         {
             var baseKey = key.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall");
+            var candidates = new List<SoftwareInfo>();
 
             foreach (var subKeyName in baseKey.GetSubKeyNames())
             {
                 var candidate = baseKey.OpenSubKey(subKeyName);
                 var displayName = candidate.GetValue("DisplayName")?.ToString();
+                var displayVersion = candidate.GetValue("DisplayVersion")?.ToString();
+                var installLocation = candidate.GetValue("InstallLocation")?.ToString();
 
-                if (displayName == null)
+                if (displayName == null || displayVersion == null || installLocation == null)
                     continue;
 
-                displayName = displayName.Replace(" ", string.Empty).Replace("-", string.Empty);
+                if (!Directory.Exists(installLocation))
+                    continue;
+
+                var normalizedDisplayName = displayName.Replace(" ", string.Empty).Replace("-", string.Empty);
                 softwareName = softwareName.Replace(" ", string.Empty).Replace("-", string.Empty);
 
-                if (displayName.Contains(softwareName))
-                    return candidate;
+                if (!normalizedDisplayName.Contains(softwareName))
+                    continue;
+
+                var softwareInfo = new SoftwareInfo();
+                softwareInfo.IsInstalled = true;
+                softwareInfo.DisplayName = displayName;
+                softwareInfo.DisplayVersion = displayVersion;
+                softwareInfo.InstallLocation = installLocation;
+                candidates.Add(softwareInfo);
             }
 
-            return null;
+            return candidates;
         }
         #endregion
 
