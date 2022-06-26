@@ -69,6 +69,7 @@
     <None Remove="Data\sued\TAU.xml" />
     <None Remove="Data\sued\TF.xml" />
     <None Remove="Data\sued\TrainNumbers.xml" />
+    <None Remove="Data\tauern\Bag.xml" />
     <None Remove="Data\tauern\Ma.xml" />
     <None Remove="Data\tauern\Stt.xml" />
     <None Remove="Data\ts\TrainNumbers.xml" />
@@ -135,6 +136,7 @@
     <EmbeddedResource Include="Data\sued\TAU.xml" />
     <EmbeddedResource Include="Data\sued\TF.xml" />
     <EmbeddedResource Include="Data\sued\TrainNumbers.xml" />
+    <EmbeddedResource Include="Data\tauern\Bag.xml" />
     <EmbeddedResource Include="Data\tauern\Ma.xml" />
     <EmbeddedResource Include="Data\tauern\Stt.xml" />
     <EmbeddedResource Include="Data\ts\TrainNumbers.xml" />
