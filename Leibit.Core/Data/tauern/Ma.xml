@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Böckstein" short="Bs" refNr="18">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="19Si11" direction="right"/>
+      <block name="19Si12" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Tauerntunnel" short="Ma H1" refNr="19" scheduleFile="b19_____.abf">
+    <track name="051" calculateDelay="false" displayName="1">
+      <block name="19Bi51"/>
+    </track>
+    <track name="052" calculateDelay="false" displayName="2">
+      <block name="19Bi52"/>
+    </track>
+  </station>
+
+  <station name="Mallnitz-Obervellach" short="Ma" refNr="20" scheduleFile="g20_____.abf" localOrderFile="bf20____.abf">
+    <track name="301" displayName="3">
+      <block name="20G301"/>
+    </track>
+    <track name="302" displayName="2">
+      <block name="20G302"/>
+    </track>
+    <track name="303">
+      <block name="20G303"/>
+    </track>
+    <track name="304">
+      <block name="20G304"/>
+    </track>
+    <track name="305">
+      <block name="20G305"/>
+    </track>
+    <track name="306" displayName="1">
+      <block name="20G306"/>
+    </track>
+  </station>
+
+  <station name="Kaponig" short="Ch" refNr="21" scheduleFile="g21_____.abf" localOrderFile="bf21____.abf">
+    <track name="201" displayName="2">
+      <block name="21G201"/>
+    </track>
+    <track name="202" displayName="1">
+      <block name="21G202"/>
+    </track>
+    <track name="203">
+      <block name="21G203"/>
+    </track>
+  </station>
+
+  <station name="Lindisch" short="Lin" refNr="22">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="21Bl11" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Falkenstein" short="Pk H1" refNr="22" scheduleFile="b22_____.abf">
+    <track name="001" calculateDelay="false" displayName="1">
+      <block name="22Bm11"/>
+    </track>
+    <track name="002" calculateDelay="false" displayName="2">
+      <block name="22Bm12"/>
+    </track>
+  </station>
+
+  <station name="Penk" short="Pk" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.abf">
+    <track name="201">
+      <block name="23G201"/>
+    </track>
+    <track name="202">
+      <block name="23G202"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="23G203"/>
+    </track>
+  </station>
+
+  <station name="Kolbnitz" short="Kl" refNr="24" scheduleFile="g24_____.abf" localOrderFile="bf24____.abf">
+    <track name="201" displayName="2">
+      <block name="24G201"/>
+    </track>
+    <track name="202" displayName="1">
+      <block name="24G202"/>
+    </track>
+    <track name="203">
+      <block name="24G203"/>
+    </track>
+  </station>
+
+  <station name="Mühldorf-Möllbrücke" short="Mf" refNr="25" scheduleFile="g25_____.abf" localOrderFile="bf25____.abf">
+    <track name="201" displayName="2">
+      <block name="25G201"/>
+    </track>
+    <track name="202" displayName="1">
+      <block name="25G202"/>
+    </track>
+    <track name="203">
+      <block name="25G203"/>
+    </track>
+  </station>
+
+  <station name="Pusarnitz" short="Uz" refNr="26" scheduleFile="g26_____.abf" localOrderFile="bf26____.abf">
+    <track name="201">
+      <block name="26G201"/>
+    </track>
+    <track name="202" displayName="2">
+      <block name="26G202"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="26G203"/>
+    </track>
+  </station>
+
+  <station name="Lendorf" short="Ssn H1" refNr="27" scheduleFile="b27_____.abf">
+    <track name="001" calculateDelay="false" isPlatform="false" displayName="1">
+      <block name="27Ba11" direction="left"/>
+    </track>
+    <track name="002" calculateDelay="false" isPlatform="false">
+      <block name="26Bq12" direction="left"/>
+      <block name="27Br12" direction="right"/>
+    </track>
+    <track name="003" calculateDelay="false" isPlatform="false">
+      <block name="26Bq11" direction="left"/>
+      <block name="27Br11" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Möllbrücke-Sachsenburg" short="Ssn" refNr="27">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="27Ba11" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Spittal-Millstättersee" short="Stt" refNr="28">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="27Br21" direction="left"/>
+      <block name="27Br22" direction="left"/>
+    </track>
+  </station>
+</estw>
