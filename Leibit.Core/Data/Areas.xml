@@ -71,6 +71,7 @@
   </area>
 
   <area id="tauern" name="Tauernbahn">
+    <estw id="Swa" name="Schwarzach-St. Veit" dataFile="leibit_SCHWARZACH-ST.VEIT.dat" infrastructureManager="OEBB"/>
     <estw id="Bag" name="Badgastein" dataFile="leibit_BADGASTEIN.dat" infrastructureManager="OEBB"/>
     <estw id="Ma" name="Mallnitz-Obervellach" dataFile="leibit_MALLNITZ-OBERV.dat" infrastructureManager="OEBB"/>
     <estw id="Stt" name="Spittal-Millstättersee" dataFile="leibit_SPITTAL-MILLST.dat" infrastructureManager="OEBB"/>
