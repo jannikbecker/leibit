@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Mitterberghütten" short="Bo H1" refNr="1" scheduleFile="v1______.abf">
+    <track name="001" calculateDelay="false" displayName="1">
+      <block name="01Sh11"/>
+    </track>
+    <track name="002" calculateDelay="false" displayName="2">
+      <block name="01Sh12"/>
+    </track>
+  </station>
+
+  <station name="St.Johann im Pongau" short="Jp" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
+    <track name="201" displayName="2">
+      <block name="01G201"/>
+    </track>
+    <track name="202" displayName="3">
+      <block name="01G202"/>
+    </track>
+    <track name="203">
+      <block name="01G203"/>
+    </track>
+    <track name="204">
+      <block name="01G204"/>
+    </track>
+    <track name="205" displayName="1">
+      <block name="01G205"/>
+    </track>
+  </station>
+
+  <station name="Schwarzach-St. Veit" short="Swa" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
+    <track name="305">
+      <block name="10G305"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="315"/>
+    </track>
+    <track name="315">
+      <block name="10G315"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="305"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+    </track>
+
+    <track name="401" displayName="3">
+      <block name="10G401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="405"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="315"/>
+    </track>
+    <track name="402" displayName="2">
+      <block name="10G402"/>
+      <alternative track="401"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="405"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="315"/>
+    </track>
+    <track name="403" displayName="4">
+      <block name="10G403"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="404"/>
+      <alternative track="405"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="315"/>
+    </track>
+    <track name="404" displayName="1">
+      <block name="10G404"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="405"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="315"/>
+    </track>
+    <track name="405" displayName="5">
+      <block name="10G405"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="315"/>
+    </track>
+    <track name="406" displayName="1a">
+      <block name="10G406"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="405"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="315"/>
+    </track>
+    <track name="407">
+      <block name="10G407"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="305"/>
+      <alternative track="405"/>
+      <alternative track="406"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="315"/>
+    </track>
+    <track name="409">
+      <block name="10G409"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="305"/>
+      <alternative track="405"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="315"/>
+    </track>
+    <track name="411">
+      <block name="10G411"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="305"/>
+      <alternative track="405"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+      <alternative track="413"/>
+      <alternative track="315"/>
+    </track>
+    <track name="413">
+      <block name="10G413"/>
+      <alternative track="401"/>
+      <alternative track="402"/>
+      <alternative track="403"/>
+      <alternative track="404"/>
+      <alternative track="305"/>
+      <alternative track="405"/>
+      <alternative track="406"/>
+      <alternative track="407"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="315"/>
+    </track>
+
+    <track name="501" displayName="3">
+      <block name="10G501"/>
+      <alternative track="502"/>
+      <alternative track="503"/>
+      <alternative track="504"/>
+      <alternative track="505"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="517"/>
+      <alternative track="519"/>
+      <alternative track="551"/>
+      <alternative track="553"/>
+      <alternative track="593"/>
+    </track>
+    <track name="502" displayName="2">
+      <block name="10G502"/>
+      <alternative track="501"/>
+      <alternative track="503"/>
+      <alternative track="504"/>
+      <alternative track="505"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="517"/>
+      <alternative track="519"/>
+      <alternative track="551"/>
+      <alternative track="553"/>
+      <alternative track="593"/>
+    </track>
+    <track name="503" displayName="4">
+      <block name="10G503"/>
+      <alternative track="501"/>
+      <alternative track="502"/>
+      <alternative track="504"/>
+      <alternative track="505"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="517"/>
+      <alternative track="519"/>
+      <alternative track="551"/>
+      <alternative track="553"/>
+      <alternative track="593"/>
+    </track>
+    <track name="504" displayName="1">
+      <block name="10G504"/>
+      <alternative track="501"/>
+      <alternative track="502"/>
+      <alternative track="503"/>
+      <alternative track="505"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="517"/>
+      <alternative track="519"/>
+      <alternative track="551"/>
+      <alternative track="553"/>
+      <alternative track="593"/>
+    </track>
+    <track name="505" displayName="5">
+      <block name="10G505"/>
+      <alternative track="501"/>
+      <alternative track="502"/>
+      <alternative track="503"/>
+      <alternative track="504"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="517"/>
+      <alternative track="519"/>
+      <alternative track="551"/>
+      <alternative track="553"/>
+      <alternative track="593"/>
+    </track>
+    <track name="507">
+      <block name="10G507"/>
+      <alternative track="501"/>
+      <alternative track="502"/>
+      <alternative track="503"/>
+      <alternative track="504"/>
+      <alternative track="505"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="517"/>
+      <alternative track="519"/>
+      <alternative track="551"/>
+      <alternative track="553"/>
+      <alternative track="593"/>
+    </track>
+    <track name="515">
+      <block name="10G515"/>
+      <alternative track="501"/>
+      <alternative track="502"/>
+      <alternative track="503"/>
+      <alternative track="504"/>
+      <alternative track="505"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="517"/>
+      <alternative track="519"/>
+      <alternative track="551"/>
+      <alternative track="553"/>
+      <alternative track="593"/>
+    </track>
+    <track name="517">
+      <block name="10G517"/>
+      <alternative track="501"/>
+      <alternative track="502"/>
+      <alternative track="503"/>
+      <alternative track="504"/>
+      <alternative track="505"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="519"/>
+      <alternative track="551"/>
+      <alternative track="553"/>
+      <alternative track="593"/>
+    </track>
+    <track name="519">
+      <block name="10G519"/>
+      <alternative track="501"/>
+      <alternative track="502"/>
+      <alternative track="503"/>
+      <alternative track="504"/>
+      <alternative track="505"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="517"/>
+      <alternative track="551"/>
+      <alternative track="553"/>
+      <alternative track="593"/>
+    </track>
+    <track name="551">
+      <block name="10G551"/>
+      <alternative track="501"/>
+      <alternative track="502"/>
+      <alternative track="503"/>
+      <alternative track="504"/>
+      <alternative track="505"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="517"/>
+      <alternative track="519"/>
+      <alternative track="553"/>
+      <alternative track="593"/>
+    </track>
+    <track name="553">
+      <block name="10G553"/>
+      <alternative track="501"/>
+      <alternative track="502"/>
+      <alternative track="503"/>
+      <alternative track="504"/>
+      <alternative track="505"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="517"/>
+      <alternative track="519"/>
+      <alternative track="551"/>
+      <alternative track="593"/>
+    </track>
+    <track name="593" displayName="4a">
+      <block name="10G593"/>
+      <alternative track="501"/>
+      <alternative track="502"/>
+      <alternative track="503"/>
+      <alternative track="504"/>
+      <alternative track="505"/>
+      <alternative track="507"/>
+      <alternative track="409"/>
+      <alternative track="411"/>
+      <alternative track="413"/>
+      <alternative track="515"/>
+      <alternative track="517"/>
+      <alternative track="519"/>
+      <alternative track="551"/>
+      <alternative track="553"/>
+    </track>
+  </station>
+
+  <station name="Loifarn" short="Lof" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10Ba11" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Lend" short="Ld" refNr="2" scheduleFile="g2______.abf" localOrderFile="bf2_____.abf">
+    <track name="201" displayName="2">
+      <block name="02G201"/>
+    </track>
+    <track name="202" displayName="3">
+      <block name="02G202"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="02G203"/>
+    </track>
+    <track name="204">
+      <block name="02G204"/>
+    </track>
+  </station>
+
+  <station name="Eschenau" short="Ld H1" refNr="2" scheduleFile="b2______.abf">
+    <track name="001" calculateDelay="false" displayName="1">
+      <block name="02Bl11"/>
+    </track>
+    <track name="002" calculateDelay="false" displayName="2">
+      <block name="02Bl12"/>
+    </track>
+  </station>
+
+  <station name="Kitzlochklamm" short="Ld H2" refNr="2" scheduleFile="v2______.abf">
+    <track name="001" calculateDelay="false" displayName="1">
+      <block name="02Bl21"/>
+    </track>
+    <track name="002" calculateDelay="false" displayName="2">
+      <block name="02Bl22"/>
+    </track>
+  </station>
+</estw>
