@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Salzburg Gnigl" short="Sr H1" refNr="82" scheduleFile="b82_____.abf">
+    <track name="181" calculateDelay="false" displayName="1">
+      <block name="81B181"/>
+    </track>
+    <track name="182" calculateDelay="false" displayName="2">
+      <block name="81B182"/>
+    </track>
+  </station>
+
+  <station name="Salzburg Gnigl-Vbf" short="Sr" refNr="83">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="83BGE1" direction="right"/>
+      <block name="83BGE2" direction="right"/>
+      <block name="83BGE3" direction="right"/>
+      <block name="83BGE4" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Salzburg Gnigl-Vbf Einfahrgruppe" short="Sre" refNr="83" scheduleFile="g83_____.abf" localOrderFile="bf83____.abf">
+    <track name="301">
+      <block name="83G301"/>
+    </track>
+    <track name="302">
+      <block name="83G302"/>
+    </track>
+    <track name="304">
+      <block name="83G304"/>
+    </track>
+    <track name="306">
+      <block name="83G306"/>
+    </track>
+    <track name="308">
+      <block name="83G308"/>
+    </track>
+    <track name="310">
+      <block name="83G310"/>
+    </track>
+    <track name="312">
+      <block name="83G312"/>
+    </track>
+    <track name="314">
+      <block name="83G314"/>
+    </track>
+    <track name="316">
+      <block name="83G316"/>
+    </track>
+  </station>
+
+  <station name="Salzburg Parsch" short="Sr H2" refNr="83" scheduleFile="b83_____.abf">
+    <track name="001" calculateDelay="false" displayName="1"/> <!-- No block (would be 83G301) -->
+    <track name="a12" calculateDelay="false" displayName="2">
+      <block name="83Ba12"/>
+    </track>
+  </station>
+  
+  <station name="Salzburg Aigen" short="Aj" refNr="84" scheduleFile="g84_____.abf" localOrderFile="bf84____.abf">
+    <track name="201">
+      <block name="84G201"/>
+    </track>
+    <track name="202" displayName ="2">
+      <block name="84G202"/>
+    </track>
+    <track name="203" displayName="3">
+      <block name="84G203"/>
+    </track>
+    <track name="204" displayName="1">
+      <block name="84G204"/>
+    </track>
+  </station>
+
+  <station name="Elsbethen" short="Aj H1" refNr="84" scheduleFile="b84_____.abf">
+    <track name="b11" calculateDelay="false" displayName="1">
+      <block name="84Bb11"/>
+    </track>
+    <track name="b12" calculateDelay="false" displayName="2">
+      <block name="84Bb12"/>
+    </track>
+  </station>
+
+  <station name="Puch-Oberalm" short="Aj H2" refNr="85" scheduleFile="b85_____.abf">
+    <track name="b31" calculateDelay="false" displayName="1">
+      <block name="85Bb31"/>
+    </track>
+    <track name="b22" calculateDelay="false" displayName="2">
+      <block name="85Bb22"/>
+    </track>
+  </station>
+
+  <station name="Hallein" short="Hl" refNr="85" scheduleFile="g85_____.abf" localOrderFile="bf85____.abf">
+    <track name="201" displayName="3">
+      <block name="85G201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="206"/>
+    </track>
+    <track name="202" displayName="2">
+      <block name="85G202"/>
+      <alternative track="201"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="206"/>
+    </track>
+    <track name="203" displayName="4">
+      <block name="85G203"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="204"/>
+      <alternative track="206"/>
+    </track>
+    <track name="204">
+      <block name="85G204"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="206"/>
+    </track>
+    <track name="206" displayName="1">
+      <block name="85G206"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+    </track>
+
+    <track name="306">
+      <block name="85G306"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="308"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="314"/>
+    </track>
+    <track name="308">
+      <block name="85G308"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="306"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="314"/>
+    </track>
+    <track name="310">
+      <block name="85G310"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="306"/>
+      <alternative track="308"/>
+      <alternative track="312"/>
+      <alternative track="314"/>
+    </track>
+    <track name="312">
+      <block name="85G312"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="306"/>
+      <alternative track="308"/>
+      <alternative track="310"/>
+      <alternative track="314"/>
+    </track>
+    <track name="314">
+      <block name="85G314"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="306"/>
+      <alternative track="308"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+    </track>
+  </station>
+
+  <station name="Vigaun" short="Hl H1" refNr="86" scheduleFile="b86_____.abf">
+    <track name="001" calculateDelay="false" displayName="1">
+      <block name="86Bc21"/>
+    </track>
+    <track name="002" calculateDelay="false" displayName="2">
+      <block name="86Bc12"/>
+    </track>
+  </station>
+
+  <station name="Kuchl" short="Kc" refNr="86" scheduleFile="g86_____.abf" localOrderFile="bf86____.abf">
+    <track name="101" displayName="1">
+      <block name="86G101"/>
+    </track>
+    <track name="102" displayName ="2">
+      <block name="86G102"/>
+    </track>
+  </station>
+
+  <station name="Golling-Abtenau" short="Gg" refNr="87" scheduleFile="g87_____.abf" localOrderFile="bf87____.abf">
+    <track name="301">
+      <block name ="87G301"/>
+    </track>
+    <track name="302">
+      <block name ="87G302"/>
+    </track>
+    <track name="303">
+      <block name ="87G303"/>
+    </track>
+    <track name="304">
+      <block name ="87G304"/>
+    </track>
+    <track name="306">
+      <block name ="87G306"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="303"/>
+      <alternative track="304"/>
+    </track>
+    <track name="206">
+      <block name ="87G206"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="303"/>
+      <alternative track="304"/>
+    </track>
+  </station>
+
+  <station name="Hardsteinwerke" short="Gg L1" refNr="88">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="88Be11"/>
+      <block name="88Be12"/>
+    </track>
+  </station>
+
+  <station name="Sulzau" short="Su" refNr="88">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="88Se21" direction="left"/>
+      <block name="88Se22" direction="left"/>
+    </track>
+  </station>
+</estw>
