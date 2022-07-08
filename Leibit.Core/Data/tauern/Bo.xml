@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <estw>
-  <station name="Hardsteinwerke" short="Gg L1" refNr="88">
+  <station name="Hardsteinwerke" short="Gg A1" refNr="88">
     <track calculateDelay="false" isPlatform="false">
       <block name="88Be11"/>
       <block name="88Be12"/>
@@ -49,7 +49,7 @@
     </track>
   </station>
 
-  <station name="Niedernfritz-St.Martin" short="Ebn H1" refNr="92" scheduleFile="b92_____.abf">
+  <station name="Niedernfritz-St.Martin" short="Hue H1" refNr="92" scheduleFile="b92_____.abf">
     <track name="001" calculateDelay="false" displayName="1">
       <block name="92Bl11"/>
     </track>

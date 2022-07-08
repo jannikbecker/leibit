@@ -7,7 +7,7 @@
     </track>
   </station>
 
-  <station name="Tauerntunnel" short="Ma H1" refNr="19" scheduleFile="b19_____.abf">
+  <station name="Tauerntunnel" short="Bs H1" refNr="19" scheduleFile="b19_____.abf">
     <track name="051" calculateDelay="false" displayName="1">
       <block name="19Bi51"/>
     </track>
@@ -49,13 +49,13 @@
     </track>
   </station>
 
-  <station name="Lindisch" short="Lin" refNr="22">
+  <station name="Lindisch" short="Li" refNr="22">
     <track calculateDelay="false" isPlatform="false">
       <block name="21Bl11" direction="left"/>
     </track>
   </station>
 
-  <station name="Falkenstein" short="Pk H1" refNr="22" scheduleFile="b22_____.abf">
+  <station name="Falkenstein" short="Li H1" refNr="22" scheduleFile="b22_____.abf">
     <track name="001" calculateDelay="false" displayName="1">
       <block name="22Bm11"/>
     </track>

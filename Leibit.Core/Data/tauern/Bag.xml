@@ -62,7 +62,7 @@
     <track name="12" calculateDelay="false"/>
   </station>
 
-  <station name="Steinbach" short="Hg Z1" refNr="15" scheduleFile="g15_____.abf" localOrderFile="bf15____.abf">
+  <station name="Steinbach" short="St" refNr="15" scheduleFile="g15_____.abf" localOrderFile="bf15____.abf">
     <track name="1" isPlatform="false">
       <block name="15Be11" direction="left"/>
       <block name="15Bf11" direction="right"/>
@@ -117,7 +117,7 @@
     </track>
   </station>
 
-  <station name="Tauerntunnel" short="Ma H1" refNr="19" scheduleFile="b19_____.abf">
+  <station name="Tauerntunnel" short="Bs H1" refNr="19" scheduleFile="b19_____.abf">
     <track name="51" calculateDelay="false" displayName="1">
       <block name="19Bi51"/>
     </track>

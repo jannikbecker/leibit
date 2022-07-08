@@ -229,7 +229,7 @@
     </track>
   </station>
 
-  <station name="Hardsteinwerke" short="Gg L1" refNr="88">
+  <station name="Hardsteinwerke" short="Gg A1" refNr="88">
     <track calculateDelay="false" isPlatform="false">
       <block name="88Be11"/>
       <block name="88Be12"/>
