@@ -1,4 +1,5 @@
 ﻿using Leibit.Core.Common;
+using Leibit.Core.Exceptions;
 using Leibit.Core.Properties;
 using Leibit.Core.Scheduling;
 using Leibit.Entities;
@@ -444,7 +445,7 @@ namespace Leibit.BLL
         private void __LoadScheduleFromFile(Station station, string scheduleFile, List<string> tracks)
         {
             if (!File.Exists(scheduleFile))
-                return;
+                throw new OperationFailedException($"Die Datei '{scheduleFile}' existiert nicht.");
 
             // Encoding e.g. for German Umlaute
             using (var reader = new StreamReader(scheduleFile, Encoding.GetEncoding("iso-8859-1")))
@@ -452,6 +453,9 @@ namespace Leibit.BLL
                 reader.ReadLine();
 
                 var header = reader.ReadLine();
+
+                if (header.IsNullOrWhiteSpace())
+                    throw new OperationFailedException($"Die Datei '{scheduleFile}' hat ein falsches Format.");
 
                 if (!__GetBounds(header, "VON", out int startFrom, out int startLength)
                     || !__GetBounds(header, "VT", out int daysFrom, out int daysLength)
