@@ -18,9 +18,9 @@ Folgende Simulationen werden aktuell unterstützt:
 
 - Bereich Berlin
     - Berlin-Stadtbahn
-- Bereich Fehmarn (NEU)
-    - Fehmarn (NEU)
-    - Puttgarden (NEU)
+- Bereich Fehmarn
+    - Fehmarn
+    - Puttgarden
 - Bereich Mitteldeutschland
     - Würzburg Hbf
     - Gemünden
@@ -72,6 +72,13 @@ Folgende Simulationen werden aktuell unterstützt:
     - München-Westkreuz
     - Weilheim
     - Garmisch-Partenkirchen
+- Bereich Tauernbahn (NEU)
+    - Hallein (NEU)
+    - Bischofshofen (NEU)
+    - Schwarzach-St. Veit (NEU)
+    - Badgastein (NEU)
+    - Mallnitz-Obervellach (NEU)
+    - Spittal-Millstättersee (NEU)
 
 Karten der Stellbereiche können [hier](maps) eingesehen werden. Eine vollständige Bedienungsanleitung ist [hier](https://github.com/jannikbecker/leibit/wiki) zu finden. Für den ersten Start bietet die [Schnellstartanleitung](https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung) einen guten Einstiegspunkt.
 

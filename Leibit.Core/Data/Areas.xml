@@ -69,4 +69,13 @@
     <estw id="Fehmarn" name="Fehmarn" dataFile="leibit_FEHMARN.dat" infrastructureManager="DB"/>
     <estw id="APU" name="Puttgarden" dataFile="leibit_PUTTGARDEN.dat" infrastructureManager="DB" productName="Fehmarn"/>
   </area>
+
+  <area id="tauern" name="Tauernbahn">
+    <estw id="Hl" name="Hallein" dataFile="leibit_HALLEIN.dat" infrastructureManager="OEBB"/>
+    <estw id="Bo" name="Bischofshofen" dataFile="leibit_BISCHOFSHOFEN.dat" infrastructureManager="OEBB"/>
+    <estw id="Swa" name="Schwarzach-St. Veit" dataFile="leibit_SCHWARZACH-ST.VEIT.dat" infrastructureManager="OEBB"/>
+    <estw id="Bag" name="Badgastein" dataFile="leibit_BADGASTEIN.dat" infrastructureManager="OEBB"/>
+    <estw id="Ma" name="Mallnitz-Obervellach" dataFile="leibit_MALLNITZ-OBERV.dat" infrastructureManager="OEBB"/>
+    <estw id="Stt" name="Spittal-Millstättersee" dataFile="leibit_SPITTAL-MILLST.dat" infrastructureManager="OEBB"/>
+  </area>
 </leibit>

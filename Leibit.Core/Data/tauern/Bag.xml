@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Schwarzach-St.Veit" short="Swa" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10Ba11" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Loifarn" short="Lof" refNr="11" scheduleFile="g11_____.abf" localOrderFile="bf11____.abf">
+    <track name="1" displayName="201">
+      <block name="11G201"/>
+    </track>
+    <track name="2" displayName="202">
+      <block name="11G202"/>
+    </track>
+    <track name="3" displayName="1">
+      <block name="11G203"/>
+    </track>
+  </station>
+
+  <station name="Klammstein" short="Lof H1" refNr="11" scheduleFile="b11_____.abf">
+    <track name="11" calculateDelay="false" displayName="1">
+      <block name="11Bb11"/>
+    </track>
+  </station>
+
+  <station name="Unterberg" short="Un" refNr="12" scheduleFile="g12_____.abf" localOrderFile="bf12____.abf">
+    <track name="1">
+      <block name="12G201"/>
+    </track>
+    <track name="3">
+      <block name="12G203"/>
+    </track>
+  </station>
+
+  <station name="Dorfgastein" short="Dg" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf">
+    <track name="1" displayName="1">
+      <block name="13G201"/>
+    </track>
+    <track name="2" displayName="202">
+      <block name="13G202"/>
+    </track>
+    <track name="4" displayName="2">
+      <block name="13G204"/>
+    </track>
+  </station>
+
+  <station name="Bad Hofgastein" short="Hg" refNr="14" scheduleFile="g14_____.abf" localOrderFile="bf14____.abf">
+    <track name="1" displayName="2">
+      <block name="14G201"/>
+    </track>
+    <track name="2" displayName="3">
+      <block name="14G202"/>
+    </track>
+    <track name="3" displayName="1">
+      <block name="14G203"/>
+    </track>
+  </station>
+
+  <station name="Hst Bad Hofgastein" short="Hg H1" refNr="15" scheduleFile="b15_____.abf">
+    <track name="11" calculateDelay="false"/>
+    <track name="12" calculateDelay="false"/>
+  </station>
+
+  <station name="Steinbach" short="St" refNr="15" scheduleFile="g15_____.abf" localOrderFile="bf15____.abf">
+    <track name="1" isPlatform="false">
+      <block name="15Be11" direction="left"/>
+      <block name="15Bf11" direction="right"/>
+    </track>
+    <track name="2" isPlatform="false">
+      <block name="14Be12" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Angertal" short="Al" refNr="16" scheduleFile="g16_____.abf" localOrderFile="bf16____.abf">
+    <track name="1" displayName="2">
+      <block name="16G201"/>
+    </track>
+    <track name="2" displayName="202">
+      <block name="16G202"/>
+    </track>
+    <track name="3" displayName="1">
+      <block name="16G203"/>
+    </track>
+  </station>
+
+  <station name="Badgastein" short="Bag" refNr="17" scheduleFile="g17_____.abf" localOrderFile="bf17____.abf">
+    <track name="1" displayName="2">
+      <block name="17G301"/>
+    </track>
+    <track name="2" displayName="3">
+      <block name="17G302"/>
+    </track>
+    <track name="3" displayName="1">
+      <block name="17G303"/>
+    </track>
+    <track name="4" displayName="304">
+      <block name="17G304"/>
+    </track>
+  </station>
+
+  <station name="Böckstein" short="Bs" refNr="18" scheduleFile="g18_____.abf" localOrderFile="bf18____.abf">
+    <track name="1" displayName="2">
+      <block name="18G401"/>
+    </track>
+    <track name="2" displayName="3">
+      <block name="18G402"/>
+    </track>
+    <track name="3" displayName="1">
+      <block name="18G403"/>
+    </track>
+    <track name="4" displayName="404">
+      <block name="18G404"/>
+    </track>
+    <track name="6" displayName="406">
+      <block name="18G406"/>
+    </track>
+  </station>
+
+  <station name="Tauerntunnel" short="Bs H1" refNr="19" scheduleFile="b19_____.abf">
+    <track name="51" calculateDelay="false" displayName="1">
+      <block name="19Bi51"/>
+    </track>
+    <track name="52" calculateDelay="false" displayName="2">
+      <block name="19Bi52"/>
+    </track>
+  </station>
+
+  <station name="Mallnitz-Obervellach" short="Ma" refNr="20">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="20Si61" direction="left"/>
+      <block name="20Si62" direction="left"/>
+    </track>
+  </station>
+</estw>
