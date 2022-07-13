@@ -150,7 +150,7 @@
     </track>
   </station>
 
-  <station name="Wasserburg" short="MWBG" refNr="72" scheduleFile="g72_____.abf">
+  <station name="Wasserburg" short="MWBG" refNr="72" scheduleFile="b72_____.abf">
     <track name="1" calculateDelay="false">
       <block name="72B1"/>
     </track>
