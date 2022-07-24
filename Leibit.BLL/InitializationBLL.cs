@@ -7,6 +7,7 @@ using Leibit.Entities.Common;
 using Leibit.Entities.Scheduling;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -445,7 +446,12 @@ namespace Leibit.BLL
         private void __LoadScheduleFromFile(Station station, string scheduleFile, List<string> tracks)
         {
             if (!File.Exists(scheduleFile))
-                throw new OperationFailedException($"Die Datei '{scheduleFile}' existiert nicht.");
+            {
+                if (Debugger.IsAttached)
+                    throw new OperationFailedException($"Die Datei '{scheduleFile}' existiert nicht.");
+                else
+                    return;
+            }
 
             // Encoding e.g. for German Umlaute
             using (var reader = new StreamReader(scheduleFile, Encoding.GetEncoding("iso-8859-1")))
