@@ -3,3 +3,4 @@ Die Datei *Setup.exe* herunterladen und ausführen. Nach wenigen Sekunden starte
 
 # Neue Funktionen in dieser Version
 - Fehlerkorrekturen
+- Update ESTWonline auf Version 2.7
