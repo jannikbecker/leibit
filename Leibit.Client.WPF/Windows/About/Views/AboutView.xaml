@@ -31,16 +31,21 @@
         <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Source="{Binding Icon}" Width="96" Height="96" Margin="0,0,20,0"/>
 
         <TextBlock Grid.Row="0" Grid.Column="1" Text="LeiBIT für ESTWsim" FontSize="20"/>
-        
+
         <TextBlock Grid.Row="1" Grid.Column="1">
             <Hyperlink Command="{Binding OpenGithubCommand}">https://github.com/jannikbecker/leibit</Hyperlink>
         </TextBlock>
 
-        <TextBlock Grid.Row="2" Grid.Column="1">
-            <Run Text="Version:"/>
-            <Run Text="{Binding Version, Mode=OneWay}"/>
-            <Hyperlink Command="{Binding CheckForUpdatesCommand}">Nach Updates suchen</Hyperlink>
-        </TextBlock>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock>
+                <Run Text="Version:"/>
+                <Run Text="{Binding Version, Mode=OneWay}"/>
+            </TextBlock>
+
+            <TextBlock Margin="5,0,0,0" Visibility="{Binding CanInstallUpdates, Converter={StaticResource VisibilityConverter}}">
+                <Hyperlink Command="{Binding CheckForUpdatesCommand}">Nach Updates suchen</Hyperlink>
+            </TextBlock>
+        </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
             <fa:ImageAwesome Visibility="{Binding IsSpinnerVisible, Converter={StaticResource VisibilityConverter}}" Icon="Solid_Spinner" Spin="True" Foreground="{DynamicResource TextForeground}" Width="16" Height="16"/>

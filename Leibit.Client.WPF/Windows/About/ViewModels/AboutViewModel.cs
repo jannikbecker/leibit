@@ -31,6 +31,12 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
             var decoder = BitmapDecoder.Create(new Uri("pack://application:,,,/Leibit;component/icon.ico"), BitmapCreateOptions.DelayCreation, BitmapCacheOption.OnDemand);
             var maxWidth = decoder.Frames.Max(f => f.Width);
             Icon = decoder.Frames.FirstOrDefault(f => f.Width == maxWidth);
+
+            UpdateHelper.GetUpdateBLL().ContinueWith(t =>
+            {
+                m_UpdateBll = t.Result;
+                CanInstallUpdates = m_UpdateBll.IsManagedBySquirrel;
+            });
         }
         #endregion
 
@@ -140,6 +146,14 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
         }
         #endregion
 
+        #region [CanInstallUpdates]
+        public bool CanInstallUpdates
+        {
+            get => Get<bool>();
+            private set => Set(value);
+        }
+        #endregion
+
         #endregion
 
         #region - Private methods -
@@ -164,7 +178,6 @@ namespace Leibit.Client.WPF.Windows.About.ViewModels
 
             Task.Run(async () =>
             {
-                m_UpdateBll = await UpdateHelper.GetUpdateBLL();
                 var checkForUpdateResult = await m_UpdateBll.CheckForUpdates();
 
                 Application.Current?.Dispatcher?.Invoke(() =>

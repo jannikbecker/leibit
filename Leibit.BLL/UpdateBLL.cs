@@ -38,6 +38,14 @@ namespace Leibit.BLL
         public event EventHandler<int> UpdateProgress;
         #endregion
 
+        #region - Properties -
+
+        #region [IsManagedBySquirrel]
+        public bool IsManagedBySquirrel => m_UpdateExe != null;
+        #endregion
+
+        #endregion
+
         #region - Public methods -
 
         #region [CreateGitHub]
