@@ -549,7 +549,19 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     return false;
             }
 
-            if (liveSchedule.Train.Schedules.All(s => !s.IsArrived) && liveSchedule.Train.LastModified < schedule.Station.ESTW.Time && !liveSchedule.IsManuallyModified)
+            // Hide trains that are gone and did not arrive at one station.
+            // This is usually the case at the beginning of the simulation when a train already has left the last station and is about to disappear.
+            // To determine if a train is gone, the LastModified time is checked.
+            // As times between ESTWs can differ, we need to determine the correct time for comparison.
+            // This is the time of the last station the train has passed, or the smallest time by default.
+            LeibitTime trainLiveTime;
+
+            if (liveSchedule.Train.Block != null && liveSchedule.Train.Block.Track != null)
+                trainLiveTime = liveSchedule.Train.Block.Track.Station.ESTW.Time;
+            else
+                trainLiveTime = m_Area.ESTWs.Where(e => e.IsLoaded).Min(e => e.Time);
+
+            if (liveSchedule.Train.Schedules.All(s => !s.IsArrived) && liveSchedule.Train.LastModified < trainLiveTime && !liveSchedule.IsManuallyModified)
                 return false;
 
             return true;
