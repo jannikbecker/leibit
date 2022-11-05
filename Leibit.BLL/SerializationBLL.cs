@@ -103,7 +103,7 @@ namespace Leibit.BLL
                     var SerializedTrain = new SerializedTrain();
                     SerializedTrain.TrainNumber = Train.Train.Number;
                     SerializedTrain.Delay = Train.Delay;
-                    SerializedTrain.LastModified = Train.LastModified;
+                    SerializedTrain.LastModification.AddRange(Train.LastModification);
                     SerializedTrain.CreatedOn = Train.CreatedOn;
                     SerializedTrain.TrainDirection = Train.Direction;
                     SerializedTrain.IsDestinationStationCancelled = Train.IsDestinationStationCancelled;
@@ -243,10 +243,14 @@ namespace Leibit.BLL
                     var Train = Area.Trains[SerializedTrain.TrainNumber];
                     var LiveTrain = new TrainInformation(Train);
                     LiveTrain.Delay = SerializedTrain.Delay;
-                    LiveTrain.LastModified = SerializedTrain.LastModified;
+                    LiveTrain.LastModification.AddRange(SerializedTrain.LastModification);
                     LiveTrain.CreatedOn = SerializedTrain.CreatedOn;
                     LiveTrain.Direction = SerializedTrain.TrainDirection;
                     LiveTrain.IsDestinationStationCancelled = SerializedTrain.IsDestinationStationCancelled;
+
+                    // Ensure compatibility
+                    if (Estw != null && !LiveTrain.LastModification.ContainsKey(Estw.Id) && SerializedTrain.LastModified != null)
+                        LiveTrain.LastModification[Estw.Id] = SerializedTrain.LastModified;
 
                     if (SerializedTrain.BlockHistory != null)
                     {

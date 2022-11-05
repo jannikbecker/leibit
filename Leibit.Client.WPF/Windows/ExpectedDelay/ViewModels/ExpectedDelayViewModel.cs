@@ -221,9 +221,10 @@ namespace Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels
                 return;
 
             var schedule = SelectedSchedule;
+            var estw = schedule.Schedule.Station.ESTW;
 
-            // Set LastModified before adding train to LiveTrain list.
-            m_Train.LastModified = schedule.Schedule.Station.ESTW.Time;
+            // Set LastModification before adding train to LiveTrain list.
+            m_Train.LastModification[estw.Id] = estw.Time;
 
             // It could happen that live data has been generated while the window was open.
             var liveTrain = m_Area.LiveTrains.GetOrAdd(m_Train.Train.Number, m_Train);

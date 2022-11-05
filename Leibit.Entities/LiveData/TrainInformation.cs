@@ -1,6 +1,7 @@
 ﻿using Leibit.Core.Scheduling;
 using Leibit.Entities.Common;
 using Leibit.Entities.Scheduling;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -23,6 +24,8 @@ namespace Leibit.Entities.LiveData
             m_Train = train;
             m_LiveSchedules = new List<LiveSchedule>();
             m_BlockHistory = new List<Block>();
+            LastModification = new ConcurrentDictionary<string, LeibitTime>();
+            IsActive = true;
         }
 
         public Train Train
@@ -61,11 +64,9 @@ namespace Leibit.Entities.LiveData
             set;
         }
 
-        public LeibitTime LastModified
-        {
-            get;
-            set;
-        }
+        public ConcurrentDictionary<string, LeibitTime> LastModification { get; }
+
+        public bool IsActive { get; set; }
 
         public LeibitTime CreatedOn { get; set; }
 
