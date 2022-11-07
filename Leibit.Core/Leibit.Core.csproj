@@ -45,6 +45,8 @@
     <None Remove="Data\nord\HNBG.xml" />
     <None Remove="Data\nord\HSO.xml" />
     <None Remove="Data\nord\HV.xml" />
+    <None Remove="Data\nord\HWUN.xml" />
+    <None Remove="Data\nord\TrainNumbers.xml" />
     <None Remove="Data\nrw\KKM.xml" />
     <None Remove="Data\nrw\KSO.xml" />
     <None Remove="Data\nrw\KW.xml" />
@@ -115,6 +117,8 @@
     <EmbeddedResource Include="Data\nord\HNBG.xml" />
     <EmbeddedResource Include="Data\nord\HSO.xml" />
     <EmbeddedResource Include="Data\nord\HV.xml" />
+    <EmbeddedResource Include="Data\nord\HWUN.xml" />
+    <EmbeddedResource Include="Data\nord\TrainNumbers.xml" />
     <EmbeddedResource Include="Data\nrw\KKM.xml" />
     <EmbeddedResource Include="Data\nrw\KSO.xml" />
     <EmbeddedResource Include="Data\nrw\KW.xml" />
