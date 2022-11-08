@@ -262,7 +262,7 @@
     </track>
   </station>
 
-  <station name="Minden (Westf)" short="HM" refNr="65">
+  <station name="Minden (Westf)" short="HM" refNr="89">
     <track calculateDelay="false" isPlatform="false">
       <block name="65BN" direction="left"/>
     </track>

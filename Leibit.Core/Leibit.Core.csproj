@@ -42,6 +42,7 @@
     <None Remove="Data\nord\AROG.xml" />
     <None Remove="Data\nord\HB.xml" />
     <None Remove="Data\nord\HBSB.xml" />
+    <None Remove="Data\nord\HM.xml" />
     <None Remove="Data\nord\HNBG.xml" />
     <None Remove="Data\nord\HSO.xml" />
     <None Remove="Data\nord\HV.xml" />
@@ -112,6 +113,7 @@
     <EmbeddedResource Include="Data\nord\AROG.xml" />
     <EmbeddedResource Include="Data\nord\HB.xml" />
     <EmbeddedResource Include="Data\nord\HBSB.xml" />
+    <EmbeddedResource Include="Data\nord\HM.xml" />
     <EmbeddedResource Include="Data\nord\HNBG.xml" />
     <EmbeddedResource Include="Data\nord\HSO.xml" />
     <EmbeddedResource Include="Data\nord\HV.xml" />
