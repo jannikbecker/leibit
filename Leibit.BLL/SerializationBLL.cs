@@ -268,7 +268,15 @@ namespace Leibit.BLL
                     if (SerializedTrain.Block != null && Estw.Blocks.ContainsKey(SerializedTrain.Block))
                         LiveTrain.Block = Estw.Blocks[SerializedTrain.Block].FirstOrDefault(b => b.Direction == SerializedTrain.BlockDirection);
 
-                    var SchedulesResult = CalculationBll.GetSchedulesByTime(Train.Schedules, Estw?.Time ?? SerializedTrain.LastModified);
+                    var scheduleReferenceTime = Estw?.Time;
+
+                    if (scheduleReferenceTime == null && SerializedTrain.LastModification != null && SerializedTrain.LastModification.Values.Any())
+                        scheduleReferenceTime = SerializedTrain.LastModification.Values.Max();
+
+                    if (scheduleReferenceTime == null)
+                        scheduleReferenceTime = SerializedTrain.LastModified;
+
+                    var SchedulesResult = CalculationBll.GetSchedulesByTime(Train.Schedules, scheduleReferenceTime);
                     ValidateResult(SchedulesResult);
 
                     foreach (var SerializedSchedule in SerializedTrain.Schedules)
