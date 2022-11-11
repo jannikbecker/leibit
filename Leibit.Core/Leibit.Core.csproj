@@ -26,6 +26,7 @@
     <None Remove="Data\nhth\FBHF.xml" />
     <None Remove="Data\nhth\FEL.xml" />
     <None Remove="Data\nhth\FFU.xml" />
+    <None Remove="Data\nhth\FHAU.xml" />
     <None Remove="Data\nhth\NGM.xml" />
     <None Remove="Data\nhth\NHEI.xml" />
     <None Remove="Data\nhth\NAH.xml" />
@@ -96,6 +97,7 @@
     <EmbeddedResource Include="Data\nhth\FBHF.xml" />
     <EmbeddedResource Include="Data\nhth\FEL.xml" />
     <EmbeddedResource Include="Data\nhth\FFU.xml" />
+    <EmbeddedResource Include="Data\nhth\FHAU.xml" />
     <EmbeddedResource Include="Data\nhth\NGM.xml" />
     <EmbeddedResource Include="Data\nhth\NHEI.xml" />
     <EmbeddedResource Include="Data\nhth\NAH.xml" />
