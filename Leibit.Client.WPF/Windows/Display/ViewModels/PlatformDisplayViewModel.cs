@@ -352,7 +352,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 if (IsInTwinTrainMode)
                     TwinTrainTime = __GetTime(twinScheduleItem);
 
-                if (isDestination && !isCancelled)
+                if (isDestination && !isCancelled && currentItem.Schedule.Handling != eHandling.Start)
                 {
                     int? followUpService = __GetFollowUpService(currentItem);
 
@@ -406,7 +406,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (currentItem.LiveSchedule != null)
                 {
-                    if (isCancelled)
+                    if (isCancelled || (isDestination && currentItem.Schedule.Handling == eHandling.Start))
                         infoTexts.Add("Zug fällt heute aus");
                     else
                     {
@@ -415,10 +415,13 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                         if (differingDestination != null)
                             infoTexts.Add($"Fährt heute nur bis {GetDisplayName(differingDestination.Station)}");
 
-                        var skippedStations = GetSkippedSchedules(currentItem);
+                        if (!isDestination)
+                        {
+                            var skippedStations = GetSkippedSchedules(currentItem);
 
-                        if (skippedStations.Any())
-                            infoTexts.Add($"Hält nicht in {GetStationList(skippedStations)}");
+                            if (skippedStations.Any())
+                                infoTexts.Add($"Hält nicht in {GetStationList(skippedStations)}");
+                        }
                     }
                 }
 
@@ -513,7 +516,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [__GetTime]
         private string __GetTime(ScheduleItem scheduleItem)
         {
-            if (IsDestination(scheduleItem))
+            if (IsDestination(scheduleItem) && scheduleItem.Schedule.Arrival != null)
                 return scheduleItem.Schedule.Arrival.ToString();
             else
                 return scheduleItem.Schedule.Departure.ToString();
