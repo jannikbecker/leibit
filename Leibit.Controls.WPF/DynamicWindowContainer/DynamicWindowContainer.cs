@@ -226,7 +226,7 @@ namespace Leibit.Controls
         {
             var contentControl = __GetTemplateChild(window, "DesignerContainerContent");
 
-            if (!__CheckOverlap(window, contentControl, window.PositionX, window.PositionY, out _, out _))
+            if (contentControl == null || !__CheckOverlap(window, contentControl, window.PositionX, window.PositionY, out _, out _))
                 return;
 
             double x, y;
@@ -268,6 +268,10 @@ namespace Leibit.Controls
                     continue;
 
                 var refContentControl = __GetTemplateChild(refWindow, "DesignerContainerContent");
+
+                if (refContentControl == null)
+                    continue;
+
                 var xLeft = refWindow.PositionX;
                 var xRight = xLeft + refContentControl.ActualWidth;
                 var yTop = refWindow.PositionY;
