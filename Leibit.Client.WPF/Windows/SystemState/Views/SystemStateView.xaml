@@ -98,7 +98,7 @@
                     <controls:LeibitDataGridColumn Header="Letzte Btrst" FieldName="CurrentTrain.Block.Track.Station.Name"/>
                     <controls:LeibitDataGridColumn Header="Gleis" FieldName="CurrentTrain.Block.Track.Name"/>
                     <controls:LeibitDataGridColumn Header="Richtung" FieldName="Direction"/>
-                    <controls:LeibitDataGridColumn Header="Stand" FieldName="CurrentTrain.LastModified"/>
+                    <controls:LeibitDataGridColumn Header="Stand" FieldName="LastModified"/>
                     <controls:LeibitDataGridColumn Header="Aktionen" FieldName="Actions"/>
                 </controls:LeibitDataGrid.Columns>
 
@@ -110,12 +110,12 @@
                             <entities:GridColumnSetting ColumnName="CurrentTrain.Block.Track.Station.Name" Position="2" Width="200" />
                             <entities:GridColumnSetting ColumnName="CurrentTrain.Block.Track.Name" Position="3" Width="50" />
                             <entities:GridColumnSetting ColumnName="Direction" Position="4" Width="65" />
-                            <entities:GridColumnSetting ColumnName="CurrentTrain.LastModified" Position="5" Width="65" />
+                            <entities:GridColumnSetting ColumnName="LastModified" Position="5" Width="65" />
                             <entities:GridColumnSetting ColumnName="Actions" Position="6" Width="60" />
                         </entities:GridSetting.ColumnSettings>
 
                         <entities:GridSetting.SortingColumns>
-                            <entities:GridSortingColumn ColumnName="CurrentTrain.LastModified" SortDirection="Descending"/>
+                            <entities:GridSortingColumn ColumnName="LastModified" SortDirection="Descending"/>
                             <entities:GridSortingColumn ColumnName="CurrentTrain.Train.Number" SortDirection="Ascending"/>
                         </entities:GridSetting.SortingColumns>
                     </entities:GridSetting>

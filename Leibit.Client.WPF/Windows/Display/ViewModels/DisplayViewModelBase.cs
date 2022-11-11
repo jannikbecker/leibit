@@ -90,17 +90,10 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 }
                 else
                 {
-                    LeibitTime trainLiveTime;
-
-                    if (liveSchedule.Train.Block != null && liveSchedule.Train.Block.Track != null)
-                        trainLiveTime = liveSchedule.Train.Block.Track.Station.ESTW.Time;
-                    else
-                        trainLiveTime = area.ESTWs.Where(e => e.IsLoaded).Min(e => e.Time);
-
                     if (liveSchedule.IsDeparted)
                         continue;
 
-                    if (schedule.Handling == eHandling.Destination && trainLiveTime > liveSchedule.Train.LastModified)
+                    if (schedule.Handling == eHandling.Destination && !liveSchedule.Train.IsActive)
                         continue;
 
                     if (matchTrack && schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent && liveSchedule.LiveTrack != SelectedTrack && liveSchedule.LiveTrack != SelectedTrack.Parent)
@@ -124,7 +117,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     if (referenceTime > currentTime.AddMinutes(leadMinutes))
                         continue;
 
-                    if (referenceTime < currentTime && liveSchedule.Train.LastModified < trainLiveTime)
+                    if (referenceTime < currentTime && !liveSchedule.Train.IsActive)
                         continue;
 
                     candidates.Add(new ScheduleItem(referenceTime, schedule, liveSchedule));

@@ -103,7 +103,7 @@ namespace Leibit.BLL
                     var SerializedTrain = new SerializedTrain();
                     SerializedTrain.TrainNumber = Train.Train.Number;
                     SerializedTrain.Delay = Train.Delay;
-                    SerializedTrain.LastModified = Train.LastModified;
+                    SerializedTrain.LastModification.AddRange(Train.LastModification);
                     SerializedTrain.CreatedOn = Train.CreatedOn;
                     SerializedTrain.TrainDirection = Train.Direction;
                     SerializedTrain.IsDestinationStationCancelled = Train.IsDestinationStationCancelled;
@@ -243,10 +243,14 @@ namespace Leibit.BLL
                     var Train = Area.Trains[SerializedTrain.TrainNumber];
                     var LiveTrain = new TrainInformation(Train);
                     LiveTrain.Delay = SerializedTrain.Delay;
-                    LiveTrain.LastModified = SerializedTrain.LastModified;
+                    LiveTrain.LastModification.AddRange(SerializedTrain.LastModification);
                     LiveTrain.CreatedOn = SerializedTrain.CreatedOn;
                     LiveTrain.Direction = SerializedTrain.TrainDirection;
                     LiveTrain.IsDestinationStationCancelled = SerializedTrain.IsDestinationStationCancelled;
+
+                    // Ensure compatibility
+                    if (Estw != null && !LiveTrain.LastModification.ContainsKey(Estw.Id) && SerializedTrain.LastModified != null)
+                        LiveTrain.LastModification[Estw.Id] = SerializedTrain.LastModified;
 
                     if (SerializedTrain.BlockHistory != null)
                     {
@@ -264,7 +268,15 @@ namespace Leibit.BLL
                     if (SerializedTrain.Block != null && Estw.Blocks.ContainsKey(SerializedTrain.Block))
                         LiveTrain.Block = Estw.Blocks[SerializedTrain.Block].FirstOrDefault(b => b.Direction == SerializedTrain.BlockDirection);
 
-                    var SchedulesResult = CalculationBll.GetSchedulesByTime(Train.Schedules, Estw?.Time ?? SerializedTrain.LastModified);
+                    var scheduleReferenceTime = Estw?.Time;
+
+                    if (scheduleReferenceTime == null && SerializedTrain.LastModification != null && SerializedTrain.LastModification.Values.Any())
+                        scheduleReferenceTime = SerializedTrain.LastModification.Values.Max();
+
+                    if (scheduleReferenceTime == null)
+                        scheduleReferenceTime = SerializedTrain.LastModified;
+
+                    var SchedulesResult = CalculationBll.GetSchedulesByTime(Train.Schedules, scheduleReferenceTime);
                     ValidateResult(SchedulesResult);
 
                     foreach (var SerializedSchedule in SerializedTrain.Schedules)

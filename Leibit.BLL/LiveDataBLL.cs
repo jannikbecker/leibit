@@ -136,25 +136,42 @@ namespace Leibit.BLL
                     if (EstwTime != null)
                     {
                         Parallel.ForEach(area.LiveTrains, Options, train =>
+                        {
+                            var timeDifferences = train.Value.LastModification.Select(x =>
                             {
-                                // Set departure times for trains that are gone.
-                                if (train.Value.LastModified < EstwTime.AddMinutes(-2))
+                                var estwTime = area.ESTWs.FirstOrDefault(e => e.Id == x.Key)?.Time;
+                                int? diff = null;
+
+                                if (estwTime != null)
                                 {
-                                    var CurrentSchedules = train.Value.Schedules.Where(s => s.IsArrived && !s.IsDeparted);
-
-                                    foreach (var Schedule in CurrentSchedules)
-                                    {
-                                        Schedule.IsDeparted = true;
-
-                                        if (Schedule.LiveArrival != null)
-                                            Schedule.LiveDeparture = train.Value.LastModified;
-                                    }
+                                    // Don't use TotalMinutes here!
+                                    var t = estwTime - x.Value;
+                                    diff = t.Hour * 60 + t.Minute;
                                 }
 
-                                // Delete train information that are older than 12 hours.
-                                if (train.Value.LastModified < EstwTime.AddHours(-12))
-                                    area.LiveTrains.TryRemove(train.Value.Train.Number, out _);
-                            });
+                                return new { EstwId = x.Key, TimeDiff = diff };
+                            }).Where(x => x.TimeDiff.HasValue);
+
+                            train.Value.IsActive = timeDifferences.Any(d => d.TimeDiff < 2);
+
+                            // Set departure times for trains that are gone.
+                            if (!train.Value.IsActive)
+                            {
+                                var CurrentSchedules = train.Value.Schedules.Where(s => s.IsArrived && !s.IsDeparted);
+
+                                foreach (var Schedule in CurrentSchedules)
+                                {
+                                    Schedule.IsDeparted = true;
+
+                                    if (Schedule.LiveArrival != null)
+                                        Schedule.LiveDeparture = train.Value.LastModification[Schedule.Schedule.Station.ESTW.Id];
+                                }
+                            }
+
+                            // Delete train information that are older than 12 hours.
+                            if (timeDifferences.All(d => d.TimeDiff > 12 * 60))
+                                area.LiveTrains.TryRemove(train.Value.Train.Number, out _);
+                        });
                     }
 
                     Result.Succeeded = true;
@@ -707,7 +724,7 @@ namespace Leibit.BLL
             var ExpectedResult = CalculationBLL.CalculateExpectedTimes(Train, Estw);
             ValidateResult(ExpectedResult);
 
-            Train.LastModified = Estw.Time;
+            Train.LastModification[Estw.Id] = Estw.Time;
             Train.RealBlock = Block;
 
             __SynchronizeTwinSchedules(Train, Estw);
@@ -788,7 +805,7 @@ namespace Leibit.BLL
                         twinSchedule.ExpectedArrival = schedule.ExpectedArrival;
                         twinSchedule.ExpectedDelayArrival = schedule.ExpectedDelayArrival;
                         twinSchedule.LiveTrack = schedule.LiveTrack;
-                        twinTrain.LastModified = estw.Time;
+                        twinTrain.LastModification[estw.Id] = estw.Time;
                         twinTrains.Add(twinTrain);
                     }
                 }
@@ -808,7 +825,7 @@ namespace Leibit.BLL
                         twinSchedule.LiveTrack = schedule.LiveTrack;
                         twinSchedule.IsComposed = schedule.IsComposed;
                         twinSchedule.IsPrepared = schedule.IsPrepared;
-                        twinTrain.LastModified = estw.Time;
+                        twinTrain.LastModification[estw.Id] = estw.Time;
                         twinTrains.Add(twinTrain);
                     }
                 }
@@ -825,7 +842,7 @@ namespace Leibit.BLL
                 var twinTrain = __GetOrCreateLiveTrainInformation(twinTrainNumber, estw);
                 twinTrain.Block = train.Block;
                 twinTrain.Delay = train.Delay;
-                twinTrain.LastModified = estw.Time;
+                twinTrain.LastModification[estw.Id] = estw.Time;
                 twinTrains.Add(twinTrain);
             }
 
@@ -835,7 +852,7 @@ namespace Leibit.BLL
                 var twinTrain = __GetOrCreateLiveTrainInformation(twinTrainNumber, estw);
                 twinTrain.Block = train.Block;
                 twinTrain.Delay = train.Delay;
-                twinTrain.LastModified = estw.Time;
+                twinTrain.LastModification[estw.Id] = estw.Time;
                 twinTrains.Add(twinTrain);
             }
 
