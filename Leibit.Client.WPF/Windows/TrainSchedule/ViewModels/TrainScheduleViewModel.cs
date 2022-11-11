@@ -612,7 +612,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                 }
             }
 
-            liveTrain.LastModified = estw.Time;
+            liveTrain.LastModification[estw.Id] = estw.Time;
 
             foreach (var station in Stations)
             {

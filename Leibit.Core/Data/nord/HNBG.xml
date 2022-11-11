@@ -145,7 +145,7 @@
     </track>
   </station>
 
-  <station name="Poggenhagen" short="HPOG" refNr="3" scheduleFile="g34_____.abf" localOrderFile="bf34____.abf">
+  <station name="Poggenhagen" short="HPOG" refNr="34" scheduleFile="g34_____.abf" localOrderFile="bf34____.abf">
     <track name="1">
       <block name="34G1"/>
     </track>
@@ -159,7 +159,7 @@
     </track>
   </station>
 
-  <station name="Wunstorf" short="HWUN" refNr="33">
+  <station name="Wunstorf" short="HWUN" refNr="96">
     <track calculateDelay="false" isPlatform="false">
       <block name="33S09" direction="left"/>
       <block name="34B12" direction="left"/>

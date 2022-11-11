@@ -200,7 +200,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             }
 
             var candidates = GetScheduleCandidates(area, 120, true);
-            var orderedSchedules = candidates.Where(x => x.LiveSchedule?.LiveTrack == null || x.LiveSchedule.LiveTrack == SelectedTrack).OrderBy(x => x.ReferenceTime);
+            var orderedSchedules = candidates.Where(x => x.LiveSchedule?.LiveTrack == null || x.LiveSchedule.LiveTrack == SelectedTrack || x.LiveSchedule.LiveTrack == SelectedTrack.Parent).OrderBy(x => x.ReferenceTime);
 
             if (!orderedSchedules.Any())
             {
@@ -221,7 +221,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 int minutes;
 
-                if (isDestination)
+                if (isDestination && currentItem.Schedule.Handling != eHandling.Start)
                     minutes = (currentItem.LiveSchedule.ExpectedArrival - SelectedStation.ESTW.Time).TotalMinutes;
                 else
                     minutes = (currentItem.LiveSchedule.ExpectedDeparture - SelectedStation.ESTW.Time).TotalMinutes;
@@ -291,7 +291,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                         TwinTrainTime = $"in {minutes} min";
                 }
 
-                if (isDestination && !isCancelled)
+                if (isDestination && !isCancelled && currentItem.Schedule.Handling != eHandling.Start)
                 {
                     int? followUpService = __GetFollowUpService(currentItem);
 
@@ -332,7 +332,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (currentItem.LiveSchedule != null)
                 {
-                    if (isCancelled)
+                    if (isCancelled || (isDestination && currentItem.Schedule.Handling == eHandling.Start))
                         infoTexts.Add("Zug fällt heute aus");
                     else
                     {
@@ -341,10 +341,13 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                         if (differingDestination != null)
                             infoTexts.Add($"Fährt heute nur bis {GetDisplayName(differingDestination.Station)}");
 
-                        var skippedStations = GetSkippedSchedules(currentItem);
+                        if (!isDestination)
+                        {
+                            var skippedStations = GetSkippedSchedules(currentItem);
 
-                        if (skippedStations.Any())
-                            infoTexts.Add($"Hält nicht in {GetStationList(skippedStations)}");
+                            if (skippedStations.Any())
+                                infoTexts.Add($"Hält nicht in {GetStationList(skippedStations)}");
+                        }
                     }
                 }
 
@@ -387,7 +390,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                     if (scheduleItem.LiveSchedule == null)
                         currentVM.ExpectedDeparture = __GetTime(scheduleItem);
-                    else if (scheduleItem.LiveSchedule.IsCancelled)
+                    else if (scheduleItem.LiveSchedule.IsCancelled || (IsDestination(scheduleItem) && currentItem.Schedule.Handling == eHandling.Start))
                         currentVM.ExpectedDeparture = "fällt aus";
                     else
                     {

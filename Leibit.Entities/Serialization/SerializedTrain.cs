@@ -11,6 +11,7 @@ namespace Leibit.Entities.Serialization
         {
             Schedules = new List<SerializedSchedule>();
             BlockHistory = new List<SerializedBlock>();
+            LastModification = new Dictionary<string, LeibitTime>();
         }
 
         public int TrainNumber { get; set; }
@@ -21,6 +22,7 @@ namespace Leibit.Entities.Serialization
         public eBlockDirection BlockDirection { get; set; }
         public int Delay { get; set; }
         public LeibitTime LastModified { get; set; }
+        public Dictionary<string, LeibitTime> LastModification { get; set; }
         public LeibitTime CreatedOn { get; set; }
         public List<SerializedSchedule> Schedules { get; set; }
         public bool IsDestinationStationCancelled { get; set; }

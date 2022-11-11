@@ -1,4 +1,5 @@
 ﻿using Leibit.Core.Common;
+using Leibit.Entities;
 using Leibit.Entities.Common;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +59,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
             var nextTrain = orderedSchedules.Where(x => x.LiveSchedule?.IsCancelled != true).FirstOrDefault();
 
+            if (nextTrain != null && IsDestination(nextTrain) && nextTrain.Schedule.Handling == eHandling.Start)
+                nextTrain = null;
+
             if (nextTrain != null && nextTrain.Schedule.Time < SelectedStation.ESTW.Time.AddMinutes(10))
             {
                 var track = nextTrain.LiveSchedule?.LiveTrack ?? nextTrain.Schedule.Track;
@@ -91,7 +95,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (currentItem.LiveSchedule != null)
                 {
-                    if (currentItem.LiveSchedule.IsCancelled)
+                    if (currentItem.LiveSchedule.IsCancelled || (IsDestination(currentItem) && currentItem.Schedule.Handling == eHandling.Start))
                         textsToDisplay.Add($"Information zu {__GetLEDBaseText(currentItem)}, fällt heute leider aus.");
                     else
                     {
@@ -135,7 +139,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [__GetLEDBaseText]
         private string __GetLEDBaseText(ScheduleItem scheduleItem)
         {
-            if (IsDestination(scheduleItem))
+            if (IsDestination(scheduleItem) && scheduleItem.Schedule.Arrival != null)
                 return $"{scheduleItem.Schedule.TrainType} {scheduleItem.Schedule.Train.Number} von {scheduleItem.Schedule.Start}, Ankunft {scheduleItem.Schedule.Arrival} Uhr";
             else
                 return $"{scheduleItem.Schedule.TrainType} {scheduleItem.Schedule.Train.Number} nach {scheduleItem.Schedule.Destination}, Abfahrt {scheduleItem.Schedule.Departure} Uhr";
