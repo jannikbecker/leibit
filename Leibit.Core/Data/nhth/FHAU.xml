@@ -187,7 +187,7 @@
     </track>
   </station>
 
-  <station name="Frankfurt (Main) Hoch/Tief" short="FF  H" refNr="3">
+  <station name="Frankfurt (Main) Hoch/Tief" short="FF H" refNr="3">
     <track calculateDelay="false" isPlatform="false">
       <block name="03BFNFT1" direction="left"/>
       <block name="03BFNFT2" direction="left"/>
