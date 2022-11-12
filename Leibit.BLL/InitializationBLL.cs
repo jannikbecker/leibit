@@ -523,6 +523,7 @@ namespace Leibit.BLL
                     switch (sDirection)
                     {
                         case "<":
+                        case "(":
                             Direction = eScheduleDirection.RightToLeft;
                             break;
                         case "L":
