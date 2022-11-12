@@ -6,7 +6,13 @@
   <TrainNumber type="S" pattern="44xx" line="S4"/>
   <TrainNumber type="S" pattern="45xx" line="S5"/>
   <TrainNumber type="S" pattern="46xx" line="S6"/>
-  <TrainNumber type="S" pattern="47xx" line="S9"/>
+  <TrainNumber type="S" pattern="470xx" line="S9"/>
+  <TrainNumber type="S" pattern="471xx" line="S9"/>
+  <TrainNumber type="S" pattern="474xx" line="S9"/>
+  <TrainNumber type="S" pattern="476xx" line="S8"/>
+  <TrainNumber type="S" pattern="477xx" line="S8"/>
+  <TrainNumber type="S" pattern="478xx" line="S8"/>
+  <TrainNumber type="S" pattern="479xx" line="S8"/>
   <TrainNumber type="S" pattern="48xx" line="S8"/>
   <TrainNumber type="S" pattern="49xx" line="S9"/>
   <TrainNumber type="S" pattern="50xx" line="S1"/>
