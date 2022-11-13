@@ -561,7 +561,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             else
                 trainLiveTime = m_Area.ESTWs.Where(e => e.IsLoaded).Min(e => e.Time);
 
-            if (liveSchedule.Train.Schedules.All(s => !s.IsArrived) && liveSchedule.Train.LastModified < trainLiveTime && !liveSchedule.IsManuallyModified)
+            if (liveSchedule.Train.Schedules.All(s => !s.IsArrived) && !liveSchedule.Train.IsActive)
                 return false;
 
             return true;

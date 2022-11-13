@@ -1,8 +1,10 @@
 ﻿using Leibit.Core.Client.BaseClasses;
 using Leibit.Core.Client.Commands;
+using Leibit.Core.Scheduling;
 using Leibit.Entities;
 using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
@@ -54,6 +56,13 @@ namespace Leibit.Client.WPF.Windows.SystemState.ViewModels
                         return string.Empty;
                 }
             }
+        }
+        #endregion
+
+        #region [LastModified]
+        public LeibitTime LastModified
+        {
+            get => CurrentTrain.LastModification.Values.OrderByDescending(x => x).FirstOrDefault();
         }
         #endregion
 

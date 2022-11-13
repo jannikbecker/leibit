@@ -90,17 +90,10 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 }
                 else
                 {
-                    LeibitTime trainLiveTime;
-
-                    if (liveSchedule.Train.Block != null && liveSchedule.Train.Block.Track != null)
-                        trainLiveTime = liveSchedule.Train.Block.Track.Station.ESTW.Time;
-                    else
-                        trainLiveTime = area.ESTWs.Where(e => e.IsLoaded).Min(e => e.Time);
-
                     if (liveSchedule.IsDeparted)
                         continue;
 
-                    if (schedule.Handling == eHandling.Destination && trainLiveTime > liveSchedule.Train.LastModified)
+                    if (schedule.Handling == eHandling.Destination && !liveSchedule.Train.IsActive)
                         continue;
 
                     if (matchTrack && schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent && liveSchedule.LiveTrack != SelectedTrack && liveSchedule.LiveTrack != SelectedTrack.Parent)
@@ -124,7 +117,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     if (referenceTime > currentTime.AddMinutes(leadMinutes))
                         continue;
 
-                    if (referenceTime < currentTime && liveSchedule.Train.LastModified < trainLiveTime)
+                    if (referenceTime < currentTime && !liveSchedule.Train.IsActive)
                         continue;
 
                     candidates.Add(new ScheduleItem(referenceTime, schedule, liveSchedule));
@@ -279,7 +272,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             if (scheduleItem.Schedule.Handling == eHandling.Destination || scheduleItem.Schedule.IsPassengerDestination)
                 return true;
 
-            if (scheduleItem.Schedule.Handling == eHandling.StopPassengerTrain || scheduleItem.Schedule.Handling == eHandling.StopFreightTrain)
+            if (scheduleItem.Schedule.Handling == eHandling.StopPassengerTrain || scheduleItem.Schedule.Handling == eHandling.StopFreightTrain || scheduleItem.Schedule.Handling == eHandling.Start)
             {
                 var schedulesResult = m_CalculationBll.GetSchedulesByTime(scheduleItem.Schedule.Train.Schedules, scheduleItem.Schedule.Station.ESTW.Time);
 
@@ -310,7 +303,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [GetDestination]
         protected string GetDestination(ScheduleItem scheduleItem)
         {
-            if (IsDestination(scheduleItem))
+            if (IsDestination(scheduleItem) && scheduleItem.Schedule.Handling != eHandling.Start)
                 return $"von {scheduleItem.Schedule.Start}";
 
             var differingDestination = GetDifferingDestinationSchedule(scheduleItem);
@@ -326,7 +319,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         protected Schedule GetDifferingDestinationSchedule(ScheduleItem scheduleItem)
         {
             if (scheduleItem.LiveSchedule != null && !scheduleItem.LiveSchedule.IsCancelled && scheduleItem.LiveSchedule.Train.IsDestinationStationCancelled)
-                return scheduleItem.LiveSchedule.Train.Schedules.LastOrDefault(s => s.Schedule.Handling == eHandling.StopPassengerTrain && !s.IsCancelled).Schedule;
+                return scheduleItem.LiveSchedule.Train.Schedules.LastOrDefault(s => s.Schedule.Handling == eHandling.StopPassengerTrain && !s.IsCancelled)?.Schedule;
 
             return null;
         }

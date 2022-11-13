@@ -37,6 +37,8 @@ Folgende Simulationen werden aktuell unterstützt:
     - Eisenach
     - Gotha
 - Bereich Norddeutschland
+    - Minden (NEU)
+    - Wunstorf (NEU)
     - Soltau
     - Nienburg
     - Verden
@@ -72,13 +74,13 @@ Folgende Simulationen werden aktuell unterstützt:
     - München-Westkreuz
     - Weilheim
     - Garmisch-Partenkirchen
-- Bereich Tauernbahn (NEU)
-    - Hallein (NEU)
-    - Bischofshofen (NEU)
-    - Schwarzach-St. Veit (NEU)
-    - Badgastein (NEU)
-    - Mallnitz-Obervellach (NEU)
-    - Spittal-Millstättersee (NEU)
+- Bereich Tauernbahn
+    - Hallein
+    - Bischofshofen
+    - Schwarzach-St. Veit
+    - Badgastein
+    - Mallnitz-Obervellach
+    - Spittal-Millstättersee
 
 Karten der Stellbereiche können [hier](maps) eingesehen werden. Eine vollständige Bedienungsanleitung ist [hier](https://github.com/jannikbecker/leibit/wiki) zu finden. Für den ersten Start bietet die [Schnellstartanleitung](https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung) einen guten Einstiegspunkt.
 

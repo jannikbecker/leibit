@@ -18,6 +18,8 @@
   </area>
 
   <area id="nord" name="Norddeutschland">
+    <estw id="HM" name="Minden" dataFile="leibit_MINDEN.dat" infrastructureManager="DB"/>
+    <estw id="HWUN" name="Wunstorf" dataFile="leibit_WUNSTORF.dat" infrastructureManager="DB"/>
     <estw id="HNBG" name="Nienburg" dataFile="leibit_NIENBURG.dat" infrastructureManager="DB" productName="Verden Süd"/>
     <estw id="HV" name="Verden" dataFile="leibit_VERDEN.dat" infrastructureManager="DB" productName="Verden Süd"/>
     <estw id="HSO" name="Soltau" dataFile="leibit_SOLTAU.dat" infrastructureManager="DB" productName="Verden Nord"/>

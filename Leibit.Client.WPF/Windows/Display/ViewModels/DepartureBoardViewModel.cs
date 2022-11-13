@@ -117,10 +117,13 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                         if (differingDestination != null)
                             infoTexts.Add($"Fährt heute nur bis {GetDisplayName(differingDestination.Station)}");
 
-                        var skippedStations = GetSkippedSchedules(scheduleItem);
+                        if (!isDestination)
+                        {
+                            var skippedStations = GetSkippedSchedules(scheduleItem);
 
-                        if (skippedStations.Any())
-                            infoTexts.Add($"Hält nicht in {GetStationList(skippedStations)}");
+                            if (skippedStations.Any())
+                                infoTexts.Add($"Hält nicht in {GetStationList(skippedStations)}");
+                        }
                     }
                 }
 

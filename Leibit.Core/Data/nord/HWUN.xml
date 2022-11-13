@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Wennigsen (Deister)" short="HWSN" refNr="58">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="58BN" direction="left"/>
+      <block name="59B2P" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Egestorf (Deister)" short="HEGT" refNr="59" scheduleFile="g59_____.abf" localOrderFile="bf59____.abf" displayName="Egestorf">
+    <track name="21" displayName="1">
+      <block name="59G21"/>
+    </track>
+    <track name="22" displayName="2">
+      <block name="59G22"/>
+    </track>
+  </station>
+
+  <station name="Kirchdorf (Deister)" short="HKDF" refNr="59" scheduleFile="b59_____.abf" displayName="Kirchdorf">
+    <track name="1" calculateDelay="false">
+      <block name="59B2N" />
+    </track>
+  </station>
+
+  <station name="Barsinghausen" short="HBGH" refNr="60" scheduleFile="g60_____.abf" localOrderFile="bf60____.abf">
+    <track name="1">
+      <block name="60G1"/>
+    </track>
+    <track name="2">
+      <block name="60G2"/>
+    </track>
+  </station>
+
+  <station name="Winninghausen" short="HWIN" refNr="60" scheduleFile="b60_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="60BN" />
+    </track>
+  </station>
+
+  <station name="Bantorf" short="HBTF" refNr="61" scheduleFile="g61_____.abf" localOrderFile="bf61____.abf">
+    <track name="11" displayName="1">
+      <block name="61G11"/>
+    </track>
+    <track name="12" displayName="2">
+      <block name="61G12"/>
+    </track>
+  </station>
+
+  <station name="Bad Nenndorf" short="HNDF" refNr="61" scheduleFile="b61_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="61B1N" />
+    </track>
+  </station>
+
+  <station name="Stadthagen" short="HSHG" refNr="92">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="92S24" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Lindhorst" short="HLH" refNr="93" scheduleFile="v93_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="93S1"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="93S2"/>
+    </track>
+    <track name="3">
+      <block name="93S3"/>
+    </track>
+    <track name="4">
+      <block name="93S4"/>
+    </track>
+  </station>
+
+  <station name="Rehren" short="HRER" refNr="94" scheduleFile="g94_____.abf" localOrderFile="bf94____.abf">
+    <track name="101">
+      <block name="94G101"/>
+    </track>
+    <track name="102">
+      <block name="94G102"/>
+    </track>
+    <track name="103">
+      <block name="94G103"/>
+    </track>
+    <track name="104">
+      <block name="94G104"/>
+    </track>
+  </station>
+
+  <station name="Haste" short="HHAS" refNr="95" scheduleFile="g95_____.abf" localOrderFile="bf95____.abf">
+    <track name="1">
+      <block name="95G1"/>
+    </track>
+    <track name="2">
+      <block name="95G2"/>
+    </track>
+    <track name="3">
+      <block name="95G3"/>
+    </track>
+    <track name="4">
+      <block name="95G4"/>
+    </track>
+    <track name="31">
+      <block name="95G31"/>
+    </track>
+  </station>
+
+  <station name="Neustadt a Rübenberge" short="HNRU" refNr="35">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="34SN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Poggenhagen" short="HPOG" refNr="34" scheduleFile="v34_____.abf">
+    <track name="1">
+      <block name="34S1"/>
+    </track>
+    <track name="2">
+      <block name="34S2.3"/>
+      <alternative track="1"/>
+    </track>
+    <track name="3">
+      <block name="34S3"/>
+      <alternative track="1"/>
+    </track>
+  </station>
+
+  <station name="Wunstorf" short="HWUN" refNr="96" scheduleFile="g96_____.abf" localOrderFile="bf96____.abf">
+    <track name="1">
+      <block name="96G1.4"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+    </track>
+    <track name="2">
+      <block name="96G2"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+    </track>
+    <track name="3">
+      <block name="96G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+    </track>
+    <track name="4">
+      <block name="96G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+    </track>
+    <track name="7">
+      <block name="96G7"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+    </track>
+    <track name="8">
+      <block name="96G8"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+    </track>
+    <track name="9">
+      <block name="96G9"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+    </track>
+    <track name="10">
+      <block name="96G10"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="11"/>
+    </track>
+    <track name="11">
+      <block name="96G11"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+
+    <track name="1.2">
+      <block name="96G1.2"/>
+      <alternative track="2.21"/>
+      <alternative track="17"/>
+    </track>
+    <track name="2.21">
+      <block name="96G2.21"/>
+      <alternative track="1.2"/>
+      <alternative track="17"/>
+    </track>
+    <track name="17">
+      <block name="96G17.0"/>
+      <alternative track="1.2"/>
+      <alternative track="2.21"/>
+    </track>
+  </station>
+
+  <station name="Seelze Gümmerwald" short="HGUE" refNr="97" scheduleFile="g97_____.abf">
+    <track name="12" isPlatform="false">
+      <block name="96B61" direction="left"/>
+      <block name="97B67" direction="right"/>
+    </track>
+    <track name="13" isPlatform="false">
+      <block name="96B65" direction="left"/>
+    </track>
+    <track name="22" isPlatform="false">
+      <block name="97B66.2" direction="left"/>
+      <block name="98B68" direction="right"/>
+    </track>
+    <track name="23" isPlatform="false">
+      <block name="97B66.1" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Dedensen" short="HDED" refNr="96" scheduleFile="b96_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="98S43" />
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="96B46" />
+    </track>
+  </station>
+
+  <station name="Seelze Pbf" short="HS" refNr="98">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="98S41" direction="left"/>
+      <block name="96B42" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Seelze Rbf" short="HSR" refNr="98">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="98S72" direction="left"/>
+      <block name="97B71" direction="left"/>
+    </track>
+  </station>
+</estw>

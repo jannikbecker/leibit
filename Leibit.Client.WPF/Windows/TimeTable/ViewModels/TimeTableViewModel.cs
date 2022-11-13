@@ -5,7 +5,6 @@ using Leibit.Client.WPF.Windows.TrainSchedule.ViewModels;
 using Leibit.Client.WPF.Windows.TrainSchedule.Views;
 using Leibit.Core.Client.Commands;
 using Leibit.Core.Common;
-using Leibit.Core.Scheduling;
 using Leibit.Entities;
 using Leibit.Entities.Common;
 using System;
@@ -171,14 +170,7 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
                             Visible = false;
                     }
 
-                    LeibitTime ActualTime;
-
-                    if (LiveTrain.Block != null && LiveTrain.Block.Track != null)
-                        ActualTime = LiveTrain.Block.Track.Station.ESTW.Time;
-                    else
-                        ActualTime = Area.ESTWs.Where(e => e.IsLoaded).DefaultIfEmpty().Max(e => e.Time);
-
-                    if (ActualTime != null && LiveTrain.LastModified != null && ActualTime > LiveTrain.LastModified.AddMinutes(1))
+                    if (!LiveTrain.IsActive)
                         Visible = false;
 
                     if (Visible)
