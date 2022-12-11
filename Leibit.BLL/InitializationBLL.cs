@@ -846,6 +846,11 @@ namespace Leibit.BLL
 
             foreach (var file in Directory.EnumerateFiles(routingFilesPath, "*.znu"))
             {
+                var fileInfo = new FileInfo(file);
+
+                if (fileInfo.Name.Length != 12) // 8 characters + extension (.znu)
+                    continue;
+
                 using (var fileReader = File.OpenText(file))
                 {
                     while (!fileReader.EndOfStream)
