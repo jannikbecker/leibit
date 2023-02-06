@@ -264,7 +264,7 @@
     </track>
   </station>
 
-  <station name="Frankfurt-Schwanheim Fernbahn" short="FSWF" refNr="14" scheduleFile="G14_____.ABF" localOrderFile="bf14____.ABF">
+  <station name="Frankfurt-Schwanheim" short="FSWA" refNr="14" scheduleFile="G14_____.ABF" localOrderFile="bf14____.ABF">
     <track name="101" isPlatform="false">
       <block name="14B91" direction="left"/>
       <block name="14B85" direction="right"/>
@@ -275,7 +275,7 @@
     </track>
   </station>
 
-  <station name="Frankfurt (M) Flughafen Regiobf" short="FFLU" refNr="75">
+  <station name="Frankfurt (M) Flughafen Regiobf" short="FFLU" refNr="15">
     <track calculateDelay="false" isPlatform="false">
       <block name="14B21" direction="left"/>
       <block name="15B22" direction="left"/>
