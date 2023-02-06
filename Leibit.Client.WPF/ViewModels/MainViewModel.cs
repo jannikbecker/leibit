@@ -1024,7 +1024,11 @@ namespace Leibit.Client.WPF.ViewModels
             var exePath = Path.Combine(m_BildFplInfo.InstallLocation, "BildFpl_V2.exe");
 
             if (File.Exists(exePath))
-                Process.Start(exePath);
+            {
+                var processStartInfo = new ProcessStartInfo(exePath);
+                processStartInfo.WorkingDirectory = m_BildFplInfo.InstallLocation;
+                Process.Start(processStartInfo);
+            }
         }
         #endregion
 

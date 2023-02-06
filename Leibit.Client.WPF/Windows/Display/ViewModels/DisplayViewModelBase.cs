@@ -154,6 +154,14 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             else
                 return schedule.Train.Line;
         }
+
+        protected string GetTrainNumber(Train train)
+        {
+            if (train.Line.IsNullOrWhiteSpace())
+                return $"{train.Type} {train.Number}";
+            else
+                return train.Line;
+        }
         #endregion
 
         #region [GetViaString]
