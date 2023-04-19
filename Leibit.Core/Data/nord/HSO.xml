@@ -6,7 +6,7 @@
     </track>
   </station>
 
-  <station name="Lindwedel" short="HLWL" refNr="0" scheduleFile="b00_____.abf">
+  <station name="Lindwedel" short="HLWL" refNr="0" scheduleFile="b10_____.abf">
     <track name="1" calculateDelay="false"/>
   </station>
 
@@ -22,11 +22,11 @@
     </track>
   </station>
 
-  <station name="Hademstorf" short="HHAD" refNr="1" scheduleFile="b01_____.abf">
+  <station name="Hademstorf" short="HHAD" refNr="1" scheduleFile="b11_____.abf">
     <track name="1" calculateDelay="false"/>
   </station>
 
-  <station name="Eickeloh" short="HEIK" refNr="2" scheduleFile="b02_____.abf">
+  <station name="Eickeloh" short="HEIK" refNr="2" scheduleFile="b12_____.abf">
     <track name="1" calculateDelay="false"/>
   </station>
 
@@ -46,7 +46,7 @@
     </track>
   </station>
 
-  <station name="Böhme" short="HBME" refNr="41">
+  <station name="Vorwalsrode" short="HVWR" refNr="41">
     <track calculateDelay="false" isPlatform="false">
       <block name="41BP" direction="right"/>
     </track>
@@ -194,15 +194,15 @@
     </track>
   </station>
 
-  <station name="Soltau (Han) Nord" short="ASON" refNr="3" scheduleFile="b03_____.abf">
+  <station name="Soltau (Han) Nord" short="ASON" refNr="3" scheduleFile="b13_____.abf">
     <track name="1" calculateDelay="false"/>
   </station>
 
-  <station name="Wolterdingen (Han)" short="AWOL" refNr="4" scheduleFile="b04_____.abf">
+  <station name="Wolterdingen (Han)" short="AWOL" refNr="4" scheduleFile="b14_____.abf">
     <track name="1" calculateDelay="false"/>
   </station>
 
-  <station name="Hemsen (b Soltau)" short="AHSN" refNr="5" scheduleFile="b05_____.abf">
+  <station name="Hemsen (b Soltau)" short="AHSN" refNr="5" scheduleFile="b15_____.abf">
     <track name="1" calculateDelay="false"/>
   </station>
 
@@ -228,15 +228,15 @@
     </track>
   </station>
 
-  <station name="Büsenbachtal" short="ABUS" refNr="6" scheduleFile="b06_____.abf">
+  <station name="Büsenbachtal" short="ABUS" refNr="6" scheduleFile="b16_____.abf">
     <track name="1" calculateDelay="false"/>
   </station>
 
-  <station name="Holm-Seppensen" short="AHES" refNr="7" scheduleFile="b07_____.abf">
+  <station name="Holm-Seppensen" short="AHES" refNr="7" scheduleFile="b17_____.abf">
     <track name="1" calculateDelay="false"/>
   </station>
 
-  <station name="Suerhop" short="ASUP" refNr="8" scheduleFile="b08_____.abf">
+  <station name="Suerhop" short="ASUP" refNr="8" scheduleFile="b18_____.abf">
     <track name="1" calculateDelay="false"/>
   </station>
 
@@ -272,9 +272,8 @@
   </station>
 
   <station name="Brockhöfe" short="HBRO" refNr="36" scheduleFile="b36_____.abf">
-    <track name="1" calculateDelay="false" isPlatform="false">
-      <block name="36BP" direction="left"/>
-      <block name="36BB" direction="right"/>
+    <track name="1" calculateDelay="false">
+      <block name="36BHBRO" direction="left"/>
     </track>
   </station>
 
