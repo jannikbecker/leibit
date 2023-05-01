@@ -43,9 +43,15 @@
   </station>
 
   <station name="Puttgarden Fähre" short="APU F" refNr="31" scheduleFile="g31_____.abf">
-    <track name="1"/>
-    <track name="2"/>
-    <track name="3"/>
+    <track name="F1">
+      <block name= "31F1"/>
+    </track>
+    <track name="F2">
+      <block name="31F2"/>
+    </track>
+    <track name="F3">
+      <block name="31F3"/>
+    </track>
   </station>
 
   <station name="Burg (Fehmarn) West" short="ABUW" refNr="29">
