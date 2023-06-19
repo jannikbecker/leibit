@@ -9,6 +9,7 @@
     <estw id="FGK" name="Großkrotzenburg" dataFile="leibit_GROSSKROTZENBURG.dat" infrastructureManager="DB"/>
     <estw id="FH_N" name="Hanau Nordseite" dataFile="leibit_HANAU NORDSEITE.dat" infrastructureManager="DB"/>
     <estw id="FH_S" name="Hanau Südseite" dataFile="leibit_HANAU SÜDSEITE.dat" infrastructureManager="DB"/>
+    <estw id="FFS" name="Frankfurt Süd" dataFile="leibit_FRANKFURT SÜD.dat" infrastructureManager="DB"/>
     <estw id="FGEL" name="Gelnhausen" dataFile="leibit_GELNHAUSEN.dat" infrastructureManager="DB"/>
     <estw id="FSUE" name="Schlüchtern" dataFile="leibit_SCHLÜCHTERN.dat" infrastructureManager="DB"/>
     <estw id="FEL" name="Elm" dataFile="leibit_ELM.dat" infrastructureManager="DB"/>

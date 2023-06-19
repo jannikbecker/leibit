@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Frankfurt Main-Neckar-Brücke" short="FMST" refNr="40">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="43B10" direction="right"/>
+      <block name="40S11" direction="right"/>
+    </track>
+  </station>
+  
+  <station name="Frankfurt-Louisa" short="FLS" refNr="41">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="41B101" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Forsthaus (Frankfurt)" short="FFOR" refNr="42">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="42B11" direction="right"/>
+      <block name="44B12" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Süd Abstellbahnhof" short="FFS A" refNr="43" scheduleFile="G43_____.ABF" localOrderFile="bf43____.abf">
+    <track name="053">
+      <block name="43G053"/>
+    </track>
+    <track name="054">
+      <block name="43G054"/>
+    </track>
+    <track name="055">
+      <block name="43G055"/>
+    </track>
+    <track name="056">
+      <block name="43G056"/>
+    </track>
+    <track name="057">
+      <block name="43G057"/>
+    </track>
+    <track name="058">
+      <block name="43G058"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Süd" short="FFS" refNr="44" scheduleFile="G44_____.ABF" localOrderFile="bf44____.abf" displayName="F-Süd">
+    <track name="005" displayName="5">
+      <block name="44G005"/>
+    </track>
+    <track name="006" displayName="6">
+      <block name="44G006"/>
+    </track>
+    <track name="007" displayName="7">
+      <block name="44G007"/>
+    </track>
+    <track name="008" displayName="8">
+      <block name="44G008"/>
+    </track>
+    <track name="009" displayName="9">
+      <block name="44G009"/>
+    </track>
+    <track name="010" displayName="10">
+      <block name="44G010"/>
+    </track>
+  </station>
+
+  <station name="Offenbach (Main)" short="FO" refNr="45">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="44B25" direction="left"/>
+      <block name="45B26" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Ost" short="FFO" refNr="60" scheduleFile="G60_____.ABF" localOrderFile="bf60____.abf" displayName="F-Ost">
+    <track name="001" displayName="1">
+      <block name="60G001"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="60G002"/>
+    </track>
+    <track name="003" displayName="3">
+      <block name="60G003"/>
+    </track>
+    <track name="004" displayName="4">
+      <block name="60G004"/>
+    </track>
+    <track name="007" displayName="7">
+      <block name="60G007"/>
+    </track>
+    <track name="008" displayName="8">
+      <block name="60G008"/>
+    </track>
+    <track name="009" displayName="9">
+      <block name="60G009"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Ost Gbf" short="FFO G" refNr="61" scheduleFile="G61_____.ABF" localOrderFile="bf61____.abf">
+    <track name="003">
+      <block name="61G003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+    </track>
+    <track name="004">
+      <block name="61G004"/>
+      <alternative track="003"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+    </track>
+    <track name="005">
+      <block name="61G005"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+    </track>
+    <track name="006">
+      <block name="61G006"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+    </track>
+    <track name="007">
+      <block name="61G007"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+    </track>
+    <track name="008">
+      <block name="61G008"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+    </track>
+    <track name="009">
+      <block name="61G009"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+    </track>
+    <track name="010">
+      <block name="61G010"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="011"/>
+      <alternative track="012"/>
+    </track>
+    <track name="011">
+      <block name="61G011"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="012"/>
+    </track>
+    <track name="012">
+      <block name="61BUBFO3"/>
+      <alternative track="003"/>
+      <alternative track="004"/>
+      <alternative track="005"/>
+      <alternative track="006"/>
+      <alternative track="007"/>
+      <alternative track="008"/>
+      <alternative track="009"/>
+      <alternative track="010"/>
+      <alternative track="011"/>
+    </track>
+
+    <track name="053">
+      <block name="61G053"/>
+      <alternative track="054"/>
+      <alternative track="055"/>
+      <alternative track="056"/>
+      <alternative track="057"/>
+      <alternative track="058"/>
+      <alternative track="059"/>
+    </track>
+    <track name="054">
+      <block name="61G054"/>
+      <alternative track="053"/>
+      <alternative track="055"/>
+      <alternative track="056"/>
+      <alternative track="057"/>
+      <alternative track="058"/>
+      <alternative track="059"/>
+    </track>
+    <track name="055">
+      <block name="61G055"/>
+      <alternative track="053"/>
+      <alternative track="054"/>
+      <alternative track="056"/>
+      <alternative track="057"/>
+      <alternative track="058"/>
+      <alternative track="059"/>
+    </track>
+    <track name="056">
+      <block name="61G056"/>
+      <alternative track="053"/>
+      <alternative track="054"/>
+      <alternative track="055"/>
+      <alternative track="057"/>
+      <alternative track="058"/>
+      <alternative track="059"/>
+    </track>
+    <track name="057">
+      <block name="61G057"/>
+      <alternative track="053"/>
+      <alternative track="054"/>
+      <alternative track="055"/>
+      <alternative track="056"/>
+      <alternative track="058"/>
+      <alternative track="059"/>
+    </track>
+    <track name="058">
+      <block name="61G058"/>
+      <alternative track="053"/>
+      <alternative track="054"/>
+      <alternative track="055"/>
+      <alternative track="056"/>
+      <alternative track="057"/>
+      <alternative track="059"/>
+    </track>
+    <track name="059">
+      <block name="60BUBFO1"/>
+      <alternative track="053"/>
+      <alternative track="054"/>
+      <alternative track="055"/>
+      <alternative track="056"/>
+      <alternative track="057"/>
+      <alternative track="058"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Mainkur" short="FFMK" refNr="62">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="61B11" direction="left"/>
+      <block name="62B12" direction="left"/>
+    </track>
+  </station>
+</estw>
