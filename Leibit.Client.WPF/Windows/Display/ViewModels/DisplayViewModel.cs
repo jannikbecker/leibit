@@ -15,7 +15,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         public DisplayViewModel(Dispatcher dispatcher, Area area)
         {
             Dispatcher = dispatcher;
-            StationList = area.ESTWs.Where(e => e.IsLoaded && e.SchedulesLoaded).SelectMany(e => e.Stations.Where(s => s.Tracks.Any(t => t.IsPlatform))).ToObservableCollection();
+            StationList = area.ESTWs.Where(e => e.IsLoaded && e.SchedulesLoaded).SelectMany(e => e.Stations.Where(s => s.Tracks.Any(t => t.IsPlatform && t.Blocks.Any()))).ToObservableCollection();
 
             DisplayTypes = new ObservableCollection<DisplayType>
             {

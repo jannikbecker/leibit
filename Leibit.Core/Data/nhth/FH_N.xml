@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Frankfurt Süd" short="FFS" refNr="44">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="44S21" direction="right"/>
+      <block name="44S22" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Offenbach (Main)" short="FO" refNr="45" scheduleFile="G45_____.ABF" localOrderFile="bf45____.abf" displayName="Offenbach">
+    <track name="001" displayName="1">
+      <block name="45G001"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="45G002"/>
+    </track>
+    <track name="003" displayName="3">
+      <block name="45G003"/>
+    </track>
+    <track name="004" displayName="4">
+      <block name="45G004"/>
+    </track>
+    <track name="005" displayName="5">
+      <block name="45G005"/>
+    </track>
+    <track name="006" displayName="6">
+      <block name="45G006"/>
+    </track>
+  </station>
+
+  <station name="Offenbach Ledermuseum" short="FOLM" refNr="46" scheduleFile="B45_____.ABF" displayName="OF-Ledermuseum">
+    <track name="21" calculateDelay="false" displayName="1">
+      <block name="46B21"/>
+    </track>
+    <track name="22" calculateDelay="false" displayName="2">
+      <block name="46B22"/>
+    </track>
+  </station>
+
+  <station name="Offenbach Marktplatz" short="FOMP" refNr="46" scheduleFile="B46_____.ABF" displayName="OF-Marktplatz">
+    <track name="225" calculateDelay="false" displayName="1">
+      <block name="46B225"/>
+    </track>
+    <track name="226" calculateDelay="false" displayName="2">
+      <block name="46B226"/>
+    </track>
+  </station>
+
+  <station name="Offenbach (Main) Ost" short="FOO" refNr="46" localOrderFile="bf46____.abf" displayName="OF-Ost">
+    <scheduleFile fileName="G46_____.ABF">
+      <track>001</track>
+      <track>002</track>
+      <track>003</track>
+    </scheduleFile>
+
+    <track name="001" displayName="1">
+      <block name="46G001"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="46G002"/>
+    </track>
+    <track name="003" displayName="3">
+      <block name="46G003"/>
+    </track>
+  </station>
+
+  <station name="Offenbach (Main) Gbf" short="FO G" refNr="46" localOrderFile="bf46____.abf">
+    <scheduleFile fileName="G46_____.ABF">
+      <track>052</track>
+      <track>053</track>
+      <track>054</track>
+      <track>056</track>
+      <track>057</track>
+      <track>059</track>
+    </scheduleFile>
+
+    <track name="052">
+      <block name="46G052"/>
+    </track>
+    <track name="053">
+      <block name="46G053"/>
+    </track>
+    <track name="054">
+      <block name="46G054"/>
+    </track>
+    <track name="056">
+      <block name="46G056"/>
+    </track>
+    <track name="057">
+      <block name="46G057"/>
+    </track>
+    <track name="059">
+      <block name="46G059"/>
+    </track>
+  </station>
+
+  <station name="Offenbach-Bieber" short="FOBI" refNr="46">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="46B32" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Mühlheim (Main) Ost" short="FMHO" refNr="47" scheduleFile="G47_____.ABF" localOrderFile="bf47____.abf">
+    <track name="134" isPlatform="false">
+      <block name="47B334" direction="left"/>
+      <block name="47B42" direction="right"/>
+    </track>
+    <track name="141" isPlatform="false">
+      <block name="47B33" direction="left"/>
+      <block name="47B341" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Mühlheim (Main)" short="FMH" refNr="47" scheduleFile="B96_____.ABF">
+    <track name="311" calculateDelay="false" isPlatform="false" displayName="1">
+      <block name="47B311" direction="right"/>
+    </track>
+    <track name="212" calculateDelay="false" isPlatform="false" displayName="2">
+      <block name="46B01" direction="left"/>
+      <block name="47B212" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Mühlheim-Dietesheim" short="FMHD" refNr="47" scheduleFile="B97_____.ABF" displayName="Dietesheim">
+    <track name="311" calculateDelay="false" isPlatform="false" displayName="1">
+      <block name="47B311" direction="left"/>
+    </track>
+    <track name="212" calculateDelay="false" isPlatform="false" displayName="2">
+      <block name="47B212" direction="left"/>
+      <block name="47B321" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Steinheim/Main" short="FSHM" refNr="47" scheduleFile="B47_____.ABF" displayName="Steinheim">
+    <track name="321" calculateDelay="false" displayName="1">
+      <block name="47B321" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Hanau Mainbrücke" short="FH M" refNr="64" scheduleFile="B64_____.ABF">
+    <track name="006" isPlatform="false">
+      <block name="64B46" direction="left"/>
+      <block name="64G4006" direction="right"/>
+    </track>
+    <track name="007" isPlatform="false">
+      <block name="47B45" direction="left"/>
+      <block name="64G4007" direction="right"/>
+    </track>
+    <track name="061" isPlatform="false">
+      <block name="64BHSHN3" direction="right"/>
+    </track>
+    <track name="062" isPlatform="false">
+      <block name="64BHSHN4" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hanau Südseite" short="FH S" refNr="64">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="64BHSHN3" direction="left"/>
+      <block name="64BHSHN4" direction="left"/>
+      <block name="64BHSHN5" direction="left"/>
+      <block name="64BHSHN6" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Hanau West" short="FHW" refNr="64">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="64BHSHN1" direction="right"/>
+      <block name="64BHSHN2" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hanau Nordseite" short="FH N" refNr="64" scheduleFile="G64_____.ABF" localOrderFile="bf64____.abf" displayName="Hanau Hbf">
+    <track name="001" displayName="1">
+      <block name="64G0001"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="64G0002"/>
+    </track>
+    <track name="003" displayName="3">
+      <block name="64G0003"/>
+    </track>
+    <track name="004" displayName="4">
+      <block name="64G0004"/>
+    </track>
+    <track name="005" displayName="5">
+      <block name="64G0005"/>
+    </track>
+    <track name="006" displayName="6">
+      <block name="64G0006"/>
+    </track>
+    <track name="007" displayName="1">
+      <block name="64G0007"/>
+    </track>
+  </station>
+
+  <station name="Wolfgang (Kr Hanau)" short="FWFG" refNr="58">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="64B51" direction="left"/>
+      <block name="48B52" direction="left"/>
+    </track>
+  </station>
+</estw>

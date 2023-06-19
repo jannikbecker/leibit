@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Frankfurt (Main) Ost Gbf" short="FFO G" refNr="61">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="61B11" direction="right"/>
+      <block name="62B12" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Mainkur" short="FFMK" refNr="62" scheduleFile="G62_____.ABF" localOrderFile="bf62____.abf" displayName="F-Mainkur">
+    <track name="001" displayName="1">
+      <block name="62G001"/>
+      <block name="62G101"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="62G002"/>
+    </track>
+    <track name="003" displayName="3">
+      <block name="62G003"/>
+    </track>
+    <track name="004" displayName="4">
+      <block name="62G004"/>
+    </track>
+  </station>
+
+  <station name="Maintal West" short="FBMR" refNr="62" scheduleFile="B62_____.ABF">
+    <track name="21" calculateDelay="false" displayName="2">
+      <block name="62B21"/>
+    </track>
+    <track name="24" calculateDelay="false" displayName="1">
+      <block name="63B24"/>
+    </track>
+  </station>
+
+  <station name="Maintal Ost" short="FHD" refNr="63" scheduleFile="G63_____.ABF" localOrderFile="bf63____.abf">
+    <track name="001" displayName="1">
+      <block name="63G001"/>
+      <block name="63G201" direction="right"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="63G002"/>
+    </track>
+    <track name="003" displayName="3">
+      <block name="63G003"/>
+    </track>
+    <track name="004" displayName="4">
+      <block name="63G004"/>
+    </track>
+  </station>
+
+  <station name="Hanau-Wilhelmsbad" short="FHWB" refNr="63" scheduleFile="B63_____.ABF" displayName="HU-Wilhelmsbad">
+    <track name="031" calculateDelay="false" displayName="2">
+      <block name="63B31"/>
+    </track>
+    <track name="234" calculateDelay="false" displayName="1">
+      <block name="63B234"/>
+    </track>
+  </station>
+
+  <station name="Hanau West" short="FHW" refNr="64" displayName="HU-West">
+    <scheduleFile fileName="B64_____.ABF"/>
+    <scheduleFile fileName="v64_____.ABF"/>
+
+    <track name="102" displayName="1">
+      <block name="64G2102"/>
+    </track>
+    <track name="103" displayName="2">
+      <block name="64G2103"/>
+    </track>
+  </station>
+
+  <station name="Hanau Nordseite" short="FH N" refNr="64">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="64BHNHS1" direction="left"/>
+      <block name="64BHNHS2" direction="left"/>
+      <block name="64BHNHS5" direction="right"/>
+      <block name="64BHNHS6" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hanau Mainbrücke" short="FH M" refNr="64">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="64BHNHS3" direction="right"/>
+      <block name="64BHNHS4" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hanau Südseite" short="FH S" refNr="64" scheduleFile="G64_____.ABF" localOrderFile="bf64____.abf" displayName="Hanau Hbf">
+    <track name="009" displayName="9">
+      <block name="64G0009"/>
+      <alternative track="101"/>
+      <alternative track="102"/>
+      <alternative track="103"/>
+      <alternative track="104"/>
+      <alternative track="106"/>
+      <alternative track="107"/>
+      <alternative track="108"/>
+    </track>
+
+    <track name="026">
+      <block name="64G0026"/>
+      <alternative track="027"/>
+      <alternative track="028"/>
+      <alternative track="029"/>
+      <alternative track="030"/>
+      <alternative track="031"/>
+      <alternative track="032"/>
+      <alternative track="114"/>
+      <alternative track="115"/>
+      <alternative track="116"/>
+    </track>
+    <track name="027">
+      <block name="64G0027"/>
+      <alternative track="026"/>
+      <alternative track="028"/>
+      <alternative track="029"/>
+      <alternative track="030"/>
+      <alternative track="031"/>
+      <alternative track="032"/>
+      <alternative track="114"/>
+      <alternative track="115"/>
+      <alternative track="116"/>
+    </track>
+    <track name="028">
+      <block name="64G0028"/>
+      <alternative track="026"/>
+      <alternative track="027"/>
+      <alternative track="029"/>
+      <alternative track="030"/>
+      <alternative track="031"/>
+      <alternative track="032"/>
+      <alternative track="114"/>
+      <alternative track="115"/>
+      <alternative track="116"/>
+    </track>
+    <track name="029">
+      <block name="64G0029"/>
+      <alternative track="026"/>
+      <alternative track="027"/>
+      <alternative track="028"/>
+      <alternative track="030"/>
+      <alternative track="031"/>
+      <alternative track="032"/>
+      <alternative track="114"/>
+      <alternative track="115"/>
+      <alternative track="116"/>
+    </track>
+    <track name="030">
+      <block name="64G0030"/>
+      <alternative track="026"/>
+      <alternative track="027"/>
+      <alternative track="028"/>
+      <alternative track="029"/>
+      <alternative track="031"/>
+      <alternative track="032"/>
+      <alternative track="114"/>
+      <alternative track="115"/>
+      <alternative track="116"/>
+    </track>
+    <track name="031">
+      <block name="64G0031"/>
+      <alternative track="026"/>
+      <alternative track="027"/>
+      <alternative track="028"/>
+      <alternative track="029"/>
+      <alternative track="030"/>
+      <alternative track="032"/>
+      <alternative track="114"/>
+      <alternative track="115"/>
+      <alternative track="116"/>
+    </track>
+    <track name="032">
+      <block name="64G0032"/>
+      <alternative track="026"/>
+      <alternative track="027"/>
+      <alternative track="028"/>
+      <alternative track="029"/>
+      <alternative track="030"/>
+      <alternative track="031"/>
+      <alternative track="114"/>
+      <alternative track="115"/>
+      <alternative track="116"/>
+    </track>
+    <track name="114">
+      <block name="64G0114"/>
+      <alternative track="026"/>
+      <alternative track="027"/>
+      <alternative track="028"/>
+      <alternative track="029"/>
+      <alternative track="030"/>
+      <alternative track="031"/>
+      <alternative track="032"/>
+      <alternative track="115"/>
+      <alternative track="116"/>
+    </track>
+    <track name="115">
+      <block name="64G0115"/>
+      <alternative track="026"/>
+      <alternative track="027"/>
+      <alternative track="028"/>
+      <alternative track="029"/>
+      <alternative track="030"/>
+      <alternative track="031"/>
+      <alternative track="032"/>
+      <alternative track="114"/>
+      <alternative track="116"/>
+    </track>
+    <track name="116">
+      <block name="64G0116"/>
+      <alternative track="026"/>
+      <alternative track="027"/>
+      <alternative track="028"/>
+      <alternative track="029"/>
+      <alternative track="030"/>
+      <alternative track="031"/>
+      <alternative track="032"/>
+      <alternative track="114"/>
+      <alternative track="115"/>
+    </track>
+
+    <track name="101">
+      <block name="64G0101"/>
+      <alternative track="102"/>
+      <alternative track="103"/>
+      <alternative track="104"/>
+      <alternative track="106"/>
+      <alternative track="107"/>
+      <alternative track="108"/>
+      <alternative track="009"/>
+    </track>
+    <track name="102">
+      <block name="64G0102"/>
+      <alternative track="101"/>
+      <alternative track="103"/>
+      <alternative track="104"/>
+      <alternative track="106"/>
+      <alternative track="107"/>
+      <alternative track="108"/>
+      <alternative track="009"/>
+    </track>
+    <track name="103">
+      <block name="64G0103"/>
+      <alternative track="101"/>
+      <alternative track="102"/>
+      <alternative track="104"/>
+      <alternative track="106"/>
+      <alternative track="107"/>
+      <alternative track="108"/>
+      <alternative track="009"/>
+    </track>
+    <track name="104">
+      <block name="64G0104"/>
+      <alternative track="101"/>
+      <alternative track="102"/>
+      <alternative track="103"/>
+      <alternative track="106"/>
+      <alternative track="107"/>
+      <alternative track="108"/>
+      <alternative track="009"/>
+    </track>
+    <track name="106">
+      <block name="64G0106"/>
+      <alternative track="101"/>
+      <alternative track="102"/>
+      <alternative track="103"/>
+      <alternative track="104"/>
+      <alternative track="107"/>
+      <alternative track="108"/>
+      <alternative track="009"/>
+    </track>
+    <track name="107">
+      <block name="64G0107"/>
+      <alternative track="101"/>
+      <alternative track="102"/>
+      <alternative track="103"/>
+      <alternative track="104"/>
+      <alternative track="106"/>
+      <alternative track="108"/>
+      <alternative track="009"/>
+    </track>
+    <track name="108">
+      <block name="64G0108"/>
+      <alternative track="101"/>
+      <alternative track="102"/>
+      <alternative track="103"/>
+      <alternative track="104"/>
+      <alternative track="106"/>
+      <alternative track="107"/>
+      <alternative track="009"/>
+    </track>
+  </station>
+
+  <station name="Rauschwald" short="FRW" refNr="36">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="36B61" direction="left"/>
+      <block name="64B62" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Klein Auheim" short="FKAH" refNr="89" scheduleFile="B89_____.ABF">
+    <track name="21" calculateDelay="false">
+      <block name="89B21"/>
+    </track>
+  </station>
+
+  <station name="Großauheim (Kr Hanau)" short="FGAU" refNr="65" scheduleFile="V65_____.abf">
+    <track name="001">
+      <block name="65S001"/>
+    </track>
+    <track name="002">
+      <block name="65S002"/>
+    </track>
+  </station>
+
+  <station name="Großkrotzenburg" short="FGK" refNr="66">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="65S51" direction="left"/>
+      <block name="66S52" direction="left"/>
+    </track>
+  </station>
+</estw>

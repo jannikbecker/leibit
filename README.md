@@ -28,6 +28,9 @@ Folgende Simulationen werden aktuell unterstützt:
     - Heigenbrücken
     - Aschaffenburg
     - Großkrotzenburg
+    - Hanau Nordseite
+    - Hanau Südseite
+    - Frankfurt Süd
     - Gelnhausen
     - Schlüchtern
     - Elm

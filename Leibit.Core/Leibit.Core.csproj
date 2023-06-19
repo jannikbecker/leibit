@@ -25,7 +25,10 @@
     <None Remove="Data\nhth\FB.xml" />
     <None Remove="Data\nhth\FBHF.xml" />
     <None Remove="Data\nhth\FEL.xml" />
+    <None Remove="Data\nhth\FFS.xml" />
     <None Remove="Data\nhth\FFU.xml" />
+    <None Remove="Data\nhth\FH_N.xml" />
+    <None Remove="Data\nhth\FH_S.xml" />
     <None Remove="Data\nhth\NGM.xml" />
     <None Remove="Data\nhth\NHEI.xml" />
     <None Remove="Data\nhth\NAH.xml" />
@@ -34,6 +37,7 @@
     <None Remove="Data\nhth\FSUE.xml" />
     <None Remove="Data\nhth\NWH.xml" />
     <None Remove="Data\nhth\NLO.xml" />
+    <None Remove="Data\nhth\TrainNumbers.xml" />
     <None Remove="Data\nhth\UEI.xml" />
     <None Remove="Data\nhth\UGO.xml" />
     <None Remove="Data\nord\ABLZ.xml" />
@@ -98,7 +102,10 @@
     <EmbeddedResource Include="Data\nhth\FB.xml" />
     <EmbeddedResource Include="Data\nhth\FBHF.xml" />
     <EmbeddedResource Include="Data\nhth\FEL.xml" />
+    <EmbeddedResource Include="Data\nhth\FFS.xml" />
     <EmbeddedResource Include="Data\nhth\FFU.xml" />
+    <EmbeddedResource Include="Data\nhth\FH_N.xml" />
+    <EmbeddedResource Include="Data\nhth\FH_S.xml" />
     <EmbeddedResource Include="Data\nhth\NGM.xml" />
     <EmbeddedResource Include="Data\nhth\NHEI.xml" />
     <EmbeddedResource Include="Data\nhth\NAH.xml" />
@@ -107,6 +114,7 @@
     <EmbeddedResource Include="Data\nhth\FSUE.xml" />
     <EmbeddedResource Include="Data\nhth\NWH.xml" />
     <EmbeddedResource Include="Data\nhth\NLO.xml" />
+    <EmbeddedResource Include="Data\nhth\TrainNumbers.xml" />
     <EmbeddedResource Include="Data\nhth\UEI.xml" />
     <EmbeddedResource Include="Data\nhth\UGO.xml" />
     <EmbeddedResource Include="Data\nord\ABLZ.xml" />

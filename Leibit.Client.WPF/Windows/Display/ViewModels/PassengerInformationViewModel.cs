@@ -120,8 +120,16 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 }
             }
 
-            LEDText = LED_SEPARATOR + string.Join(LED_SEPARATOR, textsToDisplay);
-            IsLEDSliding = true;
+            if (textsToDisplay.Count == 1)
+            {
+                LEDText = textsToDisplay[0];
+                IsLEDSliding = false;
+            }
+            else
+            {
+                LEDText = LED_SEPARATOR + string.Join(LED_SEPARATOR, textsToDisplay);
+                IsLEDSliding = true;
+            }
         }
         #endregion
 
