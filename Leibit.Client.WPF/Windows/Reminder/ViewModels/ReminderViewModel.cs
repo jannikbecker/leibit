@@ -2,6 +2,7 @@
 using Leibit.Client.WPF.Windows.LocalOrders.ViewModels;
 using Leibit.Client.WPF.Windows.LocalOrders.Views;
 using Leibit.Core.Client.Commands;
+using Leibit.Core.Common;
 using Leibit.Entities.LiveData;
 using Leibit.Entities.Scheduling;
 using System.Collections.ObjectModel;
@@ -31,7 +32,7 @@ namespace Leibit.Client.WPF.Windows.Reminder.ViewModels
                 s.PropertyChanged += __Schedule_PropertyChanged;
 
             var reminders = schedule.Station.ESTW.Reminders.Where(r => r.TrainNumber == schedule.Train.Number && r.StationShort == schedule.Station.ShortSymbol);
-            Reminders = new ObservableCollection<ReminderItemViewModel>(reminders.Select(r => new ReminderItemViewModel(r)));
+            Reminders = new ObservableCollection<ReminderItemViewModel>(reminders.Select(r => new ReminderItemViewModel(r.CloneObject())));
 
             foreach (var r in Reminders)
                 r.PropertyChanged += __Reminder_PropertyChanged;

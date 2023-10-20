@@ -126,6 +126,12 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
+                <MenuItem Header="Erinnerungen" Command="{Binding RemindersCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource imgReminders}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
                 <Separator Background="{DynamicResource MenuSeparatorColor}" />
 
                 <MenuItem Header="Layout speichern" Command="{Binding SaveLayoutCommand}">

@@ -45,6 +45,7 @@
     <None Remove="Resources\Images\Dark\local_orders.png" />
     <None Remove="Resources\Images\Dark\new.png" />
     <None Remove="Resources\Images\Dark\open.png" />
+    <None Remove="Resources\Images\Dark\reminders.png" />
     <None Remove="Resources\Images\Dark\save.png" />
     <None Remove="Resources\Images\Dark\save_layout.png" />
     <None Remove="Resources\Images\Dark\select.png" />
@@ -63,6 +64,7 @@
     <None Remove="Resources\Images\Light\local_orders.png" />
     <None Remove="Resources\Images\Light\new.png" />
     <None Remove="Resources\Images\Light\open.png" />
+    <None Remove="Resources\Images\Light\reminders.png" />
     <None Remove="Resources\Images\Light\save.png" />
     <None Remove="Resources\Images\Light\save_layout.png" />
     <None Remove="Resources\Images\Light\select.png" />
@@ -90,6 +92,7 @@
     <Resource Include="Resources\Images\Dark\local_orders.png" />
     <Resource Include="Resources\Images\Dark\new.png" />
     <Resource Include="Resources\Images\Dark\open.png" />
+    <Resource Include="Resources\Images\Dark\reminders.png" />
     <Resource Include="Resources\Images\Dark\save.png" />
     <Resource Include="Resources\Images\Dark\save_layout.png" />
     <Resource Include="Resources\Images\Dark\select.png" />
@@ -108,6 +111,7 @@
     <Resource Include="Resources\Images\Light\local_orders.png" />
     <Resource Include="Resources\Images\Light\new.png" />
     <Resource Include="Resources\Images\Light\open.png" />
+    <Resource Include="Resources\Images\Light\reminders.png" />
     <Resource Include="Resources\Images\Light\save.png" />
   </ItemGroup>
   <ItemGroup>

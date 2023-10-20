@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="Leibit.Client.WPF.Dialogs.OpenReminders.OpenRemindersDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+             xmlns:entities="clr-namespace:Leibit.Entities.Settings;assembly=Leibit.Entities"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.RowSpan="3" Grid.Column="0" Source="{DynamicResource imgReminders}" Margin="0,0,20,0" Width="64" Height="64"/>
+
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedReminder.HeaderText}" FontSize="24" FontWeight="Bold"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedReminder.DetailText}" FontSize="16"/>
+        </Grid>
+
+        <controls:LeibitDataGrid Grid.Row="1"
+                                 ItemsSource="{Binding Reminders}"
+                                 SelectedItem="{Binding SelectedReminder, Mode=TwoWay}"
+                                 CanGroup="False"
+                                 LayoutKey="Reminders"
+                                 Margin="0,10,0,0">
+            <controls:LeibitDataGrid.Resources>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </controls:LeibitDataGrid.Resources>
+
+            <controls:LeibitDataGrid.Columns>
+                <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber"/>
+                <controls:LeibitDataGridColumn Header="Btrst" FieldName="StationShort"/>
+                <controls:LeibitDataGridColumn Header="Hinweistext" FieldName="Text"/>
+                <controls:LeibitDataGridColumn Header="Zeit" FieldName="DueTime"/>
+            </controls:LeibitDataGrid.Columns>
+
+            <controls:LeibitDataGrid.DefaultLayout>
+                <entities:GridSetting>
+                    <entities:GridSetting.ColumnSettings>
+                        <entities:GridColumnSetting ColumnName="TrainNumber" Position="0" Width="50"/>
+                        <entities:GridColumnSetting ColumnName="ShortSymbol" Position="1" Width="40"/>
+                        <entities:GridColumnSetting ColumnName="Text" Position="2" Width="400"/>
+                        <entities:GridColumnSetting ColumnName="DueTime" Position="3" Width="55"/>
+                    </entities:GridSetting.ColumnSettings>
+
+                    <entities:GridSetting.SortingColumns>
+                        <entities:GridSortingColumn ColumnName="DueTime" SortDirection="Ascending"/>
+                    </entities:GridSetting.SortingColumns>
+                </entities:GridSetting>
+            </controls:LeibitDataGrid.DefaultLayout>
+        </controls:LeibitDataGrid>
+
+        <Grid Grid.Row="2" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="In" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <xctk:IntegerUpDown Grid.Column="1" Value="{Binding SnoozeTime,Mode=TwoWay}" Minimum="1" Height="20" Margin="0,0,5,0"/>
+            <TextBlock Grid.Column="2" Text="Minuten" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <Button Grid.Column="3" Content="Erneut erinnern" Command="{Binding SnoozeCommand}" Padding="4"/>
+            <Button Grid.Column="5" Content="Schließen" Command="{Binding CloseCommand}" Padding="4"/>
+        </Grid>
+
+        <Rectangle Grid.Row="3" Margin="0,10,0,10" Fill="LightGray" Height="1"/>
+        <Button Grid.Row="4" Content="Alle schließen" Command="{Binding CloseAllCommand}" HorizontalAlignment="Right" Padding="4"/>
+    </Grid>
+</UserControl>
