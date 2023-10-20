@@ -37,6 +37,7 @@
             <MenuItem Header="Örtliche Anweisungen" Command="{Binding ShowLocalOrdersCommand}"/>
             <MenuItem Header="Zugbildung" Command="{Binding ShowTrainCompositionCommand}"/>
             <MenuItem Header="Verspätungsbegründung" Command="{Binding ShowDelayJustificationCommand}"/>
+            <MenuItem Header="Erinnerungen" Command="{Binding ShowRemindersCommand}"/>
         </controls:LeibitDataGrid.ContextMenuItems>
 
         <controls:LeibitDataGrid.Resources>

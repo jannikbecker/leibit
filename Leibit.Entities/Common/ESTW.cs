@@ -1,4 +1,5 @@
 ﻿using Leibit.Core.Scheduling;
+using Leibit.Entities.LiveData;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -35,6 +36,7 @@ namespace Leibit.Entities.Common
 
             m_Stations = new List<Station>();
             m_Blocks = new Dictionary<string, List<Block>>();
+            Reminders = new List<Reminder>();
 
             if (area != null)
                 area.ESTWs.Add(this);
@@ -118,6 +120,8 @@ namespace Leibit.Entities.Common
         public int IOExceptionCount { get; set; }
 
         public DateTime LastUpdatedOn { get; set; }
+
+        public List<Reminder> Reminders { get; }
 
     }
 }

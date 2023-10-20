@@ -252,6 +252,20 @@
         </Style.Triggers>
     </Style>
 
+    <!-- TimePicker -->
+    <Style TargetType="xctk:TimePicker">
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
+        <Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TextForeground}"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#888"/>
+                <Setter Property="BorderBrush" Value="#888"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- ColorPicker -->
     <Style TargetType="xctk:ColorPicker">
         <Setter Property="DropDownBackground" Value="#222"/>
