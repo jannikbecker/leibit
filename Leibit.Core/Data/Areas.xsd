@@ -4,6 +4,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="DB" />
       <xs:enumeration value="OEBB" />
+      <xs:enumeration value="SBB" />
     </xs:restriction>
   </xs:simpleType>
 
