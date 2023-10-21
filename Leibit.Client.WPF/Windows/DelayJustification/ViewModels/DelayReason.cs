@@ -149,8 +149,6 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
                 new DelayReason(915, "Folgeverspätung aus Anschluss"),
                 new DelayReason(923, "Folgeverspätung aus Gleisbelegung im Kontext zu Baustellen"),
                 new DelayReason(925, "Folgeverspätung aus Gleisbelegung"),
-                new DelayReason(926, "Folgeverspätungen aus Gleisbelegung (Anordnung Fdl-VL)"),
-                new DelayReason(927, "Folgeverspätungen aus Gleisbelegung (Anordnung Fdl-ZL)"),
                 new DelayReason(935, "Folgeverspätung aus Umlauf"),
                 new DelayReason(945, "Folgeverspätungen aus EVU-Störfällen"),
                 new DelayReason(950, "Weitere Untersuchung erforderlich"),
