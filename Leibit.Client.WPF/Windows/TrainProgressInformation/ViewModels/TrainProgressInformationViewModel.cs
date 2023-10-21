@@ -353,7 +353,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         private void __ShowLocalOrders()
         {
             var Window = new LocalOrdersView(SelectedItem.TrainNumber, SelectedItem.Station.ShortSymbol);
-            Window.DataContext = new LocalOrdersViewModel(SelectedItem.Schedule);
+            Window.DataContext = new LocalOrdersViewModel(Window.Dispatcher, SelectedItem.Schedule, SelectedItem.Station.ESTW.Area);
             OnOpenWindow(Window);
         }
         #endregion

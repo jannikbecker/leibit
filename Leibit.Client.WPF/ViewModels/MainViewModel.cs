@@ -801,7 +801,7 @@ namespace Leibit.Client.WPF.ViewModels
                                     continue;
 
                                 Window = new LocalOrdersView(Tag.Key, Tag.Value);
-                                ViewModel = new LocalOrdersViewModel(Schedule);
+                                ViewModel = new LocalOrdersViewModel(Window.Dispatcher, Schedule, m_CurrentArea);
                                 break;
                             }
                             else
