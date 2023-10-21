@@ -67,6 +67,7 @@ namespace Leibit.Entities
     {
         DB,
         OEBB,
+        SBB,
     }
 
     public enum eSkin

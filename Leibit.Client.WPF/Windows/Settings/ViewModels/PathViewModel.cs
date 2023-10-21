@@ -101,6 +101,8 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 pattern = "ESTW *";
             else if (m_Estw.InfrastructureManager == eInfrastructureManager.OEBB)
                 pattern = "BFZ *";
+            else if (m_Estw.InfrastructureManager == eInfrastructureManager.SBB)
+                pattern = "ILTIS *";
             else
                 return false;
 
