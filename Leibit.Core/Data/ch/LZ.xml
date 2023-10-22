@@ -104,7 +104,7 @@
     </track>
   </station>
 
-  <station name="Ebikon" short="EBI" refNr="4">
+  <station name="Rotsee (Verzw)" short="ROTS" refNr="100">
     <track calculateDelay="false" isPlatform="false">
       <block name="04S359" direction="left"/>
     </track>
