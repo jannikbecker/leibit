@@ -35,13 +35,13 @@
   
   <station name="Luzern Cargo" short="LZGB" refNr="1" scheduleFile="b1______.abf">
     <track name="104">
-      <block name="01G104"/>
+      <block name="01G04"/>
     </track>
     <track name="530">
-      <block name="01G530"/>
+      <block name="05G30"/>
     </track>
     <track name="545">
-      <block name="01G545"/>
+      <block name="05G45"/>
     </track>
   </station>
 
