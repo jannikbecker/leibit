@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TrainNumbers>
+  <TrainNumber type="S" pattern="211xx" line="S1"/>
+  <TrainNumber type="S" pattern="221xx" line="S1"/>
+</TrainNumbers>

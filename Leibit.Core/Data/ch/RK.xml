@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Gütsch" short="GTS" refNr="2">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="03B65" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Rotsee (Verzw)" short="ROTS" refNr="100" scheduleFile="g100____.abf">
+    <track name="113" isPlatform="false">
+      <block name="03B59" direction="left"/>
+      <block name="01G93" direction="right"/>
+      <block name="01G94" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Ebikon" short="EBI" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
+    <track name="1">
+      <block name="01G1"/>
+    </track>
+    <track name="2">
+      <block name="01G2"/>
+    </track>
+    <track name="3">
+      <block name="01G3"/>
+    </track>
+    <track name="4">
+      <block name="01G4"/>
+    </track>
+  </station>
+
+  <station name="Buchrain" short="BURN" refNr="3" scheduleFile="b3______.abf">
+    <track name="357" calculateDelay="false">
+      <block name="03B57"/>
+    </track>
+    <track name="457" calculateDelay="false">
+      <block name="04B57"/>
+    </track>
+  </station>
+
+  <station name="Root D4" short="LBD" refNr="2" scheduleFile="b2______.abf">
+    <track name="354" calculateDelay="false">
+      <block name="03B55" direction="left"/>
+      <block name="03B53" direction="right"/>
+    </track>
+    <track name="454" calculateDelay="false">
+      <block name="04B55" direction="left"/>
+      <block name="04B53" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Gisikon-Root" short="GSK" refNr="2" scheduleFile="g2______.abf" localOrderFile="bf2_____.abf">
+    <track name="1">
+      <block name="02G1"/>
+    </track>
+    <track name="2">
+      <block name="02G2"/>
+      <block name="02G62"/>
+    </track>
+    <track name="3">
+      <block name="02G3"/>
+      <block name="02G73"/>
+    </track>
+  </station>
+  
+  <station name="Oberrüti" short="OI" refNr="6">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="01B96" direction="right"/>
+      <block name="02B96" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Rotkreuz" short="RK" refNr="6" scheduleFile="g6______.abf" localOrderFile="bf6_____.abf">
+    <track name="1">
+      <block name="06G1"/>
+      <block name="06G41"/>
+    </track>
+    <track name="2">
+      <block name="06G2"/>
+      <block name="06G42"/>
+    </track>
+    <track name="3">
+      <block name="06G3"/>
+      <block name="06G43"/>
+    </track>
+    <track name="4">
+      <block name="06G4"/>
+      <block name="06G44"/>
+    </track>
+    <track name="5">
+      <block name="06G5"/>
+      <block name="06G45"/>
+    </track>
+    <track name="6">
+      <block name="06G6"/>
+      <block name="06G46"/>
+    </track>
+    <track name="7">
+      <block name="06G7"/>
+      <block name="06G47"/>
+    </track>
+    <track name="101">
+      <block name="06G101"/>
+    </track>
+    <track name="102">
+      <block name="06G102"/>
+    </track>
+    <track name="103">
+      <block name="06G103"/>
+    </track>
+    <track name="104">
+      <block name="06G104"/>
+    </track>
+    <track name="105">
+      <block name="06G105"/>
+    </track>
+  </station>
+
+  <station name="Freudenberg" short="FREU" refNr="400" scheduleFile="g400____.abf">
+    <track name="124" isPlatform="false">
+      <block name="04B49" direction="left"/>
+      <block name="04B48" direction="right"/>
+      <block name="03B48" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hünenberg Chämleten" short="HUCH" refNr="41" scheduleFile="b41_____.abf">
+    <track name="345" calculateDelay="false">
+      <block name="03B46"/>
+    </track>
+    <track name="445" calculateDelay="false">
+      <block name="04B46"/>
+    </track>
+  </station>
+
+  <station name="Hünenberg Zythus" short="HUZY" refNr="42" scheduleFile="b42_____.abf">
+    <track name="345" calculateDelay="false">
+      <block name="03B45"/>
+    </track>
+    <track name="445" calculateDelay="false">
+      <block name="04B45"/>
+    </track>
+  </station>
+
+  <station name="Cham" short="CHAM" refNr="4" scheduleFile="g4______.abf" localOrderFile="bf4_____.abf">
+    <track name="1">
+      <block name="04G1"/>
+    </track>
+    <track name="2">
+      <block name="04G2"/>
+    </track>
+    <track name="3">
+      <block name="04G3"/>
+    </track>
+  </station>
+
+  <station name="Cham Alpenblick" short="CHAA" refNr="43" scheduleFile="b43_____.abf">
+    <track name="344" calculateDelay="false">
+      <block name="03B44"/>
+    </track>
+    <track name="444" calculateDelay="false">
+      <block name="04B44"/>
+    </track>
+  </station>
+
+  <station name="Brüglen (Spw)" short="BRGL" refNr="5" scheduleFile="g5______.abf" localOrderFile="bf5_____.abf">
+    <track name="11" isPlatform="false">
+      <block name="01B61" direction="left"/>
+      <block name="01B63" direction="right"/>
+    </track>
+    <track name="12" isPlatform="false">
+      <block name="02B61" direction="left"/>
+      <block name="02B63" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Immensee" short="IM" refNr="3">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="05S165" direction="left"/>
+      <block name="05S265" direction="left"/>
+    </track>
+  </station>
+</estw>
