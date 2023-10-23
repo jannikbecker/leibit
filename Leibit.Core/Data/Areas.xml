@@ -85,6 +85,6 @@
   </area>
 
   <area id="ch" name="Schweiz">
-    
+    <estw id="GD" name="Arth-Goldau" dataFile="leibit_ARTH-GOLDAU.dat" infrastructureManager="SBB"/>
   </area>
 </leibit>
