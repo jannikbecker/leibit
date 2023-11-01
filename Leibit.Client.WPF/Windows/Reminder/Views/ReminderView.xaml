@@ -105,7 +105,7 @@
                                             <ColumnDefinition Width="Auto" SharedSizeGroup="DeleteButton"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <xctk:TimePicker Grid.Column="0" Value="{Binding DueTime, Mode=TwoWay}" ShowDropDownButton="False" Margin="0,0,5,0"/>
+                                        <xctk:TimePicker Grid.Column="0" Value="{Binding DueTime, Mode=TwoWay}" ShowDropDownButton="False" CurrentDateTimePart="Minute" Margin="0,0,5,0"/>
                                         <TextBox Grid.Column="1" Text="{Binding Text, Mode=TwoWay}" Margin="0,0,5,0"/>
                                         <controls:ImageButton Grid.Column="2" Image="{StaticResource imgClear}" Command="{Binding DeleteCommand}"/>
                                     </Grid>
