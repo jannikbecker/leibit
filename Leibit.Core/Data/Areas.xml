@@ -21,6 +21,7 @@
   </area>
 
   <area id="nord" name="Norddeutschland">
+    <estw id="HDIP" name="Diepholz" dataFile="leibit_DIEPHOLZ.dat" infrastructureManager="DB"/>
     <estw id="HM" name="Minden" dataFile="leibit_MINDEN.dat" infrastructureManager="DB"/>
     <estw id="HWUN" name="Wunstorf" dataFile="leibit_WUNSTORF.dat" infrastructureManager="DB"/>
     <estw id="HNBG" name="Nienburg" dataFile="leibit_NIENBURG.dat" infrastructureManager="DB" productName="Verden Süd"/>
