@@ -105,8 +105,18 @@
                                             <ColumnDefinition Width="Auto" SharedSizeGroup="DeleteButton"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <xctk:TimePicker Grid.Column="0" Value="{Binding DueTime, Mode=TwoWay}" ShowDropDownButton="False" CurrentDateTimePart="Minute" Margin="0,0,5,0"/>
-                                        <TextBox Grid.Column="1" Text="{Binding Text, Mode=TwoWay}" Margin="0,0,5,0"/>
+                                        <xctk:TimePicker Grid.Column="0" Value="{Binding DueTime, Mode=TwoWay}" ShowDropDownButton="False" CurrentDateTimePart="Minute" Margin="0,0,5,0">
+                                            <xctk:TimePicker.InputBindings>
+                                                <KeyBinding Key="Return" Command="{Binding DataContext.SaveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}" />
+                                            </xctk:TimePicker.InputBindings>
+                                        </xctk:TimePicker>
+
+                                        <TextBox Grid.Column="1" Text="{Binding Text, Mode=TwoWay}" Margin="0,0,5,0">
+                                            <TextBox.InputBindings>
+                                                <KeyBinding Key="Return" Command="{Binding DataContext.SaveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}" />
+                                            </TextBox.InputBindings>
+                                        </TextBox>
+
                                         <controls:ImageButton Grid.Column="2" Image="{StaticResource imgClear}" Command="{Binding DeleteCommand}"/>
                                     </Grid>
                                 </DataTemplate>
