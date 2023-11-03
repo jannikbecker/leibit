@@ -30,20 +30,20 @@
   </station>
 
   <station name="Buchrain" short="BURN" refNr="3" scheduleFile="b3______.abf">
-    <track name="357" calculateDelay="false">
+    <track name="357" calculateDelay="false" displayName="1">
       <block name="03B57"/>
     </track>
-    <track name="457" calculateDelay="false">
+    <track name="457" calculateDelay="false" displayName="2">
       <block name="04B57"/>
     </track>
   </station>
 
   <station name="Root D4" short="LBD" refNr="2" scheduleFile="b2______.abf">
-    <track name="354" calculateDelay="false">
+    <track name="354" calculateDelay="false" displayName="1">
       <block name="03B55" direction="left"/>
       <block name="03B53" direction="right"/>
     </track>
-    <track name="454" calculateDelay="false">
+    <track name="454" calculateDelay="false" displayName="2">
       <block name="04B55" direction="left"/>
       <block name="04B53" direction="right"/>
     </track>
@@ -125,19 +125,19 @@
   </station>
 
   <station name="Hünenberg Chämleten" short="HUCH" refNr="41" scheduleFile="b41_____.abf">
-    <track name="345" calculateDelay="false">
+    <track name="345" calculateDelay="false" displayName="2">
       <block name="03B46"/>
     </track>
-    <track name="445" calculateDelay="false">
+    <track name="445" calculateDelay="false" displayName="1">
       <block name="04B46"/>
     </track>
   </station>
 
   <station name="Hünenberg Zythus" short="HUZY" refNr="42" scheduleFile="b42_____.abf">
-    <track name="345" calculateDelay="false">
+    <track name="345" calculateDelay="false" displayName="2">
       <block name="03B45"/>
     </track>
-    <track name="445" calculateDelay="false">
+    <track name="445" calculateDelay="false" displayName="1">
       <block name="04B45"/>
     </track>
   </station>
@@ -155,10 +155,10 @@
   </station>
 
   <station name="Cham Alpenblick" short="CHAA" refNr="43" scheduleFile="b43_____.abf">
-    <track name="344" calculateDelay="false">
+    <track name="344" calculateDelay="false" displayName="2">
       <block name="03B44"/>
     </track>
-    <track name="444" calculateDelay="false">
+    <track name="444" calculateDelay="false" displayName="1">
       <block name="04B44"/>
     </track>
   </station>
