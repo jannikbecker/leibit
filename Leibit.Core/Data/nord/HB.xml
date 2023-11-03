@@ -9,7 +9,7 @@
     </track>
   </station>
 
-  <station name="Bremen-Hemelingen" short="HBHM" refNr="9">
+  <station name="Bremen-Hastedt" short="HHAT" refNr="38">
     <track isPlatform="false" calculateDelay="false">
       <block name="10B171" direction="right"/>
       <block name="10B168" direction="right"/>
