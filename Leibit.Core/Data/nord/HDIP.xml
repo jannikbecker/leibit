@@ -184,7 +184,7 @@
     </track>
   </station>
 
-  <station name="Barnstorf (Han)" short="HBNF" refNr="30" scheduleFile="v30_____.abf">
+  <station name="Barnstorf (Han)" short="HBNF" refNr="30" scheduleFile="v30_____.abf" displayName="Barnstorf">
     <track name="1">
       <block name="30S1"/>
     </track>
