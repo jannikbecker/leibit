@@ -18,273 +18,370 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
-        <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">
-            <StackPanel Orientation="Vertical" Margin="10" Grid.IsSharedSizeScope="True">
-                <Border Visibility="{Binding ShowPathsWarning, Converter={StaticResource VisibilityConverter}}" Background="#3ff0" BorderBrush="#cff0" BorderThickness="2" Padding="5">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{StaticResource imgWarning}"/>
-                        <TextBlock Margin="5,0,0,0">
-                        <Run>Es sind keine Pfade zu ESTWsim konfiguriert. Bitte tragen Sie die Pfade zu den Simulationen ein, die Sie besitzen.</Run>
-                        <LineBreak/>
-                        <Hyperlink Command="{Binding DeterminePathsCommand}">Pfade automatisch ermitteln</Hyperlink>
-                        </TextBlock>
+
+        <TabControl Grid.Row="0" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+            <TabItem Header="Allgemein">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">
+                    <StackPanel Orientation="Vertical" Margin="10" Grid.IsSharedSizeScope="True">
+                        <!--<Border Visibility="{Binding ShowPathsWarning, Converter={StaticResource VisibilityConverter}}" Background="#3ff0" BorderBrush="#cff0" BorderThickness="2" Padding="5">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{StaticResource imgWarning}"/>
+                                <TextBlock Margin="5,0,0,0">
+                                <Run>Es sind keine Pfade zu ESTWsim konfiguriert. Bitte tragen Sie die Pfade zu den Simulationen ein, die Sie besitzen.</Run>
+                                <LineBreak/>
+                                <Hyperlink Command="{Binding DeterminePathsCommand}">Pfade automatisch ermitteln</Hyperlink>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Visibility="{Binding ShowPathsInfo, Converter={StaticResource VisibilityConverter}}" Background="#30f0" BorderBrush="#c0f0" BorderThickness="2" Padding="5">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{StaticResource imgOk}"/>
+                                <TextBlock Text="{Binding PathsInfoText}" Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <GroupBox Header="Pfade">
+                            <ItemsControl ItemsSource="{Binding Areas}" IsTabStop="False">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Expander Header="{Binding AreaName}">
+                                            <ItemsControl ItemsSource="{Binding Paths}" IsTabStop="False">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="auto" MinWidth="100" SharedSizeGroup="Header" />
+                                                                <ColumnDefinition Width="400" />
+                                                                <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <TextBlock Grid.Column="0" Text="{Binding EstwName}" VerticalAlignment="Center" />
+                                                            <TextBox Grid.Column="1" Text="{Binding Path, Mode=TwoWay}" Margin="5" />
+                                                            <Button Grid.Column="2" Content="..." Margin="5" Command="{Binding BrowseCommand}" IsTabStop="False" />
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Expander>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </GroupBox>-->
+
+                        <GroupBox Header="Programmverhalten">
+                            <Grid Margin="0,5,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" SharedSizeGroup="Header" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Automatische Fertigmeldung" Margin="5,0,0,0" VerticalAlignment="Center"/>
+
+                                <RadioButton Grid.Row="0" Grid.Column="1" 
+                                         Content="deaktiviert"
+                                         GroupName="AutomaticReadyMessageBehaviour"
+                                         IsChecked="{Binding AutomaticReadyMessageIsDisabled, Mode=TwoWay}"
+                                         VerticalAlignment="Center"
+                                         Margin="5,5,0,0"/>
+
+                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                                    <RadioButton Content="genau"
+                                             GroupName="AutomaticReadyMessageBehaviour"
+                                             IsChecked="{Binding AutomaticReadyMessageIsFix, Mode=TwoWay}"
+                                             VerticalAlignment="Center"/>
+
+                                    <xctk:IntegerUpDown Value="{Binding AutomaticReadyMessageTime, Mode=TwoWay}"
+                                                    Minimum="0"
+                                                    Height="20"
+                                                    Margin="5,0,5,0"
+                                                    IsEnabled="{Binding AutomaticReadyMessageIsFix}"/>
+                                    <TextBlock Text="Minuten vor Abfahrt" VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                                    <RadioButton Content="zufällig zwischen"
+                                             GroupName="AutomaticReadyMessageBehaviour"
+                                             IsChecked="{Binding AutomaticReadyMessageIsRandom, Mode=TwoWay}"
+                                             VerticalAlignment="Center"/>
+
+                                    <xctk:IntegerUpDown Value="{Binding AutomaticReadyMessageBeginTime, Mode=TwoWay}"
+                                                    Minimum="{Binding AutomaticReadyMessageEndTime, TargetNullValue=0}"
+                                                    Height="20"
+                                                    Margin="5,0,5,0"
+                                                    IsEnabled="{Binding AutomaticReadyMessageIsRandom}"/>
+
+                                    <TextBlock Text="und" VerticalAlignment="Center"/>
+
+                                    <xctk:IntegerUpDown Value="{Binding AutomaticReadyMessageEndTime, Mode=TwoWay}"
+                                                    Minimum="0"
+                                                    Maximum="{Binding AutomaticReadyMessageBeginTime}"
+                                                    Height="20"
+                                                    Margin="5,0,5,0"
+                                                    IsEnabled="{Binding AutomaticReadyMessageIsRandom}"/>
+
+                                    <TextBlock Text="Minuten vor Abfahrt" VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Verspätungsbegründung" Margin="5,0,0,0" VerticalAlignment="Center"/>
+
+                                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                                    <CheckBox Content="aktiv"
+                                          IsChecked="{Binding DelayJustificationEnabled, Mode=TwoWay}"
+                                          VerticalAlignment="Center"/>
+
+                                    <TextBlock Text=" ab" Margin="0,-2,0,0" VerticalAlignment="Center"/>
+
+                                    <xctk:IntegerUpDown Value="{Binding DelayJustificationMinutes, Mode=TwoWay}"
+                                                    Minimum="1"
+                                                    Height="20"
+                                                    Margin="5,0,5,0"
+                                                    IsEnabled="{Binding DelayJustificationEnabled}"/>
+
+                                    <TextBlock Text="Verspätungsminuten" Margin="0,-2,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <CheckBox Grid.Row="4"
+                                      Grid.Column="1"
+                                      Content="Plausibilitätsprüfung"
+                                      IsChecked="{Binding CheckPlausibility, Mode=TwoWay}"
+                                      IsEnabled="{Binding DelayJustificationEnabled}"
+                                      Margin="5,5,0,0"
+                                      VerticalAlignment="Center"/>
+
+                                <TextBlock Grid.Row="5" Grid.Column="0" Text="Kompletten Zuglauf" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                <CheckBox Grid.Row="5" Grid.Column="1"
+                                      Content="anzeigen"
+                                      IsChecked="{Binding DisplayCompleteTrainSchedule, Mode=TwoWay}"
+                                      Margin="5,5,0,0"
+                                      VerticalAlignment="Center"/>
+
+                                <TextBlock Grid.Row="6" Grid.Column="0" Text="Inaktive ESTW" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                <CheckBox Grid.Row="6" Grid.Column="1"
+                                      Content="laden"
+                                      IsChecked="{Binding LoadInactiveEstws, Mode=TwoWay}"
+                                      Margin="5,5,0,0"
+                                      VerticalAlignment="Center"/>
+
+                                <TextBlock Grid.Row="7" Grid.Column="0" Text="ESTW inaktiv nach" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                                    <xctk:IntegerUpDown Value="{Binding EstwTimeout, Mode=TwoWay}" Minimum="6" Height="20" Margin="0,0,5,0"/>
+                                    <TextBlock Text="Sekunden ohne Daten" VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Row="8" Grid.Column="0" Text="ZFI-Vorlaufzeit" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
+                                    <xctk:IntegerUpDown Value="{Binding LeadTime, Mode=TwoWay}" Minimum="1" Maximum="360" Height="20" Margin="0,0,5,0"/>
+                                    <TextBlock Text="Minuten" VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Row="9" Grid.Column="0" Text="ZFI-Nachlaufzeit" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,5">
+                                    <xctk:IntegerUpDown Value="{Binding FollowUpTime, Mode=TwoWay}" Minimum="0" Maximum="360" Height="20" Margin="0,0,5,0"/>
+                                    <TextBlock Text="Minuten" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Sonstiges">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" SharedSizeGroup="Header" />
+                                    <ColumnDefinition Width="400" />
+                                    <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Pfad zu ESTWonline" Margin="5,0,0,0" VerticalAlignment="Center" />
+                                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding EstwOnlinePath, Mode=TwoWay}" Margin="5" />
+                                <Button Grid.Row="0" Grid.Column="2" Content="..." Margin="5" Command="{Binding EstwOnlineCommand}" IsTabStop="False" />
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Farbschema" Margin="5,0,0,5" VerticalAlignment="Center" />
+                                <ComboBox Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Skin}" SelectedValuePath="Tag" Margin="5,0,5,5">
+                                    <ComboBoxItem Tag="{x:Static entities:eSkin.Light}" Content="Hell"/>
+                                    <ComboBoxItem Tag="{x:Static entities:eSkin.Dark}" Content="Dunkel"/>
+                                </ComboBox>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Farbe der Fenster" Margin="5,0,0,5" VerticalAlignment="Center" />
+                                <xctk:ColorPicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                                          Width="100"
+                                          HorizontalAlignment="Left"
+                                          SelectedColor="{Binding WindowColor, Mode=TwoWay, Converter={StaticResource ColorConverter}}" Margin="5,0,5,5"
+                                          AdvancedTabHeader="Erweitert..."
+                                          AvailableColorsHeader="Verfügbare Farben"
+                                          RecentColorsHeader="Zuletzt verwendete Farben"
+                                          StandardTabHeader="Zurück"
+                                          StandardColorsHeader="Standardfarben"/>
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Updates" Margin="5,0,0,5" VerticalAlignment="Center" />
+                                <CheckBox Grid.Row="3" Grid.Column="1"
+                                      Content="Automatisch nach Updates suchen"
+                                      IsChecked="{Binding AutomaticallyCheckForUpdates, Mode=TwoWay}"
+                                      Margin="5,0,0,5"
+                                      VerticalAlignment="Center"/>
+                                <CheckBox Grid.Row="4" Grid.Column="1"
+                                      Content="Updates automatisch installieren"
+                                      IsChecked="{Binding AutomaticallyInstallUpdates, Mode=TwoWay}"
+                                      Margin="5,0,0,5"
+                                      VerticalAlignment="Center"/>
+
+                                <TextBlock Grid.Row="5" Grid.Column="0" Text="Zoom" Margin="5,0,0,5" VerticalAlignment="Top" />
+
+                                <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Slider Grid.Row="0" Grid.ColumnSpan="3"
+                                        Value="{Binding ScaleFactor, Mode=TwoWay}"
+                                        Minimum="50"
+                                        Maximum="150"
+                                        TickPlacement="BottomRight"
+                                        TickFrequency="10"
+                                        Thumb.DragStarted="__ScaleFactor_DragStarted"
+                                        Thumb.DragCompleted="__ScaleFactor_DragCompleted"/>
+
+                                    <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">50</TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">100</TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right">150</TextBlock>
+
+                                    <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+                                        <xctk:IntegerUpDown Value="{Binding ScaleFactor, Mode=TwoWay}"
+                                                        Minimum="50"
+                                                        Maximum="150"
+                                                        Width="30"
+                                                        Margin="5,0,0,0"
+                                                        ShowButtonSpinner="False"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">%</TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </GroupBox>
                     </StackPanel>
-                </Border>
+                </ScrollViewer>
+            </TabItem>
 
-                <Border Visibility="{Binding ShowPathsInfo, Converter={StaticResource VisibilityConverter}}" Background="#30f0" BorderBrush="#c0f0" BorderThickness="2" Padding="5">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{StaticResource imgOk}"/>
-                        <TextBlock Text="{Binding PathsInfoText}" Margin="5,0,0,0"/>
-                    </StackPanel>
-                </Border>
+            <TabItem Header="Pfade">
+                <Grid Grid.IsSharedSizeScope="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <GroupBox Header="Pfade">
-                    <ItemsControl ItemsSource="{Binding Areas}" IsTabStop="False">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Expander Header="{Binding AreaName}">
-                                    <ItemsControl ItemsSource="{Binding Paths}" IsTabStop="False">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="auto" MinWidth="100" SharedSizeGroup="Header" />
-                                                        <ColumnDefinition Width="400" />
-                                                        <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <TextBlock Grid.Column="0" Text="{Binding EstwName}" VerticalAlignment="Center" />
-                                                    <TextBox Grid.Column="1" Text="{Binding Path, Mode=TwoWay}" Margin="5" />
-                                                    <Button Grid.Column="2" Content="..." Margin="5" Command="{Binding BrowseCommand}" IsTabStop="False" />
-                                                </Grid>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </Expander>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </GroupBox>
-
-                <GroupBox Header="Programmverhalten">
-                    <Grid Margin="0,5,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" SharedSizeGroup="Header" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Automatische Fertigmeldung" Margin="5,0,0,0" VerticalAlignment="Center"/>
-
-                        <RadioButton Grid.Row="0" Grid.Column="1" 
-                                 Content="deaktiviert"
-                                 GroupName="AutomaticReadyMessageBehaviour"
-                                 IsChecked="{Binding AutomaticReadyMessageIsDisabled, Mode=TwoWay}"
-                                 VerticalAlignment="Center"
-                                 Margin="5,5,0,0"/>
-
-                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
-                            <RadioButton Content="genau"
-                                     GroupName="AutomaticReadyMessageBehaviour"
-                                     IsChecked="{Binding AutomaticReadyMessageIsFix, Mode=TwoWay}"
-                                     VerticalAlignment="Center"/>
-
-                            <xctk:IntegerUpDown Value="{Binding AutomaticReadyMessageTime, Mode=TwoWay}"
-                                            Minimum="0"
-                                            Height="20"
-                                            Margin="5,0,5,0"
-                                            IsEnabled="{Binding AutomaticReadyMessageIsFix}"/>
-                            <TextBlock Text="Minuten vor Abfahrt" VerticalAlignment="Center"/>
+                    <Border Grid.Row="0" Visibility="{Binding ShowPathsWarning, Converter={StaticResource VisibilityConverter}}" Background="#3ff0" BorderBrush="#cff0" BorderThickness="2" Margin="5" Padding="5">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{StaticResource imgWarning}"/>
+                            <TextBlock Margin="5,0,0,0">
+                                <Run>Es sind keine Pfade zu ESTWsim konfiguriert. Bitte tragen Sie die Pfade zu den Simulationen ein, die Sie besitzen.</Run>
+                                <LineBreak/>
+                                <Hyperlink Command="{Binding DeterminePathsCommand}">Pfade automatisch ermitteln</Hyperlink>
+                            </TextBlock>
                         </StackPanel>
+                    </Border>
 
-                        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
-                            <RadioButton Content="zufällig zwischen"
-                                     GroupName="AutomaticReadyMessageBehaviour"
-                                     IsChecked="{Binding AutomaticReadyMessageIsRandom, Mode=TwoWay}"
-                                     VerticalAlignment="Center"/>
-
-                            <xctk:IntegerUpDown Value="{Binding AutomaticReadyMessageBeginTime, Mode=TwoWay}"
-                                            Minimum="{Binding AutomaticReadyMessageEndTime, TargetNullValue=0}"
-                                            Height="20"
-                                            Margin="5,0,5,0"
-                                            IsEnabled="{Binding AutomaticReadyMessageIsRandom}"/>
-
-                            <TextBlock Text="und" VerticalAlignment="Center"/>
-
-                            <xctk:IntegerUpDown Value="{Binding AutomaticReadyMessageEndTime, Mode=TwoWay}"
-                                            Minimum="0"
-                                            Maximum="{Binding AutomaticReadyMessageBeginTime}"
-                                            Height="20"
-                                            Margin="5,0,5,0"
-                                            IsEnabled="{Binding AutomaticReadyMessageIsRandom}"/>
-
-                            <TextBlock Text="Minuten vor Abfahrt" VerticalAlignment="Center"/>
-                        </StackPanel>
-
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Verspätungsbegründung" Margin="5,0,0,0" VerticalAlignment="Center"/>
-
-                        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
-                            <CheckBox Content="aktiv"
-                                  IsChecked="{Binding DelayJustificationEnabled, Mode=TwoWay}"
-                                  VerticalAlignment="Center"/>
-
-                            <TextBlock Text=" ab" Margin="0,-2,0,0" VerticalAlignment="Center"/>
-
-                            <xctk:IntegerUpDown Value="{Binding DelayJustificationMinutes, Mode=TwoWay}"
-                                            Minimum="1"
-                                            Height="20"
-                                            Margin="5,0,5,0"
-                                            IsEnabled="{Binding DelayJustificationEnabled}"/>
-
-                            <TextBlock Text="Verspätungsminuten" Margin="0,-2,0,0" VerticalAlignment="Center"/>
-                        </StackPanel>
-
-                        <CheckBox Grid.Row="4"
-                              Grid.Column="1"
-                              Content="Plausibilitätsprüfung"
-                              IsChecked="{Binding CheckPlausibility, Mode=TwoWay}"
-                              IsEnabled="{Binding DelayJustificationEnabled}"
-                              Margin="5,5,0,0"
-                              VerticalAlignment="Center"/>
-
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Kompletten Zuglauf" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                        <CheckBox Grid.Row="5" Grid.Column="1"
-                              Content="anzeigen"
-                              IsChecked="{Binding DisplayCompleteTrainSchedule, Mode=TwoWay}"
-                              Margin="5,5,0,0"
-                              VerticalAlignment="Center"/>
-
-                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Inaktive ESTW" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                        <CheckBox Grid.Row="6" Grid.Column="1"
-                              Content="laden"
-                              IsChecked="{Binding LoadInactiveEstws, Mode=TwoWay}"
-                              Margin="5,5,0,0"
-                              VerticalAlignment="Center"/>
-
-                        <TextBlock Grid.Row="7" Grid.Column="0" Text="ESTW inaktiv nach" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
-                            <xctk:IntegerUpDown Value="{Binding EstwTimeout, Mode=TwoWay}" Minimum="6" Height="20" Margin="0,0,5,0"/>
-                            <TextBlock Text="Sekunden ohne Daten" VerticalAlignment="Center"/>
-                        </StackPanel>
-
-                        <TextBlock Grid.Row="8" Grid.Column="0" Text="ZFI-Vorlaufzeit" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                        <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,0">
-                            <xctk:IntegerUpDown Value="{Binding LeadTime, Mode=TwoWay}" Minimum="1" Maximum="360" Height="20" Margin="0,0,5,0"/>
-                            <TextBlock Text="Minuten" VerticalAlignment="Center"/>
-                        </StackPanel>
-
-                        <TextBlock Grid.Row="9" Grid.Column="0" Text="ZFI-Nachlaufzeit" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                        <StackPanel Grid.Row="9" Grid.Column="1" Orientation="Horizontal" Margin="5,5,0,5">
-                            <xctk:IntegerUpDown Value="{Binding FollowUpTime, Mode=TwoWay}" Minimum="0" Maximum="360" Height="20" Margin="0,0,5,0"/>
-                            <TextBlock Text="Minuten" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-                </GroupBox>
-
-                <GroupBox Header="Sonstiges">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" SharedSizeGroup="Header" />
-                            <ColumnDefinition Width="400" />
-                            <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Pfad zu ESTWonline" Margin="5,0,0,0" VerticalAlignment="Center" />
-                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding EstwOnlinePath, Mode=TwoWay}" Margin="5" />
-                        <Button Grid.Row="0" Grid.Column="2" Content="..." Margin="5" Command="{Binding EstwOnlineCommand}" IsTabStop="False" />
-
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Farbschema" Margin="5,0,0,5" VerticalAlignment="Center" />
-                        <ComboBox Grid.Row="1" Grid.Column="1" SelectedValue="{Binding Skin}" SelectedValuePath="Tag" Margin="5,0,5,5">
-                            <ComboBoxItem Tag="{x:Static entities:eSkin.Light}" Content="Hell"/>
-                            <ComboBoxItem Tag="{x:Static entities:eSkin.Dark}" Content="Dunkel"/>
-                        </ComboBox>
-
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Farbe der Fenster" Margin="5,0,0,5" VerticalAlignment="Center" />
-                        <xctk:ColorPicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
-                                  Width="100"
-                                  HorizontalAlignment="Left"
-                                  SelectedColor="{Binding WindowColor, Mode=TwoWay, Converter={StaticResource ColorConverter}}" Margin="5,0,5,5"
-                                  AdvancedTabHeader="Erweitert..."
-                                  AvailableColorsHeader="Verfügbare Farben"
-                                  RecentColorsHeader="Zuletzt verwendete Farben"
-                                  StandardTabHeader="Zurück"
-                                  StandardColorsHeader="Standardfarben"/>
-
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Updates" Margin="5,0,0,5" VerticalAlignment="Center" />
-                        <CheckBox Grid.Row="3" Grid.Column="1"
-                              Content="Automatisch nach Updates suchen"
-                              IsChecked="{Binding AutomaticallyCheckForUpdates, Mode=TwoWay}"
-                              Margin="5,0,0,5"
-                              VerticalAlignment="Center"/>
-                        <CheckBox Grid.Row="4" Grid.Column="1"
-                              Content="Updates automatisch installieren"
-                              IsChecked="{Binding AutomaticallyInstallUpdates, Mode=TwoWay}"
-                              Margin="5,0,0,5"
-                              VerticalAlignment="Center"/>
-
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Zoom" Margin="5,0,0,5" VerticalAlignment="Top" />
-
-                        <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
+                    <GroupBox Header="Filter" Grid.Row="1" Margin="5,0,5,10">
+                        <Grid Margin="5">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="EstwName"/>
+                                <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="AreaName"/>
+                                <ColumnDefinition Width="400" />
+                                <ColumnDefinition Width="30" />
                             </Grid.ColumnDefinitions>
 
-                            <Slider Grid.Row="0" Grid.ColumnSpan="3"
-                                Value="{Binding ScaleFactor, Mode=TwoWay}"
-                                Minimum="50"
-                                Maximum="150"
-                                TickPlacement="BottomRight"
-                                TickFrequency="10"
-                                Thumb.DragStarted="__ScaleFactor_DragStarted"
-                                Thumb.DragCompleted="__ScaleFactor_DragCompleted"/>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="ESTW" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="Bereich" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="Pfad" FontWeight="Bold" Margin="5,0,0,5"/>
 
-                            <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">50</TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">100</TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right">150</TextBlock>
+                            <TextBox Grid.Row="1" Grid.Column="0"
+                                     Text="{Binding EstwNameFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="0,0,10,0"
+                                     VerticalContentAlignment="Center"/>
 
-                            <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
-                                <xctk:IntegerUpDown Value="{Binding ScaleFactor, Mode=TwoWay}"
-                                                Minimum="50"
-                                                Maximum="150"
-                                                Width="30"
-                                                Margin="5,0,0,0"
-                                                ShowButtonSpinner="False"/>
-                                <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">%</TextBlock>
-                            </StackPanel>
+                            <ComboBox Grid.Row="1" Grid.Column="1"
+                                        ItemsSource="{Binding Areas}"
+                                        DisplayMemberPath="Name"
+                                        SelectedValuePath="Id"
+                                        SelectedValue="{Binding AreaIdFilter, Mode=TwoWay}"
+                                        Margin="0,0,5,0"/>
+
+                            <CheckBox Grid.Row="1" Grid.Column="2"
+                                      Content="Nur fehlende"
+                                      IsChecked="{Binding FilterMissingPaths,Mode=TwoWay}"
+                                      VerticalAlignment="Center"
+                                      Margin="5,0,0,0"/>
                         </Grid>
-                    </Grid>
-                </GroupBox>
-            </StackPanel>
-        </ScrollViewer>
+                    </GroupBox>
+
+                    <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">
+                        <ItemsControl ItemsSource="{Binding PathViewModels}" Margin="16,0,5,0" IsTabStop="False">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="EstwName"/>
+                                            <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="AreaName"/>
+                                            <ColumnDefinition Width="400" />
+                                            <ColumnDefinition Width="30" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="{Binding EstwName}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding AreaName}" VerticalAlignment="Center" Margin="0,0,5,0"/>
+
+                                        <TextBox Grid.Column="2" Text="{Binding Path, Mode=TwoWay}" Margin="5,0">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsAutoDetermined}" Value="True">
+                                                            <Setter Property="Background" Value="#30f0"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </TextBox>
+                                        
+                                        <Button Grid.Column="3" Content="..." Margin="0,0,5,0" Command="{Binding BrowseCommand}" IsTabStop="False"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
 
         <Grid Grid.Row="1" Margin="10,0">
             <Grid.ColumnDefinitions>

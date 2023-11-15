@@ -1,6 +1,7 @@
 ﻿using Leibit.BLL;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Core.Client.Commands;
+using Leibit.Core.Common;
 using Leibit.Entities;
 using Leibit.Entities.Common;
 using System;
@@ -20,9 +21,9 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
         #region - Needs -
         private SettingsBLL m_SettingsBll;
-        private IEnumerable<Area> m_Areas;
         private Entities.Settings.Settings m_Settings;
         private bool m_IsScaleFactorDragging;
+        private ObservableCollection<PathViewModel> m_AllPathViewModels;
 
         private CommandHandler m_SaveCommand;
         private CommandHandler m_CancelCommand;
@@ -37,9 +38,11 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         #region - Ctor -
         public SettingsViewModel(ObservableCollection<Area> areas)
         {
-            m_Areas = areas;
             m_SettingsBll = new SettingsBLL();
-            Areas = new ObservableCollection<AreaViewModel>();
+            m_AllPathViewModels = new ObservableCollection<PathViewModel>();
+
+            Areas = new ObservableCollection<Area>(areas.OrderBy(x => x.Name));
+            Areas.Insert(0, new Area(null, "<Alle>"));
 
             var SettingsResult = m_SettingsBll.GetSettings();
 
@@ -60,16 +63,62 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
         #region - Properties -
 
-        #region [Areas]
-        public ObservableCollection<AreaViewModel> Areas
+        #region [SelectedTabIndex]
+        public int SelectedTabIndex
         {
-            get
-            {
-                return Get<ObservableCollection<AreaViewModel>>();
-            }
+            get => Get<int>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [PathViewModels]
+        public ObservableCollection<PathViewModel> PathViewModels
+        {
+            get => Get<ObservableCollection<PathViewModel>>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [Areas]
+        public ObservableCollection<Area> Areas
+        {
+            get => Get<ObservableCollection<Area>>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [EstwNameFilter]
+        public string EstwNameFilter
+        {
+            get => Get<string>();
             set
             {
                 Set(value);
+                __Filter();
+            }
+        }
+        #endregion
+
+        #region [AreaIdFilter]
+        public string AreaIdFilter
+        {
+            get => Get<string>();
+            set
+            {
+                Set(value);
+                __Filter();
+            }
+        }
+        #endregion
+
+        #region [FilterMissingPaths]
+        public bool FilterMissingPaths
+        {
+            get => Get<bool>();
+            set
+            {
+                Set(value);
+                __Filter();
             }
         }
         #endregion
@@ -78,22 +127,6 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         public bool ShowPathsWarning
         {
             get => Get<bool>();
-            private set => Set(value);
-        }
-        #endregion
-
-        #region [ShowPathsInfo]
-        public bool ShowPathsInfo
-        {
-            get => Get<bool>();
-            private set => Set(value);
-        }
-        #endregion
-
-        #region [PathsInfoText]
-        public string PathsInfoText
-        {
-            get => Get<string>();
             private set => Set(value);
         }
         #endregion
@@ -517,25 +550,39 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
         private void __Initialize()
         {
-            foreach (var area in m_Areas)
+            foreach (var area in Areas)
             {
-                var VM = new AreaViewModel(area, m_Settings);
-                VM.PropertyChanged += AreaVM_PropertyChanged;
-                Areas.Add(VM);
+                foreach (var estw in area.ESTWs)
+                {
+                    string path = m_Settings.Paths.ContainsKey(estw.Id) ? m_Settings.Paths[estw.Id] : null;
+
+                    var pathVM = new PathViewModel(estw, path);
+                    pathVM.PropertyChanged += __PathVM_PropertyChanged;
+                    m_AllPathViewModels.Add(pathVM);
+                }
             }
 
+            PathViewModels = new ObservableCollection<PathViewModel>(m_AllPathViewModels.OrderBy(x => x.EstwName));
             ShowPathsWarning = !m_Settings.Paths.Any();
+
+            if (ShowPathsWarning)
+                SelectedTabIndex = 1;
         }
 
-        private void AreaVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void __PathVM_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            var VM = sender as AreaViewModel;
+            var senderVM = sender as PathViewModel;
 
-            if (VM == null)
+            if (senderVM == null)
                 return;
 
-            if (e.PropertyName == "Path")
+            if (e.PropertyName == nameof(PathViewModel.Path))
             {
+                if (senderVM.Path.IsNullOrWhiteSpace())
+                    m_Settings.Paths.Remove(senderVM.EstwId);
+                else
+                    m_Settings.Paths[senderVM.EstwId] = senderVM.Path;
+
                 m_SaveCommand.SetCanExecute(true);
             }
         }
@@ -571,24 +618,37 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
         private void __DeterminePaths()
         {
+            SelectedTabIndex = 1;
+
             var changedPaths = 0;
 
-            foreach (var area in Areas)
-                foreach (var path in area.Paths)
-                    if (path.DeterminePath())
-                        changedPaths++;
+            foreach (var path in PathViewModels)
+                if (path.DeterminePath())
+                    changedPaths++;
 
-            if (changedPaths == 0 && ShowPathsWarning)
-            {
-                MessageBox.Show("Es konnten keine Pfade automatisch ermittelt werden.", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (changedPaths == 0)
+                MessageBox.Show("Es konnten keine Pfade ermittelt werden.", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+                MessageBox.Show($"Es wurden {changedPaths} neue Pfade ermittelt.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             if (changedPaths > 0)
                 ShowPathsWarning = false;
 
-            PathsInfoText = $"Es wurden {changedPaths} neue Pfade ermittelt.";
-            ShowPathsInfo = true;
+            __Filter();
+        }
+
+        private void __Filter()
+        {
+            IEnumerable<PathViewModel> paths = m_AllPathViewModels;
+
+            if (EstwNameFilter.IsNotNullOrWhiteSpace())
+                paths = paths.Where(x => x.EstwName.Contains(EstwNameFilter, StringComparison.CurrentCultureIgnoreCase));
+            if (AreaIdFilter.IsNotNullOrWhiteSpace())
+                paths = paths.Where(x => x.AreaId == AreaIdFilter);
+            if (FilterMissingPaths)
+                paths = paths.Where(x => x.Path.IsNullOrWhiteSpace());
+
+            PathViewModels = new ObservableCollection<PathViewModel>(paths.OrderBy(x => x.EstwName));
         }
 
         #endregion
