@@ -23,52 +23,6 @@
             <TabItem Header="Allgemein">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">
                     <StackPanel Orientation="Vertical" Margin="10" Grid.IsSharedSizeScope="True">
-                        <!--<Border Visibility="{Binding ShowPathsWarning, Converter={StaticResource VisibilityConverter}}" Background="#3ff0" BorderBrush="#cff0" BorderThickness="2" Padding="5">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{StaticResource imgWarning}"/>
-                                <TextBlock Margin="5,0,0,0">
-                                <Run>Es sind keine Pfade zu ESTWsim konfiguriert. Bitte tragen Sie die Pfade zu den Simulationen ein, die Sie besitzen.</Run>
-                                <LineBreak/>
-                                <Hyperlink Command="{Binding DeterminePathsCommand}">Pfade automatisch ermitteln</Hyperlink>
-                                </TextBlock>
-                            </StackPanel>
-                        </Border>
-
-                        <Border Visibility="{Binding ShowPathsInfo, Converter={StaticResource VisibilityConverter}}" Background="#30f0" BorderBrush="#c0f0" BorderThickness="2" Padding="5">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{StaticResource imgOk}"/>
-                                <TextBlock Text="{Binding PathsInfoText}" Margin="5,0,0,0"/>
-                            </StackPanel>
-                        </Border>
-
-                        <GroupBox Header="Pfade">
-                            <ItemsControl ItemsSource="{Binding Areas}" IsTabStop="False">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Expander Header="{Binding AreaName}">
-                                            <ItemsControl ItemsSource="{Binding Paths}" IsTabStop="False">
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="auto" MinWidth="100" SharedSizeGroup="Header" />
-                                                                <ColumnDefinition Width="400" />
-                                                                <ColumnDefinition Width="30" SharedSizeGroup="Browse" />
-                                                            </Grid.ColumnDefinitions>
-
-                                                            <TextBlock Grid.Column="0" Text="{Binding EstwName}" VerticalAlignment="Center" />
-                                                            <TextBox Grid.Column="1" Text="{Binding Path, Mode=TwoWay}" Margin="5" />
-                                                            <Button Grid.Column="2" Content="..." Margin="5" Command="{Binding BrowseCommand}" IsTabStop="False" />
-                                                        </Grid>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                        </Expander>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </GroupBox>-->
-
                         <GroupBox Header="Programmverhalten">
                             <Grid Margin="0,5,0,0">
                                 <Grid.ColumnDefinitions>
