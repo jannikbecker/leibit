@@ -5,4 +5,5 @@
   <TrainNumber type="S" pattern="216xx" line="S6"/>
   <TrainNumber type="S" pattern="218xx" line="S8"/>
   <TrainNumber type="S" pattern="219xx" line="S9"/>
+  <TrainNumber type="S" pattern="221xx" line="S1"/>
 </TrainNumbers>

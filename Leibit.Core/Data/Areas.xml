@@ -86,5 +86,6 @@
 
   <area id="ch" name="Schweiz">
     <estw id="LZ" name="Luzern SBB" dataFile="leibit_LUZERN.dat" infrastructureManager="SBB"/>
+    <estw id="RK" name="Rotkreuz" dataFile="leibit_ROTKREUZ.dat" infrastructureManager="SBB"/>
   </area>
 </leibit>
