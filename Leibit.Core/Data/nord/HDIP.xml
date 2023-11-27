@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Osnabrück Hbf Vorbahnhof" short="HO N" refNr="16">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="16SN" direction="right"/>
+      <block name="16S22" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Belm" short="HBEM" refNr="17" scheduleFile="v17_____.abf">
+    <track name="1">
+      <block name="17SG1"/>
+    </track>
+    <track name="2">
+      <block name="17SG2"/>
+    </track>
+    <track name="3">
+      <block name="17SG3"/>
+    </track>
+  </station>
+
+  <station name="Vehrte" short="HVEH" refNr="18" scheduleFile="v18_____.abf">
+    <track name="1">
+      <block name="18SG1"/>
+    </track>
+    <track name="2">
+      <block name="18SG2"/>
+    </track>
+    <track name="3">
+      <block name="18SG3"/>
+    </track>
+  </station>
+
+  <station name="Ostercappeln" short="HOSC" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.abf">
+    <track name="1">
+      <block name="23G1"/>
+    </track>
+    <track name="2">
+      <block name="23G2"/>
+    </track>
+    <track name="3">
+      <block name="23G3"/>
+    </track>
+    <track name="4">
+      <block name="23G4"/>
+    </track>
+  </station>
+
+  <station name="Bohmte" short="HBOM" refNr="24" scheduleFile="g24_____.abf" localOrderFile="bf24____.abf">
+    <track name="1">
+      <block name="24G1"/>
+    </track>
+    <track name="2">
+      <block name="24G2"/>
+    </track>
+    <track name="3">
+      <block name="24G3"/>
+    </track>
+    <track name="4">
+      <block name="24G4"/>
+    </track>
+  </station>
+
+  <station name="Drohne" short="HDRO" refNr="25" scheduleFile="g25_____.abf" localOrderFile="bf25____.abf">
+    <track name="201">
+      <block name="25G201"/>
+    </track>
+    <track name="202">
+      <block name="25G202"/>
+    </track>
+    <track name="203">
+      <block name="25G203"/>
+    </track>
+  </station>
+
+  <station name="Lemförde" short="HLMF" refNr="26" scheduleFile="g26_____.abf" localOrderFile="bf26____.abf">
+    <track name="501">
+      <block name="26G501"/>
+    </track>
+    <track name="502">
+      <block name="26G502"/>
+    </track>
+    <track name="503">
+      <block name="26G503"/>
+    </track>
+    <track name="504">
+      <block name="26G504"/>
+    </track>
+  </station>
+
+  <station name="Lembruch" short="HLMB" refNr="27" scheduleFile="g27_____.abf" localOrderFile="bf27____.abf">
+    <track name="1">
+      <block name="27G1"/>
+    </track>
+    <track name="2">
+      <block name="27G2"/>
+    </track>
+    <track name="3">
+      <block name="27G3"/>
+    </track>
+    <track name="6">
+      <block name="27G6"/>
+    </track>
+  </station>
+
+  <station name="Diepholz" short="HDIP" refNr="28" scheduleFile="g28_____.abf" localOrderFile="bf28____.abf">
+    <track name="1">
+      <block name="28G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+    </track>
+    <track name="2">
+      <block name="28G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+    </track>
+    <track name="3">
+      <block name="28G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+    </track>
+    <track name="4">
+      <block name="28G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+    </track>
+    <track name="5">
+      <block name="28G5"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+    </track>
+
+    <track name="101">
+      <block name="28G101"/>
+      <alternative track="102"/>
+      <alternative track="103"/>
+      <alternative track="105"/>
+    </track>
+    <track name="102">
+      <block name="28G102"/>
+      <alternative track="101"/>
+      <alternative track="103"/>
+      <alternative track="105"/>
+    </track>
+    <track name="103">
+      <block name="28G103"/>
+      <alternative track="101"/>
+      <alternative track="102"/>
+      <alternative track="105"/>
+    </track>
+    <track name="105">
+      <block name="28G105"/>
+      <alternative track="101"/>
+      <alternative track="102"/>
+      <alternative track="103"/>
+    </track>
+  </station>
+
+  <station name="Rehden-Wetschen" short="HRWE" refNr="90" scheduleFile="g90_____.abf" localOrderFile="bf90____.abf">
+    <track name="255" calculateDelay="false">
+      <block name="28B255"/>
+    </track>
+  </station>
+
+  <station name="Drebber" short="HDRB" refNr="29" scheduleFile="g29_____.abf" localOrderFile="bf29____.abf">
+    <track name="1">
+      <block name="29G1"/>
+    </track>
+    <track name="2">
+      <block name="29G2"/>
+    </track>
+    <track name="7">
+      <block name="29G7"/>
+    </track>
+  </station>
+
+  <station name="Barnstorf (Han)" short="HBNF" refNr="30" scheduleFile="v30_____.abf" displayName="Barnstorf">
+    <track name="1">
+      <block name="30S1"/>
+    </track>
+    <track name="2">
+      <block name="30S2"/>
+    </track>
+    <track name="3">
+      <block name="30S3"/>
+    </track>
+    <track name="4">
+      <block name="30S4"/>
+    </track>
+    <track name="7">
+      <block name="30S7"/>
+    </track>
+  </station>
+
+  <station name="Drentwede" short="HDRE" refNr="31">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="31SP" direction="left"/>
+      <block name="30S21" direction="left"/>
+    </track>
+  </station>
+</estw>
