@@ -20,6 +20,7 @@
     <None Remove="Data\Areas.xml" />
     <None Remove="Data\berlin\B-Stadtbahn.xml" />
     <None Remove="Data\berlin\TrainNumbers.xml" />
+    <None Remove="Data\ch\GD.xml" />
     <None Remove="Data\ch\LZ.xml" />
     <None Remove="Data\ch\RK.xml" />
     <None Remove="Data\ch\TrainNumbers.xml" />
@@ -100,6 +101,7 @@
     <Content Include="Data\Areas.xml" />
     <EmbeddedResource Include="Data\berlin\B-Stadtbahn.xml" />
     <EmbeddedResource Include="Data\berlin\TrainNumbers.xml" />
+    <EmbeddedResource Include="Data\ch\GD.xml" />
     <EmbeddedResource Include="Data\ch\LZ.xml" />
     <EmbeddedResource Include="Data\ch\RK.xml" />
     <EmbeddedResource Include="Data\ch\TrainNumbers.xml" />
