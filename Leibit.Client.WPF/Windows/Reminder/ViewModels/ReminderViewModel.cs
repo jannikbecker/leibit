@@ -99,7 +99,7 @@ namespace Leibit.Client.WPF.Windows.Reminder.ViewModels
             if (e.PropertyName == "ShowLocalOrders")
             {
                 var window = new LocalOrdersView(m_Schedule.Train.Number, m_Schedule.Station.ShortSymbol);
-                window.DataContext = new LocalOrdersViewModel(senderVm.CurrentSchedule);
+                window.DataContext = new LocalOrdersViewModel(window.Dispatcher, senderVm.CurrentSchedule, m_Schedule.Station.ESTW.Area);
                 OnOpenWindow(window);
             }
         }
