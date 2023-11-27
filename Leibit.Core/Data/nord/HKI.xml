@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Diepholz" short="HDIP" refNr="28">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="28S215" direction="right"/>
+      <block name="28S218" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Drebber" short="HDRB" refNr="29" scheduleFile="v29_____.abf">
+    <track name="1">
+      <block name="29S1"/>
+    </track>
+    <track name="2">
+      <block name="29S2"/>
+    </track>
+    <track name="7">
+      <block name="29S7"/>
+    </track>
+  </station>
+
+  <station name="Barnstorf (Han)" short="HBNF" refNr="30" scheduleFile="g30_____.abf" localOrderFile="bf30____.abf" displayName="Barnstorf">
+    <track name="1">
+      <block name="30G1"/>
+    </track>
+    <track name="2">
+      <block name="30G2"/>
+    </track>
+    <track name="3">
+      <block name="30G3"/>
+    </track>
+    <track name="4">
+      <block name="30G4"/>
+    </track>
+    <track name="7">
+      <block name="30G7"/>
+    </track>
+  </station>
+
+  <station name="Drentwede" short="HDRE" refNr="31" scheduleFile="g31_____.abf" localOrderFile="bf31____.abf">
+    <track name="1">
+      <block name="31G1"/>
+    </track>
+    <track name="2">
+      <block name="31G2"/>
+    </track>
+    <track name="3">
+      <block name="31G3"/>
+    </track>
+    <track name="5">
+      <block name="31G5"/>
+    </track>
+  </station>
+
+  <station name="Twistringen" short="HT" refNr="32" scheduleFile="g32_____.abf" localOrderFile="bf32____.abf">
+    <track name="1">
+      <block name="32G1"/>
+    </track>
+    <track name="2">
+      <block name="32G2"/>
+    </track>
+    <track name="3">
+      <block name="32G3"/>
+    </track>
+    <track name="8">
+      <block name="32G8"/>
+    </track>
+  </station>
+  
+  <station name="Sulingen (Han)" short="HSUL" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="33BP4" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Bassum" short="HBAS" refNr="33" scheduleFile="g33_____.abf" localOrderFile="bf33____.abf">
+    <track name="1">
+      <block name="33G1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+    </track>
+    <track name="1.4">
+      <block name="33G1.4"/>
+      <alternative track="10"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+    </track>
+    <track name="2">
+      <block name="33G2"/>
+    </track>
+    <track name="4">
+      <block name="33G4"/>
+    </track>
+    <track name="5">
+      <block name="33G5"/>
+    </track>
+    <track name="6">
+      <block name="33G6"/>
+    </track>
+    <track name="7">
+      <block name="33G7"/>
+    </track>
+    <track name="10">
+      <block name="33G10"/>
+      <alternative track="1.4"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+    </track>
+  </station>
+
+  <station name="Bramstedt (b Syke)" short="HBRA" refNr="34" scheduleFile="b34_____.abf" displayName="Bramstedt">
+    <track name="1" calculateDelay="false">
+      <block name="34B1"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="34B4"/>
+    </track>
+  </station>
+
+  <station name="Syke" short="HSYK" refNr="34" scheduleFile="g34_____.abf" localOrderFile="bf34____.abf">
+    <track name="1">
+      <block name="34G1"/>
+    </track>
+    <track name="2">
+      <block name="34G2"/>
+    </track>
+    <track name="3">
+      <block name="34G3"/>
+    </track>
+    <track name="4">
+      <block name="34G4"/>
+    </track>
+  </station>
+
+  <station name="Barrien" short="HBRA" refNr="35" scheduleFile="b35_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="35B21"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="35B22"/>
+    </track>
+  </station>
+
+  <station name="Kirchweyhe" short="HKI" refNr="35" scheduleFile="g35_____.abf" localOrderFile="bf35____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="35G1"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="35G2"/>
+    </track>
+    <track name="3">
+      <block name="35G3"/>
+    </track>
+    <track name="4">
+      <block name="35G4"/>
+    </track>
+    <track name="5">
+      <block name="35G5"/>
+    </track>
+    <track name="6">
+      <block name="35G6"/>
+    </track>
+    <track name="7">
+      <block name="35G7"/>
+    </track>
+    <track name="23">
+      <block name="35G23"/>
+    </track>
+    <track name="24">
+      <block name="35G24"/>
+    </track>
+    <track name="25">
+      <block name="35G25"/>
+    </track>
+    <track name="26">
+      <block name="35G26"/>
+    </track>
+    <track name="27">
+      <block name="35G27.1"/>
+    </track>
+  </station>
+
+  <station name="Dreye" short="HDRY" refNr="36" scheduleFile="b36_____.abf">
+    <track name="1" calculateDelay="false" isPlatform="false">
+      <block name="35BN" direction="left"/>
+      <block name="36B1" direction="right"/>
+    </track>
+    <track name="2" calculateDelay="false" isPlatform="false">
+      <block name="35B2" direction="left"/>
+      <block name="36B1P" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Bremen Gabelung" short="HGA" refNr="36" scheduleFile="g36_____.abf">
+    <track name="102" isPlatform="false">
+      <block name="36B1P" direction="left"/>
+      <block name="37BP" direction="right"/>
+    </track>
+    <track name="104" isPlatform="false">
+      <block name="51B42" direction="right"/>
+    </track>
+    <track name="105" isPlatform="false">
+      <block name="36B39" direction="right"/>
+    </track>
+    <track name="106" isPlatform="false">
+      <block name="36B1" direction="left"/>
+      <block name="36B11" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Sagehorn" short="ASAG" refNr="51">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="36B43" direction="left"/>
+      <block name="51SPK" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Hemelingen" short="HBHM" refNr="37" scheduleFile="g37_____.abf" localOrderFile="bf37____.abf" displayName="Brm-Hemelingen">
+    <track name="1">
+      <block name="37G1"/>
+    </track>
+    <track name="2">
+      <block name="37G2"/>
+    </track>
+    <track name="3">
+      <block name="37G3"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Hastedt" short="HHAT" refNr="38" scheduleFile="g38_____.abf">
+    <track name="820" isPlatform="false">
+      <block name="10B166" direction="right"/>
+    </track>
+    <track name="830" isPlatform="false">
+      <block name="38B192" direction="left"/>
+      <block name="11B194" direction="right"/>
+    </track>
+    <track name="920" isPlatform="false">
+      <block name="37BN" direction="left"/>
+      <block name="11B191" direction="right"/>
+    </track>
+    <track name="930" isPlatform="false">
+      <block name="10B171" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Bremen-Vahr" short="HVAH" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10B166" direction="left"/>
+      <block name="10B171" direction="left"/>
+      <block name="10S173" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Bremen Hbf" short="HB" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11S175" direction="left"/>
+      <block name="11S178" direction="left"/>
+      <block name="11S195" direction="left"/>
+      <block name="11S198" direction="left"/>
+    </track>
+  </station>
+</estw>
