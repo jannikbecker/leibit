@@ -83,4 +83,8 @@
     <estw id="Ma" name="Mallnitz-Obervellach" dataFile="leibit_MALLNITZ-OBERV.dat" infrastructureManager="OEBB"/>
     <estw id="Stt" name="Spittal-Millstättersee" dataFile="leibit_SPITTAL-MILLST.dat" infrastructureManager="OEBB"/>
   </area>
+
+  <area id="ch" name="Schweiz">
+    <estw id="LZ" name="Luzern SBB" dataFile="leibit_LUZERN.dat" infrastructureManager="SBB"/>
+  </area>
 </leibit>

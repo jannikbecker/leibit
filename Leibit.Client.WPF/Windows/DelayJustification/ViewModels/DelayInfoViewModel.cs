@@ -31,6 +31,8 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
                 AllDelayReasons = DelayReason.GetDBDelayReasons();
             else if (Delay.Schedule.Schedule.Station.ESTW.InfrastructureManager == eInfrastructureManager.OEBB)
                 AllDelayReasons = DelayReason.GetOEBBDelayReasons();
+            else if (Delay.Schedule.Schedule.Station.ESTW.InfrastructureManager == eInfrastructureManager.SBB)
+                AllDelayReasons = DelayReason.GetSBBDelayReasons();
         }
         #endregion
 
