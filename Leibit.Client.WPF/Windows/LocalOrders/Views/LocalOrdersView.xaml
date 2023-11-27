@@ -3,13 +3,58 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                        xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.LocalOrders.Views"
                        xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                        ResizeMode="ResizeAll"
                        Caption="{Binding Caption}">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <TextBlock FontFamily="Courier New" 
-                   Margin="5" 
-                   local:LocalOrdersFormatter.Command="{Binding OpenTrainScheduleCommand}" 
-                   local:LocalOrdersFormatter.Content="{Binding LocalOrders}"/>
-    </ScrollViewer>
+    <controls:LeibitWindow.Resources>
+        <conv:VisibilityConverter x:Key="VisibilityConverter"/>
+        <conv:VisibilityConverter x:Key="InvertedVisibilityConverter" Invert="True"/>
+    </controls:LeibitWindow.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" IsMainMenu="True" Foreground="{DynamicResource MenuForeground}" Background="{DynamicResource MenuBackground}">
+            <MenuItem Header="Bearbeiten" Command="{Binding EditCommand}" IsEnabled="{Binding CanEdit}" Visibility="{Binding IsInEditMode, Converter={StaticResource InvertedVisibilityConverter}}">
+                <MenuItem.Icon>
+                    <Image Source="{DynamicResource imgEdit}" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="Fertig" Command="{Binding FinishCommand}" Visibility="{Binding IsInEditMode, Converter={StaticResource VisibilityConverter}}">
+                <MenuItem.Icon>
+                    <Image Source="{DynamicResource imgDone}" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            <MenuItem Header="Zurücksetzen" Command="{Binding ResetCommand}" IsEnabled="{Binding CanEdit}">
+                <MenuItem.Icon>
+                    <Image Source="{DynamicResource imgUndo}" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+        
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid>
+                <TextBlock FontFamily="Courier New" 
+                           Margin="5"
+                           Visibility="{Binding IsInEditMode, Converter={StaticResource InvertedVisibilityConverter}}"
+                           local:LocalOrdersFormatter.Command="{Binding OpenTrainScheduleCommand}" 
+                           local:LocalOrdersFormatter.Content="{Binding LocalOrders}"/>
+
+                <Border BorderThickness="2" BorderBrush="Red" Visibility="{Binding IsInEditMode, Converter={StaticResource VisibilityConverter}}">
+                    <TextBox Text="{Binding LocalOrders, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             FontFamily="Courier New"
+                             AcceptsReturn="True"
+                             AcceptsTab="True"
+                             Padding="3"
+                             BorderThickness="0"/>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
 </controls:LeibitWindow>

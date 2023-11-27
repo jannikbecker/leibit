@@ -149,6 +149,7 @@ namespace Leibit.BLL
                         SerializedSchedule.IsPrepared = Schedule.IsPrepared;
                         SerializedSchedule.IsCancelled = Schedule.IsCancelled;
                         SerializedSchedule.IsManuallyModified = Schedule.IsManuallyModified;
+                        SerializedSchedule.LocalOrders = Schedule.LocalOrders;
 
                         if (Schedule.LiveTrack != null)
                             SerializedSchedule.LiveTrack = Schedule.LiveTrack.Name;
@@ -319,6 +320,11 @@ namespace Leibit.BLL
                         LiveSchedule.IsPrepared = SerializedSchedule.IsPrepared;
                         LiveSchedule.IsCancelled = SerializedSchedule.IsCancelled;
                         LiveSchedule.IsManuallyModified = SerializedSchedule.IsManuallyModified;
+
+                        if (SerializedSchedule.LocalOrders == null)
+                            LiveSchedule.LocalOrders = Schedule.LocalOrders; // For compatibility reasons
+                        else
+                            LiveSchedule.LocalOrders = SerializedSchedule.LocalOrders;
 
                         if (SerializedSchedule.ExpectedDelay.HasValue)
                         {

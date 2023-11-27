@@ -351,7 +351,22 @@
     <ControlTemplate x:Key="TopMenuItemTemplate" TargetType="MenuItem">
         <Border x:Name="layoutRoot" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1">
             <Grid>
-                <ContentPresenter ContentSource="Header" Margin="{TemplateBinding Padding}"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <ContentPresenter x:Name="Icon"
+                                  ContentSource="Icon"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  Width="16"
+                                  Height="16"
+                                  Margin="3"/>
+
+                <ContentPresenter Grid.Column="1" ContentSource="Header" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
 
                 <Popup IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
                        PopupAnimation="Slide"
@@ -376,6 +391,12 @@
             </Trigger>
             <Trigger Property="IsSubmenuOpen" Value="True">
                 <Setter Property="Background" Value="{StaticResource SubMenuBackground}"/>
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#888"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -454,6 +475,9 @@
         <Setter Property="Template" Value="{StaticResource SubMenuItemTemplate}"/>
 
         <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="Template" Value="{StaticResource TopMenuItemTemplate}"/>
+            </Trigger>
             <Trigger Property="Role" Value="TopLevelHeader">
                 <Setter Property="Template" Value="{StaticResource TopMenuItemTemplate}"/>
             </Trigger>
@@ -480,4 +504,6 @@
     <BitmapImage x:Key="imgDelay" UriSource="/Leibit;component/Resources/Images/Dark/delay.png" />
     <BitmapImage x:Key="imgTrain" UriSource="/Leibit;component/Resources/Images/Dark/train.png" />
     <BitmapImage x:Key="imgReminders" UriSource="/Leibit;component/Resources/Images/Dark/reminders.png" />
+    <BitmapImage x:Key="imgUndo" UriSource="/Leibit;component/Resources/Images/Dark/undo.png" />
+    <BitmapImage x:Key="imgDone" UriSource="/Leibit;component/Resources/Images/Dark/done.png" />
 </ResourceDictionary>
