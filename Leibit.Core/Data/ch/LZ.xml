@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Luzern" short="LZ" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
+    <track name="2">
+      <block name="01G2"/>
+    </track>
+    <track name="3">
+      <block name="01G3"/>
+    </track>
+    <track name="4">
+      <block name="01G4"/>
+    </track>
+    <track name="5">
+      <block name="01G5"/>
+    </track>
+    <track name="6">
+      <block name="01G6"/>
+    </track>
+    <track name="7">
+      <block name="01G7"/>
+    </track>
+    <track name="8">
+      <block name="01G8"/>
+    </track>
+    <track name="9">
+      <block name="01G9"/>
+    </track>
+    <track name="10">
+      <block name="01G10"/>
+    </track>
+    <track name="11">
+      <block name="01G11"/>
+    </track>
+  </station>
+  
+  <station name="Luzern Cargo" short="LZGB" refNr="1" scheduleFile="b1______.abf">
+    <track name="104">
+      <block name="01G04"/>
+    </track>
+    <track name="530">
+      <block name="05G30"/>
+    </track>
+    <track name="545">
+      <block name="05G45"/>
+    </track>
+  </station>
+
+  <station name="Gütsch" short="GTS" refNr="2" scheduleFile="g2______.abf" localOrderFile="bf2_____.abf">
+    <track name="1">
+      <block name="02G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+    <track name="2">
+      <block name="02G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+    </track>
+    <track name="3">
+      <block name="02G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+    </track>
+    <track name="60" isPlatform="false">
+      <block name="02G71" direction="left"/>
+      <block name="05B04" direction="right"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+  </station>
+
+  <station name="Littau" short="LIT" refNr="8">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="08B91" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Emmenbrücke" short="EBR" refNr="4" scheduleFile="v4______.abf">
+    <track name="1">
+      <block name="04S1"/>
+    </track>
+    <track name="2">
+      <block name="04S2"/>
+    </track>
+    <track name="3">
+      <block name="04S3"/>
+    </track>
+  </station>
+
+  <station name="Emmenbrücke Gersag" short="GSAG" refNr="4" scheduleFile="v40_____.abf">
+    <track name="41" calculateDelay="false">
+      <block name="04S41"/>
+    </track>
+    <track name="42" calculateDelay="false">
+      <block name="04S42"/>
+    </track>
+  </station>
+
+  <station name="Emmenbrücke Kapf" short="RBGD" refNr="4">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="04S31" direction="left"/>
+      <block name="04S32" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Rotsee (Verzw)" short="ROTS" refNr="100">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="04S359" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Würzenbach" short="WUE" refNr="3" scheduleFile="g3______.abf" localOrderFile="bf3_____.abf">
+    <track name="1">
+      <block name="03G1"/>
+    </track>
+    <track name="2">
+      <block name="03G2"/>
+    </track>
+  </station>
+
+  <station name="Meggen" short="MEG" refNr="5">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="05B06" direction="left"/>
+    </track>
+  </station>
+</estw>

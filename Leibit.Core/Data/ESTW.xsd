@@ -70,7 +70,7 @@
             </xs:sequence>
             <xs:attribute name="name" type="xs:string" use="required" />
             <xs:attribute name="short" type="xs:string" use="required" />
-            <xs:attribute name="refNr" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="refNr" type="xs:unsignedShort" use="required" />
             <xs:attribute name="scheduleFile" type="xs:string" use="optional" />
             <xs:attribute name="localOrderFile" type="xs:string" use="optional" />
             <xs:attribute name="displayName" type="xs:string" use="optional" />

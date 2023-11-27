@@ -40,8 +40,10 @@ Folgende Simulationen werden aktuell unterstützt:
     - Eisenach
     - Gotha
 - Bereich Norddeutschland
-    - Minden (NEU)
-    - Wunstorf (NEU)
+    - Diepholz (NEU)
+    - Kirchweyhe (NEU)
+    - Minden
+    - Wunstorf
     - Soltau
     - Nienburg
     - Verden
@@ -56,6 +58,10 @@ Folgende Simulationen werden aktuell unterstützt:
     - Solingen
     - Wuppertal Hbf
     - Wuppertal-Oberbarmen
+- Bereich Schweiz (NEU)
+    - Luzern SBB (NEU)
+    - Rotkreuz (NEU)
+    - Arth-Goldau (NEU)
 - Bereich Stuttgart
     - Stuttgart Hbf Ostseite
     - Stuttgart Hbf Westseite

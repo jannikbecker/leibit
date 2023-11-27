@@ -21,6 +21,8 @@
   </area>
 
   <area id="nord" name="Norddeutschland">
+    <estw id="HDIP" name="Diepholz" dataFile="leibit_DIEPHOLZ.dat" infrastructureManager="DB"/>
+    <estw id="HKI" name="Kirchweyhe" dataFile="leibit_KIRCHWEYHE.dat" infrastructureManager="DB"/>
     <estw id="HM" name="Minden" dataFile="leibit_MINDEN.dat" infrastructureManager="DB"/>
     <estw id="HWUN" name="Wunstorf" dataFile="leibit_WUNSTORF.dat" infrastructureManager="DB"/>
     <estw id="HNBG" name="Nienburg" dataFile="leibit_NIENBURG.dat" infrastructureManager="DB" productName="Verden Süd"/>
@@ -82,5 +84,11 @@
     <estw id="Bag" name="Badgastein" dataFile="leibit_BADGASTEIN.dat" infrastructureManager="OEBB"/>
     <estw id="Ma" name="Mallnitz-Obervellach" dataFile="leibit_MALLNITZ-OBERV.dat" infrastructureManager="OEBB"/>
     <estw id="Stt" name="Spittal-Millstättersee" dataFile="leibit_SPITTAL-MILLST.dat" infrastructureManager="OEBB"/>
+  </area>
+
+  <area id="ch" name="Schweiz">
+    <estw id="LZ" name="Luzern SBB" dataFile="leibit_LUZERN.dat" infrastructureManager="SBB"/>
+    <estw id="RK" name="Rotkreuz" dataFile="leibit_ROTKREUZ.dat" infrastructureManager="SBB"/>
+    <estw id="GD" name="Arth-Goldau" dataFile="leibit_ARTH-GOLDAU.dat" infrastructureManager="SBB"/>
   </area>
 </leibit>

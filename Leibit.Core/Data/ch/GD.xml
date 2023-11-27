@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Würzenbach" short="WUE" refNr="3">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="05B06" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Meggen" short="MEG" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf">
+    <track name="2">
+      <block name="01G2"/>
+    </track>
+    <track name="3">
+      <block name="01G3"/>
+    </track>
+    <track name="4">
+      <block name="01G4"/>
+    </track>
+  </station>
+
+  <station name="Merlischachen" short="MERL" refNr="5" scheduleFile="b5______.abf">
+    <track name="1" calculateDelay="false">
+      <block name="05B10"/>
+    </track>
+  </station>
+
+  <station name="Küssnacht am Rigi" short="KUE" refNr="2" scheduleFile="g2______.abf" localOrderFile="bf2_____.abf">
+    <track name="1">
+      <block name="02G1"/>
+    </track>
+    <track name="2">
+      <block name="02G2"/>
+    </track>
+  </station>
+
+  <station name="Brüglen (Spw)" short="BRGL" refNr="5">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="01B63" direction="right"/>
+      <block name="02B63" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Immensee" short="IM" refNr="3" scheduleFile="g3______.abf" localOrderFile="bf3_____.abf">
+    <track name="2">
+      <block name="03G2"/>
+    </track>
+    <track name="3">
+      <block name="03G3"/>
+    </track>
+    <track name="4">
+      <block name="03G4"/>
+    </track>
+  </station>
+
+  <station name="Brunnmatt (Spw)" short="BRM" refNr="4" scheduleFile="g4______.abf" localOrderFile="bf3_____.abf">
+    <track name="11" isPlatform="false">
+      <block name="01B04" direction="left"/>
+      <block name="01B05" direction="right"/>
+    </track>
+    <track name="12" isPlatform="false">
+      <block name="02B04" direction="left"/>
+      <block name="02B05" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Arth-Goldau" short="GD" refNr="5" scheduleFile="g5______.abf" localOrderFile="bf5_____.abf">
+    <track name="1">
+      <block name="05G1"/>
+    </track>
+    <track name="2">
+      <block name="05G2"/>
+    </track>
+    <track name="3">
+      <block name="05G3"/>
+    </track>
+    <track name="4">
+      <block name="05G4"/>
+    </track>
+    <track name="5">
+      <block name="05G5"/>
+    </track>
+    <track name="6">
+      <block name="05G6"/>
+    </track>
+    <track name="8">
+      <block name="05G8"/>
+      <block name="05G68"/>
+    </track>
+    <track name="9">
+      <block name="05G9"/>
+      <block name="05G69"/>
+    </track>
+    <track name="11">
+      <block name="05G11"/>
+      <block name="05G71"/>
+    </track>
+    <track name="12">
+      <block name="05G12"/>
+      <block name="05G72"/>
+    </track>
+    <track name="13">
+      <block name="05G13"/>
+      <block name="05G73"/>
+    </track>
+  </station>
+
+  <station name="Steinen" short="STN" refNr="4">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="04S112" direction="left"/>
+      <block name="04S212" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Steinerberg" short="STBG" refNr="6">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="06B37" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Goldau Mühlefluh (Verzw)" short="GDMF" refNr="5">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="06B11" direction="left"/>
+      <block name="05G33" direction="right"/>
+      <block name="05G34" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Walchwil" short="WCHW" refNr="6" scheduleFile="g6______.abf" localOrderFile="bf6_____.abf">
+    <track name="2">
+      <block name="06G2"/>
+      <block name="06G32"/>
+    </track>
+    <track name="3">
+      <block name="06G3"/>
+    </track>
+  </station>
+
+  <station name="Zug Oberwil" short="ZGO" refNr="6" scheduleFile="b6______.abf">
+    <track name="1" calculateDelay="false">
+      <block name="06B03"/>
+    </track>
+  </station>
+
+  <station name="Zug" short="ZG" refNr="6">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="06B02" direction="right"/>
+    </track>
+  </station>
+</estw>

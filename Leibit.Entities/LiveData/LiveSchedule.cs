@@ -26,6 +26,7 @@ namespace Leibit.Entities.LiveData
             m_Train = Train;
             m_Schedule = Schedule;
             m_Delays = new List<DelayInfo>();
+            LocalOrders = Schedule.LocalOrders;
         }
 
         public TrainInformation Train
@@ -115,6 +116,8 @@ namespace Leibit.Entities.LiveData
         public bool IsManuallyModified { get; set; }
 
         public DateTime? ReadyTime { get; set; }
+
+        public string LocalOrders { get; set; }
 
         public ReadOnlyCollection<DelayInfo> Delays
         {

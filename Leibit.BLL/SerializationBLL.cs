@@ -94,6 +94,13 @@ namespace Leibit.BLL
                     Time = e.Time,
                     StartTime = e.StartTime,
                     IsActive = (DateTime.Now - e.LastUpdatedOn).TotalSeconds < Settings.EstwTimeout,
+                    Reminders = e.Reminders.Select(r => new SerializedReminder
+                    {
+                        TrainNumber = r.TrainNumber,
+                        StationShort = r.StationShort,
+                        DueTime = r.DueTime,
+                        Text = r.Text,
+                    }).ToList(),
                 }));
 
                 Root.Version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
@@ -142,6 +149,7 @@ namespace Leibit.BLL
                         SerializedSchedule.IsPrepared = Schedule.IsPrepared;
                         SerializedSchedule.IsCancelled = Schedule.IsCancelled;
                         SerializedSchedule.IsManuallyModified = Schedule.IsManuallyModified;
+                        SerializedSchedule.LocalOrders = Schedule.LocalOrders;
 
                         if (Schedule.LiveTrack != null)
                             SerializedSchedule.LiveTrack = Schedule.LiveTrack.Name;
@@ -231,6 +239,19 @@ namespace Leibit.BLL
                     ValidateResult(LoadResult);
                     Estw.Time = SerializedEstw.Time;
                     Estw.StartTime = SerializedEstw.StartTime;
+
+                    if (SerializedEstw.Reminders != null)
+                    {
+                        foreach (var SerializedReminder in SerializedEstw.Reminders)
+                        {
+                            var Reminder = new Reminder();
+                            Reminder.TrainNumber = SerializedReminder.TrainNumber;
+                            Reminder.StationShort = SerializedReminder.StationShort;
+                            Reminder.DueTime = SerializedReminder.DueTime;
+                            Reminder.Text = SerializedReminder.Text;
+                            Estw.Reminders.Add(Reminder);
+                        }
+                    }
                 }
 
                 foreach (var SerializedTrain in Root.LiveTrains)
@@ -299,6 +320,11 @@ namespace Leibit.BLL
                         LiveSchedule.IsPrepared = SerializedSchedule.IsPrepared;
                         LiveSchedule.IsCancelled = SerializedSchedule.IsCancelled;
                         LiveSchedule.IsManuallyModified = SerializedSchedule.IsManuallyModified;
+
+                        if (SerializedSchedule.LocalOrders == null)
+                            LiveSchedule.LocalOrders = Schedule.LocalOrders; // For compatibility reasons
+                        else
+                            LiveSchedule.LocalOrders = SerializedSchedule.LocalOrders;
 
                         if (SerializedSchedule.ExpectedDelay.HasValue)
                         {

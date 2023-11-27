@@ -30,5 +30,6 @@ namespace Leibit.Entities.Serialization
         public bool IsPrepared { get; set; }
         public bool IsCancelled { get; set; }
         public bool IsManuallyModified { get; set; }
+        public string LocalOrders { get; set; }
     }
 }

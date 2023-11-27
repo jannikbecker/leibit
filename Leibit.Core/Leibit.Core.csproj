@@ -20,6 +20,10 @@
     <None Remove="Data\Areas.xml" />
     <None Remove="Data\berlin\B-Stadtbahn.xml" />
     <None Remove="Data\berlin\TrainNumbers.xml" />
+    <None Remove="Data\ch\GD.xml" />
+    <None Remove="Data\ch\LZ.xml" />
+    <None Remove="Data\ch\RK.xml" />
+    <None Remove="Data\ch\TrainNumbers.xml" />
     <None Remove="Data\fehmarn\APU.xml" />
     <None Remove="Data\fehmarn\Fehmarn.xml" />
     <None Remove="Data\nhth\FB.xml" />
@@ -46,6 +50,8 @@
     <None Remove="Data\nord\AROG.xml" />
     <None Remove="Data\nord\HB.xml" />
     <None Remove="Data\nord\HBSB.xml" />
+    <None Remove="Data\nord\HDIP.xml" />
+    <None Remove="Data\nord\HKI.xml" />
     <None Remove="Data\nord\HM.xml" />
     <None Remove="Data\nord\HNBG.xml" />
     <None Remove="Data\nord\HSO.xml" />
@@ -97,6 +103,10 @@
     <Content Include="Data\Areas.xml" />
     <EmbeddedResource Include="Data\berlin\B-Stadtbahn.xml" />
     <EmbeddedResource Include="Data\berlin\TrainNumbers.xml" />
+    <EmbeddedResource Include="Data\ch\GD.xml" />
+    <EmbeddedResource Include="Data\ch\LZ.xml" />
+    <EmbeddedResource Include="Data\ch\RK.xml" />
+    <EmbeddedResource Include="Data\ch\TrainNumbers.xml" />
     <EmbeddedResource Include="Data\fehmarn\APU.xml" />
     <EmbeddedResource Include="Data\fehmarn\Fehmarn.xml" />
     <EmbeddedResource Include="Data\nhth\FB.xml" />
@@ -123,6 +133,8 @@
     <EmbeddedResource Include="Data\nord\AROG.xml" />
     <EmbeddedResource Include="Data\nord\HB.xml" />
     <EmbeddedResource Include="Data\nord\HBSB.xml" />
+    <EmbeddedResource Include="Data\nord\HDIP.xml" />
+    <EmbeddedResource Include="Data\nord\HKI.xml" />
     <EmbeddedResource Include="Data\nord\HM.xml" />
     <EmbeddedResource Include="Data\nord\HNBG.xml" />
     <EmbeddedResource Include="Data\nord\HSO.xml" />

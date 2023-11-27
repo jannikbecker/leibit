@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                    xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <!-- Common-->
@@ -252,6 +252,20 @@
         </Style.Triggers>
     </Style>
 
+    <!-- TimePicker -->
+    <Style TargetType="xctk:TimePicker">
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
+        <Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TextForeground}"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#888"/>
+                <Setter Property="BorderBrush" Value="#888"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- ColorPicker -->
     <Style TargetType="xctk:ColorPicker">
         <Setter Property="DropDownBackground" Value="#222"/>
@@ -314,6 +328,64 @@
         </Style.Triggers>
     </Style>
     
+    <!-- TabControl -->
+    <Style TargetType="TabControl">
+        <Setter Property="BorderBrush" Value="{StaticResource TextForeground}"/>
+        <Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+    </Style>
+
+    <!-- TabItem -->
+    <Style TargetType="TabItem">
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
+        <Setter Property="Background" Value="{StaticResource MenuBackground}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,1,0" SnapsToDevicePixels="True">
+                            <ContentPresenter x:Name="HeaderPresenter" ContentSource="Header" Margin="5,2">
+                                <ContentPresenter.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=TabItem}}" Value="True">
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentPresenter.Resources>
+                            </ContentPresenter>
+                        </Border>
+
+                        <Rectangle Height="1" Fill="{StaticResource TextForeground}" VerticalAlignment="Bottom" Margin="0,0,0,-1"/>
+
+                        <Rectangle Height="1" Fill="#666" VerticalAlignment="Bottom" Margin="1,0,1,-1">
+                            <Rectangle.Visibility>
+                                <TemplateBinding Property="IsSelected">
+                                    <TemplateBinding.Converter>
+                                        <conv:VisibilityConverter/>
+                                    </TemplateBinding.Converter>
+                                </TemplateBinding>
+                            </Rectangle.Visibility>
+                        </Rectangle>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#456"/>
+            </Trigger>
+            
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="BorderBrush" Value="{StaticResource TextForeground}"/>
+                <Setter Property="Background" Value="{StaticResource MenuBackground}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- ContextMenu -->
     <Style TargetType="ContextMenu">
         <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
@@ -337,7 +409,22 @@
     <ControlTemplate x:Key="TopMenuItemTemplate" TargetType="MenuItem">
         <Border x:Name="layoutRoot" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1">
             <Grid>
-                <ContentPresenter ContentSource="Header" Margin="{TemplateBinding Padding}"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <ContentPresenter x:Name="Icon"
+                                  ContentSource="Icon"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  Width="16"
+                                  Height="16"
+                                  Margin="3"/>
+
+                <ContentPresenter Grid.Column="1" ContentSource="Header" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
 
                 <Popup IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
                        PopupAnimation="Slide"
@@ -362,6 +449,12 @@
             </Trigger>
             <Trigger Property="IsSubmenuOpen" Value="True">
                 <Setter Property="Background" Value="{StaticResource SubMenuBackground}"/>
+            </Trigger>
+            <Trigger Property="Role" Value="TopLevelHeader">
+                <Setter TargetName="Icon" Property="Visibility" Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#888"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -440,6 +533,9 @@
         <Setter Property="Template" Value="{StaticResource SubMenuItemTemplate}"/>
 
         <Style.Triggers>
+            <Trigger Property="Role" Value="TopLevelItem">
+                <Setter Property="Template" Value="{StaticResource TopMenuItemTemplate}"/>
+            </Trigger>
             <Trigger Property="Role" Value="TopLevelHeader">
                 <Setter Property="Template" Value="{StaticResource TopMenuItemTemplate}"/>
             </Trigger>
@@ -465,4 +561,7 @@
     <BitmapImage x:Key="imgEdit" UriSource="/Leibit;component/Resources/Images/Dark/edit.png" />
     <BitmapImage x:Key="imgDelay" UriSource="/Leibit;component/Resources/Images/Dark/delay.png" />
     <BitmapImage x:Key="imgTrain" UriSource="/Leibit;component/Resources/Images/Dark/train.png" />
+    <BitmapImage x:Key="imgReminders" UriSource="/Leibit;component/Resources/Images/Dark/reminders.png" />
+    <BitmapImage x:Key="imgUndo" UriSource="/Leibit;component/Resources/Images/Dark/undo.png" />
+    <BitmapImage x:Key="imgDone" UriSource="/Leibit;component/Resources/Images/Dark/done.png" />
 </ResourceDictionary>
