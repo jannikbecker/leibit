@@ -1,0 +1,135 @@
+﻿<controls:LeibitWindow x:Class="Leibit.Client.WPF.Windows.Reminder.Views.ReminderView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                       Caption="{Binding Caption}">
+
+    <controls:LeibitWindow.Resources>
+        <conv:VisibilityConverter x:Key="VisibilityConverter" />
+        <conv:IntComparisonConverter x:Key="IsGreaterThanConverter" ComparisonType="Greater" />
+    </controls:LeibitWindow.Resources>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical" Margin="10">
+            <GroupBox Header="Fahrplan">
+                <ItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Schedules}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" SharedSizeGroup="Arrival"/>
+                                    <ColumnDefinition Width="*" SharedSizeGroup="Departure"/>
+                                    <ColumnDefinition Width="*" SharedSizeGroup="Track"/>
+                                    <ColumnDefinition Width="*" SharedSizeGroup="Remark"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="LocalOrders"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,0,20,0">
+                                    <TextBlock>
+                                        <Run Text="An"/>
+                                        <Run Text="{Binding Arrival, Mode=OneWay}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Text="{Binding DelayArrival}" Margin="5,0,0,0" Visibility="{Binding HasLiveData}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="Green" />
+
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding DelayArrival, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=2}" Value="True">
+                                                        <Setter Property="Foreground" Value="Red" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,20,0">
+                                    <TextBlock>
+                                        <Run Text="Ab"/>
+                                        <Run Text="{Binding Departure, Mode=OneWay}"/>
+                                    </TextBlock>
+
+                                    <TextBlock Text="{Binding DelayDeparture}" Margin="5,0,0,0" Visibility="{Binding HasLiveData}">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="Green" />
+
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding DelayDeparture, Converter={StaticResource IsGreaterThanConverter}, ConverterParameter=2}" Value="True">
+                                                        <Setter Property="Foreground" Value="Red" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="2" Margin="0,0,20,0">
+                                    <Run Text="Gleis"/>
+                                    <Run Text="{Binding Track, Mode=OneWay}"/>
+                                </TextBlock>
+
+                                <TextBlock Grid.Column="3" Text="{Binding Remark}"/>
+
+                                <controls:ImageButton Grid.Column="4" Image="{StaticResource imgLocalOrders}" Command="{Binding ShowLocalOrdersCommand}" Margin="5,0,0,0" Visibility="{Binding HasLocalOrders, Converter={StaticResource VisibilityConverter}}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </GroupBox>
+
+            <Grid Margin="0,10,0,0">
+                <GroupBox Header="Erinnerungen">
+                    <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True" Margin="10">
+                        <Grid Margin="0,0,0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="DueTime"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Zeit" FontWeight="Bold" Margin="0,0,10,0"/>
+                            <TextBlock Grid.Column="1" Text="Hinweistext" FontWeight="Bold"/>
+                        </Grid>
+
+                        <ItemsControl ItemsSource="{Binding Reminders}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="DueTime"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="DeleteButton"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <xctk:TimePicker Grid.Column="0" Value="{Binding DueTime, Mode=TwoWay}" ShowDropDownButton="False" CurrentDateTimePart="Minute" Margin="0,0,5,0">
+                                            <xctk:TimePicker.InputBindings>
+                                                <KeyBinding Key="Return" Command="{Binding DataContext.SaveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}" />
+                                            </xctk:TimePicker.InputBindings>
+                                        </xctk:TimePicker>
+
+                                        <TextBox Grid.Column="1" Text="{Binding Text, Mode=TwoWay}" Margin="0,0,5,0">
+                                            <TextBox.InputBindings>
+                                                <KeyBinding Key="Return" Command="{Binding DataContext.SaveCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}" />
+                                            </TextBox.InputBindings>
+                                        </TextBox>
+
+                                        <controls:ImageButton Grid.Column="2" Image="{StaticResource imgClear}" Command="{Binding DeleteCommand}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <Rectangle Margin="0,10,0,10" Fill="LightGray" Height="1"/>
+                        <Button Content="Speichern" Command="{Binding SaveCommand}"  HorizontalAlignment="Right" Padding="4"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <controls:ImageButton Image="{StaticResource imgNew}" Command="{Binding NewCommand}" Background="{DynamicResource WindowBackground}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,15,0" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</controls:LeibitWindow>

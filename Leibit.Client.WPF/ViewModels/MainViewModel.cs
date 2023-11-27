@@ -1,6 +1,7 @@
 ﻿using Leibit.BLL;
 using Leibit.Client.WPF.Common;
 using Leibit.Client.WPF.Dialogs.Error;
+using Leibit.Client.WPF.Dialogs.OpenReminders;
 using Leibit.Client.WPF.Interfaces;
 using Leibit.Client.WPF.Windows.About.ViewModels;
 using Leibit.Client.WPF.Windows.About.Views;
@@ -82,6 +83,7 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_DisplayCommand;
         private CommandHandler m_TrainScheduleCommand;
         private CommandHandler m_SystemStateCommand;
+        private CommandHandler m_RemindersCommand;
         private CommandHandler m_SaveLayoutCommand;
         private CommandHandler m_ClearChildWindowsCommand;
         private CommandHandler m_ShowHelpCommand;
@@ -131,6 +133,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_DisplayCommand = new CommandHandler(__ShowDisplay, false);
             m_TrainScheduleCommand = new CommandHandler(__ShowTrainScheduleWindow, false);
             m_SystemStateCommand = new CommandHandler(__ShowSystemStateWindow, false);
+            m_RemindersCommand = new CommandHandler(OpenRemindersDialog.Open, false);
             m_SaveLayoutCommand = new CommandHandler(__SaveLayout, true);
             m_ClearChildWindowsCommand = new CommandHandler(__ClearChildWindows, true);
             m_ShowHelpCommand = new CommandHandler(__ShowHelp, true);
@@ -500,6 +503,16 @@ namespace Leibit.Client.WPF.ViewModels
         }
         #endregion
 
+        #region [RemindersCommand]
+        public ICommand RemindersCommand
+        {
+            get
+            {
+                return m_RemindersCommand;
+            }
+        }
+        #endregion
+
         #region [SaveLayoutCommand]
         public ICommand SaveLayoutCommand
         {
@@ -638,6 +651,7 @@ namespace Leibit.Client.WPF.ViewModels
                 }
 
                 m_SettingsBll.SaveWindowSettings(windowSettings);
+                OpenRemindersDialog.CloseAndReset();
             }
         }
         #endregion
@@ -1239,6 +1253,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_TrainProgressInformationCommand.SetCanExecute(true);
             m_DisplayCommand.SetCanExecute(true);
             m_SystemStateCommand.SetCanExecute(true);
+            m_RemindersCommand.SetCanExecute(true);
             IsTrainScheduleEnabled = true;
 
             StatusBarText = String.Format("Bereich {0} geladen", m_CurrentArea.Name);
@@ -1262,6 +1277,7 @@ namespace Leibit.Client.WPF.ViewModels
                 m_CurrentArea.LiveTrains.Clear();
 
             ChildWindows.Clear();
+            OpenRemindersDialog.CloseAndReset();
             Runtime.VisibleStations.Clear();
             ToastNotificationManagerCompat.History.Clear();
         }
@@ -1298,12 +1314,29 @@ namespace Leibit.Client.WPF.ViewModels
                             Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(ex.ToString()));
                         }
                     }
+
+                    __ProcessReminders(Area);
                 }
                 else
                     Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(Result.Message));
 
                 Thread.Sleep(500);
             }
+        }
+        #endregion
+
+        #region [__ProcessReminders]
+        private void __ProcessReminders(Area area)
+        {
+            foreach (var estw in area.ESTWs.Where(e => e.IsLoaded))
+            {
+                var reminders = estw.Reminders.Where(r => r.DueTime <= estw.Time).ToList();
+                Application.Current?.Dispatcher?.Invoke(() => OpenRemindersDialog.ShowReminders(estw, reminders));
+
+                foreach (var reminder in reminders)
+                    estw.Reminders.Remove(reminder);
+            }
+
         }
         #endregion
 

@@ -133,4 +133,5 @@
     <BitmapImage x:Key="imgEdit" UriSource="/Leibit;component/Resources/Images/Light/edit.png" />
     <BitmapImage x:Key="imgDelay" UriSource="/Leibit;component/Resources/Images/Light/delay.png" />
     <BitmapImage x:Key="imgTrain" UriSource="/Leibit;component/Resources/Images/Light/train.png" />
+    <BitmapImage x:Key="imgReminders" UriSource="/Leibit;component/Resources/Images/Light/reminders.png" />
 </ResourceDictionary>

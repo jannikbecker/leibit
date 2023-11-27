@@ -9,6 +9,8 @@ using Leibit.Client.WPF.Windows.ExpectedDelay.ViewModels;
 using Leibit.Client.WPF.Windows.ExpectedDelay.Views;
 using Leibit.Client.WPF.Windows.LocalOrders.ViewModels;
 using Leibit.Client.WPF.Windows.LocalOrders.Views;
+using Leibit.Client.WPF.Windows.Reminder.ViewModels;
+using Leibit.Client.WPF.Windows.Reminder.Views;
 using Leibit.Client.WPF.Windows.TrackChange.ViewModels;
 using Leibit.Client.WPF.Windows.TrackChange.Views;
 using Leibit.Client.WPF.Windows.TrainComposition.ViewModels;
@@ -64,6 +66,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             ShowLocalOrdersCommand = new CommandHandler(__ShowLocalOrders, false);
             ShowTrainCompositionCommand = new CommandHandler(__ShowTrainComposition, false);
             ShowDelayJustificationCommand = new CommandHandler(__ShowDelayJustification, false);
+            ShowRemindersCommand = new CommandHandler(__ShowReminders, true);
             NewTrainStateCommand = new CommandHandler(__NewTrainState, true);
             EnterTrainStateCommand = new CommandHandler(__EnterTrainState, false);
             NewCommand = new CommandHandler(__NewEntry, true);
@@ -130,6 +133,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
         #region [ShowDelayJustificationCommand]
         public CommandHandler ShowDelayJustificationCommand { get; }
         #endregion
+
+        public CommandHandler ShowRemindersCommand { get; }
 
         #region [NewCommand]
         public CommandHandler NewCommand { get; }
@@ -373,6 +378,15 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             var Window = new DelayJustificationView(SelectedItem.TrainNumber);
             Window.DataContext = new DelayJustificationViewModel(SelectedItem.CurrentTrain);
             OnOpenWindow(Window);
+        }
+        #endregion
+
+        #region [__ShowReminders]
+        private void __ShowReminders()
+        {
+            var window = new ReminderView(SelectedItem.TrainNumber, SelectedItem.Station.ShortSymbol);
+            window.DataContext = new ReminderViewModel(SelectedItem.CurrentTrain, SelectedItem.Schedule);
+            OnOpenWindow(window);
         }
         #endregion
 
