@@ -36,23 +36,19 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
         #region - Properties -
 
         #region [EstwId]
-        public string EstwId
-        {
-            get
-            {
-                return m_Estw.Id;
-            }
-        }
+        internal string EstwId => m_Estw.Id;
         #endregion
 
         #region [EstwName]
-        public string EstwName
-        {
-            get
-            {
-                return m_Estw.Name;
-            }
-        }
+        public string EstwName => m_Estw.Name;
+        #endregion
+
+        #region [AreaId]
+        internal string AreaId => m_Estw.Area.Id;
+        #endregion
+
+        #region [AreaName]
+        public string AreaName => m_Estw.Area.Name;
         #endregion
 
         #region [Path]
@@ -76,6 +72,14 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
             {
                 return m_BrowseCommand;
             }
+        }
+        #endregion
+
+        #region [IsAutoDetermined]
+        public bool IsAutoDetermined
+        {
+            get => Get<bool>();
+            private set => Set(value);
         }
         #endregion
 
@@ -113,6 +117,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                 return false;
 
             Path = candidates.Single();
+            IsAutoDetermined = true;
             return true;
         }
         #endregion
