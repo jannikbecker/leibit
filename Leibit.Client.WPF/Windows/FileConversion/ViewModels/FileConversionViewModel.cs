@@ -101,9 +101,13 @@ namespace Leibit.Client.WPF.Windows.FileConversion.ViewModels
             Task.Run(() =>
             {
                 var serializationBLL = new SerializationBLL();
+                var filesToConvert = Files.Where(x => x.IsValid && !x.IsSuccessful).ToList();
 
-                foreach (var vm in Files.Where(x => x.IsValid && !x.IsSuccessful))
+                for (int i = 0; i < filesToConvert.Count; i++)
                 {
+                    var vm = filesToConvert[i];
+                    OnReportProgress(vm.OldName, 100.0 * i / filesToConvert.Count);
+
                     var openResult = serializationBLL.Open(vm.OldName);
 
                     if (!openResult.Succeeded)
@@ -130,6 +134,8 @@ namespace Leibit.Client.WPF.Windows.FileConversion.ViewModels
                 foreach (var vm in Files)
                     vm.CanEdit = true;
 
+                OnReportProgress(true);
+                OnStatusBarTextChanged("Konvertierung abgeschlossen");
                 m_IsWorking = false;
 
                 m_Dispatcher.BeginInvoke(new Action(() =>
