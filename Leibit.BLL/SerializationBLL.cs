@@ -3,11 +3,11 @@ using Leibit.Core.Exceptions;
 using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
 using Leibit.Entities.Serialization;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Leibit.BLL
@@ -16,7 +16,6 @@ namespace Leibit.BLL
     {
 
         #region - Needs -
-        private IFormatter m_Formatter;
         private CalculationBLL m_CalculationBll;
         private InitializationBLL m_InitializationBll;
         private SettingsBLL m_SettingsBll;
@@ -26,7 +25,6 @@ namespace Leibit.BLL
         public SerializationBLL()
             : base()
         {
-            m_Formatter = new BinaryFormatter();
         }
         #endregion
 
@@ -103,7 +101,7 @@ namespace Leibit.BLL
                     }).ToList(),
                 }));
 
-                Root.Version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+                Root.Version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
 
                 foreach (var Train in Request.Area.LiveTrains.Values)
                 {
@@ -175,10 +173,8 @@ namespace Leibit.BLL
                 Root.VisibleTrains = Request.VisibleTrains;
                 Root.HiddenSchedules = Request.HiddenSchedules;
 
-                using (var Stream = new FileStream(Filename, FileMode.Create, FileAccess.Write))
-                {
-                    m_Formatter.Serialize(Stream, Root);
-                }
+                var json = JsonConvert.SerializeObject(Root);
+                File.WriteAllText(Filename, json);
 
                 Result.Result = Root;
                 Result.Succeeded = true;
@@ -202,16 +198,28 @@ namespace Leibit.BLL
 
                 var Container = new SerializationContainer();
 
-                var File = new FileInfo(Filename);
-
-                if (!File.Exists)
+                if (!File.Exists(Filename))
                     throw new OperationFailedException(String.Format("File '{0}' does not exist.", Filename));
 
                 SerializedRoot Root;
 
-                using (var Stream = File.OpenRead())
+                var json = File.ReadAllText(Filename);
+
+                if (json.StartsWith("{"))
                 {
-                    Root = m_Formatter.Deserialize(Stream) as SerializedRoot;
+                    Root = JsonConvert.DeserializeObject<SerializedRoot>(json);
+                    Container.FileFormat = Entities.eFileFormat.JSON;
+                }
+                else
+                {
+                    using (var stream = File.OpenRead(Filename))
+                    {
+                        var formatter = new BinaryFormatter();
+#pragma warning disable SYSLIB0011 // Type or member is obsolete
+                        Root = formatter.Deserialize(stream) as SerializedRoot;
+#pragma warning restore SYSLIB0011 // Type or member is obsolete
+                        Container.FileFormat = Entities.eFileFormat.Binary;
+                    }
                 }
 
                 if (Root == null)
@@ -397,7 +405,7 @@ namespace Leibit.BLL
                 Container.VisibleTrains = Root.VisibleTrains;
                 Container.HiddenSchedules = Root.HiddenSchedules;
                 Container.Windows = Root.Windows;
-                Container.IsOldVersion = Root.Version != Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+                Container.IsOldVersion = Root.Version != Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version;
 
                 var Result = new OperationResult<SerializationContainer>();
                 Result.Result = Container;

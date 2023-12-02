@@ -66,6 +66,7 @@ namespace Leibit.Client.WPF.ViewModels
         private Thread m_RefreshingThread;
         private CancellationTokenSource m_CancellationTokenSource;
         private string m_CurrentFilename;
+        private eFileFormat m_CurrentFileFormat;
         private bool m_ForceClose;
         private SoftwareInfo m_BildFplInfo;
 
@@ -122,7 +123,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_NewCommand = new CommandHandler<string>(__New, true);
             m_OpenCommand = new CommandHandler(__Open, true);
             m_SaveCommand = new CommandHandler(__Save, false);
-            m_SaveAsCommand = new CommandHandler(__SaveAs, false);
+            m_SaveAsCommand = new CommandHandler(() => __SaveAs(null), false);
             m_SettingsCommand = new CommandHandler(__Settings, true);
             m_EstwOnlineCommand = new CommandHandler(__StartEstwOnline, true);
             m_BildFplCommand = new CommandHandler(__StartBildFpl, IsBildFplInstalled);
@@ -686,6 +687,7 @@ namespace Leibit.Client.WPF.ViewModels
                 return;
 
             m_CurrentFilename = null;
+            m_CurrentFileFormat = eFileFormat.Unknown;
 
             __ShowEstwSelectionWindow();
         }
@@ -698,7 +700,7 @@ namespace Leibit.Client.WPF.ViewModels
                 return;
 
             var Dialog = new OpenFileDialog();
-            Dialog.Filter = "LeiBIT-Dateien|*.leibit|Alle Dateien|*.*";
+            Dialog.Filter = "LeiBIT-Dateien|*.leibit;*.leibit2|Alle Dateien|*.*";
 
             if (Dialog.ShowDialog() == true)
             {
@@ -805,16 +807,31 @@ namespace Leibit.Client.WPF.ViewModels
                                 continue;
 
                         case eChildWindowType.LocalOrders:
-                            var Tag = (KeyValuePair<int, string>)SerializedWindow.Tag;
-
-                            if (m_CurrentArea.Trains.ContainsKey(Tag.Key))
+                            if (SerializedWindow.Tag is KeyValuePair<int, string> kvp)
                             {
-                                var Schedule = m_CurrentArea.Trains[Tag.Key].Schedules.FirstOrDefault(s => s.Station.ShortSymbol == Tag.Value);
+                                TrainNumber = kvp.Key;
+                                StationShortSymbol = kvp.Value;
+                            }
+                            else if (SerializedWindow.Tag is string tag)
+                            {
+                                var tagParts = tag.Split(';');
+
+                                if (tagParts != null && tagParts.Length >= 2 && int.TryParse(tagParts[0], out TrainNumber))
+                                    StationShortSymbol = tagParts[1];
+                                else
+                                    continue;
+                            }
+                            else
+                                continue;
+
+                            if (m_CurrentArea.Trains.ContainsKey(TrainNumber))
+                            {
+                                var Schedule = m_CurrentArea.Trains[TrainNumber].Schedules.FirstOrDefault(s => s.Station.ShortSymbol == StationShortSymbol);
 
                                 if (Schedule == null)
                                     continue;
 
-                                Window = new LocalOrdersView(Tag.Key, Tag.Value);
+                                Window = new LocalOrdersView(TrainNumber, StationShortSymbol);
                                 ViewModel = new LocalOrdersViewModel(Window.Dispatcher, Schedule, m_CurrentArea);
                                 break;
                             }
@@ -877,6 +894,7 @@ namespace Leibit.Client.WPF.ViewModels
                 }
 
                 m_CurrentFilename = Filename;
+                m_CurrentFileFormat = OpenResult.Result.FileFormat;
             }
         }
         #endregion
@@ -886,7 +904,13 @@ namespace Leibit.Client.WPF.ViewModels
         {
             if (m_CurrentFilename.IsNullOrEmpty())
             {
-                __SaveAs();
+                __SaveAs(null);
+                return;
+            }
+
+            if (m_CurrentFileFormat == eFileFormat.Binary)
+            {
+                __SaveAs(Path.GetFileNameWithoutExtension(m_CurrentFilename) + ".leibit2");
                 return;
             }
 
@@ -925,6 +949,7 @@ namespace Leibit.Client.WPF.ViewModels
                 {
                     SerializedWindow.Type = eChildWindowType.LocalOrders;
                     SerializedWindow.Tag = new KeyValuePair<int, string>(localOrdersViewModel.CurrentSchedule.Train.Number, localOrdersViewModel.CurrentSchedule.Station.ShortSymbol);
+                    SerializedWindow.Tag = $"{localOrdersViewModel.CurrentSchedule.Train.Number};{localOrdersViewModel.CurrentSchedule.Station.ShortSymbol}";
                 }
                 else if (Window.DataContext is SystemStateViewModel)
                     SerializedWindow.Type = eChildWindowType.SystemState;
@@ -960,10 +985,11 @@ namespace Leibit.Client.WPF.ViewModels
         #endregion
 
         #region [__SaveAs]
-        private void __SaveAs()
+        private void __SaveAs(string proposedFileName)
         {
             var Dialog = new SaveFileDialog();
-            Dialog.Filter = "LeiBIT-Dateien|*.leibit";
+            Dialog.Filter = "LeiBIT-Dateien|*.leibit2";
+            Dialog.FileName = proposedFileName;
 
             if (Dialog.ShowDialog() == true)
             {
@@ -976,6 +1002,7 @@ namespace Leibit.Client.WPF.ViewModels
                 }
 
                 m_CurrentFilename = Filename;
+                m_CurrentFileFormat = eFileFormat.JSON;
                 __Save();
             }
         }
