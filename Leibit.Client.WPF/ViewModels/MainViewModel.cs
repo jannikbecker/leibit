@@ -11,6 +11,8 @@ using Leibit.Client.WPF.Windows.Display.ViewModels;
 using Leibit.Client.WPF.Windows.Display.Views;
 using Leibit.Client.WPF.Windows.ESTWSelection.ViewModels;
 using Leibit.Client.WPF.Windows.ESTWSelection.Views;
+using Leibit.Client.WPF.Windows.FileConversion.ViewModels;
+using Leibit.Client.WPF.Windows.FileConversion.Views;
 using Leibit.Client.WPF.Windows.LocalOrders.ViewModels;
 using Leibit.Client.WPF.Windows.LocalOrders.Views;
 using Leibit.Client.WPF.Windows.Settings.ViewModels;
@@ -74,6 +76,7 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_OpenCommand;
         private CommandHandler m_SaveCommand;
         private CommandHandler m_SaveAsCommand;
+        private CommandHandler m_FileConversionCommand;
         private CommandHandler m_SettingsCommand;
         private CommandHandler m_EstwOnlineCommand;
         private CommandHandler m_BildFplCommand;
@@ -124,6 +127,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_OpenCommand = new CommandHandler(__Open, true);
             m_SaveCommand = new CommandHandler(__Save, false);
             m_SaveAsCommand = new CommandHandler(() => __SaveAs(null), false);
+            m_FileConversionCommand = new CommandHandler(__ShowFileConversionWindow, true);
             m_SettingsCommand = new CommandHandler(__Settings, true);
             m_EstwOnlineCommand = new CommandHandler(__StartEstwOnline, true);
             m_BildFplCommand = new CommandHandler(__StartBildFpl, IsBildFplInstalled);
@@ -400,6 +404,16 @@ namespace Leibit.Client.WPF.ViewModels
             get
             {
                 return m_SaveAsCommand;
+            }
+        }
+        #endregion
+
+        #region [FileConversionCommand]
+        public ICommand FileConversionCommand
+        {
+            get
+            {
+                return m_FileConversionCommand;
             }
         }
         #endregion
@@ -1005,6 +1019,15 @@ namespace Leibit.Client.WPF.ViewModels
                 m_CurrentFileFormat = eFileFormat.JSON;
                 __Save();
             }
+        }
+        #endregion
+
+        #region [__ShowFileConversionWindow]
+        private void __ShowFileConversionWindow()
+        {
+            var Window = new FileConversionView();
+            Window.DataContext = new FileConversionViewModel(Window.Dispatcher);
+            __OpenChildWindow(Window);
         }
         #endregion
 

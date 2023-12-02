@@ -61,6 +61,10 @@
 
                 <Separator Background="{DynamicResource MenuSeparatorColor}"/>
 
+                <MenuItem Header="Dateikonvertierung" Command="{Binding FileConversionCommand}" />
+
+                <Separator Background="{DynamicResource MenuSeparatorColor}"/>
+
                 <MenuItem Header="Einstellungen..." Command="{Binding SettingsCommand}">
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgSettings}" />

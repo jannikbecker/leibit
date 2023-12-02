@@ -1,0 +1,77 @@
+﻿<controls:LeibitWindow x:Class="Leibit.Client.WPF.Windows.FileConversion.Views.FileConversionView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+                       Caption="Dateikonvertierung">
+
+    <controls:LeibitWindow.Resources>
+        <conv:VisibilityConverter x:Key="VisibilityConverter"/>
+    </controls:LeibitWindow.Resources>
+    
+    <Grid Grid.IsSharedSizeScope="True" Margin="0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" MinHeight="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Remove"/>
+                <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="OldFile"/>
+                <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="NewFile"/>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Extension"/>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="1" Text="Datei" FontWeight="Bold"/>
+            <TextBlock Grid.Column="2" Text="Neuer Name" FontWeight="Bold"/>
+            <TextBlock Grid.Column="4" Text="Status" FontWeight="Bold"/>
+        </Grid>
+
+        <Rectangle Grid.Row="1" Margin="0,0,0,10" Fill="LightGray" Height="1"/>
+
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" KeyboardNavigation.TabNavigation="Cycle">
+            <ItemsControl Grid.Row="2" ItemsSource="{Binding Files}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="10,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Remove"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="OldFile"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="NewFile"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Extension"/>
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="Status"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:ImageButton Grid.Column="0" Command="{Binding RemoveCommand}" Image="{DynamicResource imgClear}" IsEnabled="{Binding CanEdit}" Margin="0,0,10,0"/>
+                            <TextBox Grid.Column="1" Text="{Binding OldName, Mode=OneWay}" IsReadOnly="True" IsEnabled="{Binding CanEdit}" Margin="0,0,10,0"/>
+                            <TextBox Grid.Column="2" Text="{Binding NewName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding CanEdit}" Margin="0,0,2,0"/>
+                            <TextBlock Grid.Column="3" Text=".leibit2" VerticalAlignment="Center" Margin="0"/>
+                            <Image Grid.Column="4" Source="{DynamicResource imgOk}" Width="16" Height="16" Visibility="{Binding IsSuccessful, Converter={StaticResource VisibilityConverter}}" />
+                            <Image Grid.Column="4" Source="{DynamicResource imgWarning}" Width="16" Height="16" ToolTip="{Binding WarningText}" Visibility="{Binding HasWarning, Converter={StaticResource VisibilityConverter}}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Rectangle Grid.Row="3" Margin="0,20,0,0" Fill="LightGray" Height="1"/>
+        
+        <Grid Grid.Row="4" Margin="10,10,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Dateien auswählen" Command="{Binding SelectFilesCommand}" Margin="0,0,10,0" Padding="4"/>
+            <Button Grid.Column="2" Content="Konvertieren" Command="{Binding ConvertCommand}" Margin="0,0,10,0" Padding="4"/>
+            <Button Grid.Column="3" Content="Abbrechen" Command="{Binding CancelCommand}" Margin="0" Padding="4"/>
+        </Grid>
+    </Grid>
+</controls:LeibitWindow>
