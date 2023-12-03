@@ -962,7 +962,6 @@ namespace Leibit.Client.WPF.ViewModels
                 else if (Window.DataContext is LocalOrdersViewModel localOrdersViewModel)
                 {
                     SerializedWindow.Type = eChildWindowType.LocalOrders;
-                    SerializedWindow.Tag = new KeyValuePair<int, string>(localOrdersViewModel.CurrentSchedule.Train.Number, localOrdersViewModel.CurrentSchedule.Station.ShortSymbol);
                     SerializedWindow.Tag = $"{localOrdersViewModel.CurrentSchedule.Train.Number};{localOrdersViewModel.CurrentSchedule.Station.ShortSymbol}";
                 }
                 else if (Window.DataContext is SystemStateViewModel)

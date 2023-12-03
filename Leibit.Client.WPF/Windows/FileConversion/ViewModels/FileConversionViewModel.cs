@@ -1,8 +1,10 @@
 ﻿using Leibit.BLL;
 using Leibit.Client.WPF.ViewModels;
 using Leibit.Core.Client.Commands;
+using Leibit.Entities;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -117,7 +119,23 @@ namespace Leibit.Client.WPF.Windows.FileConversion.ViewModels
                         continue;
                     }
 
-                    var saveResult = serializationBLL.Save(vm.NewName + ".leibit2", openResult.Result);
+                    if (openResult.Result.FileFormat != Entities.eFileFormat.Binary)
+                    {
+                        vm.HasWarning = true;
+                        vm.WarningText = "Die Datei hat ein ungültiges Format.";
+                        continue;
+                    }
+
+                    var container = openResult.Result;
+
+                    foreach (var window in container.Windows.Where(x => x.Type == eChildWindowType.LocalOrders && x.Tag is KeyValuePair<int, string>))
+                    {
+                        // Special logic to convert KeyValuePair to string. KeyValuePair causes problems with JSON.
+                        var kvp = (KeyValuePair<int, string>)window.Tag;
+                        window.Tag = $"{kvp.Key};{kvp.Value}";
+                    }
+
+                    var saveResult = serializationBLL.Save(vm.NewName + ".leibit2", container);
 
                     if (saveResult.Succeeded)
                     {

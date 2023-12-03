@@ -19,12 +19,17 @@ namespace Leibit.BLL
         private CalculationBLL m_CalculationBll;
         private InitializationBLL m_InitializationBll;
         private SettingsBLL m_SettingsBll;
+        private JsonSerializerSettings m_SerializerSettings;
         #endregion
 
         #region - Ctor -
         public SerializationBLL()
             : base()
         {
+            m_SerializerSettings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+            };
         }
         #endregion
 
@@ -173,7 +178,7 @@ namespace Leibit.BLL
                 Root.VisibleTrains = Request.VisibleTrains;
                 Root.HiddenSchedules = Request.HiddenSchedules;
 
-                var json = JsonConvert.SerializeObject(Root);
+                var json = JsonConvert.SerializeObject(Root, m_SerializerSettings);
                 File.WriteAllText(Filename, json);
 
                 Result.Result = Root;
@@ -207,7 +212,7 @@ namespace Leibit.BLL
 
                 if (json.StartsWith("{"))
                 {
-                    Root = JsonConvert.DeserializeObject<SerializedRoot>(json);
+                    Root = JsonConvert.DeserializeObject<SerializedRoot>(json, m_SerializerSettings);
                     Container.FileFormat = Entities.eFileFormat.JSON;
                 }
                 else
@@ -304,6 +309,12 @@ namespace Leibit.BLL
 
                     if (scheduleReferenceTime == null)
                         scheduleReferenceTime = SerializedTrain.LastModified;
+
+                    if (scheduleReferenceTime == null)
+                    {
+                        // We have no information of the location or time. This train is in the middle of nowhere.
+                        continue;
+                    }
 
                     var SchedulesResult = CalculationBll.GetSchedulesByTime(Train.Schedules, scheduleReferenceTime);
                     ValidateResult(SchedulesResult);
