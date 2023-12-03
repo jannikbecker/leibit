@@ -1303,6 +1303,9 @@ namespace Leibit.Client.WPF.ViewModels
                     List<IRefreshable> vmList = null;
                     Application.Current?.Dispatcher?.Invoke(() => vmList = ChildWindows.Select(w => w.DataContext).Where(vm => vm is IRefreshable).Cast<IRefreshable>().ToList());
 
+                    if (cancellationToken.IsCancellationRequested)
+                        break;
+
                     foreach (var vm in vmList)
                     {
                         try
