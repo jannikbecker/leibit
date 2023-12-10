@@ -45,6 +45,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -71,6 +72,7 @@ namespace Leibit.Client.WPF.ViewModels
         private eFileFormat m_CurrentFileFormat;
         private bool m_ForceClose;
         private SoftwareInfo m_BildFplInfo;
+        private System.Timers.Timer m_StatusBarMessageTimer;
 
         private CommandHandler m_NewCommand;
         private CommandHandler m_OpenCommand;
@@ -160,8 +162,11 @@ namespace Leibit.Client.WPF.ViewModels
                 Areas = new ObservableCollection<Area>();
             }
 
-            StatusBarText = "Herzlich willkommen!";
             ProgressBarVisibility = Visibility.Collapsed;
+
+            m_StatusBarMessageTimer = new System.Timers.Timer(10000);
+            m_StatusBarMessageTimer.AutoReset = false;
+            m_StatusBarMessageTimer.Elapsed += (sender, e) => StatusBarMessage = null;
 
             ToastNotificationManagerCompat.History.Clear();
             ToastNotificationManagerCompat.OnActivated += __ToastNotificationClicked;
@@ -252,17 +257,86 @@ namespace Leibit.Client.WPF.ViewModels
         }
         #endregion
 
-        #region [StatusBarText]
-        public string StatusBarText
+        #region [StatusBarAreaText]
+        public string StatusBarAreaText
         {
             get
             {
-                return Get<string>();
+                if (m_CurrentArea == null)
+                    return "Kein Bereich geladen";
+                else
+                    return $"Bereich {m_CurrentArea.Name}";
             }
-            set
+        }
+        #endregion
+
+        #region [ConnectedESTWs]
+        public string ConnectedESTWs
+        {
+            get
+            {
+                if (m_CurrentArea == null)
+                    return null;
+
+                var result = new StringBuilder("Verbunden: ");
+                var loadedEstw = m_CurrentArea.ESTWs.Where(estw => estw.IsLoaded);
+
+                if (loadedEstw.Any())
+                    result.Append(string.Join(", ", loadedEstw.Select(estw => estw.Id).OrderBy(x => x)));
+                else
+                    result.Append("-");
+
+                return result.ToString();
+            }
+        }
+        #endregion
+
+        #region [CurrentFile]
+        public string CurrentFile
+        {
+            get
+            {
+                if (m_CurrentArea == null)
+                    return null;
+                else if (m_CurrentFilename.IsNullOrEmpty())
+                    return "ungespeichert";
+                else
+                    return m_CurrentFilename;
+            }
+        }
+        #endregion
+
+        #region [IsAreaSelected]
+        public bool IsAreaSelected
+        {
+            get => m_CurrentArea != null;
+        }
+        #endregion
+
+        #region [IsDebugModeActive]
+        public bool IsDebugModeActive
+        {
+            get => Get<bool>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [StatusBarMessage]
+        public string StatusBarMessage
+        {
+            get => Get<string>();
+            private set
             {
                 Set(value);
+                OnPropertyChanged(nameof(HasStatusBarMessage));
             }
+        }
+        #endregion
+
+        #region [HasStatusBarMessage]
+        public bool HasStatusBarMessage
+        {
+            get => StatusBarMessage.IsNotNullOrEmpty();
         }
         #endregion
 
@@ -702,6 +776,7 @@ namespace Leibit.Client.WPF.ViewModels
 
             m_CurrentFilename = null;
             m_CurrentFileFormat = eFileFormat.Unknown;
+            OnPropertyChanged(nameof(CurrentFile));
 
             __ShowEstwSelectionWindow();
         }
@@ -909,6 +984,7 @@ namespace Leibit.Client.WPF.ViewModels
 
                 m_CurrentFilename = Filename;
                 m_CurrentFileFormat = OpenResult.Result.FileFormat;
+                OnPropertyChanged(nameof(CurrentFile));
             }
         }
         #endregion
@@ -991,7 +1067,7 @@ namespace Leibit.Client.WPF.ViewModels
             var SaveResult = m_SerializationBll.Save(m_CurrentFilename, Container);
 
             if (SaveResult.Succeeded)
-                StatusBarText = "Aktueller Zustand gespeichert";
+                __ShowStatusBarInfo("Aktueller Zustand gespeichert");
             else
                 ShowMessage(SaveResult);
         }
@@ -1016,6 +1092,7 @@ namespace Leibit.Client.WPF.ViewModels
 
                 m_CurrentFilename = Filename;
                 m_CurrentFileFormat = eFileFormat.JSON;
+                OnPropertyChanged(nameof(CurrentFile));
                 __Save();
             }
         }
@@ -1052,7 +1129,7 @@ namespace Leibit.Client.WPF.ViewModels
             {
                 if (SettingsResult.Result.EstwOnlinePath.IsNullOrWhiteSpace())
                 {
-                    MessageBox.Show(StatusBarText = "ESTWonline Pfad nicht gesetzt", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("ESTWonline Pfad nicht gesetzt", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
@@ -1183,7 +1260,7 @@ namespace Leibit.Client.WPF.ViewModels
         private void __SaveLayout()
         {
             ChildWindows.Select(w => w.DataContext).Where(vm => vm is ILayoutSavable).Cast<ILayoutSavable>().ForEach(vm => vm.SaveLayout());
-            StatusBarText = "Layout wurde gespeichert";
+            __ShowStatusBarInfo("Layout wurde gespeichert");
         }
         #endregion
 
@@ -1229,11 +1306,7 @@ namespace Leibit.Client.WPF.ViewModels
                 return;
 
             m_LiveDataBll.DebugMode = !m_LiveDataBll.DebugMode;
-
-            if (m_LiveDataBll.DebugMode)
-                StatusBarText = "Debug-Modus aktiviert";
-            else
-                StatusBarText = "Debug-Modus deaktiviert";
+            IsDebugModeActive = m_LiveDataBll.DebugMode;
         }
         #endregion
 
@@ -1260,7 +1333,7 @@ namespace Leibit.Client.WPF.ViewModels
                     __OpenChildWindow(e);
                 };
 
-                vm.StatusBarTextChanged += (sender, text) => StatusBarText = text;
+                vm.StatusBarTextChanged += (sender, text) => __ShowStatusBarInfo(text);
                 vm.ReportProgress += __ReportProgress;
 
                 vm.ShutdownRequested += (sender, force) =>
@@ -1269,6 +1342,16 @@ namespace Leibit.Client.WPF.ViewModels
                     __Exit();
                 };
             }
+        }
+        #endregion
+
+        #region [__ShowStatusBarInfo]
+        private void __ShowStatusBarInfo(string message)
+        {
+            StatusBarMessage = message;
+
+            m_StatusBarMessageTimer.Stop();
+            m_StatusBarMessageTimer.Start();
         }
         #endregion
 
@@ -1292,6 +1375,10 @@ namespace Leibit.Client.WPF.ViewModels
         private void __Initialize(Area Area)
         {
             m_CurrentArea = Area;
+            OnPropertyChanged(nameof(StatusBarAreaText));
+            OnPropertyChanged(nameof(IsAreaSelected));
+            OnPropertyChanged(nameof(ConnectedESTWs));
+            OnPropertyChanged(nameof(CurrentFile));
 
             if (m_CurrentArea == null)
                 return;
@@ -1305,7 +1392,6 @@ namespace Leibit.Client.WPF.ViewModels
             m_RemindersCommand.SetCanExecute(true);
             IsTrainScheduleEnabled = true;
 
-            StatusBarText = String.Format("Bereich {0} geladen", m_CurrentArea.Name);
 
             m_CancellationTokenSource = new CancellationTokenSource();
             m_RefreshingThread = new Thread(() => __Refresh(m_CurrentArea, m_CancellationTokenSource.Token));
@@ -1367,6 +1453,7 @@ namespace Leibit.Client.WPF.ViewModels
                         }
                     }
 
+                    OnPropertyChanged(nameof(ConnectedESTWs));
                     __ProcessReminders(Area);
                 }
                 else
