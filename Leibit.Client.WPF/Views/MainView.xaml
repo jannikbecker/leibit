@@ -61,6 +61,10 @@
 
                 <Separator Background="{DynamicResource MenuSeparatorColor}"/>
 
+                <MenuItem Header="Dateikonvertierung" Command="{Binding FileConversionCommand}" />
+
+                <Separator Background="{DynamicResource MenuSeparatorColor}"/>
+
                 <MenuItem Header="Einstellungen..." Command="{Binding SettingsCommand}">
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgSettings}" />
@@ -247,18 +251,39 @@
 
         <Grid Grid.Row="3">
             <StatusBar Foreground="{DynamicResource StatusBarForeground}" Background="{DynamicResource StatusBarBackground}">
-                <StatusBarItem HorizontalContentAlignment="Stretch">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="150" />
-                        </Grid.ColumnDefinitions>
+                <StatusBarItem>
+                    <TextBlock Text="{Binding StatusBarAreaText}"/>
+                </StatusBarItem>
 
-                        <TextBlock Grid.Column="0" Text="{Binding StatusBarText}" />
-                        <TextBlock Grid.Column="1" Text="{Binding ProgressBarText}" Visibility="{Binding ProgressBarVisibility}" Margin="0,0,10,0" />
-                        <ProgressBar Grid.Column="2" Value="{Binding ProgressBarPercentage}" Visibility="{Binding ProgressBarVisibility}" />
-                    </Grid>
+                <Separator Visibility="{Binding IsAreaSelected, Converter={StaticResource VisibilityConverter}}"/>
+
+                <StatusBarItem Visibility="{Binding IsAreaSelected, Converter={StaticResource VisibilityConverter}}">
+                    <TextBlock Text="{Binding ConnectedESTWs}"/>
+                </StatusBarItem>
+
+                <Separator Visibility="{Binding IsAreaSelected, Converter={StaticResource VisibilityConverter}}"/>
+
+                <StatusBarItem Visibility="{Binding IsAreaSelected, Converter={StaticResource VisibilityConverter}}">
+                    <TextBlock Text="{Binding CurrentFile}"/>
+                </StatusBarItem>
+
+                <Separator Visibility="{Binding IsDebugModeActive, Converter={StaticResource VisibilityConverter}}"/>
+
+                <StatusBarItem Visibility="{Binding IsDebugModeActive, Converter={StaticResource VisibilityConverter}}">
+                    <TextBlock Text="Debug-Modus aktiv"/>
+                </StatusBarItem>
+
+                <Separator Visibility="{Binding HasStatusBarMessage, Converter={StaticResource VisibilityConverter}}"/>
+
+                <StatusBarItem>
+                    <TextBlock Text="{Binding StatusBarMessage}"/>
+                </StatusBarItem>
+
+                <StatusBarItem HorizontalAlignment="Right" VerticalContentAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding ProgressBarText}" Visibility="{Binding ProgressBarVisibility}" Margin="0,0,10,0" />
+                        <ProgressBar Value="{Binding ProgressBarPercentage}" Visibility="{Binding ProgressBarVisibility}" Width="100" />
+                    </StackPanel>
                 </StatusBarItem>
             </StatusBar>
         </Grid>
