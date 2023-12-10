@@ -83,4 +83,10 @@ namespace Leibit.Entities
         Random = 2,
     }
 
+    public enum eFileFormat
+    {
+        Unknown = 0,
+        Binary = 1,
+        JSON = 2,
+    }
 }

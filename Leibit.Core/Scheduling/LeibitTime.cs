@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +16,7 @@ namespace Leibit.Core.Scheduling
         #endregion
 
         #region - Ctor -
+        [JsonConstructor]
         public LeibitTime(eDaysOfService day, int hour, int minute)
         {
             m_Day = day;
@@ -61,6 +63,7 @@ namespace Leibit.Core.Scheduling
         #endregion
 
         #region [TotalMinutes]
+        [JsonIgnore]
         public int TotalMinutes
         {
             get
