@@ -283,7 +283,7 @@
     </track>
   </station>
 
-  <station name="München-Aubing" short="MMAU" refNr="81" scheduleFile="v81_____.abf">
+  <station name="München-Aubing" short="MMAU" refNr="81" scheduleFile="v81_____.abf" displayName="M-Aubing">
     <track name="1" calculateDelay="false">
       <block name="81S101"/>
     </track>
@@ -292,7 +292,7 @@
     </track>
   </station>
 
-  <station name="München Leienfelsstraße" short="MLEF" refNr="15" scheduleFile="v15_____.abf">
+  <station name="München Leienfelsstraße" short="MLEF" refNr="15" scheduleFile="v15_____.abf" displayName="M-Leienfelsstraße">
     <track name="1" calculateDelay="false">
       <block name="15S97"/>
     </track>
