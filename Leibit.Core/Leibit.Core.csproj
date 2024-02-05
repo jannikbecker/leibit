@@ -71,6 +71,7 @@
     <None Remove="Data\sued\MBU.xml" />
     <None Remove="Data\sued\MGE.xml" />
     <None Remove="Data\sued\MGP.xml" />
+    <None Remove="Data\sued\MH_N.xml" />
     <None Remove="Data\sued\MKP.xml" />
     <None Remove="Data\sued\MIMS.xml" />
     <None Remove="Data\sued\MLI.xml" />
@@ -154,6 +155,7 @@
     <EmbeddedResource Include="Data\sued\MBU.xml" />
     <EmbeddedResource Include="Data\sued\MGE.xml" />
     <EmbeddedResource Include="Data\sued\MGP.xml" />
+    <EmbeddedResource Include="Data\sued\MH_N.xml" />
     <EmbeddedResource Include="Data\sued\MKP.xml" />
     <EmbeddedResource Include="Data\sued\MIMS.xml" />
     <EmbeddedResource Include="Data\sued\MLI.xml" />

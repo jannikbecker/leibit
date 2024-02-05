@@ -52,6 +52,7 @@
     <estw id="MOL" name="Olching" dataFile="leibit_OLCHING.dat" infrastructureManager="DB"/>
     <estw id="MGE" name="Geltendorf" dataFile="leibit_GELTENDORF.dat" infrastructureManager="DB"/>
     <estw id="MWKR" name="München-Westkreuz" dataFile="leibit_M-WESTKREUZ.dat" infrastructureManager="DB"/>
+    <estw id="MH_N" name="München Hbf Nordseite" dataFile="leibit_M-HBF NORDSEITE.dat" infrastructureManager="DB" ignoreRoutingDigits="true"/>
     <estw id="MWH" name="Weilheim" dataFile="leibit_WEILHEIM.dat" infrastructureManager="DB"/>
     <estw id="MGP" name="Garmisch-Partenkirchen" dataFile="leibit_GARMISCH-PARTENK.dat" infrastructureManager="DB"/>
   </area>

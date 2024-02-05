@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="München Hbf" short="MH_S" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10BV1N" direction="left"/>
+      <block name="10BV2N" direction="right"/>
+      <block name="10BV3N" direction="left"/>
+      <block name="10BV4N" direction="right"/>
+      <block name="11BV5N" direction="right"/>
+      <block name="10S305" direction="right"/>
+      <block name="10S310" direction="right"/>
+    </track>
+  </station>
+  
+  <station name="München Hbf" short="MH_N" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
+    <track name="23">
+      <block name="10G23"/>
+    </track>
+    <track name="24">
+      <block name="10G24"/>
+    </track>
+    <track name="25">
+      <block name="10G25"/>
+    </track>
+    <track name="26">
+      <block name="10G26"/>
+    </track>
+    <track name="27">
+      <block name="10G27"/>
+    </track>
+    <track name="28">
+      <block name="10G28"/>
+    </track>
+    <track name="29">
+      <block name="10G29"/>
+    </track>
+    <track name="30">
+      <block name="10G30"/>
+    </track>
+    <track name="31">
+      <block name="10G31"/>
+    </track>
+    <track name="32">
+      <block name="10G32"/>
+    </track>
+    <track name="33">
+      <block name="10G33"/>
+    </track>
+    <track name="34">
+      <block name="10G34"/>
+    </track>
+    <track name="35">
+      <block name="10G35"/>
+    </track>
+    <track name="36">
+      <block name="10G36"/>
+    </track>
+  </station>
+
+  <station name="München Hbf tief" short="MHT" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10B625" direction="right"/>
+      <block name="10B626" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München Hackerbrücke" short="MHAB" refNr="10" scheduleFile="v10_____.abf" displayName="M-Hackerbrücke">
+    <track name="627" displayName="2">
+      <block name="10G627"/>
+    </track>
+    <track name="630" displayName="1">
+      <block name="10G630"/>
+    </track>
+  </station>
+
+  <station name="München Donnersbergerbrücke" short="MMDN" refNr="12" scheduleFile="g11_____.abf" displayName="M-Donnersbergerbrücke">
+    <track name="631" displayName="1">
+      <block name="11G631"/>
+    </track>
+    <track name="99" displayName="2">
+      <block name="11G99"/>
+    </track>
+    <track name="634" displayName="3">
+      <block name="11G634"/>
+    </track>
+    <track name="102" displayName="4">
+      <block name="11G102"/>
+    </track>
+  </station>
+
+  <station name="München Heimeranplatz" short="MHP" refNr="11" scheduleFile="b11_____.abf" displayName="M-Heimeranplatz">
+    <track name="491" displayName="2">
+      <block name="11G491"/>
+    </track>
+    <track name="492" displayName="1">
+      <block name="11G492"/>
+    </track>
+  </station>
+
+  <station name="München Harras" short="MHAR" refNr="11" scheduleFile="v11_____.abf" displayName="M-Harras">
+    <track name="105" calculateDelay="false" displayName="2">
+      <block name="11B105"/>
+    </track>
+    <track name="108" calculateDelay="false" displayName="1">
+      <block name="11B108"/>
+    </track>
+  </station>
+
+  <station name="München-Neuhausen" short="MANH" refNr="11" scheduleFile="v1______.abf">
+    <track name="407" isPlatform="false">
+      <block name="10B405" direction="left"/>
+      <block name="11B407" direction="right"/>
+    </track>
+    <track name="457" isPlatform="false">
+      <block name="11B410" direction="left"/>
+      <block name="11B412" direction="right"/>
+    </track>
+    <track name="501" isPlatform="false">
+      <block name="10BN2" direction="left"/>
+      <block name="11B501" direction="right"/>
+    </track>
+    <track name="551" isPlatform="false">
+      <block name="11B502" direction="left"/>
+      <block name="11B504" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München Kanal" short="MAKN" refNr="12" scheduleFile="g12_____.abf">
+    <track name="313" isPlatform="false">
+      <block name="12B311" direction="left"/>
+      <block name="12G313" direction="right"/>
+    </track>
+    <track name="318" isPlatform="false">
+      <block name="12B316" direction="left"/>
+      <block name="12G318" direction="right"/>
+    </track>
+    <track name="413" isPlatform="false">
+      <block name="12B411" direction="left"/>
+      <block name="12G413" direction="right"/>
+    </track>
+    <track name="418" isPlatform="false">
+      <block name="12B416" direction="left"/>
+      <block name="12G418" direction="right"/>
+    </track>
+    <track name="713" isPlatform="false">
+      <block name="12B715" direction="right"/>
+    </track>
+    <track name="718" isPlatform="false">
+      <block name="15B720" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München-Pasing" short="MP" refNr="15">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12B715" direction="left"/>
+      <block name="15B720" direction="left"/>
+      <block name="11S507" direction="left"/>
+      <block name="11S510" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München-Laim Pbf" short="ML" refNr="11" scheduleFile="g1______.abf" displayName="M-Laim">
+    <track name="639" displayName="1">
+      <block name="01G639"/>
+    </track>
+    <track name="302" displayName="2">
+      <block name="01G302"/>
+    </track>
+    <track name="640" displayName="3">
+      <block name="01G640"/>
+    </track>
+  </station>
+
+  <station name="München-Pasing S-Bahn" short="MP S" refNr="16">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11S645" direction="left"/>
+      <block name="11S646" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München-Nymphenburg" short="MANY" refNr="11" scheduleFile="b1______.abf">
+    <track name="304" isPlatform="false">
+      <block name="11G304" direction="left"/>
+      <block name="11B306" direction="right"/>
+    </track>
+    <track name="354" isPlatform="false">
+      <block name="11G301" direction="left"/>
+      <block name="11B303" direction="right"/>
+    </track>
+    <track name="404" isPlatform="false">
+      <block name="11B406" direction="right"/>
+    </track>
+    <track name="454" isPlatform="false">
+      <block name="11B403" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München-Neulustheim" short="MANL" refNr="12" scheduleFile="m-neul__.abf">
+    <track name="405" isPlatform="false">
+      <block name="11B403" direction="left"/>
+    </track>
+    <track name="415" isPlatform="false">
+      <block name="12G413" direction="left"/>
+      <block name="12B415" direction="right"/>
+    </track>
+    <track name="455" isPlatform="false">
+      <block name="11B406" direction="left"/>
+    </track>
+    <track name="465" isPlatform="false">
+      <block name="12G418" direction="left"/>
+      <block name="12B420" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München-Moosach" short="MMCH" refNr="61">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12B417" direction="left"/>
+      <block name="61B422" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München-Obermenzing Abzw" short="MAOZ" refNr="12" scheduleFile="b12_____.abf">
+    <track name="305" isPlatform="false">
+      <block name="11B303" direction="left"/>
+    </track>
+    <track name="315" isPlatform="false">
+      <block name="12G313" direction="left"/>
+      <block name="12B315" direction="right"/>
+    </track>
+    <track name="355" isPlatform="false">
+      <block name="11B306" direction="left"/>
+    </track>
+    <track name="365" isPlatform="false">
+      <block name="12G318" direction="left"/>
+      <block name="51B320" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München-Obermenzing Hp" short="MOZ" refNr="12" scheduleFile="v12_____.abf" displayName="M-Obermenzing">
+    <track name="317" calculateDelay="false" displayName="2">
+      <block name="51S317"/>
+    </track>
+    <track name="320" calculateDelay="false" displayName="1">
+      <block name="51B320"/>
+    </track>
+  </station>
+
+  <station name="München-Allach" short="MMAL" refNr="51">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="51S319" direction="left"/>
+      <block name="12S324" direction="left"/>
+    </track>
+  </station>
+</estw>
