@@ -27,6 +27,7 @@
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <Version>1.1.1</Version>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <PackageProjectUrl>https://github.com/jannikbecker/leibit</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jannikbecker/leibit</RepositoryUrl>
     <ApplicationManifest>app.manifest</ApplicationManifest>
