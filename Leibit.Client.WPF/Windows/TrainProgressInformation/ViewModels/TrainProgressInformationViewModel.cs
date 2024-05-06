@@ -635,16 +635,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     // Determine state
                     var currentSchedule = liveSchedule.Train.Schedules.LastOrDefault(s => s.IsArrived && s.Schedule.Station.ShortSymbol == liveSchedule.Train.Block.Track.Station.ShortSymbol);
 
-                    var isFirstStation = liveSchedule.Train.BlockHistory.Select(b => b.Track.Station).Distinct().Count() == 1
-                        && liveSchedule.Train.Block.Track.CalculateDelay
-                        && liveSchedule.Train.Block.Track.IsPlatform;
-
-                    if (currentSchedule?.Schedule.Departure == null)
-                        isFirstStation = false;
-                    else if (currentSchedule?.Schedule.Handling == eHandling.Start)
-                        isFirstStation = true;
-                    else if (liveSchedule.Train.CreatedOn == liveSchedule.Train.Block.Track.Station.ESTW.StartTime)
-                        isFirstStation = false;
+                    var isFirstStation = currentSchedule?.Schedule.Handling == eHandling.Start;
 
                     if (liveSchedule.IsDeparted)
                         currentVm.State = "beendet";
@@ -659,7 +650,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     }
                     else if (currentSchedule.IsDeparted)
                         currentVm.State = "ab";
-                    else if (isFirstStation && currentSchedule.Schedule.Handling == eHandling.Start && __IsReady(currentSchedule, settings))
+                    else if (isFirstStation && __IsReady(currentSchedule, settings))
                         currentVm.State = "fertig";
                     else if (currentSchedule.IsPrepared)
                         currentVm.State = "vorbereitet";
