@@ -5,10 +5,41 @@
   <TrainNumber type="RE" pattern="103xx" line="RE 4"/>
   <TrainNumber type="RE" pattern="111xx" line="RE 5"/>
   <TrainNumber type="RB" pattern="112xx" line="RB 48"/>
+  <TrainNumber type="RE" pattern="121xx" line="RE 17"/>
+  <TrainNumber type="RE" pattern="122xx" line="RE 17"/>
+  <TrainNumber type="RE" pattern="126xx" line="RE 16"/>
   <TrainNumber type="RE" pattern="127xx" line="RE 7"/>
 
   <TrainNumber type="RB" pattern="730xx" line="RB 47"/>
-  <TrainNumber type="RB" pattern="731xx" line="RB 47"/>
+  <TrainNumber type="RB" pattern="7310x" line="RB 47"/>
+  <TrainNumber type="RB" pattern="7311x" line="RB 47"/>
+  <TrainNumber type="RB" pattern="7312x" line="RB 47"/>
+  <TrainNumber type="RB" pattern="7313x" line="RB 47"/>
+  <TrainNumber type="RB" pattern="7314x" line="RB 47"/>
+  <TrainNumber type="RB" pattern="7315x" line="RB 47"/>
+  <TrainNumber type="RB" pattern="7317x" line="RB 40"/>
+  <TrainNumber type="RB" pattern="7318x" line="RB 40"/>
+  <TrainNumber type="RB" pattern="7319x" line="RB 40"/>
+  <TrainNumber type="RB" pattern="732xx" line="RB 40"/>
+  <TrainNumber type="RB" pattern="7350x" line="RB 91"/>
+  <TrainNumber type="RB" pattern="7351x" line="RB 91"/>
+  <TrainNumber type="RB" pattern="7352x" line="RB 91"/>
+  <TrainNumber type="RB" pattern="7353x" line="RB 91"/>
+  <TrainNumber type="RB" pattern="73541" line="RB 91"/>
+  <TrainNumber type="RB" pattern="73542" line="RB 91"/>
+  <TrainNumber type="RB" pattern="73543" line="RB 91"/>
+  <TrainNumber type="RB" pattern="73544" line="RB 91"/>
+  <TrainNumber type="RB" pattern="73548" line="RB 58"/>
+  <TrainNumber type="RB" pattern="73549" line="RB 58"/>
+  <TrainNumber type="RB" pattern="7355x" line="RB 58"/>
+  <TrainNumber type="RB" pattern="7356x" line="RB 58"/>
+  <TrainNumber type="RB" pattern="7357x" line="RB 58"/>
+  <TrainNumber type="RB" pattern="7358x" line="RB 58"/>
+  <TrainNumber type="RB" pattern="7359x" line="RB 58"/>
+  <TrainNumber type="RB" pattern="736xx" line="RB 58"/>
+
+  <TrainNumber type="DNR" pattern="814xx" line="RB 52"/>
+  <TrainNumber type="DME" pattern="814xx" line="RB 52"/>
 
   <TrainNumber type="S" pattern="975xx" line="S6"/>
   <TrainNumber type="S" pattern="976xx" line="S6"/>
