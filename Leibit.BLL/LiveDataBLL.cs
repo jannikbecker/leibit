@@ -615,7 +615,7 @@ namespace Leibit.BLL
             if (Block != null)
             {
                 // Dummy track for stations without platforms (e.g. Üst)
-                if (!Estw.SchedulesLoaded || Block.Track.Name.IsNullOrEmpty())
+                if (!Estw.SchedulesLoaded || Block.Track.Name == null)
                 {
                     Train.Block = Block;
                 }
@@ -629,22 +629,31 @@ namespace Leibit.BLL
                     {
                         Track LiveTrack = null;
 
-                        // Too difficult to explain -> LTA...
-                        if (CurrentSchedule.Schedule.Track == null
-                            || !CurrentSchedule.Schedule.Track.IsPlatform
-                            || CurrentSchedule.Schedule.Track.Name.Equals(Block.Track.Name, StringComparison.InvariantCultureIgnoreCase)
-                            || (CurrentSchedule.Schedule.Track.Alternatives.Count == 0 && CurrentSchedule.Schedule.Track.Parent.Alternatives.Count == 0)
-                            || CurrentSchedule.Schedule.Track.Alternatives.Any(a => a.Name.Equals(Block.Track.Name, StringComparison.InvariantCultureIgnoreCase)))
+                        /** Imagine this station layout for the following examples
+                         * 
+                         * -----<|-----1A-----<|>-----1B-----|>-----
+                         * -----<|-----2A-----<|>-----2B-----|>-----
+                         * -----<|-------------3-------------|>-----
+                         * -----<|-------------4-------------|>-----
+                         * 
+                         */
+
+                        if (CurrentSchedule.Schedule.Track == null // special or misdirected trains
+                            || !CurrentSchedule.Schedule.Track.IsPlatform // Abzw/Üst
+                            || CurrentSchedule.Schedule.Track.Name.Equals(Block.Track.Name, StringComparison.InvariantCultureIgnoreCase) // Normal case
+                            || (CurrentSchedule.Schedule.Track.Alternatives.Count == 0 && CurrentSchedule.Schedule.Track.Parent.Alternatives.Count == 0) // No alternatives defined
+                            || CurrentSchedule.Schedule.Track.Alternatives.Any(a => a.Name.Equals(Block.Track.Name, StringComparison.InvariantCultureIgnoreCase))) // Schedule = 3, Block = 4 => LiveTrack = 4
                         {
                             LiveTrack = Block.Track;
                         }
-                        else if (CurrentSchedule.Schedule.Track.Name.Equals(Block.Track.Parent.Name, StringComparison.InvariantCultureIgnoreCase)
-                            || CurrentSchedule.Schedule.Track.Alternatives.Any(a => a.Name.Equals(Block.Track.Parent.Name, StringComparison.InvariantCultureIgnoreCase)))
+                        else if (CurrentSchedule.Schedule.Track.Name.Equals(Block.Track.Parent.Name, StringComparison.InvariantCultureIgnoreCase) // Schedule = 1, Block = 1A => LiveTrack = 1
+                            || CurrentSchedule.Schedule.Track.Alternatives.Any(a => a.Name.Equals(Block.Track.Parent.Name, StringComparison.InvariantCultureIgnoreCase))) // Schedule = 1, Block = 2A => LiveTrack = 2
                         {
                             LiveTrack = Block.Track.Parent;
                         }
-                        else if (CurrentSchedule.Schedule.Track.Parent.Name.Equals(Block.Track.Parent.Name, StringComparison.InvariantCultureIgnoreCase)
-                            || CurrentSchedule.Schedule.Track.Parent.Alternatives.Any(a => a.Name.Equals(Block.Track.Parent.Name, StringComparison.InvariantCultureIgnoreCase)))
+                        // These conditions must be evaluated after the second block, otherwise those case won't work.
+                        else if (/*CurrentSchedule.Schedule.Track.Parent.Name.Equals(Block.Track.Parent.Name, StringComparison.InvariantCultureIgnoreCase) || */ // Schedule = 1A, Block = 1B, => LiveTrack = 1B ==> That seems wrong
+                            CurrentSchedule.Schedule.Track.Parent.Alternatives.Any(a => a.Name.Equals(Block.Track.Parent.Name, StringComparison.InvariantCultureIgnoreCase))) // Schedule = 1A, Block = 2A => LiveTrack = 2A   -OR-   Schedule = 1A, Block = 2B => LiveTrack = 2B
                         {
                             LiveTrack = Block.Track;
                         }
