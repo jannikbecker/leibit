@@ -184,44 +184,11 @@
       <alternative track="944"/>
       <track name="3">
         <block name="27G003"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
         <alternative track="4"/>
-        <alternative track="5"/>
-        <alternative track="6"/>
-        <alternative track="7"/>
-        <alternative track="8"/>
-        <alternative track="9"/>
-        <alternative track="10"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="13"/>
-        <alternative track="14"/>
-        <alternative track="15"/>
-        <alternative track="18"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
       <track name="4">
         <block name="27G004"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
         <alternative track="23"/>
-        <alternative track="6"/>
-        <alternative track="7"/>
-        <alternative track="8"/>
-        <alternative track="9"/>
-        <alternative track="10"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="13"/>
-        <alternative track="14"/>
-        <alternative track="15"/>
-        <alternative track="18"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
     </track>
 
@@ -258,44 +225,11 @@
       <alternative track="944"/>
       <track name="5">
         <block name="27G005"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
-        <alternative track="3"/>
         <alternative track="16"/>
-        <alternative track="7"/>
-        <alternative track="8"/>
-        <alternative track="9"/>
-        <alternative track="10"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="13"/>
-        <alternative track="14"/>
-        <alternative track="15"/>
-        <alternative track="18"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
       <track name="6">
         <block name="27G006"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
-        <alternative track="3"/>
-        <alternative track="4"/>
         <alternative track="5"/>
-        <alternative track="7"/>
-        <alternative track="8"/>
-        <alternative track="9"/>
-        <alternative track="10"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="13"/>
-        <alternative track="14"/>
-        <alternative track="15"/>
-        <alternative track="18"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
     </track>
 
@@ -332,44 +266,11 @@
       <alternative track="944"/>
       <track name="7">
         <block name="27G007"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
-        <alternative track="3"/>
-        <alternative track="4"/>
-        <alternative track="5"/>
-        <alternative track="6"/>
         <alternative track="8"/>
-        <alternative track="9"/>
-        <alternative track="10"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="13"/>
-        <alternative track="14"/>
-        <alternative track="15"/>
-        <alternative track="18"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
       <track name="8">
         <block name="27G008"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
-        <alternative track="3"/>
-        <alternative track="4"/>
-        <alternative track="5"/>
-        <alternative track="6"/>
         <alternative track="17"/>
-        <alternative track="10"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="13"/>
-        <alternative track="14"/>
-        <alternative track="15"/>
-        <alternative track="18"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
     </track>
 
@@ -406,44 +307,11 @@
       <alternative track="944"/>
       <track name="9">
         <block name="27G009"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
-        <alternative track="3"/>
-        <alternative track="4"/>
-        <alternative track="5"/>
-        <alternative track="6"/>
-        <alternative track="7"/>
         <alternative track="20"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="13"/>
-        <alternative track="14"/>
-        <alternative track="15"/>
-        <alternative track="18"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
       <track name="10">
         <block name="27G010"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
-        <alternative track="3"/>
-        <alternative track="4"/>
-        <alternative track="5"/>
-        <alternative track="6"/>
-        <alternative track="7"/>
-        <alternative track="8"/>
         <alternative track="9"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="13"/>
-        <alternative track="14"/>
-        <alternative track="15"/>
-        <alternative track="18"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
     </track>
 
@@ -523,42 +391,9 @@
       <alternative track="944"/>
       <track name="13">
         <block name="27G013"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
-        <alternative track="3"/>
-        <alternative track="4"/>
-        <alternative track="5"/>
-        <alternative track="6"/>
-        <alternative track="7"/>
-        <alternative track="8"/>
-        <alternative track="9"/>
-        <alternative track="10"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="15"/>
-        <alternative track="18"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
       <track name="14">
         <block name="27G014"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
-        <alternative track="3"/>
-        <alternative track="4"/>
-        <alternative track="5"/>
-        <alternative track="6"/>
-        <alternative track="7"/>
-        <alternative track="8"/>
-        <alternative track="9"/>
-        <alternative track="10"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="18"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
     </track>
 
@@ -577,42 +412,9 @@
       <alternative track="944"/>
       <track name="15">
         <block name="27G015"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
-        <alternative track="3"/>
-        <alternative track="4"/>
-        <alternative track="5"/>
-        <alternative track="6"/>
-        <alternative track="7"/>
-        <alternative track="8"/>
-        <alternative track="9"/>
-        <alternative track="10"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="13"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
       <track name="18">
         <block name="27G018"/>
-        <alternative track="1"/>
-        <alternative track="2"/>
-        <alternative track="3"/>
-        <alternative track="4"/>
-        <alternative track="5"/>
-        <alternative track="6"/>
-        <alternative track="7"/>
-        <alternative track="8"/>
-        <alternative track="9"/>
-        <alternative track="10"/>
-        <alternative track="11"/>
-        <alternative track="12"/>
-        <alternative track="13"/>
-        <alternative track="14"/>
-        <alternative track="29"/>
-        <alternative track="932"/>
-        <alternative track="944"/>
       </track>
     </track>
 
