@@ -685,6 +685,9 @@ namespace Leibit.Client.WPF.ViewModels
                 if (windowSettings == null)
                     return;
 
+                if (!System.Windows.Forms.Screen.AllScreens.Any(s => __IsWindowVisibleOnScreen(windowSettings, s)))
+                    return;
+
                 window.Left = windowSettings.Left;
                 window.Top = windowSettings.Top;
                 window.Width = windowSettings.Width;
@@ -1779,6 +1782,16 @@ namespace Leibit.Client.WPF.ViewModels
         {
             foreach (var window in ChildWindows)
                 window.ChildWindow?.SetWindowColor();
+        }
+        #endregion
+
+        #region [__IsWindowVisibleOnScreen]
+        private bool __IsWindowVisibleOnScreen(WindowSettings windowSettings, System.Windows.Forms.Screen screen)
+        {
+            return windowSettings.Left >= screen.WorkingArea.Left
+                && windowSettings.Left <= screen.WorkingArea.Right
+                && windowSettings.Top >= screen.WorkingArea.Top
+                && windowSettings.Top <= screen.WorkingArea.Bottom;
         }
         #endregion
 
