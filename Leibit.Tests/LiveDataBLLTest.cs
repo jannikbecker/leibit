@@ -1568,8 +1568,8 @@ namespace Leibit.Tests
 
                 Assert.AreEqual(1, Area.LiveTrains.Count);
                 Assert.IsTrue(Area.LiveTrains.ContainsKey(12346));
-                Assert.AreEqual(Estw.Blocks["32G11"].First(), Area.LiveTrains[12346].Block);
-                Assert.AreEqual(-2, Area.LiveTrains[12346].Delay);
+                Assert.IsNull(Area.LiveTrains[12346].Block);
+                Assert.AreEqual(7, Area.LiveTrains[12346].Delay);
             }
 
             using (var scope = new ESTWOnlineScope(Estw, "TestChildTracks/TestdorfArrival1B.dat"))

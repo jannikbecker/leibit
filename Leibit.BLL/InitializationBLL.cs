@@ -625,6 +625,7 @@ namespace Leibit.BLL
                 var Duplicate = schedules.FirstOrDefault(s => s.Train == Schedule.Train
                                                            && s.Track == Schedule.Track
                                                            && s.Handling != eHandling.Start
+                                                           && s.Arrival <= Schedule.Departure
                                                            && __AreSchedulesClose(s, Schedule)
                                                            && s != Schedule);
 

@@ -2,8 +2,13 @@
 Die Datei *Setup.exe* herunterladen und ausführen. Nach wenigen Sekunden startet LeiBIT.
 
 # Neue Funktionen in dieser Version
-- Überarbeitung der Statuszeile. Dort werden nun ständig der geladene Bereich sowie die verbundenen Simulationen angezeigt. Wenn der Spielstand gespeichert wurde, wird zusätzlich der Name der Datei angezeigt.
-- Einführung des neuen Dateiformates .leibit2 für gespeicherte Spielstände inkl. Konvertierungsmöglichkeit.
+- Integration des ESTW Hagen Hbf
+- Überarbeitung der Verspätungskodierungen
+- Aktualisierung der Runtime von .NET 6 auf .NET 8
+- Aktualisierung von ESTWonline auf Version 2.8.6
+- Fehlerkorrekturen
+    - Nach Änderungen am Windows Monitor-Layout konnte es bisher vorkommen, dass das LeiBIT nicht sichtbar war, weil es sich außerhalb des sichtbaren Bereichs geöffnet hat.
+    - Verbesserung des Umgangs mit geteilten Gleisen wie z.B. in Hagen oder Bremen Hbf
 
 ## Achtung - neues Dateiformat!
-Mit dieser Version wird das neue Dateiformat .leibit2 für gespeicherte Spielstände eingeführt. Spielstände, die mit älteren Versionen gespeichert wurden (Dateiendung .leibit), können mithilfe der Funktion "Dateikonvertierung" in das neue .leibit2 Format konvertiert werden. Diese Funktion wird in zukünftigen Versionen nicht mehr zur Verfügung stehen, sodass ältere Stände dann nicht mehr geladen werden können.
+Ab dieser Version können ältere gespeicherte Spielstände mit der Dateiendung .leibit nicht mehr geladen werden. Bitte vor dem Update die Funktion "Dateikonvertierung" der Version 1.1.1 nutzen, um diese Dateien in das neue .leibit2 Format zu konvertieren.

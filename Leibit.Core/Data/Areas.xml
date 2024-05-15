@@ -61,6 +61,7 @@
     <estw id="KSO" name="Solingen" dataFile="leibit_SOLINGEN-OL.dat" infrastructureManager="DB" />
     <estw id="KW" name="Wuppertal Hbf" dataFile="leibit_WUPPERTAL HBF.dat" infrastructureManager="DB" productName="Wuppertal" />
     <estw id="KWO" name="Wuppertal-Oberbarmen" dataFile="leibit_W-OBERBARMEN.dat" infrastructureManager="DB" productName="Wuppertal" />
+    <estw id="EHG" name="Hagen Hbf" dataFile="leibit_HAGEN HBF.dat" infrastructureManager="DB"/>
   </area>
 
   <area id="berlin" name="Berlin">

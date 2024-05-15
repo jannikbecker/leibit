@@ -8,7 +8,6 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Leibit.BLL
 {
@@ -209,23 +208,7 @@ namespace Leibit.BLL
                 SerializedRoot Root;
 
                 var json = File.ReadAllText(Filename);
-
-                if (json.StartsWith("{"))
-                {
-                    Root = JsonConvert.DeserializeObject<SerializedRoot>(json, m_SerializerSettings);
-                    Container.FileFormat = Entities.eFileFormat.JSON;
-                }
-                else
-                {
-                    using (var stream = File.OpenRead(Filename))
-                    {
-                        var formatter = new BinaryFormatter();
-#pragma warning disable SYSLIB0011 // Type or member is obsolete
-                        Root = formatter.Deserialize(stream) as SerializedRoot;
-#pragma warning restore SYSLIB0011 // Type or member is obsolete
-                        Container.FileFormat = Entities.eFileFormat.Binary;
-                    }
-                }
+                Root = JsonConvert.DeserializeObject<SerializedRoot>(json, m_SerializerSettings);
 
                 if (Root == null)
                     throw new OperationFailedException("Invalid file.");
