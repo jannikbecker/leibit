@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Schwelm" short="KSWE" refNr="24">
+    <scheduleFile fileName="v24_____.abf">
+      <track>403</track>
+      <track>405</track>
+    </scheduleFile>
+    
+    <track name="403">
+      <block name="24S403"/>
+    </track>
+    <track name="405">
+      <block name="24S405"/>
+    </track>
+  </station>
+
+  <station name="Ennepetal" short="EENP" refNr="25" scheduleFile="b25_____.abf">
+    <track name="913" calculateDelay="false" displayName="1">
+      <block name="25B913"/>
+    </track>
+    <track name="914" calculateDelay="false" displayName="2">
+      <block name="25B914"/>
+    </track>
+  </station>
+
+  <station name="Gevelsberg-Vogelsang" short="EGVV" refNr="52">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="52B460" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hagen-Haspe" short="EHGP" refNr="25" scheduleFile="g25_____.abf" localOrderFile="bf25____.abf">
+    <track name="401">
+      <block name="25G401"/>
+    </track>
+    <track name="402">
+      <block name="25G402"/>
+    </track>
+    <track name="403">
+      <block name="25G403"/>
+    </track>
+    <track name="404">
+      <block name="25G404"/>
+    </track>
+  </station>
+
+  <station name="Hagen Rehsiepen" short="EREH" refNr="26" scheduleFile="g26_____.abf">
+    <track name="331" isPlatform="false">
+      <block name="26G331" direction="right"/>
+    </track>
+    <track name="332" isPlatform="false">
+      <block name="26G332" direction="right"/>
+    </track>
+    <track name="333" isPlatform="false">
+      <block name="25B919" direction="left"/>
+      <block name="26B333" direction="right"/>
+    </track>
+    <track name="334" isPlatform="false">
+      <block name="26B920" direction="left"/>
+      <block name="27B334" direction="right"/>
+    </track>
+    <track name="335" isPlatform="false">
+      <block name="26G335" direction="right"/>
+    </track>
+    <track name="944" isPlatform="false">
+      <block name="30B944" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hagen-Oberhagen" short="EHGO" refNr="27" scheduleFile="b27_____.abf" displayName="HA-Oberhagen">
+    <track name="" calculateDelay="false">
+      <block name="27B936"/>
+      <block name="60B937"/>
+    </track>
+  </station>
+
+  <station name="Gevelsberg West" short="KGVW" refNr="28" scheduleFile="v28_____.abf">
+    <track name="951" calculateDelay="false" displayName="1">
+      <block name="28SV951"/>
+    </track>
+    <track calculateDelay="false" isPlatform="false">
+      <block name="29B692" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Gevelsberg-Kipp" short="KGVK" refNr="28" scheduleFile="g35_____.abf" displayName="Gev-Kipp">
+    <track name="941" calculateDelay="false" displayName="1"/>
+    <track name="692" calculateDelay="false" displayName="2"/>
+  </station>
+
+  <station name="Gevelsberg Hbf" short="EGVH" refNr="28" scheduleFile="g36_____.abf">
+    <track name="941" calculateDelay="false" displayName="1"/>
+    <track name="692" calculateDelay="false" displayName="2"/>
+  </station>
+
+  <station name="Gevelsberg-Knapp" short="EGVA" refNr="29" scheduleFile="g37_____.abf" displayName="Gev-Knapp">
+    <track name="691" calculateDelay="false" displayName="1"/>
+    <track name="652" calculateDelay="false" displayName="2"/>
+  </station>
+
+  <station name="Hagen-Westerbauer" short="EHWB" refNr="29" scheduleFile="g38_____.abf" displayName="HA-Westerbauer">
+    <track name="691" calculateDelay="false" displayName="1"/>
+    <track name="652" calculateDelay="false" displayName="2"/>
+  </station>
+
+  <station name="Hagen-Heubing" short="EHGI" refNr="29" scheduleFile="g29_____.abf" localOrderFile="bf29____.abf" displayName="HA-Heubing">
+    <track name="601" displayName="1">
+      <block name="29G601"/>
+    </track>
+    <track name="602" displayName="2">
+      <block name="29G602"/>
+    </track>
+  </station>
+
+  <station name="Hagen-Eckesey" short="EHGE" refNr="40">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="40B661" direction="left"/>
+      <block name="40B662" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Hagen-Wehringhausen" short="EHGW" refNr="29" scheduleFile="b29_____.abf" displayName="HA-Wehringhausen">
+    <track name="663" calculateDelay="false" displayName="1">
+      <block name="29B663"/>
+    </track>
+  </station>
+
+  <station name="Hagen Hbf" short="EHG" refNr="27" scheduleFile="g27_____.abf" localOrderFile="bf27____.abf">
+    <track name="1">
+      <block name="27G001"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+    </track>
+    <track name="2">
+      <block name="27G002"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+    </track>
+
+    <track name="3+4" displayName="3/4">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="6+5"/>
+      <alternative track="7+8"/>
+      <alternative track="9+10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13+14"/>
+      <alternative track="15+18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+      <track name="3">
+        <block name="27G003"/>
+        <alternative track="4"/>
+      </track>
+      <track name="4">
+        <block name="27G004"/>
+        <alternative track="23"/>
+      </track>
+    </track>
+
+    <track name="23">
+      <block name="27G023"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+      <alternative track="17"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="14"/>
+      <alternative track="18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+    </track>
+
+    <track name="6+5" displayName="5/6">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3+4"/>
+      <alternative track="7+8"/>
+      <alternative track="9+10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13+14"/>
+      <alternative track="15+18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+      <track name="5">
+        <block name="27G005"/>
+        <alternative track="16"/>
+      </track>
+      <track name="6">
+        <block name="27G006"/>
+        <alternative track="5"/>
+      </track>
+    </track>
+
+    <track name="16">
+      <block name="27G016"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="9"/>
+      <alternative track="20"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="15"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+    </track>
+
+    <track name="7+8" displayName="7/8">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3+4"/>
+      <alternative track="6+5"/>
+      <alternative track="9+10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13+14"/>
+      <alternative track="15+18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+      <track name="7">
+        <block name="27G007"/>
+        <alternative track="8"/>
+      </track>
+      <track name="8">
+        <block name="27G008"/>
+        <alternative track="17"/>
+      </track>
+    </track>
+
+    <track name="17">
+      <block name="27G017"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="23"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="14"/>
+      <alternative track="18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+    </track>
+
+    <track name="9+10" displayName="9/10">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3+4"/>
+      <alternative track="6+5"/>
+      <alternative track="7+8"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13+14"/>
+      <alternative track="15+18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+      <track name="9">
+        <block name="27G009"/>
+        <alternative track="20"/>
+      </track>
+      <track name="10">
+        <block name="27G010"/>
+        <alternative track="9"/>
+      </track>
+    </track>
+
+    <track name="20">
+      <block name="27G020"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+      <alternative track="16"/>
+      <alternative track="7"/>
+      <alternative track="9"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="15"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+    </track>
+
+    <track name="11">
+      <block name="27G011"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="12"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+    </track>
+    <track name="12">
+      <block name="27G012"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="13"/>
+      <alternative track="14"/>
+      <alternative track="15"/>
+      <alternative track="18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+    </track>
+
+    <track name="13+14" displayName="13/14">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3+4"/>
+      <alternative track="6+5"/>
+      <alternative track="7+8"/>
+      <alternative track="9+10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="15+18"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+      <track name="13">
+        <block name="27G013"/>
+      </track>
+      <track name="14">
+        <block name="27G014"/>
+      </track>
+    </track>
+
+    <track name="15+18" displayName="15/18">
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3+4"/>
+      <alternative track="6+5"/>
+      <alternative track="7+8"/>
+      <alternative track="9+10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="13+14"/>
+      <alternative track="29"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+      <track name="15">
+        <block name="27G015"/>
+      </track>
+      <track name="18">
+        <block name="27G018"/>
+      </track>
+    </track>
+
+    <track name="29">
+      <block name="27G029"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="23"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+      <alternative track="17"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+      <alternative track="11"/>
+      <alternative track="12"/>
+      <alternative track="14"/>
+      <alternative track="18"/>
+      <alternative track="932"/>
+      <alternative track="944"/>
+    </track>
+
+    <track name="932">
+      <block name="27G932"/>
+    </track>
+    <track name="944" isPlatform="false">
+      <block name="30B944" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Hagen Gbf" short="EHGG" refNr="30" scheduleFile="g30_____.abf" localOrderFile="bf30____.abf">
+    <track name="041">
+      <block name="30BV041"/>
+    </track>
+    <track name="140">
+      <block name="30BV140"/>
+      <block name="30G140"/>
+    </track>
+    <track name="111">
+      <block name="30G111"/>
+      <block name="30BV111"/>
+    </track>
+    <track name="112">
+      <block name="30G112"/>
+      <block name="30BV112"/>
+    </track>
+    <track name="113">
+      <block name="30G113"/>
+      <block name="30BV113"/>
+    </track>
+    <track name="114">
+      <block name="30G114"/>
+      <block name="30BV114"/>
+    </track>
+    <track name="115">
+      <block name="30G115"/>
+      <block name="30BV115"/>
+    </track>
+  </station>
+
+  <station name="Hagen-Vorhalle" short="EHGV" refNr="33" scheduleFile="v33_____.abf">
+    <track name="502" calculateDelay="false" displayName="2">
+      <block name="33S502"/>
+    </track>
+    <track calculateDelay="false" isPlatform="false">
+      <block name="27B551" direction="left"/>
+      <block name="27B553" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Wetter (Ruhr)" short="EWET" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="33S580" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Hagen-Vorhalle Einfahrgruppe" short="EHGVE" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="33S566" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Westhofen (Westf)" short="EWEF" refNr="32">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="32S998" direction="left"/>
+      <block name="27B999" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Hagen-Kabel" short="EHGK" refNr="31">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="31S301" direction="left"/>
+      <block name="27B973" direction="left"/>
+    </track>
+  </station>
+</estw>
