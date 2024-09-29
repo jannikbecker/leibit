@@ -432,7 +432,12 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                         var differingDestination = GetDifferingDestinationSchedule(currentItem);
 
                         if (differingDestination != null)
-                            infoTexts.Add($"Fährt heute nur bis {GetDisplayName(differingDestination.Station)}");
+                        {
+                            if (isDestination)
+                                infoTexts.Add($"Keine Weiterfahrt bis {currentItem.Schedule.Destination}");
+                            else
+                                infoTexts.Add($"Fährt heute nur bis {GetDisplayName(differingDestination.Station)}");
+                        }
 
                         if (!isDestination)
                         {
