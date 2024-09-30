@@ -35,8 +35,49 @@
         <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">Bahnhof:</TextBlock>
         <ComboBox Grid.Row="0" Grid.Column="3" ItemsSource="{Binding StationList}" SelectedItem="{Binding SelectedStation}" DisplayMemberPath="Name" Margin="10,0,20,0"/>
 
-        <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center">Gleis:</TextBlock>
-        <ComboBox Grid.Row="0" Grid.Column="6" ItemsSource="{Binding TrackList}" SelectedItem="{Binding SelectedTrack}" DisplayMemberPath="Name" IsEnabled="{Binding IsTrackListEnabled}" Width="50" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Visibility="{Binding CanSelectMultipleTracks, Converter={StaticResource InvertedVisibilityConverter}}">Gleis:</TextBlock>
+        
+        <ComboBox Grid.Row="0" Grid.Column="6"
+                  ItemsSource="{Binding TrackList}"
+                  SelectedItem="{Binding SelectedTrack}"
+                  DisplayMemberPath="Name"
+                  IsEnabled="{Binding IsTrackListEnabled}"
+                  Visibility="{Binding CanSelectMultipleTracks, Converter={StaticResource InvertedVisibilityConverter}}"
+                  Width="50"
+                  HorizontalAlignment="Left"
+                  Margin="10,0,0,0"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Visibility="{Binding CanSelectMultipleTracks, Converter={StaticResource VisibilityConverter}}">Gleise:</TextBlock>
+       
+        <controls:MultiSelectComboBox Grid.Row="0" Grid.Column="6"
+                                      ItemsSource="{Binding TrackList}"
+                                      SelectedItems="{Binding SelectedTracks}"
+                                      IsEnabled="{Binding IsTrackListEnabled}"
+                                      Visibility="{Binding CanSelectMultipleTracks, Converter={StaticResource VisibilityConverter}}"
+                                      ArrowFill="{DynamicResource DropDownArrowFill}"
+                                      PopupStyle="{DynamicResource PopupStyle}"
+                                      HorizontalAlignment="Left"
+                                      MinWidth="80"
+                                      Margin="10,0,0,0">
+
+            <controls:MultiSelectComboBox.ResultItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </controls:MultiSelectComboBox.ResultItemTemplate>
+            
+            <controls:MultiSelectComboBox.DropDownItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </controls:MultiSelectComboBox.DropDownItemTemplate>
+
+            <controls:MultiSelectComboBox.EmptyTemplate>
+                <DataTemplate>
+                    <TextBlock Text="&lt;alle&gt;"/>
+                </DataTemplate>
+            </controls:MultiSelectComboBox.EmptyTemplate>
+        </controls:MultiSelectComboBox>
 
         <local:PlatformDisplaySmall Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PlatformDisplay_Small}}"/>
         <local:PlatformDisplayLarge Grid.Row="1" Grid.ColumnSpan="6" Margin="0,10,0,0" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.PlatformDisplay_Large}}"/>
