@@ -59,7 +59,8 @@
                MinWidth="{Binding ActualWidth, ElementName=toggleButton}">
 
             <ContentControl Style="{Binding PopupStyle}">
-                <ListBox ItemsSource="{Binding ItemsSource}"
+                <ListBox x:Name="dropDownList"
+                         ItemsSource="{Binding ItemsSource}"
                          ItemTemplate="{Binding DropDownItemTemplate}"
                          SelectionMode="Multiple"
                          SelectionChanged="__SelectionChanged"/>

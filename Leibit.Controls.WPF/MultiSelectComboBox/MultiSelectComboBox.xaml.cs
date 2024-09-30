@@ -35,7 +35,7 @@ namespace Leibit.Controls
 
         #region - Dependency properties -
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IList), typeof(MultiSelectComboBox), new PropertyMetadata(null));
-        public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register("SelectedItems", typeof(IList), typeof(MultiSelectComboBox), new PropertyMetadata(null));
+        public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register("SelectedItems", typeof(IList), typeof(MultiSelectComboBox), new PropertyMetadata(null, __SelectedItemsPropertyChanged));
         public static readonly DependencyProperty IsDropDownOpenProperty = DependencyProperty.Register("IsDropDownOpen", typeof(bool), typeof(MultiSelectComboBox), new PropertyMetadata(false));
         public static readonly DependencyProperty DropDownItemTemplateProperty = DependencyProperty.Register("DropDownItemTemplate", typeof(DataTemplate), typeof(MultiSelectComboBox), new PropertyMetadata(null));
         public static readonly DependencyProperty ResultItemTemplateProperty = DependencyProperty.Register("ResultItemTemplate", typeof(DataTemplate), typeof(MultiSelectComboBox), new PropertyMetadata(null));
@@ -137,6 +137,24 @@ namespace Leibit.Controls
         }
         #endregion
 
+        #region [__SelectedItemsPropertyChanged]
+        private static void __SelectedItemsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as MultiSelectComboBox;
+
+            if (control == null)
+                return;
+
+            control.__OnPropertyChanged(nameof(IsEmptyTemplateVisible));
+
+            var selectedItems = e.NewValue as IList;
+
+            if (selectedItems != null)
+                foreach (var item in selectedItems)
+                    control.dropDownList.SelectedItems.Add(item);
+        }
+        #endregion
+
         #region [__SelectionChanged]
         private void __SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -151,9 +169,12 @@ namespace Leibit.Controls
             {
                 foreach (var item in e.AddedItems)
                 {
-                    int indexToInsert;
-                    for (indexToInsert = 0; indexToInsert < SelectedItems.Count && ItemsSource.IndexOf(item) > ItemsSource.IndexOf(SelectedItems[indexToInsert]); indexToInsert++) ;
-                    SelectedItems.Insert(indexToInsert, item);
+                    if (!SelectedItems.Contains(item))
+                    {
+                        int indexToInsert;
+                        for (indexToInsert = 0; indexToInsert < SelectedItems.Count && ItemsSource.IndexOf(item) > ItemsSource.IndexOf(SelectedItems[indexToInsert]); indexToInsert++) ;
+                        SelectedItems.Insert(indexToInsert, item);
+                    }
                 }
             }
 
