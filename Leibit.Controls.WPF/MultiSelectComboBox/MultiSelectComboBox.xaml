@@ -61,9 +61,24 @@
             <ContentControl Style="{Binding PopupStyle}">
                 <ListBox x:Name="dropDownList"
                          ItemsSource="{Binding ItemsSource}"
-                         ItemTemplate="{Binding DropDownItemTemplate}"
+                         Grid.IsSharedSizeScope="True"
                          SelectionMode="Multiple"
-                         SelectionChanged="__SelectionChanged"/>
+                         SelectionChanged="__SelectionChanged">
+                    
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="16" SharedSizeGroup="checkmark"/>
+                                    <ColumnDefinition Width="auto" SharedSizeGroup="content"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0" Source="{DynamicResource imgDone}" Width="12" HorizontalAlignment="Left" Visibility="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}, Converter={StaticResource VisibilityConverter}}"/>
+                                <ContentPresenter Grid.Column="1" ContentTemplate="{Binding DropDownItemTemplate, ElementName=me}" Content="{Binding}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </ContentControl>
         </Popup>
     </Grid>
