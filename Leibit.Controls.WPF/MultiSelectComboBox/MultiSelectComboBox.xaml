@@ -1,8 +1,13 @@
 ﻿<UserControl x:Class="Leibit.Controls.MultiSelectComboBox"
              Name="me"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converter="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF">
 
+    <UserControl.Resources>
+        <converter:VisibilityConverter x:Key="VisibilityConverter"/>
+    </UserControl.Resources>
+    
     <Grid DataContext="{Binding ElementName=me}">
         <ToggleButton x:Name="toggleButton" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay}" HorizontalContentAlignment="Stretch">
             <Grid>
@@ -33,7 +38,9 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                
+
+                <ContentControl Grid.Column="0" ContentTemplate="{Binding EmptyTemplate}" Visibility="{Binding IsEmptyTemplateVisible, Converter={StaticResource VisibilityConverter}}"/>
+
                 <Path x:Name="Arrow"
                       Grid.Column="1"
                       Fill="{Binding ArrowFill}"
@@ -43,7 +50,7 @@
             </Grid>
         </ToggleButton>
 
-        <Popup IsOpen="{Binding IsDropDownOpen, Mode=TwoWay}"
+        <Popup IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, Delay=200}"
                StaysOpen="False"
                PlacementTarget="{Binding ElementName=toggleButton}"
                Placement="Bottom"

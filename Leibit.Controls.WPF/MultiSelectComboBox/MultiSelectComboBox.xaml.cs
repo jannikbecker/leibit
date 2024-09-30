@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -8,7 +10,7 @@ namespace Leibit.Controls
     /// <summary>
     /// Interaction logic for MultiSelectComboBox.xaml
     /// </summary>
-    public partial class MultiSelectComboBox : UserControl
+    public partial class MultiSelectComboBox : UserControl, INotifyPropertyChanged
     {
         #region - Ctor -
         public MultiSelectComboBox()
@@ -27,6 +29,10 @@ namespace Leibit.Controls
         }
         #endregion
 
+        #region - Events -
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
         #region - Dependency properties -
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IList), typeof(MultiSelectComboBox), new PropertyMetadata(null));
         public static readonly DependencyProperty SelectedItemsProperty = DependencyProperty.Register("SelectedItems", typeof(IList), typeof(MultiSelectComboBox), new PropertyMetadata(null));
@@ -34,6 +40,7 @@ namespace Leibit.Controls
         public static readonly DependencyProperty DropDownItemTemplateProperty = DependencyProperty.Register("DropDownItemTemplate", typeof(DataTemplate), typeof(MultiSelectComboBox), new PropertyMetadata(null));
         public static readonly DependencyProperty ResultItemTemplateProperty = DependencyProperty.Register("ResultItemTemplate", typeof(DataTemplate), typeof(MultiSelectComboBox), new PropertyMetadata(null));
         public static readonly DependencyProperty ResultItemSeparatorTemplateProperty = DependencyProperty.Register("ResultItemSeparatorTemplate", typeof(DataTemplate), typeof(MultiSelectComboBox));
+        public static readonly DependencyProperty EmptyTemplateProperty = DependencyProperty.Register("EmptyTemplate", typeof(DataTemplate), typeof(MultiSelectComboBox));
         public static readonly DependencyProperty ArrowFillProperty = DependencyProperty.Register("ArrowFill", typeof(Brush), typeof(MultiSelectComboBox), new PropertyMetadata(Brushes.Transparent));
         public static readonly DependencyProperty PopupStyleProperty = DependencyProperty.Register("PopupStyle", typeof(Style), typeof(MultiSelectComboBox), new PropertyMetadata(null));
         #endregion
@@ -88,6 +95,14 @@ namespace Leibit.Controls
         }
         #endregion
 
+        #region [EmptyTemplate]
+        public DataTemplate EmptyTemplate
+        {
+            get { return (DataTemplate)GetValue(EmptyTemplateProperty); }
+            set { SetValue(EmptyTemplateProperty, value); }
+        }
+        #endregion
+
         #region [ArrowFill]
         public Brush ArrowFill
         {
@@ -104,9 +119,23 @@ namespace Leibit.Controls
         }
         #endregion
 
+        #region [IsEmptyTemplateVisible]
+        public bool IsEmptyTemplateVisible
+        {
+            get => (SelectedItems?.Count ?? 0) == 0;
+        }
+        #endregion
+
         #endregion
 
         #region - Private methods -
+
+        #region [__OnPropertyChanged]
+        private void __OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
 
         #region [__SelectionChanged]
         private void __SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -128,7 +157,7 @@ namespace Leibit.Controls
                 }
             }
 
-            itemsControl?.UpdateLayout();
+            __OnPropertyChanged(nameof(IsEmptyTemplateVisible));
         }
         #endregion
 
