@@ -33,8 +33,8 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region - Properties -
+        public DisplayType SelectedDisplayType => m_Parent.SelectedDisplayType;
         protected Dispatcher Dispatcher => m_Parent.Dispatcher;
-        protected DisplayType SelectedDisplayType => m_Parent.SelectedDisplayType;
         protected Station SelectedStation => m_Parent.SelectedStation;
         protected Track SelectedTrack => m_Parent.SelectedTrack;
         protected ObservableCollection<Track> SelectedTracks => m_Parent.SelectedTracks;
@@ -387,6 +387,24 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 return stationNames.Single();
 
             return $"{string.Join(", ", stationNames.Take(stationNames.Count - 1))} und {stationNames.Last()}";
+        }
+        #endregion
+
+        #region [GetFollowUpService]
+        protected int? GetFollowUpService(ScheduleItem currentItem)
+        {
+            if (currentItem.Schedule.Handling == eHandling.Destination)
+            {
+                if (currentItem.LiveSchedule != null)
+                {
+                    if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
+                        return currentItem.LiveSchedule.Train.FollowUpService;
+                }
+                else
+                    return currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
+            }
+
+            return null;
         }
         #endregion
 

@@ -2,16 +2,18 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
-             xmlns:converter="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF">
+             xmlns:converter="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+             xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.Display.ViewModels">
 
     <UserControl.Resources>
         <converter:VisibilityConverter x:Key="VisibilityConverter"/>
         <converter:VisibilityConverter x:Key="InvertedVisibilityConverter" Invert="True"/>
+        <vm:DisplayTypeConverter x:Key="DisplayTypeConverter"/>
     </UserControl.Resources>
     
     <Border DataContext="{Binding SelectedDisplayType.ViewModel}" BorderBrush="#373d6d" Background="#373d6d" BorderThickness="20" HorizontalAlignment="Left">
         <StackPanel Orientation="Vertical">
-            <TextBlock Foreground="White" Margin="0,0,0,10">
+            <TextBlock Foreground="White" Margin="0,0,0,10" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.DepartureBoard_Large}}">
                 <Run FontSize="30" FontWeight="Bold">Abfahrt</Run>
                 <Run></Run>
                 <Run></Run>
@@ -19,6 +21,16 @@
                 <Run></Run>
                 <Run></Run>
                 <Run FontSize="20" FontStyle="Italic">Departure</Run>
+            </TextBlock>
+
+            <TextBlock Foreground="White" Margin="0,0,0,10" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.ArrivalBoard_Large}}">
+                <Run FontSize="30" FontWeight="Bold">Ankunft</Run>
+                <Run></Run>
+                <Run></Run>
+                <Run></Run>
+                <Run></Run>
+                <Run></Run>
+                <Run FontSize="20" FontStyle="Italic">Arrival</Run>
             </TextBlock>
 
             <Grid>
@@ -41,11 +53,17 @@
                     <Run></Run>
                     <Run FontSize="14" FontStyle="Italic">Via</Run>
                 </TextBlock>
-                <TextBlock Grid.Column="2" Foreground="White">
+                <TextBlock Grid.Column="2" Foreground="White" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.DepartureBoard_Large}}">
                     <Run FontSize="20">Ziel</Run>
                     <Run></Run>
                     <Run></Run>
                     <Run FontSize="14" FontStyle="Italic">Destination</Run>
+                </TextBlock>
+                <TextBlock Grid.Column="2" Foreground="White" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.ArrivalBoard_Large}}">
+                    <Run FontSize="20">Von</Run>
+                    <Run></Run>
+                    <Run></Run>
+                    <Run FontSize="14" FontStyle="Italic">From</Run>
                 </TextBlock>
                 <TextBlock Grid.Column="3" Foreground="White">
                     <Run FontSize="20">Gleis</Run>

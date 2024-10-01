@@ -18,6 +18,10 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         PassengerInformation,
 
         Countdown,
+
+        ArrivalBoard_Small,
+
+        ArrivalBoard_Large,
     }
 
     public class DisplayType

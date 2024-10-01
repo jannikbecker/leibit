@@ -9,10 +9,15 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
     public class DepartureBoardItemViewModel : ViewModelBase
     {
 
+        #region - Needs -
+        private bool m_ArrivalBoard;
+        #endregion
+
         #region - Ctor -
-        public DepartureBoardItemViewModel(ScheduleItem scheduleItem)
+        public DepartureBoardItemViewModel(ScheduleItem scheduleItem, bool arrivalBoard)
         {
             Schedule = scheduleItem.Schedule;
+            m_ArrivalBoard = arrivalBoard;
         }
         #endregion
 
@@ -23,7 +28,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region [Time]
-        public LeibitTime Time => Schedule.Departure;
+        public LeibitTime Time => m_ArrivalBoard ? Schedule.Arrival : Schedule.Departure;
         #endregion
 
         #region [Margin]

@@ -25,6 +25,8 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 new DisplayType(eDisplayType.Countdown, "Zugzielanzeiger S-Bahn", new CountdownDisplayViewModel(this), false),
                 new DisplayType(eDisplayType.DepartureBoard_Small, "Abfahrtstafel klein", new DepartureBoardViewModel(this), true),
                 new DisplayType(eDisplayType.DepartureBoard_Large, "Abfahrtstafel groß", new DepartureBoardViewModel(this), true),
+                new DisplayType(eDisplayType.ArrivalBoard_Small, "Ankunftstafel klein", new ArrivalBoardViewModel(this), true),
+                new DisplayType(eDisplayType.ArrivalBoard_Large, "Ankunftstafel groß", new ArrivalBoardViewModel(this), true),
                 new DisplayType(eDisplayType.PassengerInformation, "Fahrgastinformation", new PassengerInformationViewModel(this), true),
             };
 

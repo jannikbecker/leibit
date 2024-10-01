@@ -53,7 +53,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (currentItem == null)
                 {
-                    currentItem = new DepartureBoardItemViewModel(scheduleItem);
+                    currentItem = new DepartureBoardItemViewModel(scheduleItem, false);
                     currentItem.TrainNumber = GetTrainNumber(scheduleItem);
 
                     int indexToInsert;
