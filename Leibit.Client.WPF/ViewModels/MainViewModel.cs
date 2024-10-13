@@ -946,7 +946,11 @@ namespace Leibit.Client.WPF.ViewModels
                                 var vm = new DisplayViewModel(Window.Dispatcher, m_CurrentArea);
                                 vm.SelectedDisplayType = vm.DisplayTypes.FirstOrDefault(x => x.Type == type);
                                 vm.SelectedStation = vm.StationList.FirstOrDefault(s => s.ShortSymbol == parts[1]);
-                                vm.SelectedTrack = vm.TrackList.FirstOrDefault(t => t.Name == parts[2]);
+
+                                if (vm.SelectedDisplayType.MultiTrack)
+                                    vm.SelectedTracks.AddRange(vm.TrackList.Where(t => parts.Skip(2).Any(p => p == t.Name)));
+                                else
+                                    vm.SelectedTrack = vm.TrackList.FirstOrDefault(t => t.Name == parts[2]);
 
                                 ViewModel = vm;
                             }
@@ -1030,7 +1034,12 @@ namespace Leibit.Client.WPF.ViewModels
                 else if (Window.DataContext is DisplayViewModel displayViewModel)
                 {
                     SerializedWindow.Type = eChildWindowType.Display;
-                    SerializedWindow.Tag = $"{(int)displayViewModel.SelectedDisplayType.Type};{displayViewModel.SelectedStation?.ShortSymbol};{displayViewModel.SelectedTrack?.Name}";
+                    SerializedWindow.Tag = $"{(int)displayViewModel.SelectedDisplayType.Type};{displayViewModel.SelectedStation?.ShortSymbol};";
+
+                    if (displayViewModel.SelectedDisplayType.MultiTrack)
+                        SerializedWindow.Tag += string.Join(";", displayViewModel.SelectedTracks.Select(x => x.Name));
+                    else
+                        SerializedWindow.Tag += displayViewModel.SelectedTrack?.Name;
                 }
                 else
                     continue;

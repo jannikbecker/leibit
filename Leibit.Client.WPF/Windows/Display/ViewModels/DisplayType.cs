@@ -18,16 +18,20 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         PassengerInformation,
 
         Countdown,
+
+        ArrivalBoard_Small,
+
+        ArrivalBoard_Large,
     }
 
     public class DisplayType
     {
-        internal DisplayType(eDisplayType type, string name, DisplayViewModelBase viewModel, bool trackRequired)
+        internal DisplayType(eDisplayType type, string name, DisplayViewModelBase viewModel, bool multiTrack)
         {
             Type = type;
             Name = name;
             ViewModel = viewModel;
-            TrackRequired = trackRequired;
+            MultiTrack = multiTrack;
         }
 
         public eDisplayType Type { get; }
@@ -36,7 +40,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
         public DisplayViewModelBase ViewModel { get; }
 
-        public bool TrackRequired { get; }
+        public bool MultiTrack { get; }
     }
 
     public class DisplayTypeConverter : IValueConverter

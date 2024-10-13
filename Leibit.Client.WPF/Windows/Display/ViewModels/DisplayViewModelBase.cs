@@ -7,6 +7,7 @@ using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
 using Leibit.Entities.Scheduling;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -32,10 +33,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region - Properties -
+        public DisplayType SelectedDisplayType => m_Parent.SelectedDisplayType;
         protected Dispatcher Dispatcher => m_Parent.Dispatcher;
-        protected DisplayType SelectedDisplayType => m_Parent.SelectedDisplayType;
         protected Station SelectedStation => m_Parent.SelectedStation;
         protected Track SelectedTrack => m_Parent.SelectedTrack;
+        protected ObservableCollection<Track> SelectedTracks => m_Parent.SelectedTracks;
         #endregion
 
         #region - Internal methods -
@@ -49,8 +51,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region - Protected methods -
 
         #region [GetScheduleCandidates]
-        protected List<ScheduleItem> GetScheduleCandidates(Area area, int leadMinutes, bool matchTrack)
+        protected List<ScheduleItem> GetScheduleCandidates(Area area, int leadMinutes, bool trackRequired)
         {
+            var matchTrack = trackRequired || SelectedTracks.Any();
             var currentTime = SelectedStation.ESTW.Time;
             var schedulesResult = m_CalculationBll.GetSchedulesByTime(SelectedStation.Schedules, currentTime);
 
@@ -79,7 +82,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (liveSchedule == null)
                 {
-                    if (matchTrack && schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent)
+                    if (matchTrack && !SelectedDisplayType.MultiTrack && schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent)
+                        continue;
+                    if (matchTrack && SelectedDisplayType.MultiTrack && !SelectedTracks.Contains(schedule.Track) && !SelectedTracks.Any(t => t.Parent == schedule.Track))
                         continue;
                     if (schedule.Time < currentTime)
                         continue;
@@ -96,7 +101,13 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     if (schedule.Handling == eHandling.Destination && !liveSchedule.Train.IsActive)
                         continue;
 
-                    if (matchTrack && schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent && liveSchedule.LiveTrack != SelectedTrack && liveSchedule.LiveTrack != SelectedTrack.Parent)
+                    if (matchTrack && !SelectedDisplayType.MultiTrack
+                        && schedule.Track != SelectedTrack && schedule.Track != SelectedTrack.Parent && liveSchedule.LiveTrack != SelectedTrack && liveSchedule.LiveTrack != SelectedTrack.Parent)
+                        continue;
+
+                    if (matchTrack && SelectedDisplayType.MultiTrack
+                        && !SelectedTracks.Contains(schedule.Track) && !SelectedTracks.Any(t => t.Parent == schedule.Track)
+                        && !SelectedTracks.Contains(liveSchedule.LiveTrack) && !SelectedTracks.Any(t => t.Parent == liveSchedule.LiveTrack))
                         continue;
 
                     var liveScheduleIndex = liveSchedule.Train.Schedules.IndexOf(liveSchedule);
@@ -376,6 +387,24 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 return stationNames.Single();
 
             return $"{string.Join(", ", stationNames.Take(stationNames.Count - 1))} und {stationNames.Last()}";
+        }
+        #endregion
+
+        #region [GetFollowUpService]
+        protected int? GetFollowUpService(ScheduleItem currentItem)
+        {
+            if (currentItem.Schedule.Handling == eHandling.Destination)
+            {
+                if (currentItem.LiveSchedule != null)
+                {
+                    if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
+                        return currentItem.LiveSchedule.Train.FollowUpService;
+                }
+                else
+                    return currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
+            }
+
+            return null;
         }
         #endregion
 
