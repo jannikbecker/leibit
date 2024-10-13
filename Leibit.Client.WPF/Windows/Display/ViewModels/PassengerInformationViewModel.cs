@@ -44,7 +44,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #region [Refresh]
         internal override void Refresh(Area area)
         {
-            if (SelectedStation == null || SelectedTrack == null)
+            if (SelectedStation == null || !SelectedTracks.Any())
             {
                 LEDText = "...";
                 IsLEDSliding = true;
@@ -57,12 +57,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             var textsToDisplay = new List<string>();
             textsToDisplay.Add($"Zeit: {SelectedStation.ESTW.Time} Uhr");
 
-            var nextTrain = orderedSchedules.Where(x => x.LiveSchedule?.IsCancelled != true).FirstOrDefault();
+            var nextTrains = orderedSchedules.Where(x => x.LiveSchedule?.IsCancelled != true
+                                                      && !(IsDestination(x) && x.Schedule.Handling == eHandling.Start)
+                                                      && x.Schedule.Time < SelectedStation.ESTW.Time.AddMinutes(10));
 
-            if (nextTrain != null && IsDestination(nextTrain) && nextTrain.Schedule.Handling == eHandling.Start)
-                nextTrain = null;
-
-            if (nextTrain != null && nextTrain.Schedule.Time < SelectedStation.ESTW.Time.AddMinutes(10))
+            foreach (var nextTrain in nextTrains)
             {
                 var track = nextTrain.LiveSchedule?.LiveTrack ?? nextTrain.Schedule.Track;
                 textsToDisplay.Add($"{__GetLEDBaseText(nextTrain)} auf Gleis {GetTrackName(track)}");
@@ -79,7 +78,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     if (delay > 0)
                         infoText = delay == 1 ? "wenige Minuten später" : $"circa {delay} Minuten später";
 
-                    if (IsTrackChanged(currentItem) && (currentItem.Schedule.Track == SelectedTrack || currentItem.Schedule.Track == SelectedTrack.Parent))
+                    if (IsTrackChanged(currentItem) && (SelectedTracks.Contains(currentItem.Schedule.Track) || SelectedTracks.Any(t => t.Parent == currentItem.Schedule.Track)))
                     {
                         if (infoText.IsNotNullOrEmpty())
                             infoText += " und ";

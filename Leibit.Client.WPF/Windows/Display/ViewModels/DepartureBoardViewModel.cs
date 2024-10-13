@@ -53,10 +53,13 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (currentItem == null)
                 {
-                    currentItem = new DepartureBoardItemViewModel(scheduleItem);
+                    currentItem = new DepartureBoardItemViewModel(scheduleItem, false);
                     currentItem.TrainNumber = GetTrainNumber(scheduleItem);
 
-                    Dispatcher.Invoke(() => Items.Add(currentItem));
+                    int indexToInsert;
+                    for (indexToInsert = 0; indexToInsert < Items.Count && Items[indexToInsert].Time <= scheduleItem.Schedule.Departure; indexToInsert++) ;
+
+                    Dispatcher.Invoke(() => Items.Insert(indexToInsert, currentItem));
                 }
 
                 if (SelectedDisplayType.Type == eDisplayType.DepartureBoard_Small)
