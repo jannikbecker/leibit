@@ -301,6 +301,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 __ShowDelayJustification();
             else if (SelectedColumn == "LocalOrders" && SelectedItem.LocalOrders == 'J')
                 __ShowLocalOrders();
+            else if (SelectedColumn == "Track.Name" || SelectedColumn == "LiveTrack.Name")
+                __ShowTrackChange();
             else
                 __ShowTrainSchedule();
         }
