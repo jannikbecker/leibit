@@ -284,7 +284,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 ShowTrainCompositionCommand.SetCanExecute(SelectedItem.Schedule.Train.Composition.IsNotNullOrWhiteSpace());
                 ShowLocalOrdersCommand.SetCanExecute(SelectedItem.Schedule.LocalOrders.IsNotNullOrWhiteSpace());
                 EnterExpectedDelayCommand.SetCanExecute(SelectedItem.State != "beendet");
-                ShowTrackChangeCommand.SetCanExecute((liveSchedule == null || !liveSchedule.IsArrived) && (SelectedItem.Schedule.Track == null || SelectedItem.Schedule.Track.IsPlatform));
+                ShowTrackChangeCommand.SetCanExecute(__CanChangeTrack());
                 ShowDelayJustificationCommand.SetCanExecute(SelectedItem.DelayInfo == 'U');
                 EnterTrainStateCommand.SetCanExecute(liveSchedule != null && liveSchedule.IsArrived && !liveSchedule.IsDeparted);
             }
@@ -301,7 +301,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 __ShowDelayJustification();
             else if (SelectedColumn == "LocalOrders" && SelectedItem.LocalOrders == 'J')
                 __ShowLocalOrders();
-            else if (SelectedColumn == "Track.Name" || SelectedColumn == "LiveTrack.Name")
+            else if ((SelectedColumn == "Track.Name" || SelectedColumn == "LiveTrack.Name") && __CanChangeTrack())
                 __ShowTrackChange();
             else
                 __ShowTrainSchedule();
@@ -314,6 +314,14 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             var window = new ExpectedDelayView(SelectedItem.TrainNumber);
             window.DataContext = new ExpectedDelayViewModel(m_Area, SelectedItem.CurrentTrain, SelectedItem.Schedule);
             OnOpenWindow(window);
+        }
+        #endregion
+
+        #region [__CanChangeTrack]
+        private bool __CanChangeTrack()
+        {
+            var liveSchedule = SelectedItem.CurrentTrain?.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == SelectedItem.Schedule.Station.ShortSymbol && s.Schedule.Time == SelectedItem.Schedule.Time);
+            return (liveSchedule == null || !liveSchedule.IsArrived) && (SelectedItem.Schedule.Track == null || SelectedItem.Schedule.Track.IsPlatform);
         }
         #endregion
 
