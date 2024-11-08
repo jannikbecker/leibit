@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Langen-Flugsicherung" short="FLGF" refNr="9" scheduleFile="v9______.ABF">
+    <track name="312" calculateDelay="false" displayName="1">
+      <block name="09S312"/>
+    </track>
+    <track name="313" calculateDelay="false" displayName="2">
+      <block name="09S313"/>
+    </track>
+  </station>
+
+  <station name="Dreieich-Buchschlag Hp" short="FBUSS" refNr="9" scheduleFile="b9______.ABF">
+    <track name="310" calculateDelay="false" displayName="2">
+      <block name="09B310"/>
+    </track>
+    <track name="311" calculateDelay="false" displayName="3">
+      <block name="08B311"/>
+    </track>
+  </station>
+
+  <station name="Neu Isenburg Hp" short="FNUI" refNr="8" scheduleFile="b8______.ABF">
+    <track name="304" calculateDelay="false" displayName="2">
+      <block name="08B304"/>
+    </track>
+    <track name="305" calculateDelay="false" displayName="3">
+      <block name="08B305"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Louisa" short="FLS" refNr="7" scheduleFile="g7______.ABF" localOrderFile="bf7_____.ABF" displayName="F-Louisa">
+    <track name="001" displayName="1">
+      <block name="07G001"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="07G002"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Stresemannallee" short="FSTL" refNr="7" scheduleFile="b7______.ABF" displayName="F-Stresemannallee">
+    <track name="302" calculateDelay="false" displayName="2">
+      <block name="07B302"/>
+    </track>
+    <track name="303" calculateDelay="false" displayName="1">
+      <block name="06B303"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Süd" short="FFS" refNr="6" scheduleFile="g6______.ABF" localOrderFile="bf6_____.ABF" displayName="F-Süd">
+    <track name="001" displayName="1">
+      <block name="06G001"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="06G002"/>
+    </track>
+    <track name="003" displayName="3">
+      <block name="06G003"/>
+    </track>
+    <track name="004" displayName="4">
+      <block name="06G004"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Lokalbahnhof" short="FLBF" refNr="5" scheduleFile="b5______.ABF" displayName="F-Lokalbahnhof">
+    <track name="094" calculateDelay="false" displayName="1">
+      <block name="05B094"/>
+    </track>
+    <track name="194" calculateDelay="false" displayName="2">
+      <block name="05B194"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Schlachthof" short="FSHF" refNr="5" scheduleFile="g50_____.abf">
+    <track name="092" isPlatform="false">
+      <block name="05G092" direction="left"/>
+      <block name="05G133" direction="right"/>
+    </track>
+    <track name="134" isPlatform="false">
+      <block name="05G134" direction="right"/>
+      <block name="05G136" direction="right"/>
+    </track>
+    <track name="135" isPlatform="false">
+      <block name="05G135" direction="right"/>
+    </track>
+    <track name="190" isPlatform="false">
+      <block name="05G192" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Mühlberg" short="FMUL" refNr="5" scheduleFile="g5______.ABF" localOrderFile="bf5_____.ABF" displayName="F-Mühlberg">
+    <track name="137" displayName="1">
+      <block name="05G137"/>
+    </track>
+    <track name="138" displayName="2">
+      <block name="05G138"/>
+    </track>
+  </station>
+
+  <station name="Offenbach-Kaiserlei" short="FOKL" refNr="5" scheduleFile="v5______.ABF" displayName="OF-Kaiserlei">
+    <track name="145" displayName="1">
+      <block name="05G145"/>
+    </track>
+    <track name="148" displayName="2">
+      <block name="05G148"/>
+    </track>
+  </station>
+
+  <station name="Offenbach Ledermuseum" short="FOLM" refNr="45" scheduleFile="v45_____.ABF" displayName="OF-Ledermuseum">
+    <track name="21" calculateDelay="false" displayName="1">
+      <block name="46B21"/>
+    </track>
+    <track name="22" calculateDelay="false" displayName="2">
+      <block name="45B22"/>
+    </track>
+  </station>
+
+  <station name="Offenbach Marktplatz" short="FOMP" refNr="46" scheduleFile="v46_____.ABF" displayName="OF-Marktplatz">
+    <track name="25" calculateDelay="false" displayName="1">
+      <block name="46S25"/>
+    </track>
+    <track name="26" calculateDelay="false" displayName="2">
+      <block name="46S26"/>
+    </track>
+  </station>
+
+  <station name="Offenbach (Main) Ost" short="FOO" refNr="46">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="46S27" direction="left"/>
+      <block name="46S28" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Ostendstraße" short="FOST" refNr="4" scheduleFile="v4______.ABF" displayName="F-Ostendstraße">
+    <track name="131" displayName="1">
+      <block name="04G131"/>
+    </track>
+    <track name="132" displayName="2">
+      <block name="04G132"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Konstablerwache" short="FKON" refNr="4" scheduleFile="b4______.ABF" displayName="F-Konstablerwache">
+    <track name="125" displayName="2">
+      <block name="04G125"/>
+    </track>
+    <track name="126" displayName="3">
+      <block name="04G126"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Hauptwache" short="FHAU" refNr="4" scheduleFile="g4______.ABF" displayName="F-Hauptwache" localOrderFile="bf4_____.ABF">
+    <track name="121" displayName="2">
+      <block name="04G121"/>
+    </track>
+    <track name="122" displayName="3">
+      <block name="04G122"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Taunusanlage" short="FFTA" refNr="3" scheduleFile="b3______.ABF" displayName="F-Taunusanlage">
+    <track name="117" displayName="1">
+      <block name="03G117"/>
+    </track>
+    <track name="118" displayName="2">
+      <block name="03G118"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Hbf (tief)" short="FFT" refNr="3" scheduleFile="g3______.ABF" displayName="F-Hbf" localOrderFile="bf3_____.ABF">
+    <track name="101">
+      <block name="03G101"/>
+    </track>
+    <track name="102">
+      <block name="03G102"/>
+    </track>
+    <track name="103">
+      <block name="03G103"/>
+    </track>
+    <track name="104">
+      <block name="03G104"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Galluswarte" short="FFGA" refNr="21">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="03B01" direction="left"/>
+      <block name="21B02" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Hoch/Tief" short="FF H" refNr="3">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="03BFNFT1" direction="left"/>
+      <block name="03BFNFT2" direction="left"/>
+    </track>
+  </station>
+</estw>
