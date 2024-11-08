@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <leibit>
   <area id="nhth" name="Mitteldeutschland">
+    <estw id="FF_N" name="Frankfurt Hbf Nordseite" dataFile="leibit_FF-HBF NORDSEITE.dat" infrastructureManager="DB"/>
     <estw id="FHAU" name="Frankfurt-Hauptwache" dataFile="leibit_FF-HAUPTWACHE.dat" infrastructureManager="DB"/>
     <estw id="NWH" name="Würzburg Hbf" dataFile="leibit_WÜRZBURG HBF.dat" infrastructureManager="DB"/>
     <estw id="NGM" name="Gemünden" dataFile="leibit_GEMÜNDEN.dat" infrastructureManager="DB"/>
