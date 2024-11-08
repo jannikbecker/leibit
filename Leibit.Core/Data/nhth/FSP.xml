@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Frankfurt (Main) Hbf" short="FF" refNr="1">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="01B01" direction="right"/>
+      <block name="40B02" direction="right"/>
+      <block name="01B1001" direction="right"/>
+      <block name="40B1002" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Galluswarte" short="FFGA" refNr="21">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="21B101" direction="right"/>
+      <block name="40G102" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt Main-Neckar-Brücke" short="FMST" refNr="40" scheduleFile="G40_____.ABF" localOrderFile="bf40____.abf">
+    <track name="11" isPlatform="false">
+      <block name="40G21" direction="left"/>
+    </track>
+    <track name="12" isPlatform="false">
+      <block name="40B03" direction="left"/>
+    </track>
+    <track name="13" isPlatform="false">
+      <block name="40G23" direction="left"/>
+    </track>
+    <track name="14" isPlatform="false">
+      <block name="40B1003" direction="left"/>
+    </track>
+    <track name="15" isPlatform="false">
+      <block name="40B102" direction="left"/>
+    </track>
+    <track name="16" isPlatform="false">
+      <block name="21B101" direction="left"/>
+    </track>
+    <track name="83" isPlatform="false">
+      <block name="41B12" direction="right"/>
+    </track>
+    <track name="84" isPlatform="false">
+      <block name="40G94" direction="right"/>
+    </track>
+    <track name="91" isPlatform="false">
+      <block name="43B10" direction="right"/>
+    </track>
+    <track name="92" isPlatform="false">
+      <block name="40G92" direction="right"/>
+    </track>
+    <track name="111">
+      <block name="40G111"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Süd Abstellbahnhof" short="FFS A" refNr="43">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="43B10" direction="left"/>
+      <block name="40B13" direction="left"/>
+      <block name="41B101" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Louisa" short="FLS" refNr="41" scheduleFile="G41_____.ABF" localOrderFile="bf41____.ABF">
+    <track name="04">
+      <block name="41G04"/>
+    </track>
+    <track name="05">
+      <block name="41G05"/>
+    </track>
+    <track name="06">
+      <block name="41G06"/>
+    </track>
+  </station>
+
+  <station name="Neu-Isenburg Nord" short="FNIS N" refNr="51" scheduleFile="G51_____.ABF" localOrderFile="bf51____.ABF">
+    <track name="12" isPlatform="false">
+      <block name="41B22" direction="left"/>
+    </track>
+    <track name="13" isPlatform="false">
+      <block name="41B21" direction="left"/>
+    </track>
+    <track name="14" isPlatform="false">
+      <block name="51B11" direction="right"/>
+    </track>
+    <track name="91" isPlatform="false">
+      <block name="51B01" direction="right"/>
+    </track>
+    <track name="92" isPlatform="false">
+      <block name="51B32" direction="right"/>
+    </track>
+    <track name="93" isPlatform="false">
+      <block name="51B31" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Neu-Isenburg" short="FNIS" refNr="52">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="51B01" direction="left"/>
+      <block name="52S2" direction="left"/>
+      <block name="52S3" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Süd" short="FFS" refNr="44">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="44S13" direction="right"/>
+      <block name="44S14" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Forsthaus (Frankfurt)" short="FFOR" refNr="42" scheduleFile="G42_____.ABF" localOrderFile="bf42____.ABF">
+    <track name="01" isPlatform="false"/>
+    <track name="03" isPlatform="false"/>
+    <track name="04" isPlatform="false"/>
+    <track name="06" isPlatform="false"/>
+    <track name="08" isPlatform="false"/>
+
+    <track name="10" isPlatform="false">
+      <block name="12B21" direction="right"/>
+    </track>
+    <track name="11" isPlatform="false">
+      <block name="42B02" direction="right"/>
+    </track>
+    <track name="12" isPlatform="false">
+      <block name="42B01" direction="right"/>
+    </track>
+    <track name="90" isPlatform="false">
+      <block name="41B01" direction="left"/>
+    </track>
+    <track name="91" isPlatform="false">
+      <block name="44B12" direction="left"/>
+    </track>
+    <track name="92" isPlatform="false">
+      <block name="42B11" direction="left"/>
+    </track>
+    <track name="93" isPlatform="false">
+      <block name="51B11" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Gutleuthof" short="FGUR" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12B901" direction="right"/>
+      <block name="11B902" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Hoch/Tief" short="FF H" refNr="3">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12B113" direction="right"/>
+      <block name="02B114" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Außenbahnhof" short="FFAU" refNr="3">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12B101" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt Mainzer Landstraße" short="FMLA" refNr="6">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12B201" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Griesheim" short="FGM" refNr="5">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12B301" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt am Main Kleyerstraße" short="FKY" refNr="4">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="04B01" direction="right"/>
+      <block name="12B02" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Niederrad" short="FNI" refNr="12" scheduleFile="G12_____.ABF" localOrderFile="bf12____.ABF" displayName="F-Niederrad">
+    <track name="03" displayName="1">
+      <block name="12G03"/>
+      <alternative track="04"/>
+      <alternative track="08"/>
+    </track>
+    <track name="04" displayName="2">
+      <block name="12G04"/>
+      <alternative track="03"/>
+      <alternative track="08"/>
+    </track>
+    <track name="08">
+      <block name="12G08"/>
+      <alternative track="03"/>
+      <alternative track="04"/>
+    </track>
+
+    <track name="53">
+      <block name="12G53"/>
+      <alternative track="54"/>
+      <alternative track="58"/>
+    </track>
+    <track name="54">
+      <block name="12G54"/>
+      <alternative track="53"/>
+      <alternative track="58"/>
+    </track>
+    <track name="58">
+      <block name="12G58"/>
+      <alternative track="53"/>
+      <alternative track="54"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Niederrad Hp" short="FNI S" refNr="12" scheduleFile="b12_____.ABF" displayName="F-Niederrad">
+    <track name="03" displayName="4">
+      <block name="12B03"/>
+    </track>
+    <track name="04" displayName="3">
+      <block name="12B04"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt Sportfeld" short="FSP" refNr="13" scheduleFile="G13_____.ABF" localOrderFile="bf13____.ABF" displayName="F-Stadion">
+    <track name="01" displayName="1">
+      <block name="13G01"/>
+    </track>
+    <track name="02" displayName="2">
+      <block name="13G02"/>
+    </track>
+    <track name="03" displayName="3">
+      <block name="13G03"/>
+    </track>
+    <track name="04" displayName="4">
+      <block name="13G04"/>
+    </track>
+    <track name="05" displayName="5">
+      <block name="13G05"/>
+    </track>
+    <track name="06" displayName="6">
+      <block name="13G06"/>
+    </track>
+    <track name="07" displayName="7">
+      <block name="13G07"/>
+    </track>
+  </station>
+
+  <station name="Zeppelinheim" short="FZEP" refNr="74" scheduleFile="V74_____.ABF">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="72B101" direction="right"/>
+      <block name="74B102" direction="right"/>
+    </track>
+
+    <track name="41" calculateDelay="false">
+      <block name="74S41"/>
+    </track>
+    <track name="42" calculateDelay="false">
+      <block name="74S42"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Schwanheim" short="FSWA" refNr="14" scheduleFile="G14_____.ABF" localOrderFile="bf14____.ABF">
+    <track name="101" isPlatform="false">
+      <block name="14B91" direction="left"/>
+      <block name="14B85" direction="right"/>
+    </track>
+    <track name="103" isPlatform="false">
+      <block name="14B12" direction="left"/>
+      <block name="15B22" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (M) Flughafen Regiobf" short="FFLU" refNr="15">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="14B21" direction="left"/>
+      <block name="15B22" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Kelsterbach" short="FKCH" refNr="16">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="16B81" direction="left"/>
+      <block name="14B82" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Frankfurter Kreuz" short="FFK" refNr="73" scheduleFile="G73_____.ABF">
+    <track name="101" isPlatform="false">
+      <block name="72B181" direction="right"/>
+    </track>
+    <track name="102" isPlatform="false">
+      <block name="73B182" direction="right"/>
+    </track>
+    <track name="201" isPlatform="false">
+      <block name="13B191" direction="left"/>
+    </track>
+    <track name="202" isPlatform="false">
+      <block name="13B192" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (M) Flughafen Fernbf" short="FFLF" refNr="72" scheduleFile="G72_____.ABF" displayName="F-Flughafen Fernbf">
+    <track name="204" displayName="4" displaySubName="A-D">
+      <block name="72G204"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="207"/>
+    </track>
+    <track name="305" displayName="5" displaySubName="A-D">
+      <block name="72G305"/>
+      <alternative track="204"/>
+      <alternative track="306"/>
+      <alternative track="207"/>
+    </track>
+    <track name="306" displayName="6" displaySubName="A-D">
+      <block name="72G306"/>
+      <alternative track="204"/>
+      <alternative track="305"/>
+      <alternative track="207"/>
+    </track>
+    <track name="207" displayName="7" displaySubName="A-D">
+      <block name="72G207"/>
+      <alternative track="204"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+    </track>
+
+    <track name="304" displayName="4" displaySubName="D-G">
+      <block name="72G304"/>
+      <alternative track="405"/>
+      <alternative track="406"/>
+      <alternative track="307"/>
+    </track>
+    <track name="405" displayName="5" displaySubName="D-G">
+      <block name="72G405"/>
+      <alternative track="304"/>
+      <alternative track="406"/>
+      <alternative track="307"/>
+    </track>
+    <track name="406" displayName="6" displaySubName="D-G">
+      <block name="72G406"/>
+      <alternative track="304"/>
+      <alternative track="405"/>
+      <alternative track="307"/>
+    </track>
+    <track name="307" displayName="7" displaySubName="D-G">
+      <block name="72G307"/>
+      <alternative track="304"/>
+      <alternative track="405"/>
+      <alternative track="406"/>
+    </track>
+  </station>
+
+  <station name="Raunheim Mönchhof" short="FMOH" refNr="71" scheduleFile="G71_____.ABF">
+    <track name="101" isPlatform="false">
+      <block name="70B161" direction="right"/>
+    </track>
+    <track name="102" isPlatform="false">
+      <block name="71B162" direction="right"/>
+    </track>
+    <track name="103" isPlatform="false">
+      <block name="71B01" direction="right"/>
+    </track>
+    <track name="201" isPlatform="false">
+      <block name="71B3171" direction="left"/>
+    </track>
+    <track name="202" isPlatform="false">
+      <block name="71B172" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Raunheim Caltex" short="FCX" refNr="70" scheduleFile="G70_____.ABF">
+    <track name="160" isPlatform="false">
+      <block name="71B162" direction="left"/>
+      <block name="70S156" direction="right"/>
+    </track>
+    <track name="155" isPlatform="false">
+      <block name="70B161" direction="left"/>
+      <block name="70S155" direction="right"/>
+    </track>
+    <track name="01" isPlatform="false">
+      <block name="70S01" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Breckenheim" short="FBRM" refNr="69">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="70S151" direction="left"/>
+      <block name="70S152" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Kelsterbach Brunnenschneise" short="FBRS" refNr="17">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="70S01" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Raunheim Mönchwald" short="FMOW" refNr="18">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="71B01" direction="left"/>
+    </track>
+  </station>
+</estw>

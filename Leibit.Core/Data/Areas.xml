@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <leibit>
   <area id="nhth" name="Mitteldeutschland">
+    <estw id="FSP" name="Frankfurt Sportfeld" dataFile="leibit_FF-SPORTFELD.dat" infrastructureManager="DB"/>
     <estw id="FF_N" name="Frankfurt Hbf Nordseite" dataFile="leibit_FF-HBF NORDSEITE.dat" infrastructureManager="DB"/>
     <estw id="FF_S" name="Frankfurt Hbf Südseite" dataFile="leibit_FF-HBF SÜDSEITE.dat" infrastructureManager="DB"/>
     <estw id="FHAU" name="Frankfurt-Hauptwache" dataFile="leibit_FF-HAUPTWACHE.dat" infrastructureManager="DB"/>
