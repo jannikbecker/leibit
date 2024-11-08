@@ -178,38 +178,18 @@
   </station>
 
   <station name="Frankfurt-Niederrad" short="FNI" refNr="12" scheduleFile="G12_____.ABF" localOrderFile="bf12____.ABF" displayName="F-Niederrad">
-    <track name="01" displayName="1">
+    <track name="03" displayName="1">
       <block name="12G03"/>
-      <alternative track="02"/>
-      <alternative track="03"/>
       <alternative track="04"/>
       <alternative track="08"/>
     </track>
-    <track name="02" displayName="2">
+    <track name="04" displayName="2">
       <block name="12G04"/>
-      <alternative track="01"/>
-      <alternative track="03"/>
-      <alternative track="04"/>
-      <alternative track="08"/>
-    </track>
-    <track name="03" displayName="3">
-      <block name="12B04"/>
-      <alternative track="01"/>
-      <alternative track="02"/>
-      <alternative track="04"/>
-      <alternative track="08"/>
-    </track>
-    <track name="04" displayName="4">
-      <block name="12B03"/>
-      <alternative track="01"/>
-      <alternative track="02"/>
       <alternative track="03"/>
       <alternative track="08"/>
     </track>
     <track name="08">
       <block name="12G08"/>
-      <alternative track="01"/>
-      <alternative track="02"/>
       <alternative track="03"/>
       <alternative track="04"/>
     </track>
@@ -228,6 +208,15 @@
       <block name="12G58"/>
       <alternative track="53"/>
       <alternative track="54"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Niederrad Hp" short="FNI S" refNr="12" scheduleFile="b12_____.ABF" displayName="F-Niederrad">
+    <track name="03" displayName="4">
+      <block name="12B03"/>
+    </track>
+    <track name="04" displayName="3">
+      <block name="12B04"/>
     </track>
   </station>
 
@@ -255,12 +244,17 @@
     </track>
   </station>
 
-  <station name="Zeppelinheim" short="FZEP" refNr="74">
+  <station name="Zeppelinheim" short="FZEP" refNr="74" scheduleFile="V74_____.ABF">
     <track calculateDelay="false" isPlatform="false">
-      <block name="13B01" direction="left"/>
-      <block name="74B02" direction="left"/>
       <block name="72B101" direction="right"/>
       <block name="74B102" direction="right"/>
+    </track>
+
+    <track name="41" calculateDelay="false">
+      <block name="74S41"/>
+    </track>
+    <track name="42" calculateDelay="false">
+      <block name="74S42"/>
     </track>
   </station>
 
