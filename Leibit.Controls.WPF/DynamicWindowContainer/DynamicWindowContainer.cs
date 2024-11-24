@@ -264,7 +264,7 @@ namespace Leibit.Controls
         {
             foreach (ChildWindow refWindow in Children)
             {
-                if (window == refWindow)
+                if (window == refWindow || !refWindow.IsVisible)
                     continue;
 
                 var refContentControl = __GetTemplateChild(refWindow, "DesignerContainerContent");
