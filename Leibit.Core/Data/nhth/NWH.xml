@@ -34,7 +34,7 @@
     </track>
   </station>
 
-  <station name="Würzburg Rbf" short="NWR" refNr="86">
+  <station name="Würzburg Rbf Zell" short="NWR U" refNr="86">
     <track calculateDelay="false" isPlatform="false">
       <block name="87B13" direction="right"/>
       <block name="86BWRWU2" direction="right"/>

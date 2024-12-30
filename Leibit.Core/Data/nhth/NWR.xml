@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Veitshöchheim" short="NVE" refNr="85">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="86B101" direction="right"/>
+      <block name="85B102" direction="right"/>
+      <block name="86BG110Y" direction="right"/>
+      <block name="86B111" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Würzburg Rbf Ausfahrt" short="NWR A" refNr="86" scheduleFile="B86_____.ABF" localOrderFile="würzbu__.abf">
+    <track name="04">
+      <block name="86G04"/>
+    </track>
+    <track name="05">
+      <block name="86G05"/>
+    </track>
+    <track name="06">
+      <block name="86G06"/>
+    </track>
+    <track name="07">
+      <block name="86G07"/>
+    </track>
+    <track name="08">
+      <block name="86G08"/>
+    </track>
+    <track name="09">
+      <block name="86G09"/>
+    </track>
+    <track name="10">
+      <block name="86G10"/>
+    </track>
+    <track name="11">
+      <block name="86G11"/>
+    </track>
+    <track name="12">
+      <block name="86G12"/>
+    </track>
+    <track name="13">
+      <block name="86G13"/>
+    </track>
+  </station>
+
+  <station name="Würzburg Rbf Zell" short="NWR U" refNr="86" scheduleFile="G86_____.ABF" localOrderFile="Bf86____.abf">
+    <track name="051">
+      <block name="86G051"/>
+    </track>
+    <track name="052">
+      <block name="86G052"/>
+    </track>
+    <track name="053">
+      <block name="86G053"/>
+    </track>
+    <track name="054">
+      <block name="86G054"/>
+    </track>
+    <track name="055">
+      <block name="86G055"/>
+    </track>
+    <track name="056">
+      <block name="86G056"/>
+    </track>
+  </station>
+
+  <station name="Würzburg Hbf" short="NWH" refNr="87">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="86BWUWR2" direction="left"/>
+      <block name="87S11" direction="left"/>
+    </track>
+  </station>
+</estw>
