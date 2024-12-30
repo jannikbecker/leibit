@@ -425,10 +425,15 @@
     </track>
   </station>
 
-  <station name="Würzburg Rbf" short="NWR" refNr="86">
+  <station name="Würzburg Rbf Ausfahrt" short="NWR A" refNr="86">
     <track calculateDelay="false" isPlatform="false">
       <block name="86B101" direction="left"/>
       <block name="85B102" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Würzburg Rbf Zell" short="NWR U" refNr="86">
+    <track calculateDelay="false" isPlatform="false">
       <block name="86B111" direction="left"/>
     </track>
   </station>

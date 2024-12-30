@@ -56,6 +56,16 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="Hyperlink">
+        <Setter Property="Foreground" Value="DeepSkyBlue"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="LightCoral"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- Button -->
     <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>

@@ -22,73 +22,78 @@ Folgende Simulationen werden aktuell unterstützt:
     - Fehmarn
     - Puttgarden
 - Bereich Mitteldeutschland
-    - Würzburg Hbf
-    - Gemünden
-    - Lohr
-    - Heigenbrücken
     - Aschaffenburg
-    - Großkrotzenburg
-    - Hanau Nordseite
-    - Hanau Südseite
-    - Frankfurt Süd
-    - Gelnhausen
-    - Schlüchtern
-    - Elm
-    - Fulda
     - Bad Hersfeld
     - Bebra
     - Eisenach
+    - Elm
+    - Frankfurt Hbf Nordseite (NEU)
+    - Frankfurt Hbf Südseite (NEU)
+    - Frankfurt Hauptwache (NEU)
+    - Frankfurt Sportfeld (NEU)
+    - Frankfurt Süd
+    - Fulda
+    - Gelnhausen
+    - Gemünden
     - Gotha
+    - Großkrotzenburg
+    - Hanau Nordseite
+    - Hanau Südseite
+    - Heigenbrücken
+    - Lohr
+    - Schlüchtern
+    - Würzburg Hbf
+    - Würzburg Rbf (NEU)
 - Bereich Norddeutschland
-    - Diepholz (NEU)
-    - Kirchweyhe (NEU)
-    - Minden
-    - Wunstorf
-    - Soltau
-    - Nienburg
-    - Verden
-    - Bremen-Sebaldsbrück
     - Bremen Hbf
-    - Rotenburg
+    - Bremen-Sebaldsbrück
     - Buchholz
+    - Diepholz
     - Hamburg-Harburg
     - Hamburg Hbf
+    - Kirchweyhe
+    - Minden
+    - Nienburg
+    - Rotenburg
+    - Soltau
+    - Verden
+    - Wunstorf
 - Bereich Nordrhein-Westfalen
     - Köln-Mülheim
     - Solingen
     - Wuppertal Hbf
     - Wuppertal-Oberbarmen
-- Bereich Schweiz (NEU)
-    - Luzern SBB (NEU)
-    - Rotkreuz (NEU)
-    - Arth-Goldau (NEU)
+- Bereich Schweiz
+    - Arth-Goldau
+    - Luzern SBB
+    - Rotkreuz
 - Bereich Stuttgart
     - Stuttgart Hbf Ostseite
     - Stuttgart Hbf Westseite
 - Bereich Süddeutschland / Vorarlberg
-    - Singen
-    - Friedrichshafen
-    - Aulendorf
-    - Lindau
-    - Bregenz
-    - Feldkirch
-    - Immenstadt
-    - Memmingen
-    - Kempten
-    - Buchloe
     - Augsburg Hbf
     - Augsburg-Hochzoll
-    - Olching
-    - Geltendorf
-    - München-Westkreuz
-    - Weilheim
+    - Aulendorf
+    - Bregenz
+    - Buchloe
+    - Feldkirch
+    - Friedrichshafen
     - Garmisch-Partenkirchen
+    - Geltendorf
+    - Immenstadt
+    - Kempten
+    - Lindau
+    - Memmingen
+    - München-Westkreuz
+    - Olching
+    - Singen
+    - Weilheim
 - Bereich Tauernbahn
-    - Hallein
-    - Bischofshofen
-    - Schwarzach-St. Veit
     - Badgastein
+    - Bischofshofen
+    - Hallein
     - Mallnitz-Obervellach
+    - Schwarzach-St. Veit
     - Spittal-Millstättersee
 
 Karten der Stellbereiche können [hier](maps) eingesehen werden. Eine vollständige Bedienungsanleitung ist [hier](https://github.com/jannikbecker/leibit/wiki) zu finden. Für den ersten Start bietet die [Schnellstartanleitung](https://github.com/jannikbecker/leibit/wiki/Schnellstartanleitung) einen guten Einstiegspunkt.
