@@ -284,7 +284,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 ShowTrainCompositionCommand.SetCanExecute(SelectedItem.Schedule.Train.Composition.IsNotNullOrWhiteSpace());
                 ShowLocalOrdersCommand.SetCanExecute(SelectedItem.Schedule.LocalOrders.IsNotNullOrWhiteSpace());
                 EnterExpectedDelayCommand.SetCanExecute(SelectedItem.State != "beendet");
-                ShowTrackChangeCommand.SetCanExecute((liveSchedule == null || !liveSchedule.IsArrived) && (SelectedItem.Schedule.Track == null || SelectedItem.Schedule.Track.IsPlatform));
+                ShowTrackChangeCommand.SetCanExecute(__CanChangeTrack());
                 ShowDelayJustificationCommand.SetCanExecute(SelectedItem.DelayInfo == 'U');
                 EnterTrainStateCommand.SetCanExecute(liveSchedule != null && liveSchedule.IsArrived && !liveSchedule.IsDeparted);
             }
@@ -301,6 +301,8 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 __ShowDelayJustification();
             else if (SelectedColumn == "LocalOrders" && SelectedItem.LocalOrders == 'J')
                 __ShowLocalOrders();
+            else if ((SelectedColumn == "Track.Name" || SelectedColumn == "LiveTrack.Name") && __CanChangeTrack())
+                __ShowTrackChange();
             else
                 __ShowTrainSchedule();
         }
@@ -312,6 +314,14 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
             var window = new ExpectedDelayView(SelectedItem.TrainNumber);
             window.DataContext = new ExpectedDelayViewModel(m_Area, SelectedItem.CurrentTrain, SelectedItem.Schedule);
             OnOpenWindow(window);
+        }
+        #endregion
+
+        #region [__CanChangeTrack]
+        private bool __CanChangeTrack()
+        {
+            var liveSchedule = SelectedItem.CurrentTrain?.Schedules.FirstOrDefault(s => s.Schedule.Station.ShortSymbol == SelectedItem.Schedule.Station.ShortSymbol && s.Schedule.Time == SelectedItem.Schedule.Time);
+            return (liveSchedule == null || !liveSchedule.IsArrived) && (SelectedItem.Schedule.Track == null || SelectedItem.Schedule.Track.IsPlatform);
         }
         #endregion
 
@@ -635,16 +645,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     // Determine state
                     var currentSchedule = liveSchedule.Train.Schedules.LastOrDefault(s => s.IsArrived && s.Schedule.Station.ShortSymbol == liveSchedule.Train.Block.Track.Station.ShortSymbol);
 
-                    var isFirstStation = liveSchedule.Train.BlockHistory.Select(b => b.Track.Station).Distinct().Count() == 1
-                        && liveSchedule.Train.Block.Track.CalculateDelay
-                        && liveSchedule.Train.Block.Track.IsPlatform;
-
-                    if (currentSchedule?.Schedule.Departure == null)
-                        isFirstStation = false;
-                    else if (currentSchedule?.Schedule.Handling == eHandling.Start)
-                        isFirstStation = true;
-                    else if (liveSchedule.Train.CreatedOn == liveSchedule.Train.Block.Track.Station.ESTW.StartTime)
-                        isFirstStation = false;
+                    var isFirstStation = currentSchedule?.Schedule.Handling == eHandling.Start;
 
                     if (liveSchedule.IsDeparted)
                         currentVm.State = "beendet";
@@ -659,7 +660,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                     }
                     else if (currentSchedule.IsDeparted)
                         currentVm.State = "ab";
-                    else if (isFirstStation && currentSchedule.Schedule.Handling == eHandling.Start && __IsReady(currentSchedule, settings))
+                    else if (isFirstStation && __IsReady(currentSchedule, settings))
                         currentVm.State = "fertig";
                     else if (currentSchedule.IsPrepared)
                         currentVm.State = "vorbereitet";

@@ -82,11 +82,4 @@ namespace Leibit.Entities
         Fix = 1,
         Random = 2,
     }
-
-    public enum eFileFormat
-    {
-        Unknown = 0,
-        Binary = 1,
-        JSON = 2,
-    }
 }

@@ -3,6 +3,7 @@ using Leibit.Client.WPF.ViewModels;
 using Leibit.Core.Common;
 using Leibit.Entities.Common;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Threading;
 
@@ -19,15 +20,19 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
             DisplayTypes = new ObservableCollection<DisplayType>
             {
-                new DisplayType(eDisplayType.PlatformDisplay_Small, "Zugzielanzeiger klein", new PlatformDisplayViewModel(this), true),
-                new DisplayType(eDisplayType.PlatformDisplay_Large, "Zugzielanzeiger groß", new PlatformDisplayViewModel(this), true),
-                new DisplayType(eDisplayType.Countdown, "Zugzielanzeiger S-Bahn", new CountdownDisplayViewModel(this), true),
-                new DisplayType(eDisplayType.DepartureBoard_Small, "Abfahrtstafel klein", new DepartureBoardViewModel(this), false),
-                new DisplayType(eDisplayType.DepartureBoard_Large, "Abfahrtstafel groß", new DepartureBoardViewModel(this), false),
+                new DisplayType(eDisplayType.PlatformDisplay_Small, "Zugzielanzeiger klein", new PlatformDisplayViewModel(this), false),
+                new DisplayType(eDisplayType.PlatformDisplay_Large, "Zugzielanzeiger groß", new PlatformDisplayViewModel(this), false),
+                new DisplayType(eDisplayType.Countdown, "Zugzielanzeiger S-Bahn", new CountdownDisplayViewModel(this), false),
+                new DisplayType(eDisplayType.DepartureBoard_Small, "Abfahrtstafel klein", new DepartureBoardViewModel(this), true),
+                new DisplayType(eDisplayType.DepartureBoard_Large, "Abfahrtstafel groß", new DepartureBoardViewModel(this), true),
+                new DisplayType(eDisplayType.ArrivalBoard_Small, "Ankunftstafel klein", new ArrivalBoardViewModel(this), true),
+                new DisplayType(eDisplayType.ArrivalBoard_Large, "Ankunftstafel groß", new ArrivalBoardViewModel(this), true),
                 new DisplayType(eDisplayType.PassengerInformation, "Fahrgastinformation", new PassengerInformationViewModel(this), true),
             };
 
             SelectedDisplayType = DisplayTypes[0];
+            SelectedTracks = new ObservableCollection<Track>();
+            SelectedTracks.CollectionChanged += __SelectedTracks_CollectionChanged;
         }
         #endregion
 
@@ -50,8 +55,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 if (SelectedStation != null)
                     caption += $" {SelectedStation.Name}";
 
-                if (SelectedTrack != null && SelectedDisplayType.TrackRequired)
+                if (SelectedTrack != null && !SelectedDisplayType.MultiTrack)
                     caption += $", Gleis {SelectedTrack.Name}";
+
+                if (SelectedTracks.Any() && SelectedDisplayType.MultiTrack)
+                    caption += $", Gleise {string.Join(", ", SelectedTracks.Select(t => t.Name))}";
 
                 return caption;
             }
@@ -73,7 +81,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             set
             {
                 Set(value);
-                OnPropertyChanged(nameof(IsTrackListEnabled));
+                OnPropertyChanged(nameof(CanSelectMultipleTracks));
                 OnPropertyChanged(nameof(Caption));
                 __SelectionChanged();
             }
@@ -97,7 +105,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         #endregion
 
         #region [IsTrackListEnabled]
-        public bool IsTrackListEnabled => SelectedStation != null && SelectedDisplayType?.TrackRequired == true;
+        public bool IsTrackListEnabled => SelectedStation != null;
+        #endregion
+
+        #region [CanSelectMultipleTracks]
+        public bool CanSelectMultipleTracks => SelectedDisplayType?.MultiTrack == true;
         #endregion
 
         #region [SelectedStation]
@@ -130,6 +142,14 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
+        #region [SelectedTracks]
+        public ObservableCollection<Track> SelectedTracks
+        {
+            get => Get<ObservableCollection<Track>>();
+            private set => Set(value);
+        }
+        #endregion
+
         #endregion
 
         #region - Public methods -
@@ -143,6 +163,8 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
         #endregion
 
+        #region - Private methods -
+
         #region [__SelectionChanged]
         private void __SelectionChanged()
         {
@@ -150,5 +172,14 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
+        #region [__SelectedTracks_CollectionChanged]
+        private void __SelectedTracks_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(Caption));
+            __SelectionChanged();
+        }
+        #endregion
+
+        #endregion
     }
 }

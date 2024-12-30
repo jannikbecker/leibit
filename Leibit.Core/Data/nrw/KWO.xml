@@ -260,22 +260,22 @@
     </track>
   </station>
 
-  <station name="Gevelsberg-Kipp" short="KGVK" refNr="29" scheduleFile="G29_____.abf">
+  <station name="Gevelsberg-Kipp" short="KGVK" refNr="28" scheduleFile="G29_____.abf" displayName="Gev-Kipp">
     <track name="941" calculateDelay="false" displayName="1"/>
     <track name="692" calculateDelay="false" displayName="2"/>
   </station>
 
-  <station name="Gevelsberg Hbf" short="EGVH" refNr="30" scheduleFile="G30_____.abf">
+  <station name="Gevelsberg Hbf" short="EGVH" refNr="28" scheduleFile="G30_____.abf">
     <track name="941" calculateDelay="false" displayName="1"/>
     <track name="692" calculateDelay="false" displayName="2"/>
   </station>
 
-  <station name="Gevelsberg-Knapp" short="EGVA" refNr="31" scheduleFile="G31_____.abf">
+  <station name="Gevelsberg-Knapp" short="EGVA" refNr="29" scheduleFile="G31_____.abf" displayName="Gev-Knapp">
     <track name="691" calculateDelay="false" displayName="1"/>
     <track name="652" calculateDelay="false" displayName="2"/>
   </station>
 
-  <station name="Hagen-Westerbauer" short="EHWB" refNr="32" scheduleFile="G32_____.abf">
+  <station name="Hagen-Westerbauer" short="EHWB" refNr="29" scheduleFile="G32_____.abf" displayName="HA-Westerbauer">
     <track name="691" calculateDelay="false" displayName="1"/>
     <track name="652" calculateDelay="false" displayName="2"/>
   </station>

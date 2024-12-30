@@ -18,7 +18,6 @@ namespace Leibit.Entities.Serialization
         public List<SerializedVisibleTrainInfo> VisibleTrains { get; set; }
         public List<SerializedHiddenScheduleInfo> HiddenSchedules { get; set; }
         public bool IsOldVersion { get; set; }
-        public eFileFormat FileFormat { get; set; }
 
     }
 }

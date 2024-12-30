@@ -1,6 +1,11 @@
 ﻿<UserControl x:Class="Leibit.Client.WPF.Windows.Display.Views.DepartureBoardSmall"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.Display.ViewModels">
+
+    <UserControl.Resources>
+        <vm:DisplayTypeConverter x:Key="DisplayTypeConverter"/>
+    </UserControl.Resources>
 
     <Border DataContext="{Binding SelectedDisplayType.ViewModel}" BorderBrush="#373d6d" Background="#1071df" BorderThickness="20" HorizontalAlignment="Left">
         <StackPanel Orientation="Vertical">
@@ -14,7 +19,8 @@
 
                 <TextBlock Grid.Column="0" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Zeit</TextBlock>
                 <TextBlock Grid.Column="1" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Über</TextBlock>
-                <TextBlock Grid.Column="2" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Nach</TextBlock>
+                <TextBlock Grid.Column="2" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.DepartureBoard_Small}}">Nach</TextBlock>
+                <TextBlock Grid.Column="2" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black" Visibility="{Binding SelectedDisplayType, Converter={StaticResource DisplayTypeConverter}, ConverterParameter={x:Static vm:eDisplayType.ArrivalBoard_Small}}">Von</TextBlock>
                 <TextBlock Grid.Column="3" FontSize="14" FontWeight="Bold" Margin="1" Foreground="Black">Gleis</TextBlock>
             </Grid>
 

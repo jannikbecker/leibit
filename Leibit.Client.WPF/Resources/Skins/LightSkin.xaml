@@ -47,6 +47,16 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
     </Style>
 
+    <!-- ToggleButton -->
+    <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
+        <Setter Property="Padding" Value="5,2"/>
+    </Style>
+
+    <Style TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonStyle}"/>
+
+    <!-- Popup -->
+    <Style x:Key="PopupStyle" TargetType="ContentControl"/>
+
     <!-- CheckBox -->
     <Style TargetType="CheckBox">
         <Setter Property="Foreground" Value="{DynamicResource TextForeground}"/>

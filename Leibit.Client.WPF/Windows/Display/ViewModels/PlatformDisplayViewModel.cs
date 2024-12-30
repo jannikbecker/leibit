@@ -1,6 +1,7 @@
 ﻿using Leibit.Core.Common;
 using Leibit.Entities;
 using Leibit.Entities.Common;
+using Leibit.Entities.LiveData;
 using Leibit.Entities.Scheduling;
 using System.Collections.Generic;
 using System.Linq;
@@ -290,7 +291,25 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
             var candidates = GetScheduleCandidates(area, 120, true);
             var orderedSchedules = candidates.OrderBy(x => x.ReferenceTime);
-            var currentItem = orderedSchedules.FirstOrDefault();
+            var specialTextDisplayed = false;
+            ScheduleItem currentItem, followingTrain1, followingTrain2;
+
+            if (area.LiveTrains.Values.Any(__IsPassingTrain))
+            {
+                __ClearCurrentTrain();
+                CurrentTrainDestinationSize = 24;
+                CurrentTrainDestination = "Zugdurchfahrt";
+                specialTextDisplayed = true;
+                currentItem = null;
+                followingTrain1 = orderedSchedules.FirstOrDefault();
+                followingTrain2 = orderedSchedules.ElementAtOrDefault(1);
+            }
+            else
+            {
+                currentItem = orderedSchedules.FirstOrDefault();
+                followingTrain1 = orderedSchedules.ElementAtOrDefault(1);
+                followingTrain2 = orderedSchedules.ElementAtOrDefault(2);
+            }
 
             if (currentItem != null)
             {
@@ -354,7 +373,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (isDestination && !isCancelled && currentItem.Schedule.Handling != eHandling.Start)
                 {
-                    int? followUpService = __GetFollowUpService(currentItem);
+                    int? followUpService = GetFollowUpService(currentItem);
 
                     if (followUpService.HasValue && area.Trains.TryGetValue(followUpService.Value, out var followUpTrain) && followUpTrain.Type.IsPassengerTrain() && !IsInTwinTrainMode)
                     {
@@ -413,7 +432,12 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                         var differingDestination = GetDifferingDestinationSchedule(currentItem);
 
                         if (differingDestination != null)
-                            infoTexts.Add($"Fährt heute nur bis {GetDisplayName(differingDestination.Station)}");
+                        {
+                            if (isDestination)
+                                infoTexts.Add($"Keine Weiterfahrt bis {currentItem.Schedule.Destination}");
+                            else
+                                infoTexts.Add($"Fährt heute nur bis {GetDisplayName(differingDestination.Station)}");
+                        }
 
                         if (!isDestination)
                         {
@@ -442,13 +466,11 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                     IsCurrentTrainInfoMarquee = false;
                 }
             }
-            else
+            else if (!specialTextDisplayed)
                 __ClearCurrentTrain();
 
             if (SelectedDisplayType?.Type == eDisplayType.PlatformDisplay_Small)
                 return;
-
-            var followingTrain1 = orderedSchedules.ElementAtOrDefault(1);
 
             if (followingTrain1 != null)
             {
@@ -472,8 +494,6 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             }
             else
                 __ClearFollowingTrain1();
-
-            var followingTrain2 = orderedSchedules.ElementAtOrDefault(2);
 
             if (followingTrain2 != null)
             {
@@ -523,24 +543,6 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
-        #region [__GetFollowUpService]
-        private int? __GetFollowUpService(ScheduleItem currentItem)
-        {
-            if (currentItem.Schedule.Handling == eHandling.Destination)
-            {
-                if (currentItem.LiveSchedule != null)
-                {
-                    if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
-                        return currentItem.LiveSchedule.Train.FollowUpService;
-                }
-                else
-                    return currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
-            }
-
-            return null;
-        }
-        #endregion
-
         #region [__ClearCurrentTrain]
         private void __ClearCurrentTrain()
         {
@@ -573,6 +575,25 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
             FollowingTrain2Number = string.Empty;
             FollowingTrain2Destination = string.Empty;
             FollowingTrain2Info = string.Empty;
+        }
+        #endregion
+
+        #region [__IsPassingTrain]
+        private bool __IsPassingTrain(TrainInformation train)
+        {
+            if (!train.IsActive)
+                return false;
+            if (train.RealBlock == null)
+                return false;
+            if (!SelectedTrack.Blocks.Contains(train.RealBlock))
+                return false;
+
+            var scheduleForStation = train.Schedules.FirstOrDefault(s => s.Schedule.Station == SelectedStation && !s.IsDeparted);
+
+            if (scheduleForStation == null)
+                return true;
+
+            return scheduleForStation.Schedule.Handling == eHandling.Transit;
         }
         #endregion
 

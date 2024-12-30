@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Frankfurt (Main) Hbf" short="FF_S" refNr="1" scheduleFile="g1______.abf" localOrderFile="bf1_____.abf" displayName="Frankfurt Hbf">
+    <track name="100" displayName="1a">
+      <block name="01G100"/>
+    </track>
+    <track name="001" displayName="1">
+      <block name="01G001"/>
+      <block name="01G201"/>
+    </track>
+    <track name="002" displayName="2">
+      <block name="01G002"/>
+      <block name="01G202"/>
+    </track>
+    <track name="003" displayName="3">
+      <block name="01G003"/>
+      <block name="01G203"/>
+    </track>
+    <track name="004" displayName="4">
+      <block name="01G004"/>
+      <block name="01G204"/>
+    </track>
+    <track name="005" displayName="5">
+      <block name="01G005"/>
+      <block name="01G205"/>
+    </track>
+    <track name="006" displayName="6">
+      <block name="01G006"/>
+      <block name="01G206"/>
+    </track>
+    <track name="007" displayName="7">
+      <block name="01G007"/>
+      <block name="01G207"/>
+    </track>
+    <track name="008" displayName="8">
+      <block name="01G008"/>
+      <block name="01G208"/>
+    </track>
+    <track name="009" displayName="9">
+      <block name="01G009"/>
+      <block name="01G209"/>
+    </track>
+    <track name="010" displayName="10">
+      <block name="01G010"/>
+      <block name="01G210"/>
+    </track>
+    <track name="011" displayName="11">
+      <block name="01G011"/>
+      <block name="01G211"/>
+    </track>
+    <track name="012" displayName="12">
+      <block name="01G012"/>
+      <block name="01G212"/>
+    </track>
+    <track name="013" displayName="13">
+      <block name="01BFNFS1"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt (Main) Hbf" short="FF_N" refNr="2">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="01BFNFS2" direction="left"/>
+      <block name="01BFNFS3" direction="left"/>
+      <block name="01BFNFS4" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt Main-Neckar-Brücke" short="FMST" refNr="40">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="40S21" direction="left"/>
+      <block name="40S23" direction="left"/>
+      <block name="40S03" direction="left"/>
+      <block name="40S1003" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Gutleuthof" short="FGUR" refNr="11" scheduleFile="g11_____.abf">
+    <track name="101" isPlatform="false">
+      <block name="11B01" direction="left"/>
+    </track>
+    <track name="102" isPlatform="false">
+      <block name="11B02" direction="left"/>
+    </track>
+    <track name="103" isPlatform="false">
+      <block name="11B902" direction="right"/>
+    </track>
+    <track name="104" isPlatform="false">
+      <block name="12B901" direction="right"/>
+    </track>
+    <track name="201" isPlatform="false">
+      <block name="11B11" direction="right"/>
+    </track>
+    <track name="202" isPlatform="false">
+      <block name="06B12" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt-Niederrad" short="FNI" refNr="12">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11B902" direction="left"/>
+      <block name="12S12G81" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Frankfurt Mainzer Landstraße" short="FMLA" refNr="6">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11B11" direction="left"/>
+      <block name="06B12" direction="left"/>
+    </track>
+  </station>
+</estw>

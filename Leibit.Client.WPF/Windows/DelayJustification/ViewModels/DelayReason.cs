@@ -19,7 +19,7 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
             {
                 new DelayReason(10, "Fahrplanerstellung"),
                 new DelayReason(12, "Fehldisposition"),
-                new DelayReason(13, "Vorbereitung (Betrieb)"),
+                new DelayReason(13, "Vorbereitung"),
                 new DelayReason(14, "Anfangsverspätung bei Zügen des Netzes"),
                 new DelayReason(18, "Betriebliches Personal DB"),
                 new DelayReason(19, "Sonstiges Betriebsdurchführung DB Netz"),
@@ -68,7 +68,7 @@ namespace Leibit.Client.WPF.Windows.DelayJustification.ViewModels
                 new DelayReason(90, "Gefährliche Ereignisse"),
                 new DelayReason(91, "Zugfolge - wegen Vorrang anderer Züge"),
                 new DelayReason(92, "Zugfolge - betroffener Zug war verspätet"),
-                new DelayReason(93, "Wende"),
+                new DelayReason(93, "Umlauf"),
                 new DelayReason(94, "Anschluss"),
                 new DelayReason(95, "Flügeln"),
                 new DelayReason(96, "Anordnung NLZ - Weitere Untersuchungen erforderlich"),

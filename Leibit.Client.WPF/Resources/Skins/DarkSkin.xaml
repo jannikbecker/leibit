@@ -56,6 +56,16 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="Hyperlink">
+        <Setter Property="Foreground" Value="DeepSkyBlue"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="LightCoral"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <!-- Button -->
     <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
@@ -95,6 +105,61 @@
                 <Setter Property="Background" Value="{StaticResource SubMenuHighlightBackground}"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <!-- ToggleButton -->
+    <Style x:Key="ToggleButtonStyle" TargetType="ToggleButton">
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
+        <Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource TextForeground}"/>
+        <Setter Property="Padding" Value="5,2"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#456"/>
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="BorderBrush" Value="#678"/>
+                <Setter Property="Background" Value="#345"/>
+            </Trigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="#888"/>
+                <Setter Property="BorderBrush" Value="#888"/>
+            </Trigger>
+        </Style.Triggers>
+
+        <Style.Resources>
+            <Style TargetType="ListBox">
+                <Setter Property="Background" Value="Green"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonStyle}"/>
+
+    <!-- Popup -->
+    <Style x:Key="PopupStyle" TargetType="ContentControl">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Border Background="#222" BorderBrush="#456" BorderThickness="1">
+                        <ContentPresenter Content="{TemplateBinding Content}"/>
+                    </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- CheckBox -->
@@ -149,7 +214,7 @@
                 <ControlTemplate TargetType="ComboBox">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" SnapsToDevicePixels="True">
                         <Grid>
-                            <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" PopupAnimation="Slide">
+                            <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" PopupAnimation="Slide" AllowsTransparency="True">
                                 <Grid MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                     <Border Background="#222" BorderBrush="#456" BorderThickness="1">
                                         <ScrollViewer>
@@ -206,6 +271,47 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBoxItem">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" SnapsToDevicePixels="True" Padding="3,0">
+                        <ContentPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="BorderBrush" Value="#678"/>
+                <Setter Property="Background" Value="#345"/>
+            </Trigger>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="#678"/>
+                <Setter Property="Background" Value="#123"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ListBox -->
+    <Style TargetType="ListBox">
+        <Setter Property="Foreground" Value="{StaticResource TextForeground}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBox">
+                    <ScrollViewer>
+                        <StackPanel IsItemsHost="True" />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="ListBoxItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" SnapsToDevicePixels="True" Padding="3,0">
                         <ContentPresenter/>
                     </Border>
@@ -427,7 +533,8 @@
                 <ContentPresenter Grid.Column="1" ContentSource="Header" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
 
                 <Popup IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
-                       PopupAnimation="Slide"
+                       PopupAnimation="Fade"
+                       AllowsTransparency="True"
                        Placement="Bottom"
                        PlacementTarget="{Binding ElementName=layoutRoot}">
                     <Border Background="{StaticResource SubMenuBackground}" BorderBrush="{StaticResource SubMenuBorder}" BorderThickness="1" SnapsToDevicePixels="True">
@@ -498,7 +605,8 @@
                       Fill="#ddd" />
 
                 <Popup IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
-                       PopupAnimation="Slide"
+                       PopupAnimation="Fade"
+                       AllowsTransparency="True"
                        Placement="Right"
                        PlacementTarget="{Binding ElementName=layoutRoot}">
                     <Border Background="{StaticResource SubMenuBackground}" BorderBrush="{StaticResource SubMenuBorder}" BorderThickness="1" SnapsToDevicePixels="True">
