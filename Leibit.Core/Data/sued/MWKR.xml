@@ -7,7 +7,7 @@
     </track>
   </station>
 
-  <station name="München-Westkreuz" short="MWKR" refNr="70" scheduleFile="g70_____.abf" localOrderFile="bf70____.abf">
+  <station name="München-Westkreuz" short="MWKR" refNr="70" scheduleFile="g70_____.abf" localOrderFile="bf70____.abf" displayName="Westkreuz">
     <track name="650" displayName="2">
       <block name="70BPAWKG"/>
     </track>
@@ -228,7 +228,7 @@
     </track>
   </station>
 
-  <station name="München-Neuaubing" short="MNA" refNr="71" scheduleFile="g71_____.abf" localOrderFile="bf71____.abf">
+  <station name="München-Neuaubing" short="MNA" refNr="71" scheduleFile="g71_____.abf" localOrderFile="bf71____.abf" displayName="Neuaubing">
     <track name="1">
       <block name="71G1"/>
     </track>
