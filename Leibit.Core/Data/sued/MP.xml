@@ -103,7 +103,7 @@
     </track>
   </station>
 
-  <station name="München-Pasing S-Bahn" short="MP S" refNr="16" scheduleFile="g16_____.abf" localOrderFile="bf16____.abf" displayName="M-Pasing">
+  <station name="München-Pasing S-Bahn" short="MP S" refNr="16" scheduleFile="g16_____.abf" localOrderFile="bf16____.abf" displayName="Pasing">
     <track name="4">
       <block name="16G004"/>
       <alternative track="5"/>
@@ -147,7 +147,7 @@
     </track>
   </station>
 
-  <station name="München-Langwied" short="MLW" refNr="16" scheduleFile="b16_____.abf" displayName="M-Langwied">
+  <station name="München-Langwied" short="MLW" refNr="16" scheduleFile="b16_____.abf" displayName="Langwied">
     <track name="030" calculateDelay="false" displayName="1">
       <block name="16B1030"/>
     </track>
@@ -165,7 +165,7 @@
     </track>
   </station>
 
-  <station name="München Leienfelsstraße" short="MLEF" refNr="15" scheduleFile="b15_____.abf" displayName="M-Leienfelsstraße">
+  <station name="München Leienfelsstraße" short="MLEF" refNr="15" scheduleFile="b15_____.abf" displayName="Leienfelsstraße">
     <track name="1" calculateDelay="false">
       <block name="15B97"/>
     </track>
@@ -174,7 +174,7 @@
     </track>
   </station>
 
-  <station name="München-Aubing" short="MMAU" refNr="14" scheduleFile="b14_____.abf" displayName="M-Aubing">
+  <station name="München-Aubing" short="MMAU" refNr="14" scheduleFile="b14_____.abf" displayName="Aubing">
     <track name="1" calculateDelay="false">
       <block name="14B101"/>
     </track>
@@ -190,7 +190,7 @@
     </track>
   </station>
 
-  <station name="München-Westkreuz" short="MWKR" refNr="70" scheduleFile="g70_____.abf" displayName="M-Westkreuz">
+  <station name="München-Westkreuz" short="MWKR" refNr="70" scheduleFile="g70_____.abf" displayName="Westkreuz">
     <track name="650" displayName="2">
       <block name="70BWKPA"/>
     </track>
