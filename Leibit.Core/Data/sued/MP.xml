@@ -52,6 +52,7 @@
     </track>
     <track name="103" isPlatform="false">
       <block name="12B130" direction="left"/>
+      <block name="13B230" direction="right"/>
     </track>
   </station>
 
