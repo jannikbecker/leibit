@@ -263,10 +263,10 @@
 
   <station name="Bichlbach-Berwang" short="XABI" refNr="9" scheduleFile="g9______.abf" localOrderFile="bf9_____.abf">
     <track name="201" displayName="2">
-      <block name="9G201"/>
+      <block name="09G201"/>
     </track>
     <track name="203" displayName="1">
-      <block name="9G203"/>
+      <block name="09G203"/>
     </track>
   </station>
 
