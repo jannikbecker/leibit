@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <estw>
-  <station name="München Ost (S-Bahn)" short="MOP S" refNr="18">
+  <station name="München Ost (S-Bahn)" short="MOP S" refNr="6">
     <track calculateDelay="false" isPlatform="false">
       <block name="06B603" direction="right"/>
       <block name="06B606" direction="right"/>
