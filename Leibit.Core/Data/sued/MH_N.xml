@@ -61,13 +61,6 @@
       <block name="10BV6N" direction="left"/>
     </track>
   </station>
-
-  <station name="München Donnersbergerbrücke" short="MMDN" refNr="12">
-    <track calculateDelay="false" isPlatform="false">
-      <block name="10B97" direction="left"/>
-      <block name="11B100" direction="left"/>
-    </track>
-  </station>
   
   <station name="München-Neuhausen" short="MANH" refNr="11" scheduleFile="g11_____.abf">
     <track name="407" isPlatform="false">
@@ -170,7 +163,7 @@
     </track>
   </station>
 
-  <station name="München-Obermenzing Abzw" short="MAOZ" refNr="12" scheduleFile="m-ober__.abf">
+  <station name="München-Obermenzing Abzw" short="MAOZ" refNr="12" scheduleFile="v12_____.abf">
     <track name="305" isPlatform="false">
       <block name="11B303" direction="left"/>
     </track>
@@ -200,6 +193,44 @@
     <track calculateDelay="false" isPlatform="false">
       <block name="51S319" direction="left"/>
       <block name="12SP" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München Hackerbrücke" short="MHAB" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11SVMDO"/>
+    </track>
+  </station>
+
+  <station name="München Donnersbergerbrücke" short="MMDN" refNr="11" displayName="Donnersbergerbrücke">
+    <scheduleFile fileName="v11_____.abf">
+      <track>99</track>
+      <track>102</track>
+    </scheduleFile>
+    
+    <track name="99" displayName="2">
+      <block name="11S99"/>
+    </track>
+    <track name="102" displayName="4">
+      <block name="11S102"/>
+    </track>
+  </station>
+
+  <station name="München Heimeranplatz" short="MHP" refNr="11" scheduleFile="v1______.abf" displayName="Heimeranplatz">
+    <track name="491" displayName="2">
+      <block name="01S491"/>
+    </track>
+    <track name="492" displayName="1">
+      <block name="01S492"/>
+    </track>
+  </station>
+
+  <station name="München Harras" short="MHAR" refNr="11" scheduleFile="v21_____.abf" displayName="Harras">
+    <track name="105" calculateDelay="false" displayName="2">
+      <block name="21S105"/>
+    </track>
+    <track name="108" calculateDelay="false" displayName="1">
+      <block name="21SP"/>
     </track>
   </station>
 </estw>
