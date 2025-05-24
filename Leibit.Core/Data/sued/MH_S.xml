@@ -108,7 +108,7 @@
     </track>
   </station>
 
-  <station name="München-Friedenheimerbrücke" short="MAFB" refNr="12">
+  <station name="München-Friedenheimerbrücke" short="MAFB" refNr="11">
     <track calculateDelay="false" isPlatform="false">
       <block name="11S1" direction="right"/>
       <block name="11SP1" direction="right"/>
