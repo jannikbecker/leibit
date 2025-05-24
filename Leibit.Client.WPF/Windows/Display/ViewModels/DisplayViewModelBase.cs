@@ -390,21 +390,50 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         }
         #endregion
 
-        #region [GetFollowUpService]
-        protected int? GetFollowUpService(ScheduleItem currentItem)
+        #region [GetFollowUpTrain]
+        protected Train GetFollowUpTrain(ScheduleItem currentItem, Area area)
         {
-            if (currentItem.Schedule.Handling == eHandling.Destination)
-            {
-                if (currentItem.LiveSchedule != null)
-                {
-                    if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
-                        return currentItem.LiveSchedule.Train.FollowUpService;
-                }
-                else
-                    return currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
-            }
+            if (currentItem.Schedule.Handling != eHandling.Destination)
+                return null; // If we're not the final destination, there's no follow-up service here.
 
-            return null;
+            // Find number of follow-up service
+            int? followUpService = null;
+
+            if (currentItem.LiveSchedule != null)
+            {
+                if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
+                    followUpService = currentItem.LiveSchedule.Train.FollowUpService;
+            }
+            else
+                followUpService = currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
+
+            if (!followUpService.HasValue)
+                return null; // No follow-up service exists
+
+            if (!area.Trains.TryGetValue(followUpService.Value, out var followUpTrain))
+                return null; // No train was found with the follow-up service's train number (should never happen...)
+
+            if (!followUpTrain.Type.IsPassengerTrain())
+                return null; // Follow-up service isn't a passenger train, e.g. when a RB becomes a Lt
+
+            // Check if the follow-up service departs from the same track.
+            // We need to find the corresponding schedule of the follow-up service.
+            // Filtering the schedules is needed because trains can depart from different tracks on different days.
+            var followUpTrainSchedulesResult = m_CalculationBll.GetSchedulesByTime(followUpTrain.Schedules, currentItem.Schedule.Station.ESTW.Time);
+
+            if (!followUpTrainSchedulesResult.Succeeded)
+                return null;
+
+            var followUpSchedule = followUpTrainSchedulesResult.Result.FirstOrDefault(x => x.Station.ShortSymbol == currentItem.Schedule.Station.ShortSymbol && x.Handling == eHandling.Start);
+            area.LiveTrains.TryGetValue(followUpService.Value, out var followUpLiveTrain);
+            var followUpLiveSchedule = followUpLiveTrain?.Schedules.FirstOrDefault(s => s.Schedule == followUpSchedule);
+            var followUpTrack = followUpLiveSchedule?.LiveTrack ?? followUpSchedule.Track;
+            var currentTrack = currentItem.LiveSchedule?.LiveTrack ?? currentItem.Schedule.Track;
+
+            if (currentTrack != followUpTrack)
+                return null;
+
+            return followUpTrain;
         }
         #endregion
 
