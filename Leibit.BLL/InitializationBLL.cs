@@ -503,8 +503,8 @@ namespace Leibit.BLL
                         continue;
 
                     var Train = new Train(TrainNr, Type, Start, Destination);
-                    __SetTrainLine(Train, station.ESTW.Area);
                     Train = station.ESTW.Area.Trains.GetOrAdd(TrainNr, Train);
+                    __SetTrainLine(Train, station.ESTW.Area, Type);
 
                     int Hour;
                     if (!Int32.TryParse(sHour, out Hour))
@@ -598,7 +598,7 @@ namespace Leibit.BLL
         #endregion
 
         #region [__SetTrainLine]
-        private void __SetTrainLine(Train train, Area area)
+        private void __SetTrainLine(Train train, Area area, string trainType)
         {
             var trainNumber = train.Number.ToString();
 
@@ -606,7 +606,7 @@ namespace Leibit.BLL
             {
                 var regex = trainNumberInfo.Pattern.Replace("x", "[0-9]");
 
-                if (train.Type == trainNumberInfo.Type && Regex.IsMatch(trainNumber, $"^{regex}$"))
+                if (trainType == trainNumberInfo.Type && Regex.IsMatch(trainNumber, $"^{regex}$"))
                 {
                     train.Line = trainNumberInfo.Line;
                     break;
