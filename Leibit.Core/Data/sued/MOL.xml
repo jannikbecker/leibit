@@ -8,7 +8,7 @@
     </track>
   </station>
   
-  <station name="München-Langwied" short="MLW" refNr="16" scheduleFile="v16_____.abf">
+  <station name="München-Langwied" short="MLW" refNr="16" scheduleFile="v16_____.abf" displayName="Langwied">
     <track name="029" calculateDelay="false" displayName="2">
       <block name="16S1033"/>
     </track>
@@ -17,7 +17,7 @@
     </track>
   </station>
 
-  <station name="München-Lochhausen" short="MLO" refNr="17" scheduleFile="g17_____.abf" localOrderFile="bf17____.abf">
+  <station name="München-Lochhausen" short="MLO" refNr="17" scheduleFile="g17_____.abf" localOrderFile="bf17____.abf" displayName="Lochhausen">
     <track name="1">
       <block name="17G1"/>
     </track>

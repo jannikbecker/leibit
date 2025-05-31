@@ -80,9 +80,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (isDestination && scheduleItem.LiveSchedule?.IsCancelled != true && currentItem.Schedule.Handling != eHandling.Start)
                 {
-                    int? followUpService = GetFollowUpService(scheduleItem);
+                    var followUpTrain = GetFollowUpTrain(scheduleItem, area);
 
-                    if (followUpService.HasValue && area.Trains.TryGetValue(followUpService.Value, out var followUpTrain) && followUpTrain.Type.IsPassengerTrain())
+                    if (followUpTrain != null)
                         infoTexts.Add($"Dieser Zug endet hier und fährt weiter als {GetTrainNumber(followUpTrain)} nach {followUpTrain.Destination}");
                     else
                         infoTexts.Add("Dieser Zug endet hier");
