@@ -293,9 +293,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (isDestination && !isCancelled && currentItem.Schedule.Handling != eHandling.Start)
                 {
-                    int? followUpService = __GetFollowUpService(currentItem);
+                    var followUpTrain = GetFollowUpTrain(currentItem, area);
 
-                    if (followUpService.HasValue && area.Trains.TryGetValue(followUpService.Value, out var followUpTrain) && followUpTrain.Type.IsPassengerTrain() && !IsInTwinTrainMode)
+                    if (followUpTrain != null && !IsInTwinTrainMode)
                     {
                         infoTexts.Add($"Dieser Zug endet hier und fährt weiter als {GetTrainNumber(followUpTrain)} nach {followUpTrain.Destination}");
                         Via = string.Empty;
@@ -445,24 +445,6 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
                 return scheduleItem.Schedule.Arrival.ToString();
             else
                 return scheduleItem.Schedule.Departure.ToString();
-        }
-        #endregion
-
-        #region [__GetFollowUpService]
-        private int? __GetFollowUpService(ScheduleItem currentItem)
-        {
-            if (currentItem.Schedule.Handling == eHandling.Destination)
-            {
-                if (currentItem.LiveSchedule != null)
-                {
-                    if (currentItem.LiveSchedule.Train.FollowUpService.HasValue)
-                        return currentItem.LiveSchedule.Train.FollowUpService;
-                }
-                else
-                    return currentItem.Schedule.Train.FollowUpServices.FirstOrDefault(r => r.Days.Contains(currentItem.Schedule.Station.ESTW.Time.Day))?.TrainNumber;
-            }
-
-            return null;
         }
         #endregion
 

@@ -373,9 +373,9 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 
                 if (isDestination && !isCancelled && currentItem.Schedule.Handling != eHandling.Start)
                 {
-                    int? followUpService = GetFollowUpService(currentItem);
+                    var followUpTrain = GetFollowUpTrain(currentItem, area);
 
-                    if (followUpService.HasValue && area.Trains.TryGetValue(followUpService.Value, out var followUpTrain) && followUpTrain.Type.IsPassengerTrain() && !IsInTwinTrainMode)
+                    if (followUpTrain != null && !IsInTwinTrainMode)
                     {
                         infoTexts.Add($"Dieser Zug endet hier und fährt weiter als {GetTrainNumber(followUpTrain)} nach {followUpTrain.Destination}");
                         Via = string.Empty;
