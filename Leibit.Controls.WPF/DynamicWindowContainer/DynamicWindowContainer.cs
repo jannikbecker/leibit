@@ -179,11 +179,13 @@ namespace Leibit.Controls
             childWindow.DockOutRequested -= __ChildWindow_DockOutRequested;
             childWindow.Closed -= __ChildWindow_Closed;
             childWindow.Close();
+            Children.Remove(childWindow);
 
             leibitWindow.PositionX += coord.X;
             leibitWindow.PositionY += coord.Y;
 
             var window = leibitWindow.CreateWindow();
+            leibitWindow.ChildWindow = null;
             leibitWindow.Window = window;
             leibitWindow.IsDockedOut = true;
             window.WindowStartupLocation = WindowStartupLocation.Manual;
