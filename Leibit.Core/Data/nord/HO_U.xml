@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Ibbenbüren" short="HI" refNr="49">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="50S50P" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Ibbenbüren-Laggenbeck" short="HLGG" refNr="50" scheduleFile="v50_____.abf" displayName="Laggenbeck">
+    <track name="" calculateDelay="false">
+      <block name="50S503"/>
+      <block name="50S504"/>
+    </track>
+  </station>
+
+  <station name="Velpe (Westf)" short="HVEP" refNr="51" scheduleFile="v51_____.abf">
+    <track name="1">
+      <block name="51S511"/>
+    </track>
+    <track name="2">
+      <block name="51S512"/>
+    </track>
+    <track name="3">
+      <block name="51S513"/>
+    </track>
+  </station>
+
+  <station name="Lotte (Kr Tecklenburg)" short="HLOT" refNr="52" scheduleFile="v52_____.abf">
+    <track name="1">
+      <block name="52S521"/>
+    </track>
+    <track name="2">
+      <block name="52S522"/>
+    </track>
+    <track name="3">
+      <block name="52S523"/>
+    </track>
+  </station>
+
+  <station name="Halen" short="HHAL" refNr="27" scheduleFile="v27_____.abf">
+    <track name="" calculateDelay="false" displayName="2">
+      <block name="27S274"/>
+    </track>
+  </station>
+
+  <station name="Wersen" short="HWRS" refNr="53">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="53B3NW" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück-Eversburg" short="HOE" refNr="53" scheduleFile="g53_____.abf" localOrderFile="bf53____.abf">
+    <track name="2">
+      <block name="53G2"/>
+    </track>
+    <track name="3">
+      <block name="53G3"/>
+    </track>
+    <track name="4">
+      <block name="53G4"/>
+    </track>
+    <track name="5">
+      <block name="53G5"/>
+    </track>
+    <track name="21">
+      <block name="53G21"/>
+    </track>
+    <track name="22">
+      <block name="53G22"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück-Hasetor" short="HOHT" refNr="54" scheduleFile="b54_____.abf" displayName="OS-Altstadt">
+    <track name="1" calculateDelay="false" displayName="1">
+      <block name="54B42"/>
+    </track>
+    <track name="2" calculateDelay="false" displayName="2">
+      <block name="54BN"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Hbf Pu" short="HO U" refNr="54" scheduleFile="g54_____.abf" localOrderFile="bf54____.abf" displayName="Osnabrück Hbf">
+    <track name="11">
+      <block name="54G11"/>
+    </track>
+    <track name="12">
+      <block name="54G12"/>
+    </track>
+    <track name="13">
+      <block name="54G13"/>
+    </track>
+    <track name="14">
+      <block name="54G14"/>
+    </track>
+    <track name="17">
+      <block name="54G17"/>
+    </track>
+    <track name="18">
+      <block name="54G18"/>
+    </track>
+    <track name="KK">
+      <block name="54BHOHU"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Rbf Orn" short="HOR N" refNr="82">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="54BHRHU1" direction="left"/>
+      <block name="54BHRHU2" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Hbf Po" short="HO O" refNr="16">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="16BHOHS" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Stahlwerkskurve" short="HSTA" refNr="55" scheduleFile="b55_____.abf">
+    <track name="LK" isPlatform="false">
+      <block name="16BHOHS" direction="left"/>
+      <block name="54GLK" direction="right"/>
+    </track>
+    <track name="StK" isPlatform="false">
+      <block name="54GStk1" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Rbf Oro" short="HOR O" refNr="83">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="54BHRHL" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Lüstringen" short="HLRI" refNr="55" scheduleFile="g55_____.abf" localOrderFile="bf55____.abf">
+    <track name="1">
+      <block name="55G1"/>
+    </track>
+    <track name="2">
+      <block name="55G2"/>
+    </track>
+    <track name="3">
+      <block name="55G3"/>
+    </track>
+  </station>
+
+  <station name="Wissingen" short="HWIS" refNr="56" scheduleFile="v56_____.abf">
+    <track name="1">
+      <block name="56S561"/>
+    </track>
+    <track name="2">
+      <block name="56S562"/>
+    </track>
+    <track name="3">
+      <block name="56S563"/>
+    </track>
+  </station>
+
+  <station name="Westerhausen (Kr Melle)" short="HWTH" refNr="57" scheduleFile="v57_____.abf" displayName="Westerhausen">
+    <track name="" calculateDelay="false">
+      <block name="57S57N"/>
+      <block name="57S56P"/>
+    </track>
+  </station>
+
+  <station name="Melle" short="HMEL" refNr="58" scheduleFile="v58_____.abf">
+    <track name="1">
+      <block name="58S571"/>
+    </track>
+    <track name="2">
+      <block name="58S572"/>
+    </track>
+    <track name="3">
+      <block name="58S573"/>
+    </track>
+    <track name="4">
+      <block name="58S574"/>
+    </track>
+  </station>
+
+  <station name="Bruchmühlen" short="HBUE" refNr="59">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="58S57P" direction="left"/>
+      <block name="59S58N" direction="left"/>
+    </track>
+  </station>
+</estw>
