@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Osnabrück Rbf Ors" short="HOR S" refNr="81" scheduleFile="g81_____.abf" localOrderFile="bf81____.abf">
+    <track name="245">
+      <block name="81G245.1"/>
+      <alternative track="246"/>
+      <alternative track="247"/>
+      <alternative track="248"/>
+      <alternative track="249"/>
+      <alternative track="251"/>
+      <alternative track="252"/>
+      <alternative track="253"/>
+      <alternative track="254"/>
+      <alternative track="255"/>
+      <alternative track="256"/>
+      <alternative track="290"/>
+    </track>
+    <track name="246">
+      <block name="81G246.1"/>
+      <alternative track="245"/>
+      <alternative track="247"/>
+      <alternative track="248"/>
+      <alternative track="249"/>
+      <alternative track="251"/>
+      <alternative track="252"/>
+      <alternative track="253"/>
+      <alternative track="254"/>
+      <alternative track="255"/>
+      <alternative track="256"/>
+      <alternative track="290"/>
+    </track>
+    <track name="247">
+      <block name="81G247.1"/>
+      <alternative track="245"/>
+      <alternative track="246"/>
+      <alternative track="248"/>
+      <alternative track="249"/>
+      <alternative track="251"/>
+      <alternative track="252"/>
+      <alternative track="253"/>
+      <alternative track="254"/>
+      <alternative track="255"/>
+      <alternative track="256"/>
+      <alternative track="290"/>
+    </track>
+    <track name="248">
+      <block name="81G248.1"/>
+      <alternative track="245"/>
+      <alternative track="246"/>
+      <alternative track="247"/>
+      <alternative track="249"/>
+      <alternative track="251"/>
+      <alternative track="252"/>
+      <alternative track="253"/>
+      <alternative track="254"/>
+      <alternative track="255"/>
+      <alternative track="256"/>
+      <alternative track="290"/>
+    </track>
+    <track name="249">
+      <block name="81G249.1"/>
+      <alternative track="245"/>
+      <alternative track="246"/>
+      <alternative track="247"/>
+      <alternative track="248"/>
+      <alternative track="251"/>
+      <alternative track="252"/>
+      <alternative track="253"/>
+      <alternative track="254"/>
+      <alternative track="255"/>
+      <alternative track="256"/>
+      <alternative track="290"/>
+    </track>
+    <track name="251">
+      <block name="81G251.1"/>
+      <alternative track="245"/>
+      <alternative track="246"/>
+      <alternative track="247"/>
+      <alternative track="248"/>
+      <alternative track="249"/>
+      <alternative track="252"/>
+      <alternative track="253"/>
+      <alternative track="254"/>
+      <alternative track="255"/>
+      <alternative track="256"/>
+      <alternative track="290"/>
+    </track>
+    <track name="252">
+      <block name="81G252.1"/>
+      <alternative track="245"/>
+      <alternative track="246"/>
+      <alternative track="247"/>
+      <alternative track="248"/>
+      <alternative track="249"/>
+      <alternative track="251"/>
+      <alternative track="253"/>
+      <alternative track="254"/>
+      <alternative track="255"/>
+      <alternative track="256"/>
+      <alternative track="290"/>
+    </track>
+    <track name="253">
+      <block name="81G253.1"/>
+      <alternative track="245"/>
+      <alternative track="246"/>
+      <alternative track="247"/>
+      <alternative track="248"/>
+      <alternative track="249"/>
+      <alternative track="251"/>
+      <alternative track="252"/>
+      <alternative track="254"/>
+      <alternative track="255"/>
+      <alternative track="256"/>
+      <alternative track="290"/>
+    </track>
+    <track name="254">
+      <block name="81G254.1"/>
+      <alternative track="245"/>
+      <alternative track="246"/>
+      <alternative track="247"/>
+      <alternative track="248"/>
+      <alternative track="249"/>
+      <alternative track="251"/>
+      <alternative track="252"/>
+      <alternative track="253"/>
+      <alternative track="255"/>
+      <alternative track="256"/>
+      <alternative track="290"/>
+    </track>
+    <track name="255">
+      <block name="81G255.1"/>
+      <alternative track="245"/>
+      <alternative track="246"/>
+      <alternative track="247"/>
+      <alternative track="248"/>
+      <alternative track="249"/>
+      <alternative track="251"/>
+      <alternative track="252"/>
+      <alternative track="253"/>
+      <alternative track="254"/>
+      <alternative track="256"/>
+      <alternative track="290"/>
+    </track>
+    <track name="256">
+      <block name="81G256.1"/>
+      <alternative track="245"/>
+      <alternative track="246"/>
+      <alternative track="247"/>
+      <alternative track="248"/>
+      <alternative track="249"/>
+      <alternative track="251"/>
+      <alternative track="252"/>
+      <alternative track="253"/>
+      <alternative track="254"/>
+      <alternative track="255"/>
+      <alternative track="290"/>
+    </track>
+    <track name="290">
+      <block name="81G290"/>
+      <alternative track="245"/>
+      <alternative track="246"/>
+      <alternative track="247"/>
+      <alternative track="248"/>
+      <alternative track="249"/>
+      <alternative track="251"/>
+      <alternative track="252"/>
+      <alternative track="253"/>
+      <alternative track="254"/>
+      <alternative track="255"/>
+      <alternative track="256"/>
+    </track>
+    
+    <track name="70">
+      <block name="81BHOHR"/>
+      <alternative track="MK"/>
+    </track>
+    <track name="MK">
+      <block name="81BHMHR"/>
+      <alternative track="70"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück-Hasetor" short="HOHT" refNr="54">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="82S42"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Hbf Pu" short="HO U" refNr="54">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="82S18"/>
+      <block name="82BHUHR1" direction="right"/>
+    </track>
+  </station>
+
+    <station name="Osnabrück Rbf Orn" short="HOR N" refNr="82" scheduleFile="g82_____.abf" localOrderFile="bf82____.abf">
+    <track name="201">
+      <block name="82G201.1"/>
+    </track>
+    <track name="202">
+      <block name="82G202.1"/>
+    </track>
+    <track name="211">
+      <block name="82G211.1"/>
+    </track>
+    <track name="212">
+      <block name="82G212.1"/>
+    </track>
+    <track name="213">
+      <block name="82G213.1"/>
+    </track>
+    <track name="214">
+      <block name="82G214.1"/>
+    </track>
+    <track name="215">
+      <block name="82G215.1"/>
+    </track>
+    <track name="216">
+      <block name="82G216.1"/>
+    </track>
+    <track name="217">
+      <block name="82G217.1"/>
+    </track>
+    <track name="221">
+      <block name="82G221.1"/>
+    </track>
+    <track name="222">
+      <block name="82G222.1"/>
+    </track>
+    <track name="223">
+      <block name="82G223.0"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Rbf Oro" short="HOR O" refNr="83" scheduleFile="g83_____.abf" localOrderFile="bf83____.abf">
+    <track name="151">
+      <block name="83G151.2"/>
+    </track>
+    <track name="152">
+      <block name="83G152"/>
+    </track>
+    <track name="153">
+      <block name="83G153"/>
+    </track>
+    <track name="154">
+      <block name="83G154"/>
+    </track>
+    <track name="155">
+      <block name="83G155"/>
+    </track>
+    <track name="156">
+      <block name="83G156"/>
+    </track>
+    <track name="157">
+      <block name="83G157"/>
+    </track>
+    <track name="158">
+      <block name="83G158"/>
+    </track>
+  </station>
+
+  <station name="Lüstringen" short="HLRI" refNr="55">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="83S2"/>
+      <block name="83S3"/>
+      <block name="83BHLHR" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Wissingen" short="HWIS" refNr="56">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="83SN" direction="left"/>
+    </track>
+  </station>
+</estw>
