@@ -47,6 +47,7 @@
     <None Remove="Data\nhth\NLO.xml" />
     <None Remove="Data\nhth\NWR.xml" />
     <None Remove="Data\nhth\TrainNumbers.xml" />
+    <None Remove="Data\nhth\UE.xml" />
     <None Remove="Data\nhth\UEI.xml" />
     <None Remove="Data\nhth\UGO.xml" />
     <None Remove="Data\nhth\UWM.xml" />
@@ -137,6 +138,7 @@
     <EmbeddedResource Include="Data\nhth\NLO.xml" />
     <EmbeddedResource Include="Data\nhth\NWR.xml" />
     <EmbeddedResource Include="Data\nhth\TrainNumbers.xml" />
+    <EmbeddedResource Include="Data\nhth\UE.xml" />
     <EmbeddedResource Include="Data\nhth\UEI.xml" />
     <EmbeddedResource Include="Data\nhth\UGO.xml" />
     <EmbeddedResource Include="Data\nhth\UWM.xml" />
