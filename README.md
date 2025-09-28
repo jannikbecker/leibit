@@ -27,10 +27,11 @@ Folgende Simulationen werden aktuell unterstützt:
     - Bebra
     - Eisenach
     - Elm
-    - Frankfurt Hbf Nordseite (NEU)
-    - Frankfurt Hbf Südseite (NEU)
-    - Frankfurt Hauptwache (NEU)
-    - Frankfurt Sportfeld (NEU)
+    - Erfurt (NEU)
+    - Frankfurt Hbf Nordseite
+    - Frankfurt Hbf Südseite
+    - Frankfurt Hauptwache
+    - Frankfurt Sportfeld
     - Frankfurt Süd
     - Fulda
     - Gelnhausen
@@ -42,8 +43,9 @@ Folgende Simulationen werden aktuell unterstützt:
     - Heigenbrücken
     - Lohr
     - Schlüchtern
+    - Weimar (NEU)
     - Würzburg Hbf
-    - Würzburg Rbf (NEU)
+    - Würzburg Rbf
 - Bereich Norddeutschland
     - Bremen Hbf
     - Bremen-Sebaldsbrück
