@@ -23,6 +23,7 @@
     <estw id="FB" name="Bebra Pbf" dataFile="leibit_BEBRA PBF.dat" infrastructureManager="DB"/>
     <estw id="UEI" name="Eisenach" dataFile="leibit_EISENACH.dat" infrastructureManager="DB" productName="Thüringer Bahn"/>
     <estw id="UGO" name="Gotha" dataFile="leibit_GOTHA.dat" infrastructureManager="DB" productName="Thüringer Bahn"/>
+    <estw id="UE" name="Erfurt" dataFile="leibit_ERFURT HBF.dat" infrastructureManager="DB"/>
   </area>
 
   <area id="nord" name="Norddeutschland">
