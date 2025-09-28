@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Vieselbach" short="UVI" refNr="83">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="83S141" direction="right"/>
+      <block name="83S142" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hopfgarten (Kr Weimar)" short="UHP" refNr="83" scheduleFile="v83_____.abf" displayName="Hopfgarten">
+    <track name="1" calculateDelay="false">
+      <block name="83S131"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="83S132"/>
+    </track>
+  </station>
+
+  <station name="Weimar" short="UWM" refNr="82" scheduleFile="g82_____.abf" localOrderFile="bf82____.abf">
+    <track name="1">
+      <block name="82G1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+    <track name="2">
+      <block name="82G2"/>
+      <alternative track="1"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+    <track name="3">
+      <block name="82G3"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+    <track name="4">
+      <block name="82G4"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+    <track name="5">
+      <block name="82G5"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+    <track name="6">
+      <block name="82G6"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+    <track name="7">
+      <block name="82G7"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+    <track name="8">
+      <block name="82G8"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="9"/>
+      <alternative track="10"/>
+    </track>
+    <track name="9">
+      <block name="82G9"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="10"/>
+    </track>
+    <track name="10">
+      <block name="82G10"/>
+      <alternative track="1"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+      <alternative track="8"/>
+      <alternative track="9"/>
+    </track>
+
+    <track name="501">
+      <block name="82G501"/>
+      <alternative track="302"/>
+      <alternative track="403"/>
+      <alternative track="204"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+    </track>
+    <track name="302">
+      <block name="82G302"/>
+      <alternative track="501"/>
+      <alternative track="403"/>
+      <alternative track="204"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+    </track>
+    <track name="403">
+      <block name="82G403"/>
+      <alternative track="501"/>
+      <alternative track="302"/>
+      <alternative track="204"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+    </track>
+    <track name="204">
+      <block name="82G204"/>
+      <alternative track="501"/>
+      <alternative track="302"/>
+      <alternative track="403"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+    </track>
+    <track name="208">
+      <block name="82G208"/>
+      <alternative track="501"/>
+      <alternative track="302"/>
+      <alternative track="403"/>
+      <alternative track="204"/>
+      <alternative track="209"/>
+    </track>
+    <track name="209">
+      <block name="82G209"/>
+      <alternative track="501"/>
+      <alternative track="302"/>
+      <alternative track="403"/>
+      <alternative track="204"/>
+      <alternative track="208"/>
+    </track>
+  </station>
+
+  <station name="Weimar West" short="UWMT" refNr="58" scheduleFile="b58_____.abf">
+    <track name="" calculateDelay="false" displayName="1">
+      <block name="58B902"/>
+    </track>
+  </station>
+
+  <station name="Weimar Berkaer Bf" short="UWMB" refNr="58" scheduleFile="g58_____.abf" localOrderFile="bf58____.abf">
+    <track name="1">
+      <block name="58G1"/>
+    </track>
+    <track name="2">
+      <block name="58G2"/>
+    </track>
+  </station>
+
+  <station name="Nohra (b Weimar)" short="UNOH" refNr="57" scheduleFile="b57_____.abf">
+    <track name="" calculateDelay="false" displayName="1"/>
+  </station>
+
+  <station name="Obergrunstedt" short="UOGR" refNr="56" scheduleFile="b56_____.abf">
+    <track name="" calculateDelay="false" displayName="1"/>
+  </station>
+
+  <station name="Holzdorf (b Weimar)" short="UHF" refNr="57">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="58BP" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Oberweimar" short="UOB" refNr="71" scheduleFile="b71_____.abf">
+    <track name="" calculateDelay="false" displayName="1">
+      <block name="71B22"/>
+    </track>
+  </station>
+
+  <station name="Mellingen (Thür)" short="UMEN" refNr="70">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="82B13" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Oßmannstedt" short="UOM" refNr="82" scheduleFile="b82_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="82B61"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="82B66"/>
+    </track>
+  </station>
+
+  <station name="Apolda" short="UAP" refNr="81" scheduleFile="g81_____.abf" localOrderFile="bf81____.abf">
+    <track name="1">
+      <block name="81G1"/>
+    </track>
+    <track name="2">
+      <block name="81G2"/>
+    </track>
+    <track name="3">
+      <block name="81G3"/>
+    </track>
+  </station>
+
+  <station name="Niedertrebra" short="UNTA" refNr="81" scheduleFile="b81_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="81B49"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="81B54"/>
+    </track>
+  </station>
+
+  <station name="Bad Sulza" short="UBS" refNr="80" scheduleFile="b80_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="80B50"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="80B45"/>
+    </track>
+  </station>
+
+  <station name="Eckartsberga (Thür)" short="UEC" refNr="40">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="80B32" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Auerstedt" short="UAS" refNr="41" scheduleFile="b41_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Bad Sulza Nord" short="UBSN" refNr="42" scheduleFile="b42_____.abf">
+    <track name="1" calculateDelay="false"/>
+  </station>
+
+  <station name="Großheringen" short="UGH" refNr="80" scheduleFile="g80_____.abf" localOrderFile="bf80____.abf">
+    <track name="1">
+      <block name="80G1"/>
+    </track>
+    <track name="2">
+      <block name="80G2"/>
+    </track>
+    <track name="4">
+      <block name="80G4"/>
+    </track>
+    <track name="5">
+      <block name="80G5"/>
+    </track>
+    <track name="21">
+      <block name="80G21"/>
+      <block name="80G21.2"/>
+    </track>
+    <track name="22">
+      <block name="80G22"/>
+      <block name="80G22.1"/>
+    </track>
+  </station>
+
+  <station name="Dornburg (Saale)" short="UDG" refNr="32">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="31BN" direction="left"/>
+      <block name="32BP" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Camburg (Saale)" short="UCB" refNr="31" scheduleFile="g31_____.abf" localOrderFile="bf31____.abf">
+    <track name="3">
+      <block name="31G3"/>
+    </track>
+    <track name="4">
+      <block name="31G4"/>
+    </track>
+    <track name="7">
+      <block name="31G7"/>
+    </track>
+  </station>
+
+  <station name="Großheringen Ghs" short="UGHS" refNr="77" scheduleFile="g77_____.abf">
+    <track name="609" isPlatform="false">
+      <block name="79B4" direction="left"/>
+      <block name="77B9" direction="right"/>
+    </track>
+    <track name="619" isPlatform="false">
+      <block name="79B3" direction="left"/>
+      <block name="31BP" direction="right"/>
+    </track>
+    <track name="611" isPlatform="false">
+      <block name="80B121" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Großheringen Gho" short="UGHO" refNr="79" scheduleFile="g79_____.abf">
+    <track name="502" isPlatform="false">
+      <block name="80B6" direction="left"/>
+      <block name="79B1" direction="right"/>
+    </track>
+    <track name="512" isPlatform="false">
+      <block name="80B5" direction="left"/>
+      <block name="79B2" direction="right"/>
+    </track>
+    <track name="503" isPlatform="false">
+      <block name="79B3" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Saaleck" short="USK" refNr="78" scheduleFile="g78_____.abf">
+    <track name="500" isPlatform="false">
+      <block name="79B1" direction="left"/>
+      <block name="78B42" direction="right"/>
+    </track>
+    <track name="510" isPlatform="false">
+      <block name="79B2" direction="left"/>
+      <block name="75B37" direction="right"/>
+    </track>
+    <track name="504" isPlatform="false">
+      <block name="79B4" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Bad Kösen" short="UKO" refNr="75" scheduleFile="v75_____.abf">
+    <track name="31">
+      <block name="75S31"/>
+    </track>
+    <track name="32">
+      <block name="75S32"/>
+    </track>
+  </station>
+
+  <station name="Schulpforte" short="USPF" refNr="74" scheduleFile="v74_____.abf">
+    <track name="341" isPlatform="false">
+      <block name="75S341" direction="left"/>
+      <block name="75S01" direction="right"/>
+    </track>
+    <track name="342" isPlatform="false">
+      <block name="75S202" direction="left"/>
+      <block name="75S342" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Naumburg (Saale) Hbf" short="UNM" refNr="73">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="75S01" direction="left"/>
+      <block name="75S342" direction="left"/>
+    </track>
+  </station>
+</estw>
