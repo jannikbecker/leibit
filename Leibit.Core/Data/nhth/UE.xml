@@ -51,15 +51,6 @@
       <alternative track="29"/>
       <alternative track="30"/>
     </track>
-    <track name="13" displayName="3a">
-      <block name="85G13"/>
-      <alternative track="294"/>
-      <alternative track="6"/>
-      <alternative track="7"/>
-      <alternative track="28"/>
-      <alternative track="29"/>
-      <alternative track="30"/>
-    </track>
     <track name="6">
       <block name="85G6"/>
       <alternative track="294"/>
@@ -77,33 +68,6 @@
       <alternative track="28"/>
       <alternative track="29"/>
       <alternative track="30"/>
-    </track>
-    <track name="28" displayName="8a">
-      <block name="85G28"/>
-      <alternative track="294"/>
-      <alternative track="13"/>
-      <alternative track="6"/>
-      <alternative track="7"/>
-      <alternative track="29"/>
-      <alternative track="30"/>
-    </track>
-    <track name="29" displayName="9a">
-      <block name="85G29"/>
-      <alternative track="294"/>
-      <alternative track="13"/>
-      <alternative track="6"/>
-      <alternative track="7"/>
-      <alternative track="28"/>
-      <alternative track="30"/>
-    </track>
-    <track name="30" displayName="10a">
-      <block name="85G30"/>
-      <alternative track="294"/>
-      <alternative track="13"/>
-      <alternative track="6"/>
-      <alternative track="7"/>
-      <alternative track="28"/>
-      <alternative track="29"/>
     </track>
 
     <track name="284">
@@ -127,6 +91,16 @@
       <alternative track="8"/>
       <alternative track="9"/>
       <alternative track="10"/>
+
+      <track name="13" displayName="3">
+        <block name="85G13"/>
+        <alternative track="294"/>
+        <alternative track="6"/>
+        <alternative track="7"/>
+        <alternative track="28"/>
+        <alternative track="29"/>
+        <alternative track="30"/>
+      </track>
     </track>
     <track name="4">
       <block name="85G4"/>
@@ -182,6 +156,16 @@
       <alternative track="15"/>
       <alternative track="9"/>
       <alternative track="10"/>
+
+      <track name="28" displayName="8">
+        <block name="85G28"/>
+        <alternative track="294"/>
+        <alternative track="13"/>
+        <alternative track="6"/>
+        <alternative track="7"/>
+        <alternative track="29"/>
+        <alternative track="30"/>
+      </track>
     </track>
     <track name="9">
       <block name="85G9"/>
@@ -193,6 +177,16 @@
       <alternative track="15"/>
       <alternative track="8"/>
       <alternative track="10"/>
+
+      <track name="29" displayName="9">
+        <block name="85G29"/>
+        <alternative track="294"/>
+        <alternative track="13"/>
+        <alternative track="6"/>
+        <alternative track="7"/>
+        <alternative track="28"/>
+        <alternative track="30"/>
+      </track>
     </track>
     <track name="10">
       <block name="85G10"/>
@@ -204,6 +198,16 @@
       <alternative track="15"/>
       <alternative track="8"/>
       <alternative track="9"/>
+
+      <track name="30" displayName="10">
+        <block name="85G30"/>
+        <alternative track="294"/>
+        <alternative track="13"/>
+        <alternative track="6"/>
+        <alternative track="7"/>
+        <alternative track="28"/>
+        <alternative track="29"/>
+      </track>
     </track>
   </station>
 
