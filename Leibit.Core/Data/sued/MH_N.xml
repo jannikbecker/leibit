@@ -72,7 +72,7 @@
       <block name="11B412" direction="right"/>
     </track>
     <track name="501" isPlatform="false">
-      <block name="10BN2" direction="left"/>
+      <block name="10B499" direction="left"/>
       <block name="11B501" direction="right"/>
     </track>
     <track name="551" isPlatform="false">
@@ -185,7 +185,7 @@
       <block name="51S317"/>
     </track>
     <track name="320" calculateDelay="false" displayName="1">
-      <block name="51B320"/>
+      <block name="51B320" direction="left"/>
     </track>
   </station>
 
