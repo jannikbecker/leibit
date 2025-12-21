@@ -32,4 +32,6 @@
   <TrainNumber type="S" pattern="79xx" line="S20"/>
   
   <TrainNumber type="S" pattern="80xx" line="S27"/>
+
+  <TrainNumber type="S" pattern="215xx" line="A"/>
 </TrainNumbers>
