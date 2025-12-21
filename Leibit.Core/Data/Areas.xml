@@ -62,6 +62,7 @@
     <estw id="MP" name="München-Pasing" dataFile="leibit_M-PASING.dat" infrastructureManager="DB"/>
     <estw id="MWH" name="Weilheim" dataFile="leibit_WEILHEIM.dat" infrastructureManager="DB"/>
     <estw id="MGP" name="Garmisch-Partenkirchen" dataFile="leibit_GARMISCH-PARTENK.dat" infrastructureManager="DB"/>
+    <estw id="MHT" name="München Hbf Tief" dataFile="leibit_M-HBF TIEFBF.dat" infrastructureManager="DB"/>
   </area>
 
   <area id="nrw" name="Nordrhein-Westfalen">
