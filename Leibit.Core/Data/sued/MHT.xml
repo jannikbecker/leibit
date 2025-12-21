@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="München Ost (S-Bahn)" short="MOP S" refNr="6">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="06B603" direction="right"/>
+      <block name="06B606" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München Rosenheimer Platz" short="MRP" refNr="6" scheduleFile="b6______.abf" displayName="Rosenheimer Platz">
+    <track name="607" displayName="2">
+      <block name="06B607"/>
+    </track>
+    <track name="608" displayName="1">
+      <block name="06B608"/>
+    </track>
+  </station>
+
+  <station name="München Isartor" short="MIT" refNr="7" scheduleFile="g7______.abf" displayName="Isartor">
+    <track name="611" displayName="2">
+      <block name="07G611"/>
+    </track>
+    <track name="612" displayName="1">
+      <block name="07G612"/>
+    </track>
+  </station>
+
+  <station name="München Marienplatz" short="MMP" refNr="8" scheduleFile="g8______.abf" displayName="Marienplatz">
+    <track name="615" displayName="2">
+      <block name="08G615"/>
+    </track>
+    <track name="616" displayName="1">
+      <block name="08G616"/>
+    </track>
+  </station>
+
+  <station name="München Karlsplatz" short="MKA" refNr="9" scheduleFile="g9______.abf" displayName="Karlsplatz">
+    <track name="619" displayName="2">
+      <block name="09G619"/>
+    </track>
+    <track name="620" displayName="1">
+      <block name="09G620"/>
+    </track>
+  </station>
+
+  <station name="München Hbf tief" short="MHT" refNr="10" scheduleFile="g10_____.abf" displayName="Hauptbahnhof">
+    <track name="623" displayName="2">
+      <block name="10G623"/>
+    </track>
+    <track name="624" displayName="1">
+      <block name="10G624"/>
+    </track>
+  </station>
+
+  <station name="München Hbf" short="MH_S" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11BV5T" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München Hbf" short="MH_N" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10BV6T" direction="right"/>
+      <block name="10B97" direction="right"/>
+      <block name="11B100" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München Hackerbrücke" short="MHAB" refNr="10" scheduleFile="v10_____.abf" displayName="Hackerbrücke">
+    <track name="627" displayName="2">
+      <block name="10G627"/>
+    </track>
+    <track name="630" displayName="1">
+      <block name="10G630"/>
+    </track>
+  </station>
+
+  <station name="München Donnersbergerbrücke" short="MMDN" refNr="11" scheduleFile="g11_____.abf" displayName="Donnersbergerbrücke">
+    <track name="631" displayName="1">
+      <block name="11G631"/>
+    </track>
+    <track name="99" displayName="2">
+      <block name="11G99"/>
+    </track>
+    <track name="634" displayName="3">
+      <block name="11G634"/>
+    </track>
+    <track name="102" displayName="4">
+      <block name="11G102"/>
+    </track>
+  </station>
+
+  <station name="München Heimeranplatz" short="MHP" refNr="11" scheduleFile="b11_____.abf" displayName="Heimeranplatz">
+    <track name="491" displayName="2">
+      <block name="11G491"/>
+    </track>
+    <track name="492" displayName="1">
+      <block name="11G492"/>
+    </track>
+  </station>
+
+  <station name="München Harras" short="MHAR" refNr="11" scheduleFile="v11_____.abf" displayName="Harras">
+    <track name="105" calculateDelay="false" displayName="2">
+      <block name="11B105"/>
+    </track>
+    <track name="108" calculateDelay="false" displayName="1">
+      <block name="21BP"/>
+    </track>
+  </station>
+
+  <station name="München-Laim Pbf" short="ML" refNr="11" scheduleFile="g1______.abf" displayName="Laim">
+    <track name="639" displayName="1">
+      <block name="01G639"/>
+    </track>
+    <track name="302" displayName="2">
+      <block name="01G302"/>
+    </track>
+    <track name="640" displayName="3">
+      <block name="01G640"/>
+    </track>
+  </station>
+
+  <station name="München-Pasing S-Bahn" short="MP S" refNr="16">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11S645" direction="left"/>
+      <block name="11S646" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München-Nymphenburg" short="MANY" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11BNYLA1" direction="left"/>
+      <block name="11BNYLA2" direction="left"/>
+    </track>
+  </station>
+</estw>
