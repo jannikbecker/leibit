@@ -27,7 +27,7 @@ Folgende Simulationen werden aktuell unterstützt:
     - Bebra
     - Eisenach
     - Elm
-    - Erfurt (NEU)
+    - Erfurt
     - Frankfurt Hbf Nordseite
     - Frankfurt Hbf Südseite
     - Frankfurt Hauptwache
@@ -43,7 +43,7 @@ Folgende Simulationen werden aktuell unterstützt:
     - Heigenbrücken
     - Lohr
     - Schlüchtern
-    - Weimar (NEU)
+    - Weimar
     - Würzburg Hbf
     - Würzburg Rbf
 - Bereich Norddeutschland
@@ -86,6 +86,10 @@ Folgende Simulationen werden aktuell unterstützt:
     - Kempten
     - Lindau
     - Memmingen
+    - München Hbf Nordseite (NEU)
+    - München Hbf Südseite (NEU)
+    - München Hbf Tief (NEU)
+    - München-Pasing (NEU)
     - München-Westkreuz
     - Olching
     - Singen
