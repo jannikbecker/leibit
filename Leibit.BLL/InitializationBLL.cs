@@ -762,7 +762,7 @@ namespace Leibit.BLL
                         NewTrain = false;
                     else
                     {
-                        var match = Regex.Match(Line, @"^\s*([0-9]+)");
+                        var match = Regex.Match(Line, @"^\s{0,4}([0-9]+)");
 
                         if (match != null && match.Success)
                         {
