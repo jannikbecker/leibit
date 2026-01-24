@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="München Hbf" short="MH_S" refNr="10" scheduleFile="g10_____.abf" localOrderFile="bf10____.abf">
+    <track name="5">
+      <block name="10G5"/>
+    </track>
+    <track name="6">
+      <block name="10G6"/>
+    </track>
+    <track name="7">
+      <block name="10G7"/>
+    </track>
+    <track name="8">
+      <block name="10G8"/>
+    </track>
+    <track name="9">
+      <block name="10G9"/>
+    </track>
+    <track name="10">
+      <block name="10G10"/>
+    </track>
+    <track name="11">
+      <block name="10G11"/>
+    </track>
+    <track name="12">
+      <block name="10G12"/>
+    </track>
+    <track name="13">
+      <block name="10G13"/>
+      <block name="10G13.1"/>
+    </track>
+    <track name="14">
+      <block name="10G14"/>
+      <block name="10G14.1"/>
+    </track>
+    <track name="15">
+      <block name="10G15"/>
+    </track>
+    <track name="16">
+      <block name="10G16"/>
+    </track>
+    <track name="17">
+      <block name="10G17"/>
+    </track>
+    <track name="18">
+      <block name="10G18"/>
+    </track>
+    <track name="19">
+      <block name="10G19"/>
+      <block name="10G19.1"/>
+    </track>
+    <track name="20">
+      <block name="10G20"/>
+      <block name="10G20.1"/>
+    </track>
+    <track name="21">
+      <block name="10G21"/>
+    </track>
+    <track name="22">
+      <block name="10G22"/>
+    </track>
+    <track name="101">
+      <block name="10BV1S"/>
+    </track>
+    <track name="103">
+      <block name="10BV3S"/>
+    </track>
+  </station>
+
+  <station name="München Hbf" short="MH_N" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10BV2S" direction="left"/>
+      <block name="10BV4S" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München Hbf  Vorstellgruppe Süd" short="MH W" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10BVS3MH" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München Landsberger Straße" short="MALS" refNr="13">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10B21" direction="left"/>
+      <block name="13B24" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München Kanal" short="MAKN" refNr="12">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10S311" direction="left"/>
+      <block name="10S316" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München Heimeranplatz" short="MHP" refNr="11" scheduleFile="g11_____.abf">
+    <track name="203" isPlatform="false">
+      <block name="10B201" direction="left"/>
+      <block name="17B203" direction="right"/>
+    </track>
+    <track name="204" isPlatform="false">
+      <block name="11B204" direction="left"/>
+      <block name="17BP1" direction="right"/>
+    </track>
+    <track name="105" isPlatform="false">
+      <block name="10BV5S" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München-Friedenheimerbrücke" short="MAFB" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11S1" direction="right"/>
+      <block name="11SP1" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München Süd" short="MS" refNr="17" scheduleFile="g17_____.abf" localOrderFile="bf17____.abf">
+    <track name="1">
+      <block name="17G1"/>
+    </track>
+    <track name="2">
+      <block name="17G2"/>
+    </track>
+    <track name="3">
+      <block name="17G3"/>
+    </track>
+    <track name="4">
+      <block name="17G4"/>
+    </track>
+    <track name="5">
+      <block name="17G5"/>
+    </track>
+    <track name="6">
+      <block name="17G6"/>
+    </track>
+    <track name="7">
+      <block name="17G7"/>
+    </track>
+    <track name="48">
+      <block name="17BV48"/>
+    </track>
+    <track name="68">
+      <block name="17BV68"/>
+    </track>
+  </station>
+
+  <station name="München Ost Pbf" short="MOP" refNr="18">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="17B207" direction="left"/>
+      <block name="18BP" direction="left"/>
+    </track>
+  </station>
+</estw>

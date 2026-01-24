@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrainNumbers>
+  <TrainNumber type="S" pattern="71xx" line="S1"/>
+  <TrainNumber type="S" pattern="81xx" line="S1"/>
+
+  <TrainNumber type="S" pattern="62xx" line="S2"/>
+  <TrainNumber type="S" pattern="72xx" line="S2"/>
+  <TrainNumber type="S" pattern="82xx" line="S2"/>
+
   <TrainNumber type="S" pattern="63xx" line="S3"/>
   <TrainNumber type="S" pattern="73xx" line="S3"/>
   <TrainNumber type="S" pattern="83xx" line="S3"/>
@@ -15,4 +22,16 @@
   <TrainNumber type="S" pattern="66xx" line="S6"/>
   <TrainNumber type="S" pattern="76xx" line="S6"/>
   <TrainNumber type="S" pattern="86xx" line="S6"/>
+
+  <TrainNumber type="S" pattern="77xx" line="S7"/>
+  <TrainNumber type="S" pattern="87xx" line="S7"/>
+
+  <TrainNumber type="S" pattern="78xx" line="S8"/>
+  <TrainNumber type="S" pattern="88xx" line="S8"/>
+
+  <TrainNumber type="S" pattern="79xx" line="S20"/>
+  
+  <TrainNumber type="S" pattern="80xx" line="S27"/>
+
+  <TrainNumber type="S" pattern="215xx" line="A"/>
 </TrainNumbers>

@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="München-Friedenheimerbrücke" short="MAFB" refNr="12">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12B130" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München Hbf" short="MH" refNr="10">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="10S17" direction="right"/>
+      <block name="10S20" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München-Neuhausen" short="MANH" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="15S501" direction="right"/>
+      <block name="15S504" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München-Laim Pbf" short="ML" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="01S641" direction="right"/>
+      <block name="11S642" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München-Laim Rbf" short="ML R" refNr="11">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="11B01" direction="right"/>
+      <block name="14B02" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München Kanal" short="MAKN" refNr="12">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="12B715" direction="right"/>
+      <block name="14B720" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München Landsberger Straße" short="MALS" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf">
+    <track name="101" isPlatform="false">
+      <block name="10B21" direction="left"/>
+      <block name="13B23" direction="right"/>
+    </track>
+    <track name="102" isPlatform="false">
+      <block name="13B24" direction="left"/>
+      <block name="13B26" direction="right"/>
+    </track>
+    <track name="103" isPlatform="false">
+      <block name="12B130" direction="left"/>
+      <block name="13B230" direction="right"/>
+    </track>
+  </station>
+
+  <station name="München-Pasing Gbf" short="MPG" refNr="14" scheduleFile="g14_____.abf" localOrderFile="bf14____.abf">
+    <track name="1">
+      <block name="14BPG1Y"/>
+    </track>
+    <track name="3">
+      <block name="14BPG3X"/>
+    </track>
+    <track name="11">
+      <block name="14B11"/>
+    </track>
+    <track name="12">
+      <block name="15B12"/>
+    </track>
+  </station>
+
+  <station name="München-Pasing" short="MP" refNr="15" scheduleFile="g15_____.abf" localOrderFile="bf15____.abf" displayName="M-Pasing">
+    <track name="1">
+      <block name="15G001"/>
+    </track>
+    <track name="2">
+      <block name="15G002"/>
+    </track>
+    <track name="3">
+      <block name="15G003"/>
+    </track>
+    <track name="8">
+      <block name="15G008"/>
+    </track>
+    <track name="9">
+      <block name="15G009"/>
+    </track>
+    <track name="10">
+      <block name="15G010"/>
+    </track>
+    <track name="11">
+      <block name="15G011"/>
+    </track>
+    <track name="12">
+      <block name="15G012"/>
+    </track>
+    <track name="717">
+      <block name="14B717"/>
+    </track>
+    <track name="722">
+      <block name="15B722"/>
+    </track>
+  </station>
+
+  <station name="München-Pasing S-Bahn" short="MP S" refNr="16" scheduleFile="g16_____.abf" localOrderFile="bf16____.abf" displayName="Pasing">
+    <track name="4">
+      <block name="16G004"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+    </track>
+    <track name="5">
+      <block name="16G005"/>
+      <alternative track="4"/>
+      <alternative track="6"/>
+      <alternative track="7"/>
+    </track>
+    <track name="6">
+      <block name="16G006"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="7"/>
+    </track>
+    <track name="7">
+      <block name="16G007"/>
+      <alternative track="4"/>
+      <alternative track="5"/>
+      <alternative track="6"/>
+    </track>
+    <track name="404">
+      <block name="16G404"/>
+      <alternative track="405"/>
+    </track>
+    <track name="405">
+      <block name="16G405"/>
+      <alternative track="404"/>
+    </track>
+  </station>
+
+  <station name="München-Pasing Bbf" short="MPB" refNr="15">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="15B719" direction="left"/>
+      <block name="15B724" direction="left"/>
+      <block name="15B150" direction="left"/>
+      <block name="16B160" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München-Langwied" short="MLW" refNr="16" scheduleFile="b16_____.abf" displayName="Langwied">
+    <track name="030" calculateDelay="false" displayName="1">
+      <block name="16B1030"/>
+    </track>
+    <track name="033" calculateDelay="false" displayName="2">
+      <block name="16B1033"/>
+    </track>
+  </station>
+
+  <station name="München-Lochhausen" short="MLO" refNr="17">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="15B35" direction="left"/>
+      <block name="16B1035" direction="left"/>
+      <block name="17BPF" direction="left"/>
+      <block name="17BPS" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München Leienfelsstraße" short="MLEF" refNr="15" scheduleFile="b15_____.abf" displayName="Leienfelsstraße">
+    <track name="1" calculateDelay="false">
+      <block name="15B97"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="15B100"/>
+    </track>
+  </station>
+
+  <station name="München-Aubing" short="MMAU" refNr="14" scheduleFile="b14_____.abf" displayName="Aubing">
+    <track name="1" calculateDelay="false">
+      <block name="14B101"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="14B102"/>
+    </track>
+  </station>
+
+  <station name="Puchheim" short="MPM" refNr="81">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="15B103" direction="left"/>
+      <block name="81BP" direction="left"/>
+    </track>
+  </station>
+
+  <station name="München-Westkreuz" short="MWKR" refNr="70" scheduleFile="g70_____.abf" displayName="Westkreuz">
+    <track name="650" displayName="2">
+      <block name="70BWKPA"/>
+    </track>
+    <track name="651" displayName="1">
+      <block name="70BWKPAG"/>
+    </track>
+  </station>
+
+  <station name="Planegg" short="MPL" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="15B511" direction="left"/>
+      <block name="33B512" direction="left"/>
+    </track>
+  </station>
+</estw>
