@@ -4,6 +4,7 @@ using Leibit.Core.Client.Commands;
 using Leibit.Core.Common;
 using Leibit.Entities;
 using Leibit.Entities.Common;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +12,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows.Forms;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Leibit.Client.WPF.Windows.Settings.ViewModels
@@ -609,11 +610,11 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
         private void __BrowseEstwOnline()
         {
-            var Dialog = new FolderBrowserDialog();
-            Dialog.SelectedPath = Path.GetFullPath(EstwOnlinePath);
+            var Dialog = new OpenFolderDialog();
+            Dialog.InitialDirectory = Path.GetFullPath(EstwOnlinePath);
 
-            if (Dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                EstwOnlinePath = Dialog.SelectedPath;
+            if (Dialog.ShowDialog() == true)
+                EstwOnlinePath = Dialog.FolderName;
         }
 
         private void __DeterminePaths()
@@ -627,9 +628,9 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
                     changedPaths++;
 
             if (changedPaths == 0)
-                MessageBox.Show("Es konnten keine Pfade ermittelt werden.", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Es konnten keine Pfade ermittelt werden.", "Warnung", MessageBoxButton.OK, MessageBoxImage.Warning);
             else
-                MessageBox.Show($"Es wurden {changedPaths} neue Pfade ermittelt.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Es wurden {changedPaths} neue Pfade ermittelt.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
             if (changedPaths > 0)
                 ShowPathsWarning = false;
