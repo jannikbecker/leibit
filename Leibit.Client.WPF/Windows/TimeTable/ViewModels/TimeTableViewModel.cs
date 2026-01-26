@@ -180,7 +180,7 @@ namespace Leibit.Client.WPF.Windows.TimeTable.ViewModels
                         if (DelayInfos.Count() > 0)
                             Current.DelayReason = String.Join(", ", DelayInfos);
 
-                        var StartSchedule = LiveTrain.Schedules.SingleOrDefault(s => s.Schedule.Handling == eHandling.Start && s.Schedule.Station == CurrentStation);
+                        var StartSchedule = LiveTrain.Schedules.FirstOrDefault(s => s.Schedule.Handling == eHandling.Start && s.Schedule.Station == CurrentStation);
                         Current.IsReady = StartSchedule != null && StartSchedule.Schedule.Station.ESTW.Time >= StartSchedule.Schedule.Departure.AddMinutes(-2);
                     }
                 }

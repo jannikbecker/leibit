@@ -4,10 +4,10 @@ using Leibit.Core.Client.Commands;
 using Leibit.Core.Common;
 using Leibit.Entities;
 using Leibit.Entities.Common;
+using Microsoft.Win32;
 using System;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace Leibit.Client.WPF.Windows.Settings.ViewModels
@@ -128,11 +128,11 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
 
         private void __Browse()
         {
-            var Dialog = new FolderBrowserDialog();
-            Dialog.SelectedPath = Path;
+            var Dialog = new OpenFolderDialog();
+            Dialog.InitialDirectory = Path;
 
-            if (Dialog.ShowDialog() == DialogResult.OK)
-                Path = Dialog.SelectedPath;
+            if (Dialog.ShowDialog() == true)
+                Path = Dialog.FolderName;
         }
 
         private string __Normalize(string path)
