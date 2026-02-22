@@ -191,6 +191,7 @@ namespace Leibit.Controls
             window.WindowStartupLocation = WindowStartupLocation.Manual;
             window.Closed += __Window_Closed;
             window.Show();
+            window.Activate();
             m_Windows.Add(window);
         }
 
