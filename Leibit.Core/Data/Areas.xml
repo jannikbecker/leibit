@@ -28,6 +28,7 @@
   </area>
 
   <area id="nord" name="Norddeutschland">
+    <estw id="HBDE" name="Bünde" dataFile="leibit_BÜNDE.dat" infrastructureManager="DB"/>
     <estw id="HDIP" name="Diepholz" dataFile="leibit_DIEPHOLZ.dat" infrastructureManager="DB"/>
     <estw id="HKI" name="Kirchweyhe" dataFile="leibit_KIRCHWEYHE.dat" infrastructureManager="DB"/>
     <estw id="HM" name="Minden" dataFile="leibit_MINDEN.dat" infrastructureManager="DB"/>
