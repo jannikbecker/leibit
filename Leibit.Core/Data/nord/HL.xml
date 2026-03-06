@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Kirchlengern" short="HKLG" refNr="60" scheduleFile="v60_____.abf">
+    <track name="101" displayName="1">
+      <block name="60S101"/>
+    </track>
+    <track name="102" displayName="2">
+      <block name="60S102"/>
+    </track>
+  </station>
+
+  <station name="Herford" short="EHFD" refNr="83">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="83S008" direction="right"/>
+      <block name="83S009" direction="right"/>
+      <block name="83S116" direction="right"/>
+      <block name="83S124" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Löhne (Westf) Gbf" short="HL G" refNr="84" scheduleFile="g82_____.abf" localOrderFile="bf82____.abf">
+    <track name="201" calculateDelay="false">
+      <block name="84G201"/>
+    </track>
+    <track name="202" calculateDelay="false">
+      <block name="84G202"/>
+    </track>
+    <track name="203" calculateDelay="false">
+      <block name="84G203"/>
+    </track>
+    <track name="204" calculateDelay="false">
+      <block name="84G204"/>
+    </track>
+    <track name="205" calculateDelay="false">
+      <block name="84G205"/>
+    </track>
+    <track name="206" calculateDelay="false">
+      <block name="84G206"/>
+    </track>
+
+    <track name="Gbf">
+      <track name="151">
+        <block name="82G151"/>
+      </track>
+      <track name="152">
+        <block name="82G152"/>
+      </track>
+      <track name="153">
+        <block name="82G153"/>
+      </track>
+      <track name="154">
+        <block name="82G154"/>
+      </track>
+      <track name="176">
+        <block name="82G176"/>
+      </track>
+      <track name="177">
+        <block name="82G177"/>
+      </track>
+      <track name="178">
+        <block name="82G178"/>
+      </track>
+      <track name="179">
+        <block name="82G179"/>
+      </track>
+    </track>
+  </station>
+
+  <station name="Löhne (Westf) Pbf" short="HL" refNr="84" scheduleFile="g84_____.abf" localOrderFile="bf84____.abf" displayName="Löhne">
+    <track name="3">
+      <block name="84G3"/>
+    </track>
+    <track name="7">
+      <block name="84G7"/>
+    </track>
+    <track name="8">
+      <block name="84G8"/>
+    </track>
+    <track name="9">
+      <block name="84G9"/>
+    </track>
+    <track name="10">
+      <block name="84G10"/>
+    </track>
+    <track name="11">
+      <block name="84G11"/>
+    </track>
+    <track name="12">
+      <block name="84G12"/>
+    </track>
+    <track name="13">
+      <block name="84G13"/>
+    </track>
+  </station>
+
+  <station name="Bad Oeynhausen Süd" short="HBOE" refNr="84" scheduleFile="b84_____.abf">
+    <track name="" calculateDelay="false" displayName="1">
+      <block name="84B104"/>
+    </track>
+  </station>
+
+  <station name="Gohfeld" short="HGOF" refNr="85" scheduleFile="g85_____.abf" localOrderFile="bf85____.abf">
+    <track name="203">
+      <block name="85G203"/>
+    </track>
+    <track name="204">
+      <block name="85G204"/>
+    </track>
+    <track name="205">
+      <block name="85G205"/>
+    </track>
+  </station>
+
+  <station name="Bad Oeynhausen" short="HOY" refNr="86" scheduleFile="b86_____.abf">
+    <track name="1" calculateDelay="false">
+      <block name="86B94"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="86BA"/>
+    </track>
+  </station>
+
+  <station name="Bad Oeynhausen Gbf" short="HOYG" refNr="86" localOrderFile="bf86____.abf">
+    <scheduleFile fileName="g86_____.abf">
+      <track>3</track>
+      <track>4</track>
+      <track>5</track>
+    </scheduleFile>
+
+    <track name="3">
+      <block name="86G3"/>
+    </track>
+    <track name="4">
+      <block name="86G4"/>
+    </track>
+    <track name="5">
+      <block name="86G5"/>
+    </track>
+  </station>
+
+  <station name="Bad Oeynhausen Gbf Abzw" short="HOYGA" refNr="86">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="86B92" direction="left"/>
+      <block name="86BPG" direction="right"/>
+      <block name="86BPP" direction="right"/>
+      <block name="87B81" direction="right"/>
+      <block name="87B181" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Vennebeck" short="HVBK" refNr="87" scheduleFile="g87_____.abf" localOrderFile="bf87____.abf">
+    <track name="103">
+      <block name="87G103"/>
+    </track>
+    <track name="104">
+      <block name="87G104"/>
+    </track>
+  </station>
+
+  <station name="Porta Westfalica Hp" short="HPTH" refNr="88" scheduleFile="b88_____.abf" displayName="Porta Westfalica">
+    <track name="1" calculateDelay="false">
+      <block name="88B72"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="88B69"/>
+    </track>
+  </station>
+
+  <station name="Porta Westfalica Gbf" short="HPTA" refNr="88" localOrderFile="bf88____.abf">
+    <scheduleFile fileName="g88_____.abf">
+      <track>713</track>
+      <track>714</track>
+      <track>715</track>
+    </scheduleFile>
+
+    <track name="713">
+      <block name="88G713"/>
+    </track>
+    <track name="714">
+      <block name="88G714"/>
+    </track>
+    <track name="715">
+      <block name="88G715"/>
+    </track>
+  </station>
+
+  <station name="Minden (Westf)" short="HM" refNr="89">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="88B712" direction="left"/>
+      <block name="89B160" direction="left"/>
+      <block name="89S60" direction="left"/>
+      <block name="89S62" direction="left"/>
+    </track>
+  </station>
+</estw>
