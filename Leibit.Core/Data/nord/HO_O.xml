@@ -139,13 +139,13 @@
   <station name="Osnabrück Hbf Klus" short="HO K" refNr="92" scheduleFile="g92_____.abf" localOrderFile="bf92____.abf">
     <track name="3x">
       <track name="30">
-        <block name="16G30"/>
+        <block name="92G30"/>
       </track>
       <track name="31">
-        <block name="16G31"/>
+        <block name="92G31"/>
       </track>
       <track name="32">
-        <block name="16G32"/>
+        <block name="92G32"/>
       </track>
     </track>
   </station>
