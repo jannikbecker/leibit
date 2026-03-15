@@ -26,7 +26,7 @@
   </area>
 
   <area id="nord" name="Norddeutschland">
-    <estw id="HO_U" name="Osnabrück Pu" dataFile="leibit_OSNABRÜCK PU.dat" infrastructureManager="DB"/>
+    <estw id="HO_U" name="Osnabrück Hbf Pu" dataFile="leibit_OSNABRÜCK HBF PU.dat" infrastructureManager="DB"/>
     <estw id="HDIP" name="Diepholz" dataFile="leibit_DIEPHOLZ.dat" infrastructureManager="DB"/>
     <estw id="HKI" name="Kirchweyhe" dataFile="leibit_KIRCHWEYHE.dat" infrastructureManager="DB"/>
     <estw id="HM" name="Minden" dataFile="leibit_MINDEN.dat" infrastructureManager="DB"/>

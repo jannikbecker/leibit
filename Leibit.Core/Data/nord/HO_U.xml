@@ -7,8 +7,10 @@
   </station>
 
   <station name="Ibbenbüren-Laggenbeck" short="HLGG" refNr="50" scheduleFile="v50_____.abf" displayName="Laggenbeck">
-    <track name="" calculateDelay="false">
+    <track name="503" calculateDelay="false" displayName="1">
       <block name="50S503"/>
+    </track>
+    <track name="504" calculateDelay="false" displayName="2">
       <block name="50S504"/>
     </track>
   </station>
@@ -38,7 +40,7 @@
   </station>
 
   <station name="Halen" short="HHAL" refNr="27" scheduleFile="v27_____.abf">
-    <track name="" calculateDelay="false" displayName="2">
+    <track name="274" calculateDelay="false" displayName="1">
       <block name="27S274"/>
     </track>
   </station>
@@ -121,8 +123,8 @@
       <block name="16BHOHS" direction="left"/>
       <block name="54GLK" direction="right"/>
     </track>
-    <track name="StK" isPlatform="false">
-      <block name="54GStk1" direction="left"/>
+    <track name="198" isPlatform="false">
+      <block name="54G198" direction="left"/>
     </track>
   </station>
 
@@ -157,9 +159,17 @@
   </station>
 
   <station name="Westerhausen (Kr Melle)" short="HWTH" refNr="57" scheduleFile="v57_____.abf" displayName="Westerhausen">
-    <track name="" calculateDelay="false">
-      <block name="57S57N"/>
-      <block name="57S56P"/>
+    <track name="9" calculateDelay="false" displayName="2">
+      <block name="57S579"/>
+    </track>
+    <track name="14" calculateDelay="false" displayName="1">
+      <block name="57S5614"/>
+    </track>
+  </station>
+
+  <station name="Melle Euer Heide" short="HEHD" refNr="57">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="57S5712"/>
     </track>
   </station>
 
