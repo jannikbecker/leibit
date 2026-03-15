@@ -180,12 +180,6 @@
     </track>
   </station>
 
-  <station name="Osnabrück-Hasetor" short="HOHT" refNr="54">
-    <track calculateDelay="false" isPlatform="false">
-      <block name="82S42"/>
-    </track>
-  </station>
-
   <station name="Osnabrück Hbf Pu" short="HO U" refNr="54">
     <track calculateDelay="false" isPlatform="false">
       <block name="82S18"/>
@@ -261,15 +255,7 @@
 
   <station name="Lüstringen" short="HLRI" refNr="55">
     <track calculateDelay="false" isPlatform="false">
-      <block name="83S2"/>
-      <block name="83S3"/>
       <block name="83BHLHR" direction="left"/>
-    </track>
-  </station>
-
-  <station name="Wissingen" short="HWIS" refNr="56">
-    <track calculateDelay="false" isPlatform="false">
-      <block name="83SN" direction="left"/>
     </track>
   </station>
 </estw>
