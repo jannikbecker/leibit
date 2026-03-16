@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Imst-Pitztal" short="Im" refNr="24">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="23Bq11" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Imsterberg" short="Im H1" refNr="23" scheduleFile="b23_____.abf">
+    <track name="021" calculateDelay="false" displayName="1">
+      <block name="23Bq21"/>
+    </track>
+  </station>
+
+  <station name="Schönwies" short="Ss" refNr="23" scheduleFile="g23_____.abf" localOrderFile="bf23____.abf">
+    <track name="201" displayName="2">
+      <block name="23G201"/>
+    </track>
+    <track name="202" displayName="1">
+      <block name="23G202"/>
+    </track>
+    <track name="203">
+      <block name="23G203"/>
+    </track>
+  </station>
+
+  <station name="Abzw Ss 1" short="Ss Z1" refNr="23">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="23Br11" direction="left"/>
+      <block name="23Br22" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Landeck" short="Le" refNr="22" scheduleFile="g22_____.abf" localOrderFile="bf22____.abf">
+    <track name="301" displayName="2">
+      <block name="22G301"/>
+    </track>
+    <track name="302" displayName="1">
+      <block name="22G302"/>
+    </track>
+    <track name="303" displayName="3">
+      <block name="22G303"/>
+    </track>
+    <track name="304" displayName="21">
+      <block name="22G304"/>
+    </track>
+    <track name="305">
+      <block name="22G305"/>
+    </track>
+    <track name="307">
+      <block name="22G307"/>
+    </track>
+    <track name="309">
+      <block name="22G309"/>
+    </track>
+    <track name="311">
+      <block name="22G311"/>
+    </track>
+  </station>
+
+  <station name="Landeck-Perfuchs" short="Le H1" refNr="22">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="21Bs11"/>
+    </track>
+  </station>
+
+  <station name="Pians" short="Pi" refNr="21" scheduleFile="g21_____.abf" localOrderFile="bf21____.abf">
+    <track name="301">
+      <block name="21G301"/>
+    </track>
+    <track name="303" displayName="2">
+      <block name="21G303"/>
+      <alternative track="301"/>
+      <alternative track="305"/>
+      <track name="203">
+        <block name="21G203"/>
+        <alternative track="301"/>
+      </track>
+    </track>
+    <track name="305" displayName="1">
+      <block name="21G305"/>
+      <alternative track="301"/>
+      <alternative track="303"/>
+    </track>
+  </station>
+
+  <station name="Strengen" short="Sen" refNr="20" scheduleFile="g20_____.abf" localOrderFile="bf20____.abf">
+    <track name="301">
+      <block name="20G301"/>
+    </track>
+    <track name="302" displayName="2">
+      <block name="20G302"/>
+      <alternative track="301"/>
+      <alternative track="304"/>
+      <track name="202">
+        <block name="20G202"/>
+        <alternative track="301"/>
+      </track>
+      <track name="402">
+        <block name="20G402"/>
+        <alternative track="301"/>
+      </track>
+    </track>
+    <track name="304" displayName="1">
+      <block name="20G304"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+    </track>
+  </station>
+
+  <station name="Flirsch" short="Fch" refNr="19" scheduleFile="g19_____.abf" localOrderFile="bf19____.abf">
+    <track name="301">
+      <block name="19G301"/>
+    </track>
+    <track name="302" displayName="2">
+      <block name="19G302"/>
+      <alternative track="301"/>
+      <alternative track="304"/>
+      <track name="202">
+        <block name="19G202"/>
+        <alternative track="301"/>
+      </track>
+    </track>
+    <track name="304" displayName="1">
+      <block name="19G304"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+    </track>
+  </station>
+
+  <station name="Abzw Fch 1" short="Fch Z1" refNr="18" scheduleFile="B18_____.abf">
+    <track name="101" isPlatform="false">
+      <block name="18Bv11" direction="left"/>
+      <block name="18Bv21" direction="right"/>
+    </track>
+    <track name="102" isPlatform="false">
+      <block name="18Bv22" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Üst Fch 2" short="Fch U2" refNr="18" scheduleFile="g18_____.abf">
+    <track name="201" isPlatform="false">
+      <block name="18Bv21" direction="left"/>
+      <block name="18Bv31" direction="right"/>
+    </track>
+    <track name="202" isPlatform="false">
+      <block name="18Bv22" direction="left"/>
+      <block name="18Bv32" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Abzw Fch 3" short="Fch Z3" refNr="18" scheduleFile="V18_____.abf">
+    <track name="301" isPlatform="false">
+      <block name="18Bv31" direction="left"/>
+      <block name="18Bw11" direction="right"/>
+    </track>
+    <track name="302" isPlatform="false">
+      <block name="18Bv32" direction="left"/>
+    </track>
+  </station>
+
+  <station name="St. Anton am Arlberg" short="Ao" refNr="17" scheduleFile="g17_____.abf" localOrderFile="bf17____.abf" displayName="St. Anton a.A.">
+    <track name="201" displayName="3">
+      <block name="17G201"/>
+    </track>
+    <track name="202" displayName="2">
+      <block name="17G202"/>
+    </track>
+    <track name="203" displayName="4">
+      <block name="17G203"/>
+    </track>
+    <track name="204" displayName="1">
+      <block name="17G204"/>
+    </track>
+    <track name="205" displayName="5">
+      <block name="17G205"/>
+    </track>
+    <track name="206">
+      <block name="17G206"/>
+    </track>
+  </station>
+
+  <station name="Üst Ao 3" short="Ao U3" refNr="17">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="16Sx21" direction="left"/>
+      <block name="16Sx22" direction="left"/>
+    </track>
+  </station>
+</estw>
