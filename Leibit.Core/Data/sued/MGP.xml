@@ -216,7 +216,7 @@
     </track>
   </station>
 
-  <station name="Innsbruck Westbf" short="XAIW" refNr="71">
+  <station name="Innsbruck Westbf" short="Wt" refNr="71">
     <track calculateDelay="false" isPlatform="false">
       <block name="70Ba11" direction="left"/>
     </track>
