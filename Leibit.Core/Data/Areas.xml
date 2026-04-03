@@ -43,7 +43,7 @@
     <estw id="AH" name="Hamburg Hbf" dataFile="leibit_HAMBURG HBF.dat" infrastructureManager="DB"/>
   </area>
 
-  <area id="sued" name="Süddeutschland / Vorarlberg">
+  <area id="sued" name="Süddeutschland / Westösterreich">
     <estw id="RSI" name="Singen" dataFile="leibit_SINGEN.dat" infrastructureManager="DB"/>
     <estw id="TF" name="Friedrichshafen" dataFile="leibit_FRIEDRICHSHAFEN.dat" infrastructureManager="DB"/>
     <estw id="TAU" name="Aulendorf" dataFile="leibit_AULENDORF.dat" infrastructureManager="DB"/>
