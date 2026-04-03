@@ -74,6 +74,7 @@
     <None Remove="Data\passenger_trains.json" />
     <None Remove="Data\sued\Bg.xml" />
     <None Remove="Data\sued\Fk.xml" />
+    <None Remove="Data\sued\I.xml" />
     <None Remove="Data\sued\MA.xml" />
     <None Remove="Data\sued\MAHZ.xml" />
     <None Remove="Data\sued\MBU.xml" />
@@ -169,6 +170,7 @@
     <EmbeddedResource Include="Data\passenger_trains.json" />
     <EmbeddedResource Include="Data\sued\Bg.xml" />
     <EmbeddedResource Include="Data\sued\Fk.xml" />
+    <EmbeddedResource Include="Data\sued\I.xml" />
     <EmbeddedResource Include="Data\sued\MA.xml" />
     <EmbeddedResource Include="Data\sued\MAHZ.xml" />
     <EmbeddedResource Include="Data\sued\MBU.xml" />
