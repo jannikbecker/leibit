@@ -609,6 +609,7 @@ namespace Leibit.Client.WPF.Windows.TrainProgressInformation.ViewModels
                 currentVm.CurrentTrain = liveSchedule.Train;
                 currentVm.ExpectedArrival = liveSchedule.ExpectedArrival;
                 currentVm.ExpectedDeparture = liveSchedule.ExpectedDeparture;
+                currentVm.LocalOrdersToolTip = liveSchedule.LocalOrders;
 
                 if (liveSchedule.LiveTrack != null && liveSchedule.LiveTrack.Name != schedule.Track?.Name)
                     currentVm.LiveTrack = liveSchedule.LiveTrack;

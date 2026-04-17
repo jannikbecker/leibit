@@ -87,6 +87,7 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
                     continue;
 
                 var VM = new ESTWSelectionESTWViewModel(Estw);
+                VM.SelectionChanged += (_, _) => OnRefreshRequested();
                 Dispatcher.Invoke(() => Estws.Add(VM));
             }
 

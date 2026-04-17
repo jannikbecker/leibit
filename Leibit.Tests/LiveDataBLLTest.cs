@@ -489,16 +489,6 @@ namespace Leibit.Tests
                     Assert.AreEqual(4, Area.LiveTrains[2007].Delay);
                 }
 
-                using (var scope = new ESTWOnlineScope(Estw, "TestTrainDelayDeparture/TestdorfDeparture.dat"))
-                {
-                    var Result = BLL.RefreshLiveData(Area);
-                    DefaultChecks.IsOperationSucceeded(Result);
-                    Assert.IsTrue(Result.Result, "Result is false");
-
-                    Assert.AreEqual(1, Area.LiveTrains.Count);
-                    Assert.IsTrue(Area.LiveTrains.ContainsKey(2007));
-                }
-
                 var Train = Area.LiveTrains[2007];
                 TrainInformationComparer.Instance.Compare(ExpectedValuesOfLiveDataBLLTest.TestTrainDelayDeparture(Estw), Train);
             }

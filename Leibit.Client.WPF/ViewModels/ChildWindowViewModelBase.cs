@@ -22,6 +22,7 @@ namespace Leibit.Client.WPF.ViewModels
         public event EventHandler<string> StatusBarTextChanged;
         public event EventHandler<ReportProgressEventArgs> ReportProgress;
         public event EventHandler<bool> ShutdownRequested;
+        public event EventHandler RefreshRequested;
         #endregion
 
         #region - Protected methods -
@@ -58,6 +59,13 @@ namespace Leibit.Client.WPF.ViewModels
         protected void OnShutdownRequested(bool force)
         {
             ShutdownRequested?.Invoke(this, force);
+        }
+        #endregion
+
+        #region [OnRefreshRequested]
+        protected void OnRefreshRequested()
+        {
+            RefreshRequested?.Invoke(this, EventArgs.Empty);
         }
         #endregion
 

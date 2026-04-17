@@ -595,6 +595,7 @@ namespace Leibit.Client.WPF.Windows.Settings.ViewModels
             if (SaveResult.Succeeded)
             {
                 OnStatusBarTextChanged("Einstellungen gespeichert");
+                OnRefreshRequested();
                 OnCloseWindow();
                 (App.Current as App)?.ChangeSkin(m_Settings.Skin);
                 SettingsChanged?.Invoke(this, EventArgs.Empty);

@@ -11,10 +11,14 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
 {
     public class DisplayViewModel : ChildWindowViewModelBase, IRefreshable
     {
+        #region - Needs -
+        private Area m_Area;
+        #endregion
 
         #region - Ctor -
         public DisplayViewModel(Dispatcher dispatcher, Area area)
         {
+            m_Area = area;
             Dispatcher = dispatcher;
             StationList = area.ESTWs.Where(e => e.IsLoaded && e.SchedulesLoaded).SelectMany(e => e.Stations.Where(s => s.Tracks.Any(t => t.IsPlatform && t.Blocks.Any()))).ToObservableCollection();
 
@@ -169,6 +173,7 @@ namespace Leibit.Client.WPF.Windows.Display.ViewModels
         private void __SelectionChanged()
         {
             SelectedDisplayType?.ViewModel.SelectionChanged();
+            SelectedDisplayType?.ViewModel.Refresh(m_Area);
         }
         #endregion
 

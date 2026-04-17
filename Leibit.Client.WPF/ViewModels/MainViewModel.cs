@@ -1392,6 +1392,7 @@ namespace Leibit.Client.WPF.ViewModels
 
                 vm.StatusBarTextChanged += (sender, text) => __ShowStatusBarInfo(text);
                 vm.ReportProgress += __ReportProgress;
+                vm.RefreshRequested += (_, _) => __RefreshChildWindows(m_CurrentArea);
 
                 vm.ShutdownRequested += (sender, force) =>
                 {
@@ -1399,6 +1400,9 @@ namespace Leibit.Client.WPF.ViewModels
                     __Exit();
                 };
             }
+
+            if (window.DataContext is IRefreshable refreshable)
+                refreshable.Refresh(m_CurrentArea);
         }
         #endregion
 
@@ -1492,33 +1496,42 @@ namespace Leibit.Client.WPF.ViewModels
             {
                 var Result = m_LiveDataBll.RefreshLiveData(Area);
 
-                if (Result.Succeeded && Result.Result)
+                if (cancellationToken.IsCancellationRequested)
+                    break;
+
+                if (Result.Succeeded)
                 {
-                    List<IRefreshable> vmList = null;
-                    Application.Current?.Dispatcher?.Invoke(() => vmList = ChildWindows.Select(w => w.DataContext).Where(vm => vm is IRefreshable).Cast<IRefreshable>().ToList());
-
-                    if (cancellationToken.IsCancellationRequested)
-                        break;
-
-                    foreach (var vm in vmList)
+                    if (Result.Result)
                     {
-                        try
-                        {
-                            vm.Refresh(Area);
-                        }
-                        catch (Exception ex)
-                        {
-                            Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(ex.ToString()));
-                        }
+                        __RefreshChildWindows(Area);
+                        OnPropertyChanged(nameof(ConnectedESTWs));
+                        __ProcessReminders(Area);
                     }
-
-                    OnPropertyChanged(nameof(ConnectedESTWs));
-                    __ProcessReminders(Area);
                 }
                 else
                     Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(Result.Message));
 
                 Thread.Sleep(500);
+            }
+        }
+        #endregion
+
+        #region [__RefreshChildWindows]
+        private void __RefreshChildWindows(Area Area)
+        {
+            List<IRefreshable> vmList = null;
+            Application.Current?.Dispatcher?.Invoke(() => vmList = ChildWindows.Select(w => w.DataContext).Where(vm => vm is IRefreshable).Cast<IRefreshable>().ToList());
+
+            foreach (var vm in vmList)
+            {
+                try
+                {
+                    vm.Refresh(Area);
+                }
+                catch (Exception ex)
+                {
+                    Application.Current?.Dispatcher?.Invoke(() => __ShowErrorWindow(ex.ToString()));
+                }
             }
         }
         #endregion

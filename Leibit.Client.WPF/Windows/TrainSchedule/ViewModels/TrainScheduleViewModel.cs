@@ -390,7 +390,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
                     }
 
                     GroupVisible |= Visible;
-                    Current.CanCancel = IsInEditMode && !Current.IsArrived && !Current.IsDeparted;
+                    Current.CanCancel = !Current.IsArrived && !Current.IsDeparted;
 
                     if (Visible)
                     {
@@ -624,6 +624,7 @@ namespace Leibit.Client.WPF.Windows.TrainSchedule.ViewModels
             }
 
             IsInEditMode = false;
+            OnRefreshRequested();
         }
         #endregion
 

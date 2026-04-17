@@ -27,6 +27,12 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
         }
         #endregion
 
+        #region - Events -
+
+        public event EventHandler SelectionChanged;
+
+        #endregion
+
         #region - Properties -
 
         #region [Id]
@@ -129,6 +135,7 @@ namespace Leibit.Client.WPF.Windows.ESTWSelection.ViewModels
                     Runtime.VisibleStations.Remove(SenderVM.CurrentStation);
 
                 __RefreshSelection();
+                SelectionChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Leibit.BLL
@@ -107,8 +108,7 @@ namespace Leibit.BLL
                 try
                 {
                     var Result = new OperationResult<bool>();
-                    Result.Result = true;
-
+                    var anyDataLoaded = false;
                     var Options = new ParallelOptions();
                     Options.MaxDegreeOfParallelism = Environment.ProcessorCount;
 
@@ -116,24 +116,30 @@ namespace Leibit.BLL
                     {
                         try
                         {
-                            __LoadLiveDataFromEstw(estw);
+                            var dataLoaded = __LoadLiveDataFromEstw(estw);
                             estw.IOExceptionCount = 0;
+
+                            if (dataLoaded)
+                                Interlocked.Exchange(ref anyDataLoaded, true);
                         }
                         catch (IOException ex) when (estw.IOExceptionCount < 3)
                         {
                             estw.IOExceptionCount++;
+                            Result.Succeeded = true;
                             Result.Message = ex.Message;
                         }
                         catch (Exception ex)
                         {
-                            Result.Result = false;
+                            Result.Succeeded = false;
                             Result.Message = ex.Message;
                         }
                     });
 
+                    Result.Result = anyDataLoaded;
+
                     var EstwTime = area.ESTWs.Max(e => e.Time);
 
-                    if (EstwTime != null)
+                    if (EstwTime != null && anyDataLoaded)
                     {
                         Parallel.ForEach(area.LiveTrains, Options, train =>
                         {
@@ -402,15 +408,15 @@ namespace Leibit.BLL
 
         #region - Private helpers -
 
-        private void __LoadLiveDataFromEstw(ESTW estw)
+        private bool __LoadLiveDataFromEstw(ESTW estw)
         {
             if (estw == null || estw.DataFile.IsNullOrWhiteSpace())
-                return;
+                return false;
 
             var FilePath = Path.Combine(DataFilesPath, estw.DataFile);
 
             if (!File.Exists(FilePath))
-                return;
+                return false;
 
             using (var stream = File.Open(FilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
@@ -541,6 +547,8 @@ namespace Leibit.BLL
             }
             else
                 File.Delete(FilePath);
+
+            return true;
         }
 
         private string __GetDataFilesPath()

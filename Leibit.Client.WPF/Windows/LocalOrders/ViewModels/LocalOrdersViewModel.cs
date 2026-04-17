@@ -169,6 +169,7 @@ namespace Leibit.Client.WPF.Windows.LocalOrders.ViewModels
             {
                 LiveSchedule.LocalOrders = CurrentSchedule.LocalOrders;
                 OnPropertyChanged(nameof(LocalOrders));
+                OnRefreshRequested();
             }
         }
         #endregion
@@ -177,6 +178,7 @@ namespace Leibit.Client.WPF.Windows.LocalOrders.ViewModels
         private void __Finish()
         {
             IsInEditMode = false;
+            OnRefreshRequested();
         }
         #endregion
 
