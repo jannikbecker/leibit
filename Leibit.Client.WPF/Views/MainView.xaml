@@ -120,6 +120,12 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
+                <MenuItem Header="Statistiken" Command="{Binding StatisticsCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{DynamicResource imgStatistics}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
                 <MenuItem Header="Systemstatus" Command="{Binding SystemStateCommand}">
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgInfo}" />
@@ -240,6 +246,7 @@
                 </controls:DropDownButton>
 
                 <controls:ImageButton Image="{DynamicResource imgDisplay}" Command="{Binding DisplayCommand}" ToolTipService.ToolTip="Fahrgastinformation"/>
+                <controls:ImageButton Image="{DynamicResource imgStatistics}" Command="{Binding StatisticsCommand}" ToolTipService.ToolTip="Statistiken"/>
             </ToolBar>
         </ToolBarPanel>
 

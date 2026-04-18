@@ -1,0 +1,84 @@
+﻿<controls:LeibitWindow x:Class="Leibit.Client.WPF.Windows.Statistics.Views.CurrentStatisticsView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                       xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+                       xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.Statistics.Views"
+                       xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.Statistics.ViewModels"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       mc:Ignorable="d"
+                       Caption="Aktuelle Statistik"
+                       d:DataContext="{d:DesignInstance vm:CurrentStatisticsViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="ESTW" Margin="0,0,10,0" VerticalAlignment="Center"/>
+            <ComboBox ItemsSource="{Binding ESTWList}" SelectedItem="{Binding SelectedESTW}" DisplayMemberPath="Name" MinWidth="100"/>
+        </StackPanel>
+
+        <Rectangle Grid.Row="1" Grid.ColumnSpan="4" Height="1" Fill="{DynamicResource TextForeground}" Margin="10,0"/>
+
+        <GroupBox Grid.Row="2" Grid.Column="0" Header="Anzahl Züge" Padding="10" Margin="10">
+            <TextBlock Text="{Binding CurrentStatistics.NumberOfTrains}" FontSize="36"/>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Grid.Column="1" Header="&#x2300; Verspätung" Padding="10" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding CurrentStatistics.AverageDelay}" FontSize="36" Margin="0,0,10,0"/>
+                <TextBlock Text="min" VerticalAlignment="Bottom" FontSize="16" Margin="0,0,0,5"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Grid.Column="2" Header="Kleinste Verspätung" Padding="10" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding CurrentStatistics.TrainWithSmallestDelay.Delay}" FontSize="36" Margin="0,0,10,0"/>
+                <TextBlock VerticalAlignment="Bottom" FontSize="16" Margin="0,0,0,5">
+                        <Run Text="("/><Hyperlink Command="{Binding ShowTrainWithSmallestDelayScheduleCommand}"><Run Text="{Binding CurrentStatistics.TrainWithSmallestDelay.Train.Number, Mode=OneWay}"/></Hyperlink><Run Text=")"/>
+                </TextBlock>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Grid.Column="3" Header="Größte Verspätung" Padding="10" Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding CurrentStatistics.TrainWithGreatestDelay.Delay}" FontSize="36" Margin="0,0,10,0"/>
+                <TextBlock VerticalAlignment="Bottom" FontSize="16" Margin="0,0,0,5">
+                        <Run Text="("/><Hyperlink Command="{Binding ShowTrainWithGreatestDelayScheduleCommand}"><Run Text="{Binding CurrentStatistics.TrainWithGreatestDelay.Train.Number, Mode=OneWay}"/></Hyperlink><Run Text=")"/>
+                </TextBlock>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="3" Grid.ColumnSpan="4" Header="Verspätungsverteilung" Padding="10" Margin="10">
+            <lvc:PieChart SeriesSource="{Binding DelayStatistics}"
+                          Width="400"
+                          Height="200"
+                          LegendPosition="Right"
+                          LegendTextPaint="{Binding ForegroundColor}"
+                          TooltipPosition="Center"
+                          Background="{DynamicResource WindowBackground}">
+                <lvc:PieChart.SeriesTemplate>
+                    <DataTemplate>
+                        <lvc:XamlPieSeries SeriesName="{Binding Caption}"
+                                           Values="{Binding Values}"
+                                           Fill="{Binding Fill}"
+                                           MaxRadialColumnWidth="60"
+                                           HoverPushout="0"/>
+                    </DataTemplate>
+                </lvc:PieChart.SeriesTemplate>
+            </lvc:PieChart>
+        </GroupBox>
+    </Grid>
+</controls:LeibitWindow>

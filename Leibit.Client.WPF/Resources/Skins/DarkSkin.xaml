@@ -672,4 +672,5 @@
     <BitmapImage x:Key="imgReminders" UriSource="/Leibit;component/Resources/Images/Dark/reminders.png" />
     <BitmapImage x:Key="imgUndo" UriSource="/Leibit;component/Resources/Images/Dark/undo.png" />
     <BitmapImage x:Key="imgDone" UriSource="/Leibit;component/Resources/Images/Dark/done.png" />
+    <BitmapImage x:Key="imgStatistics" UriSource="/Leibit;component/Resources/Images/Dark/statistics.png" />
 </ResourceDictionary>

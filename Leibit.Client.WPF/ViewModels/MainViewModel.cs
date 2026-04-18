@@ -15,6 +15,8 @@ using Leibit.Client.WPF.Windows.LocalOrders.ViewModels;
 using Leibit.Client.WPF.Windows.LocalOrders.Views;
 using Leibit.Client.WPF.Windows.Settings.ViewModels;
 using Leibit.Client.WPF.Windows.Settings.Views;
+using Leibit.Client.WPF.Windows.Statistics.ViewModels;
+using Leibit.Client.WPF.Windows.Statistics.Views;
 using Leibit.Client.WPF.Windows.SystemState.ViewModels;
 using Leibit.Client.WPF.Windows.SystemState.Views;
 using Leibit.Client.WPF.Windows.TimeTable.ViewModels;
@@ -83,6 +85,7 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_TrainProgressInformationCommand;
         private CommandHandler m_TimeTableCommand;
         private CommandHandler m_DisplayCommand;
+        private CommandHandler m_StatisticsCommand;
         private CommandHandler m_TrainScheduleCommand;
         private CommandHandler m_SystemStateCommand;
         private CommandHandler m_RemindersCommand;
@@ -133,6 +136,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_TrainProgressInformationCommand = new CommandHandler(__ShowTrainProgressInformationWindow, false);
             m_TimeTableCommand = new CommandHandler<Station>(__ShowTimeTableWindow, true);
             m_DisplayCommand = new CommandHandler(__ShowDisplay, false);
+            m_StatisticsCommand = new CommandHandler(__ShowCurrentStatistics, false);
             m_TrainScheduleCommand = new CommandHandler(__ShowTrainScheduleWindow, false);
             m_SystemStateCommand = new CommandHandler(__ShowSystemStateWindow, false);
             m_RemindersCommand = new CommandHandler(OpenRemindersDialog.Open, false);
@@ -553,6 +557,16 @@ namespace Leibit.Client.WPF.ViewModels
             get
             {
                 return m_DisplayCommand;
+            }
+        }
+        #endregion
+
+        #region [StatisticsCommand]
+        public ICommand StatisticsCommand
+        {
+            get
+            {
+                return m_StatisticsCommand;
             }
         }
         #endregion
@@ -1197,6 +1211,16 @@ namespace Leibit.Client.WPF.ViewModels
         }
         #endregion
 
+        #region [__ShowCurrentStatistics]
+        private void __ShowCurrentStatistics()
+        {
+            var window = new CurrentStatisticsView();
+            window.DataContext = new CurrentStatisticsViewModel(window.Dispatcher, m_CurrentArea);
+
+            __OpenChildWindow(window);
+        }
+        #endregion
+
         #region [__ShowTrainScheduleWindow]
         private void __ShowTrainScheduleWindow()
         {
@@ -1367,6 +1391,7 @@ namespace Leibit.Client.WPF.ViewModels
             m_EstwSelectionCommand.SetCanExecute(true);
             m_TrainProgressInformationCommand.SetCanExecute(true);
             m_DisplayCommand.SetCanExecute(true);
+            m_StatisticsCommand.SetCanExecute(true);
             m_SystemStateCommand.SetCanExecute(true);
             m_RemindersCommand.SetCanExecute(true);
             IsTrainScheduleEnabled = true;

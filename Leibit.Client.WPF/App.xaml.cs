@@ -12,6 +12,8 @@ namespace Leibit.Client.WPF
     /// </summary>
     public partial class App : Application
     {
+        internal event EventHandler SkinChanged;
+
         internal void ChangeSkin(eSkin newSkin)
         {
             Resources.Clear();
@@ -23,6 +25,7 @@ namespace Leibit.Client.WPF
                 ApplyResources("Resources/Skins/DarkSkin.xaml");
 
             ApplyResources("Resources/Skins/Shared.xaml");
+            SkinChanged?.Invoke(this, EventArgs.Empty);
         }
 
         internal void ChangeScaleFactor(int newScaleFactor)

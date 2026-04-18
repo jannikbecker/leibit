@@ -51,6 +51,7 @@
     <None Remove="Resources\Images\Dark\save_layout.png" />
     <None Remove="Resources\Images\Dark\select.png" />
     <None Remove="Resources\Images\Dark\settings.png" />
+    <None Remove="Resources\Images\Dark\statistics.png" />
     <None Remove="Resources\Images\Dark\train.png" />
     <None Remove="Resources\Images\Dark\train_schedule.png" />
     <None Remove="Resources\Images\Dark\undo.png" />
@@ -72,6 +73,7 @@
     <None Remove="Resources\Images\Light\save_layout.png" />
     <None Remove="Resources\Images\Light\select.png" />
     <None Remove="Resources\Images\Light\settings.png" />
+    <None Remove="Resources\Images\Light\statistics.png" />
     <None Remove="Resources\Images\Light\train.png" />
     <None Remove="Resources\Images\Light\train_schedule.png" />
     <None Remove="Resources\Images\Light\undo.png" />
@@ -102,6 +104,7 @@
     <Resource Include="Resources\Images\Dark\save_layout.png" />
     <Resource Include="Resources\Images\Dark\select.png" />
     <Resource Include="Resources\Images\Dark\settings.png" />
+    <Resource Include="Resources\Images\Dark\statistics.png" />
     <Resource Include="Resources\Images\Dark\train.png" />
     <Resource Include="Resources\Images\Dark\train_schedule.png" />
     <Resource Include="Resources\Images\Dark\undo.png" />
@@ -124,6 +127,7 @@
   <ItemGroup>
     <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="4.6.82" />
     <PackageReference Include="FontAwesome5" Version="2.1.4" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0" />
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.0.2" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +145,7 @@
     <Resource Include="Resources\Images\Light\save_layout.png" />
     <Resource Include="Resources\Images\Light\select.png" />
     <Resource Include="Resources\Images\Light\settings.png" />
+    <Resource Include="Resources\Images\Light\statistics.png" />
     <Resource Include="Resources\Images\Light\train.png" />
     <Resource Include="Resources\Images\Light\train_schedule.png" />
     <Resource Include="Resources\Images\Light\undo.png" />
