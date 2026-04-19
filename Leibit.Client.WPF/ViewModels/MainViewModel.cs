@@ -85,7 +85,8 @@ namespace Leibit.Client.WPF.ViewModels
         private CommandHandler m_TrainProgressInformationCommand;
         private CommandHandler m_TimeTableCommand;
         private CommandHandler m_DisplayCommand;
-        private CommandHandler m_StatisticsCommand;
+        private CommandHandler m_CurrentStatisticsCommand;
+        private CommandHandler m_HistoricalStatisticsCommand;
         private CommandHandler m_TrainScheduleCommand;
         private CommandHandler m_SystemStateCommand;
         private CommandHandler m_RemindersCommand;
@@ -136,7 +137,8 @@ namespace Leibit.Client.WPF.ViewModels
             m_TrainProgressInformationCommand = new CommandHandler(__ShowTrainProgressInformationWindow, false);
             m_TimeTableCommand = new CommandHandler<Station>(__ShowTimeTableWindow, true);
             m_DisplayCommand = new CommandHandler(__ShowDisplay, false);
-            m_StatisticsCommand = new CommandHandler(__ShowCurrentStatistics, false);
+            m_CurrentStatisticsCommand = new CommandHandler(__ShowCurrentStatistics, false);
+            m_HistoricalStatisticsCommand = new CommandHandler(__ShowHistoricalStatistics, false);
             m_TrainScheduleCommand = new CommandHandler(__ShowTrainScheduleWindow, false);
             m_SystemStateCommand = new CommandHandler(__ShowSystemStateWindow, false);
             m_RemindersCommand = new CommandHandler(OpenRemindersDialog.Open, false);
@@ -238,6 +240,20 @@ namespace Leibit.Client.WPF.ViewModels
 
                 if (!value)
                     TrainScheduleNumber = null;
+            }
+        }
+        #endregion
+
+        #region [IsStatisticsDropDownOpen]
+        public bool IsStatisticsDropDownOpen
+        {
+            get
+            {
+                return Get<bool>();
+            }
+            set
+            {
+                Set(value);
             }
         }
         #endregion
@@ -417,6 +433,20 @@ namespace Leibit.Client.WPF.ViewModels
         }
         #endregion
 
+        #region [AreStatisticsEnabled]
+        public bool AreStatisticsEnabled
+        {
+            get
+            {
+                return Get<bool>();
+            }
+            private set
+            {
+                Set(value);
+            }
+        }
+        #endregion
+
         #region [TrainScheduleNumber]
         public int? TrainScheduleNumber
         {
@@ -561,12 +591,22 @@ namespace Leibit.Client.WPF.ViewModels
         }
         #endregion
 
-        #region [StatisticsCommand]
-        public ICommand StatisticsCommand
+        #region [CurrentStatisticsCommand]
+        public ICommand CurrentStatisticsCommand
         {
             get
             {
-                return m_StatisticsCommand;
+                return m_CurrentStatisticsCommand;
+            }
+        }
+        #endregion
+
+        #region [HistoricalStatisticsCommand]
+        public ICommand HistoricalStatisticsCommand
+        {
+            get
+            {
+                return m_HistoricalStatisticsCommand;
             }
         }
         #endregion
@@ -1214,8 +1254,22 @@ namespace Leibit.Client.WPF.ViewModels
         #region [__ShowCurrentStatistics]
         private void __ShowCurrentStatistics()
         {
+            IsStatisticsDropDownOpen = false;
+
             var window = new CurrentStatisticsView();
             window.DataContext = new CurrentStatisticsViewModel(window.Dispatcher, m_CurrentArea);
+
+            __OpenChildWindow(window);
+        }
+        #endregion
+
+        #region [__ShowHistoricalStatistics]
+        private void __ShowHistoricalStatistics()
+        {
+            IsStatisticsDropDownOpen = false;
+
+            var window = new HistoricalStatisticsView();
+            window.DataContext = new HistoricalStatisticsViewModel(window.Dispatcher, m_CurrentArea);
 
             __OpenChildWindow(window);
         }
@@ -1391,11 +1445,12 @@ namespace Leibit.Client.WPF.ViewModels
             m_EstwSelectionCommand.SetCanExecute(true);
             m_TrainProgressInformationCommand.SetCanExecute(true);
             m_DisplayCommand.SetCanExecute(true);
-            m_StatisticsCommand.SetCanExecute(true);
+            m_CurrentStatisticsCommand.SetCanExecute(true);
+            m_HistoricalStatisticsCommand.SetCanExecute(true);
             m_SystemStateCommand.SetCanExecute(true);
             m_RemindersCommand.SetCanExecute(true);
             IsTrainScheduleEnabled = true;
-
+            AreStatisticsEnabled = true;
 
             m_CancellationTokenSource = new CancellationTokenSource();
             m_RefreshingThread = new Thread(() => __Refresh(m_CurrentArea, m_CancellationTokenSource.Token));

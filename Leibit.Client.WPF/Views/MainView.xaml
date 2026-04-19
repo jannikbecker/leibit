@@ -120,7 +120,16 @@
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <MenuItem Header="Statistiken" Command="{Binding StatisticsCommand}">
+                <MenuItem Header="Statistiken">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Template" Value="{DynamicResource SubMenuItemTemplate}"/>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                    <MenuItem.Items>
+                        <MenuItem Header="Aktuelle Statistiken" Command="{Binding CurrentStatisticsCommand}"/>
+                        <MenuItem Header="Historische Statistiken" Command="{Binding HistoricalStatisticsCommand}"/>
+                    </MenuItem.Items>
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgStatistics}" />
                     </MenuItem.Icon>
@@ -246,7 +255,30 @@
                 </controls:DropDownButton>
 
                 <controls:ImageButton Image="{DynamicResource imgDisplay}" Command="{Binding DisplayCommand}" ToolTipService.ToolTip="Fahrgastinformation"/>
-                <controls:ImageButton Image="{DynamicResource imgStatistics}" Command="{Binding StatisticsCommand}" ToolTipService.ToolTip="Statistiken"/>
+
+                <controls:DropDownButton Image="{DynamicResource imgStatistics}"
+                                         IsDropDownOpen="{Binding IsStatisticsDropDownOpen, Mode=TwoWay}"
+                                         IsEnabled="{Binding AreStatisticsEnabled}"
+                                         Command="{Binding ToggleMenuCommand, RelativeSource={RelativeSource Self}}"
+                                         ButtonStyle="{DynamicResource DropDownButtonStyle}"
+                                         ArrowStyle="{DynamicResource DropDownButtonArrowStyle}"
+                                         ArrowFill="{DynamicResource DropDownArrowFill}"
+                                         ToolTipService.ToolTip="Statistiken">
+                    <controls:DropDownButton.DropDownContent>
+                        <StackPanel Orientation="Vertical">
+                            <Button Content="Aktuelle Statistiken"
+                                    Command="{Binding Data.CurrentStatisticsCommand, Source={StaticResource proxy}}"
+                                    Style="{DynamicResource SimpleMenuButtonStyle}"
+                                    Padding="5,2,5,2"
+                                    HorizontalContentAlignment="Left"/>
+                            <Button Content="Historische Statistiken"
+                                    Command="{Binding Data.HistoricalStatisticsCommand, Source={StaticResource proxy}}"
+                                    Style="{DynamicResource SimpleMenuButtonStyle}"
+                                    Padding="5,2,5,2"
+                                    HorizontalContentAlignment="Left"/>
+                        </StackPanel>
+                    </controls:DropDownButton.DropDownContent>
+                </controls:DropDownButton>
             </ToolBar>
         </ToolBarPanel>
 
