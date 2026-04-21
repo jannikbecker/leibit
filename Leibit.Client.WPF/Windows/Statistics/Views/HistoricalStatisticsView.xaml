@@ -84,7 +84,19 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Grid.Row="1" Grid.ColumnSpan="4" Header="Verspätungsverteilung" Padding="10" Margin="10,10,10,0">
+                <Expander Grid.Row="1" Grid.ColumnSpan="4" IsExpanded="True" Padding="10">
+                    <Expander.Header>
+                        <Grid Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Verspätungsverteilung" Margin="0,0,10,0"/>
+                            <Rectangle Grid.Column="1" Fill="{DynamicResource TextForeground}" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Expander.Header>
+                    
                     <lvc:PieChart SeriesSource="{Binding DelayStatistics}"
                                   Width="400"
                                   Height="200"
@@ -102,9 +114,21 @@
                             </DataTemplate>
                         </lvc:PieChart.SeriesTemplate>
                     </lvc:PieChart>
-                </GroupBox>
+                </Expander>
 
-                <GroupBox x:Name="numberOfTrains" Grid.Row="2" Grid.ColumnSpan="4" Header="Anzahl Züge" Padding="10" Margin="10,10,10,0">
+                <Expander x:Name="numberOfTrains" Grid.Row="2" Grid.ColumnSpan="4" IsExpanded="True" Padding="10">
+                    <Expander.Header>
+                        <Grid Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Anzahl Züge" Margin="0,0,10,0"/>
+                            <Rectangle Grid.Column="1" Fill="{DynamicResource TextForeground}" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Expander.Header>
+
                     <lvc:CartesianChart Width="{Binding ActualWidth, ElementName=numberOfTrains}"
                                 Height="200"
                                 Background="{DynamicResource WindowBackground}">
@@ -120,9 +144,21 @@
                             </lvc:SeriesCollection>
                         </lvc:CartesianChart.Series>
                     </lvc:CartesianChart>
-                </GroupBox>
+                </Expander>
 
-                <GroupBox x:Name="averageDelay" Grid.Row="3" Grid.ColumnSpan="4" Header="&#x2300; Verspätung" Padding="10" Margin="10">
+                <Expander x:Name="averageDelay" Grid.Row="3" Grid.ColumnSpan="4" IsExpanded="True" Padding="10">
+                    <Expander.Header>
+                        <Grid Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="&#x2300; Verspätung" Margin="0,0,10,0"/>
+                            <Rectangle Grid.Column="1" Fill="{DynamicResource TextForeground}" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Expander.Header>
+
                     <lvc:CartesianChart Width="{Binding ActualWidth, ElementName=averageDelay}"
                                 Height="200"
                                 Background="{DynamicResource WindowBackground}">
@@ -138,7 +174,7 @@
                             </lvc:SeriesCollection>
                         </lvc:CartesianChart.Series>
                     </lvc:CartesianChart>
-                </GroupBox>
+                </Expander>
             </Grid>
         </ScrollViewer>
     </Grid>
