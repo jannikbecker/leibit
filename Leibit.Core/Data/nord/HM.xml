@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <estw>
-  <station name="Vennebeck" short="HVBK" refNr="88">
+  <station name="Vennebeck" short="HVBK" refNr="87">
     <track calculateDelay="false" isPlatform="false">
       <block name="88S84" direction="right"/>
       <block name="88S103" direction="right"/>
@@ -8,30 +8,35 @@
     </track>
   </station>
 
-  <station name="Porta Westfalica" short="HPTA" refNr="88" scheduleFile="v88_____.abf">
+  <station name="Porta Westfalica Hp" short="HPTH" refNr="88" displayName="Porta Westfalica">
+    <scheduleFile fileName="v88_____.abf">
+      <track>1</track>
+      <track>2</track>
+    </scheduleFile>
+
     <track name="1" calculateDelay="false">
       <block name="88S72"/>
-      <alternative track="2"/>
     </track>
     <track name="2" calculateDelay="false">
       <block name="88S69"/>
-      <alternative track="1"/>
     </track>
+  </station>
+
+  <station name="Porta Westfalica" short="HPTA" refNr="88">
+    <scheduleFile fileName="v88_____.abf">
+      <track>713</track>
+      <track>714</track>
+      <track>715</track>
+    </scheduleFile>
 
     <track name="713" calculateDelay="false">
       <block name="88S713"/>
-      <alternative track="714"/>
-      <alternative track="715"/>
     </track>
     <track name="714" calculateDelay="false">
       <block name="88S714"/>
-      <alternative track="713"/>
-      <alternative track="715"/>
     </track>
     <track name="715" calculateDelay="false">
       <block name="88S715"/>
-      <alternative track="713"/>
-      <alternative track="714"/>
     </track>
   </station>
 

@@ -49,13 +49,18 @@ Folgende Simulationen werden aktuell unterstützt:
 - Bereich Norddeutschland
     - Bremen Hbf
     - Bremen-Sebaldsbrück
+    - Bünde (Westf) (NEU)
     - Buchholz
     - Diepholz
     - Hamburg-Harburg
     - Hamburg Hbf
     - Kirchweyhe
+    - Löhne (Westf) (NEU)
     - Minden
     - Nienburg
+    - Osnabrück Hbf Po (NEU)
+    - Osnabrück Hbf Pu (NEU)
+    - Osnabrück Rbf (NEU)
     - Rotenburg
     - Soltau
     - Verden
@@ -86,10 +91,10 @@ Folgende Simulationen werden aktuell unterstützt:
     - Kempten
     - Lindau
     - Memmingen
-    - München Hbf Nordseite (NEU)
-    - München Hbf Südseite (NEU)
-    - München Hbf Tief (NEU)
-    - München-Pasing (NEU)
+    - München Hbf Nordseite
+    - München Hbf Südseite
+    - München Hbf Tief
+    - München-Pasing
     - München-Westkreuz
     - Olching
     - Singen
