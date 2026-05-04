@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Natrup-Hagen" short="HNAH" refNr="13">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="13S1" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hasbergen (Kr Osnabrück)" short="HHSB" refNr="14" scheduleFile="v14_____.abf" displayName="Hasbergen">
+    <track name="2">
+      <block name="14S2"/>
+    </track>
+    <track name="5">
+      <block name="14S5"/>
+    </track>
+  </station>
+
+  <station name="Oesede" short="HOES" refNr="15">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="15B1P4" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Hörne" short="HHRN" refNr="15" scheduleFile="g15_____.abf">
+    <track name="2">
+      <block name="15G2"/>
+    </track>
+    <track name="3">
+      <block name="15G3"/>
+    </track>
+    <track name="4">
+      <block name="15G4"/>
+    </track>
+    <track name="5">
+      <block name="15G5"/>
+    </track>
+    <track name="6">
+      <block name="15G6"/>
+    </track>
+    <track name="7">
+      <block name="15G7"/>
+    </track>
+    <track name="8">
+      <block name="15G8"/>
+    </track>
+    <track name="9">
+      <block name="15G9"/>
+    </track>
+    <track name="10">
+      <block name="15G10"/>
+    </track>
+    <track name="11">
+      <block name="15G11"/>
+    </track>
+    <track name="12">
+      <block name="15G12"/>
+    </track>
+    <track name="13">
+      <block name="15G13"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Hbf Po" short="HO O" refNr="16" scheduleFile="g16_____.abf" localOrderFile="bf16____.abf" displayName="Osnabrück Hbf">
+    <track name="1">
+      <block name="16G1"/>
+    </track>
+    <track name="2">
+      <block name="16G2"/>
+    </track>
+    <track name="3">
+      <block name="16G3"/>
+    </track>
+    <track name="4">
+      <block name="16G4"/>
+    </track>
+    <track name="5">
+      <block name="16G5.1"/>
+      <block name="16G5.2"/>
+    </track>
+    <track name="7">
+      <block name="16G7"/>
+    </track>
+    <track name="8">
+      <block name="16G8"/>
+    </track>
+    <track name="KK">
+      <block name="16BHUHO"/>
+    </track>
+    <track name="MK">
+      <block name="16BHRHM"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Rbf Ors" short="HOR S" refNr="16">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="16BHRHO" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Stahlwerkskurve" short="HSTA" refNr="16">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="16BHSHO" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Osnabrück Hbf Schinkel" short="HO S" refNr="16" scheduleFile="g91_____.abf" localOrderFile="bf91____.abf">
+    <track name="21" calculateDelay="false">
+      <block name="16G21"/>
+    </track>
+    <track name="22" calculateDelay="false">
+      <block name="16G22"/>
+    </track>
+    <track name="23" calculateDelay="false">
+      <block name="16G23"/>
+    </track>
+
+    <track name="2x">
+      <track name="24">
+        <block name="91G24"/>
+      </track>
+      <track name="25">
+        <block name="91G25"/>
+      </track>
+      <track name="26">
+        <block name="91G26"/>
+      </track>
+      <track name="27">
+        <block name="91G27"/>
+      </track>
+      <track name="28">
+        <block name="91G28.2"/>
+      </track>
+      <track name="29">
+        <block name="91G29.2"/>
+      </track>
+    </track>
+  </station>
+
+  <station name="Osnabrück Hbf Klus" short="HO K" refNr="92" scheduleFile="g92_____.abf" localOrderFile="bf92____.abf">
+    <track name="3x">
+      <track name="30">
+        <block name="92G30"/>
+      </track>
+      <track name="31">
+        <block name="92G31"/>
+      </track>
+      <track name="32">
+        <block name="92G32"/>
+      </track>
+    </track>
+  </station>
+
+  <station name="Osnabrück Hbf Vorbahnhof" short="HO N" refNr="93" scheduleFile="g93_____.abf" localOrderFile="bf93____.abf">
+    <track name="80" calculateDelay="false">
+      <block name="16G80"/>
+    </track>
+    <track name="81" calculateDelay="false">
+      <block name="16G81"/>
+    </track>
+    <track name="82" calculateDelay="false">
+      <block name="16G82"/>
+    </track>
+    <track name="83" calculateDelay="false">
+      <block name="16G83"/>
+    </track>
+
+    <track name="11x">
+      <track name="111">
+        <block name="93G111"/>
+      </track>
+      <track name="112">
+        <block name="93G112"/>
+      </track>
+      <track name="113">
+        <block name="93G113"/>
+      </track>
+      <track name="114">
+        <block name="93G114"/>
+      </track>
+      <track name="115">
+        <block name="93G115"/>
+      </track>
+      <track name="116">
+        <block name="93G116"/>
+      </track>
+      <track name="117">
+        <block name="93G117"/>
+      </track>
+      <track name="118">
+        <block name="93G118"/>
+      </track>
+    </track>
+  </station>
+
+  <station name="Belm" short="HBEM" refNr="17" scheduleFile="g17_____.abf">
+    <track name="1">
+      <block name="17G1"/>
+    </track>
+    <track name="2">
+      <block name="17G2"/>
+    </track>
+    <track name="3">
+      <block name="17G3"/>
+    </track>
+  </station>
+
+  <station name="Vehrte" short="HVEH" refNr="18" scheduleFile="g18_____.abf">
+    <track name="1">
+      <block name="18G1"/>
+    </track>
+    <track name="2">
+      <block name="18G2"/>
+    </track>
+    <track name="3">
+      <block name="18G3"/>
+    </track>
+  </station>
+
+  <station name="Ostercappeln" short="HOSC" refNr="23">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="18B23" direction="left"/>
+      <block name="23S26" direction="left"/>
+    </track>
+  </station>
+</estw>
