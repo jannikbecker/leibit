@@ -170,20 +170,20 @@
       <alternative track="256"/>
     </track>
     
-    <track name="70">
+    <track name="BK">
       <block name="81BHOHR"/>
       <alternative track="MK"/>
     </track>
     <track name="MK">
       <block name="81BHMHR"/>
-      <alternative track="70"/>
+      <alternative track="BK"/>
     </track>
   </station>
 
   <station name="Osnabrück Hbf Pu" short="HO U" refNr="54">
     <track calculateDelay="false" isPlatform="false">
-      <block name="82S18"/>
       <block name="82BHUHR1" direction="right"/>
+      <block name="82BHUHR2" direction="right"/>
     </track>
   </station>
 
