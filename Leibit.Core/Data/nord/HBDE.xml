@@ -21,10 +21,10 @@
 
   <station name="Westerhausen (Kr Melle)" short="HWTH" refNr="57" scheduleFile="b57_____.abf" displayName="Westerhausen">
     <track name="9" calculateDelay="false" displayName="2">
-      <block name="57BN"/>
+      <block name="57B9"/>
     </track>
     <track name="14" calculateDelay="false" displayName="1">
-      <block name="56BP"/>
+      <block name="56B14"/>
     </track>
   </station>
 
@@ -74,11 +74,11 @@
   </station>
 
   <station name="Mesch Neue Mühle" short="HNMU" refNr="11" scheduleFile="b11_____.abf">
-    <track name="" calculateDelay="false" displayName="1"/>
+    <track name="NH" calculateDelay="false" displayName="1"/>
   </station>
 
   <station name="Bieren-Rödinghausen" short="HROE" refNr="10" scheduleFile="b10_____.abf">
-    <track name="" calculateDelay="false" displayName="1"/>
+    <track name="NH" calculateDelay="false" displayName="1"/>
   </station>
 
   <station name="Bünde (Westf)" short="HBDE" refNr="59" scheduleFile="g59_____.abf" localOrderFile="bf59____.abf" displayName="Bünde">
@@ -145,12 +145,12 @@
   </station>
 
   <station name="Hiddenhausen-Schweicheln" short="HHIS" refNr="83" scheduleFile="b83_____.abf">
-    <track name="" calculateDelay="false" displayName="1">
+    <track name="PH" calculateDelay="false" displayName="1">
       <block name="60BPH"/>
     </track>
   </station>
 
-  <station name="Löhne (Westf) Gbf" short="HL G" refNr="84">
+  <station name="Löhne (Westf) Gbf" short="HL G" refNr="82">
     <track calculateDelay="false" isPlatform="false">
       <block name="60BPL" direction="left"/>
       <block name="84BNK" direction="left"/>
