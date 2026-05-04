@@ -18,7 +18,7 @@
     </track>
   </station>
 
-  <station name="Löhne (Westf) Gbf" short="HL G" refNr="84" scheduleFile="g82_____.abf" localOrderFile="bf82____.abf">
+  <station name="Löhne (Westf) Gbf" short="HL G" refNr="82" scheduleFile="g82_____.abf" localOrderFile="bf82____.abf">
     <track name="201" calculateDelay="false">
       <block name="84G201"/>
     </track>
@@ -116,7 +116,7 @@
       <block name="86B94"/>
     </track>
     <track name="2" calculateDelay="false">
-      <block name="86BA"/>
+      <block name="86B89"/>
     </track>
   </station>
 
@@ -142,7 +142,7 @@
     <track calculateDelay="false" isPlatform="false">
       <block name="86B92" direction="left"/>
       <block name="86BPG" direction="right"/>
-      <block name="86BPP" direction="right"/>
+      <block name="86B86" direction="right"/>
       <block name="87B81" direction="right"/>
       <block name="87B181" direction="right"/>
     </track>
