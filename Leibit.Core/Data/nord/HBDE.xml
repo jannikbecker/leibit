@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Lüstringen" short="HLRI" refNr="55">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="55B4P" direction="right"/>
+      <block name="56BN" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Wissingen" short="HWIS" refNr="56" scheduleFile="g56_____.abf" localOrderFile="bf56____.abf">
+    <track name="1">
+      <block name="56G1"/>
+    </track>
+    <track name="2">
+      <block name="56G2"/>
+    </track>
+    <track name="3">
+      <block name="56G3"/>
+    </track>
+  </station>
+
+  <station name="Westerhausen (Kr Melle)" short="HWTH" refNr="57" scheduleFile="b57_____.abf" displayName="Westerhausen">
+    <track name="9" calculateDelay="false" displayName="2">
+      <block name="57B9"/>
+    </track>
+    <track name="14" calculateDelay="false" displayName="1">
+      <block name="56B14"/>
+    </track>
+  </station>
+
+  <station name="Melle Euer Heide" short="HEHD" refNr="57">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="57BHMEA"/>
+    </track>
+  </station>
+
+  <station name="Melle" short="HMEL" refNr="57" scheduleFile="g57_____.abf" localOrderFile="bf57____.abf">
+    <track name="1">
+      <block name="57G1"/>
+    </track>
+    <track name="2">
+      <block name="57G2"/>
+    </track>
+    <track name="3">
+      <block name="57G3"/>
+    </track>
+    <track name="4">
+      <block name="57G4"/>
+    </track>
+  </station>
+
+  <station name="Bruchmühlen" short="HBUE" refNr="58" scheduleFile="g58_____.abf" localOrderFile="bf58____.abf">
+    <track name="1">
+      <block name="58G1"/>
+    </track>
+    <track name="2">
+      <block name="58G2"/>
+    </track>
+    <track name="3">
+      <block name="58G3"/>
+    </track>
+  </station>
+
+  <station name="Bünde Stadt Bünde" short="HBDS" refNr="59">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="59BHBDES"/>
+    </track>
+  </station>
+
+  <station name="Bad Holzhausen" short="HHZH" refNr="12">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="59BNH" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Mesch Neue Mühle" short="HNMU" refNr="11" scheduleFile="b11_____.abf">
+    <track name="NH" calculateDelay="false" displayName="1"/>
+  </station>
+
+  <station name="Bieren-Rödinghausen" short="HROE" refNr="10" scheduleFile="b10_____.abf">
+    <track name="NH" calculateDelay="false" displayName="1"/>
+  </station>
+
+  <station name="Bünde (Westf)" short="HBDE" refNr="59" scheduleFile="g59_____.abf" localOrderFile="bf59____.abf" displayName="Bünde">
+    <track name="2">
+      <block name="59G2"/>
+      <alternative track="3"/>
+      <alternative track="4"/>
+    </track>
+    <track name="3">
+      <block name="59G3"/>
+      <alternative track="2"/>
+      <alternative track="4"/>
+    </track>
+    <track name="4">
+      <block name="59G4"/>
+      <alternative track="2"/>
+      <alternative track="3"/>
+    </track>
+
+    <track name="19">
+      <block name="59G19"/>
+      <alternative track="20"/>
+      <alternative track="21"/>
+      <alternative track="22"/>
+      <alternative track="24"/>
+    </track>
+    <track name="20">
+      <block name="59G20"/>
+      <alternative track="19"/>
+      <alternative track="21"/>
+      <alternative track="22"/>
+      <alternative track="24"/>
+    </track>
+    <track name="21">
+      <block name="59G21"/>
+      <alternative track="19"/>
+      <alternative track="20"/>
+      <alternative track="22"/>
+      <alternative track="24"/>
+    </track>
+    <track name="22">
+      <block name="59G22"/>
+      <alternative track="19"/>
+      <alternative track="20"/>
+      <alternative track="21"/>
+      <alternative track="24"/>
+    </track>
+    <track name="24">
+      <block name="59G24"/>
+      <alternative track="19"/>
+      <alternative track="20"/>
+      <alternative track="21"/>
+      <alternative track="22"/>
+    </track>
+  </station>
+
+  <station name="Kirchlengern" short="HKLG" refNr="60" scheduleFile="g60_____.abf" localOrderFile="bf60____.abf">
+    <track name="101" displayName="1">
+      <block name="60G101"/>
+    </track>
+    <track name="102" displayName="2">
+      <block name="60G102"/>
+    </track>
+  </station>
+
+  <station name="Hiddenhausen-Schweicheln" short="HHIS" refNr="83" scheduleFile="b83_____.abf">
+    <track name="PH" calculateDelay="false" displayName="1">
+      <block name="60BPH"/>
+    </track>
+  </station>
+
+  <station name="Löhne (Westf) Gbf" short="HL G" refNr="82">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="60BPL" direction="left"/>
+      <block name="84BNK" direction="left"/>
+    </track>
+  </station>
+</estw>
