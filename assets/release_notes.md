@@ -2,5 +2,9 @@
 Die Datei *Setup.exe* herunterladen und ausführen. Nach wenigen Sekunden startet LeiBIT.
 
 # Neue Funktionen in dieser Version
-- Herausgelöste Fenster bleiben nun im Vordergrund
-- Behebung eines Fehlers in der Projektierung in Hanau Nordseite
+- Integration folgender neuer Simulationen:
+    - Osnabrück Hbf Po
+    - Osnabrück Hbf Pu
+    - Osnabrück Rbf
+    - Bünde (Westf)
+    - Löhne (Westf)
