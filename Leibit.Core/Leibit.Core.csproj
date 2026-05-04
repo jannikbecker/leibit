@@ -60,6 +60,7 @@
     <None Remove="Data\nord\HBSB.xml" />
     <None Remove="Data\nord\HDIP.xml" />
     <None Remove="Data\nord\HKI.xml" />
+    <None Remove="Data\nord\HL.xml" />
     <None Remove="Data\nord\HM.xml" />
     <None Remove="Data\nord\HNBG.xml" />
     <None Remove="Data\nord\HO_O.xml" />
@@ -159,6 +160,7 @@
     <EmbeddedResource Include="Data\nord\HBSB.xml" />
     <EmbeddedResource Include="Data\nord\HDIP.xml" />
     <EmbeddedResource Include="Data\nord\HKI.xml" />
+    <EmbeddedResource Include="Data\nord\HL.xml" />
     <EmbeddedResource Include="Data\nord\HM.xml" />
     <EmbeddedResource Include="Data\nord\HNBG.xml" />
     <EmbeddedResource Include="Data\nord\HO_O.xml" />

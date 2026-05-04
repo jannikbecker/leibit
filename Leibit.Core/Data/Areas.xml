@@ -31,6 +31,7 @@
     <estw id="HO_U" name="Osnabrück Hbf Pu" dataFile="leibit_OSNABRÜCK HBF PU.dat" infrastructureManager="DB"/>
     <estw id="HOR" name="Osnabrück Rbf" dataFile="leibit_OSNABRÜCK RBF.dat" infrastructureManager="DB"/>
     <estw id="HBDE" name="Bünde" dataFile="leibit_BÜNDE (WESTF).dat" infrastructureManager="DB"/>
+    <estw id="HL" name="Löhne" dataFile="leibit_LÖHNE (WESTF).dat" infrastructureManager="DB"/>
     <estw id="HDIP" name="Diepholz" dataFile="leibit_DIEPHOLZ.dat" infrastructureManager="DB"/>
     <estw id="HKI" name="Kirchweyhe" dataFile="leibit_KIRCHWEYHE.dat" infrastructureManager="DB"/>
     <estw id="HO_O" name="Osnabrück Hbf Po" dataFile="leibit_OSNABRÜCK HBF PO.dat" infrastructureManager="DB"/>
