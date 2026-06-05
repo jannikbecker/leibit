@@ -29,15 +29,9 @@
     <track name="003" displayName="3">
       <block name="73G003"/>
     </track>
-    <track name="104" displayName="4">
+    <track name="004" displayName="4">
       <block name="73G104"/>
-      <alternative track="001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-
-      <track name="204" displayName="4">
-        <block name="73G204"/>
-      </track>
+      <block name="73G204"/>
     </track>
   </station>
 
@@ -45,8 +39,11 @@
     <track name="403">
       <block name="74G403"/>
     </track>
+    <track name="502" isPlatform="false">
+      <block name="74G302" direction="right"/>
+    </track>
     <track name="602">
-      <block name="74G502"/>
+      <block name="74G502" direction="left"/>
     </track>
     <track name="104">
       <block name="74G104"/>
@@ -56,13 +53,7 @@
   <station name="Heigenbrücken" short="NHEI" refNr="74" scheduleFile="g74_____.abf" localOrderFile="bf74____.abf">
     <track name="001" displayName="1">
       <block name="74G001"/>
-      <alternative track="002"/>
-      <alternative track="003"/>
-      <alternative track="004"/>
-      
-      <track name="101">
-        <block name="74G101"/>
-      </track>
+      <block name="74G101"/>
     </track>
     <track name="002" displayName="2">
       <block name="74G002"/>
