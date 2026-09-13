@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Innsbruck Hbf" short="I" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="32BIHIW" direction="right"/>
+      <block name="32BIHIWG" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Innsbruck Fbf" short="I" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="32BIFIW" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Innsbruck Westbf" short="Wt" refNr="32" scheduleFile="g32_____.abf" localOrderFile="bf32____.abf">
+    <track name="703" displayName="3">
+      <block name="32G703"/>
+    </track>
+    <track name="704" displayName="2">
+      <block name="32G704"/>
+    </track>
+    <track name="705">
+      <block name="32G705"/>
+    </track>
+    <track name="706" displayName="1">
+      <block name="32G706"/>
+    </track>
+    <track name="707">
+      <block name="32G707"/>
+    </track>
+    <track name="709">
+      <block name="32G709"/>
+    </track>
+    <track name="711">
+      <block name="32G711"/>
+    </track>
+    <track name="713">
+      <block name="32G713"/>
+    </track>
+    <track name="715">
+      <block name="32G715"/>
+    </track>
+  </station>
+
+  <station name="Innsbruck-Hötting" short="XAIH" refNr="70">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="32Ba11" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Völs" short="Vl" refNr="31" scheduleFile="g31_____.abf" localOrderFile="bf31____.abf">
+    <track name="201" displayName="2">
+      <block name="31G201"/>
+    </track>
+    <track name="202" displayName="3">
+      <block name="31G202"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="31G203"/>
+    </track>
+    <track name="204">
+      <block name="31G204"/>
+    </track>
+  </station>
+
+  <station name="Kematen in Tirol" short="Vl K1" refNr="31" scheduleFile="b31_____.abf" displayName="Kematen">
+    <track name="201" calculateDelay="false" displayName="1">
+      <block name="31Bi11"/>
+    </track>
+    <track name="202" calculateDelay="false" displayName="2">
+      <block name="31Bi12"/>
+    </track>
+  </station>
+
+  <station name="Zirl" short="Zl" refNr="30" scheduleFile="g30_____.abf" localOrderFile="bf30____.abf">
+    <track name="201" displayName="3">
+      <block name="30G201"/>
+    </track>
+    <track name="202" displayName="2">
+      <block name="30G202"/>
+    </track>
+    <track name="203">
+      <block name="30G203"/>
+    </track>
+    <track name="204" displayName="1">
+      <block name="30G204"/>
+    </track>
+  </station>
+
+  <station name="Inzing" short="Zl H1" refNr="30" scheduleFile="b30_____.abf">
+    <track name="201" calculateDelay="false" displayName="1">
+      <block name="30Bk11"/>
+    </track>
+    <track name="202" calculateDelay="false" displayName="2">
+      <block name="30Bk12"/>
+    </track>
+  </station>
+
+  <station name="Hatting" short="Zl H2" refNr="90" scheduleFile="b90_____.abf">
+    <track name="201" calculateDelay="false" displayName="1">
+      <block name="90Bk21"/>
+    </track>
+    <track name="202" calculateDelay="false" displayName="2">
+      <block name="90Bk22"/>
+    </track>
+  </station>
+
+  <station name="Flaurling" short="Zl K1" refNr="89" scheduleFile="b89_____.abf">
+    <track name="201" calculateDelay="false" displayName="1">
+      <block name="89Bk31"/>
+    </track>
+    <track name="202" calculateDelay="false" displayName="2">
+      <block name="89Bk32"/>
+    </track>
+  </station>
+
+  <station name="Telfs-Pfaffenhofen" short="Ts" refNr="29" scheduleFile="g29_____.abf" localOrderFile="bf29____.abf">
+    <track name="201">
+      <block name="29G201"/>
+    </track>
+    <track name="202">
+      <block name="29G202"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="29G203"/>
+    </track>
+    <track name="204" displayName="2">
+      <block name="29G204"/>
+    </track>
+    <track name="205" displayName="11">
+      <block name="29G205"/>
+    </track>
+  </station>
+
+  <station name="Rietz" short="Ts H1" refNr="29" scheduleFile="b29_____.abf">
+    <track name="201" calculateDelay="false" displayName="1">
+      <block name="29Bl21"/>
+    </track>
+    <track name="202" calculateDelay="false" displayName="2">
+      <block name="29Bl22"/>
+    </track>
+  </station>
+
+  <station name="Stams" short="Sts" refNr="28" scheduleFile="g28_____.abf" localOrderFile="bf28____.abf">
+    <track name="201" displayName="2">
+      <block name="28G201"/>
+    </track>
+    <track name="202" displayName="3">
+      <block name="28G202"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="28G203"/>
+    </track>
+    <track name="204">
+      <block name="28G204"/>
+    </track>
+  </station>
+
+  <station name="Mötz" short="Sts H1" refNr="28" scheduleFile="b28_____.abf">
+    <track name="201" calculateDelay="false" displayName="1">
+      <block name="28Bm11"/>
+    </track>
+    <track name="202" calculateDelay="false" displayName="2">
+      <block name="28Bm12"/>
+    </track>
+  </station>
+
+  <station name="Silz" short="Siz" refNr="27" scheduleFile="g27_____.abf" localOrderFile="bf27____.abf">
+    <track name="201" displayName="1">
+      <block name="27G201"/>
+    </track>
+    <track name="202" displayName="2">
+      <block name="27G202"/>
+    </track>
+    <track name="204" displayName="3">
+      <block name="27G204"/>
+    </track>
+  </station>
+
+  <station name="Haiming" short="Siz H1" refNr="27" scheduleFile="b27_____.abf">
+    <track name="201" calculateDelay="false" displayName="1">
+      <block name="27Bn21"/>
+    </track>
+    <track name="202" calculateDelay="false" displayName="2">
+      <block name="27Bn22"/>
+    </track>
+  </station>
+
+  <station name="Ötztal" short="Oz" refNr="26" scheduleFile="g26_____.abf" localOrderFile="bf26____.abf">
+    <track name="201" displayName="2">
+      <block name="26G201"/>
+    </track>
+    <track name="202" displayName="3">
+      <block name="26G202"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="26G203"/>
+    </track>
+    <track name="204" displayName="4">
+      <block name="26G204"/>
+    </track>
+    <track name="205">
+      <block name="26G205"/>
+    </track>
+  </station>
+
+  <station name="Roppen" short="Rop" refNr="25" scheduleFile="g25_____.abf" localOrderFile="bf25____.abf">
+    <track name="201" displayName="2">
+      <block name="25G201"/>
+    </track>
+    <track name="203" displayName="1">
+      <block name="25G203"/>
+    </track>
+  </station>
+
+  <station name="Imst-Pitztal" short="Im" refNr="24" scheduleFile="g24_____.abf" localOrderFile="bf24____.abf">
+    <track name="301" displayName="2">
+      <block name="24G301"/>
+    </track>
+    <track name="302" displayName="1">
+      <block name="24G302"/>
+    </track>
+    <track name="303" displayName="3">
+      <block name="24G303"/>
+    </track>
+    <track name="305">
+      <block name="24G305"/>
+    </track>
+  </station>
+
+  <station name="Imsterberg" short="Im H1" refNr="23" scheduleFile="V23_____.abf">
+    <track name="021" calculateDelay="false" displayName="1">
+      <block name="23Sq21"/>
+    </track>
+  </station>
+
+  <station name="Schönwies" short="Ss" refNr="23">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="23Sq31" direction="left"/>
+    </track>
+  </station>
+</estw>
