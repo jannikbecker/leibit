@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="Hall in Tirol" short="H" refNr="33">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="33Sf11" direction="right"/>
+      <block name="33Sf12" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Rum" short="H H1" refNr="33" scheduleFile="v33_____.abf">
+    <track name="001" calculateDelay="false" displayName="1">
+      <block name="33Sf21"/>
+    </track>
+    <track name="002" calculateDelay="false" displayName="2">
+      <block name="33Sf22"/>
+    </track>
+  </station>
+
+  <station name="Üst H 2" short="H U2" refNr="99">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="33Bf31" direction="right"/>
+      <block name="33Bf32" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Innsbruck Hbf" short="I" refNr="33" scheduleFile="g33_____.abf" localOrderFile="bf33____.abf">
+    <track name="201" displayName="4" displaySubName="A-B">
+      <block name="33G201"/>
+      <alternative track="202"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+      <alternative track="210"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="995"/>
+      <alternative track="997"/>
+    </track>
+    <track name="202" displayName="3" displaySubName="A-B">
+      <block name="33G202"/>
+      <alternative track="201"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+      <alternative track="210"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="995"/>
+      <alternative track="997"/>
+    </track>
+    <track name="206" displayName="2" displaySubName="A-B">
+      <block name="33G206"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="207"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+      <alternative track="210"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="995"/>
+      <alternative track="997"/>
+    </track>
+    <track name="207" displayName="5" displaySubName="A-B">
+      <block name="33G207"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="206"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+      <alternative track="210"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="995"/>
+      <alternative track="997"/>
+    </track>
+    <track name="208" displayName="1" displaySubName="A-B">
+      <block name="33G208"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="209"/>
+      <alternative track="210"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="995"/>
+      <alternative track="997"/>
+    </track>
+    <track name="209" displayName="6" displaySubName="A-B">
+      <block name="33G209"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="208"/>
+      <alternative track="210"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="995"/>
+      <alternative track="997"/>
+    </track>
+    <track name="210" displayName="11">
+      <block name="33G210"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="995"/>
+      <alternative track="997"/>
+    </track>
+    <track name="213" displayName="7" displaySubName="A-B">
+      <block name="33G213"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+      <alternative track="210"/>
+      <alternative track="215"/>
+      <alternative track="995"/>
+      <alternative track="997"/>
+    </track>
+    <track name="215">
+      <block name="33G215"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+      <alternative track="210"/>
+      <alternative track="213"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="995"/>
+      <alternative track="997"/>
+    </track>
+
+    <track name="301" displayName="4" displaySubName="C-D">
+      <block name="33G301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="302" displayName="3" displaySubName="C-D">
+      <block name="33G302"/>
+      <alternative track="301"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="304" displayName="31">
+      <block name="33G304"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="305" displayName="41">
+      <block name="33G305"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="306" displayName="2" displaySubName="C">
+      <block name="33G306"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="307" displayName="5" displaySubName="C">
+      <block name="33G307"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="308" displayName="1" displaySubName="C-D">
+      <block name="33G308"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="309" displayName="6" displaySubName="C-D">
+      <block name="33G309"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="310" displayName="21">
+      <block name="33G310"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="312" displayName="22">
+      <block name="33G312"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="313" displayName="7" displaySubName="C-D">
+      <block name="33G313"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+    <track name="314" displayName="23">
+      <block name="33G314"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="215"/>
+      <alternative track="505"/>
+    </track>
+
+    <track name="505">
+      <block name="33BIFIH3"/>
+      <alternative track="301"/>
+      <alternative track="302"/>
+      <alternative track="304"/>
+      <alternative track="305"/>
+      <alternative track="306"/>
+      <alternative track="307"/>
+      <alternative track="308"/>
+      <alternative track="309"/>
+      <alternative track="310"/>
+      <alternative track="312"/>
+      <alternative track="313"/>
+      <alternative track="314"/>
+      <alternative track="215"/>
+    </track>
+    <track name="995">
+      <block name="33BIFIH1"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+      <alternative track="210"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="997"/>
+    </track>
+    <track name="997">
+      <block name="33BIFIH2"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="208"/>
+      <alternative track="209"/>
+      <alternative track="210"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="995"/>
+    </track>
+  </station>
+
+  <station name="Innsbruck Westbf" short="Wt" refNr="32">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="33BIWIH" direction="left"/>
+      <block name="33BIWIHG" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Fritzens-Wattens" short="Fw" refNr="34">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="34Bf53" direction="right"/>
+      <block name="34Bf54" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Abzw I 1" short="I Z1" refNr="34" scheduleFile="g34_____.abf">
+    <track name="011" isPlatform="false">
+      <block name="33Bg11" direction="left"/>
+      <block name="34Bg21" direction="right"/>
+    </track>
+    <track name="012" isPlatform="false">
+      <block name="33Bg12" direction="left"/>
+      <block name="34Bg22" direction="right"/>
+    </track>
+    <track name="063" isPlatform="false">
+      <block name="34Bf63" direction="left"/>
+    </track>
+    <track name="064" isPlatform="false">
+      <block name="34Bf64" direction="left"/>
+    </track>
+  </station>
+
+  <station name="Unterberg-Stefansbrücke" short="I H1" refNr="34" scheduleFile="b34_____.abf">
+    <track name="001" displayName="1"/>
+    <track name="002" displayName="2"/>
+  </station>
+
+  <station name="Üst I 2" short="I U2" refNr="35" scheduleFile="g35_____.abf">
+    <track name="101" isPlatform="false">
+      <block name="34Bg21" direction="left"/>
+      <block name="35Bg31" direction="right"/>
+    </track>
+    <track name="102" isPlatform="false">
+      <block name="34Bg22" direction="left"/>
+      <block name="35Bg32" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Patsch" short="I H2" refNr="35" scheduleFile="b35_____.abf">
+    <track name="001" displayName="1"/>
+    <track name="002" displayName="2"/>
+  </station>
+
+  <station name="Üst I 3" short="I U3" refNr="36" scheduleFile="g36_____.abf">
+    <track name="101" isPlatform="false">
+      <block name="35Bg31" direction="left"/>
+      <block name="37Bg41" direction="right"/>
+    </track>
+    <track name="102" isPlatform="false">
+      <block name="35Bg32" direction="left"/>
+      <block name="37Bg42" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Matrei" short="Mei" refNr="37" scheduleFile="g37_____.abf" localOrderFile="bf37____.abf">
+    <track name="201" displayName="3">
+      <block name="37G201"/>
+    </track>
+    <track name="202" displayName="2">
+      <block name="37G202"/>
+    </track>
+    <track name="203" displayName="4">
+      <block name="37G203"/>
+    </track>
+    <track name="204" displayName="1">
+      <block name="37G204"/>
+      <block name="37G304"/>
+    </track>
+  </station>
+
+  <station name="Steinach in Tirol" short="Sti" refNr="38" scheduleFile="g38_____.abf" localOrderFile="bf38____.abf" displayName="Steinach i.T.">
+    <track name="201" displayName="2">
+      <block name="38G201"/>
+    </track>
+    <track name="202" displayName="1">
+      <block name="38G202"/>
+      <block name="38G302"/>
+    </track>
+    <track name="203" displayName="3">
+      <block name="38G203"/>
+    </track>
+  </station>
+
+  <station name="Üst Sti 1 / St. Jodok" short="Sti U1" refNr="39" scheduleFile="g39_____.abf" localOrderFile="bf39____.abf" displayName="St. Jodok">
+    <track name="101" isPlatform="false" displayName="2">
+      <block name="38Bi11" direction="left"/>
+      <block name="39Bi21" direction="right"/>
+    </track>
+    <track name="102" isPlatform="false" displayName="1">
+      <block name="38Bi12" direction="left"/>
+      <block name="39Bi22" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Üst Sti 2 / Gries" short="Sti U2" refNr="40" scheduleFile="g40_____.abf" localOrderFile="bf40____.abf" displayName="Gries">
+    <track name="101" isPlatform="false" displayName="2">
+      <block name="39Bi21" direction="left"/>
+      <block name="40Bi31" direction="right"/>
+    </track>
+    <track name="102" isPlatform="false" displayName="1">
+      <block name="39Bi22" direction="left"/>
+      <block name="40Bi32" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Abzw Sti 4 / Brennersee" short="Sti Z4" refNr="41" scheduleFile="g41_____.abf" localOrderFile="bf41____.abf" displayName="Brennersee">
+    <track name="201" isPlatform="false" displayName="2">
+      <block name="41Bi41" direction="left"/>
+      <block name="41Bj11" direction="right"/>
+      <alternative track="202"/>
+    </track>
+    <track name="202" isPlatform="false" displayName="1">
+      <block name="41Bi42" direction="left"/>
+      <block name="41Bj12" direction="right"/>
+      <alternative track="201"/>
+    </track>
+
+    <track name="204">
+      <block name="41G204"/>
+      <alternative track="206"/>
+    </track>
+    <track name="206">
+      <block name="41G206"/>
+      <alternative track="204"/>
+    </track>
+  </station>
+
+  <station name="Brennero / Brenner" short="Be" refNr="42">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="41SVBR"/>
+      <block name="41Bj12" direction="left"/>
+    </track>
+  </station>
+</estw>
