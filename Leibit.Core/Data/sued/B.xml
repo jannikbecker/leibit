@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<estw>
+  <station name="St. Anton am Arlberg" short="Ao" refNr="17">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="18Bx11" direction="right"/>
+      <block name="18Bx12" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Üst Ao 3" short="Ao U3" refNr="17">
+    <track calculateDelay="false" isPlatform="false">
+      <block name="17Bx21" direction="left"/>
+      <block name="17Bx22" direction="left"/>
+      <block name="16By11" direction="right"/>
+      <block name="16By12" direction="right"/>
+    </track>
+  </station>
+
+  <station name="Langen am Arlberg" short="Lan" refNr="16" scheduleFile="G16_____.abf" localOrderFile="bf16____.abf" displayName="Langen a.A.">
+    <track name="201" displayName="2">
+      <block name="16G201"/>
+    </track>
+    <track name="202" displayName="1">
+      <block name="16G202"/>
+    </track>
+    <track name="203">
+      <block name="16G203"/>
+    </track>
+    <track name="204">
+      <block name="16G204"/>
+    </track>
+    <track name="205">
+      <block name="16G204"/>
+    </track>
+    <track name="207">
+      <block name="16G204"/>
+    </track>
+  </station>
+
+  <station name="Wald am Arlberg" short="Waa" refNr="15" scheduleFile="g15_____.abf" localOrderFile="bf15____.abf">
+    <track name="201">
+      <block name="15G201"/>
+    </track>
+    <track name="202">
+      <block name="15G202"/>
+    </track>
+    <track name="203">
+      <block name="15G203"/>
+    </track>
+  </station>
+
+  <station name="Dalaas" short="Da" refNr="14" scheduleFile="g14_____.abf" localOrderFile="bf14____.abf">
+    <track name="301">
+      <block name="14G301"/>
+    </track>
+    <track name="303">
+      <block name="14G303"/>
+      <alternative track="301"/>
+      <alternative track="305"/>
+    </track>
+    <track name="305">
+      <block name="14G305"/>
+      <alternative track="301"/>
+      <alternative track="303"/>
+    </track>
+    <track name="203">
+      <block name="14G203"/>
+      <alternative track="301"/>
+    </track>
+  </station>
+
+  <station name="Hintergasse" short="Hin" refNr="13" scheduleFile="g13_____.abf" localOrderFile="bf13____.abf">
+    <track name="201">
+      <block name="13G201"/>
+    </track>
+    <track name="202">
+      <block name="13G202"/>
+    </track>
+  </station>
+
+  <station name="Braz" short="Bz" refNr="12" scheduleFile="g12_____.abf" localOrderFile="bf12____.abf">
+    <track name="201">
+      <block name="12G201"/>
+    </track>
+    <track name="202">
+      <block name="12G202"/>
+    </track>
+    <track name="203">
+      <block name="12G203"/>
+    </track>
+  </station>
+
+  <station name="Bludenz Moos Hst" short="B H1M" refNr="11" scheduleFile="b11_____.abf" displayName="Bludenz-Moos">
+    <track name="1" calculateDelay="false">
+      <block name="11Ba23"/>
+    </track>
+  </station>
+
+  <station name="Bludenz" short="B" refNr="11" scheduleFile="g11_____.abf" localOrderFile="bf11____.abf">
+    <track name="201" displayName="3">
+      <block name="11G201"/>
+    </track>
+    <track name="202" displayName="2" displaySubName="A-B">
+      <block name="11G202"/>
+      <alternative track="201"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="209"/>
+      <alternative track="211"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="217"/>
+      <alternative track="219"/>
+      <alternative track="221"/>
+      <alternative track="225"/>
+    </track>
+    <track name="203" displayName="4">
+      <block name="11G203"/>
+    </track>
+    <track name="204" displayName="1" displaySubName="A-B">
+      <block name="11G204"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="209"/>
+      <alternative track="211"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="217"/>
+      <alternative track="219"/>
+      <alternative track="221"/>
+      <alternative track="225"/>
+    </track>
+    <track name="206" displayName="11">
+      <block name="11G206"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="207"/>
+      <alternative track="209"/>
+      <alternative track="211"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="217"/>
+      <alternative track="219"/>
+      <alternative track="221"/>
+      <alternative track="225"/>
+    </track>
+    <track name="207" displayName="5">
+      <block name="11G207"/>
+    </track>
+    <track name="209">
+      <block name="11G209"/>
+    </track>
+    <track name="211">
+      <block name="11G211"/>
+    </track>
+    <track name="213">
+      <block name="11G213"/>
+    </track>
+    <track name="215">
+      <block name="11G215"/>
+    </track>
+    <track name="217">
+      <block name="11G217"/>
+    </track>
+    <track name="219">
+      <block name="11G219"/>
+    </track>
+    <track name="221">
+      <block name="11G221"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="209"/>
+      <alternative track="211"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="217"/>
+      <alternative track="219"/>
+      <alternative track="225"/>
+    </track>
+    <track name="225">
+      <block name="11G225"/>
+      <alternative track="201"/>
+      <alternative track="202"/>
+      <alternative track="203"/>
+      <alternative track="204"/>
+      <alternative track="206"/>
+      <alternative track="207"/>
+      <alternative track="209"/>
+      <alternative track="211"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="217"/>
+      <alternative track="219"/>
+      <alternative track="221"/>
+    </track>
+
+    <track name="302" displayName="2" displaySubName="C-D">
+      <block name="11G302"/>
+      <alternative track="201"/>
+      <alternative track="203"/>
+      <alternative track="304"/>
+      <alternative track="306"/>
+      <alternative track="207"/>
+      <alternative track="209"/>
+      <alternative track="211"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="217"/>
+      <alternative track="219"/>
+      <alternative track="321"/>
+    </track>
+    <track name="304" displayName="1" displaySubName="C-D">
+      <block name="11G304"/>
+      <alternative track="201"/>
+      <alternative track="302"/>
+      <alternative track="203"/>
+      <alternative track="306"/>
+      <alternative track="207"/>
+      <alternative track="209"/>
+      <alternative track="211"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="217"/>
+      <alternative track="219"/>
+      <alternative track="321"/>
+    </track>
+    <track name="306" displayName="21">
+      <block name="11G306"/>
+      <alternative track="201"/>
+      <alternative track="302"/>
+      <alternative track="203"/>
+      <alternative track="304"/>
+      <alternative track="207"/>
+      <alternative track="209"/>
+      <alternative track="211"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="217"/>
+      <alternative track="219"/>
+      <alternative track="321"/>
+    </track>
+    <track name="321">
+      <block name="11G321"/>
+      <alternative track="201"/>
+      <alternative track="302"/>
+      <alternative track="203"/>
+      <alternative track="304"/>
+      <alternative track="306"/>
+      <alternative track="207"/>
+      <alternative track="209"/>
+      <alternative track="211"/>
+      <alternative track="213"/>
+      <alternative track="215"/>
+      <alternative track="217"/>
+      <alternative track="219"/>
+    </track>
+  </station>
+
+  <station name="Nüziders" short="B H1" refNr="11" scheduleFile="b10_____.ABF">
+    <track name="1" calculateDelay="false">
+      <block name="11Be11"/>
+    </track>
+    <track name="2" calculateDelay="false">
+      <block name="11Be12"/>
+    </track>
+  </station>
+</estw>
