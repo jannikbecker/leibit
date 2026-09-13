@@ -77,8 +77,11 @@
     <None Remove="Data\nrw\KWO.xml" />
     <None Remove="Data\nrw\TrainNumbers.xml" />
     <None Remove="Data\passenger_trains.json" />
+    <None Remove="Data\sued\B.xml" />
     <None Remove="Data\sued\Bg.xml" />
     <None Remove="Data\sued\Fk.xml" />
+    <None Remove="Data\sued\I.xml" />
+    <None Remove="Data\sued\Le.xml" />
     <None Remove="Data\sued\MA.xml" />
     <None Remove="Data\sued\MAHZ.xml" />
     <None Remove="Data\sued\MBU.xml" />
@@ -99,6 +102,7 @@
     <None Remove="Data\sued\TAU.xml" />
     <None Remove="Data\sued\TF.xml" />
     <None Remove="Data\sued\TrainNumbers.xml" />
+    <None Remove="Data\sued\Wt.xml" />
     <None Remove="Data\tauern\Bag.xml" />
     <None Remove="Data\tauern\Bo.xml" />
     <None Remove="Data\tauern\Hl.xml" />
@@ -177,8 +181,11 @@
     <EmbeddedResource Include="Data\nrw\KWO.xml" />
     <EmbeddedResource Include="Data\nrw\TrainNumbers.xml" />
     <EmbeddedResource Include="Data\passenger_trains.json" />
+    <EmbeddedResource Include="Data\sued\B.xml" />
     <EmbeddedResource Include="Data\sued\Bg.xml" />
     <EmbeddedResource Include="Data\sued\Fk.xml" />
+    <EmbeddedResource Include="Data\sued\I.xml" />
+    <EmbeddedResource Include="Data\sued\Le.xml" />
     <EmbeddedResource Include="Data\sued\MA.xml" />
     <EmbeddedResource Include="Data\sued\MAHZ.xml" />
     <EmbeddedResource Include="Data\sued\MBU.xml" />
@@ -199,6 +206,7 @@
     <EmbeddedResource Include="Data\sued\TAU.xml" />
     <EmbeddedResource Include="Data\sued\TF.xml" />
     <EmbeddedResource Include="Data\sued\TrainNumbers.xml" />
+    <EmbeddedResource Include="Data\sued\Wt.xml" />
     <EmbeddedResource Include="Data\tauern\Bag.xml" />
     <EmbeddedResource Include="Data\tauern\Bo.xml" />
     <EmbeddedResource Include="Data\tauern\Hl.xml" />

@@ -3,8 +3,8 @@ Die Datei *Setup.exe* herunterladen und ausführen. Nach wenigen Sekunden starte
 
 # Neue Funktionen in dieser Version
 - Integration folgender neuer Simulationen:
-    - Osnabrück Hbf Po
-    - Osnabrück Hbf Pu
-    - Osnabrück Rbf
-    - Bünde (Westf)
-    - Löhne (Westf)
+    - Bludenz
+    - Innsbruck
+    - Innsbruck-West
+    - Landeck
+- Fehlerbehebungen in der Simulation Heigenbrücken

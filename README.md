@@ -49,18 +49,18 @@ Folgende Simulationen werden aktuell unterstützt:
 - Bereich Norddeutschland
     - Bremen Hbf
     - Bremen-Sebaldsbrück
-    - Bünde (Westf) (NEU)
+    - Bünde (Westf)
     - Buchholz
     - Diepholz
     - Hamburg-Harburg
     - Hamburg Hbf
     - Kirchweyhe
-    - Löhne (Westf) (NEU)
+    - Löhne (Westf)
     - Minden
     - Nienburg
-    - Osnabrück Hbf Po (NEU)
-    - Osnabrück Hbf Pu (NEU)
-    - Osnabrück Rbf (NEU)
+    - Osnabrück Hbf Po
+    - Osnabrück Hbf Pu
+    - Osnabrück Rbf
     - Rotenburg
     - Soltau
     - Verden
@@ -77,10 +77,11 @@ Folgende Simulationen werden aktuell unterstützt:
 - Bereich Stuttgart
     - Stuttgart Hbf Ostseite
     - Stuttgart Hbf Westseite
-- Bereich Süddeutschland / Vorarlberg
+- Bereich Süddeutschland / Westösterreich
     - Augsburg Hbf
     - Augsburg-Hochzoll
     - Aulendorf
+    - Bludenz (NEU)
     - Bregenz
     - Buchloe
     - Feldkirch
@@ -88,7 +89,10 @@ Folgende Simulationen werden aktuell unterstützt:
     - Garmisch-Partenkirchen
     - Geltendorf
     - Immenstadt
+    - Innsbruck (NEU)
+    - Innsbruck-West (NEU)
     - Kempten
+    - Landeck (NEU)
     - Lindau
     - Memmingen
     - München Hbf Nordseite
