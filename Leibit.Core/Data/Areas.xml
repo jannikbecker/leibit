@@ -56,6 +56,7 @@
     <estw id="Bg" name="Bregenz" dataFile="leibit_BREGENZ.dat" infrastructureManager="OEBB" productName="Vorarlberg"/>
     <estw id="Fk" name="Feldkirch" dataFile="leibit_FELDKIRCH.dat" infrastructureManager="OEBB" productName="Vorarlberg"/>
     <estw id="B" name="Bludenz" dataFile="leibit_BLUDENZ.dat" infrastructureManager="OEBB"/>
+    <estw id="Le" name="Landeck" dataFile="leibit_LANDECK.dat" infrastructureManager="OEBB"/>
     <estw id="MIMS" name="Immenstadt" dataFile="leibit_IMMENSTADT.dat" infrastructureManager="DB" productName="Allgäu Süd"/>
     <estw id="MM" name="Memmingen" dataFile="leibit_MEMMINGEN.dat" infrastructureManager="DB" productName="Allgäu Nord"/>
     <estw id="MKP" name="Kempten" dataFile="leibit_KEMPTEN.dat" infrastructureManager="DB" productName="Allgäu Süd"/>
