@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="Leibit.Client.WPF.Windows.Statistics.Views.TrainTypeStatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
+             xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.Statistics.Views"
+             xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.Statistics.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance vm:TrainTypeStatisticsViewModel}">
+
+    <UserControl.Resources>
+        <conv:VisibilityConverter x:Key="VisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Anzahl Züge"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding CurrentStatistics.NumberOfTrains}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Rectangle Grid.Column="1" Grid.RowSpan="2" Fill="{DynamicResource TextForeground}" Width="1" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="Gesamtverspätung"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding DelaySumString}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Rectangle Grid.Column="3" Grid.RowSpan="2" Fill="{DynamicResource TextForeground}" Width="1" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="4" Text="Pünktlichkeit"/>
+
+        <Border Grid.Row="1" Grid.Column="4"
+                CornerRadius="4"
+                ClipToBounds="True"
+                BorderThickness="2"
+                BorderBrush="{DynamicResource TextForeground}"
+                Width="200"
+                Height="30"
+                Margin="0,5,5,0">
+            <lvc:CartesianChart LegendPosition="Hidden"
+                                SeriesSource="{Binding DelayStatistics}"
+                                TooltipPosition="Hidden"
+                                Background="{DynamicResource WindowBackground}"
+                                DrawMargin="{lvc:Margin '0,0,0,0'}">
+                <lvc:CartesianChart.SeriesTemplate>
+                    <DataTemplate>
+                        <lvc:XamlStackedRowSeries SeriesName="{Binding Caption}"
+                                                  Values="{Binding Values}"
+                                                  Fill="{Binding Fill}"
+                                                  ShowDataLabels="False"
+                                                  Padding="0"
+                                                  Rx="0"
+                                                  Ry="0"
+                                                  ToolTipService.ToolTip="Fooo"/>
+                    </DataTemplate>
+                </lvc:CartesianChart.SeriesTemplate>
+
+                <lvc:CartesianChart.XAxes>
+                    <lvc:AxesCollection>
+                        <lvc:XamlAxis IsVisible="False" MinLimit="0" MaxLimit="{Binding CurrentStatistics.NumberOfTrains}"/>
+                    </lvc:AxesCollection>
+                </lvc:CartesianChart.XAxes>
+
+                <lvc:CartesianChart.YAxes>
+                    <lvc:AxesCollection>
+                        <lvc:XamlAxis IsVisible="False"/>
+                    </lvc:AxesCollection>
+                </lvc:CartesianChart.YAxes>
+            </lvc:CartesianChart>
+        </Border>
+
+        <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding OnTimeRateString}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <Rectangle Grid.Column="6" Grid.RowSpan="2" Fill="{DynamicResource TextForeground}" Width="1" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="7" Text="Größte Verspätung"/>
+        <TextBlock Grid.Row="1" Grid.Column="7" FontSize="24" Visibility="{Binding HasDelayedTrains, Converter={StaticResource VisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Hyperlink Command="{Binding ShowTrainWithGreatestDelayScheduleCommand}"><Run Text="{Binding CurrentStatistics.TrainWithGreatestDelay.Train.Number, Mode=OneWay}"/></Hyperlink>
+            <Run Text="("/><Run Text="{Binding GreatestDelayString, Mode=OneWay}"/><Run Text=")"/>
+        </TextBlock>
+    </Grid>
+</UserControl>

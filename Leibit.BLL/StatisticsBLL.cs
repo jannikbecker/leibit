@@ -23,16 +23,12 @@ namespace Leibit.BLL
                 result.ESTW = estw;
 
                 var currentTrains = estw.Area.LiveTrains.Values.Where(t => t.LastModification.ContainsKey(estw.Id) && t.LastModification[estw.Id] == estw.Time).ToList();
-                result.NumberOfTrains = currentTrains.Count;
+                var passengerTrains = currentTrains.Where(t => t.Train.Type.IsPassengerTrain()).ToList();
+                var freightTrains = currentTrains.Where(t => !t.Train.Type.IsPassengerTrain()).ToList();
 
-                var trainsOnWay = currentTrains.Where(t => __IsDeparted(t) && !__IsArrived(t));
-                result.AverageDelay = Math.Round(trainsOnWay.Average(t => t.Delay), 2);
-                result.TrainWithSmallestDelay = trainsOnWay.OrderBy(t => t.Delay).FirstOrDefault();
-                result.TrainWithGreatestDelay = trainsOnWay.OrderByDescending(t => t.Delay).FirstOrDefault();
-                result.NumberOfEarlyTrains = trainsOnWay.Count(t => t.Delay < -5);
-                result.NumberOfTrainsOnTime = trainsOnWay.Count(t => t.Delay >= -5 && t.Delay <= 5);
-                result.NumberOfTrainsWithShortDelay = trainsOnWay.Count(t => t.Delay > 5 && t.Delay <= 10);
-                result.NumberOfTrainsWithLongDelay = trainsOnWay.Count(t => t.Delay > 10);
+                result.Total = __CalculateTrainTypeStatistics(currentTrains);
+                result.PassengerTrains = __CalculateTrainTypeStatistics(passengerTrains);
+                result.FreightTrains = __CalculateTrainTypeStatistics(freightTrains);
 
                 return OperationResult<CurrentStatistics>.Ok(result);
             }
@@ -132,6 +128,25 @@ namespace Leibit.BLL
                 delayFrame.Add(delay);
             else
                 delayFrames[frameStartTime] = [delay];
+        }
+        #endregion
+
+        #region [__CalculateTrainTypeStatistics]
+        private TrainTypeStatistics __CalculateTrainTypeStatistics(List<TrainInformation> trains)
+        {
+            var result = new TrainTypeStatistics();
+            result.NumberOfTrains = trains.Count;
+            result.DelaySum = trains.Sum(t => Math.Max(0, t.Delay));
+            result.NumberOfEarlyTrains = trains.Count(t => t.Delay < -5);
+            result.NumberOfTrainsOnTime = trains.Count(t => t.Delay >= -5 && t.Delay <= 5);
+            result.NumberOfTrainsWithShortDelay = trains.Count(t => t.Delay > 5 && t.Delay <= 10);
+            result.NumberOfTrainsWithLongDelay = trains.Count(t => t.Delay > 10);
+            result.TrainWithGreatestDelay = trains.OrderByDescending(t => t.Delay).FirstOrDefault(t => t.Delay > 0);
+
+            if (result.NumberOfTrains > 0)
+                result.OnTimeRate = 100 * (result.NumberOfTrainsOnTime + result.NumberOfEarlyTrains) / result.NumberOfTrains;
+
+            return result;
         }
         #endregion
 

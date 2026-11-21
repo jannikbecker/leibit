@@ -9,100 +9,33 @@
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        mc:Ignorable="d"
                        Caption="Aktuelle Statistik"
+                       ResizeMode="ResizeAll"
                        d:DataContext="{d:DesignInstance vm:CurrentStatisticsViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10,10,0">
             <TextBlock Text="ESTW" Margin="0,0,10,0" VerticalAlignment="Center"/>
             <ComboBox ItemsSource="{Binding ESTWList}" SelectedItem="{Binding SelectedESTW}" DisplayMemberPath="Name" MinWidth="100"/>
         </StackPanel>
 
-        <Rectangle Grid.Row="1" Height="1" Fill="{DynamicResource TextForeground}" Margin="10"/>
-
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <GroupBox Grid.Row="0" Grid.Column="0" Header="Anzahl Züge" Padding="10" Margin="10,0">
-                    <TextBlock Text="{Binding CurrentStatistics.NumberOfTrains}" FontSize="36"/>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+                <GroupBox Header="Züge im Stellbereich" Margin="5">
+                    <local:TrainTypeStatisticsView DataContext="{Binding Total}" Margin="10"/>
                 </GroupBox>
 
-                <GroupBox Grid.Row="0" Grid.Column="1" Header="&#x2300; Verspätung" Padding="10" Margin="10,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding CurrentStatistics.AverageDelay}" FontSize="36" Margin="0,0,10,0"/>
-                        <TextBlock Text="min" VerticalAlignment="Bottom" FontSize="16" Margin="0,0,0,5"/>
-                    </StackPanel>
+                <GroupBox Header="Reisezüge" Margin="5">
+                    <local:TrainTypeStatisticsView DataContext="{Binding PassengerTrains}" Margin="10"/>
                 </GroupBox>
 
-                <GroupBox Grid.Row="0" Grid.Column="2" Header="Kleinste Verspätung" Padding="10" Margin="10,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding CurrentStatistics.TrainWithSmallestDelay.Delay}" FontSize="36" Margin="0,0,10,0"/>
-                        <TextBlock VerticalAlignment="Bottom" FontSize="16" Margin="0,0,0,5">
-                                <Run Text="("/><Hyperlink Command="{Binding ShowTrainWithSmallestDelayScheduleCommand}"><Run Text="{Binding CurrentStatistics.TrainWithSmallestDelay.Train.Number, Mode=OneWay}"/></Hyperlink><Run Text=")"/>
-                        </TextBlock>
-                    </StackPanel>
+                <GroupBox Header="Güterzüge" Margin="5">
+                    <local:TrainTypeStatisticsView DataContext="{Binding FreightTrains}" Margin="10"/>
                 </GroupBox>
-
-                <GroupBox Grid.Row="0" Grid.Column="3" Header="Größte Verspätung" Padding="10" Margin="10,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding CurrentStatistics.TrainWithGreatestDelay.Delay}" FontSize="36" Margin="0,0,10,0"/>
-                        <TextBlock VerticalAlignment="Bottom" FontSize="16" Margin="0,0,0,5">
-                                <Run Text="("/><Hyperlink Command="{Binding ShowTrainWithGreatestDelayScheduleCommand}"><Run Text="{Binding CurrentStatistics.TrainWithGreatestDelay.Train.Number, Mode=OneWay}"/></Hyperlink><Run Text=")"/>
-                        </TextBlock>
-                    </StackPanel>
-                </GroupBox>
-
-                <Expander Grid.Row="1" Grid.ColumnSpan="4" IsExpanded="True" Padding="10">
-                    <Expander.Header>
-                        <Grid Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Column="0" Text="Verspätungsverteilung" Margin="0,0,10,0"/>
-                            <Rectangle Grid.Column="1" Fill="{DynamicResource TextForeground}" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Expander.Header>
-
-                    <lvc:PieChart SeriesSource="{Binding DelayStatistics}"
-                                  Width="400"
-                                  Height="200"
-                                  LegendPosition="Right"
-                                  LegendTextPaint="{Binding ForegroundColor}"
-                                  TooltipPosition="Center"
-                                  Background="{DynamicResource WindowBackground}">
-                        <lvc:PieChart.SeriesTemplate>
-                            <DataTemplate>
-                                <lvc:XamlPieSeries SeriesName="{Binding Caption}"
-                                                   Values="{Binding Values}"
-                                                   Fill="{Binding Fill}"
-                                                   MaxRadialColumnWidth="60"
-                                                   HoverPushout="0"/>
-                            </DataTemplate>
-                        </lvc:PieChart.SeriesTemplate>
-                    </lvc:PieChart>
-                </Expander>
-            </Grid>
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </controls:LeibitWindow>
