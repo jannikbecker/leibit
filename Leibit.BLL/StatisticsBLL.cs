@@ -186,7 +186,6 @@ namespace Leibit.BLL
                                                                 .GroupBy(d => d.Schedule.Schedule.Station)
                                                                 .Select(x => new StationDelayStatistic { Station = x.Key, DelaySum = x.Sum(y => y.Minutes) })
                                                                 .OrderByDescending(x => x.DelaySum)
-                                                                .Take(10)
                                                                 .ToList();
 
                 return OperationResult<HistoricalStatistics>.Ok(result);
@@ -194,6 +193,24 @@ namespace Leibit.BLL
             catch (Exception ex)
             {
                 return OperationResult<HistoricalStatistics>.Fail(ex.ToString());
+            }
+        }
+        #endregion
+
+        #region [GetDelaysForStation]
+        public OperationResult<List<DelayInfo>> GetDelaysForStation(Station station)
+        {
+            try
+            {
+                var result = station.ESTW.Area.LiveTrains.Values.SelectMany(s => s.Schedules.Where(s => s.Schedule.Station == station))
+                                                                .SelectMany(s => s.Delays)
+                                                                .OrderByDescending(d => d.Minutes)
+                                                                .ToList();
+                return OperationResult<List<DelayInfo>>.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return OperationResult<List<DelayInfo>>.Fail(ex.ToString());
             }
         }
         #endregion

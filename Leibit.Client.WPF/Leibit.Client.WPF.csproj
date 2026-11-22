@@ -34,6 +34,7 @@
   <ItemGroup>
     <None Remove="Resources\Fonts\5by7.ttf" />
     <None Remove="Resources\Images\bildfpl.png" />
+    <None Remove="Resources\Images\Dark\arrow_back.png" />
     <None Remove="Resources\Images\Dark\bfo.png" />
     <None Remove="Resources\Images\Dark\clear.png" />
     <None Remove="Resources\Images\Dark\delay.png" />
@@ -56,6 +57,7 @@
     <None Remove="Resources\Images\Dark\train_schedule.png" />
     <None Remove="Resources\Images\Dark\undo.png" />
     <None Remove="Resources\Images\Dark\zfi.png" />
+    <None Remove="Resources\Images\Light\arrow_back.png" />
     <None Remove="Resources\Images\Light\bfo.png" />
     <None Remove="Resources\Images\Light\clear.png" />
     <None Remove="Resources\Images\Light\delay.png" />
@@ -86,6 +88,9 @@
     <None Remove="Resources\Images\warning.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Dark\arrow_back.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\Images\bildfpl.png" />
     <Resource Include="Resources\Images\Dark\bfo.png" />
     <Resource Include="Resources\Images\Dark\clear.png" />
@@ -109,6 +114,7 @@
     <Resource Include="Resources\Images\Dark\train_schedule.png" />
     <Resource Include="Resources\Images\Dark\undo.png" />
     <Resource Include="Resources\Images\Dark\zfi.png" />
+    <Resource Include="Resources\Images\Light\arrow_back.png" />
     <Resource Include="Resources\Images\Light\bfo.png" />
     <Resource Include="Resources\Images\Light\clear.png" />
     <Resource Include="Resources\Images\Light\delay.png" />

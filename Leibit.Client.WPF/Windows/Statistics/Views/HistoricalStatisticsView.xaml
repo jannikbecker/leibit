@@ -6,12 +6,15 @@
                        xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.Statistics.Views"
                        xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.Statistics.ViewModels"
                        xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
+                       xmlns:conv="clr-namespace:Leibit.Core.Client.Converter;assembly=Leibit.Core.Client.WPF"
                        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
                        mc:Ignorable="d"
                        Caption="Schicht-Bilanz"
                        d:DataContext="{d:DesignInstance vm:HistoricalStatisticsViewModel}">
 
     <controls:LeibitWindow.Resources>
+        <conv:VisibilityConverter x:Key="VisibilityConverter" />
+        <conv:VisibilityConverter x:Key="InvertedVisibilityConverter" Invert="True" />
         <local:DelayConverter x:Key="DelayConverter"/>
     </controls:LeibitWindow.Resources>
 
@@ -189,15 +192,56 @@
                         </controls:LeibitDataGrid>
                     </GroupBox>
 
-                    <GroupBox Grid.Column="1" Header="Betriebsstellen mit größter Verspätung" Margin="5">
-                        <controls:LeibitDataGrid ItemsSource="{Binding StationsWithGreatestDelays}"
-                                                 CanGroup="False">
-                            <controls:LeibitDataGrid.Columns>
-                                <controls:LeibitDataGridColumn Header="Kürzel" FieldName="StationShort" />
-                                <controls:LeibitDataGridColumn Header="Name" FieldName="StationName"/>
-                                <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayString"/>
-                            </controls:LeibitDataGrid.Columns>
-                        </controls:LeibitDataGrid>
+                    <GroupBox Grid.Column="1" Margin="5">
+                        <GroupBox.Header>
+                            <Grid>
+                                <TextBlock Text="Verspätung je Betriebsstelle" Visibility="{Binding IsStationDetailVisible, Converter={StaticResource InvertedVisibilityConverter}}"/>
+
+                                <StackPanel Orientation="Horizontal" Visibility="{Binding IsStationDetailVisible, Converter={StaticResource VisibilityConverter}}">
+                                    <controls:ImageButton Image="{DynamicResource imgBack}" Command="{Binding CloseStationDetailsCommand}" ToolTipService.ToolTip="Zurück"/>
+                                    <TextBlock>
+                                        <Run Text="Verspätungen in"/>
+                                        <Run Text="{Binding SelectedStation.StationName, Mode=OneWay}"/>
+                                        <Run Text="("/><Run Text="{Binding SelectedStation.StationShort, Mode=OneWay}"/><Run Text=")"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox.Header>
+                        
+                        <Grid>
+                            <controls:LeibitDataGrid ItemsSource="{Binding StationsWithGreatestDelays}"
+                                                     SelectedItem="{Binding SelectedStation, Mode=TwoWay}"
+                                                     CanGroup="False"
+                                                     RowDoubleClickCommand="{Binding ShowStationDelaysCommand}"
+                                                     Visibility="{Binding IsStationDetailVisible, Converter={StaticResource InvertedVisibilityConverter}}">
+                                <controls:LeibitDataGrid.Columns>
+                                    <controls:LeibitDataGridColumn Header="Kürzel" FieldName="StationShort" />
+                                    <controls:LeibitDataGridColumn Header="Name" FieldName="StationName"/>
+                                    <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayString"/>
+                                </controls:LeibitDataGrid.Columns>
+                            </controls:LeibitDataGrid>
+
+                            <controls:LeibitDataGrid ItemsSource="{Binding StationDelayDetails}"
+                                                     SelectedItem="{Binding SelectedDelayDetail, Mode=TwoWay}"
+                                                     CanGroup="False"
+                                                     RowDoubleClickCommand="{Binding ShowTrainScheduleFromDelayCommand}"
+                                                     Visibility="{Binding IsStationDetailVisible, Converter={StaticResource VisibilityConverter}}">
+                                <controls:LeibitDataGrid.Columns>
+                                    <controls:LeibitDataGridColumn Header="Gattung" FieldName="TrainType" />
+                                    <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber" />
+                                    <controls:LeibitDataGridColumn Header="Vsp Art" FieldName="DelayType" />
+                                    <controls:LeibitDataGridColumn Header="Soll an" FieldName="ScheduledArrival" />
+                                    <controls:LeibitDataGridColumn Header="Ist an" FieldName="LiveArrival" />
+                                    <controls:LeibitDataGridColumn Header="&#x0394;t an" FieldName="DelayArrival" />
+                                    <controls:LeibitDataGridColumn Header="Soll ab" FieldName="ScheduledDeparture" />
+                                    <controls:LeibitDataGridColumn Header="Ist ab" FieldName="LiveDeparture" />
+                                    <controls:LeibitDataGridColumn Header="&#x0394;t ab" FieldName="DelayDeparture" />
+                                    <controls:LeibitDataGridColumn Header="Vsp" FieldName="Delay" />
+                                    <controls:LeibitDataGridColumn Header="Grund" FieldName="Reason" />
+                                    <controls:LeibitDataGridColumn Header="Verursacher" FieldName="CausedBy" />
+                                </controls:LeibitDataGrid.Columns>
+                            </controls:LeibitDataGrid>
+                        </Grid>
                     </GroupBox>
                 </Grid>
             </Grid>

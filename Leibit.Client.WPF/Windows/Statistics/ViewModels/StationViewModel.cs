@@ -1,4 +1,5 @@
 ﻿using Leibit.Core.Client.BaseClasses;
+using Leibit.Entities.Common;
 using Leibit.Entities.Statistics;
 
 namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
@@ -8,6 +9,7 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         #region - Ctor -
         public StationViewModel(StationDelayStatistic statistic)
         {
+            CurrentStation = statistic.Station;
             StationShort = statistic.Station.ShortSymbol;
             StationName = statistic.Station.Name;
             DelayString = $"+{statistic.DelaySum}";
@@ -15,6 +17,14 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         #endregion
 
         #region - Properties -
+
+        #region [CurrentStation]
+        public Station CurrentStation
+        {
+            get => Get<Station>();
+            private set => Set(value);
+        }
+        #endregion
 
         #region [StationShort]
         public string StationShort

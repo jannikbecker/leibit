@@ -52,6 +52,9 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
             SelectedStatisticType = StatisticTypes[0];
             ESTWList = area.ESTWs.Where(e => e.IsLoaded && e.SchedulesLoaded).ToObservableCollection();
             ShowTrainScheduleCommand = new CommandHandler(() => __ShowTrainSchedule(SelectedTrain.CurrentTrain), true);
+            ShowStationDelaysCommand = new CommandHandler(() => __ShowStationDelays(SelectedStation.CurrentStation), true);
+            ShowTrainScheduleFromDelayCommand = new CommandHandler(() => __ShowTrainSchedule(SelectedDelayDetail.Train), true);
+            CloseStationDetailsCommand = new CommandHandler(__CloseStationDetails, true);
             DelayStatistics = new();
 
             if (ESTWList.Count == 1)
@@ -242,8 +245,52 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         }
         #endregion
 
+        #region [SelectedStation]
+        public StationViewModel SelectedStation
+        {
+            get => Get<StationViewModel>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [IsStationDetailVisible]
+        public bool IsStationDetailVisible
+        {
+            get => Get<bool>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [StationDelayDetails]
+        public ObservableCollection<DelayDetailViewModel> StationDelayDetails
+        {
+            get => Get<ObservableCollection<DelayDetailViewModel>>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [SelectedDelayDetail]
+        public DelayDetailViewModel SelectedDelayDetail
+        {
+            get => Get<DelayDetailViewModel>();
+            set => Set(value);
+        }
+        #endregion
+
         #region [ShowTrainScheduleCommand]
         public CommandHandler ShowTrainScheduleCommand { get; }
+        #endregion
+
+        #region [ShowStationDelaysCommand]
+        public CommandHandler ShowStationDelaysCommand { get; }
+        #endregion
+
+        #region [ShowTrainScheduleFromDelayCommand]
+        public CommandHandler ShowTrainScheduleFromDelayCommand { get; }
+        #endregion
+
+        #region [CloseStationDetailsCommand]
+        public CommandHandler CloseStationDetailsCommand { get; }
         #endregion
 
         #region [Dispatcher]
@@ -279,6 +326,9 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
 
             TrainsWithGreatestDelays = HistoricalStatistics.TrainsWithGreatestDelays.Select(t => new DelayedTrainViewModel(t)).ToObservableCollection();
             StationsWithGreatestDelays = HistoricalStatistics.StationsWithGreatestDelays.Select(s => new StationViewModel(s)).ToObservableCollection();
+
+            if (IsStationDetailVisible)
+                __ShowStationDelays(SelectedStation.CurrentStation);
         }
         #endregion
 
@@ -292,6 +342,29 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
             var Window = new TrainScheduleView(train.Train.Number);
             Window.DataContext = new TrainScheduleViewModel(Window.Dispatcher, train.Train, SelectedESTW.Area);
             OnOpenWindow(Window);
+        }
+        #endregion
+
+        #region [__ShowStationDelays]
+        private void __ShowStationDelays(Station station)
+        {
+            var statResult = m_StatisticsBll.GetDelaysForStation(station);
+
+            if (!statResult.Succeeded)
+            {
+                MessageBox.Show(statResult.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            StationDelayDetails = statResult.Result.Select(d => new DelayDetailViewModel(d)).ToObservableCollection();
+            IsStationDetailVisible = true;
+        }
+        #endregion
+
+        #region [__CloseStationDetails]
+        private void __CloseStationDetails()
+        {
+            IsStationDetailVisible = false;
         }
         #endregion
 
