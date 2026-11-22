@@ -99,13 +99,13 @@ namespace Leibit.BLL
                         exitDelay = train.Delay;
 
                     if (exitDelay < -5)
-                        result.NumberOfEarlyTrains++;
+                        result.DelayStatistics.NumberOfEarlyTrains++;
                     else if (exitDelay <= 5)
-                        result.NumberOfTrainsOnTime++;
+                        result.DelayStatistics.NumberOfTrainsOnTime++;
                     else if (exitDelay <= 10)
-                        result.NumberOfTrainsWithShortDelay++;
+                        result.DelayStatistics.NumberOfTrainsWithShortDelay++;
                     else
-                        result.NumberOfTrainsWithLongDelay++;
+                        result.DelayStatistics.NumberOfTrainsWithLongDelay++;
 
                     var netDelay = Math.Max(0, exitDelay) - Math.Max(0, entryDelay);
                     result.DelayTotalNet += netDelay;
@@ -117,9 +117,6 @@ namespace Leibit.BLL
                 }
 
                 result.NumberOfTrains = trains.Count;
-
-                if (result.NumberOfTrains > 0)
-                    result.OnTimeRate = 100 * (result.NumberOfTrainsOnTime + result.NumberOfEarlyTrains) / result.NumberOfTrains;
 
                 var allSchedules = trains.SelectMany(t => t.Schedules.Where(s => s.Schedule.Station.ESTW == estw)).ToList();
 
@@ -202,15 +199,11 @@ namespace Leibit.BLL
             var result = new TrainTypeStatistics();
             result.NumberOfTrains = trains.Count;
             result.DelaySum = trains.Sum(t => Math.Max(0, t.Delay));
-            result.NumberOfEarlyTrains = trains.Count(t => t.Delay < -5);
-            result.NumberOfTrainsOnTime = trains.Count(t => t.Delay >= -5 && t.Delay <= 5);
-            result.NumberOfTrainsWithShortDelay = trains.Count(t => t.Delay > 5 && t.Delay <= 10);
-            result.NumberOfTrainsWithLongDelay = trains.Count(t => t.Delay > 10);
+            result.DelayStatistics.NumberOfEarlyTrains = trains.Count(t => t.Delay < -5);
+            result.DelayStatistics.NumberOfTrainsOnTime = trains.Count(t => t.Delay >= -5 && t.Delay <= 5);
+            result.DelayStatistics.NumberOfTrainsWithShortDelay = trains.Count(t => t.Delay > 5 && t.Delay <= 10);
+            result.DelayStatistics.NumberOfTrainsWithLongDelay = trains.Count(t => t.Delay > 10);
             result.TrainWithGreatestDelay = trains.OrderByDescending(t => t.Delay).FirstOrDefault(t => t.Delay > 0);
-
-            if (result.NumberOfTrains > 0)
-                result.OnTimeRate = 100 * (result.NumberOfTrainsOnTime + result.NumberOfEarlyTrains) / result.NumberOfTrains;
-
             return result;
         }
         #endregion

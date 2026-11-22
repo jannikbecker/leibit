@@ -23,7 +23,7 @@
         </StackPanel>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True">
                 <GroupBox Header="Züge im Stellbereich" Margin="5">
                     <local:TrainTypeStatisticsView DataContext="{Binding Total}" Margin="10"/>
                 </GroupBox>

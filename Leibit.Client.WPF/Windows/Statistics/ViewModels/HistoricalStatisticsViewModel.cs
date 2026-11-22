@@ -32,22 +32,12 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
 
         #region - Needs -
         private StatisticsBLL m_StatisticsBll;
-        private PieDataViewModel<int> m_NumberOfEarlyTrains;
-        private PieDataViewModel<int> m_NumberOfTrainsOnTime;
-        private PieDataViewModel<int> m_NumberOfTrainsWithShortDelay;
-        private PieDataViewModel<int> m_NumberOfTrainsWithLongDelay;
         #endregion
 
         #region - Ctor -
         public HistoricalStatisticsViewModel(Dispatcher dispatcher, Area area)
         {
             m_StatisticsBll = new();
-            (App.Current as App).SkinChanged += __SkinChanged;
-
-            m_NumberOfEarlyTrains = new PieDataViewModel<int>("< -5 min", (App.Current.TryFindResource("DelayBlue") as SolidColorBrush).Color);
-            m_NumberOfTrainsOnTime = new PieDataViewModel<int>("Pünktlich", (App.Current.TryFindResource("ReadyColor") as SolidColorBrush).Color);
-            m_NumberOfTrainsWithShortDelay = new PieDataViewModel<int>("> 5 min", (App.Current.TryFindResource("DelayYellow") as SolidColorBrush).Color);
-            m_NumberOfTrainsWithLongDelay = new PieDataViewModel<int>("> 10 min", (App.Current.TryFindResource("DelayRed") as SolidColorBrush).Color);
 
             Dispatcher = dispatcher;
             FrameSize = 15;
@@ -62,6 +52,7 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
             SelectedStatisticType = StatisticTypes[0];
             ESTWList = area.ESTWs.Where(e => e.IsLoaded && e.SchedulesLoaded).ToObservableCollection();
             ShowTrainScheduleCommand = new CommandHandler(() => __ShowTrainSchedule(SelectedTrain.CurrentTrain), true);
+            DelayStatistics = new();
 
             if (ESTWList.Count == 1)
                 SelectedESTW = ESTWList.Single();
@@ -154,16 +145,11 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         }
         #endregion
 
-        #region [OnTimeRateString]
-        public string OnTimeRateString
+        #region [DelayStatistics]
+        public DelayStatisticsViewModel DelayStatistics
         {
-            get
-            {
-                if (HistoricalStatistics?.OnTimeRate == null)
-                    return "- %";
-
-                return $"{HistoricalStatistics.OnTimeRate} %";
-            }
+            get => Get<DelayStatisticsViewModel>();
+            private set => Set(value);
         }
         #endregion
 
@@ -177,13 +163,6 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
 
         #region [ToolTipFormatterOnTimeRate]
         public Func<ChartPoint, string> ToolTipFormatterOnTimeRate => __GetToolTipLabel_OnTimeRate;
-        #endregion
-
-        #region [DelayStatistics]
-        public PieDataViewModel<int>[] DelayStatistics
-        {
-            get => [m_NumberOfEarlyTrains, m_NumberOfTrainsOnTime, m_NumberOfTrainsWithShortDelay, m_NumberOfTrainsWithLongDelay];
-        }
         #endregion
 
         #region [Frames]
@@ -215,13 +194,6 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         {
             get => Get<int[]>();
             private set => Set(value);
-        }
-        #endregion
-
-        #region [ForegroundColor]
-        public Paint ForegroundColor
-        {
-            get => new SolidColorPaint((App.Current.TryFindResource("TextForeground") as SolidColorBrush).Color.ToSKColor());
         }
         #endregion
 
@@ -298,12 +270,7 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
 
             HistoricalStatistics = statResult.Result;
             OnPropertyChanged(nameof(HistoricalStatistics));
-            OnPropertyChanged(nameof(OnTimeRateString));
-
-            m_NumberOfEarlyTrains.Value = HistoricalStatistics.NumberOfEarlyTrains;
-            m_NumberOfTrainsOnTime.Value = HistoricalStatistics.NumberOfTrainsOnTime;
-            m_NumberOfTrainsWithShortDelay.Value = HistoricalStatistics.NumberOfTrainsWithShortDelay;
-            m_NumberOfTrainsWithLongDelay.Value = HistoricalStatistics.NumberOfTrainsWithLongDelay;
+            DelayStatistics.Refresh(HistoricalStatistics.DelayStatistics);
 
             Frames = HistoricalStatistics.TimeFrames.Select(f => f.StartTime.ToString()).ToArray();
             NumbersOfTrains = HistoricalStatistics.TimeFrames.Select(f => f.NumberOfTrains).ToArray();
@@ -349,17 +316,6 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         {
             var onTimeRate = OnTimeRates[point.Index];
             return $"{onTimeRate}%";
-        }
-        #endregion
-
-        #region [__SkinChanged]
-        private void __SkinChanged(object sender, System.EventArgs e)
-        {
-            OnPropertyChanged(nameof(ForegroundColor));
-            m_NumberOfEarlyTrains.SetFillColor((App.Current.TryFindResource("DelayBlue") as SolidColorBrush).Color);
-            m_NumberOfTrainsOnTime.SetFillColor((App.Current.TryFindResource("ReadyColor") as SolidColorBrush).Color);
-            m_NumberOfTrainsWithShortDelay.SetFillColor((App.Current.TryFindResource("DelayYellow") as SolidColorBrush).Color);
-            m_NumberOfTrainsWithLongDelay.SetFillColor((App.Current.TryFindResource("DelayRed") as SolidColorBrush).Color);
         }
         #endregion
 

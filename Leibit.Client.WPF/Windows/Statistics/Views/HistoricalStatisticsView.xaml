@@ -9,7 +9,6 @@
                        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
                        mc:Ignorable="d"
                        Caption="Schicht-Bilanz"
-                       Width="800"
                        d:DataContext="{d:DesignInstance vm:HistoricalStatisticsViewModel}">
 
     <controls:LeibitWindow.Resources>
@@ -59,52 +58,7 @@
                     </GroupBox>
 
                     <GroupBox Grid.Column="1" Header="Pünktlichkeit" Padding="10" Margin="5">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                        
-                            <Border Grid.Column="0"
-                                    CornerRadius="4"
-                                    ClipToBounds="True"
-                                    BorderThickness="2"
-                                    BorderBrush="{DynamicResource TextForeground}"
-                                    Height="30"
-                                    Margin="0,5,5,0">
-                                <lvc:CartesianChart LegendPosition="Hidden"
-                                                    SeriesSource="{Binding DelayStatistics}"
-                                                    TooltipPosition="Hidden"
-                                                    Background="{DynamicResource WindowBackground}"
-                                                    DrawMargin="{lvc:Margin '0,0,0,0'}">
-                                    <lvc:CartesianChart.SeriesTemplate>
-                                        <DataTemplate>
-                                            <lvc:XamlStackedRowSeries SeriesName="{Binding Caption}"
-                                                                      Values="{Binding Values}"
-                                                                      Fill="{Binding Fill}"
-                                                                      ShowDataLabels="False"
-                                                                      Padding="0"
-                                                                      Rx="0"
-                                                                      Ry="0"/>
-                                        </DataTemplate>
-                                    </lvc:CartesianChart.SeriesTemplate>
-
-                                    <lvc:CartesianChart.XAxes>
-                                        <lvc:AxesCollection>
-                                            <lvc:XamlAxis IsVisible="False" MinLimit="0" MaxLimit="{Binding HistoricalStatistics.NumberOfTrains}"/>
-                                        </lvc:AxesCollection>
-                                    </lvc:CartesianChart.XAxes>
-
-                                    <lvc:CartesianChart.YAxes>
-                                        <lvc:AxesCollection>
-                                            <lvc:XamlAxis IsVisible="False"/>
-                                        </lvc:AxesCollection>
-                                    </lvc:CartesianChart.YAxes>
-                                </lvc:CartesianChart>
-                            </Border>
-
-                            <TextBlock Grid.Column="1" Text="{Binding OnTimeRateString}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </Grid>
+                        <local:DelayStatisticsView DataContext="{Binding DelayStatistics}"/>
                     </GroupBox>
 
                     <GroupBox Grid.Column="2" Header="Verspätung abgebaut" Padding="10" Margin="5">

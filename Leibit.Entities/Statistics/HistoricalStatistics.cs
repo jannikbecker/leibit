@@ -8,6 +8,7 @@ namespace Leibit.Entities.Statistics
     {
         public HistoricalStatistics()
         {
+            DelayStatistics = new DelayStatistics();
             TimeFrames = [];
             TrainsWithGreatestDelays = [];
             StationsWithGreatestDelays = [];
@@ -15,11 +16,7 @@ namespace Leibit.Entities.Statistics
 
         public ESTW ESTW { get; set; }
         public int NumberOfTrains { get; set; }
-        public int? OnTimeRate { get; set; }
-        public int NumberOfTrainsOnTime { get; set; }
-        public int NumberOfEarlyTrains { get; set; }
-        public int NumberOfTrainsWithShortDelay { get; set; }
-        public int NumberOfTrainsWithLongDelay { get; set; }
+        public DelayStatistics DelayStatistics { get; set; }
         public int DelayReduced { get; set; }
         public int DelayAdded { get; set; }
         public int DelayTotalNet { get; set; }

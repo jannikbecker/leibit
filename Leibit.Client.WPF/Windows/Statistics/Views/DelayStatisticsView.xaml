@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Leibit.Client.WPF.Windows.Statistics.Views.DelayStatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Leibit.Client.WPF.Windows.Statistics.Views"
+             xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.Statistics.ViewModels"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance vm:DelayStatisticsViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="100"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <Border Grid.Column="0"
+                CornerRadius="4"
+                ClipToBounds="True"
+                BorderThickness="2"
+                BorderBrush="{DynamicResource TextForeground}"
+                Height="30"
+                Margin="0,0,5,0">
+            <lvc:CartesianChart LegendPosition="Hidden"
+                                SeriesSource="{Binding DelayStatistics}"
+                                TooltipPosition="Hidden"
+                                Background="{DynamicResource WindowBackground}"
+                                DrawMargin="{lvc:Margin '0,0,0,0'}">
+                <lvc:CartesianChart.SeriesTemplate>
+                    <DataTemplate>
+                        <lvc:XamlStackedRowSeries Values="{Binding Values}"
+                                                  Fill="{Binding Fill}"
+                                                  ShowDataLabels="False"
+                                                  Padding="0"
+                                                  Rx="0"
+                                                  Ry="0"/>
+                    </DataTemplate>
+                </lvc:CartesianChart.SeriesTemplate>
+
+                <lvc:CartesianChart.XAxes>
+                    <lvc:AxesCollection>
+                        <lvc:XamlAxis IsVisible="False" MinLimit="0" MaxLimit="{Binding NumberOfTrains}"/>
+                    </lvc:AxesCollection>
+                </lvc:CartesianChart.XAxes>
+
+                <lvc:CartesianChart.YAxes>
+                    <lvc:AxesCollection>
+                        <lvc:XamlAxis IsVisible="False"/>
+                    </lvc:AxesCollection>
+                </lvc:CartesianChart.YAxes>
+
+                <lvc:CartesianChart.ToolTip>
+                    <ToolTip Padding="5">
+                        <StackPanel Orientation="Vertical">
+                            <Grid Margin="0,2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Rectangle Grid.Row="0" Grid.Column="0" Width="10" Height="10" Fill="{DynamicResource DelayBlue}" RadiusX="2" RadiusY="2" Margin="0,0,8,0"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Vor Plan (&lt; -5 min):" FontSize="12"/>
+                                <TextBlock Grid.Row="0" Grid.Column="2" FontWeight="SemiBold" FontSize="12" Margin="12,0,0,0">
+                                    <Run Text="{Binding NumberOfEarlyTrains, Mode=OneWay}"/>
+                                    <Run Text="Züge"/>
+                                    <Run Text="{Binding EarlyTrainsRateString, StringFormat='({0})', Mode=OneWay}"/>
+                                </TextBlock>
+
+                                <Rectangle Grid.Row="1" Grid.Column="0" Width="10" Height="10" Fill="{DynamicResource ReadyColor}" RadiusX="2" RadiusY="2" Margin="0,0,8,0"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="Pünktlich (≤ +5 min):" FontSize="12"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2" FontWeight="SemiBold" FontSize="12" Margin="12,0,0,0">
+                                    <Run Text="{Binding NumberOfTrainsOnTime, Mode=OneWay}"/>
+                                    <Run Text="Züge"/>
+                                    <Run Text="{Binding TrainsOnTimeRateString, StringFormat='({0})', Mode=OneWay}"/>
+                                </TextBlock>
+
+                                <Rectangle Grid.Row="2" Grid.Column="0" Width="10" Height="10" Fill="{DynamicResource DelayYellow}" RadiusX="2" RadiusY="2" Margin="0,0,8,0"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="Leicht verspätet (≤ +10 min):" FontSize="12"/>
+                                <TextBlock Grid.Row="2" Grid.Column="2" FontWeight="SemiBold" FontSize="12" Margin="12,0,0,0">
+                                    <Run Text="{Binding NumberOfTrainsWithShortDelay, Mode=OneWay}"/>
+                                    <Run Text="Züge"/>
+                                    <Run Text="{Binding TrainsWithShortDelayRateString, StringFormat='({0})', Mode=OneWay}"/>
+                                </TextBlock>
+
+                                <Rectangle Grid.Row="3" Grid.Column="0" Width="10" Height="10" Fill="{DynamicResource DelayRed}" RadiusX="2" RadiusY="2" Margin="0,0,8,0"/>
+                                <TextBlock Grid.Row="3" Grid.Column="1" Text="Verspätet (> +10 min):" FontSize="12"/>
+                                <TextBlock Grid.Row="3" Grid.Column="2" FontWeight="SemiBold" FontSize="12" Margin="12,0,0,0">
+                                    <Run Text="{Binding NumberOfTrainsWithLongDelay, Mode=OneWay}"/>
+                                    <Run Text="Züge"/>
+                                    <Run Text="{Binding TrainsWithLongDelayRateString, StringFormat='({0})', Mode=OneWay}"/>
+                                </TextBlock>
+                            </Grid>
+                        </StackPanel>
+                    </ToolTip>
+                </lvc:CartesianChart.ToolTip>
+            </lvc:CartesianChart>
+        </Border>
+
+        <TextBlock Grid.Row="1" Grid.Column="5" Text="{Binding OverallRateString}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+    </Grid>
+</UserControl>

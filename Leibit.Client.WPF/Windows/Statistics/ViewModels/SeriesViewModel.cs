@@ -6,31 +6,22 @@ using System.Windows.Media;
 
 namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
 {
-    public class PieDataViewModel<T> : ViewModelBase
+    public class SeriesViewModel<T> : ViewModelBase
     {
         #region - Ctor -
-        public PieDataViewModel(string caption, Color fill)
+        public SeriesViewModel(Color fill)
         {
-            Caption = caption;
             SetFillColor(fill);
         }
 
-        public PieDataViewModel(string caption, Color fill, T value)
-            : this(caption, fill)
+        public SeriesViewModel(Color fill, T value)
+            : this(fill)
         {
             Value = value;
         }
         #endregion
 
         #region - Properties -
-
-        #region [Caption]
-        public string Caption
-        {
-            get => Get<string>();
-            set => Set(value);
-        }
-        #endregion
 
         #region [Value]
         public T Value
