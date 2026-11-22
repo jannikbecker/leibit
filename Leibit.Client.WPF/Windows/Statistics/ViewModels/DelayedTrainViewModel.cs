@@ -1,6 +1,7 @@
 ﻿using Leibit.Core.Client.BaseClasses;
 using Leibit.Core.Common;
 using Leibit.Entities.LiveData;
+using Leibit.Entities.Statistics;
 using System.Linq;
 
 namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
@@ -8,13 +9,15 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
     public class DelayedTrainViewModel : ViewModelBase
     {
         #region - Ctor -
-        public DelayedTrainViewModel(TrainInformation train)
+        public DelayedTrainViewModel(TrainDelayStatistic statistic)
         {
-            CurrentTrain = train;
-            TrainType = train.Train.Type;
-            TrainNumber = train.Train.Number;
-            DelayString = $"+{train.Delay}";
-            Reasons = string.Join(",", train.Schedules.SelectMany(s => s.Delays).Where(d => d.Reason.IsNotNullOrEmpty()).Select(d => $"{d.Reason} (+{d.Minutes} von {d.Schedule.Schedule.Station.ShortSymbol})"));
+            CurrentTrain = statistic.Train;
+            TrainType = CurrentTrain.Train.Type;
+            TrainNumber = CurrentTrain.Train.Number;
+            EntryDelayString = __FormatDelay(statistic.EntryDelay);
+            ExitDelayString = __FormatDelay(statistic.ExitDelay);
+            NetDelayString = __FormatDelay(statistic.NetDelay);
+            Reasons = string.Join(",", CurrentTrain.Schedules.SelectMany(s => s.Delays).Where(d => d.Reason.IsNotNullOrEmpty()).Select(d => $"{d.Reason} (+{d.Minutes} von {d.Schedule.Schedule.Station.ShortSymbol})"));
         }
         #endregion
 
@@ -44,8 +47,24 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         }
         #endregion
 
-        #region [DelayString]
-        public string DelayString
+        #region [EntryDelayString]
+        public string EntryDelayString
+        {
+            get => Get<string>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [ExitDelayString]
+        public string ExitDelayString
+        {
+            get => Get<string>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [NetDelayString]
+        public string NetDelayString
         {
             get => Get<string>();
             private set => Set(value);
@@ -57,6 +76,20 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         {
             get => Get<string>();
             private set => Set(value);
+        }
+        #endregion
+
+        #endregion
+
+        #region - Private methods -
+
+        #region [__FormatDelay]
+        private string __FormatDelay(int delay)
+        {
+            if (delay < 0)
+                return delay.ToString();
+            else
+                return $"+{delay}";
         }
         #endregion
 

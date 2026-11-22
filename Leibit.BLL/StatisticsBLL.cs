@@ -58,6 +58,8 @@ namespace Leibit.BLL
                 if (type == eHistoricalStatisticsType.OnlyFreightFrains)
                     trains = trains.Where(t => !t.Train.Schedules.Any(s => s.TrainType.IsPassengerTrain())).ToList();
 
+                var trainDelayStatistics = new List<TrainDelayStatistic>();
+
                 foreach (var train in trains)
                 {
                     var schedules = train.Schedules.Where(s => s.Schedule.Station.ESTW == estw);
@@ -114,16 +116,25 @@ namespace Leibit.BLL
                         result.DelayReduced += netDelay;
                     else
                         result.DelayAdded += netDelay;
+
+                    trainDelayStatistics.Add(new TrainDelayStatistic
+                    {
+                        Train = train,
+                        EntryDelay = entryDelay,
+                        ExitDelay = exitDelay,
+                        NetDelay = netDelay,
+                    });
                 }
 
                 result.NumberOfTrains = trains.Count;
+                result.TrainsWithGreatestDelays = trainDelayStatistics.OrderByDescending(s => s.NetDelay).Take(10).ToList();
 
                 var allSchedules = trains.SelectMany(t => t.Schedules.Where(s => s.Schedule.Station.ESTW == estw)).ToList();
 
                 var arrivals = allSchedules.Where(s => s.LiveArrival != null && s.Schedule.Arrival != null)
                                            .Select(s => new
                                            {
-                                               FrameStartTime = new LeibitTime(s.LiveArrival.Hour, (s.LiveArrival.Minute / frameSize) * frameSize),
+                                               FrameStartTime = new LeibitTime(s.LiveArrival.Day, s.LiveArrival.Hour, (s.LiveArrival.Minute / frameSize) * frameSize),
                                                TrainNumber = s.Schedule.Train.Number,
                                                Delay = Math.Max(0, (s.LiveArrival - s.Schedule.Arrival).TotalMinutes),
                                            });
@@ -131,7 +142,7 @@ namespace Leibit.BLL
                 var departures = allSchedules.Where(s => s.LiveDeparture != null && s.Schedule.Departure != null)
                                              .Select(s => new
                                              {
-                                                 FrameStartTime = new LeibitTime(s.LiveDeparture.Hour, (s.LiveDeparture.Minute / frameSize) * frameSize),
+                                                 FrameStartTime = new LeibitTime(s.LiveDeparture.Day, s.LiveDeparture.Hour, (s.LiveDeparture.Minute / frameSize) * frameSize),
                                                  TrainNumber = s.Schedule.Train.Number,
                                                  Delay = Math.Max(0, (s.LiveDeparture - s.Schedule.Departure).TotalMinutes),
                                              });
@@ -170,8 +181,6 @@ namespace Leibit.BLL
 
                     result.TimeFrames.Add(resultFrame);
                 }
-
-                result.TrainsWithGreatestDelays = trains.Where(t => t.Delay > 0).OrderByDescending(t => t.Delay).Take(10).ToList();
 
                 result.StationsWithGreatestDelays = allSchedules.SelectMany(s => s.Delays)
                                                                 .GroupBy(d => d.Schedule.Schedule.Station)

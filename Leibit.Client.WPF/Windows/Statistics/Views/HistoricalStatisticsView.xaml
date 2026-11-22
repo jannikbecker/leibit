@@ -181,7 +181,9 @@
                             <controls:LeibitDataGrid.Columns>
                                 <controls:LeibitDataGridColumn Header="Gattung" FieldName="TrainType" />
                                 <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber"/>
-                                <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayString"/>
+                                <controls:LeibitDataGridColumn Header="Vsp ank" FieldName="EntryDelayString"/>
+                                <controls:LeibitDataGridColumn Header="Vsp abg" FieldName="ExitDelayString"/>
+                                <controls:LeibitDataGridColumn Header="&#x0394;Vsp" FieldName="ExitDelayString"/>
                                 <controls:LeibitDataGridColumn Header="Grund" FieldName="Reasons"/>
                             </controls:LeibitDataGrid.Columns>
                         </controls:LeibitDataGrid>
