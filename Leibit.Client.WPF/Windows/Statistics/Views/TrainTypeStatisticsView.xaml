@@ -13,6 +13,7 @@
 
     <UserControl.Resources>
         <conv:VisibilityConverter x:Key="VisibilityConverter" />
+        <local:DelayConverter x:Key="DelayConverter"/>
     </UserControl.Resources>
 
     <Grid>
@@ -38,7 +39,7 @@
         <Rectangle Grid.Column="1" Grid.RowSpan="2" Fill="{DynamicResource TextForeground}" Width="1" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
 
         <TextBlock Grid.Row="0" Grid.Column="2" Text="Gesamtverspätung"/>
-        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding DelaySumString}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding CurrentStatistics.DelaySum, Converter={StaticResource DelayConverter}}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
         <Rectangle Grid.Column="3" Grid.RowSpan="2" Fill="{DynamicResource TextForeground}" Width="1" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
 
@@ -65,8 +66,7 @@
                                                   ShowDataLabels="False"
                                                   Padding="0"
                                                   Rx="0"
-                                                  Ry="0"
-                                                  ToolTipService.ToolTip="Fooo"/>
+                                                  Ry="0"/>
                     </DataTemplate>
                 </lvc:CartesianChart.SeriesTemplate>
 
@@ -91,7 +91,7 @@
         <TextBlock Grid.Row="0" Grid.Column="7" Text="Größte Verspätung"/>
         <TextBlock Grid.Row="1" Grid.Column="7" FontSize="24" Visibility="{Binding HasDelayedTrains, Converter={StaticResource VisibilityConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Hyperlink Command="{Binding ShowTrainWithGreatestDelayScheduleCommand}"><Run Text="{Binding CurrentStatistics.TrainWithGreatestDelay.Train.Number, Mode=OneWay}"/></Hyperlink>
-            <Run Text="("/><Run Text="{Binding GreatestDelayString, Mode=OneWay}"/><Run Text=")"/>
+            <Run Text="("/><Run Text="{Binding CurrentStatistics.TrainWithGreatestDelay.Delay, Mode=OneWay, Converter={StaticResource DelayConverter}}"/><Run Text=")"/>
         </TextBlock>
     </Grid>
 </UserControl>

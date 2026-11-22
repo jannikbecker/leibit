@@ -49,36 +49,10 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         }
         #endregion
 
-        #region [DelaySumString]
-        public string DelaySumString
-        {
-            get
-            {
-                if (CurrentStatistics == null)
-                    return null;
-
-                return __FormatDelay(CurrentStatistics.DelaySum);
-            }
-        }
-        #endregion
-
         #region [HasDelayedTrains]
         public bool HasDelayedTrains
         {
             get => CurrentStatistics.TrainWithGreatestDelay != null;
-        }
-        #endregion
-
-        #region [GreatestDelayString]
-        public string GreatestDelayString
-        {
-            get
-            {
-                if (CurrentStatistics?.TrainWithGreatestDelay == null)
-                    return null;
-
-                return __FormatDelay(CurrentStatistics.TrainWithGreatestDelay.Delay);
-            }
         }
         #endregion
 
@@ -122,10 +96,8 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         {
             CurrentStatistics = statistics;
             OnPropertyChanged(nameof(CurrentStatistics));
-            OnPropertyChanged(nameof(DelaySumString));
             OnPropertyChanged(nameof(OnTimeRateString));
             OnPropertyChanged(nameof(HasDelayedTrains));
-            OnPropertyChanged(nameof(GreatestDelayString));
             m_NumberOfEarlyTrains.Value = statistics.NumberOfEarlyTrains;
             m_NumberOfTrainsOnTime.Value = statistics.NumberOfTrainsOnTime;
             m_NumberOfTrainsWithShortDelay.Value = statistics.NumberOfTrainsWithShortDelay;
@@ -136,16 +108,6 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         #endregion
 
         #region - Private methods -
-
-        #region [__FormatDelay]
-        private string __FormatDelay(int delay)
-        {
-            if (delay < 0)
-                return $"{delay} min";
-            else
-                return $"+{delay} min";
-        }
-        #endregion
 
         #region [__SkinChanged]
         private void __SkinChanged(object sender, System.EventArgs e)

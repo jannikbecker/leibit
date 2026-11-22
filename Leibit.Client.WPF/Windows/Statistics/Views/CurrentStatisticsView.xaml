@@ -8,7 +8,7 @@
                        xmlns:vm="clr-namespace:Leibit.Client.WPF.Windows.Statistics.ViewModels"
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        mc:Ignorable="d"
-                       Caption="Aktuelle Statistik"
+                       Caption="Live-Statistik"
                        ResizeMode="ResizeAll"
                        d:DataContext="{d:DesignInstance vm:CurrentStatisticsViewModel}">
     <Grid>

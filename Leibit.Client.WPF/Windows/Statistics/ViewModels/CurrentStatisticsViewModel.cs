@@ -37,7 +37,6 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
 
             if (ESTWList.Count == 1)
                 SelectedESTW = ESTWList.Single();
-
         }
         #endregion
 

@@ -127,8 +127,8 @@
                         </Style>
                     </MenuItem.ItemContainerStyle>
                     <MenuItem.Items>
-                        <MenuItem Header="Aktuelle Statistiken" Command="{Binding CurrentStatisticsCommand}"/>
-                        <MenuItem Header="Historische Statistiken" Command="{Binding HistoricalStatisticsCommand}"/>
+                        <MenuItem Header="Live-Statistik" Command="{Binding CurrentStatisticsCommand}"/>
+                        <MenuItem Header="Schicht-Bilanz" Command="{Binding HistoricalStatisticsCommand}"/>
                     </MenuItem.Items>
                     <MenuItem.Icon>
                         <Image Source="{DynamicResource imgStatistics}" />
@@ -266,12 +266,12 @@
                                          ToolTipService.ToolTip="Statistiken">
                     <controls:DropDownButton.DropDownContent>
                         <StackPanel Orientation="Vertical">
-                            <Button Content="Aktuelle Statistiken"
+                            <Button Content="Live-Statistik"
                                     Command="{Binding Data.CurrentStatisticsCommand, Source={StaticResource proxy}}"
                                     Style="{DynamicResource SimpleMenuButtonStyle}"
                                     Padding="5,2,5,2"
                                     HorizontalContentAlignment="Left"/>
-                            <Button Content="Historische Statistiken"
+                            <Button Content="Schicht-Bilanz"
                                     Command="{Binding Data.HistoricalStatisticsCommand, Source={StaticResource proxy}}"
                                     Style="{DynamicResource SimpleMenuButtonStyle}"
                                     Padding="5,2,5,2"

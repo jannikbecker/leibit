@@ -82,4 +82,11 @@ namespace Leibit.Entities
         Fix = 1,
         Random = 2,
     }
+
+    public enum eHistoricalStatisticsType
+    {
+        All = 0,
+        OnlyPassengerTrains = 1,
+        OnlyFreightFrains = 2,
+    }
 }

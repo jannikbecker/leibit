@@ -40,7 +40,7 @@ namespace Leibit.BLL
         #endregion
 
         #region [GetHistoricalStatistics]
-        public OperationResult<HistoricalStatistics> GetHistoricalStatistics(ESTW estw, int frameSize)
+        public OperationResult<HistoricalStatistics> GetHistoricalStatistics(ESTW estw, int frameSize, eHistoricalStatisticsType type)
         {
             try
             {
@@ -48,40 +48,115 @@ namespace Leibit.BLL
                 result.ESTW = estw;
 
                 var trains = estw.Area.LiveTrains.Values.Where(t => t.LastModification.ContainsKey(estw.Id)).ToList();
+
+                if (type == eHistoricalStatisticsType.OnlyPassengerTrains)
+                    trains = trains.Where(t => t.Train.Type.IsPassengerTrain()).ToList();
+                if (type == eHistoricalStatisticsType.OnlyFreightFrains)
+                    trains = trains.Where(t => !t.Train.Type.IsPassengerTrain()).ToList();
+
                 result.NumberOfTrains = trains.Count;
+                result.NumberOfEarlyTrains = trains.Count(t => t.Delay < -5);
+                result.NumberOfTrainsOnTime = trains.Count(t => t.Delay >= -5 && t.Delay <= 5);
+                result.NumberOfTrainsWithShortDelay = trains.Count(t => t.Delay > 5 && t.Delay <= 10);
+                result.NumberOfTrainsWithLongDelay = trains.Count(t => t.Delay > 10);
 
-                var departedTrains = trains.Where(t => __IsDeparted(t));
-                result.AverageDelay = Math.Round(departedTrains.Average(t => t.Delay), 2);
-                result.TrainWithSmallestDelay = departedTrains.OrderBy(t => t.Delay).FirstOrDefault();
-                result.TrainWithGreatestDelay = departedTrains.OrderByDescending(t => t.Delay).FirstOrDefault();
-                result.NumberOfEarlyTrains = departedTrains.Count(t => t.Delay < -5);
-                result.NumberOfTrainsOnTime = departedTrains.Count(t => t.Delay >= -5 && t.Delay <= 5);
-                result.NumberOfTrainsWithShortDelay = departedTrains.Count(t => t.Delay > 5 && t.Delay <= 10);
-                result.NumberOfTrainsWithLongDelay = departedTrains.Count(t => t.Delay > 10);
-
-                var trainFrames = new Dictionary<LeibitTime, List<int>>();
-                var delayFrames = new Dictionary<LeibitTime, List<int>>();
+                if (result.NumberOfTrains > 0)
+                    result.OnTimeRate = 100 * (result.NumberOfTrainsOnTime + result.NumberOfEarlyTrains) / result.NumberOfTrains;
 
                 foreach (var train in trains)
                 {
-                    foreach (var schedule in train.Schedules)
+                    var schedules = train.Schedules.Where(s => s.Schedule.Station.ESTW == estw).ToList();
+                    var firstSchedule = schedules.FirstOrDefault();
+                    var lastSchedule = schedules.LastOrDefault();
+
+                    if (firstSchedule == null || lastSchedule == null)
+                        continue;
+
+                    int entryDelay, exitDelay;
+
+                    if (firstSchedule.Schedule.Handling == eHandling.Start)
+                        entryDelay = 0;
+
+                    var referenceTime = firstSchedule.Schedule.Arrival ?? firstSchedule.Schedule.Departure;
+
+                    if (firstSchedule.LiveArrival != null && referenceTime != null)
+                        entryDelay = Math.Max(0, (firstSchedule.LiveArrival - referenceTime).TotalMinutes);
+                    else
+                        continue;
+
+                    if (lastSchedule.Schedule.Handling == eHandling.Destination)
                     {
-                        if (schedule.LiveDeparture != null && schedule.Schedule.Departure != null)
-                            __AddToTimeFrame(train, schedule.LiveDeparture, schedule.Schedule.Departure, frameSize, trainFrames, delayFrames);
-                        else if (schedule.LiveArrival != null && schedule.Schedule.Arrival != null)
-                            __AddToTimeFrame(train, schedule.LiveArrival, schedule.Schedule.Arrival, frameSize, trainFrames, delayFrames);
+                        if (lastSchedule.LiveArrival != null && lastSchedule.Schedule.Arrival != null)
+                            exitDelay = Math.Max(0, (firstSchedule.LiveArrival - lastSchedule.Schedule.Arrival).TotalMinutes);
+                        else
+                            continue;
                     }
+                    else
+                    {
+                        if (lastSchedule.LiveDeparture != null && lastSchedule.Schedule.Departure != null)
+                            exitDelay = Math.Max(0, (firstSchedule.LiveDeparture - lastSchedule.Schedule.Departure).TotalMinutes);
+                        else
+                            continue;
+                    }
+
+                    var netDelay = exitDelay - entryDelay;
+                    result.DelayTotalNet += netDelay;
+
+                    if (netDelay < 0)
+                        result.DelayReduced += netDelay;
+                    else
+                        result.DelayAdded += netDelay;
                 }
 
-                foreach (var trainFrame in trainFrames.OrderBy(x => x.Key))
+                var allSchedules = trains.SelectMany(t => t.Schedules.Where(s => s.Schedule.Station.ESTW == estw)).ToList();
+
+                var arrivals = allSchedules.Where(s => s.LiveArrival != null && s.Schedule.Arrival != null)
+                                           .Select(s => new
+                                           {
+                                               FrameStartTime = new LeibitTime(s.LiveArrival.Hour, (s.LiveArrival.Minute / frameSize) * frameSize),
+                                               TrainNumber = s.Schedule.Train.Number,
+                                               Delay = Math.Max(0, (s.LiveArrival - s.Schedule.Arrival).TotalMinutes),
+                                           });
+
+                var departures = allSchedules.Where(s => s.LiveDeparture != null && s.Schedule.Departure != null)
+                                             .Select(s => new
+                                             {
+                                                 FrameStartTime = new LeibitTime(s.LiveDeparture.Hour, (s.LiveDeparture.Minute / frameSize) * frameSize),
+                                                 TrainNumber = s.Schedule.Train.Number,
+                                                 Delay = Math.Max(0, (s.LiveDeparture - s.Schedule.Departure).TotalMinutes),
+                                             });
+
+                var frames = arrivals.Union(departures).GroupBy(x => x.FrameStartTime).OrderBy(x => x.Key).ToList();
+
+                foreach (var frame in frames)
                 {
-                    var frame = new StatisticsTimeFrame();
-                    frame.StartTime = trainFrame.Key;
-                    frame.EndTime = trainFrame.Key.AddMinutes(frameSize);
-                    frame.NumberOfTrains = trainFrame.Value.Count;
-                    frame.AverageDelay = Math.Round(delayFrames[trainFrame.Key].Average(), 2);
-                    result.TimeFrames.Add(frame);
+                    var resultFrame = new StatisticsTimeFrame();
+                    resultFrame.StartTime = frame.Key;
+                    resultFrame.EndTime = frame.Key.AddMinutes(frameSize);
+
+                    var trainsInFrame = frame.GroupBy(x => x.TrainNumber).Select(x => new
+                    {
+                        TrainNumber = x.Key,
+                        AverageDelay = x.Average(y => y.Delay),
+                    }).ToList();
+
+                    resultFrame.NumberOfTrains = trainsInFrame.Count;
+                    resultFrame.DelaySum = Math.Round(trainsInFrame.Sum(x => x.AverageDelay), 2);
+
+                    if (trainsInFrame.Count > 0)
+                        resultFrame.OnTimeRate = 100 * trainsInFrame.Count(x => x.AverageDelay <= 5) / trainsInFrame.Count;
+
+                    result.TimeFrames.Add(resultFrame);
                 }
+
+                result.TrainsWithGreatestDelays = trains.Where(t => t.Delay > 0).OrderByDescending(t => t.Delay).Take(10).ToList();
+
+                result.StationsWithGreatestDelays = allSchedules.SelectMany(s => s.Delays)
+                                                                .GroupBy(d => d.Schedule.Schedule.Station)
+                                                                .Select(x => new StationDelayStatistic { Station = x.Key, DelaySum = x.Sum(y => y.Minutes) })
+                                                                .OrderByDescending(x => x.DelaySum)
+                                                                .Take(10)
+                                                                .ToList();
 
                 return OperationResult<HistoricalStatistics>.Ok(result);
             }
@@ -95,41 +170,6 @@ namespace Leibit.BLL
         #endregion
 
         #region - Private methods -
-
-        #region [__IsArrived]
-        private bool __IsArrived(TrainInformation train)
-        {
-            var arrivalSchedule = train.Schedules.FirstOrDefault(s => s.Schedule.Handling == eHandling.Destination);
-            return arrivalSchedule != null && arrivalSchedule.IsArrived;
-        }
-        #endregion
-
-        #region [__IsDeparted]
-        private bool __IsDeparted(TrainInformation train)
-        {
-            var departureSchedule = train.Schedules.FirstOrDefault(s => s.Schedule.Handling == eHandling.Start);
-            return departureSchedule == null || departureSchedule.IsDeparted;
-        }
-        #endregion
-
-        #region [__AddToTimeFrame]
-        private void __AddToTimeFrame(TrainInformation train, LeibitTime liveTime, LeibitTime scheduledTime, int frameSize, Dictionary<LeibitTime, List<int>> trainFrames, Dictionary<LeibitTime, List<int>> delayFrames)
-        {
-            var frameStartTime = new LeibitTime(liveTime.Hour, (liveTime.Minute / frameSize) * frameSize);
-
-            if (!trainFrames.TryGetValue(frameStartTime, out var trainFrame))
-                trainFrames[frameStartTime] = [train.Train.Number];
-            else if (!trainFrame.Contains(train.Train.Number))
-                trainFrame.Add(train.Train.Number);
-
-            var delay = (liveTime - scheduledTime).TotalMinutes;
-
-            if (delayFrames.TryGetValue(frameStartTime, out var delayFrame))
-                delayFrame.Add(delay);
-            else
-                delayFrames[frameStartTime] = [delay];
-        }
-        #endregion
 
         #region [__CalculateTrainTypeStatistics]
         private TrainTypeStatistics __CalculateTrainTypeStatistics(List<TrainInformation> trains)

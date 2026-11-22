@@ -8,9 +8,14 @@
                        xmlns:controls="clr-namespace:Leibit.Controls;assembly=Leibit.Controls.WPF"
                        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
                        mc:Ignorable="d"
-                       Caption="Historische Statistik"
+                       Caption="Schicht-Bilanz"
                        Width="800"
                        d:DataContext="{d:DesignInstance vm:HistoricalStatisticsViewModel}">
+
+    <controls:LeibitWindow.Resources>
+        <local:DelayConverter x:Key="DelayConverter"/>
+    </controls:LeibitWindow.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,157 +29,221 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10,10,0">
             <TextBlock Text="ESTW" Margin="0,0,10,0" VerticalAlignment="Center"/>
-            <ComboBox ItemsSource="{Binding ESTWList}" SelectedItem="{Binding SelectedESTW}" DisplayMemberPath="Name" MinWidth="100" Margin="0,0,50,0" />
+            <ComboBox ItemsSource="{Binding ESTWList}" SelectedItem="{Binding SelectedESTW, Mode=TwoWay}" DisplayMemberPath="Name" MinWidth="100" Margin="0,0,50,0" />
 
-            <TextBlock Text="Skalierung" Margin="0,0,10,0" VerticalAlignment="Center"/>
-            <ComboBox SelectedValue="{Binding FrameSize, Mode=TwoWay}" SelectedValuePath="Content">
-                <ComboBoxItem>5</ComboBoxItem>
-                <ComboBoxItem>10</ComboBoxItem>
-                <ComboBoxItem>15</ComboBoxItem>
-                <ComboBoxItem>20</ComboBoxItem>
-                <ComboBoxItem>30</ComboBoxItem>
-                <ComboBoxItem>60</ComboBoxItem>
-            </ComboBox>
+            <TextBlock Text="Filter" Margin="0,0,10,0" VerticalAlignment="Center"/>
+            <ComboBox ItemsSource="{Binding StatisticTypes}" SelectedItem="{Binding SelectedStatisticType, Mode=TwoWay}" DisplayMemberPath="Name"/>
         </StackPanel>
 
-        <Rectangle Grid.Row="1" Height="1" Fill="{DynamicResource TextForeground}" Margin="10"/>
+        <Rectangle Grid.Row="1" Height="1" Fill="{DynamicResource TextForeground}" Margin="5,10"/>
 
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <GroupBox Grid.Row="0" Grid.Column="0" Header="Anzahl Züge" Padding="10" Margin="10,0">
-                    <TextBlock Text="{Binding HistoricalStatistics.NumberOfTrains}" FontSize="36"/>
-                </GroupBox>
+                    <GroupBox Grid.Column="0" Header="Anzahl Züge" Padding="10" Margin="5">
+                        <TextBlock Text="{Binding HistoricalStatistics.NumberOfTrains}" FontSize="24"/>
+                    </GroupBox>
 
-                <GroupBox Grid.Row="0" Grid.Column="1" Header="&#x2300; Verspätung" Padding="10" Margin="10,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding HistoricalStatistics.AverageDelay}" FontSize="36" Margin="0,0,10,0"/>
-                        <TextBlock Text="min" VerticalAlignment="Bottom" FontSize="16" Margin="0,0,0,5"/>
-                    </StackPanel>
-                </GroupBox>
-
-                <GroupBox Grid.Row="0" Grid.Column="2" Header="Kleinste Verspätung" Padding="10" Margin="10,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding HistoricalStatistics.TrainWithSmallestDelay.Delay}" FontSize="36" Margin="0,0,10,0"/>
-                        <TextBlock VerticalAlignment="Bottom" FontSize="16" Margin="0,0,0,5">
-                        <Run Text="("/><Hyperlink Command="{Binding ShowTrainWithSmallestDelayScheduleCommand}"><Run Text="{Binding HistoricalStatistics.TrainWithSmallestDelay.Train.Number, Mode=OneWay}"/></Hyperlink><Run Text=")"/>
-                        </TextBlock>
-                    </StackPanel>
-                </GroupBox>
-
-                <GroupBox Grid.Row="0" Grid.Column="3" Header="Größte Verspätung" Padding="10" Margin="10,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding HistoricalStatistics.TrainWithGreatestDelay.Delay}" FontSize="36" Margin="0,0,10,0"/>
-                        <TextBlock VerticalAlignment="Bottom" FontSize="16" Margin="0,0,0,5">
-                        <Run Text="("/><Hyperlink Command="{Binding ShowTrainWithGreatestDelayScheduleCommand}"><Run Text="{Binding HistoricalStatistics.TrainWithGreatestDelay.Train.Number, Mode=OneWay}"/></Hyperlink><Run Text=")"/>
-                        </TextBlock>
-                    </StackPanel>
-                </GroupBox>
-
-                <Expander Grid.Row="1" Grid.ColumnSpan="4" IsExpanded="True" Padding="10">
-                    <Expander.Header>
-                        <Grid Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}}">
+                    <GroupBox Grid.Column="1" Header="Pünktlichkeit" Padding="10" Margin="5">
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Column="0" Text="Verspätungsverteilung" Margin="0,0,10,0"/>
-                            <Rectangle Grid.Column="1" Fill="{DynamicResource TextForeground}" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Expander.Header>
-                    
-                    <lvc:PieChart SeriesSource="{Binding DelayStatistics}"
-                                  Width="400"
-                                  Height="200"
-                                  LegendPosition="Right"
-                                  LegendTextPaint="{Binding ForegroundColor}"
-                                  TooltipPosition="Center"
-                                  Background="{DynamicResource WindowBackground}">
-                        <lvc:PieChart.SeriesTemplate>
-                            <DataTemplate>
-                                <lvc:XamlPieSeries SeriesName="{Binding Caption}"
-                                                   Values="{Binding Values}"
-                                                   Fill="{Binding Fill}"
-                                                   MaxRadialColumnWidth="60"
-                                                   HoverPushout="0"/>
-                            </DataTemplate>
-                        </lvc:PieChart.SeriesTemplate>
-                    </lvc:PieChart>
-                </Expander>
-
-                <Expander x:Name="numberOfTrains" Grid.Row="2" Grid.ColumnSpan="4" IsExpanded="True" Padding="10">
-                    <Expander.Header>
-                        <Grid Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}}">
-                            <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
+                        
+                            <Border Grid.Column="0"
+                                    CornerRadius="4"
+                                    ClipToBounds="True"
+                                    BorderThickness="2"
+                                    BorderBrush="{DynamicResource TextForeground}"
+                                    Height="30"
+                                    Margin="0,5,5,0">
+                                <lvc:CartesianChart LegendPosition="Hidden"
+                                                    SeriesSource="{Binding DelayStatistics}"
+                                                    TooltipPosition="Hidden"
+                                                    Background="{DynamicResource WindowBackground}"
+                                                    DrawMargin="{lvc:Margin '0,0,0,0'}">
+                                    <lvc:CartesianChart.SeriesTemplate>
+                                        <DataTemplate>
+                                            <lvc:XamlStackedRowSeries SeriesName="{Binding Caption}"
+                                                                      Values="{Binding Values}"
+                                                                      Fill="{Binding Fill}"
+                                                                      ShowDataLabels="False"
+                                                                      Padding="0"
+                                                                      Rx="0"
+                                                                      Ry="0"/>
+                                        </DataTemplate>
+                                    </lvc:CartesianChart.SeriesTemplate>
 
-                            <TextBlock Grid.Column="0" Text="Anzahl Züge" Margin="0,0,10,0"/>
-                            <Rectangle Grid.Column="1" Fill="{DynamicResource TextForeground}" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                                    <lvc:CartesianChart.XAxes>
+                                        <lvc:AxesCollection>
+                                            <lvc:XamlAxis IsVisible="False" MinLimit="0" MaxLimit="{Binding HistoricalStatistics.NumberOfTrains}"/>
+                                        </lvc:AxesCollection>
+                                    </lvc:CartesianChart.XAxes>
+
+                                    <lvc:CartesianChart.YAxes>
+                                        <lvc:AxesCollection>
+                                            <lvc:XamlAxis IsVisible="False"/>
+                                        </lvc:AxesCollection>
+                                    </lvc:CartesianChart.YAxes>
+                                </lvc:CartesianChart>
+                            </Border>
+
+                            <TextBlock Grid.Column="1" Text="{Binding OnTimeRateString}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
-                    </Expander.Header>
+                    </GroupBox>
 
-                    <lvc:CartesianChart Width="{Binding ActualWidth, ElementName=numberOfTrains}"
-                                Height="200"
-                                Background="{DynamicResource WindowBackground}">
-                        <lvc:CartesianChart.XAxes>
-                            <lvc:AxesCollection>
-                                <lvc:XamlAxis Labels="{Binding Frames}"/>
-                            </lvc:AxesCollection>
-                        </lvc:CartesianChart.XAxes>
+                    <GroupBox Grid.Column="2" Header="Verspätung abgebaut" Padding="10" Margin="5">
+                        <TextBlock Text="{Binding HistoricalStatistics.DelayReduced, Converter={StaticResource DelayConverter}}" FontSize="24"/>
+                    </GroupBox>
 
-                        <lvc:CartesianChart.Series>
-                            <lvc:SeriesCollection>
-                                <lvc:XamlLineSeries Values="{Binding NumbersOfTrains}" GeometrySize="0" XToolTipLabelFormatter="{Binding ToolTipFormatterFunc}"/>
-                            </lvc:SeriesCollection>
-                        </lvc:CartesianChart.Series>
-                    </lvc:CartesianChart>
-                </Expander>
+                    <GroupBox Grid.Column="3" Header="Verspätung aufgebaut" Padding="10" Margin="5">
+                        <TextBlock Text="{Binding HistoricalStatistics.DelayAdded, Converter={StaticResource DelayConverter}}" FontSize="24"/>
+                    </GroupBox>
 
-                <Expander x:Name="averageDelay" Grid.Row="3" Grid.ColumnSpan="4" IsExpanded="True" Padding="10">
-                    <Expander.Header>
-                        <Grid Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Expander}}}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                    <GroupBox Grid.Column="4" Header="Verspätungsbilanz" Padding="10" Margin="5">
+                        <TextBlock Text="{Binding HistoricalStatistics.DelayTotalNet, Converter={StaticResource DelayConverter}}" FontSize="24"/>
+                    </GroupBox>
+                </Grid>
 
-                            <TextBlock Grid.Column="0" Text="&#x2300; Verspätung" Margin="0,0,10,0"/>
-                            <Rectangle Grid.Column="1" Fill="{DynamicResource TextForeground}" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Expander.Header>
+                <GroupBox Grid.Row="1" Header="Zeitlicher Verlauf" Margin="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <lvc:CartesianChart Width="{Binding ActualWidth, ElementName=averageDelay}"
-                                Height="200"
-                                Background="{DynamicResource WindowBackground}">
-                        <lvc:CartesianChart.XAxes>
-                            <lvc:AxesCollection>
-                                <lvc:XamlAxis Labels="{Binding Frames}"/>
-                            </lvc:AxesCollection>
-                        </lvc:CartesianChart.XAxes>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+                            <CheckBox Content="Anzahl Züge" IsChecked="{Binding ShowNumbersOfTrains, Mode=TwoWay}" Margin="0,0,20,0" VerticalAlignment="Center" />
+                            <CheckBox Content="Gesamtverspätung" IsChecked="{Binding ShowDelays, Mode=TwoWay}" Margin="0,0,20,0" VerticalAlignment="Center" />
+                            <CheckBox Content="Pünktlichkeit" IsChecked="{Binding ShowOnTimeRates, Mode=TwoWay}" Margin="0,0,20,0" VerticalAlignment="Center" />
 
-                        <lvc:CartesianChart.Series>
-                            <lvc:SeriesCollection>
-                                <lvc:XamlLineSeries Values="{Binding AverageDelays}" GeometrySize="0" XToolTipLabelFormatter="{Binding ToolTipFormatterFunc}"/>
-                            </lvc:SeriesCollection>
-                        </lvc:CartesianChart.Series>
-                    </lvc:CartesianChart>
-                </Expander>
+                            <TextBlock Text="Skalierung" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <ComboBox SelectedValue="{Binding FrameSize, Mode=TwoWay}" SelectedValuePath="Content">
+                                <ComboBoxItem>5</ComboBoxItem>
+                                <ComboBoxItem>10</ComboBoxItem>
+                                <ComboBoxItem>15</ComboBoxItem>
+                                <ComboBoxItem>20</ComboBoxItem>
+                                <ComboBoxItem>30</ComboBoxItem>
+                                <ComboBoxItem>60</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        
+                        <lvc:CartesianChart Grid.Row="1" Background="{DynamicResource WindowBackground}" Height="300">
+                            <lvc:CartesianChart.XAxes>
+                                <lvc:AxesCollection>
+                                    <lvc:XamlAxis Labels="{Binding Frames}"/>
+                                </lvc:AxesCollection>
+                            </lvc:CartesianChart.XAxes>
+
+                            <lvc:CartesianChart.YAxes>
+                                <lvc:AxesCollection>
+                                    <lvc:XamlAxis AxisName="Anzahl Züge"
+                                                  ShowSeparatorLines="False"
+                                                  MinLimit="0"
+                                                  NamePaint="{Binding NumberOfTrainsStroke}"
+                                                  LabelsPaint="{Binding NumberOfTrainsStroke}"
+                                                  IsVisible="{Binding ShowNumbersOfTrains}" />
+                                    <lvc:XamlAxis AxisName="Gesamtverspätung [min]"
+                                                  ShowSeparatorLines="False"
+                                                  MinLimit="0"
+                                                  Position="End"
+                                                  NamePaint="{Binding DelaysStroke}"
+                                                  LabelsPaint="{Binding DelaysStroke}"
+                                                  IsVisible="{Binding ShowDelays}" />
+                                    <lvc:XamlAxis AxisName="Pünktlichkeit [%]"
+                                                  MinLimit="0"
+                                                  MaxLimit="100"
+                                                  ShowSeparatorLines="False"
+                                                  Position="End"
+                                                  NamePaint="{Binding OnTimeRatesStroke}"
+                                                  LabelsPaint="{Binding OnTimeRatesStroke}"
+                                                  IsVisible="{Binding ShowOnTimeRates}" />
+                                </lvc:AxesCollection>
+                            </lvc:CartesianChart.YAxes>
+
+                            <lvc:CartesianChart.Series>
+                                <lvc:SeriesCollection>
+                                    <lvc:XamlLineSeries SeriesName="Anzahl Züge"
+                                                        Values="{Binding NumbersOfTrains}"
+                                                        GeometrySize="0"
+                                                        ScalesYAt="0"
+                                                        LineSmoothness="0"
+                                                        Fill="{x:Null}"
+                                                        Stroke="{Binding NumberOfTrainsStroke}"
+                                                        IsVisible="{Binding ShowNumbersOfTrains}"
+                                                        XToolTipLabelFormatter="{Binding ToolTipFormatterFunc}"/>
+                                    <lvc:XamlLineSeries SeriesName="Gesamtverspätung"
+                                                        Values="{Binding Delays}"
+                                                        GeometrySize="0"
+                                                        ScalesYAt="1"
+                                                        LineSmoothness="0"
+                                                        Fill="{x:Null}"
+                                                        Stroke="{Binding DelaysStroke}"
+                                                        IsVisible="{Binding ShowDelays}"
+                                                        XToolTipLabelFormatter="{Binding ToolTipFormatterFunc}"
+                                                        YToolTipLabelFormatter="{Binding ToolTipFormatterDelay}"/>
+                                    <lvc:XamlLineSeries SeriesName="Pünktlichkeit"
+                                                        Values="{Binding OnTimeRates}"
+                                                        GeometrySize="0"
+                                                        ScalesYAt="2"
+                                                        LineSmoothness="0"
+                                                        Fill="{x:Null}"
+                                                        Stroke="{Binding OnTimeRatesStroke}"
+                                                        IsVisible="{Binding ShowOnTimeRates}"
+                                                        XToolTipLabelFormatter="{Binding ToolTipFormatterFunc}"
+                                                        YToolTipLabelFormatter="{Binding ToolTipFormatterOnTimeRate}"/>
+                                </lvc:SeriesCollection>
+                            </lvc:CartesianChart.Series>
+                        </lvc:CartesianChart>
+                    </Grid>
+                </GroupBox>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox Grid.Column="0" Header="Züge mit größter Verspätung" Margin="5">
+                        <controls:LeibitDataGrid ItemsSource="{Binding TrainsWithGreatestDelays}"
+                                                 SelectedItem="{Binding SelectedTrain, Mode=TwoWay}"
+                                                 CanGroup="False"
+                                                 RowDoubleClickCommand="{Binding ShowTrainScheduleCommand}">
+                            <controls:LeibitDataGrid.Columns>
+                                <controls:LeibitDataGridColumn Header="Gattung" FieldName="TrainType" />
+                                <controls:LeibitDataGridColumn Header="ZN" FieldName="TrainNumber"/>
+                                <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayString"/>
+                                <controls:LeibitDataGridColumn Header="Grund" FieldName="Reasons"/>
+                            </controls:LeibitDataGrid.Columns>
+                        </controls:LeibitDataGrid>
+                    </GroupBox>
+
+                    <GroupBox Grid.Column="1" Header="Betriebsstellen mit größter Verspätung" Margin="5">
+                        <controls:LeibitDataGrid ItemsSource="{Binding StationsWithGreatestDelays}"
+                                                 CanGroup="False">
+                            <controls:LeibitDataGrid.Columns>
+                                <controls:LeibitDataGridColumn Header="Kürzel" FieldName="StationShort" />
+                                <controls:LeibitDataGridColumn Header="Name" FieldName="StationName"/>
+                                <controls:LeibitDataGridColumn Header="Vsp" FieldName="DelayString"/>
+                            </controls:LeibitDataGrid.Columns>
+                        </controls:LeibitDataGrid>
+                    </GroupBox>
+                </Grid>
             </Grid>
         </ScrollViewer>
     </Grid>

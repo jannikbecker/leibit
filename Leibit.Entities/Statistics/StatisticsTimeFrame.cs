@@ -7,6 +7,7 @@ namespace Leibit.Entities.Statistics
         public LeibitTime StartTime { get; set; }
         public LeibitTime EndTime { get; set; }
         public int NumberOfTrains { get; set; }
-        public double AverageDelay { get; set; }
+        public double DelaySum { get; set; }
+        public int OnTimeRate { get; set; }
     }
 }

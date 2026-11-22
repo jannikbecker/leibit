@@ -5,6 +5,7 @@ using Leibit.Client.WPF.Windows.TrainSchedule.ViewModels;
 using Leibit.Client.WPF.Windows.TrainSchedule.Views;
 using Leibit.Core.Client.Commands;
 using Leibit.Core.Common;
+using Leibit.Entities;
 using Leibit.Entities.Common;
 using Leibit.Entities.LiveData;
 using Leibit.Entities.Statistics;
@@ -23,6 +24,12 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
 {
     public class HistoricalStatisticsViewModel : ChildWindowViewModelBase, IRefreshable
     {
+        public class StatisticType
+        {
+            public string Name { get; set; }
+            public eHistoricalStatisticsType Type { get; set; }
+        }
+
         #region - Needs -
         private StatisticsBLL m_StatisticsBll;
         private PieDataViewModel<int> m_NumberOfEarlyTrains;
@@ -37,20 +44,27 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
             m_StatisticsBll = new();
             (App.Current as App).SkinChanged += __SkinChanged;
 
-            Dispatcher = dispatcher;
-            ESTWList = area.ESTWs.Where(e => e.IsLoaded && e.SchedulesLoaded).ToObservableCollection();
-            ShowTrainWithSmallestDelayScheduleCommand = new CommandHandler(() => __ShowTrainSchedule(HistoricalStatistics?.TrainWithSmallestDelay), true);
-            ShowTrainWithGreatestDelayScheduleCommand = new CommandHandler(() => __ShowTrainSchedule(HistoricalStatistics?.TrainWithGreatestDelay), true);
-
-            if (ESTWList.Count == 1)
-                SelectedESTW = ESTWList.Single();
-
-            FrameSize = 15;
-
             m_NumberOfEarlyTrains = new PieDataViewModel<int>("< -5 min", (App.Current.TryFindResource("DelayBlue") as SolidColorBrush).Color);
             m_NumberOfTrainsOnTime = new PieDataViewModel<int>("Pünktlich", (App.Current.TryFindResource("ReadyColor") as SolidColorBrush).Color);
             m_NumberOfTrainsWithShortDelay = new PieDataViewModel<int>("> 5 min", (App.Current.TryFindResource("DelayYellow") as SolidColorBrush).Color);
             m_NumberOfTrainsWithLongDelay = new PieDataViewModel<int>("> 10 min", (App.Current.TryFindResource("DelayRed") as SolidColorBrush).Color);
+
+            Dispatcher = dispatcher;
+            FrameSize = 15;
+            ShowNumbersOfTrains = true;
+            ShowDelays = true;
+            ShowOnTimeRates = true;
+            StatisticTypes = [
+                new StatisticType { Name = "Alle Züge", Type = eHistoricalStatisticsType.All},
+                new StatisticType { Name = "Nur Reisezüge", Type = eHistoricalStatisticsType.OnlyPassengerTrains},
+                new StatisticType { Name = "Nur Güterzüge", Type = eHistoricalStatisticsType.OnlyFreightFrains},
+            ];
+            SelectedStatisticType = StatisticTypes[0];
+            ESTWList = area.ESTWs.Where(e => e.IsLoaded && e.SchedulesLoaded).ToObservableCollection();
+            ShowTrainScheduleCommand = new CommandHandler(() => __ShowTrainSchedule(SelectedTrain.CurrentTrain), true);
+
+            if (ESTWList.Count == 1)
+                SelectedESTW = ESTWList.Single();
         }
         #endregion
 
@@ -68,7 +82,31 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         public ESTW SelectedESTW
         {
             get => Get<ESTW>();
-            set => Set(value);
+            set
+            {
+                Set(value);
+                Refresh(null);
+            }
+        }
+        #endregion
+
+        #region [StatisticTypes]
+        public ObservableCollection<StatisticType> StatisticTypes
+        {
+            get => Get<ObservableCollection<StatisticType>>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [SelectedStatisticType]
+        public StatisticType SelectedStatisticType
+        {
+            get => Get<StatisticType>();
+            set
+            {
+                Set(value);
+                Refresh(null);
+            }
         }
         #endregion
 
@@ -76,6 +114,34 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         public int FrameSize
         {
             get => Get<int>();
+            set
+            {
+                Set(value);
+                Refresh(null);
+            }
+        }
+        #endregion
+
+        #region [ShowNumbersOfTrains]
+        public bool ShowNumbersOfTrains
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [ShowDelays]
+        public bool ShowDelays
+        {
+            get => Get<bool>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [ShowOnTimeRates]
+        public bool ShowOnTimeRates
+        {
+            get => Get<bool>();
             set => Set(value);
         }
         #endregion
@@ -88,8 +154,29 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         }
         #endregion
 
+        #region [OnTimeRateString]
+        public string OnTimeRateString
+        {
+            get
+            {
+                if (HistoricalStatistics?.OnTimeRate == null)
+                    return "- %";
+
+                return $"{HistoricalStatistics.OnTimeRate} %";
+            }
+        }
+        #endregion
+
         #region [ToolTipFormatterFunc]
-        public Func<ChartPoint, string> ToolTipFormatterFunc => __GetToolTipLabel;
+        public Func<ChartPoint, string> ToolTipFormatterFunc => __GetToolTipLabel_Header;
+        #endregion
+
+        #region [ToolTipFormatterDelay]
+        public Func<ChartPoint, string> ToolTipFormatterDelay => __GetToolTipLabel_Delay;
+        #endregion
+
+        #region [ToolTipFormatterOnTimeRate]
+        public Func<ChartPoint, string> ToolTipFormatterOnTimeRate => __GetToolTipLabel_OnTimeRate;
         #endregion
 
         #region [DelayStatistics]
@@ -115,10 +202,18 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         }
         #endregion
 
-        #region [AverageDelays]
-        public double[] AverageDelays
+        #region [Delays]
+        public double[] Delays
         {
             get => Get<double[]>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [OnTimeRates]
+        public int[] OnTimeRates
+        {
+            get => Get<int[]>();
             private set => Set(value);
         }
         #endregion
@@ -130,12 +225,53 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         }
         #endregion
 
-        #region [ShowTrainWithSmallestDelayScheduleCommand]
-        public CommandHandler ShowTrainWithSmallestDelayScheduleCommand { get; }
+        #region [NumberOfTrainsStroke]
+        public Paint NumberOfTrainsStroke
+        {
+            get => new SolidColorPaint((App.Current.TryFindResource("DelayBlue") as SolidColorBrush).Color.ToSKColor(), 2);
+        }
         #endregion
 
-        #region [ShowTrainWithGreatestDelayScheduleCommand]
-        public CommandHandler ShowTrainWithGreatestDelayScheduleCommand { get; }
+        #region [DelaysStroke]
+        public Paint DelaysStroke
+        {
+            get => new SolidColorPaint((App.Current.TryFindResource("DelayRed") as SolidColorBrush).Color.ToSKColor(), 2);
+        }
+        #endregion
+
+        #region [OnTimeRatesStroke]
+        public Paint OnTimeRatesStroke
+        {
+            get => new SolidColorPaint((App.Current.TryFindResource("ReadyColor") as SolidColorBrush).Color.ToSKColor(), 2);
+        }
+        #endregion
+
+        #region [TrainsWithGreatestDelays]
+        public ObservableCollection<DelayedTrainViewModel> TrainsWithGreatestDelays
+        {
+            get => Get<ObservableCollection<DelayedTrainViewModel>>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [StationsWithGreatestDelays]
+        public ObservableCollection<StationViewModel> StationsWithGreatestDelays
+        {
+            get => Get<ObservableCollection<StationViewModel>>();
+            private set => Set(value);
+        }
+        #endregion
+
+        #region [SelectedTrain]
+        public DelayedTrainViewModel SelectedTrain
+        {
+            get => Get<DelayedTrainViewModel>();
+            set => Set(value);
+        }
+        #endregion
+
+        #region [ShowTrainScheduleCommand]
+        public CommandHandler ShowTrainScheduleCommand { get; }
         #endregion
 
         #region [Dispatcher]
@@ -149,10 +285,10 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         #region [Refreh]
         public void Refresh(Area Area)
         {
-            if (SelectedESTW == null)
+            if (SelectedESTW == null || SelectedStatisticType == null)
                 return;
 
-            var statResult = m_StatisticsBll.GetHistoricalStatistics(SelectedESTW, FrameSize);
+            var statResult = m_StatisticsBll.GetHistoricalStatistics(SelectedESTW, FrameSize, SelectedStatisticType.Type);
 
             if (!statResult.Succeeded)
             {
@@ -161,6 +297,9 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
             }
 
             HistoricalStatistics = statResult.Result;
+            OnPropertyChanged(nameof(HistoricalStatistics));
+            OnPropertyChanged(nameof(OnTimeRateString));
+
             m_NumberOfEarlyTrains.Value = HistoricalStatistics.NumberOfEarlyTrains;
             m_NumberOfTrainsOnTime.Value = HistoricalStatistics.NumberOfTrainsOnTime;
             m_NumberOfTrainsWithShortDelay.Value = HistoricalStatistics.NumberOfTrainsWithShortDelay;
@@ -168,7 +307,11 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
 
             Frames = HistoricalStatistics.TimeFrames.Select(f => f.StartTime.ToString()).ToArray();
             NumbersOfTrains = HistoricalStatistics.TimeFrames.Select(f => f.NumberOfTrains).ToArray();
-            AverageDelays = HistoricalStatistics.TimeFrames.Select(f => f.AverageDelay).ToArray();
+            Delays = HistoricalStatistics.TimeFrames.Select(f => f.DelaySum).ToArray();
+            OnTimeRates = HistoricalStatistics.TimeFrames.Select(f => f.OnTimeRate).ToArray();
+
+            TrainsWithGreatestDelays = HistoricalStatistics.TrainsWithGreatestDelays.Select(t => new DelayedTrainViewModel(t)).ToObservableCollection();
+            StationsWithGreatestDelays = HistoricalStatistics.StationsWithGreatestDelays.Select(s => new StationViewModel(s)).ToObservableCollection();
         }
         #endregion
 
@@ -185,11 +328,27 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         }
         #endregion
 
-        #region [__GetToolTipLabel]
-        private string __GetToolTipLabel(ChartPoint point)
+        #region [__GetToolTipLabel_Header]
+        private string __GetToolTipLabel_Header(ChartPoint point)
         {
             var frame = HistoricalStatistics.TimeFrames[point.Index];
             return frame.StartTime.ToString() + " - " + frame.EndTime.ToString();
+        }
+        #endregion
+
+        #region [__GetToolTipLabel_Delay]
+        private string __GetToolTipLabel_Delay(ChartPoint point)
+        {
+            var delay = Delays[point.Index];
+            return $"+{delay} min";
+        }
+        #endregion
+
+        #region [__GetToolTipLabel_OnTimeRate]
+        private string __GetToolTipLabel_OnTimeRate(ChartPoint point)
+        {
+            var onTimeRate = OnTimeRates[point.Index];
+            return $"{onTimeRate}%";
         }
         #endregion
 
