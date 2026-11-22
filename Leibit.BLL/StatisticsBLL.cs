@@ -49,57 +49,65 @@ namespace Leibit.BLL
 
                 var trains = estw.Area.LiveTrains.Values.Where(t => t.LastModification.ContainsKey(estw.Id)).ToList();
 
+                // To determine whether a train is a passenger or freight train, check all its schedules.
+                // Some trains change their type during their journey (e.g. RB -> Lt or vice versa, when coming from or going to the depot).
+                // If an Lt train is late from the depot, it has an impact for passengers.
+                // That's why we want to consider these cases as passenger trains as well, even if the Lt train itself has no passengers.
                 if (type == eHistoricalStatisticsType.OnlyPassengerTrains)
-                    trains = trains.Where(t => t.Train.Type.IsPassengerTrain()).ToList();
+                    trains = trains.Where(t => t.Train.Schedules.Any(s => s.TrainType.IsPassengerTrain())).ToList();
                 if (type == eHistoricalStatisticsType.OnlyFreightFrains)
-                    trains = trains.Where(t => !t.Train.Type.IsPassengerTrain()).ToList();
-
-                result.NumberOfTrains = trains.Count;
-                result.NumberOfEarlyTrains = trains.Count(t => t.Delay < -5);
-                result.NumberOfTrainsOnTime = trains.Count(t => t.Delay >= -5 && t.Delay <= 5);
-                result.NumberOfTrainsWithShortDelay = trains.Count(t => t.Delay > 5 && t.Delay <= 10);
-                result.NumberOfTrainsWithLongDelay = trains.Count(t => t.Delay > 10);
-
-                if (result.NumberOfTrains > 0)
-                    result.OnTimeRate = 100 * (result.NumberOfTrainsOnTime + result.NumberOfEarlyTrains) / result.NumberOfTrains;
+                    trains = trains.Where(t => !t.Train.Schedules.Any(s => s.TrainType.IsPassengerTrain())).ToList();
 
                 foreach (var train in trains)
                 {
-                    var schedules = train.Schedules.Where(s => s.Schedule.Station.ESTW == estw).ToList();
-                    var firstSchedule = schedules.FirstOrDefault();
-                    var lastSchedule = schedules.LastOrDefault();
-
-                    if (firstSchedule == null || lastSchedule == null)
-                        continue;
-
+                    var schedules = train.Schedules.Where(s => s.Schedule.Station.ESTW == estw);
+                    var firstSchedule = schedules.FirstOrDefault(s => s.LiveArrival != null);
+                    var lastSchedule = schedules.LastOrDefault(s => s.LiveArrival != null);
                     int entryDelay, exitDelay;
 
-                    if (firstSchedule.Schedule.Handling == eHandling.Start)
-                        entryDelay = 0;
-
-                    var referenceTime = firstSchedule.Schedule.Arrival ?? firstSchedule.Schedule.Departure;
-
-                    if (firstSchedule.LiveArrival != null && referenceTime != null)
-                        entryDelay = Math.Max(0, (firstSchedule.LiveArrival - referenceTime).TotalMinutes);
-                    else
-                        continue;
-
-                    if (lastSchedule.Schedule.Handling == eHandling.Destination)
+                    /* Calculation of entry delay
+                     * ==========================
+                     * The entry delay is the delay at the first station the train has reached in the current ESTW.
+                     * If the train hasn't yet reached any station in the current ESTW, we just take the current delay as entry delay.
+                     * When the train starts in the current ESTW, we take the delay from the previous service as entry delay.
+                     * If no previous service exists, the entry delay is always 0 per definition.
+                     * If the train did't start in the current ESTW, we calculate the arrival delay for the first schedule in the current ESTW.
+                     * In case of passing trains, no arrival time exists, so use the departure time as replacement.
+                     */
+                    if (firstSchedule == null)
+                        entryDelay = train.Delay;
+                    else if (firstSchedule.Schedule.Handling == eHandling.Start)
                     {
-                        if (lastSchedule.LiveArrival != null && lastSchedule.Schedule.Arrival != null)
-                            exitDelay = Math.Max(0, (firstSchedule.LiveArrival - lastSchedule.Schedule.Arrival).TotalMinutes);
+                        if (train.PreviousService.HasValue && estw.Area.LiveTrains.TryGetValue(train.PreviousService.Value, out var previousService))
+                            entryDelay = previousService.Delay;
                         else
-                            continue;
+                            entryDelay = 0;
                     }
                     else
                     {
-                        if (lastSchedule.LiveDeparture != null && lastSchedule.Schedule.Departure != null)
-                            exitDelay = Math.Max(0, (firstSchedule.LiveDeparture - lastSchedule.Schedule.Departure).TotalMinutes);
-                        else
-                            continue;
+                        var referenceTime = firstSchedule.Schedule.Arrival ?? firstSchedule.Schedule.Departure;
+                        entryDelay = (firstSchedule.LiveArrival - referenceTime).TotalMinutes;
                     }
 
-                    var netDelay = exitDelay - entryDelay;
+                    /* Calculation of exit delay
+                     * =========================
+                     * The exit delay is the delay at the last station in the current ESTW, or - if the train hasn't yet left the current ESTW - the current delay.
+                     */
+                    if (lastSchedule != null && lastSchedule.LiveDeparture != null && lastSchedule.Schedule.Departure != null)
+                        exitDelay = (lastSchedule.LiveDeparture - lastSchedule.Schedule.Departure).TotalMinutes;
+                    else
+                        exitDelay = train.Delay;
+
+                    if (exitDelay < -5)
+                        result.NumberOfEarlyTrains++;
+                    else if (exitDelay <= 5)
+                        result.NumberOfTrainsOnTime++;
+                    else if (exitDelay <= 10)
+                        result.NumberOfTrainsWithShortDelay++;
+                    else
+                        result.NumberOfTrainsWithLongDelay++;
+
+                    var netDelay = Math.Max(0, exitDelay) - Math.Max(0, entryDelay);
                     result.DelayTotalNet += netDelay;
 
                     if (netDelay < 0)
@@ -107,6 +115,11 @@ namespace Leibit.BLL
                     else
                         result.DelayAdded += netDelay;
                 }
+
+                result.NumberOfTrains = trains.Count;
+
+                if (result.NumberOfTrains > 0)
+                    result.OnTimeRate = 100 * (result.NumberOfTrainsOnTime + result.NumberOfEarlyTrains) / result.NumberOfTrains;
 
                 var allSchedules = trains.SelectMany(t => t.Schedules.Where(s => s.Schedule.Station.ESTW == estw)).ToList();
 
@@ -133,6 +146,18 @@ namespace Leibit.BLL
                     var resultFrame = new StatisticsTimeFrame();
                     resultFrame.StartTime = frame.Key;
                     resultFrame.EndTime = frame.Key.AddMinutes(frameSize);
+
+                    if (resultFrame.EndTime > estw.Time)
+                        continue;
+
+                    while (result.TimeFrames.Any() && resultFrame.StartTime != result.TimeFrames.Last().EndTime)
+                    {
+                        var emptyFrame = new StatisticsTimeFrame();
+                        emptyFrame.StartTime = result.TimeFrames.Last().EndTime;
+                        emptyFrame.EndTime = emptyFrame.StartTime.AddMinutes(frameSize);
+                        emptyFrame.OnTimeRate = 100;
+                        result.TimeFrames.Add(emptyFrame);
+                    }
 
                     var trainsInFrame = frame.GroupBy(x => x.TrainNumber).Select(x => new
                     {
