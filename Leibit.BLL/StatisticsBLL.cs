@@ -127,7 +127,7 @@ namespace Leibit.BLL
                 }
 
                 result.NumberOfTrains = trains.Count;
-                result.TrainsWithGreatestDelays = trainDelayStatistics.OrderByDescending(s => s.NetDelay).Take(10).ToList();
+                result.TrainsWithGreatestDelays = trainDelayStatistics.Where(s => s.NetDelay > 0).OrderByDescending(s => s.NetDelay).Take(10).ToList();
 
                 var allSchedules = trains.SelectMany(t => t.Schedules.Where(s => s.Schedule.Station.ESTW == estw)).ToList();
 
