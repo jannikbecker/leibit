@@ -4,9 +4,11 @@ using Leibit.Entities.Scheduling;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Leibit.Entities.LiveData
 {
+    [DebuggerDisplay("{Schedule.Station.ShortSymbol} Soll-An: {Schedule.Arrival} Ist-An: {LiveArrival} Soll-Ab: {Schedule.Departure} Ist-Ab: {LiveDeparture}")]
     public class LiveSchedule : IComparable<LiveSchedule>
     {
         private TrainInformation m_Train;

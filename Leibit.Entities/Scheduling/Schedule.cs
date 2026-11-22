@@ -2,9 +2,11 @@
 using Leibit.Core.Scheduling;
 using Leibit.Entities.Common;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Leibit.Entities.Scheduling
 {
+    [DebuggerDisplay("{Station.ShortSymbol} An: {Arrival} Ab: {Departure} Gl.: {(Track?.Name ?? \"\")}")]
     public class Schedule
     {
 
