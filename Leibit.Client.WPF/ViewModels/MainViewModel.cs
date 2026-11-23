@@ -1013,6 +1013,16 @@ namespace Leibit.Client.WPF.ViewModels
 
                             break;
 
+                        case eChildWindowType.CurrentStatistics:
+                            Window = new CurrentStatisticsView();
+                            ViewModel = new CurrentStatisticsViewModel(Window.Dispatcher, m_CurrentArea);
+                            break;
+
+                        case eChildWindowType.HistoricalStatistics:
+                            Window = new HistoricalStatisticsView();
+                            ViewModel = new HistoricalStatisticsViewModel(Window.Dispatcher, m_CurrentArea);
+                            break;
+
                         default:
                             continue;
                     }
@@ -1095,6 +1105,10 @@ namespace Leibit.Client.WPF.ViewModels
                     else
                         SerializedWindow.Tag += displayViewModel.SelectedTrack?.Name;
                 }
+                else if (Window.DataContext is CurrentStatisticsViewModel)
+                    SerializedWindow.Type = eChildWindowType.CurrentStatistics;
+                else if (Window.DataContext is HistoricalStatisticsViewModel)
+                    SerializedWindow.Type = eChildWindowType.HistoricalStatistics;
                 else
                     continue;
 

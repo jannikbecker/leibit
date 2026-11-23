@@ -54,6 +54,8 @@ namespace Leibit.Entities
         SystemState = 8,
         TrainComposition = 9,
         Display = 10,
+        CurrentStatistics = 11,
+        HistoricalStatistics = 12,
     }
 
     public enum eTrainState
