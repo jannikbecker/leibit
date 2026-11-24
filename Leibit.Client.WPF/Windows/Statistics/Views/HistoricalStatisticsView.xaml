@@ -100,7 +100,11 @@
                             </ComboBox>
                         </StackPanel>
                         
-                        <lvc:CartesianChart Grid.Row="1" Background="{DynamicResource WindowBackground}" Height="300">
+                        <lvc:CartesianChart Grid.Row="1"
+                                            Background="{DynamicResource WindowBackground}"
+                                            TooltipTextPaint="{Binding ToolTipForegroundStroke}"
+                                            TooltipBackgroundPaint="{Binding ToolTipBackgroundStroke}"
+                                            Height="300">
                             <lvc:CartesianChart.XAxes>
                                 <lvc:AxesCollection>
                                     <lvc:XamlAxis Labels="{Binding Frames}"/>

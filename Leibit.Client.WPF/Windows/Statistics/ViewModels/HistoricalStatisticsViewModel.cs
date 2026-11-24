@@ -14,6 +14,7 @@ using LiveChartsCore.Painting;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp.Views.WPF;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -56,9 +57,14 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
             ShowTrainScheduleFromDelayCommand = new CommandHandler(() => __ShowTrainSchedule(SelectedDelayDetail.Train), true);
             CloseStationDetailsCommand = new CommandHandler(__CloseStationDetails, true);
             DelayStatistics = new();
+            TrainsWithGreatestDelays = new();
+            StationsWithGreatestDelays = new();
+            StationDelayDetails = new();
 
             if (ESTWList.Count == 1)
                 SelectedESTW = ESTWList.Single();
+
+            (App.Current as App).SkinChanged += __SkinChanged;
         }
         #endregion
 
@@ -203,21 +209,40 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         #region [NumberOfTrainsStroke]
         public Paint NumberOfTrainsStroke
         {
-            get => new SolidColorPaint((App.Current.TryFindResource("DelayBlue") as SolidColorBrush).Color.ToSKColor(), 2);
+            get => new SolidColorPaint((App.Current.TryFindResource("StatisticsNumberOfTrainsLine") as SolidColorBrush).Color.ToSKColor(), 2);
         }
         #endregion
 
         #region [DelaysStroke]
         public Paint DelaysStroke
         {
-            get => new SolidColorPaint((App.Current.TryFindResource("DelayRed") as SolidColorBrush).Color.ToSKColor(), 2);
+            get => new SolidColorPaint((App.Current.TryFindResource("StatisticsDelaySumLine") as SolidColorBrush).Color.ToSKColor(), 2);
         }
         #endregion
 
         #region [OnTimeRatesStroke]
         public Paint OnTimeRatesStroke
         {
-            get => new SolidColorPaint((App.Current.TryFindResource("ReadyColor") as SolidColorBrush).Color.ToSKColor(), 2);
+            get => new SolidColorPaint((App.Current.TryFindResource("StatisticsOnTimeRateLine") as SolidColorBrush).Color.ToSKColor(), 2);
+        }
+        #endregion
+
+        #region [ToolTipForegroundStroke]
+        public Paint ToolTipForegroundStroke
+        {
+            get => new SolidColorPaint((App.Current.TryFindResource("ToolTipForeground") as SolidColorBrush).Color.ToSKColor(), 2);
+        }
+        #endregion
+
+        #region [ToolTipBackgroundStroke]
+        public Paint ToolTipBackgroundStroke
+        {
+            get
+            {
+                var color = (App.Current.TryFindResource("ToolTipBackground") as SolidColorBrush).Color;
+                color.A = 220;
+                return new SolidColorPaint(color.ToSKColor(), 2);
+            }
         }
         #endregion
 
@@ -324,8 +349,8 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
             Delays = HistoricalStatistics.TimeFrames.Select(f => f.DelaySum).ToArray();
             OnTimeRates = HistoricalStatistics.TimeFrames.Select(f => f.OnTimeRate).ToArray();
 
-            TrainsWithGreatestDelays = HistoricalStatistics.TrainsWithGreatestDelays.Select(t => new DelayedTrainViewModel(t)).ToObservableCollection();
-            StationsWithGreatestDelays = HistoricalStatistics.StationsWithGreatestDelays.Select(s => new StationViewModel(s)).ToObservableCollection();
+            __SyncCollections(HistoricalStatistics.TrainsWithGreatestDelays.Select(__GetDelayedTrainVM), TrainsWithGreatestDelays);
+            __SyncCollections(HistoricalStatistics.StationsWithGreatestDelays.Select(__GetStationVM), StationsWithGreatestDelays);
 
             if (IsStationDetailVisible)
                 __ShowStationDelays(SelectedStation.CurrentStation);
@@ -356,7 +381,7 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
                 return;
             }
 
-            StationDelayDetails = statResult.Result.Select(d => new DelayDetailViewModel(d)).ToObservableCollection();
+            __SyncCollections(statResult.Result.Select(__GetDelayDetailVM), StationDelayDetails);
             IsStationDetailVisible = true;
         }
         #endregion
@@ -365,6 +390,69 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         private void __CloseStationDetails()
         {
             IsStationDetailVisible = false;
+        }
+        #endregion
+
+        #region [__GetDelayedTrainVM]
+        private DelayedTrainViewModel __GetDelayedTrainVM(TrainDelayStatistic statistic)
+        {
+            var vm = TrainsWithGreatestDelays.FirstOrDefault(vm => vm.CurrentTrain == statistic.Train);
+
+            if (vm == null)
+                vm = new DelayedTrainViewModel(statistic);
+
+            vm.Refresh(statistic);
+            return vm;
+        }
+        #endregion
+
+        #region [__GetStationVM]
+        private StationViewModel __GetStationVM(StationDelayStatistic statistic)
+        {
+            var vm = StationsWithGreatestDelays.FirstOrDefault(vm => vm.CurrentStation == statistic.Station);
+
+            if (vm == null)
+                vm = new StationViewModel(statistic);
+
+            vm.Refresh(statistic);
+            return vm;
+        }
+        #endregion
+
+        #region [__GetDelayDetailVM]
+        private DelayDetailViewModel __GetDelayDetailVM(DelayInfo delay)
+        {
+            var vm = StationDelayDetails.FirstOrDefault(vm => vm.CurrentDelayInfo == delay);
+
+            if (vm == null)
+                vm = new DelayDetailViewModel(delay);
+
+            vm.Refresh(delay);
+            return vm;
+        }
+        #endregion
+
+        #region [__SyncCollections]
+        private void __SyncCollections<T>(IEnumerable<T> source, ObservableCollection<T> target)
+        {
+            // 1. Delete elements that no longer exist
+            target.Except(source).ToList().ForEach(x => target.Remove(x));
+
+            // 2. Insert new elements & ensure sorting is correct.
+            for (int i = 0; i < source.Count(); i++)
+            {
+                var currentItem = source.ElementAt(i);
+                int existingIndex = target.IndexOf(currentItem);
+
+                if (existingIndex == -1)
+                {
+                    target.Insert(i, currentItem);
+                }
+                else if (existingIndex != i)
+                {
+                    target.Move(existingIndex, i);
+                }
+            }
         }
         #endregion
 
@@ -389,6 +477,17 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         {
             var onTimeRate = OnTimeRates[point.Index];
             return $"{onTimeRate}%";
+        }
+        #endregion
+
+        #region [__SkinChanged]
+        private void __SkinChanged(object sender, System.EventArgs e)
+        {
+            OnPropertyChanged(nameof(NumberOfTrainsStroke));
+            OnPropertyChanged(nameof(DelaysStroke));
+            OnPropertyChanged(nameof(OnTimeRatesStroke));
+            OnPropertyChanged(nameof(ToolTipForegroundStroke));
+            OnPropertyChanged(nameof(ToolTipBackgroundStroke));
         }
         #endregion
 

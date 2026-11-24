@@ -10,6 +10,7 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         #region - Ctor -
         public DelayDetailViewModel(DelayInfo delay)
         {
+            CurrentDelayInfo = delay;
             Train = delay.Schedule.Train;
             TrainType = delay.Schedule.Schedule.TrainType;
             TrainNumber = Train.Train.Number;
@@ -19,8 +20,6 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
             ScheduledDeparture = delay.Schedule.Schedule.Departure;
             LiveDeparture = delay.Schedule.LiveDeparture;
             Delay = __FormatDelay(delay.Minutes);
-            Reason = delay.Reason;
-            CausedBy = delay.CausedBy;
 
             if (LiveArrival != null && ScheduledArrival != null)
                 DelayArrival = __FormatDelay((LiveArrival - ScheduledArrival).TotalMinutes);
@@ -30,6 +29,14 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         #endregion
 
         #region - Properties -
+
+        #region [CurrentDelayInfo]
+        public DelayInfo CurrentDelayInfo
+        {
+            get => Get<DelayInfo>();
+            private set => Set(value);
+        }
+        #endregion
 
         #region [Train]
         public TrainInformation Train
@@ -146,6 +153,18 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
                 return delay.ToString();
             else
                 return $"+{delay}";
+        }
+        #endregion
+
+        #endregion
+
+        #region - Public methods -
+
+        #region [Refresh]
+        public void Refresh(DelayInfo delay)
+        {
+            Reason = delay.Reason;
+            CausedBy = delay.CausedBy;
         }
         #endregion
 

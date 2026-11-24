@@ -14,10 +14,6 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
             CurrentTrain = statistic.Train;
             TrainType = CurrentTrain.Train.Type;
             TrainNumber = CurrentTrain.Train.Number;
-            EntryDelayString = __FormatDelay(statistic.EntryDelay);
-            ExitDelayString = __FormatDelay(statistic.ExitDelay);
-            NetDelayString = __FormatDelay(statistic.NetDelay);
-            Reasons = string.Join(",", CurrentTrain.Schedules.SelectMany(s => s.Delays).Where(d => d.Reason.IsNotNullOrEmpty()).Select(d => $"{d.Reason} (+{d.Minutes} von {d.Schedule.Schedule.Station.ShortSymbol})"));
         }
         #endregion
 
@@ -90,6 +86,20 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
                 return delay.ToString();
             else
                 return $"+{delay}";
+        }
+        #endregion
+
+        #endregion
+
+        #region - Public methods -
+
+        #region [Refresh]
+        public void Refresh(TrainDelayStatistic statistic)
+        {
+            EntryDelayString = __FormatDelay(statistic.EntryDelay);
+            ExitDelayString = __FormatDelay(statistic.ExitDelay);
+            NetDelayString = __FormatDelay(statistic.NetDelay);
+            Reasons = string.Join(",", statistic.Train.Schedules.SelectMany(s => s.Delays).Where(d => d.Reason.IsNotNullOrEmpty()).Select(d => $"{d.Reason} (+{d.Minutes} von {d.Schedule.Schedule.Station.ShortSymbol})"));
         }
         #endregion
 

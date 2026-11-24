@@ -12,7 +12,6 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
             CurrentStation = statistic.Station;
             StationShort = statistic.Station.ShortSymbol;
             StationName = statistic.Station.Name;
-            DelayString = $"+{statistic.DelaySum}";
         }
         #endregion
 
@@ -47,6 +46,17 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         {
             get => Get<string>();
             private set => Set(value);
+        }
+        #endregion
+
+        #endregion
+
+        #region - Public methods -
+
+        #region [Refresh]
+        public void Refresh(StationDelayStatistic statistic)
+        {
+            DelayString = $"+{statistic.DelaySum}";
         }
         #endregion
 

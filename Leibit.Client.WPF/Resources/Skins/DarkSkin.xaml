@@ -6,6 +6,10 @@
     <!-- Common-->
     <SolidColorBrush x:Key="TextForeground" Color="White"/>
     <SolidColorBrush x:Key="WindowBackground" Color="#111"/>
+    
+    <!-- ToolTip -->
+    <SolidColorBrush x:Key="ToolTipForeground" Color="#ddd"/>
+    <SolidColorBrush x:Key="ToolTipBackground" Color="#1a1a1a"/>
 
     <!-- Main View -->
     <SolidColorBrush x:Key="MainViewBackground" Color="#222"/>
@@ -41,6 +45,11 @@
 
     <!-- Train Schedule -->
     <SolidColorBrush x:Key="TrainScheduleLineColor" Color="#ccc"/>
+    
+    <!-- Statistics -->
+    <SolidColorBrush x:Key="StatisticsNumberOfTrainsLine" Color="Cyan"/>
+    <SolidColorBrush x:Key="StatisticsDelaySumLine" Color="OrangeRed"/>
+    <SolidColorBrush x:Key="StatisticsOnTimeRateLine" Color="LightGreen"/>
 
     <!-- TextBox -->
     <Style TargetType="TextBox">
@@ -164,8 +173,8 @@
 
     <!-- ToolTip -->
     <Style TargetType="ToolTip">
-        <Setter Property="Foreground" Value="#ddd"/>
-        <Setter Property="Background" Value="#1a1a1a"/>
+        <Setter Property="Foreground" Value="{StaticResource ToolTipForeground}"/>
+        <Setter Property="Background" Value="{StaticResource ToolTipBackground}"/>
         <Setter Property="BorderBrush" Value="#ccc"/>
         <Setter Property="BorderThickness" Value="1"/>
     </Style>

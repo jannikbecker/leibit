@@ -265,18 +265,20 @@
                                          ArrowFill="{DynamicResource DropDownArrowFill}"
                                          ToolTipService.ToolTip="Statistiken">
                     <controls:DropDownButton.DropDownContent>
-                        <StackPanel Orientation="Vertical">
-                            <Button Content="Live-Statistik"
-                                    Command="{Binding Data.CurrentStatisticsCommand, Source={StaticResource proxy}}"
-                                    Style="{DynamicResource SimpleMenuButtonStyle}"
-                                    Padding="5,2,5,2"
-                                    HorizontalContentAlignment="Left"/>
-                            <Button Content="Schicht-Bilanz"
-                                    Command="{Binding Data.HistoricalStatisticsCommand, Source={StaticResource proxy}}"
-                                    Style="{DynamicResource SimpleMenuButtonStyle}"
-                                    Padding="5,2,5,2"
-                                    HorizontalContentAlignment="Left"/>
-                        </StackPanel>
+                        <Border BorderBrush="{DynamicResource SubMenuBorder}" BorderThickness="1" Background="{DynamicResource SubMenuBackground}">
+                            <StackPanel Orientation="Vertical">
+                                <Button Content="Live-Statistik"
+                                        Command="{Binding Data.CurrentStatisticsCommand, Source={StaticResource proxy}}"
+                                        Style="{DynamicResource SimpleMenuButtonStyle}"
+                                        Padding="5,2,5,2"
+                                        HorizontalContentAlignment="Left"/>
+                                <Button Content="Schicht-Bilanz"
+                                        Command="{Binding Data.HistoricalStatisticsCommand, Source={StaticResource proxy}}"
+                                        Style="{DynamicResource SimpleMenuButtonStyle}"
+                                        Padding="5,2,5,2"
+                                        HorizontalContentAlignment="Left"/>
+                            </StackPanel>
+                        </Border>
                     </controls:DropDownButton.DropDownContent>
                 </controls:DropDownButton>
             </ToolBar>

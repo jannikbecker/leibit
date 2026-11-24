@@ -6,6 +6,10 @@
     <SolidColorBrush x:Key="TextForeground" Color="Black"/>
     <SolidColorBrush x:Key="WindowBackground" Color="White"/>
 
+    <!-- ToolTip -->
+    <SolidColorBrush x:Key="ToolTipForeground" Color="#272727"/>
+    <SolidColorBrush x:Key="ToolTipBackground" Color="#f1f2f7"/>
+
     <!-- Main View -->
     <SolidColorBrush x:Key="MainViewBackground" Color="White"/>
     <SolidColorBrush x:Key="MenuForeground" Color="#111"/>
@@ -38,6 +42,11 @@
 
     <!-- Train Schedule -->
     <SolidColorBrush x:Key="TrainScheduleLineColor" Color="Black"/>
+
+    <!-- Statistics -->
+    <SolidColorBrush x:Key="StatisticsNumberOfTrainsLine" Color="Blue"/>
+    <SolidColorBrush x:Key="StatisticsDelaySumLine" Color="Red"/>
+    <SolidColorBrush x:Key="StatisticsOnTimeRateLine" Color="Green"/>
 
     <!-- Button -->
     <Style x:Key="ButtonStyle" TargetType="Button" />
