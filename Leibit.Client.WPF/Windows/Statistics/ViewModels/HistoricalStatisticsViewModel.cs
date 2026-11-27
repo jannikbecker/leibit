@@ -435,24 +435,27 @@ namespace Leibit.Client.WPF.Windows.Statistics.ViewModels
         #region [__SyncCollections]
         private void __SyncCollections<T>(IEnumerable<T> source, ObservableCollection<T> target)
         {
-            // 1. Delete elements that no longer exist
-            target.Except(source).ToList().ForEach(x => target.Remove(x));
-
-            // 2. Insert new elements & ensure sorting is correct.
-            for (int i = 0; i < source.Count(); i++)
+            Dispatcher.Invoke(() =>
             {
-                var currentItem = source.ElementAt(i);
-                int existingIndex = target.IndexOf(currentItem);
+                // 1. Delete elements that no longer exist
+                target.Except(source).ToList().ForEach(x => target.Remove(x));
 
-                if (existingIndex == -1)
+                // 2. Insert new elements & ensure sorting is correct.
+                for (int i = 0; i < source.Count(); i++)
                 {
-                    target.Insert(i, currentItem);
+                    var currentItem = source.ElementAt(i);
+                    int existingIndex = target.IndexOf(currentItem);
+
+                    if (existingIndex == -1)
+                    {
+                        target.Insert(i, currentItem);
+                    }
+                    else if (existingIndex != i)
+                    {
+                        target.Move(existingIndex, i);
+                    }
                 }
-                else if (existingIndex != i)
-                {
-                    target.Move(existingIndex, i);
-                }
-            }
+            });
         }
         #endregion
 
